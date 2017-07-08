@@ -9,9 +9,9 @@
 import Foundation
 
 //Operator Overloading
-func += <Key, Value> ( left: inout [Key:Value], right: [Key:Value]){
-    for (key, value) in right {
-        left[key] = value
+func += <K,V> ( left: inout [K:V], right: [K:V]){
+    for (k, v) in right {
+        left[k] = v
     }
 }
 
@@ -24,3 +24,57 @@ func contentAt(path: String) throws -> Any? {
     
     return try? JSONSerialization.jsonObject(with: content, options: .allowFragments)
 }
+
+//String Extention
+extension String {
+    
+    func getClassInstance () -> AnyClass? {
+        
+        /// get namespace
+        let namespace = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String;
+        
+        /// get 'anyClass' with classname and namespace
+        let cls: AnyClass? = NSClassFromString("\(namespace).\(self)");
+        
+        // return AnyClass!
+        return cls;
+    }
+}
+
+extension NSObject {
+    
+    //
+    // Retrieves an array of property names found on the current object
+    // using Objective-C runtime functions for introspection:
+    // https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html
+    //
+    func propertyNames() -> Array<String> {
+        var results: Array<String> = [];
+        
+        // retrieve the properties via the class_copyPropertyList function
+        var count: UInt32 = 0;
+        let myClass: AnyClass = self.classForCoder;
+        let properties = class_copyPropertyList(myClass, &count);
+        
+        // iterate each objc_property_t struct
+        for i: UInt32 in 0 ..< count {
+            let property = properties?[Int(i)];
+            
+            // retrieve the property name by calling property_getName function
+            let cname = property_getName(property);
+            
+            // covert the c string into a Swift string
+            let name = String(cString: cname!);
+            results.append(name);
+        }
+        
+        // release objc_property_t structs
+        free(properties);
+        
+        return results;
+    }
+    
+}
+
+//typealias
+typealias JSON = Dictionary<String, Any>

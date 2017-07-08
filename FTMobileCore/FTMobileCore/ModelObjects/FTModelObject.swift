@@ -10,12 +10,16 @@ import Foundation
 
 public class FTModelObject {
     
-    init() {
-        
-    }
+//    public class func createDataModelOfType(_ baseClass: FTDataModel.Type, fromDictionary: Dictionary<String, Any>) -> Any? {
+//        
+//        let baseObject : FTDataModel = baseClass.init()
+//        
+//        baseObject.configureObjectWith(data: fromDictionary)
+//        
+//        return baseObject
     
-    public class func createDataModelOfType(_ type: String, fromDictionary: Dictionary<String, Any>) -> FTDataModel {
-        
-        return FTDataModel()
-    }
+//    guard let cls = baseClass.getClassInstance() as? FTDataModel.Type else {
+//    return nil
+//    }
+//    }
 }

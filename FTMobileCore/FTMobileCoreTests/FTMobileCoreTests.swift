@@ -14,6 +14,8 @@ class FTMobileCoreTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        try? FTModelConfig.loadModelSchema(["MDASample": ["identifier":"id"] ])
     }
     
     override func tearDown() {
@@ -24,6 +26,11 @@ class FTMobileCoreTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let bundle = Bundle(identifier: "com.company.bundle.LiveUI")
+        
+        var sample = FTModelObject.createDataModelOfType("MDASample", fromDictionary: ["id":"sample"])
+
     }
     
     func testPerformanceExample() {

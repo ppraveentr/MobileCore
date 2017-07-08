@@ -12,9 +12,9 @@ public class FTModelConfig {
     
     static let sharedInstance  = FTModelConfig()
     
-    var modelSchema = [String : AnyObject]()
+    var modelSchema = JSON()
     
-    public class func loadModelSchema(withDictionary data: [String : AnyObject] ) throws {
+    public class func loadModelSchema(_ data: [String : Any] ) throws {
         
         if JSONSerialization.isValidJSONObject(data) {
             sharedInstance.modelSchema += data
@@ -23,10 +23,8 @@ public class FTModelConfig {
     
     public class func loadModelSchema(fromPath path: String ) throws {
         
-        if let content = try? contentAt(path: path) as! [String : AnyObject]  {
-            if JSONSerialization.isValidJSONObject(content) {
-                sharedInstance.modelSchema += content
-            }
+        if let content = try? contentAt(path: path) as! [String : Any]  {
+            try? loadModelSchema(content)
         }
     }
 }

@@ -8,23 +8,19 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: FTBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
 //        let bundle = Bundle(identifier: "com.company.bundle.LiveUI")
-//    
-//        var sample = FTModelObject.createDataModelOfType("Sample", fromDictionary: ["sample":"sample"])
     
-    
+        try? FTModelConfig.loadModelSchema(["MDASample": ["identifier":"id"] ])
+        
+        let sample = FTDataModel.createDataModelOfType("MDASample", fromDictionary: ["id":"sample"]) as? MDASample
+        sample?.identifier = "jgj"
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 

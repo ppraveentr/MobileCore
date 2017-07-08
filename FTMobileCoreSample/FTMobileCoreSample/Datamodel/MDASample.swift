@@ -1,5 +1,5 @@
 //
-//  SampleModel.swift
+//  MDASample.swift
 //  FTMobileCoreSample
 //
 //  Created by Praveen Prabhakar on 15/06/17.
@@ -9,8 +9,7 @@
 import UIKit
 import FTMobileCore
 
-open class SampleModel : FTDataModel{
-    
-    
+class MDASample : FTDataModel{
+    @objc dynamic var identifier:String?
 }
 
