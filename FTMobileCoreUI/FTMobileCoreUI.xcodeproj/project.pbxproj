@@ -8,16 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		DE14851B1F10B13600A250A6 /* FTMobileCoreUI.h in Headers */ = {isa = PBXBuildFile; fileRef = DE1485191F10B13600A250A6 /* FTMobileCoreUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DE14852D1F10B21700A250A6 /* FTBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE14852C1F10B21700A250A6 /* FTBaseViewController.swift */; };
 		DE1485301F10B82100A250A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE14852F1F10B82100A250A6 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		DE1485631F1159BD00A250A6 /* FTBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1485601F1159BD00A250A6 /* FTBaseViewController.swift */; };
+		DE1485641F1159BD00A250A6 /* FTLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1485621F1159BD00A250A6 /* FTLabel.swift */; };
+		DE1485671F1159E600A250A6 /* UIView+FTConstrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1485661F1159E600A250A6 /* UIView+FTConstrains.swift */; };
+		DEF85B401F12077D007315A2 /* FTBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF85B3F1F12077D007315A2 /* FTBaseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DE1485161F10B13600A250A6 /* FTMobileCoreUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FTMobileCoreUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE1485191F10B13600A250A6 /* FTMobileCoreUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTMobileCoreUI.h; sourceTree = "<group>"; };
 		DE14851A1F10B13600A250A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DE14852C1F10B21700A250A6 /* FTBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseViewController.swift; sourceTree = "<group>"; };
 		DE14852F1F10B82100A250A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DE1485601F1159BD00A250A6 /* FTBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseViewController.swift; sourceTree = "<group>"; };
+		DE1485621F1159BD00A250A6 /* FTLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLabel.swift; sourceTree = "<group>"; };
+		DE1485661F1159E600A250A6 /* UIView+FTConstrains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+FTConstrains.swift"; sourceTree = "<group>"; };
+		DEF85B3F1F12077D007315A2 /* FTBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,19 +58,12 @@
 		DE1485181F10B13600A250A6 /* FTMobileCoreUI */ = {
 			isa = PBXGroup;
 			children = (
-				DE14852B1F10B21700A250A6 /* BaseComponents */,
+				DE1485651F1159E600A250A6 /* Utilites */,
+				DE14855E1F1159BD00A250A6 /* BaseComponents */,
 				DE1485191F10B13600A250A6 /* FTMobileCoreUI.h */,
 				DE14851A1F10B13600A250A6 /* Info.plist */,
 			);
 			path = FTMobileCoreUI;
-			sourceTree = "<group>";
-		};
-		DE14852B1F10B21700A250A6 /* BaseComponents */ = {
-			isa = PBXGroup;
-			children = (
-				DE14852C1F10B21700A250A6 /* FTBaseViewController.swift */,
-			);
-			path = BaseComponents;
 			sourceTree = "<group>";
 		};
 		DE14852E1F10B82100A250A6 /* Frameworks */ = {
@@ -73,6 +72,41 @@
 				DE14852F1F10B82100A250A6 /* UIKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE14855E1F1159BD00A250A6 /* BaseComponents */ = {
+			isa = PBXGroup;
+			children = (
+				DE14855F1F1159BD00A250A6 /* Contollers */,
+				DE1485611F1159BD00A250A6 /* CoreComponents */,
+			);
+			path = BaseComponents;
+			sourceTree = "<group>";
+		};
+		DE14855F1F1159BD00A250A6 /* Contollers */ = {
+			isa = PBXGroup;
+			children = (
+				DE1485601F1159BD00A250A6 /* FTBaseViewController.swift */,
+			);
+			path = Contollers;
+			sourceTree = "<group>";
+		};
+		DE1485611F1159BD00A250A6 /* CoreComponents */ = {
+			isa = PBXGroup;
+			children = (
+				DE1485621F1159BD00A250A6 /* FTLabel.swift */,
+				DEF85B3F1F12077D007315A2 /* FTBaseView.swift */,
+			);
+			path = CoreComponents;
+			sourceTree = "<group>";
+		};
+		DE1485651F1159E600A250A6 /* Utilites */ = {
+			isa = PBXGroup;
+			children = (
+				DE1485661F1159E600A250A6 /* UIView+FTConstrains.swift */,
+			);
+			name = Utilites;
+			path = BaseComponents/Utilites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,6 +153,7 @@
 					DE1485151F10B13600A250A6 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = W6W48SVQX7;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -155,7 +190,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE14852D1F10B21700A250A6 /* FTBaseViewController.swift in Sources */,
+				DE1485641F1159BD00A250A6 /* FTLabel.swift in Sources */,
+				DE1485671F1159E600A250A6 /* UIView+FTConstrains.swift in Sources */,
+				DE1485631F1159BD00A250A6 /* FTBaseViewController.swift in Sources */,
+				DEF85B401F12077D007315A2 /* FTBaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
