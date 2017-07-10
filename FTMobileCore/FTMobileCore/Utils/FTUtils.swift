@@ -78,3 +78,24 @@ extension NSObject {
 
 //typealias
 typealias JSON = Dictionary<String, Any>
+
+//CGRect
+extension CGRect {
+    
+    func getX() -> CGFloat {
+        return self.origin.x
+    }
+    
+    func getY() -> CGFloat {
+        return self.origin.y
+    }
+    
+    func getWidth() -> CGFloat {
+        return self.size.width
+    }
+    
+    func getHeight() -> CGFloat {
+        return self.size.height
+    }
+}
+

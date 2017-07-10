@@ -16,17 +16,58 @@ class ViewController: FTBaseViewController {
         label.backgroundColor = .red
         label.text = "top"
         
+        let labelM = FTLabel()
+        labelM.backgroundColor = .yellow
+        labelM.text = "Middled"
+        
+        let labelM1 = FTLabel()
+        labelM1.backgroundColor = .yellow
+        labelM1.text = "Middle1 fghj "
+        
+        let labelM2 = FTLabel()
+        labelM2.backgroundColor = .yellow
+        labelM2.text = "Middle2d sad"
+        
+        let labelM3 = FTLabel()
+        labelM3.backgroundColor = .yellow
+        labelM3.text = "Middle3 ads asd"
+
+        
+        let labelM4 = FTLabel()
+        labelM4.backgroundColor = .yellow
+        labelM4.text = "Middle4 sfsf fs dfadf f"
+
         
         let label2 = FTLabel()
         label2.backgroundColor = .green
         label2.text = "bottom"
         
-        self.mainView.mainPinnedView.stackView(views: [label, label2], paddingBetween: 10, withEdgeOffsets: EdgeOffsets.init(0, 10, 0, 10), withEdgeInsets: .AutoMargin)
-        
-//        self.view.pin(view: label, withEdgeOffsets: EdgeOffsets.init(30, 50, 0, 0), withEdgeInsets: [.Left, .Top])
-        
-//        self.view.stackView(views: [label, label2], paddingBetween: 15, withEdgeOffsets: EdgeOffsets.init(30, 50, 0, 10), withEdgeInsets: [.AutoMargin, .LeadingMargin])
+        self.mainView.pin(view: label, withEdgeOffsets: EdgeOffsets.init(30, 50, 0, 0), withEdgeInsets: [ .Top, .CenterXMargin])
 
+        self.mainView.stackView(views: [label, labelM, labelM1, labelM2, labelM3, labelM4, label2], paddingBetween: 10, withEdgeInsets: [.AutoMargin, .CenterMargin])
+        
+//        label.addSizeConstraint(100,100)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            label2.removeFromSuperview()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+            labelM2.removeFromSuperview()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 8) {
+            labelM1.removeFromSuperview()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 11) {
+            labelM4.removeFromSuperview()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 13) {
+            labelM3.removeFromSuperview()
+        }
+        
     }
     
     override func viewDidLoad() {

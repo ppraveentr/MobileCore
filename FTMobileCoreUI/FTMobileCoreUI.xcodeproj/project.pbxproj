@@ -12,7 +12,9 @@
 		DE1485631F1159BD00A250A6 /* FTBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1485601F1159BD00A250A6 /* FTBaseViewController.swift */; };
 		DE1485641F1159BD00A250A6 /* FTLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1485621F1159BD00A250A6 /* FTLabel.swift */; };
 		DE1485671F1159E600A250A6 /* UIView+FTConstrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1485661F1159E600A250A6 /* UIView+FTConstrains.swift */; };
-		DEF85B401F12077D007315A2 /* FTBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF85B3F1F12077D007315A2 /* FTBaseView.swift */; };
+		DED539D21F13C4940055BECA /* FTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED539D11F13C4940055BECA /* FTView.swift */; };
+		DED539D51F13C4E60055BECA /* FTBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED539D41F13C4E60055BECA /* FTBaseView.swift */; };
+		DED539D71F13D6190055BECA /* UIView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED539D61F13D6190055BECA /* UIView+Utility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +25,9 @@
 		DE1485601F1159BD00A250A6 /* FTBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseViewController.swift; sourceTree = "<group>"; };
 		DE1485621F1159BD00A250A6 /* FTLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLabel.swift; sourceTree = "<group>"; };
 		DE1485661F1159E600A250A6 /* UIView+FTConstrains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+FTConstrains.swift"; sourceTree = "<group>"; };
-		DEF85B3F1F12077D007315A2 /* FTBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseView.swift; sourceTree = "<group>"; };
+		DED539D11F13C4940055BECA /* FTView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTView.swift; sourceTree = "<group>"; };
+		DED539D41F13C4E60055BECA /* FTBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseView.swift; sourceTree = "<group>"; };
+		DED539D61F13D6190055BECA /* UIView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utility.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		DE14855E1F1159BD00A250A6 /* BaseComponents */ = {
 			isa = PBXGroup;
 			children = (
+				DED539D31F13C4E60055BECA /* CustomComponents */,
 				DE14855F1F1159BD00A250A6 /* Contollers */,
 				DE1485611F1159BD00A250A6 /* CoreComponents */,
 			);
@@ -95,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				DE1485621F1159BD00A250A6 /* FTLabel.swift */,
-				DEF85B3F1F12077D007315A2 /* FTBaseView.swift */,
+				DED539D11F13C4940055BECA /* FTView.swift */,
 			);
 			path = CoreComponents;
 			sourceTree = "<group>";
@@ -104,9 +109,18 @@
 			isa = PBXGroup;
 			children = (
 				DE1485661F1159E600A250A6 /* UIView+FTConstrains.swift */,
+				DED539D61F13D6190055BECA /* UIView+Utility.swift */,
 			);
 			name = Utilites;
 			path = BaseComponents/Utilites;
+			sourceTree = "<group>";
+		};
+		DED539D31F13C4E60055BECA /* CustomComponents */ = {
+			isa = PBXGroup;
+			children = (
+				DED539D41F13C4E60055BECA /* FTBaseView.swift */,
+			);
+			path = CustomComponents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,6 +161,7 @@
 		DE14850D1F10B13600A250A6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Praveen Prabhakar";
 				TargetAttributes = {
@@ -190,10 +205,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DED539D51F13C4E60055BECA /* FTBaseView.swift in Sources */,
 				DE1485641F1159BD00A250A6 /* FTLabel.swift in Sources */,
+				DED539D21F13C4940055BECA /* FTView.swift in Sources */,
 				DE1485671F1159E600A250A6 /* UIView+FTConstrains.swift in Sources */,
 				DE1485631F1159BD00A250A6 /* FTBaseViewController.swift in Sources */,
-				DEF85B401F12077D007315A2 /* FTBaseView.swift in Sources */,
+				DED539D71F13D6190055BECA /* UIView+Utility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

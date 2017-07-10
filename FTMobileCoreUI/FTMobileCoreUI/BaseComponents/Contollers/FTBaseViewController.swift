@@ -19,10 +19,6 @@ open class FTBaseViewController : UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false;
     }
     
-    public var mainView: FTBasePinnedView! { return self.view as! FTBasePinnedView }
-    
-    open override func loadViewIfNeeded() {
-        self.edgesForExtendedLayout = UIRectEdge(rawValue: 0)
-    }
+    public var mainView: FTView! { return (self.view as! FTBasePinnedView).mainPinnedView }
 
 }
