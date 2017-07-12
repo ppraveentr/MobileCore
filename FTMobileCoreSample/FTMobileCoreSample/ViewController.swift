@@ -9,9 +9,17 @@
 import UIKit
 
 class ViewController: FTBaseViewController {
-
-    override func viewWillAppear(_ animated: Bool) {
     
+//    override var prefersStatusBarHidden: Bool {
+//        return true
+//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        UIApplication.shared.setStatusBarHidden(true, with: UIStatusBarAnimation.none)
+
+        self.baseView.backgroundColor = UIColor.clear
+        
         let label = FTLabel()
         label.backgroundColor = .red
         label.text = "top"
@@ -21,35 +29,37 @@ class ViewController: FTBaseViewController {
         labelM.text = "Middled"
         
         let labelM1 = FTLabel()
-        labelM1.backgroundColor = .yellow
-        labelM1.text = "Middle1 fghj "
+        labelM1.backgroundColor = .blue
+        labelM1.text = "Middle1"
         
         let labelM2 = FTLabel()
-        labelM2.backgroundColor = .yellow
-        labelM2.text = "Middle2d sad"
+        labelM2.backgroundColor = .cyan
+        labelM2.text = "Middle2"
         
         let labelM3 = FTLabel()
-        labelM3.backgroundColor = .yellow
-        labelM3.text = "Middle3 ads asd"
+        labelM3.backgroundColor = .orange
+        labelM3.text = "Middle3"
 
         
         let labelM4 = FTLabel()
-        labelM4.backgroundColor = .yellow
-        labelM4.text = "Middle4 sfsf fs dfadf f"
+        labelM4.backgroundColor = .magenta
+        labelM4.text = "Middle4"
 
         
         let label2 = FTLabel()
         label2.backgroundColor = .green
         label2.text = "bottom"
         
-        self.mainView.pin(view: label, withEdgeOffsets: EdgeOffsets.init(30, 50, 0, 0), withEdgeInsets: [ .Top, .CenterXMargin])
 
-        self.mainView.stackView(views: [label, labelM, labelM1, labelM2, labelM3, labelM4, label2], paddingBetween: 10, withEdgeInsets: [.AutoMargin, .CenterMargin])
         
-//        label.addSizeConstraint(100,100)
+        self.mainView?.pin(view: label, withEdgeOffsets: EdgeOffsets.init(30, 50, 0, 0), withEdgeInsets: [ .None ])
+
+        self.mainView?.stackView(views: [label, labelM, labelM1, labelM2, labelM3, labelM4, label2], paddingBetween: 10, withEdgeInsets: [.AutoMargin])
+        
+        label.addSizeConstraint(100,100)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            label2.removeFromSuperview()
+            label.removeFromSuperview()
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
@@ -65,7 +75,7 @@ class ViewController: FTBaseViewController {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 13) {
-            labelM3.removeFromSuperview()
+            labelM.removeFromSuperview()
         }
         
     }

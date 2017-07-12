@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class FTBasePinnedView: FTView {
+open class FTBaseView: FTView {
     
     public var topPinnedView: FTView? {
         didSet {
@@ -39,10 +39,14 @@ open class FTBasePinnedView: FTView {
     }
     
     func setupView() {
-        self.backgroundColor = UIColor.white
-        self.mainPinnedView.backgroundColor = UIColor.white
-        
+        self.backgroundColor = .clear
         self.restConstraints()
+    }
+    
+    open override var backgroundColor: UIColor?{
+        didSet {
+            self.mainPinnedView.backgroundColor = self.backgroundColor
+        }
     }
     
     func restConstraints() {
@@ -53,7 +57,7 @@ open class FTBasePinnedView: FTView {
     }
 }
 
-extension FTBasePinnedView {
+extension FTBaseView {
     
     @available(*, deprecated)
     open override func addSubview(_ view: UIView) {

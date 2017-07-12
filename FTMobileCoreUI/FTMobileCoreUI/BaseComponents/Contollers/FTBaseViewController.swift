@@ -10,15 +10,18 @@ import UIKit
 
 open class FTBaseViewController : UIViewController {
     
+    public lazy var baseView: FTBaseView = FTBaseView()
+    
     open override func loadView() {
-        super.view = FTBasePinnedView()
+        super.loadView()
         
-        self.edgesForExtendedLayout = .all
+        self.view.pin(view: self.baseView, withEdgeInsets: [.Horizontal, .Bottom])
         
-        self.extendedLayoutIncludesOpaqueBars = false;
-        self.automaticallyAdjustsScrollViewInsets = false;
+        //Pin view bellow status bar
+        self.baseView.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor,
+                                    constant: 0.0).isActive = true
     }
     
-    public var mainView: FTView! { return (self.view as! FTBasePinnedView).mainPinnedView }
+    public var mainView: FTView? { return self.baseView.mainPinnedView }
 
 }
