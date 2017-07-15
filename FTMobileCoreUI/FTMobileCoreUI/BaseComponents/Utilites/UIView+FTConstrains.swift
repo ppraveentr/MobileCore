@@ -8,6 +8,65 @@
 
 import Foundation
 
+public class ViewLayoutConstraint {
+    
+    var autoSizing = false
+    
+    var constraintWidth: NSLayoutConstraint?
+    var constraintHeight: NSLayoutConstraint?
+}
+
+fileprivate var xoAssociationKey: UInt8 = 0
+
+public extension UIView {
+    
+    public var viewLayoutConstraint: ViewLayoutConstraint {
+        get {
+            
+            if let storedLayouts = objc_getAssociatedObject(self, &xoAssociationKey) as? ViewLayoutConstraint {
+                return storedLayouts
+            }
+            
+            let storedLayouts = ViewLayoutConstraint()
+            self.viewLayoutConstraint = storedLayouts
+//
+            return storedLayouts
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &xoAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    public func setViewHeight(_ height: CGFloat, createConstraint: Bool = false) {
+
+        if createConstraint || self.viewLayoutConstraint.autoSizing {
+            let con = self.viewLayoutConstraint
+            
+            if con.constraintHeight == nil {
+                con.constraintHeight =  self.heightAnchor.constraint(greaterThanOrEqualToConstant: height)
+                con.constraintHeight?.isActive = true
+            }else {
+                con.constraintHeight?.constant = height
+            }
+        }
+    }
+    
+    public func setViewWidth(_ width: CGFloat, createConstraint: Bool = false) {
+        
+        if createConstraint || self.viewLayoutConstraint.autoSizing {
+            let con = self.viewLayoutConstraint
+            
+            if con.constraintWidth == nil {
+                con.constraintWidth =  self.widthAnchor.constraint(greaterThanOrEqualToConstant: width)
+                con.constraintWidth?.isActive = true
+            }else {
+                con.constraintWidth?.constant = width
+            }
+        }
+    }
+
+}
+
 public struct EdgeOffsets {
     
     public var left: CGFloat
@@ -77,7 +136,9 @@ public struct FTEdgeInsets: OptionSet {
     public static let EqualWidth = FTEdgeInsets(rawValue: 1 << 30)
     public static let EqualHeight = FTEdgeInsets(rawValue: 1 << 31)
     public static let EqualSize: FTEdgeInsets = [.EqualWidth, .EqualHeight]
+    public static let AutoSize = FTEdgeInsets(rawValue: 1 << 32)
 
+    
     //Remove inValid Constrains
     mutating func stanitize(forDirection direction: FTLayoutDirection){
         self.remove(.All)
@@ -100,16 +161,16 @@ public struct FTEdgeInsets: OptionSet {
     }
 }
 
-public struct FTLayoutPriority {
-    
-    public let rawValue: CGFloat
-    public init(_ rawValue: CGFloat) { self.rawValue = rawValue }
-    
-    //View Priority
-    public static let Required = FTLayoutPriority(1000.0)
-    public static let High = FTLayoutPriority(750.0)
-    public static let Low = FTLayoutPriority(250.0)
-}
+//public typealias FTLayoutPriority = UILayoutPriority {
+//    
+//    public let rawValue: UILayoutPriority
+//    public init(_ rawValue: UILayoutPriority) { self.rawValue = rawValue }
+//    
+//    //View Priority
+//    public static let Required = FTLayoutPriority(UILayoutPriorityRequired)
+//    public static let High = FTLayoutPriority(UILayoutPriorityDefaultHigh)
+//    public static let Low = FTLayoutPriority(1)
+//}
 
 public extension UIView {
     
@@ -132,11 +193,18 @@ public extension UIView {
         return hasSameBase
     }
     
-    public func pin(view : UIView, withEdgeOffsets edgeOffsets: EdgeOffsets = .EdgeOffsetsZero(), withEdgeInsets edgeInsets: FTEdgeInsets = .All, withLayoutPriority priority: FTLayoutPriority = .Required, addToSubView: Bool = true) {
+    public func pin(view : UIView, withEdgeOffsets edgeOffsets: EdgeOffsets = .EdgeOffsetsZero(),
+                    withEdgeInsets edgeInsets: FTEdgeInsets = .All,
+                    withLayoutPriority priority: UILayoutPriority = UILayoutPriorityRequired, addToSubView: Bool = true) {
+        
+        var priority = priority
+        if priority < 0  {
+            priority = 1
+        }
         
         let hasSameBase = self.hasSameBaseView(view)
         
-        if (!self.subviews.contains(view) && !hasSameBase) {
+        if (addToSubView && !self.subviews.contains(view) && !hasSameBase) {
             self.addSubview(view)
         }
         
@@ -147,121 +215,137 @@ public extension UIView {
         //Left
         if edgeInsets.contains(.Left) {
             let constraint = view.leftAnchor.constraint(equalTo: self.leftAnchor, constant: edgeOffsets.left)
-            constraint.priority = UILayoutPriority(priority.rawValue)
+            constraint.priority = priority
             localConstraint.append(constraint)
         }
         
         //Right-Left Direction AutoMargin
         if edgeInsets.contains(.LeftRightMargin) {
             let constraint = view.leftAnchor.constraint(equalTo: self.rightAnchor, constant: edgeOffsets.left)
-            constraint.priority = UILayoutPriority(priority.rawValue)
+            constraint.priority = priority
             localConstraint.append(constraint)
         }
         if edgeInsets.contains(.LeftLayoutMargin) {
             //Top
             let constraintTop = view.topAnchor.constraint(equalTo: self.topAnchor, constant: 0)
-            constraintTop.priority = UILayoutPriority(priority.rawValue)
+            constraintTop.priority = priority
             localConstraint.append(constraintTop)
 
-            let constraint = view.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0)
-            constraint.priority = UILayoutPriority(priority.rawValue)
+            let constraint = view.leftAnchor.constraint(equalTo: self.leftAnchor, constant: edgeOffsets.left)
+            constraint.priority = priority
             localConstraint.append(constraint)
+            
+            let constraintRight = view.rightAnchor.constraint(lessThanOrEqualTo: self.rightAnchor, constant: -edgeOffsets.left)
+            constraintRight.priority = priority
+            localConstraint.append(constraintRight)
         }
         
         //Right
         if edgeInsets.contains(.Right) {
             let constraint = view.rightAnchor.constraint(equalTo: self.rightAnchor, constant: edgeOffsets.getRight())
-            constraint.priority = UILayoutPriority(priority.rawValue)
+            constraint.priority = priority
             localConstraint.append(constraint)
         }
         
         //Top
         if edgeInsets.contains(.Top) {
             let constraint = view.topAnchor.constraint(equalTo: self.topAnchor, constant: edgeOffsets.top)
-            constraint.priority = UILayoutPriority(priority.rawValue)
+            constraint.priority = priority
             localConstraint.append(constraint)
         }
         
         //Bottom
         if edgeInsets.contains(.Bottom) {
             let constraint = view.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: edgeOffsets.getBottom())
-            constraint.priority = UILayoutPriority(priority.rawValue)
+            constraint.priority = priority
             localConstraint.append(constraint)
         }
         
         //Top-Bottom Direction AutoMargin
         if edgeInsets.contains(.TopBottomMargin) {
             let constraint = view.topAnchor.constraint(equalTo: self.bottomAnchor, constant: edgeOffsets.getBottom())
-            constraint.priority = UILayoutPriority(priority.rawValue)
+            constraint.priority = priority
             localConstraint.append(constraint)
         }
         if edgeInsets.contains(.TopLayoutMargin) {
             let constraintTop = view.topAnchor.constraint(equalTo: self.topAnchor, constant: 0)
-            constraintTop.priority = UILayoutPriority(priority.rawValue)
+            constraintTop.priority = priority
             localConstraint.append(constraintTop)
+            
+            let constraintBottom = view.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: 0)
+            constraintBottom.priority = priority
+            localConstraint.append(constraintTop)
+
         }
         
         //CenterXMargin
         if edgeInsets.contains(.CenterXMargin) {
             let constraint = view.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0)
-            constraint.priority = UILayoutPriority(priority.rawValue)
+            constraint.priority = priority
             localConstraint.append(constraint)
         }
         
         //CenterYMargin
         if edgeInsets.contains(.CenterYMargin) {
             let constraint = view.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0)
-            constraint.priority = UILayoutPriority(priority.rawValue)
+            constraint.priority = priority
             localConstraint.append(constraint)
         }
         
+        //Auto Sizing
+        if edgeInsets.contains(.AutoSize) {
+           view.addSelfSizing()
+        }
+        
         //Applicable for only Stacking
-        if hasSameBase {
+//        if hasSameBase {
         
             //Leading
             if edgeInsets.contains(.LeadingMargin) {
                 let constraint = view.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0)
-                constraint.priority = UILayoutPriority(priority.rawValue)
+                constraint.priority = priority
                 localConstraint.append(constraint)
             }
             
             //Traling
             if edgeInsets.contains(.TrailingMargin) {
                 let constraint = view.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0)
-                constraint.priority = UILayoutPriority(priority.rawValue)
+                constraint.priority = priority
                 localConstraint.append(constraint)
             }
             
             //TopMargin
             if edgeInsets.contains(.TopMargin) {
-                let constraint = NSLayoutConstraint(item: view, attribute: .topMargin, relatedBy: .equal, toItem: self, attribute: .topMargin, multiplier: 1.0, constant: 0)
-                constraint.priority = UILayoutPriority(priority.rawValue)
+                let constraint = NSLayoutConstraint(item: view, attribute: .topMargin, relatedBy: .equal, toItem: self,
+                                                    attribute: .topMargin, multiplier: 1.0, constant: 0)
+                constraint.priority = priority
                 localConstraint.append(constraint)
             }
             
             //BottomMargin
             if edgeInsets.contains(.BottomMargin) {
-                let constraint = NSLayoutConstraint(item: view, attribute: .bottomMargin, relatedBy: .equal, toItem: self, attribute: .bottomMargin, multiplier: 1.0, constant: 0)
-                constraint.priority = UILayoutPriority(priority.rawValue)
+                let constraint = NSLayoutConstraint(item: view, attribute: .bottomMargin, relatedBy: .equal,
+                                                    toItem: self, attribute: .bottomMargin, multiplier: 1.0, constant: 0)
+                constraint.priority = priority
                 localConstraint.append(constraint)
             }
             
             //Equal Height
             if edgeInsets.contains(.EqualHeight) {
                 let constraint = view.heightAnchor.constraint(equalTo: self.heightAnchor, constant: 0)
-                constraint.priority = UILayoutPriority(priority.rawValue)
+                constraint.priority = priority
                 localConstraint.append(constraint)
             }
             
             //Equal Width
             if edgeInsets.contains(.EqualHeight) {
                 let constraint = view.widthAnchor.constraint(equalTo: self.widthAnchor, constant: 0)
-                constraint.priority = UILayoutPriority(priority.rawValue)
+                constraint.priority = priority
                 localConstraint.append(constraint)
             }
-        }
+//        }
         
-        if self.subviews.contains(view) {
+        if self.subviews.contains(view) || !addToSubView {
             self.addConstraints(localConstraint)
         }
         else if hasSameBase {
@@ -269,7 +353,9 @@ public extension UIView {
         }
     }
     
-    public func stackView(views: [UIView], withLayoutDirection direction: FTLayoutDirection = .LeftToRight, paddingBetween: CGFloat = 0, withEdgeInsets edgeInsets: FTEdgeInsets = .None, withLayoutPriority priority: FTLayoutPriority = .High) {
+    public func stackView(views: [UIView], withLayoutDirection direction: FTLayoutDirection = .LeftToRight,
+                          paddingBetween: CGFloat = 0, withEdgeInsets edgeInsets: FTEdgeInsets = .None,
+                          withLayoutPriority priority: UILayoutPriority = UILayoutPriorityRequired) {
         
         var localEdgeInsets: FTEdgeInsets = edgeInsets
         localEdgeInsets.stanitize(forDirection: direction)
@@ -299,68 +385,81 @@ public extension UIView {
             }
             
             if (lastView != nil) {
-                lastView?.pin(view: view, withEdgeOffsets: offSet, withEdgeInsets: localEdgeInsets, withLayoutPriority: priority)
+                lastView?.pin(view: view, withEdgeOffsets: offSet, withEdgeInsets: localEdgeInsets,
+                              withLayoutPriority: priority)
             }
             
             lastView = view
-
+            
             if(localEdgeInsets.contains(.AutoMargin)) {
                 
                 //Fix to
-                DispatchQueue.main.async {
-                    let priority = FTLayoutPriority(CGFloat(views.count-index))
-                    let defaultOffset = EdgeOffsets(paddingBetween)
-                    
-                    if direction == .TopToBottom {
-                        self.pin(view: view, withEdgeOffsets: defaultOffset, withEdgeInsets: .TopLayoutMargin, withLayoutPriority: priority)
-                    } else {
-                        self.pin(view: view, withEdgeOffsets: defaultOffset, withEdgeInsets: .LeftLayoutMargin, withLayoutPriority: priority)
-                    }
+                let priorityL = priority - Float(views.count + index)
+                let defaultOffset = EdgeOffsets(paddingBetween)
+                
+                if direction == .TopToBottom {
+                    self.pin(view: view, withEdgeOffsets: defaultOffset, withEdgeInsets: .TopLayoutMargin,
+                             withLayoutPriority: priorityL)
+                } else {
+                    self.pin(view: view, withEdgeOffsets: defaultOffset, withEdgeInsets: .LeftLayoutMargin,
+                             withLayoutPriority: priorityL)
                 }
                 
                 let pos = index + 1
                 var localIndex = 0
-
-                DispatchQueue.main.async {
+                
+                while (pos+localIndex < views.count) {
                     
-                    while (pos+localIndex < views.count) {
-                        
-                        let locallastView = views[localIndex]
-                        let Preview = views[localIndex+pos]
-                        localIndex = localIndex+1
-                        
-                        let priorityL = FTLayoutPriority(priority.rawValue - CGFloat(pos))
-                        locallastView.pin(view: Preview, withEdgeOffsets: offSet, withEdgeInsets: localEdgeInsets, withLayoutPriority: priorityL)
-                    }
+                    let locallastView = views[localIndex]
+                    let Preview = views[localIndex+pos]
+                    localIndex = localIndex+1
                     
+                    let priorityS = priority - Float(pos)
+                    locallastView.pin(view: Preview, withEdgeOffsets: offSet, withEdgeInsets: localEdgeInsets,
+                                      withLayoutPriority: priorityS)
                 }
+                
             }
         }
+        
+//        DispatchQueue.main.async {
+//            self.resizeView()
+//        }
     }
     
     public func addSizeConstraint(_ width: CGFloat, _ height: CGFloat){
         
+        self.viewLayoutConstraint.autoSizing = false
+
         self.translatesAutoresizingMaskIntoConstraints = false
         
         if width >= 0 {
-            let constraint = NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: width)
-            self.addConstraint(constraint)
+            self.setViewWidth(width, createConstraint: true)
         }
         
         if height >= 0 {
-            let constraint = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: height)
-            self.addConstraint(constraint)
+            self.setViewHeight(height, createConstraint: true)
         }
     }
     
     public func addSelfSizing() {
         
+        self.viewLayoutConstraint.autoSizing = true
+        
         self.translatesAutoresizingMaskIntoConstraints = false
         
-        let constraintWidth = NSLayoutConstraint(item: self, attribute: .width, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.layoutMargins.left + self.layoutMargins.right)
-        self.addConstraint(constraintWidth)
+        self.setViewWidth(self.layoutMargins.left - self.layoutMargins.right)
+        self.setViewHeight(self.layoutMargins.top - self.layoutMargins.bottom)
         
-        let constraintHeight = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.layoutMargins.bottom + self.layoutMargins.top)
-        self.addConstraint(constraintHeight)
+        self.sizeToFit()
+    }
+    
+    func resizeView() {
+//        self.setNeedsUpdateConstraints()
+//        self.updateConstraintsIfNeeded()
+//        self.setNeedsLayout()
+//        self.layoutIfNeeded()
+//        
+//        self.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
     }
 }

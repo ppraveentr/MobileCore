@@ -12,10 +12,43 @@
 		DE1485631F1159BD00A250A6 /* FTBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1485601F1159BD00A250A6 /* FTBaseViewController.swift */; };
 		DE1485641F1159BD00A250A6 /* FTLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1485621F1159BD00A250A6 /* FTLabel.swift */; };
 		DE1485671F1159E600A250A6 /* UIView+FTConstrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1485661F1159E600A250A6 /* UIView+FTConstrains.swift */; };
+		DEB5697A1F17DC2600B5F187 /* FTMobileCoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB569791F17DC2600B5F187 /* FTMobileCoreUITests.swift */; };
+		DEB5697C1F17DC2600B5F187 /* FTMobileCoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1485161F10B13600A250A6 /* FTMobileCoreUI.framework */; };
+		DEB569841F17DCF800B5F187 /* FTMobileCoreUI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = DE1485161F10B13600A250A6 /* FTMobileCoreUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DEB569871F17E0A100B5F187 /* FTScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB569861F17E0A100B5F187 /* FTScrollView.swift */; };
+		DEB569891F17E0AB00B5F187 /* FTWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB569881F17E0AB00B5F187 /* FTWebView.swift */; };
+		DEB5698B1F17E0B400B5F187 /* FTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB5698A1F17E0B400B5F187 /* FTButton.swift */; };
+		DEB5698D1F17E0E500B5F187 /* FTScrollContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB5698C1F17E0E500B5F187 /* FTScrollContentView.swift */; };
+		DEB5698F1F17E11500B5F187 /* FTBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB5698E1F17E11500B5F187 /* FTBaseNavigationController.swift */; };
+		DEB569911F17E12100B5F187 /* FTBaseTableViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB569901F17E12100B5F187 /* FTBaseTableViewContoller.swift */; };
+		DEB569931F17E1D600B5F187 /* UIControl+FTActionBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB569921F17E1D600B5F187 /* UIControl+FTActionBlock.swift */; };
 		DED539D21F13C4940055BECA /* FTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED539D11F13C4940055BECA /* FTView.swift */; };
 		DED539D51F13C4E60055BECA /* FTBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED539D41F13C4E60055BECA /* FTBaseView.swift */; };
 		DED539D71F13D6190055BECA /* UIView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED539D61F13D6190055BECA /* UIView+Utility.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DEB5697D1F17DC2600B5F187 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE14850D1F10B13600A250A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DE1485151F10B13600A250A6;
+			remoteInfo = FTMobileCoreUI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DEB569831F17DCEB00B5F187 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DEB569841F17DCF800B5F187 /* FTMobileCoreUI.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		DE1485161F10B13600A250A6 /* FTMobileCoreUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FTMobileCoreUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -25,6 +58,16 @@
 		DE1485601F1159BD00A250A6 /* FTBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseViewController.swift; sourceTree = "<group>"; };
 		DE1485621F1159BD00A250A6 /* FTLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLabel.swift; sourceTree = "<group>"; };
 		DE1485661F1159E600A250A6 /* UIView+FTConstrains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+FTConstrains.swift"; sourceTree = "<group>"; };
+		DEB569771F17DC2600B5F187 /* FTMobileCoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEB569791F17DC2600B5F187 /* FTMobileCoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMobileCoreUITests.swift; sourceTree = "<group>"; };
+		DEB5697B1F17DC2600B5F187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DEB569861F17E0A100B5F187 /* FTScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTScrollView.swift; sourceTree = "<group>"; };
+		DEB569881F17E0AB00B5F187 /* FTWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTWebView.swift; sourceTree = "<group>"; };
+		DEB5698A1F17E0B400B5F187 /* FTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTButton.swift; sourceTree = "<group>"; };
+		DEB5698C1F17E0E500B5F187 /* FTScrollContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTScrollContentView.swift; sourceTree = "<group>"; };
+		DEB5698E1F17E11500B5F187 /* FTBaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseNavigationController.swift; sourceTree = "<group>"; };
+		DEB569901F17E12100B5F187 /* FTBaseTableViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseTableViewContoller.swift; sourceTree = "<group>"; };
+		DEB569921F17E1D600B5F187 /* UIControl+FTActionBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+FTActionBlock.swift"; sourceTree = "<group>"; };
 		DED539D11F13C4940055BECA /* FTView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTView.swift; sourceTree = "<group>"; };
 		DED539D41F13C4E60055BECA /* FTBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseView.swift; sourceTree = "<group>"; };
 		DED539D61F13D6190055BECA /* UIView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utility.swift"; sourceTree = "<group>"; };
@@ -39,6 +82,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DEB569741F17DC2600B5F187 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEB5697C1F17DC2600B5F187 /* FTMobileCoreUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -46,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				DE1485181F10B13600A250A6 /* FTMobileCoreUI */,
+				DEB569781F17DC2600B5F187 /* FTMobileCoreUITests */,
 				DE1485171F10B13600A250A6 /* Products */,
 				DE14852E1F10B82100A250A6 /* Frameworks */,
 			);
@@ -55,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				DE1485161F10B13600A250A6 /* FTMobileCoreUI.framework */,
+				DEB569771F17DC2600B5F187 /* FTMobileCoreUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,6 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				DE1485601F1159BD00A250A6 /* FTBaseViewController.swift */,
+				DEB5698E1F17E11500B5F187 /* FTBaseNavigationController.swift */,
+				DEB569901F17E12100B5F187 /* FTBaseTableViewContoller.swift */,
 			);
 			path = Contollers;
 			sourceTree = "<group>";
@@ -101,6 +156,9 @@
 			children = (
 				DE1485621F1159BD00A250A6 /* FTLabel.swift */,
 				DED539D11F13C4940055BECA /* FTView.swift */,
+				DEB569861F17E0A100B5F187 /* FTScrollView.swift */,
+				DEB569881F17E0AB00B5F187 /* FTWebView.swift */,
+				DEB5698A1F17E0B400B5F187 /* FTButton.swift */,
 			);
 			path = CoreComponents;
 			sourceTree = "<group>";
@@ -110,15 +168,26 @@
 			children = (
 				DE1485661F1159E600A250A6 /* UIView+FTConstrains.swift */,
 				DED539D61F13D6190055BECA /* UIView+Utility.swift */,
+				DEB569921F17E1D600B5F187 /* UIControl+FTActionBlock.swift */,
 			);
 			name = Utilites;
 			path = BaseComponents/Utilites;
+			sourceTree = "<group>";
+		};
+		DEB569781F17DC2600B5F187 /* FTMobileCoreUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DEB569791F17DC2600B5F187 /* FTMobileCoreUITests.swift */,
+				DEB5697B1F17DC2600B5F187 /* Info.plist */,
+			);
+			path = FTMobileCoreUITests;
 			sourceTree = "<group>";
 		};
 		DED539D31F13C4E60055BECA /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
 				DED539D41F13C4E60055BECA /* FTBaseView.swift */,
+				DEB5698C1F17E0E500B5F187 /* FTScrollContentView.swift */,
 			);
 			path = CustomComponents;
 			sourceTree = "<group>";
@@ -155,6 +224,25 @@
 			productReference = DE1485161F10B13600A250A6 /* FTMobileCoreUI.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		DEB569761F17DC2600B5F187 /* FTMobileCoreUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DEB569811F17DC2600B5F187 /* Build configuration list for PBXNativeTarget "FTMobileCoreUITests" */;
+			buildPhases = (
+				DEB569731F17DC2600B5F187 /* Sources */,
+				DEB569741F17DC2600B5F187 /* Frameworks */,
+				DEB569751F17DC2600B5F187 /* Resources */,
+				DEB569831F17DCEB00B5F187 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DEB5697E1F17DC2600B5F187 /* PBXTargetDependency */,
+			);
+			name = FTMobileCoreUITests;
+			productName = FTMobileCoreUITests;
+			productReference = DEB569771F17DC2600B5F187 /* FTMobileCoreUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -169,6 +257,11 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = W6W48SVQX7;
 						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
+					DEB569761F17DC2600B5F187 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = W6W48SVQX7;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -186,12 +279,20 @@
 			projectRoot = "";
 			targets = (
 				DE1485151F10B13600A250A6 /* FTMobileCoreUI */,
+				DEB569761F17DC2600B5F187 /* FTMobileCoreUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		DE1485141F10B13600A250A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEB569751F17DC2600B5F187 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -205,16 +306,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEB569911F17E12100B5F187 /* FTBaseTableViewContoller.swift in Sources */,
 				DED539D51F13C4E60055BECA /* FTBaseView.swift in Sources */,
+				DEB5698D1F17E0E500B5F187 /* FTScrollContentView.swift in Sources */,
+				DEB5698F1F17E11500B5F187 /* FTBaseNavigationController.swift in Sources */,
 				DE1485641F1159BD00A250A6 /* FTLabel.swift in Sources */,
+				DEB569871F17E0A100B5F187 /* FTScrollView.swift in Sources */,
 				DED539D21F13C4940055BECA /* FTView.swift in Sources */,
+				DEB569931F17E1D600B5F187 /* UIControl+FTActionBlock.swift in Sources */,
+				DEB5698B1F17E0B400B5F187 /* FTButton.swift in Sources */,
 				DE1485671F1159E600A250A6 /* UIView+FTConstrains.swift in Sources */,
+				DEB569891F17E0AB00B5F187 /* FTWebView.swift in Sources */,
 				DE1485631F1159BD00A250A6 /* FTBaseViewController.swift in Sources */,
 				DED539D71F13D6190055BECA /* UIView+Utility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DEB569731F17DC2600B5F187 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEB5697A1F17DC2600B5F187 /* FTMobileCoreUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DEB5697E1F17DC2600B5F187 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DE1485151F10B13600A250A6 /* FTMobileCoreUI */;
+			targetProxy = DEB5697D1F17DC2600B5F187 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		DE14851C1F10B13600A250A6 /* Debug */ = {
@@ -364,6 +488,32 @@
 			};
 			name = Release;
 		};
+		DEB5697F1F17DC2600B5F187 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = W6W48SVQX7;
+				INFOPLIST_FILE = FTMobileCoreUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTMobileCoreUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		DEB569801F17DC2600B5F187 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = W6W48SVQX7;
+				INFOPLIST_FILE = FTMobileCoreUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTMobileCoreUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -384,6 +534,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		DEB569811F17DC2600B5F187 /* Build configuration list for PBXNativeTarget "FTMobileCoreUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DEB5697F1F17DC2600B5F187 /* Debug */,
+				DEB569801F17DC2600B5F187 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

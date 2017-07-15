@@ -15,10 +15,11 @@ class ViewController: FTBaseViewController {
 //    }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        UIApplication.shared.setStatusBarHidden(true, with: UIStatusBarAnimation.none)
-
+                
         self.baseView.backgroundColor = UIColor.clear
+        
+        let scrollView = FTScrollView()
+        self.mainView?.pin(view: scrollView)
         
         let label = FTLabel()
         label.backgroundColor = .red
@@ -50,13 +51,15 @@ class ViewController: FTBaseViewController {
         label2.backgroundColor = .green
         label2.text = "bottom"
         
+//        scrollView.contentView.pin(view: label, withEdgeOffsets: EdgeOffsets.init(30, 50, 0, 0), withEdgeInsets: [ .None ])
 
-        
-        self.mainView?.pin(view: label, withEdgeOffsets: EdgeOffsets.init(30, 50, 0, 0), withEdgeInsets: [ .None ])
+        scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, labelM3, labelM4, label2], paddingBetween: 10,
+                                         withEdgeInsets: [.AutoMargin, .AutoSize, .EqualSize])
 
-        self.mainView?.stackView(views: [label, labelM, labelM1, labelM2, labelM3, labelM4, label2], paddingBetween: 10, withEdgeInsets: [.AutoMargin])
-        
-        label.addSizeConstraint(100,100)
+//        label.addSizeConstraint(100,100)
+//        labelM.addSizeConstraint(20,20)
+//        labelM1.addSizeConstraint(10,30)
+//        labelM4.addSizeConstraint(50,40)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             label.removeFromSuperview()
@@ -89,10 +92,5 @@ class ViewController: FTBaseViewController {
         
         let sample = FTDataModel.createDataModelOfType("MDASample", fromDictionary: ["id":"sample"]) as? MDASample
         sample?.identifier = "jgj"
-        
-    
-        
     }
-
 }
-

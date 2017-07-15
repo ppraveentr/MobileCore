@@ -55,8 +55,6 @@ extension FTLabel {
     
     open override func drawText(in rect: CGRect) {
         
-//        super.drawText(in: rect)
-        
         let range : NSRange = self.layoutManager.glyphRange(for: self.textContainer)
         
         let textOffset = self.textOffsetForGlyph(range: range)
@@ -76,18 +74,18 @@ extension FTLabel {
         
         var textBounds: CGRect = .zero
         
-//        try {
-            let glyphRange = self.layoutManager.glyphRange(for: self.textContainer)
-            textBounds = self.layoutManager.boundingRect(forGlyphRange: glyphRange, in: self.textContainer)
-            
-            textBounds.origin = bounds.origin
-            textBounds.size.width = CGFloat(ceilf(Float(textBounds.size.width)))
-            textBounds.size.height = CGFloat(ceilf(Float(textBounds.size.height)))
-//        }
-//        @final {
-            self.textContainer.size = savedContainerSize
-            self.textContainer.maximumNumberOfLines = savedContainerNoLines
-//        }
+        let glyphRange = self.layoutManager.glyphRange(for: self.textContainer)
+        textBounds = self.layoutManager.boundingRect(forGlyphRange: glyphRange, in: self.textContainer)
+        
+        textBounds.origin = bounds.origin
+        textBounds.size.width = CGFloat(ceilf(Float(textBounds.size.width)))
+        textBounds.size.height = CGFloat(ceilf(Float(textBounds.size.height)))
+        
+        self.textContainer.size = savedContainerSize
+        self.textContainer.maximumNumberOfLines = savedContainerNoLines
+        
+        self.setViewHeight(textBounds.size.height)
+        self.setViewWidth(textBounds.size.width)
         
         return textBounds
     }
