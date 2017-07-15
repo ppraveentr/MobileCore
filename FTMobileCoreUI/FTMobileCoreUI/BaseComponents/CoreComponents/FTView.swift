@@ -20,6 +20,7 @@ open class FTView: UIView {
     open override func removeFromSuperview() {
         self.superview?.setNeedsLayout()
         self.superview?.setNeedsUpdateConstraints()
+        self.superview?.layoutSubviews()
         super.removeFromSuperview()
     }
 }
