@@ -27,34 +27,36 @@ class ViewController: FTBaseViewController {
         
         let labelM = FTLabel()
         labelM.backgroundColor = .yellow
-        labelM.text = "Middled"
+        labelM.text = "Middledasd s asd "
         
         let labelM1 = FTLabel()
         labelM1.backgroundColor = .blue
-        labelM1.text = "Middle1"
+        labelM1.text = "Middle1 ad dfadf af ad"
         
         let labelM2 = FTLabel()
         labelM2.backgroundColor = .cyan
-        labelM2.text = "Middle2"
+        labelM2.text = "Middle2 ad"
         
         let labelM3 = FTLabel()
         labelM3.backgroundColor = .orange
-        labelM3.text = "Middle3"
+        labelM3.text = "Middle3 df wdfw dfwd"
 
         
         let labelM4 = FTLabel()
         labelM4.backgroundColor = .magenta
-        labelM4.text = "Middle4"
+        labelM4.text = "Middle4 dwds"
 
         
         let label2 = FTLabel()
         label2.backgroundColor = .green
         label2.text = "bottom"
         
-//        scrollView.contentView.pin(view: label, withEdgeOffsets: EdgeOffsets.init(30, 50, 0, 0), withEdgeInsets: [ .None ])
+        scrollView.contentView.pin(view: label, withEdgeOffsets: FTEdgeOffsets(30, 50, 0, 0), withEdgeInsets: [ .Left, .Top ])
+
+        label.addSizeConstraint(200,200)
 
         scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, labelM3, labelM4, label2], paddingBetween: 10,
-                                         withEdgeInsets: [.AutoMargin, .AutoSize, .EqualSize])
+                                         withEdgeInsets: [.AutoMargin, .EqualSize])
 
 //        label.addSizeConstraint(100,100)
 //        labelM.addSizeConstraint(20,20)
@@ -64,22 +66,22 @@ class ViewController: FTBaseViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             label.removeFromSuperview()
         }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-            labelM2.removeFromSuperview()
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 8) {
-            labelM1.removeFromSuperview()
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 11) {
-            labelM4.removeFromSuperview()
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 13) {
-            labelM.removeFromSuperview()
-        }
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+//            labelM2.removeFromSuperview()
+//        }
+//        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 8) {
+//            labelM1.removeFromSuperview()
+//        }
+//        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 11) {
+//            labelM4.removeFromSuperview()
+//        }
+//        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 13) {
+//            labelM.removeFromSuperview()
+//        }
         
     }
     

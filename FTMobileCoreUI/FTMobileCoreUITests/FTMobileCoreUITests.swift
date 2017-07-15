@@ -62,7 +62,7 @@ class FTMobileCoreUITests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-//        self.mainView?.pin(view: label, withEdgeOffsets: EdgeOffsets.init(30, 50, 0, 0), withEdgeInsets: [ .None ])
+//        self.mainView?.pin(view: label, withEdgeOffsets: FTEdgeOffsets.init(30, 50, 0, 0), withEdgeInsets: [ .None ])
         
 //        self.mainView?.stackView(views: [label, labelM, labelM1, labelM2, labelM3, labelM4, label2], paddingBetween: 10, withEdgeInsets: [.AutoMargin, .EqualSize])
     }

@@ -10,5 +10,16 @@ import Foundation
 
 open class FTView: UIView {
 
+    open override func layoutSubviews() {
+        if self.viewLayoutConstraint.autoSizing {
+             self.resizeToFitSubviews()   
+        }
+        super.layoutSubviews()
+    }
     
+    open override func removeFromSuperview() {
+        self.superview?.setNeedsLayout()
+        self.superview?.setNeedsUpdateConstraints()
+        super.removeFromSuperview()
+    }
 }

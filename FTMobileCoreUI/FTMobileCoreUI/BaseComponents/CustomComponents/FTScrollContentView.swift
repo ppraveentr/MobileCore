@@ -10,24 +10,28 @@ import Foundation
 
 open class FTScrollContentView: FTView {
     
-    open let scrollView: FTScrollView = FTScrollView()
-    open let contentView: FTView = FTView()
-    
+    open let scrollView: FTScrollView = FTScrollView()    
+    public lazy var contentView: FTView = self.getContentView()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.commonInit()
+//        self.commonInit()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        self.commonInit()
+//        self.commonInit()
     }
     
-    func commonInit() {
-        self.pin(view: scrollView)
+    func getContentView() -> FTView {
+        let contentView = FTView()
+        
+        self.pin(view: contentView)
         scrollView.pin(view: contentView)
         self.pin(view: contentView, withEdgeInsets: .EqualWidth, addToSubView: false)
+        
+        return contentView
     }
 }
