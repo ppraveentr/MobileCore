@@ -25,6 +25,8 @@
 		DED539D21F13C4940055BECA /* FTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED539D11F13C4940055BECA /* FTView.swift */; };
 		DED539D51F13C4E60055BECA /* FTBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED539D41F13C4E60055BECA /* FTBaseView.swift */; };
 		DED539D71F13D6190055BECA /* UIView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED539D61F13D6190055BECA /* UIView+Utility.swift */; };
+		DEE988CD1F1B586300F9C974 /* FTLinkDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE988CC1F1B586300F9C974 /* FTLinkDetection.swift */; };
+		DEE988CF1F1B5C9E00F9C974 /* FTMCUIStringUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE988CE1F1B5C9E00F9C974 /* FTMCUIStringUtility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		DED539D11F13C4940055BECA /* FTView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTView.swift; sourceTree = "<group>"; };
 		DED539D41F13C4E60055BECA /* FTBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseView.swift; sourceTree = "<group>"; };
 		DED539D61F13D6190055BECA /* UIView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utility.swift"; sourceTree = "<group>"; };
+		DEE988CC1F1B586300F9C974 /* FTLinkDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLinkDetection.swift; sourceTree = "<group>"; };
+		DEE988CE1F1B5C9E00F9C974 /* FTMCUIStringUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMCUIStringUtility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,7 @@
 				DE1485661F1159E600A250A6 /* UIView+FTConstrains.swift */,
 				DED539D61F13D6190055BECA /* UIView+Utility.swift */,
 				DEB569921F17E1D600B5F187 /* UIControl+FTActionBlock.swift */,
+				DEE988CC1F1B586300F9C974 /* FTLinkDetection.swift */,
 			);
 			name = Utilites;
 			path = BaseComponents/Utilites;
@@ -178,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				DEB569791F17DC2600B5F187 /* FTMobileCoreUITests.swift */,
+				DEE988CE1F1B5C9E00F9C974 /* FTMCUIStringUtility.swift */,
 				DEB5697B1F17DC2600B5F187 /* Info.plist */,
 			);
 			path = FTMobileCoreUITests;
@@ -309,6 +315,7 @@
 				DEB569911F17E12100B5F187 /* FTBaseTableViewContoller.swift in Sources */,
 				DED539D51F13C4E60055BECA /* FTBaseView.swift in Sources */,
 				DEB5698D1F17E0E500B5F187 /* FTScrollContentView.swift in Sources */,
+				DEE988CD1F1B586300F9C974 /* FTLinkDetection.swift in Sources */,
 				DEB5698F1F17E11500B5F187 /* FTBaseNavigationController.swift in Sources */,
 				DE1485641F1159BD00A250A6 /* FTLabel.swift in Sources */,
 				DEB569871F17E0A100B5F187 /* FTScrollView.swift in Sources */,
@@ -327,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEB5697A1F17DC2600B5F187 /* FTMobileCoreUITests.swift in Sources */,
+				DEE988CF1F1B5C9E00F9C974 /* FTMCUIStringUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,7 +501,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = W6W48SVQX7;
 				INFOPLIST_FILE = FTMobileCoreUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTMobileCoreUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -506,7 +514,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = W6W48SVQX7;
 				INFOPLIST_FILE = FTMobileCoreUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTMobileCoreUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -542,6 +550,7 @@
 				DEB569801F17DC2600B5F187 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

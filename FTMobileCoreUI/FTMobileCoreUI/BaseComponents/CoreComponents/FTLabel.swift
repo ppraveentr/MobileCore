@@ -16,38 +16,164 @@ open class FTLabel : UILabel, NSLayoutManagerDelegate {
     
     public lazy var layoutManager: NSLayoutManager = self.getLayoutManager()
 
+    fileprivate var linkRanges: [FTLinkDetection]?
+    
+    private var linkDetectionEnabled = false
+    public var isLinkDetectionEnabled: Bool {
+        set {
+            self.linkDetectionEnabled = newValue
+            self.updateLabelStyleProperty()
+        }
+        get {
+            return linkDetectionEnabled
+        }
+    }
+
+    private var isLinkUnderLineEnabled = false
+    public var linkUndelineEnabled: Bool {
+        set {
+            isLinkUnderLineEnabled = newValue
+            self.updateLabelStyleProperty()
+        }
+        get {
+            return isLinkUnderLineEnabled
+        }
+    }
+    
+    open override var text: String? {
+        didSet {
+            self.updateTextWithAttributedString(attributedString: self.getAttributedText(text: text))
+        }
+    }
+    
+    open override var attributedText: NSAttributedString? {
+        didSet {
+            self.updateTextWithAttributedString(attributedString: attributedText)
+        }
+    }
+    
+    open override var frame: CGRect {
+        didSet {
+            self.updateTextContainerSize()
+        }
+    }
+    
+    open override var bounds: CGRect {
+        didSet{
+            self.updateTextContainerSize()
+        }
+    }
+    
+    open override var preferredMaxLayoutWidth: CGFloat {
+        didSet {
+            self.updateTextContainerSize()
+        }
+    }
+    
+    open override var numberOfLines: Int {
+        didSet {
+            self.textContainer.maximumNumberOfLines = numberOfLines
+            self.updateTextContainerSize()
+        }
+    }
+    
     open override func layoutSubviews() {
         super.layoutSubviews()
         
         self.textContainer.size = self.bounds.size
     }
     
+    func updateLabelStyleProperty() {
+        self.updateTextContainerSize()
+        
+        self.updateLinkInText()
+        
+        self.setNeedsDisplay()
+    }
 }
 
 extension FTLabel {
     
-    open override var text: String? {
-        didSet {
-            self.textStorage.setAttributedString(self.getAttributedText(text: text))
-        }
+    func updateTextContainerSize() {
+        var localSize = frame.size
+        localSize.width = min(localSize.width, self.preferredMaxLayoutWidth)
+        localSize.height = 0
+        self.textContainer.size = localSize
     }
     
-    open override var attributedText: NSAttributedString? {
-        didSet {
-            self.textStorage.setAttributedString(attributedText!)
+    func updateTextWithAttributedString(attributedString: NSAttributedString?) {
+        
+        var attributedString = attributedString
+        if attributedString == nil {
+            attributedString = self.getAttributedText(text: "")
         }
+        
+        let sanitizedString = self.sanitizeAttributedString(attributedString: attributedString!)
+        
+        self.textStorage.setAttributedString(sanitizedString)
+        
+        self.updateLabelStyleProperty()
     }
     
-    func getAttributedText(text: String?) -> NSAttributedString {
+    func getAttributedText(text: String?) -> NSMutableAttributedString {
         
         guard text != nil else {
-            return NSAttributedString()
+            return NSMutableAttributedString()
         }
         
-        let localAttributedText = NSMutableAttributedString(string: text!)
+        var localAttributedText = NSMutableAttributedString(string: text!)
+        localAttributedText.addAttributes(self.getStyleProperties(), range: NSMakeRange(0, localAttributedText.length))
         
+        localAttributedText = self.sanitizeAttributedString(attributedString: localAttributedText)
         
         return localAttributedText
+    }
+    
+    func sanitizeAttributedString(attributedString: NSAttributedString) -> NSMutableAttributedString {
+        
+        var range = NSMakeRange(0, attributedString.length)
+        
+        guard let praStryle: NSParagraphStyle = attributedString.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: &range) as? NSParagraphStyle else {
+            return attributedString.mutableCopy() as! NSMutableAttributedString
+        }
+        
+        let mutablePraStryle: NSMutableParagraphStyle = praStryle.mutableCopy() as! NSMutableParagraphStyle
+        mutablePraStryle.lineBreakMode = .byWordWrapping
+        
+        let restyledString: NSMutableAttributedString = attributedString.mutableCopy() as! NSMutableAttributedString
+        restyledString.addAttribute(NSParagraphStyleAttributeName, value: mutablePraStryle, range: NSMakeRange(0, restyledString.length))
+        
+        return restyledString
+    }
+    
+    func getStyleProperties() -> [String : Any] {
+        
+        let paragrahStyle = NSMutableParagraphStyle()
+        paragrahStyle.alignment = self.textAlignment
+        
+        let font = self.font!
+        
+        let color = self.textColor!
+        
+        let bgColor = self.backgroundColor ?? UIColor.clear
+        
+        let properties = [NSParagraphStyleAttributeName : paragrahStyle,
+                          NSFontAttributeName: font,
+                          NSForegroundColorAttributeName: color,
+                          NSBackgroundColorAttributeName: bgColor
+            ] as [String : Any]
+        
+        return properties
+    }
+    
+    func updateLinkInText() {
+        
+        self.linkRanges = [FTLinkDetection]()
+
+        //HTTP links
+        let links = FTLinkDetection.getURLLinkRanges((attributedText?.string) ?? "")
+        self.linkRanges?.insert(contentsOf: links, at: 0)
+        
     }
 }
 
@@ -103,26 +229,6 @@ extension FTLabel {
         
         return textOffset
     }
-    
-    open override var frame: CGRect {
-        didSet {
-            self.updateTextContainerSize()
-        }
-    }
-    
-    open override var preferredMaxLayoutWidth: CGFloat {
-        didSet {
-            self.updateTextContainerSize()
-
-        }
-    }
-    
-    func updateTextContainerSize() {
-        var localSize = frame.size
-        localSize.width = min(localSize.width, self.preferredMaxLayoutWidth)
-        localSize.height = 0
-        self.textContainer.size = localSize
-    }
 }
 
 extension FTLabel {
@@ -147,7 +253,6 @@ extension FTLabel {
         local.size = self.frame.size
         
         return local
-        
     }
     
     func getLayoutManager() -> NSLayoutManager {

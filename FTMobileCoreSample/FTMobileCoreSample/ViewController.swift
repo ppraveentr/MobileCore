@@ -21,9 +21,12 @@ class ViewController: FTBaseViewController {
         let scrollView = FTScrollView()
         self.mainView?.pin(view: scrollView)
         
+        let restyledString: NSMutableAttributedString = NSAttributedString(string: "top").mutableCopy() as! NSMutableAttributedString
+        restyledString.addAttribute(NSParagraphStyleAttributeName, value: NSMutableParagraphStyle(), range: NSMakeRange(0, restyledString.length))
+
         let label = FTLabel()
         label.backgroundColor = .red
-        label.text = "top"
+        label.attributedText = restyledString
         
         let labelM = FTLabel()
         labelM.backgroundColor = .yellow

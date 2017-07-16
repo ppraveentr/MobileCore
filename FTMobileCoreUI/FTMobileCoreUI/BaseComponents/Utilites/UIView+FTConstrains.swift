@@ -375,15 +375,6 @@ public extension UIView {
                 pairSubViews(index, offSet, localEdgeInsets)
             }
         }
-        
-        //Update Screen layout
-        DispatchQueue.main.async {
-            self.setNeedsLayout()
-            self.layoutIfNeeded()
-            
-            self.superview?.setNeedsLayout()
-            self.superview?.layoutIfNeeded()
-        }
     }
     
     //Sets height & width of the View
@@ -442,8 +433,18 @@ public extension UIView {
             return CGSize(width: max(point.width, view.frame.maxX), height: max(point.height, view.frame.maxY))
         }
         
-        self.frame.size = reducedSize
-        self.setViewSize(reducedSize)
+        //if screen size changes, update layout again
+        if !self.frame.size.equalTo(reducedSize) {
+         
+            self.frame.size = reducedSize
+            self.setViewSize(reducedSize)
+            
+            //Update Screen layout
+            DispatchQueue.main.async {
+                self.superview?.setNeedsLayout()
+                self.superview?.layoutIfNeeded()
+            }
+        }
     }
 }
 
