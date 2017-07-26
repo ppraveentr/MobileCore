@@ -288,7 +288,7 @@ public extension UIView {
         }
     }
     
-    public func stackView(views: [UIView], withLayoutDirection direction: FTLayoutDirection = .LeftToRight,
+    public func stackView(views: [UIView], withLayoutDirection direction: FTLayoutDirection = .TopToBottom,
                           paddingBetween: CGFloat = 0, withEdgeInsets edgeInsets: FTEdgeInsets = .None,
                           withLayoutPriority priority: UILayoutPriority = UILayoutPriorityRequired) {
         

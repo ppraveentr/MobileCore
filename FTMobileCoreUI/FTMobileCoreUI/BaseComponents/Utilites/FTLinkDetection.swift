@@ -29,7 +29,7 @@ open class FTLinkDetection {
     public var description : String {
         return "(Type: \(self.linkType), Range: -location \(self.linkRange!.location), -length \(self.linkRange!.length), URL: \(self.linkURL!))"
     }
-    
+        
     public static func getURLLinkRanges(_ text: String) -> [FTLinkDetection] {
         
         var rangeOfURL = [FTLinkDetection]()
@@ -41,6 +41,24 @@ open class FTLinkDetection {
             
             if(result?.url != nil){
                 let dec = FTLinkDetection(linkType: .LinkTypeURL, linkRange: result?.range, linkURL: result?.url)
+                rangeOfURL.append(dec)
+            }
+        }
+        
+        return rangeOfURL
+    }
+    
+    public static func getHashTagRanges(_ text: String) -> [FTLinkDetection] {
+        
+        var rangeOfURL = [FTLinkDetection]()
+        
+        let regHash = try? NSRegularExpression.init(pattern: "(?<!\\w)#([\\w]+)", options: .caseInsensitive)
+        
+        regHash?.enumerateMatches(in: text, options: .reportCompletion, range: NSMakeRange(0, text.characters.count)) { (result, flags, _) in
+            
+            if let range = result?.range, let subText = (text as NSString).substring(with: NSMakeRange(range.location, range.length)) as String! {
+                
+                let dec = FTLinkDetection(linkType: .LinkTypeHashTag, linkRange: range, linkURL: URL(string: subText))
                 rangeOfURL.append(dec)
             }
         }

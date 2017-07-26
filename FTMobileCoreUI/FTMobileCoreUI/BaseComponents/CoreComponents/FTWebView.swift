@@ -9,6 +9,14 @@
 import Foundation
 import WebKit
 
-class FTWebView: WKWebView {
+open class FTWebView: WKWebView {
+    
+    public override func addSelfSizing() {
+        self.addSelfSizing()
+    }
+    
+    public override func resizeToFitSubviews() {
+        
+    }
     
 }

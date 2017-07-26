@@ -58,7 +58,8 @@ class ViewController: FTBaseViewController {
 
         label.addSizeConstraint(200,200)
 
-        scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, labelM3, labelM4, label2], paddingBetween: 10,
+        scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, labelM3, labelM4, label2],
+                                         withLayoutDirection: .LeftToRight, paddingBetween: 25,
                                          withEdgeInsets: [.AutoMargin, .EqualSize])
 
 //        label.addSizeConstraint(100,100)

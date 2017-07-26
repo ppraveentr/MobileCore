@@ -92,6 +92,7 @@ open class FTLabel : UILabel, NSLayoutManagerDelegate {
     }
 }
 
+//MARK: Text Farmatting
 extension FTLabel {
     
     func updateTextContainerSize() {
@@ -146,6 +147,20 @@ extension FTLabel {
         return restyledString
     }
     
+    func updateLinkInText() {
+        
+        self.linkRanges = [FTLinkDetection]()
+
+        //HTTP links
+        let links = FTLinkDetection.getURLLinkRanges((attributedText?.string) ?? "")
+        self.linkRanges?.insert(contentsOf: links, at: 0)
+        
+    }
+}
+
+//TODO: Theams
+extension FTLabel {
+    
     func getStyleProperties() -> [String : Any] {
         
         let paragrahStyle = NSMutableParagraphStyle()
@@ -165,18 +180,9 @@ extension FTLabel {
         
         return properties
     }
-    
-    func updateLinkInText() {
-        
-        self.linkRanges = [FTLinkDetection]()
-
-        //HTTP links
-        let links = FTLinkDetection.getURLLinkRanges((attributedText?.string) ?? "")
-        self.linkRanges?.insert(contentsOf: links, at: 0)
-        
-    }
 }
 
+//MARK: Text Rendering
 extension FTLabel {
     
     open override func drawText(in rect: CGRect) {
@@ -231,6 +237,7 @@ extension FTLabel {
     }
 }
 
+//MARK: Container SetUp
 extension FTLabel {
     
     func getTextStorage() -> NSTextStorage {
