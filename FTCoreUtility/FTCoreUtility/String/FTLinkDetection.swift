@@ -52,11 +52,12 @@ open class FTLinkDetection {
         
         var rangeOfURL = [FTLinkDetection]()
         
-        let regHash = try? NSRegularExpression.init(pattern: "(?<!\\w)#([\\w]+)", options: .caseInsensitive)
-        
-        regHash?.enumerateMatches(in: text, options: .reportCompletion, range: NSMakeRange(0, text.characters.count)) { (result, flags, _) in
+        //T@"NSMutableArray",N,&,Vid
+        text.enumerate(pattern: "(?<!\\w)#([\\w]+)") { (result) in
             
-            if let range = result?.range, let subText = (text as NSString).substring(with: NSMakeRange(range.location, range.length)) as String! {
+            if
+                let range = result?.range,
+                let subText = (text as NSString).substring(with: NSMakeRange(range.location, range.length)) as String! {
                 
                 let dec = FTLinkDetection(linkType: .LinkTypeHashTag, linkRange: range, linkURL: URL(string: subText))
                 rangeOfURL.append(dec)

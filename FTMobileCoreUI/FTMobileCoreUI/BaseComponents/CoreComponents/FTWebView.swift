@@ -11,12 +11,12 @@ import WebKit
 
 open class FTWebView: WKWebView {
     
-    public override func addSelfSizing() {
-        self.addSelfSizing()
-    }
-    
-    public override func resizeToFitSubviews() {
-        
-    }
+//    public override func addSelfSizing() {
+//        self.addSelfSizing()
+//    }
+//    
+//    public func resizeToFitSubviews() {
+//        
+//    }
     
 }

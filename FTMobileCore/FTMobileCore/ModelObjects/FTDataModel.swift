@@ -34,9 +34,7 @@ extension FTDataModel {
  
     public class func createDataModelOfType(_ baseClass: String, fromDictionary dic: Dictionary<String, Any>) -> Any? {
         
-        guard let cls = baseClass.getClassInstance() as? FTDataModel.Type else {
-            return nil
-        }
+        guard let cls = baseClass.getClassInstance() as? FTDataModel.Type else { return nil }
         
         return cls.init(jsonData:dic, baseClass: cls)
     }
@@ -45,10 +43,10 @@ extension FTDataModel {
 extension FTDataModel {
     
     func __setup__ ()  {
-    
-        let properties = self.propertyNames()
+            
+        let properties = getPropertyNames(myClass: classType)
 
-        print(properties);
+        print(properties ?? "properties of type \(classType) are empty");
 
     }
     
@@ -61,7 +59,7 @@ extension FTDataModel {
 //        return [super resolveInstanceMethod:aSEL];
         
         
-        return true
+        return false
     }
     
 

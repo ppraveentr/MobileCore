@@ -15,3 +15,4 @@ FOUNDATION_EXPORT double FTMobileCoreVersionNumber;
 FOUNDATION_EXPORT const unsigned char FTMobileCoreVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <FTMobileCore/PublicHeader.h>
+#import <FTCoreUtility/FTCoreUtility.h>

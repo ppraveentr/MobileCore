@@ -43,6 +43,27 @@
 			remoteGlobalIDString = DE9221A51EF28C9B000C8FC7;
 			remoteInfo = FTMobileCore;
 		};
+		DE680B321F2BBD9600A9F68C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE680B2D1F2BBD9500A9F68C /* FTCoreUtility.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DE680B131F2BBD9500A9F68C;
+			remoteInfo = FTCoreUtility;
+		};
+		DE680B341F2BBD9600A9F68C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE680B2D1F2BBD9500A9F68C /* FTCoreUtility.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DE680B1C1F2BBD9500A9F68C;
+			remoteInfo = FTCoreUtilityTests;
+		};
+		DE680B381F2BBD9600A9F68C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE1485211F10B13600A250A6 /* FTMobileCoreUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DEB569771F17DC2600B5F187;
+			remoteInfo = FTMobileCoreUITests;
+		};
 		DEBDC89B1EF450DB00AC77A9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DEBDC8961EF450DB00AC77A9 /* FTMobileCore.xcodeproj */;
@@ -76,6 +97,7 @@
 
 /* Begin PBXFileReference section */
 		DE1485211F10B13600A250A6 /* FTMobileCoreUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FTMobileCoreUI.xcodeproj; path = ../../FTMobileCoreUI/FTMobileCoreUI.xcodeproj; sourceTree = "<group>"; };
+		DE680B2D1F2BBD9500A9F68C /* FTCoreUtility.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FTCoreUtility.xcodeproj; path = ../../FTCoreUtility/FTCoreUtility.xcodeproj; sourceTree = "<group>"; };
 		DE9221C91EF28CDF000C8FC7 /* FTMobileCoreSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FTMobileCoreSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9221CE1EF28CDF000C8FC7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +138,16 @@
 			isa = PBXGroup;
 			children = (
 				DE1485271F10B13700A250A6 /* FTMobileCoreUI.framework */,
+				DE680B391F2BBD9600A9F68C /* FTMobileCoreUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DE680B2E1F2BBD9500A9F68C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DE680B331F2BBD9600A9F68C /* FTCoreUtility.framework */,
+				DE680B351F2BBD9600A9F68C /* FTCoreUtilityTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,6 +190,7 @@
 		DEBDC8951EF450CD00AC77A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DE680B2D1F2BBD9500A9F68C /* FTCoreUtility.xcodeproj */,
 				DE1485211F10B13600A250A6 /* FTMobileCoreUI.xcodeproj */,
 				DEBDC8961EF450DB00AC77A9 /* FTMobileCore.xcodeproj */,
 			);
@@ -283,6 +316,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = DE680B2E1F2BBD9500A9F68C /* Products */;
+					ProjectRef = DE680B2D1F2BBD9500A9F68C /* FTCoreUtility.xcodeproj */;
+				},
+				{
 					ProductGroup = DEBDC8971EF450DB00AC77A9 /* Products */;
 					ProjectRef = DEBDC8961EF450DB00AC77A9 /* FTMobileCore.xcodeproj */;
 				},
@@ -305,6 +342,27 @@
 			fileType = wrapper.framework;
 			path = FTMobileCoreUI.framework;
 			remoteRef = DE1485261F10B13700A250A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DE680B331F2BBD9600A9F68C /* FTCoreUtility.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FTCoreUtility.framework;
+			remoteRef = DE680B321F2BBD9600A9F68C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DE680B351F2BBD9600A9F68C /* FTCoreUtilityTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FTCoreUtilityTests.xctest;
+			remoteRef = DE680B341F2BBD9600A9F68C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DE680B391F2BBD9600A9F68C /* FTMobileCoreUITests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FTMobileCoreUITests.xctest;
+			remoteRef = DE680B381F2BBD9600A9F68C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		DEBDC89C1EF450DB00AC77A9 /* FTMobileCore.framework */ = {
@@ -505,7 +563,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FTMobileCoreSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "FTMobileCoreSample/FTMobileCoreSample-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SWIFT_MODULE_NAME)/$(SWIFT_MODULE_NAME)-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -524,7 +582,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FTMobileCoreSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "FTMobileCoreSample/FTMobileCoreSample-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SWIFT_MODULE_NAME)/$(SWIFT_MODULE_NAME)-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

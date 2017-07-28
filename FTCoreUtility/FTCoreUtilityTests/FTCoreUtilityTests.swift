@@ -1,21 +1,19 @@
 //
-//  FTMobileCoreTests.swift
-//  FTMobileCoreTests
+//  FTCoreUtilityTests.swift
+//  FTCoreUtilityTests
 //
-//  Created by Praveen Prabhakar on 15/06/17.
+//  Created by Praveen Prabhakar on 29/07/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
 import XCTest
-@testable import FTMobileCore
+@testable import FTCoreUtility
 
-class FTMobileCoreTests: XCTestCase {
+class FTCoreUtilityTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        try? FTModelConfig.loadModelSchema(["MDASample": ["identifier":"id"] ])
     }
     
     override func tearDown() {
@@ -26,9 +24,13 @@ class FTMobileCoreTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-            
-        let sample = FTDataModel.createDataModelOfType("MDASample", fromDictionary: ["id":"sample"])
-        print(sample ?? "properties of type MDASample are empty");
+    }
+    
+    func testPerformanceExample() {
+        // This is an example of a performance test case.
+        self.measure {
+            // Put the code you want to measure the time of here.
+        }
     }
     
 }

@@ -59,7 +59,7 @@ class ViewController: FTBaseViewController {
         label.addSizeConstraint(200,200)
 
         scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, labelM3, labelM4, label2],
-                                         withLayoutDirection: .LeftToRight, paddingBetween: 25,
+                                         withLayoutDirection: .TopToBottom, paddingBetween: 25,
                                          withEdgeInsets: [.AutoMargin, .EqualSize])
 
 //        label.addSizeConstraint(100,100)
@@ -97,6 +97,7 @@ class ViewController: FTBaseViewController {
         try? FTModelConfig.loadModelSchema(["MDASample": ["identifier":"id"] ])
         
         let sample = FTDataModel.createDataModelOfType("MDASample", fromDictionary: ["id":"sample"]) as? MDASample
-        sample?.identifier = "jgj"
+//        sample?.identifier = "jgj"
+        print(sample ?? "properties of type MDASample are empty");
     }
 }

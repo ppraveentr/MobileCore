@@ -8,6 +8,10 @@
 
 import Foundation
 
+@objc public protocol FTSubViewProtocal {
+    @objc optional func getBaseView() -> UIView
+}
+
 public enum FTLayoutDirection {
     case TopToBottom
     case LeftToRight
@@ -84,13 +88,16 @@ public struct FTEdgeInsets: OptionSet {
         self.remove(.All)
         
         if direction == .TopToBottom {
+            
             self.remove([.TopMargin, .BottomMargin])
             self.remove(.CenterYMargin)
             if self.contains(.CenterMargin) {
                 self.remove(.CenterMargin)
                 self.insert(.CenterXMargin)
             }
+            
         }else{
+            
             self.remove([.LeadingMargin, .TrailingMargin])
             self.remove(.CenterXMargin)
             if self.contains(.CenterMargin) {
@@ -105,6 +112,8 @@ public struct FTEdgeInsets: OptionSet {
     }
 }
 
+extension UIView: FTSubViewProtocal {}
+
 public extension UIView {
     
     func hasSameBaseView(_ view: UIView) -> Bool {
@@ -114,13 +123,17 @@ public extension UIView {
         if let superView = self.superview {
             
             if superView.subviews.contains(view) {
+                
                 hasSameBase = true
-            }
-            else if let baseView: FTBaseView = self.superview as? FTBaseView {
-                if baseView.mainPinnedView.subviews.contains(view) {
-                    hasSameBase = true
+                
+            } else if
+                let subView = superView as FTSubViewProtocal?,
+                let baseView: UIView = subView.getBaseView?() {
+                
+                    if baseView.subviews.contains(view) {
+                        hasSameBase = true
+                    }
                 }
-            }
         }
         
         return hasSameBase
@@ -451,10 +464,10 @@ public extension UIView {
 //AssociatedObject for view Layout constraints
 public class FTViewLayoutConstraint {
     
-    var autoSizing = false
+    public var autoSizing = false
     
-    var constraintWidth: NSLayoutConstraint?
-    var constraintHeight: NSLayoutConstraint?
+    public var constraintWidth: NSLayoutConstraint?
+    public var constraintHeight: NSLayoutConstraint?
 }
 
 fileprivate var kFTlayoutAssociationKey: UInt8 = 0

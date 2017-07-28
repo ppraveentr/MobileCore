@@ -9,7 +9,13 @@
 import UIKit
 import FTMobileCore
 
-class MDASample : FTDataModel{
-    @objc dynamic var identifier:String?
+
+class MDASample : FTDataModel {
+    var identifier:String?
+    var amount:Decimal = 0.0
+    var isValid:Bool = false
+    var date:NSDate?
+    var accList:NSMutableArray?
+    var dicList:NSMutableDictionary?
 }
 

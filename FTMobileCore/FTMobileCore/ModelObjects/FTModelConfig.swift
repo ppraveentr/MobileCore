@@ -8,6 +8,16 @@
 
 import Foundation
 
+//typealias
+typealias JSON = Dictionary<String, Any>
+
+//Operator Overloading
+func += <K,V> ( left: inout [K:V], right: [K:V]){
+    for (k, v) in right {
+        left[k] = v
+    }
+}
+
 public class FTModelConfig {
     
     static let sharedInstance  = FTModelConfig()
@@ -17,13 +27,13 @@ public class FTModelConfig {
     public class func loadModelSchema(_ data: [String : Any] ) throws {
         
         if JSONSerialization.isValidJSONObject(data) {
-            sharedInstance.modelSchema += data
+            self.sharedInstance.modelSchema += data
         }
     }
     
     public class func loadModelSchema(fromPath path: String ) throws {
         
-        if let content = try? contentAt(path: path) as! [String : Any]  {
+        if let content = try path.JSONContentAtPath() as? JSON {
             try? loadModelSchema(content)
         }
     }
