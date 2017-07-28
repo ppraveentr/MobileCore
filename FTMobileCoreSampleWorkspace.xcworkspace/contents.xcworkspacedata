@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:FTCoreUtility/FTCoreUtility.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:FTMobileCoreSample/FTMobileCoreSample/../../FTMobileCore/FTMobileCore.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:FTMobileCoreSample/FTMobileCoreSample/../../FTMobileCoreUI/FTMobileCoreUI.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "container:FTMobileCoreSample/FTMobileCoreSample.xcodeproj">
+   </FileRef>
+</Workspace>
