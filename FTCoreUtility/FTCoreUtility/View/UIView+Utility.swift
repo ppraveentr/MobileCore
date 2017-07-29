@@ -17,12 +17,16 @@ public extension UIView {
         }
     }
     
-//    public class func fromNib(named name: String) -> Self? {
-//        let allObjects = Bundle.main.loadNibNamed(name, owner: nil, options: nil) ?? []
-//        return castFirst(allObjects)
-//    }
-//    
-//    public class func fromNib() -> Self? {
-//        return fromNib(named: className)
-//    }
+    public class func fromNib(named name: String) -> UIView? {
+        let allObjects = Bundle.main.loadNibNamed(name, owner: nil, options: nil) ?? []
+        if let nib = allObjects.first as? UIView {
+            return nib
+        }
+        
+        return nil
+    }
+    
+    public class func fromNib() -> UIView? {
+        return fromNib(named: get_classNameAsString(obj: self) ?? "")
+    }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 //CGRect
-extension CGRect {
+public extension CGRect {
     
     func getX() -> CGFloat {
         return self.origin.x

@@ -27,6 +27,10 @@ public extension String {
 //String Size
 public extension String {
     
+    func trimming(string: String) -> String? {
+        return self.replacingOccurrences(of: string, with: "")
+    }
+    
     func substring(with range: NSRange) -> String? {
         return (self as NSString).substring(with: range) as String! ?? nil
     }

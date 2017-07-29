@@ -8,6 +8,17 @@
 
 import Foundation
 
+public extension NSObject {
+    var get_className: String? {
+        return get_classNameAsString(obj: self)
+    }
+}
+
+public func get_classNameAsString(obj: Any) -> String? {
+    return String(describing: type(of: obj)).trimming(string: ".Type")?.components(separatedBy: ".").last
+//    return NSStringFromClass(type(of: obj) as! AnyClass).components(separatedBy: ".").last
+}
+
 fileprivate let baseTypesMap: Dictionary<String, Any> = [
     "c" : Int8.self,
     "s" : Int16.self,
@@ -42,15 +53,15 @@ public func getPropertyNames(myClass: AnyClass) -> Dictionary<String,Any>? {
     for i in 0 ..< Int(count) {
         
         guard
+            // property
             let property: objc_property_t = properties[i],
-            // retrieve the property name
-            let cname = property_getName(property)
+            // property name
+            let cname = property_getName(property),
+            // property Attributes
+            let cattribure = property_getAttributes(property)
             else { continue }
         
-        let cattribure = property_getAttributes(property)
-        let attribure = String(cString: cattribure!)
-        
-        // retrieve the property name by calling property_getName function
+        let attribure = String(cString: cattribure)
         let name = String(cString: cname)
         
         results[name] = attribure.propertyAttributeType()

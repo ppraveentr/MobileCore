@@ -16,18 +16,18 @@ public enum FTLinkType {
 open class FTLinkDetection {
     
     var linkType: FTLinkType
-    var linkRange: NSRange?
+    var linkRange: NSRange
     
-    var linkURL: URL?
+    var linkURL: URL
     
-    init(linkType: FTLinkType, linkRange: NSRange?, linkURL: URL?) {
+    init(linkType: FTLinkType, linkRange: NSRange, linkURL: URL) {
         self.linkType = linkType
         self.linkRange = linkRange
         self.linkURL = linkURL
     }
     
     public var description : String {
-        return "(Type: \(self.linkType), Range: -location \(self.linkRange!.location), -length \(self.linkRange!.length), URL: \(self.linkURL!))"
+        return "(Type: \(self.linkType), Range: -location \(self.linkRange.location), -length \(self.linkRange.length), URL: \(self.linkURL))"
     }
         
     public static func getURLLinkRanges(_ text: String) -> [FTLinkDetection] {
@@ -39,28 +39,35 @@ open class FTLinkDetection {
         
         detector?.enumerateMatches(in: text, options: [], range: NSMakeRange(0, (text as NSString).length)) { (result, flags, _) in
             
-            if(result?.url != nil){
-                let dec = FTLinkDetection(linkType: .LinkTypeURL, linkRange: result?.range, linkURL: result?.url)
-                rangeOfURL.append(dec)
+            if
+                let url = result?.url,
+                let range = result?.range {
+                    let dec = FTLinkDetection(linkType: .LinkTypeURL, linkRange: range, linkURL: url)
+                    rangeOfURL.append(dec)
             }
         }
         
         return rangeOfURL
     }
     
+    /*
+     * Eg.) Hi #wellcome thanks.
+     * "#wellcome" is the detected-link
+     */
     public static func getHashTagRanges(_ text: String) -> [FTLinkDetection] {
         
         var rangeOfURL = [FTLinkDetection]()
         
-        //T@"NSMutableArray",N,&,Vid
+        //Hi #wellcome thanks.
+        //Here, "#wellcome" is retuned
         text.enumerate(pattern: "(?<!\\w)#([\\w]+)") { (result) in
             
             if
                 let range = result?.range,
-                let subText = (text as NSString).substring(with: NSMakeRange(range.location, range.length)) as String! {
-                
-                let dec = FTLinkDetection(linkType: .LinkTypeHashTag, linkRange: range, linkURL: URL(string: subText))
-                rangeOfURL.append(dec)
+                let subText = (text as NSString).substring(with: NSMakeRange(range.location, range.length)) as String!,
+                let url = URL(string: subText) {
+                    let dec = FTLinkDetection(linkType: .LinkTypeHashTag, linkRange: range, linkURL: url)
+                    rangeOfURL.append(dec)
             }
         }
         
