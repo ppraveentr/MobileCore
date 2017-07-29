@@ -8,10 +8,6 @@
 
 import Foundation
 
-@objc public protocol FTSubViewProtocal {
-    @objc optional func getBaseView() -> UIView
-}
-
 public enum FTLayoutDirection {
     case TopToBottom
     case LeftToRight
@@ -112,28 +108,16 @@ public struct FTEdgeInsets: OptionSet {
     }
 }
 
-extension UIView: FTSubViewProtocal {}
-
 public extension UIView {
     
-    func hasSameBaseView(_ view: UIView) -> Bool {
+    fileprivate func hasSameBaseView(_ view: UIView) -> Bool {
         
         var hasSameBase = false
 
-        if let superView = self.superview {
-            
-            if superView.subviews.contains(view) {
-                
+        if
+            let superView = self.superview,
+            superView.subviews.contains(view) {
                 hasSameBase = true
-                
-            } else if
-                let subView = superView as FTSubViewProtocal?,
-                let baseView: UIView = subView.getBaseView?() {
-                
-                    if baseView.subviews.contains(view) {
-                        hasSameBase = true
-                    }
-                }
         }
         
         return hasSameBase
@@ -322,7 +306,7 @@ public extension UIView {
             
             //Fix to
             let priorityL = priority - Float(views.count + index)
-            let defaultOffset = FTEdgeOffsets(paddingBetween)
+            let defaultOffset = FTEdgeOffsets(0)
             
             if direction == .TopToBottom {
                 self.pin(view: view, withEdgeOffsets: defaultOffset, withEdgeInsets: .TopLayoutMargin,
@@ -454,29 +438,27 @@ public extension UIView {
             
             //Update Screen layout
             DispatchQueue.main.async {
-                self.superview?.setNeedsLayout()
+//                self.superview?.setNeedsLayout()
                 self.superview?.layoutIfNeeded()
             }
         }
     }
-}
-
-//AssociatedObject for view Layout constraints
-public class FTViewLayoutConstraint {
     
-    public var autoSizing = false
+
+    //MARK: AssociatedObject for view Layout constraints
+    public class FTViewLayoutConstraint {
+        
+        public var autoSizing = false
+        
+        public var constraintWidth: NSLayoutConstraint?
+        public var constraintHeight: NSLayoutConstraint?
+    }
     
-    public var constraintWidth: NSLayoutConstraint?
-    public var constraintHeight: NSLayoutConstraint?
-}
-
-fileprivate var kFTlayoutAssociationKey: UInt8 = 0
-
-public extension UIView {
+    fileprivate static let aoLayoutConstraint = FTAssociatedObject<FTViewLayoutConstraint>()
     
     public var viewLayoutConstraint: FTViewLayoutConstraint {
         get {
-            if let storedLayouts = objc_getAssociatedObject(self, &kFTlayoutAssociationKey) as? FTViewLayoutConstraint {
+            if let storedLayouts = UIView.aoLayoutConstraint[self] {
                 return storedLayouts
             }
             
@@ -484,7 +466,7 @@ public extension UIView {
             return self.viewLayoutConstraint
         }
         set(newValue) {
-            objc_setAssociatedObject(self, &kFTlayoutAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            UIView.aoLayoutConstraint[self] = newValue
         }
     }
     

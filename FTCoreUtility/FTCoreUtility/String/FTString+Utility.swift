@@ -22,10 +22,8 @@ public extension String {
                                 block?(result)
         })
     }
-}
 
-//String Size
-public extension String {
+//MARK: String Size
     
     func trimming(string: String) -> String? {
         return self.replacingOccurrences(of: string, with: "")
@@ -47,10 +45,8 @@ public extension String {
     var length: Int {
         return characters.count
     }
-}
 
-//JSON
-public extension String {
+//MARK: JSON
     
     //Loading Data from given Path
     func JSONContentAtPath() throws -> Any? {

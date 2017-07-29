@@ -8,12 +8,12 @@
 
 import Foundation
 
-public enum FTLinkType {
-    case LinkTypeURL
-    case LinkTypeHashTag
-}
-
 open class FTLinkDetection {
+
+    enum FTLinkType {
+        case LinkTypeURL
+        case LinkTypeHashTag
+    }
     
     var linkType: FTLinkType
     var linkRange: NSRange

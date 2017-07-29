@@ -64,7 +64,7 @@ public func getPropertyNames(myClass: AnyClass) -> Dictionary<String,Any>? {
         let attribure = String(cString: cattribure)
         let name = String(cString: cname)
         
-        results[name] = attribure.propertyAttributeType()
+        results[name] = attribure.get_propertyAttributeType()
     }
     
     // release objc_property_t structs
@@ -76,7 +76,21 @@ public func getPropertyNames(myClass: AnyClass) -> Dictionary<String,Any>? {
 //String Extention
 public extension String {
     
-    func propertyAttributeWithBaseType() -> Any {
+    //String Extention
+    
+    func getClassInstance () -> AnyClass? {
+        
+        // get namespace
+        guard let namespace = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String else { return nil }
+        
+        // get 'anyClass' with classname and namespace
+        let cls: AnyClass? = NSClassFromString("\(namespace).\(self)")
+        
+        // return AnyClass!
+        return cls;
+    }
+    
+    func get_propertyAttributeWithBaseType() -> Any {
         //TB,N,Vid
         guard
             let letter = self.substring(from: 1, to: 2),
@@ -85,7 +99,7 @@ public extension String {
         return type
     }
     
-    func propertyAttributeType() -> Any {
+    func get_propertyAttributeType() -> Any {
         
         var attribure: Any?
         
@@ -100,24 +114,8 @@ public extension String {
         
         //TB,N,Vid
         guard let type = attribure else {
-            return self.propertyAttributeWithBaseType()
+            return self.get_propertyAttributeWithBaseType()
         }
         return NSClassFromString(type as! String) ?? Any.self
-    }
-}
-
-//String Extention
-public extension String {
-    
-    func getClassInstance () -> AnyClass? {
-        
-        // get namespace
-        guard let namespace = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String else { return nil }
-        
-        // get 'anyClass' with classname and namespace
-        let cls: AnyClass? = NSClassFromString("\(namespace).\(self)")
-        
-        // return AnyClass!
-        return cls;
     }
 }

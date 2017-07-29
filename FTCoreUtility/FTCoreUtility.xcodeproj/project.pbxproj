@@ -16,6 +16,9 @@
 		DE680B701F2BC1CF00A9F68C /* UIView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B6F1F2BC1CF00A9F68C /* UIView+Utility.swift */; };
 		DE680B721F2BC1EB00A9F68C /* UIView+FTConstrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B711F2BC1EB00A9F68C /* UIView+FTConstrains.swift */; };
 		DE680B751F2BC22B00A9F68C /* FTUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B741F2BC22B00A9F68C /* FTUtils.swift */; };
+		DE680B991F2CF5A600A9F68C /* FTThemesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B981F2CF5A600A9F68C /* FTThemesManager.swift */; };
+		DE680B9B1F2CF86500A9F68C /* FTAssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B9A1F2CF86500A9F68C /* FTAssociatedObject.swift */; };
+		DE680B9E1F2D067900A9F68C /* FTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B9D1F2D067900A9F68C /* FTAppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,9 @@
 		DE680B6F1F2BC1CF00A9F68C /* UIView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utility.swift"; sourceTree = "<group>"; };
 		DE680B711F2BC1EB00A9F68C /* UIView+FTConstrains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+FTConstrains.swift"; sourceTree = "<group>"; };
 		DE680B741F2BC22B00A9F68C /* FTUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUtils.swift; sourceTree = "<group>"; };
+		DE680B981F2CF5A600A9F68C /* FTThemesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTThemesManager.swift; sourceTree = "<group>"; };
+		DE680B9A1F2CF86500A9F68C /* FTAssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTAssociatedObject.swift; sourceTree = "<group>"; };
+		DE680B9D1F2D067900A9F68C /* FTAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTAppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,8 @@
 		DE680B151F2BBD9500A9F68C /* FTCoreUtility */ = {
 			isa = PBXGroup;
 			children = (
+				DE680B9C1F2D066500A9F68C /* AppBase */,
+				DE680B971F2CF59700A9F68C /* Theam */,
 				DE680B731F2BC22500A9F68C /* Generic */,
 				DE680B6E1F2BC1C600A9F68C /* View */,
 				DE680B691F2BC19D00A9F68C /* Class */,
@@ -145,8 +153,25 @@
 			isa = PBXGroup;
 			children = (
 				DE680B741F2BC22B00A9F68C /* FTUtils.swift */,
+				DE680B9A1F2CF86500A9F68C /* FTAssociatedObject.swift */,
 			);
 			path = Generic;
+			sourceTree = "<group>";
+		};
+		DE680B971F2CF59700A9F68C /* Theam */ = {
+			isa = PBXGroup;
+			children = (
+				DE680B981F2CF5A600A9F68C /* FTThemesManager.swift */,
+			);
+			path = Theam;
+			sourceTree = "<group>";
+		};
+		DE680B9C1F2D066500A9F68C /* AppBase */ = {
+			isa = PBXGroup;
+			children = (
+				DE680B9D1F2D067900A9F68C /* FTAppDelegate.swift */,
+			);
+			path = AppBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,10 +288,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE680B6B1F2BC19D00A9F68C /* FTClassUtility.swift in Sources */,
+				DE680B9E1F2D067900A9F68C /* FTAppDelegate.swift in Sources */,
 				DE680B751F2BC22B00A9F68C /* FTUtils.swift in Sources */,
 				DE680B681F2BC18900A9F68C /* FTString+Utility.swift in Sources */,
 				DE680B6D1F2BC1A800A9F68C /* FTLinkDetection.swift in Sources */,
+				DE680B9B1F2CF86500A9F68C /* FTAssociatedObject.swift in Sources */,
 				DE680B701F2BC1CF00A9F68C /* UIView+Utility.swift in Sources */,
+				DE680B991F2CF5A600A9F68C /* FTThemesManager.swift in Sources */,
 				DE680B721F2BC1EB00A9F68C /* UIView+FTConstrains.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,6 +504,7 @@
 				DE680B291F2BBD9500A9F68C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DE680B2A1F2BBD9500A9F68C /* Build configuration list for PBXNativeTarget "FTCoreUtilityTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +513,7 @@
 				DE680B2C1F2BBD9500A9F68C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

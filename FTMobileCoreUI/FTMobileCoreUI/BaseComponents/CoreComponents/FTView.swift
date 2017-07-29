@@ -9,11 +9,12 @@
 import Foundation
 
 open class FTView: UIView {
-
+    
     open override func layoutSubviews() {
+        super.layoutSubviews()
+
         if self.viewLayoutConstraint.autoSizing {
              self.resizeToFitSubviews()   
         }
-        super.layoutSubviews()
     }
 }

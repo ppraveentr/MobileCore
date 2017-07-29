@@ -158,7 +158,7 @@ extension FTLabel {
     }
 }
 
-//TODO: Theams
+//TODO: Themess
 extension FTLabel {
     
     func getStyleProperties() -> [String : Any] {

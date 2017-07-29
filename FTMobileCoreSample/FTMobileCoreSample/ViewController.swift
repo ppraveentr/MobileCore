@@ -27,10 +27,12 @@ class ViewController: FTBaseViewController {
         let label = FTLabel()
         label.backgroundColor = .red
         label.attributedText = restyledString
-        
+        label.Themes = "label"
+
         let labelM = FTLabel()
         labelM.backgroundColor = .yellow
         labelM.text = "Middledasd s asd "
+        labelM.Themes = "labelM"
         
         let labelM1 = FTLabel()
         labelM1.backgroundColor = .blue
@@ -59,8 +61,18 @@ class ViewController: FTBaseViewController {
         label.addSizeConstraint(200,200)
 
         scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, labelM3, labelM4, label2],
-                                         withLayoutDirection: .TopToBottom, paddingBetween: 25,
-                                         withEdgeInsets: [.AutoMargin, .EqualSize])
+                                         withLayoutDirection: .LeftToRight, paddingBetween: 25,
+                                         withEdgeInsets: [ .EqualSize, .TopMargin, .AutoMargin])
+
+        let left = FTLabel()
+        left.backgroundColor = .magenta
+        left.text = "left dwds"
+        scrollView.contentView.stackView(views: [labelM,left], withLayoutDirection: .TopToBottom, paddingBetween: 10,
+                                         withEdgeInsets: [.LeadingMargin])
+        
+        scrollView.contentView.pin(view: left, withEdgeOffsets: FTEdgeOffsets(30, 50, 0, 0),
+                                   withEdgeInsets: [ .Left, .Bottom, .AutoSize ],
+                                   withLayoutPriority: UILayoutPriorityDefaultLow)
 
 //        label.addSizeConstraint(100,100)
 //        labelM.addSizeConstraint(20,20)
@@ -91,9 +103,7 @@ class ViewController: FTBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        let bundle = Bundle(identifier: "com.company.bundle.LiveUI")
-    
+        
         try? FTModelConfig.loadModelSchema(["MDASample": ["identifier":"id"] ])
         
         let sample = FTDataModel.createDataModelOfType("MDASample", fromDictionary: ["id":"sample"]) as? MDASample
