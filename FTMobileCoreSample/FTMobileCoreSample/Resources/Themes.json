@@ -1,0 +1,28 @@
+{
+    "type": "Themes",
+    "color": {
+        "black": "#FFFFFF",
+        "white": "#000000"
+    },
+    "font": {
+        "default": {
+            "name": "system",
+            "size": "13.0"
+        },
+        "system14": {
+            "_super": "default",
+            "size": "14.0"
+        }
+    },
+    "components": {
+        "FTLabel": {
+            "default": {
+                "text": {
+                    "font": "system14",
+                    "color": "black"
+                },
+                "underline": false
+            }
+        }
+    }
+}

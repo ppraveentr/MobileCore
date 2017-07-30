@@ -19,6 +19,7 @@
 		DE680B991F2CF5A600A9F68C /* FTThemesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B981F2CF5A600A9F68C /* FTThemesManager.swift */; };
 		DE680B9B1F2CF86500A9F68C /* FTAssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B9A1F2CF86500A9F68C /* FTAssociatedObject.swift */; };
 		DE680B9E1F2D067900A9F68C /* FTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B9D1F2D067900A9F68C /* FTAppDelegate.swift */; };
+		DE680BB91F2E548F00A9F68C /* FTThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680BB81F2E548F00A9F68C /* FTThemesTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		DE680B981F2CF5A600A9F68C /* FTThemesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTThemesManager.swift; sourceTree = "<group>"; };
 		DE680B9A1F2CF86500A9F68C /* FTAssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTAssociatedObject.swift; sourceTree = "<group>"; };
 		DE680B9D1F2D067900A9F68C /* FTAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTAppDelegate.swift; sourceTree = "<group>"; };
+		DE680BB81F2E548F00A9F68C /* FTThemesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTThemesTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +119,9 @@
 		DE680B201F2BBD9500A9F68C /* FTCoreUtilityTests */ = {
 			isa = PBXGroup;
 			children = (
-				DE680B211F2BBD9500A9F68C /* FTCoreUtilityTests.swift */,
 				DE680B231F2BBD9500A9F68C /* Info.plist */,
+				DE680B211F2BBD9500A9F68C /* FTCoreUtilityTests.swift */,
+				DE680BB81F2E548F00A9F68C /* FTThemesTests.swift */,
 			);
 			path = FTCoreUtilityTests;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE680B221F2BBD9500A9F68C /* FTCoreUtilityTests.swift in Sources */,
+				DE680BB91F2E548F00A9F68C /* FTThemesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

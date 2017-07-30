@@ -51,7 +51,7 @@ public extension String {
     //Loading Data from given Path
     func JSONContentAtPath() throws -> Any? {
         
-        guard let content = try? Data.init(contentsOf: URL.init(fileURLWithPath: self)) else {
+        guard let content = try? Data.init(contentsOf: URL(fileURLWithPath: self)) else {
             return nil
         }
         

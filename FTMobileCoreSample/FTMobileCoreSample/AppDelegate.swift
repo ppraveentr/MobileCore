@@ -8,8 +8,21 @@
 
 import UIKit
 
+@UIApplicationMain
 class AppDelegate: FTAppDelegate {
 
+    public override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        if
+            let resource = Bundle.main.path(forResource: "MobileCodeSampleBundle", ofType: "bundle"),
+            let theme = Bundle(path: resource)?.path(forResource: "Themes", ofType: "json"),
+            let themeContent = try? theme.JSONContentAtPath() as! Dictionary<String,Any> {
+        
+            FTThemesManager.setupThemes(themes: themeContent)
+        }
+        
+        return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
 
 }
 
