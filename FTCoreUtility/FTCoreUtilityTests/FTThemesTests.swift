@@ -14,6 +14,7 @@ class FTThemesTests: XCTestCase {
     let theme: [String : Any] = [
         "type": "Themes",
         "color": [
+            "default": "#FFFFFF",
             "black": "#FFFFFF",
             "white": "#000000"
         ],
@@ -49,8 +50,16 @@ class FTThemesTests: XCTestCase {
         print("font 14 : ", FTThemesManager.getFont("system14")!)
     }
     
-    func testColor() {
+    func testColorWhite() {
         print("color white : ", FTThemesManager.getColor("white")!)
+    }
+    
+    func testColorBlack() {
+        print("color black : ", FTThemesManager.getColor("black")!)
+    }
+    
+    func testColorFail() {
+        print("color white : ", FTThemesManager.getColor("orange")!)
     }
     
 }

@@ -1,6 +1,7 @@
 {
     "type": "Themes",
     "color": {
+        "default": "#FFFFFF",
         "black": "#FFFFFF",
         "white": "#000000"
     },
