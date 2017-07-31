@@ -36,6 +36,13 @@ class FTThemesTests: XCTestCase {
                         "color": "black"
                     ],
                     "underline": false
+                ],
+                "system14W": [
+                    "text": [
+                        "font": "system14",
+                        "color": "white"
+                    ],
+                    "underline": true
                 ]
             ]
         ]
@@ -46,20 +53,24 @@ class FTThemesTests: XCTestCase {
         FTThemesManager.setupThemes(themes: theme)
     }
     
+    func testComponent() {
+        print("\n FTLabel system14W : ", FTThemesManager.getComponent("FTLabel", styleName: "system14W")!)
+    }
+    
     func testFonts() {
-        print("font 14 : ", FTThemesManager.getFont("system14")!)
+        print("\n font 14 : ", FTThemesManager.getFont("system14")!)
     }
     
     func testColorWhite() {
-        print("color white : ", FTThemesManager.getColor("white")!)
+        print("\n color white : ", FTThemesManager.getColor("white")!)
     }
     
     func testColorBlack() {
-        print("color black : ", FTThemesManager.getColor("black")!)
+        print("\n color black : ", FTThemesManager.getColor("black")!)
     }
     
     func testColorFail() {
-        print("color white : ", FTThemesManager.getColor("orange")!)
+        print("\n color fail : ", FTThemesManager.getColor("orange")!)
     }
     
 }

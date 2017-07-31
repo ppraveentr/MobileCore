@@ -780,6 +780,7 @@
 				DE680BAF1F2E037B00A9F68C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DE9221C41EF28CDF000C8FC7 /* Build configuration list for PBXProject "FTMobileCoreSample" */ = {
 			isa = XCConfigurationList;

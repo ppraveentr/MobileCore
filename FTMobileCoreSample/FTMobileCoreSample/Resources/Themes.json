@@ -3,7 +3,7 @@
     "color": {
         "default": "#FFFFFF",
         "black": "#FFFFFF",
-        "white": "#000000"
+        "red": "#b70b39"
     },
     "font": {
         "default": {
@@ -21,6 +21,13 @@
                 "text": {
                     "font": "system14",
                     "color": "black"
+                },
+                "underline": false
+            },
+            "system14R": {
+                "text": {
+                    "font": "system14",
+                    "color": "red"
                 },
                 "underline": false
             }

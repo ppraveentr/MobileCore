@@ -34,14 +34,6 @@ public let FTInstanceSwizzling: (AnyClass, Selector, Selector) -> () = { forClas
     method_exchangeImplementations(originalMethod, swizzledMethod)
 }
 
-//Operator Overloading
-public func += <K,V> ( left: inout [K:V], right: [K:V]){
-    for (k, v) in right {
-        left[k] = v
-    }
-}
-
-
 public extension UIColor {
     
     public convenience init(red: Int, green: Int, blue: Int, a: CGFloat = 1.0) {
@@ -84,3 +76,25 @@ public extension UIColor {
         )
     }
 }
+
+//MARK: Dictionary : Operator Overloading
+public func += <K,V> ( left: inout [K:V], right: [K:V]){
+    for (k, v) in right {
+        left[k] = v
+    }
+}
+
+public func + <K,V> (left: [K:V], right: [K:V]) -> [K:V] {
+    
+    var computedValue = left
+    
+    for (k, v) in right {
+        computedValue[k] = v
+    }
+    
+    return computedValue
+}
+
+//public func <-- <K,V> (dic: [K:V], key: K) -> V {
+//    return (dic as NSDictionary).value(forKeyPath: key as! String) as! V
+//}

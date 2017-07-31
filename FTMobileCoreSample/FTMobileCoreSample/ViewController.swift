@@ -27,12 +27,11 @@ class ViewController: FTBaseViewController {
         let label = FTLabel()
         label.backgroundColor = .red
         label.attributedText = restyledString
-        label.theme = "label"
 
         let labelM = FTLabel()
         labelM.backgroundColor = .yellow
         labelM.text = "Middledasd s asd "
-        labelM.theme = "labelM"
+        labelM.theme = "system14R"
         
         let labelM1 = FTLabel()
         labelM1.backgroundColor = .blue

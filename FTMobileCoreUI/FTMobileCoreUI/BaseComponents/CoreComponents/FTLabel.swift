@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class FTLabel : UILabel, NSLayoutManagerDelegate {
+open class FTLabel : UILabel, NSLayoutManagerDelegate, FTThemeProtocol {
     
     public lazy var textStorage: NSTextStorage = self.getTextStorage()
     
@@ -90,6 +90,27 @@ open class FTLabel : UILabel, NSLayoutManagerDelegate {
         
         self.setNeedsDisplay()
     }
+    
+    public func updateVisualThemes() {
+        
+        if let font = self.generateTheme?.font {
+            self.font = font
+        }
+        
+        if let color = self.generateTheme?.textColor {
+            self.textColor = color
+        }
+        
+        //Force update
+        if let text = self.attributedText {
+            self.attributedText = text
+        }else if let text = self.text {
+            self.text = text
+        }
+        
+        print(self.generateTheme ?? "")
+    }
+    
 }
 
 //MARK: Text Farmatting
@@ -118,9 +139,7 @@ extension FTLabel {
     
     func getAttributedText(text: String?) -> NSMutableAttributedString {
         
-        guard text != nil else {
-            return NSMutableAttributedString()
-        }
+        guard text != nil else { return NSMutableAttributedString() }
         
         var localAttributedText = NSMutableAttributedString(string: text!)
         localAttributedText.addAttributes(self.getStyleProperties(), range: NSMakeRange(0, localAttributedText.length))
