@@ -54,7 +54,7 @@ public extension UIColor {
         )
     }
     
-    public class func hexColor (_ hex:String) -> UIColor {
+    public class func hexColor (_ hex:String) -> UIColor? {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
         if (cString.hasPrefix("#")) {
@@ -62,7 +62,7 @@ public extension UIColor {
         }
         
         if ((cString.characters.count) != 6) {
-            return UIColor.gray
+            return nil
         }
         
         var rgbValue:UInt32 = 0
@@ -75,24 +75,6 @@ public extension UIColor {
             alpha: CGFloat(1.0)
         )
     }
-}
-
-//MARK: Dictionary : Operator Overloading
-public func += <K,V> ( left: inout [K:V], right: [K:V]){
-    for (k, v) in right {
-        left[k] = v
-    }
-}
-
-public func + <K,V> (left: [K:V], right: [K:V]) -> [K:V] {
-    
-    var computedValue = left
-    
-    for (k, v) in right {
-        computedValue[k] = v
-    }
-    
-    return computedValue
 }
 
 //public func <-- <K,V> (dic: [K:V], key: K) -> V {

@@ -10,7 +10,7 @@
 		DE680B1D1F2BBD9500A9F68C /* FTCoreUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE680B131F2BBD9500A9F68C /* FTCoreUtility.framework */; };
 		DE680B221F2BBD9500A9F68C /* FTCoreUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B211F2BBD9500A9F68C /* FTCoreUtilityTests.swift */; };
 		DE680B241F2BBD9500A9F68C /* FTCoreUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = DE680B161F2BBD9500A9F68C /* FTCoreUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DE680B681F2BC18900A9F68C /* FTString+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B661F2BC18900A9F68C /* FTString+Utility.swift */; };
+		DE680B681F2BC18900A9F68C /* FTString.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B661F2BC18900A9F68C /* FTString.swift */; };
 		DE680B6B1F2BC19D00A9F68C /* FTClassUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B6A1F2BC19D00A9F68C /* FTClassUtility.swift */; };
 		DE680B6D1F2BC1A800A9F68C /* FTLinkDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B6C1F2BC1A800A9F68C /* FTLinkDetection.swift */; };
 		DE680B701F2BC1CF00A9F68C /* UIView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B6F1F2BC1CF00A9F68C /* UIView+Utility.swift */; };
@@ -20,6 +20,7 @@
 		DE680B9B1F2CF86500A9F68C /* FTAssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B9A1F2CF86500A9F68C /* FTAssociatedObject.swift */; };
 		DE680B9E1F2D067900A9F68C /* FTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B9D1F2D067900A9F68C /* FTAppDelegate.swift */; };
 		DE680BB91F2E548F00A9F68C /* FTThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680BB81F2E548F00A9F68C /* FTThemesTests.swift */; };
+		DE680BC41F30C12900A9F68C /* FTDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680BC31F30C12900A9F68C /* FTDictionary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +53,7 @@
 		DE680B1C1F2BBD9500A9F68C /* FTCoreUtilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTCoreUtilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE680B211F2BBD9500A9F68C /* FTCoreUtilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTCoreUtilityTests.swift; sourceTree = "<group>"; };
 		DE680B231F2BBD9500A9F68C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DE680B661F2BC18900A9F68C /* FTString+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FTString+Utility.swift"; sourceTree = "<group>"; };
+		DE680B661F2BC18900A9F68C /* FTString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTString.swift; sourceTree = "<group>"; };
 		DE680B6A1F2BC19D00A9F68C /* FTClassUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTClassUtility.swift; sourceTree = "<group>"; };
 		DE680B6C1F2BC1A800A9F68C /* FTLinkDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLinkDetection.swift; sourceTree = "<group>"; };
 		DE680B6F1F2BC1CF00A9F68C /* UIView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utility.swift"; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 		DE680B9A1F2CF86500A9F68C /* FTAssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTAssociatedObject.swift; sourceTree = "<group>"; };
 		DE680B9D1F2D067900A9F68C /* FTAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTAppDelegate.swift; sourceTree = "<group>"; };
 		DE680BB81F2E548F00A9F68C /* FTThemesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTThemesTests.swift; sourceTree = "<group>"; };
+		DE680BC31F30C12900A9F68C /* FTDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTDictionary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				DE680B6C1F2BC1A800A9F68C /* FTLinkDetection.swift */,
-				DE680B661F2BC18900A9F68C /* FTString+Utility.swift */,
+				DE680B661F2BC18900A9F68C /* FTString.swift */,
+				DE680BC31F30C12900A9F68C /* FTDictionary.swift */,
 			);
 			path = String;
 			sourceTree = "<group>";
@@ -293,8 +296,9 @@
 				DE680B6B1F2BC19D00A9F68C /* FTClassUtility.swift in Sources */,
 				DE680B9E1F2D067900A9F68C /* FTAppDelegate.swift in Sources */,
 				DE680B751F2BC22B00A9F68C /* FTUtils.swift in Sources */,
-				DE680B681F2BC18900A9F68C /* FTString+Utility.swift in Sources */,
+				DE680B681F2BC18900A9F68C /* FTString.swift in Sources */,
 				DE680B6D1F2BC1A800A9F68C /* FTLinkDetection.swift in Sources */,
+				DE680BC41F30C12900A9F68C /* FTDictionary.swift in Sources */,
 				DE680B9B1F2CF86500A9F68C /* FTAssociatedObject.swift in Sources */,
 				DE680B701F2BC1CF00A9F68C /* UIView+Utility.swift in Sources */,
 				DE680B991F2CF5A600A9F68C /* FTThemesManager.swift in Sources */,

@@ -54,7 +54,7 @@ class FTThemesTests: XCTestCase {
     }
     
     func testComponent() {
-        print("\n FTLabel system14W : ", FTThemesManager.getComponent("FTLabel", styleName: "system14W")!)
+        print("\n FTLabel system14W : ", FTThemesManager.getViewComponent("FTLabel", styleName: "system14W")!)
     }
     
     func testFonts() {

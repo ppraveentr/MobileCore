@@ -8,13 +8,13 @@
 
 import Foundation
 
-typealias ThemeDic = [String : Any]
+public typealias FTThemeDic = [String : Any]
 
-@objc public protocol FTThemeProtocol {
+public protocol FTThemeProtocol {
     func updateVisualThemes()
 }
 
-public struct FTTheme {
+open class FTTheme {
     
     public var name: String?
 
@@ -24,24 +24,96 @@ public struct FTTheme {
     public var backgroundColor: UIColor?
     
     public var isUnderLineEnabled: Bool = false
+    
+    open class func generateTheme(_ themeDic: FTThemeDic, name: String) -> FTTheme {
+        //TODO
+        let theme = FTTheme()
+        theme.name = name
+        
+        if let fontName: String = themeDic.keyPath("text.font") {
+            theme.font = FTThemesManager.getFont(fontName)
+        }
+        
+        if let textColor: String = themeDic.keyPath("text.color") {
+            theme.textColor = FTThemesManager.getColor(textColor)
+        }
+        
+        if let backgroundColor: String = themeDic.keyPath("backgroundColor") {
+            theme.backgroundColor = FTThemesManager.getColor(backgroundColor)
+        }
+        
+        if let underLine: Bool = themeDic.keyPath("underline") {
+            theme.isUnderLineEnabled = underLine
+        }
+        
+        return theme
+    }
 }
 
 open class FTThemesManager {
 
-    static var themesJSON: ThemeDic = [:]
+    static var themesJSON: FTThemeDic = [:]
     
-    public class func setupThemes(themes: [String : Any]) {
+    public class func setupThemes(themes: FTThemeDic) {
         FTThemesManager.themesJSON = themes
         UIView.__setupThemes__()
     }
     
-    public class func get_themeComponent(name: String, styleName: String) -> FTTheme? {
+    //MARK: Theme components
+    public class func generateVisualThemes(forClass name: String, withStyleName styleName: String) -> FTTheme? {
         
-        guard let currentTheme: ThemeDic = FTThemesManager.getComponent(name, styleName: styleName)
+        guard let currentTheme: FTThemeDic = FTThemesManager.getViewComponent(name, styleName: styleName)
             else { print("Theme of type \(styleName) not avaialble for class \(name)" )
                 return nil }
         
-        return self.generageTheme(currentTheme, name: name+"."+styleName)
+        return FTTheme.generateTheme(currentTheme, name: name+"."+styleName)
+    }
+    
+    //MARK: ViewComponents
+    //TODO: custom themes for view
+    open class func getViewComponent(_ componentName: String, styleName: String?) -> FTThemeDic? {
+        guard (styleName != nil) else { return nil }
+        return FTThemesManager.getDefaults(type: .Component, keyName: componentName, styleName: styleName) as? FTThemeDic
+    }
+    
+    //MARK: UIColor
+    //TODO: gradian, rgb, alpha, ...
+    open class func getColor(_ colorName: String) -> UIColor? {
+        
+        let color: String = FTThemesManager.getDefaults(type: .Color, keyName: colorName) as? String ?? ""
+        
+        if color == "clear" {
+            return UIColor.clear
+        }
+        
+        if
+            color.hasPrefix("#"),
+            let hexColor = UIColor.hexColor(color) {
+            return hexColor
+        }
+        
+        return UIColor.black
+    }
+    
+    //MARK: UIFont
+    //TODO: bold, thin, ...
+    open class func getFont(_ fontName: String) -> UIFont? {
+        
+        var font: FTThemeDic = self.getDefaults(type: .Font, keyName: fontName) as? FTThemeDic ?? [:]
+        
+        if
+            let name: String = font["name"] as? String,
+            let sizeValue: String = font["size"] as? String,
+            let size = NumberFormatter().number(from: sizeValue) {
+            
+            if name == "system" {
+                return UIFont.systemFont(ofSize: CGFloat(size))
+            }
+            
+            return UIFont(name: name, size: CGFloat(size))
+        }
+        
+        return UIFont.systemFont(ofSize: 14.0)
     }
 }
 
@@ -65,8 +137,8 @@ extension UIView {
     fileprivate final func __updateVisualThemes__() {
         self.needsThemesUpdate = false
         
-        if self.responds(to: #selector(FTThemeProtocol.updateVisualThemes)) {
-            (self as AnyObject).updateVisualThemes?()
+        if let updateVisualSelf = self as? FTThemeProtocol {
+            updateVisualSelf.updateVisualThemes()
         }
     }
 }
@@ -78,12 +150,12 @@ public extension UIView {
         get { return UIView.aoThemes[self] }
         set {
             UIView.aoThemes[self] = newValue
-            self.generateTheme = self.generateVisualThemes(theme: newValue)
+            self.generatedTheme = self.generateVisualThemes(theme: newValue)
             self.needsThemesUpdate = true
         }
     }
     
-    public final var generateTheme: FTTheme? {
+    public final var generatedTheme: FTTheme? {
         get { return UIView.aoGeneratedThemes[self] }
         set { UIView.aoGeneratedThemes[self] = newValue }
     }
@@ -100,16 +172,8 @@ public extension UIView {
             let themeName = self.theme
             else { return nil }
         
-        return FTThemesManager.get_themeComponent(name: className, styleName: themeName)
+        return FTThemesManager.generateVisualThemes(forClass: className, withStyleName: themeName)
     }
-    
-//    public func updateVisualThemes() {
-//        print(self.generateTheme ?? "")
-//    }
-}
-
-extension Dictionary {
-     
 }
 
 extension FTThemesManager {
@@ -120,36 +184,29 @@ extension FTThemesManager {
         case Font
     }
     
-    fileprivate class func generageTheme(_ themeDic: [String : Any], name: String) -> FTTheme? {
-        
-        var theme = FTTheme()
-        theme.name = name
-        
-        if let fontName: String = (themeDic as NSDictionary).value(forKeyPath: "text.font") as? String {
-            theme.font = self.getFont(fontName)
-        }
-        
-        if let textColor: String = (themeDic as NSDictionary).value(forKeyPath: "text.color") as? String {
-            theme.textColor = self.getColor(textColor)
-        }
-        
-        return theme
-    }
-    
     //MARK: Component
-    fileprivate class var themeComponent: ThemeDic? { return FTThemesManager.themesJSON["components"] as? ThemeDic }
-    fileprivate class func getThemeComponent(_ styleName: String) -> ThemeDic? { return self.themeComponent?[styleName] as? ThemeDic }
+    fileprivate class var themeComponent: FTThemeDic? { return FTThemesManager.themesJSON["components"] as? FTThemeDic }
+    fileprivate class func getThemeComponent(_ component: String, styleName: String? = nil) -> FTThemeDic? {
+        
+        guard let baseComponent = self.themeComponent?[component] as? FTThemeDic else { return nil }
+        
+        if styleName != nil {
+            return baseComponent[styleName!] as? FTThemeDic
+        }
+        
+        return baseComponent
+    }
 
     //Color
-    fileprivate class var themeColor: ThemeDic? { return FTThemesManager.themesJSON["color"] as? ThemeDic }
+    fileprivate class var themeColor: FTThemeDic? { return FTThemesManager.themesJSON["color"] as? FTThemeDic }
     fileprivate class func getThemeColor(_ colorName: String) -> String? { return self.themeColor?[colorName] as? String }
 
     //Font
-    fileprivate class var themeFont: ThemeDic? { return FTThemesManager.themesJSON["font"] as? ThemeDic }
-    fileprivate class func getThemeFont(_ fontName: String) -> ThemeDic? { return self.themeFont?[fontName] as? ThemeDic }
+    fileprivate class var themeFont: FTThemeDic? { return FTThemesManager.themesJSON["font"] as? FTThemeDic }
+    fileprivate class func getThemeFont(_ fontName: String) -> FTThemeDic? { return self.themeFont?[fontName] as? FTThemeDic }
 
     //Defaults
-    fileprivate class func getDefaults(type: FTThemesType, keyName: String?) -> Any?  {
+    fileprivate class func getDefaults(type: FTThemesType, keyName: String?, styleName: String? = nil) -> Any?  {
         
         guard let key = keyName else { return nil }
         
@@ -158,10 +215,21 @@ extension FTThemesManager {
         switch type {
             
         case .Component:
-            superBlock = { (componentName) in
-                return getThemeComponent(componentName)
+            
+            let actualComponents = getThemeComponent(key,styleName: styleName)
+            
+            if
+                let viewComponent = actualComponents,
+                let superType = viewComponent["_super"] as? String,
+                var superCom = getThemeComponent(key,styleName: superType) {
+                
+                superCom += viewComponent
+                superCom.removeValue(forKey: "_super")
+                
+                return superCom
             }
-            break
+
+            return actualComponents
             
         case .Color:
             superBlock = { (colorName) in
@@ -177,61 +245,18 @@ extension FTThemesManager {
             break
         }
         
-        let components: Any? = superBlock?(key) ?? superBlock?("default")
         var actualComponents: Any? = nil
 
+        let components: Any? = superBlock?(key) ?? superBlock?("default")
+
         if
-            let currentComponent = components as? ThemeDic,
+            let currentComponent = components as? FTThemeDic,
             let superType = currentComponent["_super"] as? String,
-            let superComponents = superBlock?(superType) as? ThemeDic {
+            let superComponents = superBlock?(superType) as? FTThemeDic {
             
             actualComponents = superComponents + currentComponent
         }
         
         return actualComponents ?? components
     }
-    
-    //MARK: components
-    class func getComponent(_ componentName: String, styleName: String?) -> ThemeDic? {
-
-        guard (styleName != nil) else { return [:] }
-
-        let component: ThemeDic = self.getDefaults(type: .Component, keyName: componentName) as? ThemeDic ?? [:]
-        return component[styleName!] as? ThemeDic
-    }
-    
-    //MARK: UIColor
-    class func getColor(_ colorName: String) -> UIColor? {
-        
-        let color: String = self.getDefaults(type: .Color, keyName: colorName) as? String ?? ""
-        
-        if color.hasPrefix("#") {
-            return UIColor.hexColor(color)
-        }
-
-        //TODO: gradian, rgb
-        
-        return UIColor.black
-    }
-    
-    //MARK: UIFont
-    class func getFont(_ fontName: String) -> UIFont? {
-        
-        var font: ThemeDic = self.getDefaults(type: .Font, keyName: fontName) as? ThemeDic ?? [:]
-        
-        if
-            let name: String = font["name"] as? String,
-            let sizeValue: String = font["size"] as? String,
-            let size = NumberFormatter().number(from: sizeValue) {
-            
-            if name == "system" {
-                return UIFont.systemFont(ofSize: CGFloat(size))
-            }
-            
-            return UIFont(name: name, size: CGFloat(size))
-        }
-        
-        return UIFont.systemFont(ofSize: 14.0)
-    }
-    
 }

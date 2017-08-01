@@ -8,9 +8,9 @@
 
 import Foundation
 
-//Enmuration
 public extension String {
     
+    //Enmuration
     func enumerate(pattern: String, using block: ((NSTextCheckingResult?) -> Void )? ) {
         
         let exp = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)

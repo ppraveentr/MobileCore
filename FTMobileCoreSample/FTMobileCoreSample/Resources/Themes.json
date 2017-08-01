@@ -2,6 +2,7 @@
     "type": "Themes",
     "color": {
         "default": "#FFFFFF",
+        "clear": "clear",
         "black": "#FFFFFF",
         "red": "#b70b39"
     },
@@ -22,14 +23,14 @@
                     "font": "system14",
                     "color": "black"
                 },
-                "underline": false
+                "backgroundColor": "clear",
+                "underline": true
             },
             "system14R": {
+                "_super": "default",
                 "text": {
-                    "font": "system14",
                     "color": "red"
-                },
-                "underline": false
+                }
             }
         }
     }
