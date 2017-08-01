@@ -17,12 +17,9 @@ public protocol FTThemeProtocol {
 open class FTTheme {
     
     public var name: String?
-
     public var font: UIFont?
     public var textColor: UIColor?
-    
     public var backgroundColor: UIColor?
-    
     public var isUnderLineEnabled: Bool = false
     
     open class func generateTheme(_ themeDic: FTThemeDic, name: String) -> FTTheme {

@@ -15,6 +15,10 @@ public extension Dictionary {
     }
 }
 
+//public func <-- <K,V> (dic: [K:V], key: K) -> V {
+//    return (dic as NSDictionary).value(forKeyPath: key as! String) as! V
+//}
+
 //MARK: Dictionary : Operator Overloading
 public func + <K,V> (left: [K:V], right: [K:V]) -> [K:V] {
     

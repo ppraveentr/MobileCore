@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public extension UIView {
     
     public func removeSubviews() {

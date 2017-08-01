@@ -8,6 +8,12 @@
 
 import Foundation
 
+public let FTInstanceSwizzling: (AnyClass, Selector, Selector) -> () = { forClass, originalSelector, swizzledSelector in
+    let originalMethod = class_getInstanceMethod(forClass, originalSelector)
+    let swizzledMethod = class_getInstanceMethod(forClass, swizzledSelector)
+    method_exchangeImplementations(originalMethod, swizzledMethod)
+}
+
 public extension NSObject {
     var get_className: String? {
         return get_classNameAsString(obj: self)

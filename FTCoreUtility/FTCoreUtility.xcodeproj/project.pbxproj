@@ -11,16 +11,17 @@
 		DE680B221F2BBD9500A9F68C /* FTCoreUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B211F2BBD9500A9F68C /* FTCoreUtilityTests.swift */; };
 		DE680B241F2BBD9500A9F68C /* FTCoreUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = DE680B161F2BBD9500A9F68C /* FTCoreUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DE680B681F2BC18900A9F68C /* FTString.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B661F2BC18900A9F68C /* FTString.swift */; };
-		DE680B6B1F2BC19D00A9F68C /* FTClassUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B6A1F2BC19D00A9F68C /* FTClassUtility.swift */; };
+		DE680B6B1F2BC19D00A9F68C /* FTClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B6A1F2BC19D00A9F68C /* FTClass.swift */; };
 		DE680B6D1F2BC1A800A9F68C /* FTLinkDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B6C1F2BC1A800A9F68C /* FTLinkDetection.swift */; };
-		DE680B701F2BC1CF00A9F68C /* UIView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B6F1F2BC1CF00A9F68C /* UIView+Utility.swift */; };
-		DE680B721F2BC1EB00A9F68C /* UIView+FTConstrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B711F2BC1EB00A9F68C /* UIView+FTConstrains.swift */; };
-		DE680B751F2BC22B00A9F68C /* FTUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B741F2BC22B00A9F68C /* FTUtils.swift */; };
+		DE680B701F2BC1CF00A9F68C /* FTViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B6F1F2BC1CF00A9F68C /* FTViewExtention.swift */; };
+		DE680B721F2BC1EB00A9F68C /* FTViewConstrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B711F2BC1EB00A9F68C /* FTViewConstrains.swift */; };
+		DE680B751F2BC22B00A9F68C /* FTRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B741F2BC22B00A9F68C /* FTRect.swift */; };
 		DE680B991F2CF5A600A9F68C /* FTThemesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B981F2CF5A600A9F68C /* FTThemesManager.swift */; };
 		DE680B9B1F2CF86500A9F68C /* FTAssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B9A1F2CF86500A9F68C /* FTAssociatedObject.swift */; };
 		DE680B9E1F2D067900A9F68C /* FTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B9D1F2D067900A9F68C /* FTAppDelegate.swift */; };
 		DE680BB91F2E548F00A9F68C /* FTThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680BB81F2E548F00A9F68C /* FTThemesTests.swift */; };
 		DE680BC41F30C12900A9F68C /* FTDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680BC31F30C12900A9F68C /* FTDictionary.swift */; };
+		DE680BC61F30ED9C00A9F68C /* FTColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680BC51F30ED9C00A9F68C /* FTColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,16 +55,17 @@
 		DE680B211F2BBD9500A9F68C /* FTCoreUtilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTCoreUtilityTests.swift; sourceTree = "<group>"; };
 		DE680B231F2BBD9500A9F68C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE680B661F2BC18900A9F68C /* FTString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTString.swift; sourceTree = "<group>"; };
-		DE680B6A1F2BC19D00A9F68C /* FTClassUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTClassUtility.swift; sourceTree = "<group>"; };
+		DE680B6A1F2BC19D00A9F68C /* FTClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTClass.swift; sourceTree = "<group>"; };
 		DE680B6C1F2BC1A800A9F68C /* FTLinkDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLinkDetection.swift; sourceTree = "<group>"; };
-		DE680B6F1F2BC1CF00A9F68C /* UIView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utility.swift"; sourceTree = "<group>"; };
-		DE680B711F2BC1EB00A9F68C /* UIView+FTConstrains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+FTConstrains.swift"; sourceTree = "<group>"; };
-		DE680B741F2BC22B00A9F68C /* FTUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUtils.swift; sourceTree = "<group>"; };
+		DE680B6F1F2BC1CF00A9F68C /* FTViewExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTViewExtention.swift; sourceTree = "<group>"; };
+		DE680B711F2BC1EB00A9F68C /* FTViewConstrains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTViewConstrains.swift; sourceTree = "<group>"; };
+		DE680B741F2BC22B00A9F68C /* FTRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTRect.swift; sourceTree = "<group>"; };
 		DE680B981F2CF5A600A9F68C /* FTThemesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTThemesManager.swift; sourceTree = "<group>"; };
 		DE680B9A1F2CF86500A9F68C /* FTAssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTAssociatedObject.swift; sourceTree = "<group>"; };
 		DE680B9D1F2D067900A9F68C /* FTAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTAppDelegate.swift; sourceTree = "<group>"; };
 		DE680BB81F2E548F00A9F68C /* FTThemesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTThemesTests.swift; sourceTree = "<group>"; };
 		DE680BC31F30C12900A9F68C /* FTDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTDictionary.swift; sourceTree = "<group>"; };
+		DE680BC51F30ED9C00A9F68C /* FTColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +143,7 @@
 		DE680B691F2BC19D00A9F68C /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				DE680B6A1F2BC19D00A9F68C /* FTClassUtility.swift */,
+				DE680B6A1F2BC19D00A9F68C /* FTClass.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -149,8 +151,8 @@
 		DE680B6E1F2BC1C600A9F68C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DE680B6F1F2BC1CF00A9F68C /* UIView+Utility.swift */,
-				DE680B711F2BC1EB00A9F68C /* UIView+FTConstrains.swift */,
+				DE680B6F1F2BC1CF00A9F68C /* FTViewExtention.swift */,
+				DE680B711F2BC1EB00A9F68C /* FTViewConstrains.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -158,8 +160,9 @@
 		DE680B731F2BC22500A9F68C /* Generic */ = {
 			isa = PBXGroup;
 			children = (
-				DE680B741F2BC22B00A9F68C /* FTUtils.swift */,
+				DE680B741F2BC22B00A9F68C /* FTRect.swift */,
 				DE680B9A1F2CF86500A9F68C /* FTAssociatedObject.swift */,
+				DE680BC51F30ED9C00A9F68C /* FTColor.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -293,16 +296,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE680B6B1F2BC19D00A9F68C /* FTClassUtility.swift in Sources */,
+				DE680B6B1F2BC19D00A9F68C /* FTClass.swift in Sources */,
 				DE680B9E1F2D067900A9F68C /* FTAppDelegate.swift in Sources */,
-				DE680B751F2BC22B00A9F68C /* FTUtils.swift in Sources */,
+				DE680B751F2BC22B00A9F68C /* FTRect.swift in Sources */,
+				DE680BC61F30ED9C00A9F68C /* FTColor.swift in Sources */,
 				DE680B681F2BC18900A9F68C /* FTString.swift in Sources */,
 				DE680B6D1F2BC1A800A9F68C /* FTLinkDetection.swift in Sources */,
 				DE680BC41F30C12900A9F68C /* FTDictionary.swift in Sources */,
 				DE680B9B1F2CF86500A9F68C /* FTAssociatedObject.swift in Sources */,
-				DE680B701F2BC1CF00A9F68C /* UIView+Utility.swift in Sources */,
+				DE680B701F2BC1CF00A9F68C /* FTViewExtention.swift in Sources */,
 				DE680B991F2CF5A600A9F68C /* FTThemesManager.swift in Sources */,
-				DE680B721F2BC1EB00A9F68C /* UIView+FTConstrains.swift in Sources */,
+				DE680B721F2BC1EB00A9F68C /* FTViewConstrains.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

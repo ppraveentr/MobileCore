@@ -1,5 +1,5 @@
 //
-//  UIView+FTConstraint.swift
+//  FTViewConstraint.swift
 //  FTMobileCoreUI
 //
 //  Created by Praveen Prabhakar on 08/07/17.
