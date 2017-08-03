@@ -93,15 +93,17 @@ open class FTLabel : UILabel, NSLayoutManagerDelegate, FTThemeProtocol {
     
     public func updateVisualThemes() {
         
-        if let font = self.generatedTheme?.font {
+        let themeObject = self.generatedTheme
+        
+        if let font = themeObject?.font {
             self.font = font
         }
         
-        if let color = self.generatedTheme?.textColor {
+        if let color = themeObject?.textColor {
             self.textColor = color
         }
         
-        if let bgcolor = self.generatedTheme?.backgroundColor {
+        if let bgcolor = themeObject?.backgroundColor {
             self.backgroundColor = bgcolor
         }
         

@@ -8,13 +8,20 @@
 
 import Foundation
 
-open class FTView: UIView {
+open class FTView: UIView, FTThemeProtocol {
     
     open override func layoutSubviews() {
         super.layoutSubviews()
 
         if self.viewLayoutConstraint.autoSizing {
              self.resizeToFitSubviews()   
+        }
+    }
+    
+    public func updateVisualThemes() {
+        
+        if let bgColor = self.generatedTheme?.backgroundColor {
+            self.backgroundColor = bgColor
         }
     }
 }

@@ -16,35 +16,35 @@ public protocol FTThemeProtocol {
 
 open class FTTheme {
     
-    public var name: String?
+    public var identifer: String = ""
     public var font: UIFont?
     public var textColor: UIColor?
     public var backgroundColor: UIColor?
     public var isUnderLineEnabled: Bool = false
     
-    open class func generateTheme(_ themeDic: FTThemeDic, name: String) -> FTTheme {
-        //TODO
-        let theme = FTTheme()
-        theme.name = name
-        
-        if let fontName: String = themeDic.keyPath("text.font") {
-            theme.font = FTThemesManager.getFont(fontName)
-        }
-        
-        if let textColor: String = themeDic.keyPath("text.color") {
-            theme.textColor = FTThemesManager.getColor(textColor)
-        }
-        
-        if let backgroundColor: String = themeDic.keyPath("backgroundColor") {
-            theme.backgroundColor = FTThemesManager.getColor(backgroundColor)
-        }
-        
-        if let underLine: Bool = themeDic.keyPath("underline") {
-            theme.isUnderLineEnabled = underLine
-        }
-        
-        return theme
-    }
+//    open class func generateTheme(_ themeDic: FTThemeDic, name: String) -> FTTheme {
+//        //TODO
+//        let theme = FTTheme()
+//        theme.name = name
+//        
+//        if let fontName: String = themeDic.keyPath("text.font") {
+//            theme.font = FTThemesManager.getFont(fontName)
+//        }
+//        
+//        if let textColor: String = themeDic.keyPath("text.color") {
+//            theme.textColor = FTThemesManager.getColor(textColor)
+//        }
+//        
+//        if let backgroundColor: String = themeDic.keyPath("backgroundColor") {
+//            theme.backgroundColor = FTThemesManager.getColor(backgroundColor)
+//        }
+//        
+//        if let underLine: Bool = themeDic.keyPath("underline") {
+//            theme.isUnderLineEnabled = underLine
+//        }
+//        
+//        return theme
+//    }
 }
 
 open class FTThemesManager {
@@ -57,13 +57,13 @@ open class FTThemesManager {
     }
     
     //MARK: Theme components
-    public class func generateVisualThemes(forClass name: String, withStyleName styleName: String) -> FTTheme? {
+    public class func generateVisualThemes(forClass name: String, withStyleName styleName: String) -> FTThemeDic? {
         
         guard let currentTheme: FTThemeDic = FTThemesManager.getViewComponent(name, styleName: styleName)
             else { print("Theme of type \(styleName) not avaialble for class \(name)" )
                 return nil }
         
-        return FTTheme.generateTheme(currentTheme, name: name+"."+styleName)
+        return currentTheme
     }
     
     //MARK: ViewComponents
@@ -147,29 +147,98 @@ public extension UIView {
         get { return UIView.aoThemes[self] }
         set {
             UIView.aoThemes[self] = newValue
-            self.generatedTheme = self.generateVisualThemes(theme: newValue)
             self.needsThemesUpdate = true
         }
     }
     
     public final var generatedTheme: FTTheme? {
-        get { return UIView.aoGeneratedThemes[self] }
+        get { return UIView.aoGeneratedThemes[self] ?? self.generateVisualThemes()
+        }
         set { UIView.aoGeneratedThemes[self] = newValue }
     }
+
+    
+//    public final var generatedTheme: FTTheme? {
+//        get {
+//            
+//            let (_, _, identifer): (String,String,String) = self.get_ThemeName()!
+//            
+//            if let preTheme: FTTheme = (UIView.aoGeneratedThemes[self]),
+//                (preTheme.identifer != identifer) {
+//                UIView.aoGeneratedThemes[self] = nil
+//            }
+//            
+//            if let generatedT = UIView.aoGeneratedThemes[self] {
+//                return generatedT
+//            }
+//            
+//            let generatedT: FTTheme? = self.generateVisualThemes()
+//            UIView.aoGeneratedThemes[self] = generatedT
+//            
+//            return generatedT
+//        }
+//        set { UIView.aoGeneratedThemes[self] = newValue }
+//    }
     
     public final var needsThemesUpdate: Bool {
         get { return UIView.aoThemesNeedsUpdate[self] ?? false }
         set { UIView.aoThemesNeedsUpdate[self] = newValue }
     }
     
-    fileprivate func generateVisualThemes(theme: String?) -> FTTheme? {
+    fileprivate func generateVisualThemes() -> FTTheme? {
         
+        guard let (className, themeName) = self.get_ThemeName() else { return nil }
+
+        guard let themeDic = FTThemesManager.generateVisualThemes(forClass: className, withStyleName: themeName) else {
+            return nil
+        }
+        
+        let themeObject = self.get_ThemeClass()
+        themeObject.identifer = className + "." + themeName
+        
+        return self.updateTheme(themeObject, withThemeDic: themeDic)
+    }
+    
+    public func get_ThemeClass() -> FTTheme {
+        return FTTheme()
+    }
+    
+    fileprivate func get_ThemeName() -> (String, String)? {
         guard
             let className = get_classNameAsString(obj: self),
             let themeName = self.theme
             else { return nil }
         
-        return FTThemesManager.generateVisualThemes(forClass: className, withStyleName: themeName)
+//        if let subName = self.get_ThemeSubType() {
+//            themeName = themeName + subName
+//        }
+
+        return (className, themeName)
+    }
+    
+//    public func get_ThemeSubType() -> String? {
+//        return nil
+//    }
+    
+    public func updateTheme(_ theme: FTTheme, withThemeDic themeDic: FTThemeDic) -> FTTheme {
+        
+        if let fontName: String = themeDic.keyPath("text.font") {
+            theme.font = FTThemesManager.getFont(fontName)
+        }
+        
+        if let textColor: String = themeDic.keyPath("text.color") {
+            theme.textColor = FTThemesManager.getColor(textColor)
+        }
+        
+        if let backgroundColor: String = themeDic.keyPath("backgroundColor") {
+            theme.backgroundColor = FTThemesManager.getColor(backgroundColor)
+        }
+        
+        if let underLine: Bool = themeDic.keyPath("underline") {
+            theme.isUnderLineEnabled = underLine
+        }
+        
+        return theme
     }
 }
 
