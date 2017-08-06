@@ -20,7 +20,9 @@ func += <K,V> ( left: inout [K:V], right: [K:V]){
 
 public class FTModelConfig {
     
-    static let sharedInstance  = FTModelConfig()
+    static let sharedInstance = FTModelConfig()
+    
+    init() { FTReflection.registerBundleIdentifier(FTModelConfig.self) }
     
     var modelSchema = JSON()
     

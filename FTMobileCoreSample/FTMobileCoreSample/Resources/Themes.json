@@ -17,20 +17,22 @@
         }
     },
     "components": {
+        "FTView": {
+            "default": {
+                "backgroundColor": "clear"
+            }
+        },
         "FTLabel": {
             "default": {
-                "text": {
-                    "font": "system14",
-                    "color": "black"
-                },
+                "textfont": "system14",
+                "textcolor": "black",
                 "backgroundColor": "clear",
-                "underline": true
+                "isLinkUnderlineEnabled": true,
+                "isLinkDetectionEnabled": true
             },
             "system14R": {
                 "_super": "default",
-                "text": {
-                    "color": "red"
-                }
+                "textcolor": "red"
             }
         }
     }

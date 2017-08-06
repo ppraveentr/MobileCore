@@ -15,8 +15,8 @@ class ViewController: FTBaseViewController {
 //    }
     
     override func viewWillAppear(_ animated: Bool) {
-                
-        self.baseView.backgroundColor = UIColor.clear
+        
+        self.baseView.theme = "default"
         
         let scrollView = FTScrollView()
         self.mainView?.pin(view: scrollView)
@@ -102,7 +102,7 @@ class ViewController: FTBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         try? FTModelConfig.loadModelSchema(["MDASample": ["identifier":"id"] ])
         
         let sample = FTDataModel.createDataModelOfType("MDASample", fromDictionary: ["id":"sample"]) as? MDASample

@@ -73,10 +73,10 @@ public struct FTEdgeInsets: OptionSet {
     fileprivate static let LeftRightMargin = FTEdgeInsets(rawValue: 1 << 23)
 
     //Stacking View - Size
-    public static let EqualWidth = FTEdgeInsets(rawValue: 1 << 30)
-    public static let EqualHeight = FTEdgeInsets(rawValue: 1 << 31)
+    public static let EqualWidth = FTEdgeInsets(rawValue: 1 << 25)
+    public static let EqualHeight = FTEdgeInsets(rawValue: 1 << 26)
     public static let EqualSize: FTEdgeInsets = [.EqualWidth, .EqualHeight]
-    public static let AutoSize = FTEdgeInsets(rawValue: 1 << 32)
+    public static let AutoSize = FTEdgeInsets(rawValue: 1 << 28)
 
     
     //Remove inValid Constrains

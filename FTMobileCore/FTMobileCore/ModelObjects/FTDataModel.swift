@@ -44,7 +44,7 @@ extension FTDataModel {
     
     func __setup__ ()  {
             
-        let properties = getPropertyNames(myClass: classType)
+        let properties = getClassPropertyNames(self)
 
         print(properties ?? "properties of type \(classType) are empty");
 

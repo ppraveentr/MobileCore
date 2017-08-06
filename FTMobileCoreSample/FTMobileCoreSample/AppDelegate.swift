@@ -13,6 +13,8 @@ class AppDelegate: FTAppDelegate {
 
     public override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        FTReflection.registerBundleIdentifier([AppDelegate.self,FTBaseView.self])
+
         if
             let resource = Bundle.main.path(forResource: "MobileCodeSampleBundle", ofType: "bundle"),
             let theme = Bundle(path: resource)?.path(forResource: "Themes", ofType: "json"),

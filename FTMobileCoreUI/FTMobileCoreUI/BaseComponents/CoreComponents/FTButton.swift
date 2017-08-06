@@ -8,13 +8,6 @@
 
 import Foundation
 
-class FTButton: UIButton, FTThemeProtocol {
-    
-    func updateVisualThemes() {
-            
-        if let textColor = self.generatedTheme?.textColor {
-            self.setTitleColor(textColor, for: .selected)
-        }
-    }
+class FTButton: UIButton {
     
 }

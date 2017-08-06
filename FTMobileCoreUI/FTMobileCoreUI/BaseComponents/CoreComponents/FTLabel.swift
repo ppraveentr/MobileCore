@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class FTLabel : UILabel, NSLayoutManagerDelegate, FTThemeProtocol {
+open class FTLabel : FTUILabel, NSLayoutManagerDelegate {
     
     public lazy var textStorage: NSTextStorage = self.getTextStorage()
     
@@ -17,28 +17,11 @@ open class FTLabel : UILabel, NSLayoutManagerDelegate, FTThemeProtocol {
     public lazy var layoutManager: NSLayoutManager = self.getLayoutManager()
 
     fileprivate var linkRanges: [FTLinkDetection]?
-    
-    private var linkDetectionEnabled = false
-    public var isLinkDetectionEnabled: Bool {
-        set {
-            self.linkDetectionEnabled = newValue
-            self.updateLabelStyleProperty()
-        }
-        get {
-            return linkDetectionEnabled
-        }
-    }
 
-    private var isLinkUnderLineEnabled = false
-    public var linkUndelineEnabled: Bool {
-        set {
-            isLinkUnderLineEnabled = newValue
-            self.updateLabelStyleProperty()
-        }
-        get {
-            return isLinkUnderLineEnabled
-        }
-    }
+    //FTUILabelThemeProtocol
+    fileprivate var linkDetectionEnabled = false
+    fileprivate var isLinkUnderLineEnabled = false
+    //End: FTUILabelThemeProtocol
     
     open override var text: String? {
         didSet {
@@ -90,31 +73,25 @@ open class FTLabel : UILabel, NSLayoutManagerDelegate, FTThemeProtocol {
         
         self.setNeedsDisplay()
     }
+}
+
+extension FTLabel: FTUILabelThemeProtocol {
     
-    public func updateVisualThemes() {
-        
-        let themeObject = self.generatedTheme
-        
-        if let font = themeObject?.font {
-            self.font = font
+    public var theme_linkUndelineEnabled: Bool {
+        set {
+            isLinkUnderLineEnabled = newValue
+            self.updateLabelStyleProperty()
         }
-        
-        if let color = themeObject?.textColor {
-            self.textColor = color
-        }
-        
-        if let bgcolor = themeObject?.backgroundColor {
-            self.backgroundColor = bgcolor
-        }
-        
-        //Force update
-        if let text = self.attributedText {
-            self.attributedText = text
-        }else if let text = self.text {
-            self.text = text
-        }
+        get { return isLinkUnderLineEnabled }
     }
     
+    public var theme_linkDetectionEnabled: Bool {
+        set {
+            self.linkDetectionEnabled = newValue
+            self.updateLabelStyleProperty()
+        }
+        get { return linkDetectionEnabled }
+    }
 }
 
 //MARK: Text Farmatting

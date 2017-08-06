@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE098AB71F36375500675878 /* FTReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE098AB61F36375500675878 /* FTReflection.swift */; };
 		DE680B1D1F2BBD9500A9F68C /* FTCoreUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE680B131F2BBD9500A9F68C /* FTCoreUtility.framework */; };
 		DE680B221F2BBD9500A9F68C /* FTCoreUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B211F2BBD9500A9F68C /* FTCoreUtilityTests.swift */; };
 		DE680B241F2BBD9500A9F68C /* FTCoreUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = DE680B161F2BBD9500A9F68C /* FTCoreUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -22,6 +23,7 @@
 		DE680BB91F2E548F00A9F68C /* FTThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680BB81F2E548F00A9F68C /* FTThemesTests.swift */; };
 		DE680BC41F30C12900A9F68C /* FTDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680BC31F30C12900A9F68C /* FTDictionary.swift */; };
 		DE680BC61F30ED9C00A9F68C /* FTColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680BC51F30ED9C00A9F68C /* FTColor.swift */; };
+		DEA0DB3C1F36028D00D9AFA8 /* FTThemeView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA0DB3B1F36028D00D9AFA8 /* FTThemeView+Utility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DE098AB61F36375500675878 /* FTReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTReflection.swift; sourceTree = "<group>"; };
 		DE680B131F2BBD9500A9F68C /* FTCoreUtility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FTCoreUtility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE680B161F2BBD9500A9F68C /* FTCoreUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTCoreUtility.h; sourceTree = "<group>"; };
 		DE680B171F2BBD9500A9F68C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -66,6 +69,7 @@
 		DE680BB81F2E548F00A9F68C /* FTThemesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTThemesTests.swift; sourceTree = "<group>"; };
 		DE680BC31F30C12900A9F68C /* FTDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTDictionary.swift; sourceTree = "<group>"; };
 		DE680BC51F30ED9C00A9F68C /* FTColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTColor.swift; sourceTree = "<group>"; };
+		DEA0DB3B1F36028D00D9AFA8 /* FTThemeView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FTThemeView+Utility.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				DE680B6A1F2BC19D00A9F68C /* FTClass.swift */,
+				DE098AB61F36375500675878 /* FTReflection.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -171,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				DE680B981F2CF5A600A9F68C /* FTThemesManager.swift */,
+				DEA0DB3B1F36028D00D9AFA8 /* FTThemeView+Utility.swift */,
 			);
 			path = Theam;
 			sourceTree = "<group>";
@@ -303,7 +309,9 @@
 				DE680B681F2BC18900A9F68C /* FTString.swift in Sources */,
 				DE680B6D1F2BC1A800A9F68C /* FTLinkDetection.swift in Sources */,
 				DE680BC41F30C12900A9F68C /* FTDictionary.swift in Sources */,
+				DEA0DB3C1F36028D00D9AFA8 /* FTThemeView+Utility.swift in Sources */,
 				DE680B9B1F2CF86500A9F68C /* FTAssociatedObject.swift in Sources */,
+				DE098AB71F36375500675878 /* FTReflection.swift in Sources */,
 				DE680B701F2BC1CF00A9F68C /* FTViewExtention.swift in Sources */,
 				DE680B991F2CF5A600A9F68C /* FTThemesManager.swift in Sources */,
 				DE680B721F2BC1EB00A9F68C /* FTViewConstrains.swift in Sources */,
@@ -446,7 +454,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTCoreUtility;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -466,7 +474,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTCoreUtility;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

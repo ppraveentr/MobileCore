@@ -8,21 +8,18 @@
 
 import Foundation
 
-public let FTInstanceSwizzling: (AnyClass, Selector, Selector) -> () = { forClass, originalSelector, swizzledSelector in
-    let originalMethod = class_getInstanceMethod(forClass, originalSelector)
-    let swizzledMethod = class_getInstanceMethod(forClass, swizzledSelector)
-    method_exchangeImplementations(originalMethod, swizzledMethod)
-}
-
-public extension NSObject {
-    var get_className: String? {
-        return get_classNameAsString(obj: self)
+public let FTInstanceSwizzling: (AnyClass, Selector, Selector) -> () = { klass, originalSelector, swizzledSelector in
+    
+    let originalMethod = class_getInstanceMethod(klass, originalSelector)
+    let swizzledMethod = class_getInstanceMethod(klass, swizzledSelector)
+    
+    let didAddMethod = class_addMethod(klass, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
+    
+    if didAddMethod {
+        class_replaceMethod(klass, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
+    } else {
+        method_exchangeImplementations(originalMethod, swizzledMethod);
     }
-}
-
-public func get_classNameAsString(obj: Any) -> String? {
-    return String(describing: type(of: obj)).trimming(string: ".Type")?.components(separatedBy: ".").last
-//    return NSStringFromClass(type(of: obj) as! AnyClass).components(separatedBy: ".").last
 }
 
 fileprivate let baseTypesMap: Dictionary<String, Any> = [
@@ -39,13 +36,12 @@ fileprivate let baseTypesMap: Dictionary<String, Any> = [
     "{" : Decimal.self
 ]
 
-    
 /*
  *  This can find name and type of "value type" such as Bool, Int, Int32
  *  _HOWEVER_ this does not work if its an optional type.
  *  e.g. Int? <--- DOES NOT WORK
  */
-public func getPropertyNames(myClass: AnyClass) -> Dictionary<String,Any>? {
+public func getClassPropertyNames(_ myClass: Any) -> Dictionary<String,Any>? {
     
     var results: Dictionary<String,Any> = [:]
     
@@ -53,7 +49,7 @@ public func getPropertyNames(myClass: AnyClass) -> Dictionary<String,Any>? {
     var count: UInt32 = 0
     
     //TODO : throws
-    guard let properties = class_copyPropertyList(myClass, &count) else { return nil }
+    guard let properties = class_copyPropertyList(type(of: myClass) as! AnyClass, &count) else { return nil }
     
     // iterate each objc_property_t struct
     for i in 0 ..< Int(count) {
@@ -81,20 +77,6 @@ public func getPropertyNames(myClass: AnyClass) -> Dictionary<String,Any>? {
 
 //String Extention
 public extension String {
-    
-    //String Extention
-    
-    func getClassInstance () -> AnyClass? {
-        
-        // get namespace
-        guard let namespace = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String else { return nil }
-        
-        // get 'anyClass' with classname and namespace
-        let cls: AnyClass? = NSClassFromString("\(namespace).\(self)")
-        
-        // return AnyClass!
-        return cls;
-    }
     
     func get_propertyAttributeWithBaseType() -> Any {
         //TB,N,Vid
@@ -124,4 +106,41 @@ public extension String {
         }
         return NSClassFromString(type as! String) ?? Any.self
     }
+}
+
+fileprivate func themeClassListMethods(c: AnyClass) {
+    
+    var sub: AnyClass? = c
+    
+    var classInfo: [Any] = []
+    
+    while sub != nil {
+        
+        var mc: CUnsignedInt = 0
+        
+        var mlist: UnsafeMutablePointer<Method?> = class_copyMethodList(sub, &mc)
+        let olist = mlist
+        
+        for _ in (0..<mc) {
+            
+            let m = mlist.pointee
+            let sel = method_getName(m)!
+            
+            if NSStringFromSelector(sel).hasPrefix("theme_") {
+                classInfo.append(sel)
+            }
+            
+            mlist = mlist.successor()
+        }
+        
+        free(olist)
+        
+        sub = class_getSuperclass(sub)
+        if sub == UIView.self {
+            break
+        }
+    }
+    
+    print(classInfo)
+    
 }
