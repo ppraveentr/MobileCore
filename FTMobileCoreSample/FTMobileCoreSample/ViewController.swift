@@ -25,43 +25,36 @@ class ViewController: FTBaseViewController {
         restyledString.addAttribute(NSParagraphStyleAttributeName, value: NSMutableParagraphStyle(), range: NSMakeRange(0, restyledString.length))
 
         let label = FTLabel()
-        label.backgroundColor = .red
         label.attributedText = restyledString
-
+        label.theme = "system14AA"
+        
         let labelM = FTLabel()
-        labelM.backgroundColor = .yellow
         labelM.text = "Middledasd s asd "
         labelM.theme = "system14R"
         
         let labelM1 = FTLabel()
-        labelM1.backgroundColor = .blue
         labelM1.text = "Middle1 ad dfadf af ad"
+        labelM1.theme = "system14B"
         
         let labelM2 = FTLabel()
-        labelM2.backgroundColor = .cyan
         labelM2.text = "Middle2 ad"
+        labelM2.theme = "system14G"
         
-        let labelM3 = FTLabel()
-        labelM3.backgroundColor = .orange
-        labelM3.text = "Middle3 df wdfw dfwd"
-
-        
-        let labelM4 = FTLabel()
-        labelM4.backgroundColor = .magenta
-        labelM4.text = "Middle4 dwds"
-
-        
-        let label2 = FTLabel()
-        label2.backgroundColor = .green
-        label2.text = "bottom"
+        let bottomL = FTLabel()
+        bottomL.text = "bottom"
+        bottomL.theme = "system14Y"
         
         scrollView.contentView.pin(view: label, withEdgeOffsets: FTEdgeOffsets(30, 50, 0, 0), withEdgeInsets: [ .Left, .Top ])
 
-        label.addSizeConstraint(200,200)
-
-        scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, labelM3, labelM4, label2],
+//        label.addSizeConstraint(200,200)
+//        labelM.addSizeConstraint(20,20)
+//        labelM1.addSizeConstraint(10,30)
+//        labelM2.addSizeConstraint(100,100)
+//        bottomL.addSizeConstraint(50,40)
+        
+        scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, bottomL],
                                          withLayoutDirection: .LeftToRight, paddingBetween: 25,
-                                         withEdgeInsets: [ .EqualSize, .TopMargin, .AutoMargin])
+                                         withEdgeInsets: [.TopMargin, .AutoMargin])
 
         let left = FTLabel()
         left.backgroundColor = .magenta
@@ -73,30 +66,11 @@ class ViewController: FTBaseViewController {
                                    withEdgeInsets: [ .Left, .Bottom, .AutoSize ],
                                    withLayoutPriority: UILayoutPriorityDefaultLow)
 
-//        label.addSizeConstraint(100,100)
-//        labelM.addSizeConstraint(20,20)
-//        labelM1.addSizeConstraint(10,30)
-//        labelM4.addSizeConstraint(50,40)
+        
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             label.removeFromSuperview()
         }
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-//            labelM2.removeFromSuperview()
-//        }
-//        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 8) {
-//            labelM1.removeFromSuperview()
-//        }
-//        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 11) {
-//            labelM4.removeFromSuperview()
-//        }
-//        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 13) {
-//            labelM.removeFromSuperview()
-//        }
         
     }
     

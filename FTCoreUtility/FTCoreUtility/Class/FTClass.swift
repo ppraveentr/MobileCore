@@ -108,7 +108,7 @@ public extension String {
     }
 }
 
-fileprivate func themeClassListMethods(c: AnyClass) {
+fileprivate func themeClassMethods(c: AnyClass) {
     
     var sub: AnyClass? = c
     

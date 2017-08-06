@@ -47,7 +47,7 @@ public extension UIView {
             UIView.aoThemesNeedsUpdate[self] = newValue
             if newValue {
                 self.setNeedsLayout()
-                //self.generateVisualThemes()
+                self.generateVisualThemes()
             }
         }
     }

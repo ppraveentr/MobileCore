@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		DE098AB71F36375500675878 /* FTReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE098AB61F36375500675878 /* FTReflection.swift */; };
+		DE098ACF1F37659000675878 /* FTUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE098ACC1F37659000675878 /* FTUILabel.swift */; };
+		DE098AD01F37659000675878 /* FTUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE098ACD1F37659000675878 /* FTUIView.swift */; };
 		DE680B1D1F2BBD9500A9F68C /* FTCoreUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE680B131F2BBD9500A9F68C /* FTCoreUtility.framework */; };
 		DE680B221F2BBD9500A9F68C /* FTCoreUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B211F2BBD9500A9F68C /* FTCoreUtilityTests.swift */; };
 		DE680B241F2BBD9500A9F68C /* FTCoreUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = DE680B161F2BBD9500A9F68C /* FTCoreUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,6 +53,8 @@
 
 /* Begin PBXFileReference section */
 		DE098AB61F36375500675878 /* FTReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTReflection.swift; sourceTree = "<group>"; };
+		DE098ACC1F37659000675878 /* FTUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUILabel.swift; sourceTree = "<group>"; };
+		DE098ACD1F37659000675878 /* FTUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIView.swift; sourceTree = "<group>"; };
 		DE680B131F2BBD9500A9F68C /* FTCoreUtility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FTCoreUtility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE680B161F2BBD9500A9F68C /* FTCoreUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTCoreUtility.h; sourceTree = "<group>"; };
 		DE680B171F2BBD9500A9F68C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,6 +95,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE098ACE1F37659000675878 /* ThemeComponents */ = {
+			isa = PBXGroup;
+			children = (
+				DE098ACC1F37659000675878 /* FTUILabel.swift */,
+				DE098ACD1F37659000675878 /* FTUIView.swift */,
+			);
+			path = ThemeComponents;
+			sourceTree = "<group>";
+		};
 		DE680B091F2BBD9500A9F68C = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +188,7 @@
 		DE680B971F2CF59700A9F68C /* Theam */ = {
 			isa = PBXGroup;
 			children = (
+				DE098ACE1F37659000675878 /* ThemeComponents */,
 				DE680B981F2CF5A600A9F68C /* FTThemesManager.swift */,
 				DEA0DB3B1F36028D00D9AFA8 /* FTThemeView+Utility.swift */,
 			);
@@ -303,11 +317,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE680B6B1F2BC19D00A9F68C /* FTClass.swift in Sources */,
+				DE098AD01F37659000675878 /* FTUIView.swift in Sources */,
 				DE680B9E1F2D067900A9F68C /* FTAppDelegate.swift in Sources */,
 				DE680B751F2BC22B00A9F68C /* FTRect.swift in Sources */,
 				DE680BC61F30ED9C00A9F68C /* FTColor.swift in Sources */,
 				DE680B681F2BC18900A9F68C /* FTString.swift in Sources */,
 				DE680B6D1F2BC1A800A9F68C /* FTLinkDetection.swift in Sources */,
+				DE098ACF1F37659000675878 /* FTUILabel.swift in Sources */,
 				DE680BC41F30C12900A9F68C /* FTDictionary.swift in Sources */,
 				DEA0DB3C1F36028D00D9AFA8 /* FTThemeView+Utility.swift in Sources */,
 				DE680B9B1F2CF86500A9F68C /* FTAssociatedObject.swift in Sources */,

@@ -26,9 +26,7 @@ final public class FTReflection {
     fileprivate static var bundleIdentifiers: [String]? = []
     
     /**
-     This method can be used in unit tests to force the bundle where classes can be found
-     
-     - parameter forClass: The class that will be used to find the appName for in which we can find classes by string.
+     - parameter object: The class that will be used to find the appName for in which we can find classes by string.
      */
     public class func registerBundleIdentifier(_ object: Any? = nil) {
         
@@ -102,10 +100,10 @@ final public class FTReflection {
     }
     
     /**
-     Get the class name as a string from a swift class
+     Get the class name as a string from a class
      
-     - parameter theObject: An object for whitch the string representation of the class will be returned
-     - parameter aClass: An AnyClass for whitch the string representation of the class will be returned
+     - parameter theObject: An NSObject for whitch the string representation of the class will be returned
+     - parameter theObject: An AnyClass for whitch the string representation of the class will be returned
 
      - returns: The string representation of the class (name of the bundle dot name of the class)
      */

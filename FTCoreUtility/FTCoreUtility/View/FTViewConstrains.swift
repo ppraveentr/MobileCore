@@ -58,25 +58,25 @@ public struct FTEdgeInsets: OptionSet {
     public static let All: FTEdgeInsets = [.Horizontal, .Vertical]
     
     //Stacking View - Margin
-    public static let LeadingMargin = FTEdgeInsets(rawValue: 1 << 10)
-    public static let TrailingMargin = FTEdgeInsets(rawValue: 1 << 11)
-    public static let TopMargin = FTEdgeInsets(rawValue: 1 << 12)
-    public static let BottomMargin = FTEdgeInsets(rawValue: 1 << 13)
-    public static let CenterXMargin = FTEdgeInsets(rawValue: 1 << 14)
-    public static let CenterYMargin = FTEdgeInsets(rawValue: 1 << 15)
+    public static let LeadingMargin = FTEdgeInsets(rawValue: 1 << 5)
+    public static let TrailingMargin = FTEdgeInsets(rawValue: 1 << 6)
+    public static let TopMargin = FTEdgeInsets(rawValue: 1 << 7)
+    public static let BottomMargin = FTEdgeInsets(rawValue: 1 << 8)
+    public static let CenterXMargin = FTEdgeInsets(rawValue: 1 << 9)
+    public static let CenterYMargin = FTEdgeInsets(rawValue: 1 << 10)
     public static let CenterMargin: FTEdgeInsets = [.CenterXMargin, .CenterYMargin]
-    public static let AutoMargin = FTEdgeInsets(rawValue: 1 << 17)
+    public static let AutoMargin = FTEdgeInsets(rawValue: 1 << 11)
     
-    fileprivate static let TopLayoutMargin = FTEdgeInsets(rawValue: 1 << 20)
-    fileprivate static let LeftLayoutMargin = FTEdgeInsets(rawValue: 1 << 21)
-    fileprivate static let TopBottomMargin = FTEdgeInsets(rawValue: 1 << 22)
-    fileprivate static let LeftRightMargin = FTEdgeInsets(rawValue: 1 << 23)
+    fileprivate static let TopLayoutMargin = FTEdgeInsets(rawValue: 1 << 12)
+    fileprivate static let LeftLayoutMargin = FTEdgeInsets(rawValue: 1 << 13)
+    fileprivate static let TopBottomMargin = FTEdgeInsets(rawValue: 1 << 14)
+    fileprivate static let LeftRightMargin = FTEdgeInsets(rawValue: 1 << 15)
 
     //Stacking View - Size
-    public static let EqualWidth = FTEdgeInsets(rawValue: 1 << 25)
-    public static let EqualHeight = FTEdgeInsets(rawValue: 1 << 26)
+    public static let EqualWidth = FTEdgeInsets(rawValue: 1 << 16)
+    public static let EqualHeight = FTEdgeInsets(rawValue: 1 << 17)
     public static let EqualSize: FTEdgeInsets = [.EqualWidth, .EqualHeight]
-    public static let AutoSize = FTEdgeInsets(rawValue: 1 << 28)
+    public static let AutoSize = FTEdgeInsets(rawValue: 1 << 18)
 
     
     //Remove inValid Constrains
@@ -103,6 +103,8 @@ public struct FTEdgeInsets: OptionSet {
         }
         
         if self.contains(.AutoMargin) {
+            //TODO: Update to remove .EqualSize
+            self.update(with: .EqualSize)
             self.update(with: .AutoSize)
         }
     }
@@ -270,7 +272,7 @@ public extension UIView {
             }
             
             //Equal Width
-            if edgeInsets.contains(.EqualHeight) {
+            if edgeInsets.contains(.EqualWidth) {
                 let constraint = view.widthAnchor.constraint(equalTo: self.widthAnchor, constant: 0)
                 constraint.priority = priority
                 localConstraint.append(constraint)
@@ -432,15 +434,15 @@ public extension UIView {
         
         //if screen size changes, update layout again
         if !self.frame.size.equalTo(reducedSize) {
-         
+
             self.frame.size = reducedSize
             self.setViewSize(reducedSize)
             
             //Update Screen layout
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
 //                self.superview?.setNeedsLayout()
-                self.superview?.layoutIfNeeded()
-            }
+//                self.superview?.layoutIfNeeded()
+//            }
         }
     }
     

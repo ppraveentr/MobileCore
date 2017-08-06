@@ -2,9 +2,13 @@
     "type": "Themes",
     "color": {
         "default": "#FFFFFF",
+        "AA": "#16c5ce",
         "clear": "clear",
         "black": "#FFFFFF",
-        "red": "#b70b39"
+        "red": "#b70b39",
+        "blue": "#1059ce",
+        "green": "#10ce1a",
+        "yellow": "#cecb10"
     },
     "font": {
         "default": {
@@ -33,6 +37,22 @@
             "system14R": {
                 "_super": "default",
                 "textcolor": "red"
+            },
+            "system14B": {
+                "_super": "default",
+                "textcolor": "blue"
+            },
+            "system14G": {
+                "_super": "default",
+                "textcolor": "green"
+            },
+            "system14Y": {
+                "_super": "default",
+                "textcolor": "yellow"
+            },
+            "system14AA": {
+                "_super": "default",
+                "textcolor": "AA"
             }
         }
     }
