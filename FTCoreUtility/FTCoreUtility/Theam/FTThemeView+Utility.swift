@@ -83,8 +83,6 @@ public extension UIView {
         
         for (kind, value) in theme {
             
-            print("kind: \(kind), value: \(value)")
-            
             switch kind {
                 
             case "isLinkUnderlineEnabled":
@@ -99,14 +97,12 @@ public extension UIView {
                 let font = FTThemesManager.getFont(fontName)
                 
                 if let font = font { themeSelf.theme_textfont?(font) }
-                print(font!)
             
             case "textcolor":
                 let colorName: String? = value as? String
                 let color = FTThemesManager.getColor(colorName)
                 
                 if let color = color { themeSelf.theme_textcolor?(color) }
-                print(color!)
                 
             case "backgroundColor":
                 let colorName: String? = value as? String

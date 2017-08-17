@@ -7,62 +7,78 @@
 //
 
 import Foundation
+import ObjectiveC.runtime
+import ObjectiveC.message
 
-open class FTDataModel : NSObject {
+open class FTDataModel : JSONModel {
     
-    var jsonData: Dictionary<String,Any> = [:]
-    var classType: AnyClass = FTDataModel.self
-    
-     public override required init(){
-        super.init()
-        self.jsonData = [:]
-    }
+//    var jsonData: JSON = [:]
+//    var classType: AnyClass = FTDataModel.self
+//    var schemaType: JSON = [:]
 
-    public required convenience init(jsonData: Dictionary<String,Any>, baseClass: AnyClass) {
-        self.init()
-        
-        self.classType = baseClass
-        
-        self.__setup__()
-
-        self.jsonData = jsonData
-    }
+//    public override required init(){
+//        super.init()
+//        self.jsonData = [:]
+//    }
+//    
+//    public required convenience init(jsonData: JSON, baseClass: AnyClass, schema: JSON) {
+//        self.init()
+//        
+//        self.classType = baseClass
+//        self.schemaType = schema
+//
+//        self.__setup__()
+//
+//        self.jsonData = jsonData
+//        
+//        self.updateValues()
+//    }
     
+//    open override func setValue(_ value: Any?, forKey key: String) {
+//        
+//        if let schemaKey = self.schemaType[key] as? String {
+//            
+//            print("schemaKey: \(schemaKey) :: key : \(key) value: \(String(describing: value))")
+//            
+//            super.setValue(value, forKey: schemaKey)
+//        }else {
+//            
+//            print("schemaKey not avaialble ::key : \(key) value: \(String(describing: value))")
+//        }
+//    }
+}
+
+extension FTDataModel { //: NSObjectProtocol {
+
+//    func updateValues() {
+//        
+//        self.jsonData.forEach { (key: String, value: Any) in
+//            self.setValue(value, forKey: key)
+//        }
+//    }
 }
 
 extension FTDataModel {
  
-    public class func createDataModelOfType(_ baseClass: String, fromDictionary dic: Dictionary<String, Any>) -> Any? {
-        
-        guard let cls = baseClass.getClassInstance() as? FTDataModel.Type else { return nil }
-        
-        return cls.init(jsonData:dic, baseClass: cls)
-    }
+//    public class func dataModelOfType(_ baseClass: String, withJSON dic: JSON) -> Any? {
+//        
+//        guard let cls = baseClass.getClassInstance() as? FTDataModel.Type else { return nil }
+//        
+//        guard let schema = try? FTModelConfig.schemaForClass(classKey: baseClass) else { return nil }
+//        
+//        return cls.init(jsonData:dic, baseClass: cls, schema:schema!)
+//    }
 }
 
 extension FTDataModel {
     
-    func __setup__ ()  {
-            
-        let properties = getClassPropertyNames(self)
-
-        print(properties ?? "properties of type \(classType) are empty");
-
-    }
-    
-    override open class func resolveInstanceMethod(_ sel: Selector!) -> Bool {
-        
-//        if (aSEL == @selector(resolveThisMethodDynamically)) {
-//            class_addMethod([self class], aSEL, (IMP) dynamicMethodIMP, "v@:");
-//            return YES;
-//        }
-//        return [super resolveInstanceMethod:aSEL];
-        
-        
-        return false
-    }
-    
-
+//    func __setup__ ()  {
+//            
+//        let properties = getClassPropertyNames(self)
+//
+//        print(properties ?? "properties of type \(classType) are empty");
+//
+//    }
     
 }
 

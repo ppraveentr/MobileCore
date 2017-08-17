@@ -7,8 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DE680B491F2BBE4E00A9F68C /* FTCoreUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE680B441F2BBDFC00A9F68C /* FTCoreUtility.framework */; };
-		DE680B4C1F2BBFA200A9F68C /* FTCoreUtility.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE680B441F2BBDFC00A9F68C /* FTCoreUtility.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DE0C49A51F4612D50010A5BE /* FTCoreUtility.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C49961F4612A20010A5BE /* FTCoreUtility.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DE2FB94C1F3F760F00581064 /* JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = DE2FB9391F3F760F00581064 /* JSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE2FB94D1F3F760F00581064 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2FB93A1F3F760F00581064 /* JSONModel.m */; };
+		DE2FB94E1F3F760F00581064 /* JSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = DE2FB93B1F3F760F00581064 /* JSONModelClassProperty.h */; };
+		DE2FB94F1F3F760F00581064 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2FB93C1F3F760F00581064 /* JSONModelClassProperty.m */; };
+		DE2FB9501F3F760F00581064 /* JSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = DE2FB93D1F3F760F00581064 /* JSONModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE2FB9511F3F760F00581064 /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2FB93E1F3F760F00581064 /* JSONModelError.m */; };
+		DE2FB9521F3F760F00581064 /* JSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = DE2FB93F1F3F760F00581064 /* JSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE2FB9591F3F760F00581064 /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = DE2FB9481F3F760F00581064 /* JSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE2FB95A1F3F760F00581064 /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2FB9491F3F760F00581064 /* JSONKeyMapper.m */; };
+		DE2FB95B1F3F760F00581064 /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = DE2FB94A1F3F760F00581064 /* JSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE2FB95C1F3F760F00581064 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2FB94B1F3F760F00581064 /* JSONValueTransformer.m */; };
 		DE9221B01EF28C9C000C8FC7 /* FTMobileCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9221A61EF28C9B000C8FC7 /* FTMobileCore.framework */; };
 		DE9221B51EF28C9C000C8FC7 /* FTMobileCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221B41EF28C9C000C8FC7 /* FTMobileCoreTests.swift */; };
 		DE9221B71EF28C9C000C8FC7 /* FTMobileCore.h in Headers */ = {isa = PBXBuildFile; fileRef = DE9221A91EF28C9B000C8FC7 /* FTMobileCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -18,23 +28,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DE680B431F2BBDFC00A9F68C /* PBXContainerItemProxy */ = {
+		DE0C49951F4612A20010A5BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DE680B3E1F2BBDFC00A9F68C /* FTCoreUtility.xcodeproj */;
+			containerPortal = DE0C49901F4612A20010A5BE /* FTCoreUtility.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = DE680B131F2BBD9500A9F68C;
 			remoteInfo = FTCoreUtility;
 		};
-		DE680B451F2BBDFC00A9F68C /* PBXContainerItemProxy */ = {
+		DE0C49971F4612A20010A5BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DE680B3E1F2BBDFC00A9F68C /* FTCoreUtility.xcodeproj */;
+			containerPortal = DE0C49901F4612A20010A5BE /* FTCoreUtility.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = DE680B1C1F2BBD9500A9F68C;
 			remoteInfo = FTCoreUtilityTests;
 		};
-		DE680B471F2BBE4500A9F68C /* PBXContainerItemProxy */ = {
+		DE0C49A61F4612DA0010A5BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DE680B3E1F2BBDFC00A9F68C /* FTCoreUtility.xcodeproj */;
+			containerPortal = DE0C49901F4612A20010A5BE /* FTCoreUtility.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = DE680B121F2BBD9500A9F68C;
 			remoteInfo = FTCoreUtility;
@@ -55,7 +65,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DE680B4C1F2BBFA200A9F68C /* FTCoreUtility.framework in Embed Frameworks */,
+				DE0C49A51F4612D50010A5BE /* FTCoreUtility.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,7 +73,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DE680B3E1F2BBDFC00A9F68C /* FTCoreUtility.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FTCoreUtility.xcodeproj; path = "/Users/praveenprabhakar/Documents/xCode Proejct/MobileCore/FTMobileCoreSample/FTMobileCoreSample/../../FTCoreUtility/FTCoreUtility.xcodeproj"; sourceTree = "<absolute>"; };
+		DE0C49901F4612A20010A5BE /* FTCoreUtility.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FTCoreUtility.xcodeproj; path = ../FTCoreUtility/FTCoreUtility.xcodeproj; sourceTree = "<group>"; };
+		DE2FB9391F3F760F00581064 /* JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModel.h; sourceTree = "<group>"; };
+		DE2FB93A1F3F760F00581064 /* JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModel.m; sourceTree = "<group>"; };
+		DE2FB93B1F3F760F00581064 /* JSONModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelClassProperty.h; sourceTree = "<group>"; };
+		DE2FB93C1F3F760F00581064 /* JSONModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModelClassProperty.m; sourceTree = "<group>"; };
+		DE2FB93D1F3F760F00581064 /* JSONModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelError.h; sourceTree = "<group>"; };
+		DE2FB93E1F3F760F00581064 /* JSONModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModelError.m; sourceTree = "<group>"; };
+		DE2FB93F1F3F760F00581064 /* JSONModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelLib.h; sourceTree = "<group>"; };
+		DE2FB9481F3F760F00581064 /* JSONKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKeyMapper.h; sourceTree = "<group>"; };
+		DE2FB9491F3F760F00581064 /* JSONKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKeyMapper.m; sourceTree = "<group>"; };
+		DE2FB94A1F3F760F00581064 /* JSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONValueTransformer.h; sourceTree = "<group>"; };
+		DE2FB94B1F3F760F00581064 /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONValueTransformer.m; sourceTree = "<group>"; };
 		DE9221A61EF28C9B000C8FC7 /* FTMobileCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FTMobileCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9221A91EF28C9B000C8FC7 /* FTMobileCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTMobileCore.h; sourceTree = "<group>"; };
 		DE9221AA1EF28C9B000C8FC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,7 +101,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE680B491F2BBE4E00A9F68C /* FTCoreUtility.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,21 +115,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE0C49911F4612A20010A5BE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DE0C49961F4612A20010A5BE /* FTCoreUtility.framework */,
+				DE0C49981F4612A20010A5BE /* FTCoreUtilityTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DE2FB9371F3F760F00581064 /* JSONModel */ = {
+			isa = PBXGroup;
+			children = (
+				DE2FB9381F3F760F00581064 /* JSONModel */,
+				DE2FB93F1F3F760F00581064 /* JSONModelLib.h */,
+				DE2FB9471F3F760F00581064 /* JSONModelTransformations */,
+			);
+			name = JSONModel;
+			path = Framework/JSONModel/JSONModel;
+			sourceTree = "<group>";
+		};
+		DE2FB9381F3F760F00581064 /* JSONModel */ = {
+			isa = PBXGroup;
+			children = (
+				DE2FB9391F3F760F00581064 /* JSONModel.h */,
+				DE2FB93A1F3F760F00581064 /* JSONModel.m */,
+				DE2FB93B1F3F760F00581064 /* JSONModelClassProperty.h */,
+				DE2FB93C1F3F760F00581064 /* JSONModelClassProperty.m */,
+				DE2FB93D1F3F760F00581064 /* JSONModelError.h */,
+				DE2FB93E1F3F760F00581064 /* JSONModelError.m */,
+			);
+			path = JSONModel;
+			sourceTree = "<group>";
+		};
+		DE2FB9471F3F760F00581064 /* JSONModelTransformations */ = {
+			isa = PBXGroup;
+			children = (
+				DE2FB9481F3F760F00581064 /* JSONKeyMapper.h */,
+				DE2FB9491F3F760F00581064 /* JSONKeyMapper.m */,
+				DE2FB94A1F3F760F00581064 /* JSONValueTransformer.h */,
+				DE2FB94B1F3F760F00581064 /* JSONValueTransformer.m */,
+			);
+			path = JSONModelTransformations;
+			sourceTree = "<group>";
+		};
 		DE680B3D1F2BBDE900A9F68C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DE680B3E1F2BBDFC00A9F68C /* FTCoreUtility.xcodeproj */,
+				DE0C49901F4612A20010A5BE /* FTCoreUtility.xcodeproj */,
+				DE2FB9371F3F760F00581064 /* JSONModel */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		DE680B3F1F2BBDFC00A9F68C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				DE680B441F2BBDFC00A9F68C /* FTCoreUtility.framework */,
-				DE680B461F2BBDFC00A9F68C /* FTCoreUtilityTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		DE92219C1EF28C9B000C8FC7 = {
@@ -167,7 +223,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE2FB9521F3F760F00581064 /* JSONModelLib.h in Headers */,
+				DE2FB94C1F3F760F00581064 /* JSONModel.h in Headers */,
+				DE2FB9591F3F760F00581064 /* JSONKeyMapper.h in Headers */,
+				DE2FB9501F3F760F00581064 /* JSONModelError.h in Headers */,
+				DE2FB95B1F3F760F00581064 /* JSONValueTransformer.h in Headers */,
 				DE9221B71EF28C9C000C8FC7 /* FTMobileCore.h in Headers */,
+				DE2FB94E1F3F760F00581064 /* JSONModelClassProperty.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,7 +249,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				DE680B481F2BBE4500A9F68C /* PBXTargetDependency */,
+				DE0C49A71F4612DA0010A5BE /* PBXTargetDependency */,
 			);
 			name = FTMobileCore;
 			productName = FTMobileCore;
@@ -247,8 +309,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = DE680B3F1F2BBDFC00A9F68C /* Products */;
-					ProjectRef = DE680B3E1F2BBDFC00A9F68C /* FTCoreUtility.xcodeproj */;
+					ProductGroup = DE0C49911F4612A20010A5BE /* Products */;
+					ProjectRef = DE0C49901F4612A20010A5BE /* FTCoreUtility.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -260,18 +322,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		DE680B441F2BBDFC00A9F68C /* FTCoreUtility.framework */ = {
+		DE0C49961F4612A20010A5BE /* FTCoreUtility.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = FTCoreUtility.framework;
-			remoteRef = DE680B431F2BBDFC00A9F68C /* PBXContainerItemProxy */;
+			remoteRef = DE0C49951F4612A20010A5BE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		DE680B461F2BBDFC00A9F68C /* FTCoreUtilityTests.xctest */ = {
+		DE0C49981F4612A20010A5BE /* FTCoreUtilityTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = FTCoreUtilityTests.xctest;
-			remoteRef = DE680B451F2BBDFC00A9F68C /* PBXContainerItemProxy */;
+			remoteRef = DE0C49971F4612A20010A5BE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -298,7 +360,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE2FB9511F3F760F00581064 /* JSONModelError.m in Sources */,
 				DEC55DEA1EF2AE0300FAE024 /* FTModelObject.swift in Sources */,
+				DE2FB94D1F3F760F00581064 /* JSONModel.m in Sources */,
+				DE2FB95A1F3F760F00581064 /* JSONKeyMapper.m in Sources */,
+				DE2FB95C1F3F760F00581064 /* JSONValueTransformer.m in Sources */,
+				DE2FB94F1F3F760F00581064 /* JSONModelClassProperty.m in Sources */,
 				DEC55DEC1EF2B09700FAE024 /* FTModelConfig.swift in Sources */,
 				DEC55DD71EF2964600FAE024 /* FTDataModel.swift in Sources */,
 			);
@@ -315,10 +382,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DE680B481F2BBE4500A9F68C /* PBXTargetDependency */ = {
+		DE0C49A71F4612DA0010A5BE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FTCoreUtility;
-			targetProxy = DE680B471F2BBE4500A9F68C /* PBXContainerItemProxy */;
+			targetProxy = DE0C49A61F4612DA0010A5BE /* PBXContainerItemProxy */;
 		};
 		DE9221B21EF28C9C000C8FC7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -443,15 +510,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "\"${SRCROOT}/../Frameworks\"";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				INFOPLIST_FILE = FTMobileCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com..FTMobileCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/FTMobileCore";
+				SKIP_INSTALL = NO;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -470,15 +539,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "\"${SRCROOT}/../Frameworks\"";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				INFOPLIST_FILE = FTMobileCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com..FTMobileCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/FTMobileCore";
+				SKIP_INSTALL = NO;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;

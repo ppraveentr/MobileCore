@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DE1485521F10C09400A250A6 /* FTMobileCoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1485271F10B13700A250A6 /* FTMobileCoreUI.framework */; };
-		DE1485531F10C09400A250A6 /* FTMobileCoreUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE1485271F10B13700A250A6 /* FTMobileCoreUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DE1485571F10C09800A250A6 /* FTMobileCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBDC89C1EF450DB00AC77A9 /* FTMobileCore.framework */; };
-		DE1485581F10C09800A250A6 /* FTMobileCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DEBDC89C1EF450DB00AC77A9 /* FTMobileCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DE0C49881F46124E0010A5BE /* FTMobileCoreUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C49851F4612460010A5BE /* FTMobileCoreUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DE0C49891F46124E0010A5BE /* FTMobileCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C496D1F4612070010A5BE /* FTMobileCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DE0C498B1F4612520010A5BE /* FTCoreUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C498A1F4612520010A5BE /* FTCoreUtility.framework */; };
+		DE2FB8EA1F3A0C5900581064 /* FTMobileCoreSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2FB8E91F3A0C5900581064 /* FTMobileCoreSampleTests.swift */; };
 		DE680BB11F2E038B00A9F68C /* Themes.json in Resources */ = {isa = PBXBuildFile; fileRef = DE680BB01F2E038800A9F68C /* Themes.json */; };
 		DE680BB21F2E03D300A9F68C /* MobileCodeSampleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DE680BAA1F2E037B00A9F68C /* MobileCodeSampleBundle.bundle */; };
 		DE680BB71F2E048600A9F68C /* Schemas.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DEBDC8AF1EF45C9F00AC77A9 /* Schemas.bundle */; };
@@ -25,47 +25,54 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DE1485261F10B13700A250A6 /* PBXContainerItemProxy */ = {
+		DE0C496C1F4612070010A5BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DE1485211F10B13600A250A6 /* FTMobileCoreUI.xcodeproj */;
+			containerPortal = DE0C49671F4612070010A5BE /* FTMobileCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DE9221A61EF28C9B000C8FC7;
+			remoteInfo = FTMobileCore;
+		};
+		DE0C496E1F4612070010A5BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE0C49671F4612070010A5BE /* FTMobileCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DE9221AF1EF28C9C000C8FC7;
+			remoteInfo = FTMobileCoreTests;
+		};
+		DE0C49841F4612460010A5BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE0C497F1F4612460010A5BE /* FTMobileCoreUI.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = DE1485161F10B13600A250A6;
 			remoteInfo = FTMobileCoreUI;
 		};
-		DE1485541F10C09400A250A6 /* PBXContainerItemProxy */ = {
+		DE0C49861F4612460010A5BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DE1485211F10B13600A250A6 /* FTMobileCoreUI.xcodeproj */;
+			containerPortal = DE0C497F1F4612460010A5BE /* FTMobileCoreUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DEB569771F17DC2600B5F187;
+			remoteInfo = FTMobileCoreUITests;
+		};
+		DE0C498C1F4612590010A5BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE0C497F1F4612460010A5BE /* FTMobileCoreUI.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = DE1485151F10B13600A250A6;
 			remoteInfo = FTMobileCoreUI;
 		};
-		DE1485591F10C09800A250A6 /* PBXContainerItemProxy */ = {
+		DE0C498E1F4612590010A5BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DEBDC8961EF450DB00AC77A9 /* FTMobileCore.xcodeproj */;
+			containerPortal = DE0C49671F4612070010A5BE /* FTMobileCore.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = DE9221A51EF28C9B000C8FC7;
 			remoteInfo = FTMobileCore;
 		};
-		DE680B321F2BBD9600A9F68C /* PBXContainerItemProxy */ = {
+		DE2FB8EC1F3A0C5900581064 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DE680B2D1F2BBD9500A9F68C /* FTCoreUtility.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DE680B131F2BBD9500A9F68C;
-			remoteInfo = FTCoreUtility;
-		};
-		DE680B341F2BBD9600A9F68C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DE680B2D1F2BBD9500A9F68C /* FTCoreUtility.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DE680B1C1F2BBD9500A9F68C;
-			remoteInfo = FTCoreUtilityTests;
-		};
-		DE680B381F2BBD9600A9F68C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DE1485211F10B13600A250A6 /* FTMobileCoreUI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DEB569771F17DC2600B5F187;
-			remoteInfo = FTMobileCoreUITests;
+			containerPortal = DE9221C11EF28CDF000C8FC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DE9221C81EF28CDF000C8FC7;
+			remoteInfo = FTMobileCoreSample;
 		};
 		DE680BB31F2E046E00A9F68C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -81,20 +88,6 @@
 			remoteGlobalIDString = DEBDC8AE1EF45C9F00AC77A9;
 			remoteInfo = Schemas;
 		};
-		DEBDC89B1EF450DB00AC77A9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DEBDC8961EF450DB00AC77A9 /* FTMobileCore.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DE9221A61EF28C9B000C8FC7;
-			remoteInfo = FTMobileCore;
-		};
-		DEBDC89D1EF450DB00AC77A9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DEBDC8961EF450DB00AC77A9 /* FTMobileCore.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DE9221AF1EF28C9C000C8FC7;
-			remoteInfo = FTMobileCoreTests;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -104,8 +97,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DE1485531F10C09400A250A6 /* FTMobileCoreUI.framework in Embed Frameworks */,
-				DE1485581F10C09800A250A6 /* FTMobileCore.framework in Embed Frameworks */,
+				DE0C49881F46124E0010A5BE /* FTMobileCoreUI.framework in Embed Frameworks */,
+				DE0C49891F46124E0010A5BE /* FTMobileCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,8 +106,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DE1485211F10B13600A250A6 /* FTMobileCoreUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FTMobileCoreUI.xcodeproj; path = ../../FTMobileCoreUI/FTMobileCoreUI.xcodeproj; sourceTree = "<group>"; };
-		DE680B2D1F2BBD9500A9F68C /* FTCoreUtility.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FTCoreUtility.xcodeproj; path = ../../FTCoreUtility/FTCoreUtility.xcodeproj; sourceTree = "<group>"; };
+		DE0C49671F4612070010A5BE /* FTMobileCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FTMobileCore.xcodeproj; path = FTMobileCoreSample/../../FTMobileCore/FTMobileCore.xcodeproj; sourceTree = "<group>"; };
+		DE0C497F1F4612460010A5BE /* FTMobileCoreUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FTMobileCoreUI.xcodeproj; path = FTMobileCoreSample/../../FTMobileCoreUI/FTMobileCoreUI.xcodeproj; sourceTree = "<group>"; };
+		DE0C498A1F4612520010A5BE /* FTCoreUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FTCoreUtility.framework; path = "../../../../Library/Developer/Xcode/DerivedData/FTMobileCoreSampleWorkspace-arjqdnaejhteypcgywjtpkuofijc/Build/Products/Debug-iphonesimulator/FTCoreUtility.framework"; sourceTree = "<group>"; };
+		DE2FB8E71F3A0C5900581064 /* FTMobileCoreSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE2FB8E91F3A0C5900581064 /* FTMobileCoreSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMobileCoreSampleTests.swift; sourceTree = "<group>"; };
+		DE2FB8EB1F3A0C5900581064 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE680BAA1F2E037B00A9F68C /* MobileCodeSampleBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileCodeSampleBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE680BAC1F2E037B00A9F68C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE680BB01F2E038800A9F68C /* Themes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Themes.json; sourceTree = "<group>"; };
@@ -126,7 +123,6 @@
 		DE9221D61EF28CDF000C8FC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE9221D81EF28CDF000C8FC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEBDC8931EF4508900AC77A9 /* FTMobileCoreSample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTMobileCoreSample-Bridging-Header.h"; sourceTree = "<group>"; };
-		DEBDC8961EF450DB00AC77A9 /* FTMobileCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FTMobileCore.xcodeproj; path = ../../FTMobileCore/FTMobileCore.xcodeproj; sourceTree = "<group>"; };
 		DEBDC8A21EF4520100AC77A9 /* FTMobileCoreSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FTMobileCoreSample.entitlements; sourceTree = "<group>"; };
 		DEBDC8AF1EF45C9F00AC77A9 /* Schemas.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Schemas.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEBDC8B11EF45C9F00AC77A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -135,6 +131,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DE2FB8E41F3A0C5900581064 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DE680BA71F2E037B00A9F68C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -146,8 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE1485521F10C09400A250A6 /* FTMobileCoreUI.framework in Frameworks */,
-				DE1485571F10C09800A250A6 /* FTMobileCore.framework in Frameworks */,
+				DE0C498B1F4612520010A5BE /* FTCoreUtility.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,22 +163,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DE1485221F10B13600A250A6 /* Products */ = {
+		DE0C49681F4612070010A5BE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DE1485271F10B13700A250A6 /* FTMobileCoreUI.framework */,
-				DE680B391F2BBD9600A9F68C /* FTMobileCoreUITests.xctest */,
+				DE0C496D1F4612070010A5BE /* FTMobileCore.framework */,
+				DE0C496F1F4612070010A5BE /* FTMobileCoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DE680B2E1F2BBD9500A9F68C /* Products */ = {
+		DE0C49801F4612460010A5BE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DE680B331F2BBD9600A9F68C /* FTCoreUtility.framework */,
-				DE680B351F2BBD9600A9F68C /* FTCoreUtilityTests.xctest */,
+				DE0C49851F4612460010A5BE /* FTMobileCoreUI.framework */,
+				DE0C49871F4612460010A5BE /* FTMobileCoreUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DE2FB8E81F3A0C5900581064 /* FTMobileCoreSampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				DE2FB8E91F3A0C5900581064 /* FTMobileCoreSampleTests.swift */,
+				DE2FB8EB1F3A0C5900581064 /* Info.plist */,
+			);
+			path = FTMobileCoreSampleTests;
+			sourceTree = "<group>";
+		};
+		DE2FB9191F3DF7A400581064 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DE0C498A1F4612520010A5BE /* FTCoreUtility.framework */,
+				DE0C497F1F4612460010A5BE /* FTMobileCoreUI.xcodeproj */,
+				DE0C49671F4612070010A5BE /* FTMobileCore.xcodeproj */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		DE680BA11F2E02FF00A9F68C /* Resources */ = {
@@ -201,7 +222,9 @@
 				DE9221CB1EF28CDF000C8FC7 /* FTMobileCoreSample */,
 				DEBDC8B01EF45C9F00AC77A9 /* Schemas */,
 				DE680BAB1F2E037B00A9F68C /* MobileCodeSampleBundle */,
+				DE2FB8E81F3A0C5900581064 /* FTMobileCoreSampleTests */,
 				DE9221CA1EF28CDF000C8FC7 /* Products */,
+				DE2FB9191F3DF7A400581064 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -211,6 +234,7 @@
 				DE9221C91EF28CDF000C8FC7 /* FTMobileCoreSample.app */,
 				DEBDC8AF1EF45C9F00AC77A9 /* Schemas.bundle */,
 				DE680BAA1F2E037B00A9F68C /* MobileCodeSampleBundle.bundle */,
+				DE2FB8E71F3A0C5900581064 /* FTMobileCoreSampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -219,7 +243,6 @@
 			isa = PBXGroup;
 			children = (
 				DEBDC8A21EF4520100AC77A9 /* FTMobileCoreSample.entitlements */,
-				DEBDC8951EF450CD00AC77A9 /* Frameworks */,
 				DEBDC8931EF4508900AC77A9 /* FTMobileCoreSample-Bridging-Header.h */,
 				DEC55DD81EF2968700FAE024 /* Datamodel */,
 				DE680BA11F2E02FF00A9F68C /* Resources */,
@@ -231,25 +254,6 @@
 				DE9221D81EF28CDF000C8FC7 /* Info.plist */,
 			);
 			path = FTMobileCoreSample;
-			sourceTree = "<group>";
-		};
-		DEBDC8951EF450CD00AC77A9 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				DE680B2D1F2BBD9500A9F68C /* FTCoreUtility.xcodeproj */,
-				DE1485211F10B13600A250A6 /* FTMobileCoreUI.xcodeproj */,
-				DEBDC8961EF450DB00AC77A9 /* FTMobileCore.xcodeproj */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		DEBDC8971EF450DB00AC77A9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				DEBDC89C1EF450DB00AC77A9 /* FTMobileCore.framework */,
-				DEBDC89E1EF450DB00AC77A9 /* FTMobileCoreTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		DEBDC8B01EF45C9F00AC77A9 /* Schemas */ = {
@@ -283,6 +287,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		DE2FB8E61F3A0C5900581064 /* FTMobileCoreSampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE2FB8F41F3A0C5900581064 /* Build configuration list for PBXNativeTarget "FTMobileCoreSampleTests" */;
+			buildPhases = (
+				DE2FB8E31F3A0C5900581064 /* Sources */,
+				DE2FB8E41F3A0C5900581064 /* Frameworks */,
+				DE2FB8E51F3A0C5900581064 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DE2FB8ED1F3A0C5900581064 /* PBXTargetDependency */,
+			);
+			name = FTMobileCoreSampleTests;
+			productName = FTMobileCoreSampleTests;
+			productReference = DE2FB8E71F3A0C5900581064 /* FTMobileCoreSampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		DE680BA91F2E037B00A9F68C /* MobileCodeSampleBundle */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE680BAD1F2E037B00A9F68C /* Build configuration list for PBXNativeTarget "MobileCodeSampleBundle" */;
@@ -313,10 +335,10 @@
 			buildRules = (
 			);
 			dependencies = (
+				DE0C498D1F4612590010A5BE /* PBXTargetDependency */,
+				DE0C498F1F4612590010A5BE /* PBXTargetDependency */,
 				DE680BB61F2E047700A9F68C /* PBXTargetDependency */,
 				DE680BB41F2E046E00A9F68C /* PBXTargetDependency */,
-				DE1485551F10C09400A250A6 /* PBXTargetDependency */,
-				DE14855A1F10C09800A250A6 /* PBXTargetDependency */,
 			);
 			name = FTMobileCoreSample;
 			productName = FTMobileCoreSample;
@@ -353,6 +375,12 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Praveen Prabhakar";
 				TargetAttributes = {
+					DE2FB8E61F3A0C5900581064 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = W6W48SVQX7;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DE9221C81EF28CDF000C8FC7;
+					};
 					DE680BA91F2E037B00A9F68C = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = W6W48SVQX7;
@@ -389,16 +417,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = DE680B2E1F2BBD9500A9F68C /* Products */;
-					ProjectRef = DE680B2D1F2BBD9500A9F68C /* FTCoreUtility.xcodeproj */;
+					ProductGroup = DE0C49681F4612070010A5BE /* Products */;
+					ProjectRef = DE0C49671F4612070010A5BE /* FTMobileCore.xcodeproj */;
 				},
 				{
-					ProductGroup = DEBDC8971EF450DB00AC77A9 /* Products */;
-					ProjectRef = DEBDC8961EF450DB00AC77A9 /* FTMobileCore.xcodeproj */;
-				},
-				{
-					ProductGroup = DE1485221F10B13600A250A6 /* Products */;
-					ProjectRef = DE1485211F10B13600A250A6 /* FTMobileCoreUI.xcodeproj */;
+					ProductGroup = DE0C49801F4612460010A5BE /* Products */;
+					ProjectRef = DE0C497F1F4612460010A5BE /* FTMobileCoreUI.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -406,56 +430,50 @@
 				DE9221C81EF28CDF000C8FC7 /* FTMobileCoreSample */,
 				DEBDC8AE1EF45C9F00AC77A9 /* Schemas */,
 				DE680BA91F2E037B00A9F68C /* MobileCodeSampleBundle */,
+				DE2FB8E61F3A0C5900581064 /* FTMobileCoreSampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		DE1485271F10B13700A250A6 /* FTMobileCoreUI.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = FTMobileCoreUI.framework;
-			remoteRef = DE1485261F10B13700A250A6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DE680B331F2BBD9600A9F68C /* FTCoreUtility.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = FTCoreUtility.framework;
-			remoteRef = DE680B321F2BBD9600A9F68C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DE680B351F2BBD9600A9F68C /* FTCoreUtilityTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = FTCoreUtilityTests.xctest;
-			remoteRef = DE680B341F2BBD9600A9F68C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DE680B391F2BBD9600A9F68C /* FTMobileCoreUITests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = FTMobileCoreUITests.xctest;
-			remoteRef = DE680B381F2BBD9600A9F68C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DEBDC89C1EF450DB00AC77A9 /* FTMobileCore.framework */ = {
+		DE0C496D1F4612070010A5BE /* FTMobileCore.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = FTMobileCore.framework;
-			remoteRef = DEBDC89B1EF450DB00AC77A9 /* PBXContainerItemProxy */;
+			remoteRef = DE0C496C1F4612070010A5BE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		DEBDC89E1EF450DB00AC77A9 /* FTMobileCoreTests.xctest */ = {
+		DE0C496F1F4612070010A5BE /* FTMobileCoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = FTMobileCoreTests.xctest;
-			remoteRef = DEBDC89D1EF450DB00AC77A9 /* PBXContainerItemProxy */;
+			remoteRef = DE0C496E1F4612070010A5BE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DE0C49851F4612460010A5BE /* FTMobileCoreUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FTMobileCoreUI.framework;
+			remoteRef = DE0C49841F4612460010A5BE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DE0C49871F4612460010A5BE /* FTMobileCoreUITests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FTMobileCoreUITests.xctest;
+			remoteRef = DE0C49861F4612460010A5BE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DE2FB8E51F3A0C5900581064 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DE680BA81F2E037B00A9F68C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -487,6 +505,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DE2FB8E31F3A0C5900581064 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE2FB8EA1F3A0C5900581064 /* FTMobileCoreSampleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DE680BA61F2E037B00A9F68C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -514,15 +540,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DE1485551F10C09400A250A6 /* PBXTargetDependency */ = {
+		DE0C498D1F4612590010A5BE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FTMobileCoreUI;
-			targetProxy = DE1485541F10C09400A250A6 /* PBXContainerItemProxy */;
+			targetProxy = DE0C498C1F4612590010A5BE /* PBXContainerItemProxy */;
 		};
-		DE14855A1F10C09800A250A6 /* PBXTargetDependency */ = {
+		DE0C498F1F4612590010A5BE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FTMobileCore;
-			targetProxy = DE1485591F10C09800A250A6 /* PBXContainerItemProxy */;
+			targetProxy = DE0C498E1F4612590010A5BE /* PBXContainerItemProxy */;
+		};
+		DE2FB8ED1F3A0C5900581064 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DE9221C81EF28CDF000C8FC7 /* FTMobileCoreSample */;
+			targetProxy = DE2FB8EC1F3A0C5900581064 /* PBXContainerItemProxy */;
 		};
 		DE680BB41F2E046E00A9F68C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -556,6 +587,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		DE2FB8EE1F3A0C5900581064 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = W6W48SVQX7;
+				INFOPLIST_FILE = FTMobileCoreSampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTMobileCoreSampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FTMobileCoreSample.app/FTMobileCoreSample";
+			};
+			name = Debug;
+		};
+		DE2FB8EF1F3A0C5900581064 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = W6W48SVQX7;
+				INFOPLIST_FILE = FTMobileCoreSampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTMobileCoreSampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FTMobileCoreSample.app/FTMobileCoreSample";
+			};
+			name = Release;
+		};
 		DE680BAE1F2E037B00A9F68C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -637,7 +696,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -682,7 +741,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -699,6 +758,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FTMobileCoreSample/FTMobileCoreSample.entitlements;
 				DEVELOPMENT_TEAM = W6W48SVQX7;
+				FRAMEWORK_SEARCH_PATHS = "\"${SRCROOT}/../Frameworks\"";
 				INFOPLIST_FILE = FTMobileCoreSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -718,6 +778,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FTMobileCoreSample/FTMobileCoreSample.entitlements;
 				DEVELOPMENT_TEAM = W6W48SVQX7;
+				FRAMEWORK_SEARCH_PATHS = "\"${SRCROOT}/../Frameworks\"";
 				INFOPLIST_FILE = FTMobileCoreSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -773,6 +834,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DE2FB8F41F3A0C5900581064 /* Build configuration list for PBXNativeTarget "FTMobileCoreSampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE2FB8EE1F3A0C5900581064 /* Debug */,
+				DE2FB8EF1F3A0C5900581064 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DE680BAD1F2E037B00A9F68C /* Build configuration list for PBXNativeTarget "MobileCodeSampleBundle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

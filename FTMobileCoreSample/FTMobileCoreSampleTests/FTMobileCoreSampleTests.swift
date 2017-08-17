@@ -1,21 +1,22 @@
 //
-//  FTMobileCoreTests.swift
-//  FTMobileCoreTests
+//  FTMobileCoreSampleTests.swift
+//  FTMobileCoreSampleTests
 //
-//  Created by Praveen Prabhakar on 15/06/17.
+//  Created by Praveen Prabhakar on 08/08/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
 import XCTest
 @testable import FTMobileCore
+@testable import FTMobileCoreSample
 
-class FTMobileCoreTests: XCTestCase {
+class FTMobileCoreSampleTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        try? FTModelConfig.loadModelSchema(["MDASample": ["identifier":"id"] ])
+        try? FTModelConfig.loadModelSchema(["MDASample": ["id":"identifier"] ])
     }
     
     override func tearDown() {
@@ -23,13 +24,13 @@ class FTMobileCoreTests: XCTestCase {
         super.tearDown()
     }
     
-    func testFTDataModel() {
+    func testMDASample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-            
-//        let sample = FTDataModel.dataModelOfType("MDASample", withJSON: ["id":"sample"])
-        let sample = try? FTDataModel.init(dictionary: ["id":"sample"])
-        print(sample ?? "properties of type MDASample are empty");
+        
+//        let sample: MDASample = FTDataModel.dataModelOfType("MDASample", withJSON: ["id":"sample"]) as! MDASample
+//        sample.amount = 34.3
+        
     }
     
 }

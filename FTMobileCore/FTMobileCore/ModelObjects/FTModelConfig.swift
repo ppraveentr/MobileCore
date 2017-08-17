@@ -9,7 +9,7 @@
 import Foundation
 
 //typealias
-typealias JSON = Dictionary<String, Any>
+public typealias JSON = Dictionary<String, Any>
 
 //Operator Overloading
 func += <K,V> ( left: inout [K:V], right: [K:V]){
@@ -38,5 +38,15 @@ public class FTModelConfig {
         if let content = try path.JSONContentAtPath() as? JSON {
             try? loadModelSchema(content)
         }
+    }
+    
+    public class func schemaForClass(classKey: String) throws -> JSON? {
+        
+        //TODO: throws
+//        if let data = self.sharedInstance.modelSchema[classKey] {
+//            return data
+//        }
+        
+        return self.sharedInstance.modelSchema[classKey] as? JSON
     }
 }

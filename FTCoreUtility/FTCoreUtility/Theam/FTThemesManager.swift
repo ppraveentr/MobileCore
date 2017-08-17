@@ -42,7 +42,7 @@ open class FTThemesManager {
     public class func generateVisualThemes(forClass name: String, withStyleName styleName: String, withSubStyleName subStyle: String? = nil) -> FTThemeDic? {
         
         guard let currentTheme: FTThemeDic = FTThemesManager.getViewComponent(name, styleName: styleName)
-            else { print("Theme of type \(styleName) not avaialble for class \(name)" )
+            else { //print("Theme of type \(styleName) not avaialble for class \(name)" )
                 return nil }
         
         return currentTheme
