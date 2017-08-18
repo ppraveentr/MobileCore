@@ -15,8 +15,7 @@ struct ThemeStyle {
     static let disabledStyle = "disabled"
     
     static func allStyles() -> [String] {
-        return [ThemeStyle.defaultStyle,
-                ThemeStyle.highlightedStyle,
+        return [ThemeStyle.highlightedStyle,
                 ThemeStyle.selectedStyle,
                 ThemeStyle.disabledStyle]
     }
@@ -80,25 +79,27 @@ public extension UIView {
         
         self.swizzled_updateTheme(themeDic)
         
-        //TODO: have to remove duplicate style
-        if let subType = delegate?.get_AllThemeSubType?(), subType == true {
+        //Only needed for UIControl types, Eg. Button
+        guard let controlThemeSelf = self as? FTUIControlThemeProtocol else { return }
+
+        if let subType = controlThemeSelf.get_AllThemeSubType?(), subType == true {
             
             let baseName = themeName.components(separatedBy: ":").first
 
-            var styles: FTThemeDic = [themeName: themeDic]
-            
+            var styles: FTThemeDic = [:]
+
             ThemeStyle.allStyles().forEach({ (style) in
                 
                 if let styleThemeDic = FTThemesManager.generateVisualThemes(forClass: className,
                                                                        withStyleName: baseName!,
                                                                        withSubStyleName: style) {
                     
+                    //Create FTThemeDic as, ['ThemeStyle.UIControlState' : 'ActualTheme for the state']
                     styles[style] = styleThemeDic
-                    
                 }
             })
             
-            delegate?.setThemes?(styles)
+            controlThemeSelf.setThemes?(styles)
         }
     }
     
@@ -152,5 +153,50 @@ public extension UIView {
         }
     
         themeSelf.updateTheme?(theme)
+        
+        //Only needed for UIControl types, Eg. Button
+        guard let controlThemeSelf = self as? FTUIControlThemeProtocol else { return }
+        
+        let themeDic = [themeSelf.get_ThemeSubType() ?? ThemeStyle.defaultStyle : theme]
+        controlThemeSelf.setThemes?(themeDic)
     }
 }
+
+//Style for Different states for UIControl object
+extension UIControl {
+    
+    public func get_AllThemeSubType() -> Bool { return true }
+
+    public func setThemes(_ themes: FTThemeDic) {
+        
+        guard let themeSelf = self as? FTUIControlThemeProtocol else { return }
+
+        for (kind, value) in themes {
+            
+            guard let theme = value as? FTThemeDic else { continue }
+            
+            switch kind {
+                
+            case ThemeStyle.defaultStyle:
+                themeSelf.update?(themeDic: theme, state: .normal)
+                break
+                
+            case ThemeStyle.disabledStyle:
+                themeSelf.update?(themeDic: theme, state: .disabled)
+                break
+                
+            case ThemeStyle.highlightedStyle:
+                themeSelf.update?(themeDic: theme, state: .highlighted)
+                break
+                
+            case ThemeStyle.selectedStyle:
+                themeSelf.update?(themeDic: theme, state: .selected)
+                break
+                
+            default:
+                break
+            }
+        }
+    }
+}
+

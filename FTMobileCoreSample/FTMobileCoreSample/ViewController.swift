@@ -74,9 +74,6 @@ class ViewController: FTBaseViewController {
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
 //            label.removeFromSuperview()
 //        }
-        
-        
-        
     }
     
     override func viewDidLoad() {

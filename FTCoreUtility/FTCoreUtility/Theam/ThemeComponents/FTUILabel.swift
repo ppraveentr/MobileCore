@@ -19,13 +19,13 @@ open class FTUILabel: UILabel, FTThemeProtocol {
     }
     
     open func theme_isLinkUnderlineEnabled(_ bool: Bool) {
-        if var labelTheme = self as? FTUILabelThemeProtocol {
+        if var labelTheme = self as? FTUILabelThemeProperyProtocol {
             labelTheme.theme_linkUndelineEnabled = bool
         }
     }
     
     open func theme_isLinkDetectionEnabled(_ bool: Bool) {
-        if var labelTheme = self as? FTUILabelThemeProtocol {
+        if var labelTheme = self as? FTUILabelThemeProperyProtocol {
             labelTheme.theme_linkDetectionEnabled = bool
         }
     }

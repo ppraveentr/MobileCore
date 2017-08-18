@@ -18,10 +18,10 @@ open class FTLabel : FTUILabel, NSLayoutManagerDelegate {
 
     fileprivate var linkRanges: [FTLinkDetection]?
 
-    //FTUILabelThemeProtocol
+    //FTUILabelThemeProperyProtocol
     fileprivate var linkDetectionEnabled = false
     fileprivate var isLinkUnderLineEnabled = false
-    //End: FTUILabelThemeProtocol
+    //End: FTUILabelThemeProperyProtocol
     
     open override var text: String? {
         didSet {
