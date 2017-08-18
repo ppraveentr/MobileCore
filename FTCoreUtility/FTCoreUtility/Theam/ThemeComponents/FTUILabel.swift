@@ -15,11 +15,7 @@ open class FTUILabel: UILabel, FTThemeProtocol {
     }
 
     public func get_ThemeSubType() -> String? {
-        if self.isEnabled {
-            return nil
-        }else{
-            return "disabled"
-        }
+        return self.isEnabled ? nil : ThemeStyle.disabledStyle
     }
     
     open func theme_isLinkUnderlineEnabled(_ bool: Bool) {
@@ -34,17 +30,11 @@ open class FTUILabel: UILabel, FTThemeProtocol {
         }
     }
     
-    open func theme_textfont(_ font: UIFont) {
-        self.font = font
-    }
+    open func theme_textfont(_ font: UIFont) { self.font = font }
     
-    open func theme_textcolor(_ color: UIColor) {
-        self.textColor = color
-    }
+    open func theme_textcolor(_ color: UIColor) { self.textColor = color }
     
-    open func theme_backgroundColor(_ color: UIColor) {
-        self.backgroundColor = color
-    }
+    open func theme_backgroundColor(_ color: UIColor) { self.backgroundColor = color }
     
     public func updateVisualThemes() {
         

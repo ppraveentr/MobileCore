@@ -28,4 +28,9 @@ public extension UIView {
     public class func fromNib() -> UIView? {
         return fromNib(named: get_classNameAsString(obj: self) ?? "")
     }
+    
+    public func removeAllConstraints() {
+        var cont: [NSLayoutConstraint] = self.constraints
+        cont.removeAll()
+    }
 }

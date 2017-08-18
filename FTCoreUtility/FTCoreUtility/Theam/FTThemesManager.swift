@@ -12,7 +12,11 @@ public typealias FTThemeDic = [String : Any]
 
 @objc public protocol FTThemeProtocol {
     func get_ThemeSubType() -> String?
+    
+    @objc optional func get_AllThemeSubType() -> Bool
+
     @objc optional func updateTheme(_ theme: FTThemeDic)
+    @objc optional func setThemes(_ themes: FTThemeDic)
     
     @objc optional func theme_isLinkUnderlineEnabled(_ bool: Bool)
     @objc optional func theme_isLinkDetectionEnabled(_ bool: Bool)
@@ -40,6 +44,12 @@ open class FTThemesManager {
     
     //MARK: Theme components
     public class func generateVisualThemes(forClass name: String, withStyleName styleName: String, withSubStyleName subStyle: String? = nil) -> FTThemeDic? {
+        
+        var styleName = styleName
+        
+        if let subStyle = subStyle, !styleName.contains(":") {
+            styleName = styleName + ":" + subStyle
+        }
         
         guard let currentTheme: FTThemeDic = FTThemesManager.getViewComponent(name, styleName: styleName)
             else { //print("Theme of type \(styleName) not avaialble for class \(name)" )

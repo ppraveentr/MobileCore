@@ -50,10 +50,13 @@ open class FTBaseView: FTView {
     }
     
     func restConstraints() {
-        var cont: [NSLayoutConstraint] = self.mainPinnedView.constraints
-        cont.removeAll()
+        self.mainPinnedView.removeAllConstraints()
+        
+        //TODO: TopView
         
         self.pin(view: self.mainPinnedView)
+        
+        //TODO: BottomView
     }
 }
 

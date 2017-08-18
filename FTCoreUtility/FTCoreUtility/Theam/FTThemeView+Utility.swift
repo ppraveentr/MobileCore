@@ -8,6 +8,21 @@
 
 import Foundation
 
+struct ThemeStyle {
+    static let defaultStyle = "default"
+    static let highlightedStyle = "highlighted"
+    static let selectedStyle = "selected"
+    static let disabledStyle = "disabled"
+    
+    static func allStyles() -> [String] {
+        return [ThemeStyle.defaultStyle,
+                ThemeStyle.highlightedStyle,
+                ThemeStyle.selectedStyle,
+                ThemeStyle.disabledStyle]
+    }
+}
+
+
 extension UIView {
     
     class func __setupThemes__() {        
@@ -64,6 +79,27 @@ public extension UIView {
             else { return }
         
         self.swizzled_updateTheme(themeDic)
+        
+        //TODO: have to remove duplicate style
+        if let subType = delegate?.get_AllThemeSubType?(), subType == true {
+            
+            let baseName = themeName.components(separatedBy: ":").first
+
+            var styles: FTThemeDic = [themeName: themeDic]
+            
+            ThemeStyle.allStyles().forEach({ (style) in
+                
+                if let styleThemeDic = FTThemesManager.generateVisualThemes(forClass: className,
+                                                                       withStyleName: baseName!,
+                                                                       withSubStyleName: style) {
+                    
+                    styles[style] = styleThemeDic
+                    
+                }
+            })
+            
+            delegate?.setThemes?(styles)
+        }
     }
     
     fileprivate func get_ThemeName() -> (String, String)? {

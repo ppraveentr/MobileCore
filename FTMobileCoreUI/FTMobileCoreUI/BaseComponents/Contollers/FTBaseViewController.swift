@@ -22,6 +22,36 @@ open class FTBaseViewController : UIViewController {
                                     constant: 0.0).isActive = true
     }
     
-    public var mainView: FTView? { return self.baseView.mainPinnedView }
+    public var mainView: FTView? {
 
+        //If baseView is not added, then retun nil
+        if self.baseView.superview != self.view { return nil }
+        
+        return self.baseView.mainPinnedView
+    }
+    
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.post(name: .FTMobileCoreUI_ViewController_DidLoad, object: self)
+    }
+    
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.post(name: .FTMobileCoreUI_ViewController_WillAppear, object: self)
+    }
+    
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.post(name: .FTMobileCoreUI_ViewController_DidAppear, object: self)
+    }
+    
+    open override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.post(name: .FTMobileCoreUI_ViewController_WillDisappear, object: self)
+    }
+    
+    open override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.post(name: .FTMobileCoreUI_ViewController_DidDisappear, object: self)
+    }
 }

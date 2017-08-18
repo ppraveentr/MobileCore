@@ -1,10 +1,10 @@
 {
     "type": "Themes",
     "color": {
-        "default": "#FFFFFF",
+        "default": "#000000",
         "AA": "#16c5ce",
         "clear": "clear",
-        "black": "#FFFFFF",
+        "black": "#000000",
         "red": "#b70b39",
         "blue": "#1059ce",
         "green": "#10ce1a",
@@ -24,6 +24,25 @@
         "FTView": {
             "default": {
                 "backgroundColor": "clear"
+            }
+        },
+        "FTButton": {
+            "default": {
+                "textfont": "system14",
+                "textcolor": "black",
+                "backgroundColor": "clear"
+            },
+            "button14R": {
+                "_super": "default",
+                "textcolor": "red"
+            },
+            "button14R:highlighted": {
+                "_super": "default",
+                "textcolor": "green"
+            },
+            "button14R:disabled": {
+                "_super": "default",
+                "textcolor": "yellow"
             }
         },
         "FTLabel": {

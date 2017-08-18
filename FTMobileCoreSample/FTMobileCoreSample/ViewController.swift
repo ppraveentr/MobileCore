@@ -45,32 +45,37 @@ class ViewController: FTBaseViewController {
         bottomL.theme = "system14Y"
         
         scrollView.contentView.pin(view: label, withEdgeOffsets: FTEdgeOffsets(30, 50, 0, 0), withEdgeInsets: [ .Left, .Top ])
-
-//        label.addSizeConstraint(200,200)
-//        labelM.addSizeConstraint(20,20)
-//        labelM1.addSizeConstraint(10,30)
-//        labelM2.addSizeConstraint(100,100)
-//        bottomL.addSizeConstraint(50,40)
         
         scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, bottomL],
                                          withLayoutDirection: .LeftToRight, paddingBetween: 25,
                                          withEdgeInsets: [.TopMargin, .AutoMargin])
 
-        let left = FTLabel()
-        left.backgroundColor = .magenta
-        left.text = "left dwds"
-        scrollView.contentView.stackView(views: [labelM,left], withLayoutDirection: .TopToBottom, paddingBetween: 10,
+        let button = FTButton()
+        button.theme = "button14R"
+        button.setTitle("Tap me", for: .normal)
+        
+        let buttonD = FTButton()
+        buttonD.theme = "button14R"
+        buttonD.setTitle("Disabled", for: .normal)
+        buttonD.isEnabled = false
+        
+        scrollView.contentView.stackView(views: [labelM,button,buttonD],
+                                         withLayoutDirection: .TopToBottom,
+                                         paddingBetween: 10,
                                          withEdgeInsets: [.LeadingMargin])
         
-        scrollView.contentView.pin(view: left, withEdgeOffsets: FTEdgeOffsets(30, 50, 0, 0),
-                                   withEdgeInsets: [ .Left, .Bottom, .AutoSize ],
-                                   withLayoutPriority: UILayoutPriorityDefaultLow)
-
         
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            label.removeFromSuperview()
-        }
+        
+//        scrollView.contentView.pin(view: button, withEdgeOffsets: FTEdgeOffsets(30, 50, 0, 0),
+//                                   withEdgeInsets: [ .Left, .Bottom, .AutoSize ],
+//                                   withLayoutPriority: UILayoutPriorityDefaultLow)
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//            label.removeFromSuperview()
+//        }
+        
+        
         
     }
     
