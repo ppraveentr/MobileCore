@@ -75,7 +75,7 @@ open class FTLabel : FTUILabel, NSLayoutManagerDelegate {
     }
 }
 
-extension FTLabel: FTUILabelThemeProtocol {
+extension FTLabel: FTUILabelThemeProperyProtocol {
     
     public var theme_linkUndelineEnabled: Bool {
         set {
