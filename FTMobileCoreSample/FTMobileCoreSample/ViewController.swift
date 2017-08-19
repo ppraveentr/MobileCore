@@ -53,18 +53,21 @@ class ViewController: FTBaseViewController {
         let button = FTButton()
         button.theme = "button14R"
         button.setTitle("Tap me", for: .normal)
+//        button.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 10, 5)
+//        button.setImage(UIImage(named: "Pp"), for: .normal)
         
-        let buttonD = FTButton()
-        buttonD.theme = "button14R"
+        let buttonD = UIButton()
+//        buttonD.theme = "button14R"
         buttonD.setTitle("Disabled", for: .normal)
+        buttonD.setTitleColor(UIColor.red, for: .normal)
+//        buttonD.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 0, 0)
+//        buttonD.setImage(UIImage(named: "Pp"), for: .normal)
+
         buttonD.isEnabled = false
-        
         scrollView.contentView.stackView(views: [labelM,button,buttonD],
                                          withLayoutDirection: .TopToBottom,
                                          paddingBetween: 10,
                                          withEdgeInsets: [.LeadingMargin])
-        
-        
         
         
 //        scrollView.contentView.pin(view: button, withEdgeOffsets: FTEdgeOffsets(30, 50, 0, 0),

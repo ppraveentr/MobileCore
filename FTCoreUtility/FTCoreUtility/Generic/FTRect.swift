@@ -26,4 +26,69 @@ public extension CGRect {
     func getHeight() -> CGFloat {
         return self.size.height
     }
+    
+    public mutating func normalize() -> CGRect {
+        if !self.origin.x.isFinite {
+            self.origin.x = 0.0
+        }
+        
+        if !self.origin.y.isFinite {
+            self.origin.y = 0.0
+        }
+        
+        if !self.size.width.isFinite {
+            self.size.width = 0.0
+        }
+        
+        if !self.size.height.isFinite {
+            self.size.height = 0.0
+        }
+        
+        return self
+    }
+}
+
+/**
+ Outsets a CGSize with the insets in a UIEdgeInsets.
+ */
+public func FTEdgeInsetsOutsetSize(size: CGSize, insets: UIEdgeInsets) -> CGSize {
+    return CGSize(width: insets.left + size.width + insets.right,
+                  height: insets.top + size.height + insets.bottom);
+}
+
+/**
+ Insets a CGSize with the insets in a UIEdgeInsets.
+ */
+public func FTEdgeInsetsInsetSize(size: CGSize, insets: UIEdgeInsets) -> CGSize {
+    var rect: CGRect = .zero
+    rect.size = size;
+    return UIEdgeInsetsInsetRect(rect, insets).size;
+}
+
+/**
+ CGSize of text based.
+ */
+public func FTTextSize(text: String?, font: UIFont,
+                          constrainedSize: CGSize,
+                          lineBreakMode: NSLineBreakMode) -> CGSize
+{
+    guard let text = text, (text.length > 0) else {
+        return .zero
+    }
+    
+    let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.lineBreakMode = lineBreakMode;
+    
+    let attributes: [String : Any] = [
+        NSFontAttributeName: font,
+        NSParagraphStyleAttributeName: paragraphStyle,
+    ]
+    
+    let attributedString = NSAttributedString(string: text, attributes: attributes)
+    
+    let size = attributedString.boundingRect(with: constrainedSize,
+                                  options: [.usesDeviceMetrics, .usesLineFragmentOrigin, .usesFontLeading],
+                                  context: nil).size
+    
+    return FTCeilForSize(size)
 }

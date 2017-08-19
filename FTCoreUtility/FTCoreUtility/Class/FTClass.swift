@@ -75,7 +75,7 @@ public func getClassPropertyNames(_ myClass: Any) -> Dictionary<String,Any>? {
     return results
 }
 
-//String Extention
+//String Extension
 public extension String {
     
     func get_propertyAttributeWithBaseType() -> Any {

@@ -12,10 +12,10 @@ public func get_classNameAsString(obj: Any) -> String? {
     return FTReflection.swiftStringFromClass(obj)
 }
 
-//String Extention
+//String Extension
 public extension String {
     
-    //String Extention
+    //String Extension
     func getClassInstance () -> AnyClass? {
         return FTReflection.swiftClassTypeFromString(self)
     }
