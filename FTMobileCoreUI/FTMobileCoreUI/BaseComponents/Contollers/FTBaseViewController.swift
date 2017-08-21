@@ -10,24 +10,22 @@ import UIKit
 
 open class FTBaseViewController : UIViewController {
     
-    public lazy var baseView: FTBaseView = FTBaseView()
+    @IBOutlet
+    public lazy var baseView: FTBaseView? = self.getBaseView()
     
     open override func loadView() {
         super.loadView()
         
-        self.view.pin(view: self.baseView, withEdgeInsets: [.Horizontal, .Bottom])
-        
-        //Pin view bellow status bar
-        self.baseView.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor,
-                                    constant: 0.0).isActive = true
+        //SetupBase by invoking it
+        _ = self.baseView
     }
     
     public var mainView: FTView? {
 
         //If baseView is not added, then retun nil
-        if self.baseView.superview != self.view { return nil }
+        if self.baseView?.superview != self.view { return nil }
         
-        return self.baseView.mainPinnedView
+        return self.baseView?.mainPinnedView
     }
     
     open override func viewDidLoad() {
@@ -53,5 +51,24 @@ open class FTBaseViewController : UIViewController {
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         NotificationCenter.default.post(name: .FTMobileCoreUI_ViewController_DidDisappear, object: self)
+    }
+}
+
+extension FTBaseViewController {
+    
+    func getBaseView() -> FTBaseView {
+        
+        let local = FTBaseView()
+        
+        self.view.pin(view: local, withEdgeInsets: [.Horizontal, .Bottom])
+        
+        //Pin view bellow status bar
+        local.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor,
+                                   constant: 0.0).isActive = true
+        
+        local.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor,
+                                   constant: 0.0).isActive = true
+        
+        return local
     }
 }

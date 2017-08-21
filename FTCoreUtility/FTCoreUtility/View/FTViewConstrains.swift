@@ -102,6 +102,7 @@ public struct FTEdgeInsets: OptionSet {
             }
         }
         
+        //AutoMargin, needs to have equalSize to adjust sizing
         if self.contains(.AutoMargin) {
             //TODO: Update to remove .EqualSize
             self.update(with: .EqualSize)
@@ -287,9 +288,9 @@ public extension UIView {
         }
     }
     
-    public func stackView(views: [UIView], withLayoutDirection direction: FTLayoutDirection = .TopToBottom,
-                          paddingBetween: CGFloat = 0, withEdgeInsets edgeInsets: FTEdgeInsets = .None,
-                          withLayoutPriority priority: UILayoutPriority = UILayoutPriorityRequired) {
+    public func stackView(views: [UIView], layoutDirection direction: FTLayoutDirection = .TopToBottom,
+                          spacing: CGFloat = 0, edgeInsets: FTEdgeInsets = .None,
+                          layoutPriority priority: UILayoutPriority = UILayoutPriorityRequired) {
         
         //Add views to subView, if not present
         views.forEach { (view) in
@@ -319,7 +320,7 @@ public extension UIView {
             }
         }
         
-        //Pin each view to nextView with zeroOffSet-paddingBetween, with lower priority.
+        //Pin each view to nextView with zeroOffSet-spacing, with lower priority.
         //Used of .AutoMargin edgeInsets,
         //If any view is removed, this will reset the remaningViews to defaults
         let pairSubViews = { (index: Int, offSet: FTEdgeOffsets, subEdgeInsets: FTEdgeInsets) in
@@ -350,11 +351,11 @@ public extension UIView {
             var offSet: FTEdgeOffsets = .FTEdgeOffsetsZero()
             
             if direction == .TopToBottom {
-                offSet = FTEdgeOffsets(0, 0, 0, -paddingBetween)
+                offSet = FTEdgeOffsets(0, 0, 0, -spacing)
                 localEdgeInsets.update(with: .TopBottomMargin)
                 
             } else {
-                offSet = FTEdgeOffsets(paddingBetween, 0, 0, 0)
+                offSet = FTEdgeOffsets(spacing, 0, 0, 0)
                 localEdgeInsets.update(with: .LeftRightMargin)
             }
             

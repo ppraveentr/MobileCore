@@ -16,16 +16,13 @@ class ViewController: FTBaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.baseView.theme = "default"
+//        self.baseView?.theme = "default"
         
         let scrollView = FTScrollView()
-        self.mainView?.pin(view: scrollView)
-        
-        let restyledString: NSMutableAttributedString = NSAttributedString(string: "top").mutableCopy() as! NSMutableAttributedString
-        restyledString.addAttribute(NSParagraphStyleAttributeName, value: NSMutableParagraphStyle(), range: NSMakeRange(0, restyledString.length))
+        self.mainView?.pin(view: scrollView, withEdgeInsets: [.TopMargin, .Horizontal])
 
         let label = FTLabel()
-        label.attributedText = restyledString
+        label.text = "top"
         label.theme = "system14AA"
         
         let labelM = FTLabel()
@@ -44,11 +41,11 @@ class ViewController: FTBaseViewController {
         bottomL.text = "bottom"
         bottomL.theme = "system14Y"
         
-        scrollView.contentView.pin(view: label, withEdgeOffsets: FTEdgeOffsets(30, 50, 0, 0), withEdgeInsets: [ .Left, .Top ])
+        scrollView.contentView.pin(view: label, withEdgeOffsets: FTEdgeOffsets(20, 20, 20, 20), withEdgeInsets: [ .Left, .Vertical ])
         
         scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, bottomL],
-                                         withLayoutDirection: .LeftToRight, paddingBetween: 25,
-                                         withEdgeInsets: [.TopMargin, .AutoMargin])
+                                         layoutDirection: .LeftToRight, spacing: 20,
+                                         edgeInsets: [.Vertical, .AutoSize, .TopMargin])
 
         let button = FTButton()
         button.theme = "button14R"
@@ -56,18 +53,15 @@ class ViewController: FTBaseViewController {
 //        button.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 10, 5)
 //        button.setImage(UIImage(named: "Pp"), for: .normal)
         
-        let buttonD = UIButton()
-//        buttonD.theme = "button14R"
+        let buttonD = FTButton()
+        buttonD.theme = "button14R"
         buttonD.setTitle("Disabled", for: .normal)
-        buttonD.setTitleColor(UIColor.red, for: .normal)
-//        buttonD.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 0, 0)
-//        buttonD.setImage(UIImage(named: "Pp"), for: .normal)
-
         buttonD.isEnabled = false
-        scrollView.contentView.stackView(views: [labelM,button,buttonD],
-                                         withLayoutDirection: .TopToBottom,
-                                         paddingBetween: 10,
-                                         withEdgeInsets: [.LeadingMargin])
+        
+        self.mainView?.stackView(views: [scrollView, button, buttonD],
+                                 layoutDirection: .TopToBottom,
+                                 spacing: 10,
+                                 edgeInsets: [ .CenterXMargin ])
         
         
 //        scrollView.contentView.pin(view: button, withEdgeOffsets: FTEdgeOffsets(30, 50, 0, 0),

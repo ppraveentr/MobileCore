@@ -11,38 +11,24 @@ import Foundation
 //CGRect
 public extension CGRect {
     
-    func getX() -> CGFloat {
-        return self.origin.x
-    }
+    //Usefull if used in ObjC
+    func getX() -> CGFloat { return self.origin.x }
     
-    func getY() -> CGFloat {
-        return self.origin.y
-    }
+    func getY() -> CGFloat { return self.origin.y }
     
-    func getWidth() -> CGFloat {
-        return self.size.width
-    }
+    func getWidth() -> CGFloat { return self.size.width }
     
-    func getHeight() -> CGFloat {
-        return self.size.height
-    }
+    func getHeight() -> CGFloat { return self.size.height }
     
     public mutating func normalize() -> CGRect {
-        if !self.origin.x.isFinite {
-            self.origin.x = 0.0
-        }
         
-        if !self.origin.y.isFinite {
-            self.origin.y = 0.0
-        }
+        if !self.minX.isFinite { self.origin.x = 0.0 }
         
-        if !self.size.width.isFinite {
-            self.size.width = 0.0
-        }
+        if !self.minY.isFinite { self.origin.y = 0.0 }
         
-        if !self.size.height.isFinite {
-            self.size.height = 0.0
-        }
+        if !self.width.isFinite { self.size.width = 0.0 }
+        
+        if !self.height.isFinite { self.size.height = 0.0 }
         
         return self
     }

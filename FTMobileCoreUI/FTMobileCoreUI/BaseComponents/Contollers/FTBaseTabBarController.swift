@@ -1,5 +1,5 @@
 //
-//  FTBaseTabBarContoller.swift
+//  FTBaseTabBarController.swift
 //  FTMobileCoreUI
 //
 //  Created by Praveen Prabhakar on 18/08/17.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-open class FTBaseTabBarContoller: UITabBarController {
+open class FTBaseTabBarController: UITabBarController {
     
 }

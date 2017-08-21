@@ -19,6 +19,7 @@
 		DE9221D21EF28CDF000C8FC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D01EF28CDF000C8FC7 /* Main.storyboard */; };
 		DE9221D41EF28CDF000C8FC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D31EF28CDF000C8FC7 /* Assets.xcassets */; };
 		DE9221D71EF28CDF000C8FC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D51EF28CDF000C8FC7 /* LaunchScreen.storyboard */; };
+		DEA7E1AA1F498B070002C148 /* FTSampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7E1A91F498B070002C148 /* FTSampleTableViewController.swift */; };
 		DEBDC8941EF4508900AC77A9 /* FTMobileCoreSample-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = DEBDC8931EF4508900AC77A9 /* FTMobileCoreSample-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DEBDC8B61EF45CC700AC77A9 /* SampleJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = DEBDC8B51EF45CC700AC77A9 /* SampleJSON.json */; };
 		DEC55DDA1EF2968700FAE024 /* MDASample.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DD91EF2968700FAE024 /* MDASample.swift */; };
@@ -122,6 +123,7 @@
 		DE9221D31EF28CDF000C8FC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE9221D61EF28CDF000C8FC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE9221D81EF28CDF000C8FC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DEA7E1A91F498B070002C148 /* FTSampleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTSampleTableViewController.swift; sourceTree = "<group>"; };
 		DEBDC8931EF4508900AC77A9 /* FTMobileCoreSample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTMobileCoreSample-Bridging-Header.h"; sourceTree = "<group>"; };
 		DEBDC8A21EF4520100AC77A9 /* FTMobileCoreSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FTMobileCoreSample.entitlements; sourceTree = "<group>"; };
 		DEBDC8AF1EF45C9F00AC77A9 /* Schemas.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Schemas.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,6 +250,7 @@
 				DE680BA11F2E02FF00A9F68C /* Resources */,
 				DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */,
 				DE9221CE1EF28CDF000C8FC7 /* ViewController.swift */,
+				DEA7E1A91F498B070002C148 /* FTSampleTableViewController.swift */,
 				DE9221D01EF28CDF000C8FC7 /* Main.storyboard */,
 				DE9221D31EF28CDF000C8FC7 /* Assets.xcassets */,
 				DE9221D51EF28CDF000C8FC7 /* LaunchScreen.storyboard */,
@@ -525,6 +528,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE9221CF1EF28CDF000C8FC7 /* ViewController.swift in Sources */,
+				DEA7E1AA1F498B070002C148 /* FTSampleTableViewController.swift in Sources */,
 				DEC55DDA1EF2968700FAE024 /* MDASample.swift in Sources */,
 				DE9221CD1EF28CDF000C8FC7 /* AppDelegate.swift in Sources */,
 			);

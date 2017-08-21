@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sqI-ag-JdF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -8,7 +8,44 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="nKO-jR-bcy">
+            <objects>
+                <tabBarController id="sqI-ag-JdF" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="jWJ-5Z-Gou">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="9mj-Ni-aFM"/>
+                        <segue destination="PY1-io-weO" kind="relationship" relationship="viewControllers" id="fuF-hl-6hL"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5C3-Sb-CCO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-876" y="-743"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="eHg-nt-jsg">
+            <objects>
+                <viewController id="PY1-io-weO" customClass="FTSampleTableViewController" customModule="FTMobileCoreSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gio-Kd-8Vg"/>
+                        <viewControllerLayoutGuide type="bottom" id="JoG-VV-eap"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="brM-M4-SXY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="1Pw-RW-gxV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MLD-PF-mVT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-87" y="-503"/>
+        </scene>
+        <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FTMobileCoreSample" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,11 +56,28 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aor-vE-5kh" customClass="FTBaseView" customModule="FTMobileCoreUI">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <color key="backgroundColor" red="1" green="0.56898993180000002" blue="0.5228666153" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="aor-vE-5kh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="QUZ-QZ-t1b"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="aor-vE-5kh" secondAttribute="bottom" id="bUE-pD-VyE"/>
+                            <constraint firstAttribute="trailing" secondItem="aor-vE-5kh" secondAttribute="trailing" id="hR1-oy-hYu"/>
+                            <constraint firstItem="aor-vE-5kh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="v47-9M-wAt"/>
+                        </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="n7k-Jm-TaY"/>
+                    <connections>
+                        <outlet property="baseView" destination="aor-vE-5kh" id="SO5-gh-Yxo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-86" y="-1190"/>
         </scene>
     </scenes>
 </document>

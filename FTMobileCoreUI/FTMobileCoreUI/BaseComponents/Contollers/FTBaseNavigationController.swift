@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+open class FTBaseNavigationController: UINavigationController {
+    
+}

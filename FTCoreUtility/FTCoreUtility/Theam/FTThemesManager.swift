@@ -82,14 +82,11 @@ open class FTThemesManager {
     //TODO: gradian, rgb, alpha, ...
     open class func getColor(_ colorName: String?) -> UIColor? {
         
-        if
-            let colorName = colorName,
-            colorName.hasPrefix("#"),
-            let hexColor = UIColor.hexColor(colorName) {
-            return hexColor
-        }
+        if let hexColor = UIColor.hexColor(colorName ?? "") { return hexColor }
         
         let color: String = FTThemesManager.getDefaults(type: .Color, keyName: colorName) as? String ?? ""
+        
+        if let hexColor = UIColor.hexColor(color) { return hexColor }
         
         if color == "clear" {
             return UIColor.clear

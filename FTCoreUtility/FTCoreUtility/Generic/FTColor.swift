@@ -21,10 +21,10 @@ public extension UIColor {
     
     public convenience init(rgb: UInt32, a: CGFloat = 1.0) {
         self.init(
-            red: CGFloat(rgb >> 16 & 0xFF),
-            green: CGFloat(rgb >> 8 & 0xFF),
-            blue: CGFloat(rgb >> 0 & 0xFF),
-            alpha: a
+            red: (rgb >> 16 & 0xFF),
+            green: (rgb >> 8 & 0xFF),
+            blue: (rgb >> 0 & 0xFF),
+            a: a
         )
     }
     
@@ -38,10 +38,13 @@ public extension UIColor {
     }
     
     public class func hexColor (_ hex:String) -> UIColor? {
+        
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
         if (cString.hasPrefix("#")) {
             cString.remove(at: cString.startIndex)
+        }else {
+            return nil
         }
         
         if ((cString.characters.count) != 6 && (cString.characters.count) != 8) {
