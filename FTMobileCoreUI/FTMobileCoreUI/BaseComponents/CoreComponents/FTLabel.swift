@@ -8,6 +8,7 @@
 
 import Foundation
 
+@IBDesignable
 open class FTLabel : FTUILabel, NSLayoutManagerDelegate {
     
     public lazy var textStorage: NSTextStorage = self.getTextStorage()

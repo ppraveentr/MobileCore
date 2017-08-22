@@ -10,7 +10,7 @@ import Foundation
 
 public extension UIColor {
     
-    public convenience init(red: UInt32, green: UInt32, blue: UInt32, a: CGFloat = 1.0) {
+     fileprivate convenience init(red: UInt32, green: UInt32, blue: UInt32, a: CGFloat = 1.0) {
         self.init(
             red: CGFloat(red) / 255.0,
             green: CGFloat(green) / 255.0,
@@ -59,5 +59,24 @@ public extension UIColor {
         Scanner(string: cString).scanHexInt32(&rgbValue)
         
         return UIColor(rgba: rgbValue)
+    }
+    
+    public func generateImage(opacity: CGFloat = 1, contextSize: CGSize = CGSize(width: 1, height: 1), contentsScale: CGFloat = CGFloat.greatestFiniteMagnitude) -> UIImage {
+        
+        let rect = CGRect(origin: .zero, size: contextSize)
+        
+        if contentsScale == CGFloat.greatestFiniteMagnitude {
+            UIGraphicsBeginImageContext(contextSize)
+        }else {
+            UIGraphicsBeginImageContextWithOptions(contextSize, false, contentsScale)
+        }
+        
+        let context = UIGraphicsGetCurrentContext()
+        context!.setFillColor(self.cgColor)
+        context!.setAlpha(opacity)
+        context!.fill(rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
     }
 }

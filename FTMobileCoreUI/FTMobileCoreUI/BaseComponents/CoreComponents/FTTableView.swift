@@ -8,6 +8,7 @@
 
 import Foundation
 
+@IBDesignable
 open class FTTableView: UITableView {
     
 }

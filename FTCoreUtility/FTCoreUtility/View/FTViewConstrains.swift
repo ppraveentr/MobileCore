@@ -346,18 +346,18 @@ public extension UIView {
         
         var lastView: UIView? = nil
         
+        var offSet: FTEdgeOffsets = .FTEdgeOffsetsZero()
+        
+        if direction == .TopToBottom {
+            offSet = FTEdgeOffsets(0, 0, 0, -spacing)
+            localEdgeInsets.update(with: .TopBottomMargin)
+            
+        } else {
+            offSet = FTEdgeOffsets(spacing, 0, 0, 0)
+            localEdgeInsets.update(with: .LeftRightMargin)
+        }
+        
         views.enumerated().forEach { (index, view) in
-            
-            var offSet: FTEdgeOffsets = .FTEdgeOffsetsZero()
-            
-            if direction == .TopToBottom {
-                offSet = FTEdgeOffsets(0, 0, 0, -spacing)
-                localEdgeInsets.update(with: .TopBottomMargin)
-                
-            } else {
-                offSet = FTEdgeOffsets(spacing, 0, 0, 0)
-                localEdgeInsets.update(with: .LeftRightMargin)
-            }
             
             if (lastView != nil) {
                 lastView?.pin(view: view, withEdgeOffsets: offSet, withEdgeInsets: localEdgeInsets,

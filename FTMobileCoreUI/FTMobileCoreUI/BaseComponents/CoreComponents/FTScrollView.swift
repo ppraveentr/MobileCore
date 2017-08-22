@@ -8,6 +8,7 @@
 
 import Foundation
 
+@IBDesignable
 open class FTScrollView: UIScrollView {
     
     public lazy var contentView: FTView = self.setupContentView()

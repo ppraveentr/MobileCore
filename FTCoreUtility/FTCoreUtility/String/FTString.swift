@@ -23,6 +23,11 @@ public extension String {
         })
     }
 
+    //Color
+    func hexColor() -> UIColor? {
+        return UIColor.hexColor(self)
+    }
+    
 //MARK: String Size
     
     func trimming(string: String) -> String? {

@@ -14,9 +14,32 @@ class ViewController: FTBaseViewController {
 //        return true
 //    }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-//        self.baseView?.theme = "default"
+        //MARK: TopView
+        let button = FTButton()
+        button.theme = "button14R"
+        button.setTitle("Tap me", for: .normal)
+        //        button.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 10, 5)
+        //        button.setImage(UIImage(named: "Pp"), for: .normal)
+        
+        let buttonD = FTButton()
+        buttonD.theme = "button14R"
+        buttonD.setTitle("Disabled", for: .normal)
+        buttonD.isEnabled = false
+        
+        let topView = FTView()
+        topView.pin(view: button, withEdgeOffsets: FTEdgeOffsets(20, 20, 20, 20), withEdgeInsets: [ .Left, .Vertical ])
+        topView.stackView(views: [button, buttonD],
+                          layoutDirection: .LeftToRight,
+                          spacing: 10,
+                          edgeInsets: [ .CenterYMargin, .EqualSize ])
+        
+        self.baseView?.topPinnedView = topView
+        
+        
+        //MARK: MainView
         
         let scrollView = FTScrollView()
         self.mainView?.pin(view: scrollView, withEdgeInsets: [.TopMargin, .Horizontal])
@@ -47,34 +70,12 @@ class ViewController: FTBaseViewController {
                                          layoutDirection: .LeftToRight, spacing: 20,
                                          edgeInsets: [.Vertical, .AutoSize, .TopMargin])
 
-        let button = FTButton()
-        button.theme = "button14R"
-        button.setTitle("Tap me", for: .normal)
-//        button.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 10, 5)
-//        button.setImage(UIImage(named: "Pp"), for: .normal)
-        
-        let buttonD = FTButton()
-        buttonD.theme = "button14R"
-        buttonD.setTitle("Disabled", for: .normal)
-        buttonD.isEnabled = false
-        
-        self.mainView?.stackView(views: [scrollView, button, buttonD],
-                                 layoutDirection: .TopToBottom,
-                                 spacing: 10,
-                                 edgeInsets: [ .CenterXMargin ])
-        
-        
-//        scrollView.contentView.pin(view: button, withEdgeOffsets: FTEdgeOffsets(30, 50, 0, 0),
-//                                   withEdgeInsets: [ .Left, .Bottom, .AutoSize ],
-//                                   withLayoutPriority: UILayoutPriorityDefaultLow)
         
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
 //            label.removeFromSuperview()
 //        }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        
+        //MARK: TODO: Service
                 
         try? FTModelConfig.loadModelSchema(["MDASample": ["identifier":"id"] ])
         

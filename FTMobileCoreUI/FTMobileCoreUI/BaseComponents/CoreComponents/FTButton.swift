@@ -8,6 +8,7 @@
 
 import Foundation
 
+@IBDesignable
 open class FTButton: FTUIButton {}
 
 //open class FTButton: FTUIButton {

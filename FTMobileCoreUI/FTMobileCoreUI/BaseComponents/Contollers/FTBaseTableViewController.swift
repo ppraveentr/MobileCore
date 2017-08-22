@@ -67,12 +67,51 @@ open class FTBaseTableViewController: FTBaseViewController {
 extension FTBaseTableViewController {
     
     func getTableView() -> FTCoreTableViewController {
+        
         let local = self.class_TableViewController()
         
         self.addChildViewController(local)
         
         self.mainView?.pin(view: local.view)
         
+        //Set default Cell
+        local.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "kCellIdentifer")
+
+        local.tableView.dataSource = self
+        local.tableView.delegate = self
+        
         return local
     }
 }
+
+extension FTBaseTableViewController: UITableViewDataSource {
+    
+    //For calculating TableCell height
+    open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "kCellIdentifer", for: indexPath)
+        
+        return cell
+    }
+}
+
+extension FTBaseTableViewController: UITableViewDelegate {
+
+    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+
+}
+

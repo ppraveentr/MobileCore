@@ -14,6 +14,8 @@ open class FTAppDelegate: UIResponder, UIApplicationDelegate {
     
     open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        FTReflection.registerBundleIdentifier([application.self,FTAppDelegate.self])
+
         return true
     }
     

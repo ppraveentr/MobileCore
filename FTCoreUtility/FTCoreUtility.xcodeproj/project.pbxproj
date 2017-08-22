@@ -10,6 +10,7 @@
 		DE098AB71F36375500675878 /* FTReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE098AB61F36375500675878 /* FTReflection.swift */; };
 		DE098ACF1F37659000675878 /* FTUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE098ACC1F37659000675878 /* FTUILabel.swift */; };
 		DE098AD01F37659000675878 /* FTUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE098ACD1F37659000675878 /* FTUIView.swift */; };
+		DE4383A91F4B0960003DF8A7 /* FTImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4383A81F4B0960003DF8A7 /* FTImageView.swift */; };
 		DE680B1D1F2BBD9500A9F68C /* FTCoreUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE680B131F2BBD9500A9F68C /* FTCoreUtility.framework */; };
 		DE680B221F2BBD9500A9F68C /* FTCoreUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B211F2BBD9500A9F68C /* FTCoreUtilityTests.swift */; };
 		DE680B241F2BBD9500A9F68C /* FTCoreUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = DE680B161F2BBD9500A9F68C /* FTCoreUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -60,6 +61,7 @@
 		DE098AB61F36375500675878 /* FTReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTReflection.swift; sourceTree = "<group>"; };
 		DE098ACC1F37659000675878 /* FTUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUILabel.swift; sourceTree = "<group>"; };
 		DE098ACD1F37659000675878 /* FTUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIView.swift; sourceTree = "<group>"; };
+		DE4383A81F4B0960003DF8A7 /* FTImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTImageView.swift; sourceTree = "<group>"; };
 		DE680B131F2BBD9500A9F68C /* FTCoreUtility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FTCoreUtility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE680B161F2BBD9500A9F68C /* FTCoreUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTCoreUtility.h; sourceTree = "<group>"; };
 		DE680B171F2BBD9500A9F68C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				DE680B9A1F2CF86500A9F68C /* FTAssociatedObject.swift */,
 				DE680BC51F30ED9C00A9F68C /* FTColor.swift */,
 				DEA7E1311F48282E0002C148 /* FTMath.swift */,
+				DE4383A81F4B0960003DF8A7 /* FTImageView.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE4383A91F4B0960003DF8A7 /* FTImageView.swift in Sources */,
 				DE680B6B1F2BC19D00A9F68C /* FTClass.swift in Sources */,
 				DE9854261F4717DF001AFF89 /* FTUIButton.swift in Sources */,
 				DE098AD01F37659000675878 /* FTUIView.swift in Sources */,

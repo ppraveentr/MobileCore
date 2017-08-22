@@ -11,23 +11,25 @@ import UIKit
 open class FTBaseViewController : UIViewController {
     
     @IBOutlet
-    public lazy var baseView: FTBaseView? = self.getBaseView()
+    public var baseView: FTBaseView? = FTBaseView()
     
     open override func loadView() {
-        super.loadView()
+        //Make it as Views RooView
+        self.view = self.baseView
         
-        //SetupBase by invoking it
-        _ = self.baseView
+        //Setup baseView's topLayoutGuide & bottomLayoutGuide
+        setupBaseView()
     }
     
     public var mainView: FTView? {
 
         //If baseView is not added, then retun nil
-        if self.baseView?.superview != self.view { return nil }
+        if self.baseView?.superview != self.view, self.view != self.baseView { return nil }
         
         return self.baseView?.mainPinnedView
     }
     
+    //MARK: Notification whenever view is loaded
     open override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.post(name: .FTMobileCoreUI_ViewController_DidLoad, object: self)
@@ -56,19 +58,18 @@ open class FTBaseViewController : UIViewController {
 
 extension FTBaseViewController {
     
-    func getBaseView() -> FTBaseView {
+    func setupBaseView() {
         
-        let local = FTBaseView()
+        let local = self.baseView?.rootView
         
-        self.view.pin(view: local, withEdgeInsets: [.Horizontal, .Bottom])
+//        self.view.pin(view: local, withEdgeInsets: [.Horizontal, .Bottom])
         
-        //Pin view bellow status bar
-        local.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor,
+        /* Pin view bellow status bar */
+        local?.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor,
                                    constant: 0.0).isActive = true
         
-        local.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor,
+        local?.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor,
                                    constant: 0.0).isActive = true
         
-        return local
     }
 }
