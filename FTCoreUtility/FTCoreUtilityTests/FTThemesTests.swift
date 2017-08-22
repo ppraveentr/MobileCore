@@ -74,6 +74,6 @@ class FTThemesTests: XCTestCase {
     }
     
     func testHashColor() {
-        print("\n color #FFFFFF00 : ", FTThemesManager.getColor("#FFFFFF00")!)
+        print("\n color #FFFFFF00 : ", FTThemesManager.getColor("#F3F3F3F8")!)
     }
 }

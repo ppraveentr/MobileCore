@@ -10,55 +10,26 @@ import Foundation
 
 public extension UIColor {
     
-     fileprivate convenience init(red: UInt32, green: UInt32, blue: UInt32, a: CGFloat = 1.0) {
-        self.init(
-            red: CGFloat(red) / 255.0,
-            green: CGFloat(green) / 255.0,
-            blue: CGFloat(blue) / 255.0,
-            alpha: a
-        )
-    }
-    
-    public convenience init(rgb: UInt32, a: CGFloat = 1.0) {
-        self.init(
-            red: (rgb >> 16 & 0xFF),
-            green: (rgb >> 8 & 0xFF),
-            blue: (rgb >> 0 & 0xFF),
-            a: a
-        )
-    }
-    
-    public convenience init(rgba: UInt32) {
-        self.init(
-            red: (rgba >> 24 & 0xFF),
-            green: (rgba >> 16 & 0xFF),
-            blue: (rgba >> 8 & 0xFF),
-            a: CGFloat(rgba >> 0 & 0xFF)
-        )
-    }
-    
     public class func hexColor (_ hex:String) -> UIColor? {
+                
+        let cString:String = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted).uppercased()
         
-        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        var int = UInt32()
+        Scanner(string: cString).scanHexInt32(&int)
         
-        if (cString.hasPrefix("#")) {
-            cString.remove(at: cString.startIndex)
-        }else {
+        let a, r, g, b: UInt32
+        switch hex.characters.count-1 {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
             return nil
         }
         
-        if ((cString.characters.count) != 6 && (cString.characters.count) != 8) {
-            return nil
-        }
-        
-        if ((cString.characters.count) == 6) {
-            cString.append("FF")
-        }
-        
-        var rgbValue:UInt32 = 0
-        Scanner(string: cString).scanHexInt32(&rgbValue)
-        
-        return UIColor(rgba: rgbValue)
+        return UIColor(colorLiteralRed: Float(r), green: Float(g), blue: Float(b), alpha: Float(a) / 255)
     }
     
     public func generateImage(opacity: CGFloat = 1, contextSize: CGSize = CGSize(width: 1, height: 1), contentsScale: CGFloat = CGFloat.greatestFiniteMagnitude) -> UIImage {
