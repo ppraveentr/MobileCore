@@ -15,7 +15,6 @@
 		DE98541B1F46FE1C001AFF89 /* FTMobileCoreUIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE98541A1F46FE1C001AFF89 /* FTMobileCoreUIConstants.swift */; };
 		DE98541E1F4705BE001AFF89 /* FTBaseScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE98541D1F4705BE001AFF89 /* FTBaseScrollViewController.swift */; };
 		DE9854201F4715A5001AFF89 /* FTBaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE98541F1F4715A5001AFF89 /* FTBaseTabBarController.swift */; };
-		DE9854221F471678001AFF89 /* FTTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9854211F471678001AFF89 /* FTTabBar.swift */; };
 		DEA4ED881F4CA8EA00C15C11 /* FTNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA4ED871F4CA8EA00C15C11 /* FTNavigationBar.swift */; };
 		DEA7E1A81F4983200002C148 /* FTTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7E1A71F4983200002C148 /* FTTableView.swift */; };
 		DEB5697A1F17DC2600B5F187 /* FTConstrainsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB569791F17DC2600B5F187 /* FTConstrainsTests.swift */; };
@@ -99,7 +98,6 @@
 		DE98541A1F46FE1C001AFF89 /* FTMobileCoreUIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMobileCoreUIConstants.swift; sourceTree = "<group>"; };
 		DE98541D1F4705BE001AFF89 /* FTBaseScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseScrollViewController.swift; sourceTree = "<group>"; };
 		DE98541F1F4715A5001AFF89 /* FTBaseTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseTabBarController.swift; sourceTree = "<group>"; };
-		DE9854211F471678001AFF89 /* FTTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTTabBar.swift; sourceTree = "<group>"; };
 		DEA4ED871F4CA8EA00C15C11 /* FTNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTNavigationBar.swift; sourceTree = "<group>"; };
 		DEA7E1A71F4983200002C148 /* FTTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTTableView.swift; sourceTree = "<group>"; };
 		DEB569771F17DC2600B5F187 /* FTMobileCoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,7 +213,6 @@
 				DEB569861F17E0A100B5F187 /* FTScrollView.swift */,
 				DEB569881F17E0AB00B5F187 /* FTWebView.swift */,
 				DEB5698A1F17E0B400B5F187 /* FTButton.swift */,
-				DE9854211F471678001AFF89 /* FTTabBar.swift */,
 				DEA7E1A71F4983200002C148 /* FTTableView.swift */,
 			);
 			path = CoreComponents;
@@ -391,7 +388,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE98541E1F4705BE001AFF89 /* FTBaseScrollViewController.swift in Sources */,
-				DE9854221F471678001AFF89 /* FTTabBar.swift in Sources */,
 				DEB569911F17E12100B5F187 /* FTBaseTableViewController.swift in Sources */,
 				DED539D51F13C4E60055BECA /* FTBaseView.swift in Sources */,
 				DEB5698D1F17E0E500B5F187 /* FTContentView.swift in Sources */,

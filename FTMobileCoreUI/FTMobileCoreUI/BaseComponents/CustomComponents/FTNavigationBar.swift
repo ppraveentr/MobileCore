@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class FTExtendedNavigationBarView: FTUIView {
+open class FTExtendedNavigationBarView: FTView {
     
     /**
      *  Called when the view is about to be displayed.  May be called more than

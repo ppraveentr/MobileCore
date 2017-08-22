@@ -44,17 +44,14 @@ open class FTBaseView: FTView {
     
     func setupView() {
         
+        self.mainPinnedView.backgroundColor = UIColor.clear
+        self.rootView.backgroundColor = UIColor.clear
+
         //Set lowerPriority to avoid contraint issues with viewControllers's rootView
         self.pin(view: rootView, withLayoutPriority: UILayoutPriorityRequired-1)
 
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor.white
         self.restConstraints()
-    }
-    
-    open override var backgroundColor: UIColor?{
-        didSet {
-            self.mainPinnedView.backgroundColor = self.backgroundColor
-        }
     }
     
     func restConstraints() {
@@ -70,6 +67,7 @@ open class FTBaseView: FTView {
         //Embed in Temp view to auto-size the view layout
         if topPinnedView != nil {
             let tempView = FTView()
+            tempView.backgroundColor = UIColor.clear
             tempView.pin(view: topPinnedView!, withEdgeInsets: [.All, .AutoSize])
             viewArray.append(tempView)
         }
@@ -79,6 +77,7 @@ open class FTBaseView: FTView {
         //Embed in Temp view to auto-size the view layout
         if bottomPinnedView != nil {
             let tempView = FTView()
+            tempView.backgroundColor = UIColor.clear
             tempView.pin(view: bottomPinnedView!, withEdgeInsets: [.All, .AutoSize])
             viewArray.append(tempView)
         }
