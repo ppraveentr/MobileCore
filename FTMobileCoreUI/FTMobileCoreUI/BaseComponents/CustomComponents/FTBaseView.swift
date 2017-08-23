@@ -68,7 +68,7 @@ open class FTBaseView: FTView {
         if topPinnedView != nil {
             let tempView = FTView()
             tempView.backgroundColor = UIColor.clear
-            tempView.pin(view: topPinnedView!, withEdgeInsets: [.All, .AutoSize])
+            tempView.pin(view: topPinnedView!, withEdgeInsets: [.All])
             viewArray.append(tempView)
         }
         
@@ -78,7 +78,7 @@ open class FTBaseView: FTView {
         if bottomPinnedView != nil {
             let tempView = FTView()
             tempView.backgroundColor = UIColor.clear
-            tempView.pin(view: bottomPinnedView!, withEdgeInsets: [.All, .AutoSize])
+            tempView.pin(view: bottomPinnedView!, withEdgeInsets: [.All])
             viewArray.append(tempView)
         }
         

@@ -30,11 +30,13 @@ class ViewController: FTBaseViewController {
         buttonD.isEnabled = false
         
         let topView = FTView()
-        topView.pin(view: button, withEdgeOffsets: FTEdgeOffsets(20, 20, 20, 20), withEdgeInsets: [ .Left, .Vertical ])
+        topView.pin(view: button, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Left, .Vertical ])
+        topView.pin(view: buttonD, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Right ])
+
         topView.stackView(views: [button, buttonD],
                           layoutDirection: .LeftToRight,
-                          spacing: 10,
-                          edgeInsets: [ .CenterYMargin, .EqualSize ])
+                          spacing: 20,
+                          edgeInsets: [ .TopMargin, .EqualSize ])
         
         self.baseView?.topPinnedView = topView
         
@@ -64,11 +66,12 @@ class ViewController: FTBaseViewController {
         bottomL.text = "bottom"
         bottomL.theme = "system14Y"
         
-        scrollView.contentView.pin(view: label, withEdgeOffsets: FTEdgeOffsets(20, 20, 20, 20), withEdgeInsets: [ .Left, .Vertical ])
-        
+        scrollView.contentView.pin(view: label, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Left, .Vertical ])
+        scrollView.contentView.pin(view: bottomL, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Right ])
+
         scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, bottomL],
                                          layoutDirection: .LeftToRight, spacing: 20,
-                                         edgeInsets: [.Vertical, .AutoSize, .TopMargin])
+                                         edgeInsets: [.AutoSize, .TopMargin])
 
         
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -77,13 +80,13 @@ class ViewController: FTBaseViewController {
         
         //MARK: TODO: Service
                 
-        try? FTModelConfig.loadModelSchema(["MDASample": ["identifier":"id"] ])
-        
-        let sample = try? MDASample.init(dictionary: ["id":"sample", "amount":["usd":23.3]])
-//        sample?.amount = 32.2
-        
-        print(sample?.toJSONString() ?? "")
-        print(sample?.toDictionary() ?? "")
+//        try? FTModelConfig.loadModelSchema(["MDASample": ["identifier":"id"] ])
+//        
+//        let sample = try? MDASample.init(dictionary: ["id":"sample", "amount":["usd":23.3]])
+////        sample?.amount = 32.2
+//        
+//        print(sample?.toJSONString() ?? "")
+//        print(sample?.toDictionary() ?? "")
         
 //        let sample = FTDataModel.dataModelOfType("MDASample", withJSON: ["id":"sample"]) as? MDASample
 //        sample?.amount = 32.2

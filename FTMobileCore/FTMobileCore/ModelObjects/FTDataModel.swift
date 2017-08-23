@@ -10,8 +10,8 @@ import Foundation
 import ObjectiveC.runtime
 import ObjectiveC.message
 
-open class FTDataModel : JSONModel {
-    
+//open class FTDataModel : JSONModel {
+
 //    var jsonData: JSON = [:]
 //    var classType: AnyClass = FTDataModel.self
 //    var schemaType: JSON = [:]
@@ -46,9 +46,9 @@ open class FTDataModel : JSONModel {
 //            print("schemaKey not avaialble ::key : \(key) value: \(String(describing: value))")
 //        }
 //    }
-}
+//}
 
-extension FTDataModel { //: NSObjectProtocol {
+//extension FTDataModel { //: NSObjectProtocol {
 
 //    func updateValues() {
 //        
@@ -56,10 +56,10 @@ extension FTDataModel { //: NSObjectProtocol {
 //            self.setValue(value, forKey: key)
 //        }
 //    }
-}
+//}
+//
+//extension FTDataModel {
 
-extension FTDataModel {
- 
 //    public class func dataModelOfType(_ baseClass: String, withJSON dic: JSON) -> Any? {
 //        
 //        guard let cls = baseClass.getClassInstance() as? FTDataModel.Type else { return nil }
@@ -68,10 +68,10 @@ extension FTDataModel {
 //        
 //        return cls.init(jsonData:dic, baseClass: cls, schema:schema!)
 //    }
-}
+//}
+//
+//extension FTDataModel {
 
-extension FTDataModel {
-    
 //    func __setup__ ()  {
 //            
 //        let properties = getClassPropertyNames(self)
@@ -80,5 +80,5 @@ extension FTDataModel {
 //
 //    }
     
-}
+//}
 

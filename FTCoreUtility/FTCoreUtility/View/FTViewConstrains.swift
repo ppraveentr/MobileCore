@@ -13,6 +13,20 @@ public enum FTLayoutDirection {
     case LeftToRight
 }
 
+//public struct FTLayoutDirection: OptionSet {
+//    
+//    public let rawValue: UInt
+//    public init(rawValue: UInt) { self.rawValue = rawValue }
+//    public init(_ rawValue: UInt) { self.rawValue = rawValue }
+//    
+//    public static let TopToBottom = FTLayoutDirection(rawValue: 1 << 0)
+//    public static let LeftToRight = FTLayoutDirection(rawValue: 1 << 1)
+//    
+////    public static let PinFirstAlone = FTLayoutDirection(rawValue: 1 << 3)
+////    public static let PinLastAlone = FTLayoutDirection(rawValue: 1 << 4)
+////    public static let PinBothSides:FTLayoutDirection = [ .PinFirstAlone, .PinLastAlone ]
+//}
+
 public struct FTEdgeOffsets {
     
     public var left: CGFloat
@@ -67,6 +81,11 @@ public struct FTEdgeInsets: OptionSet {
     public static let CenterMargin: FTEdgeInsets = [.CenterXMargin, .CenterYMargin]
     public static let AutoMargin = FTEdgeInsets(rawValue: 1 << 11)
     
+    //Private
+//    fileprivate static let AllLayoutMargin: FTEdgeInsets = [.LeadingMargin, .TrailingMargin,
+//                                                            .TopMargin, .BottomMargin,
+//                                                            .CenterMargin, .AutoMargin]
+
     fileprivate static let TopLayoutMargin = FTEdgeInsets(rawValue: 1 << 12)
     fileprivate static let LeftLayoutMargin = FTEdgeInsets(rawValue: 1 << 13)
     fileprivate static let TopBottomMargin = FTEdgeInsets(rawValue: 1 << 14)
@@ -76,6 +95,8 @@ public struct FTEdgeInsets: OptionSet {
     public static let EqualWidth = FTEdgeInsets(rawValue: 1 << 16)
     public static let EqualHeight = FTEdgeInsets(rawValue: 1 << 17)
     public static let EqualSize: FTEdgeInsets = [.EqualWidth, .EqualHeight]
+    //Note: 'AutoSize', should be only used if we are stacking View, 
+    //else if used in normal 'pin' UI will break.
     public static let AutoSize = FTEdgeInsets(rawValue: 1 << 18)
 
     
@@ -109,6 +130,38 @@ public struct FTEdgeInsets: OptionSet {
             self.update(with: .AutoSize)
         }
     }
+    
+//    //Remove inValid Constrains
+//    func stanitize(forFirstLastView direction: FTLayoutDirection, forFirstView isFirstView: Bool) -> FTEdgeInsets {
+//        
+//        var local = self
+//        
+//        local.remove([.AllLayoutMargin, .EqualSize, .AutoSize])
+//        
+//        if direction == .TopToBottom {
+//            
+//            local.remove(.Vertical)
+//
+//            if isFirstView {
+//                local.remove(.Bottom)
+//            }else {
+//                local.remove(.Top)
+//            }
+//            
+//        }else{
+//            local.remove(.Horizontal)
+//            
+//            if isFirstView {
+//                local.remove(.Right)
+//            }else {
+//                local.remove(.Left)
+//            }
+//        }
+//        
+//        //local.remove(.All)
+//        
+//        return local
+//    }
 }
 
 public extension UIView {
@@ -162,9 +215,9 @@ public extension UIView {
         }
         if edgeInsets.contains(.LeftLayoutMargin) {
             //Top
-            let constraintTop = view.topAnchor.constraint(equalTo: self.topAnchor, constant: 0)
-            constraintTop.priority = priority
-            localConstraint.append(constraintTop)
+//            let constraintTop = view.topAnchor.constraint(equalTo: self.topAnchor, constant: FTEdgeOffsets.top)
+//            constraintTop.priority = priority
+//            localConstraint.append(constraintTop)
 
             let constraint = view.leftAnchor.constraint(equalTo: self.leftAnchor, constant: FTEdgeOffsets.left)
             constraint.priority = priority
@@ -173,6 +226,11 @@ public extension UIView {
             let constraintRight = view.rightAnchor.constraint(equalTo: self.rightAnchor, constant: FTEdgeOffsets.getRight())
             constraintRight.priority = priority
             localConstraint.append(constraintRight)
+            
+            //Top
+//            let constraintBottom = view.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: FTEdgeOffsets.getBottom())
+//            constraintBottom.priority = priority
+//            localConstraint.append(constraintBottom)
         }
         
         //Right
@@ -305,7 +363,7 @@ public extension UIView {
         //Pin each view to self with Default-padding, with lower priority.
         //Used of .AutoMargin edgeInsets, 
         //If any view is removed, this will reset the remaningViews to defaults
-        let pinEachView = { (index: Int, view: UIView) in
+        let pinEachViewToSuperView = { (index: Int, view: UIView) in
             
             //Fix to
             let priorityL = priority - Float(views.count + index)
@@ -323,7 +381,7 @@ public extension UIView {
         //Pin each view to nextView with zeroOffSet-spacing, with lower priority.
         //Used of .AutoMargin edgeInsets,
         //If any view is removed, this will reset the remaningViews to defaults
-        let pairSubViews = { (index: Int, offSet: FTEdgeOffsets, subEdgeInsets: FTEdgeInsets) in
+        let pinPairSubViews = { (index: Int, offSet: FTEdgeOffsets, subEdgeInsets: FTEdgeInsets) in
             
             let pos = index + 1
             var localIndex = 0
@@ -343,7 +401,7 @@ public extension UIView {
         //For Each View
         var localEdgeInsets: FTEdgeInsets = edgeInsets
         localEdgeInsets.stanitize(forDirection: direction)
-        
+
         var lastView: UIView? = nil
         
         var offSet: FTEdgeOffsets = .FTEdgeOffsetsZero()
@@ -369,12 +427,30 @@ public extension UIView {
             if(localEdgeInsets.contains(.AutoMargin)) {
                 
                 //Pin each view to self with Default-padding.
-                pinEachView(index, view)
+                pinEachViewToSuperView(index, view)
                 
                 //Pin each view to nextView with offSet-padding.
-                pairSubViews(index, offSet, localEdgeInsets)
+                pinPairSubViews(index, offSet, localEdgeInsets)
             }
         }
+        
+        
+//        //Pin First and LastView
+//        
+//        let pinViewToSuperView = { (tempView: UIView, isFirstView: Bool) in
+//            
+//            let flEdgeInsets = edgeInsets.stanitize(forFirstLastView: direction, forFirstView: isFirstView)
+//            self.pin(view: tempView, withEdgeOffsets: FTEdgeOffsets(spacing), withEdgeInsets:flEdgeInsets, withLayoutPriority:priority)
+//        }
+//        
+//        if direction.contains(.PinFirstAlone), let tempView = views.first {
+//            pinViewToSuperView(tempView, true)
+//        }
+//        
+//        if direction.contains(.PinLastAlone), let tempView = views.last {
+//            pinViewToSuperView(tempView, false)
+//        }
+
     }
     
     //Sets height & width of the View
@@ -429,9 +505,11 @@ public extension UIView {
     //Incudes Negative screen offset
     func  resizeToFitSubviews() {
         
-        let reducedSize = subviews.reduce(CGSize.zero) { (point, view) -> CGSize in
-            return CGSize(width: max(point.width, view.frame.maxX), height: max(point.height, view.frame.maxY))
-        }
+        let reducedSize = self.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+       
+//        let reducedSize = subviews.reduce(CGSize.zero) { (point, view) -> CGSize in
+//            return CGSize(width: max(point.width, view.frame.maxX), height: max(point.height, view.frame.maxY))
+//        }
         
         //if screen size changes, update layout again
         if !self.frame.size.equalTo(reducedSize) {

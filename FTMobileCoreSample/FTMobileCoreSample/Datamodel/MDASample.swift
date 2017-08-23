@@ -9,16 +9,16 @@
 import UIKit
 import FTMobileCore
 
-class MDASample : FTDataModel {
-    var identifier:String?
-    var amount: Decimal? = 0.0
-//    var isValid:Bool = false
-//    var date:NSDate?
-//    var accList:NSMutableArray?
-//    var dicList:NSMutableDictionary?
-    
-    open override class func keyMapper() -> JSONKeyMapper! {
-        return JSONKeyMapper(modelToJSONDictionary: ["identifier":"id","amount":"amount.usd"])
-    }
-}
+//class MDASample : FTDataModel {
+//    var identifier:String?
+//    var amount: Decimal? = 0.0
+////    var isValid:Bool = false
+////    var date:NSDate?
+////    var accList:NSMutableArray?
+////    var dicList:NSMutableDictionary?
+//    
+//    open override class func keyMapper() -> JSONKeyMapper! {
+//        return JSONKeyMapper(modelToJSONDictionary: ["identifier":"id","amount":"amount.usd"])
+//    }
+//}
 
