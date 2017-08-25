@@ -16,6 +16,7 @@
 		DE98541E1F4705BE001AFF89 /* FTBaseScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE98541D1F4705BE001AFF89 /* FTBaseScrollViewController.swift */; };
 		DE9854201F4715A5001AFF89 /* FTBaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE98541F1F4715A5001AFF89 /* FTBaseTabBarController.swift */; };
 		DEA4ED881F4CA8EA00C15C11 /* FTNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA4ED871F4CA8EA00C15C11 /* FTNavigationBar.swift */; };
+		DEA4EDBF1F4F246D00C15C11 /* FTMobileCoreUI.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEA4EDBE1F4F246D00C15C11 /* FTMobileCoreUI.xcassets */; };
 		DEA7E1A81F4983200002C148 /* FTTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7E1A71F4983200002C148 /* FTTableView.swift */; };
 		DEB5697A1F17DC2600B5F187 /* FTConstrainsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB569791F17DC2600B5F187 /* FTConstrainsTests.swift */; };
 		DEB5697C1F17DC2600B5F187 /* FTMobileCoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1485161F10B13600A250A6 /* FTMobileCoreUI.framework */; };
@@ -99,6 +100,7 @@
 		DE98541D1F4705BE001AFF89 /* FTBaseScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseScrollViewController.swift; sourceTree = "<group>"; };
 		DE98541F1F4715A5001AFF89 /* FTBaseTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseTabBarController.swift; sourceTree = "<group>"; };
 		DEA4ED871F4CA8EA00C15C11 /* FTNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTNavigationBar.swift; sourceTree = "<group>"; };
+		DEA4EDBE1F4F246D00C15C11 /* FTMobileCoreUI.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FTMobileCoreUI.xcassets; sourceTree = "<group>"; };
 		DEA7E1A71F4983200002C148 /* FTTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTTableView.swift; sourceTree = "<group>"; };
 		DEB569771F17DC2600B5F187 /* FTMobileCoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEB569791F17DC2600B5F187 /* FTConstrainsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTConstrainsTests.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 		DE1485181F10B13600A250A6 /* FTMobileCoreUI */ = {
 			isa = PBXGroup;
 			children = (
+				DEA4EDBD1F4F246D00C15C11 /* Resources */,
 				DE1485651F1159E600A250A6 /* Utilites */,
 				DE14855E1F1159BD00A250A6 /* BaseComponents */,
 				DE1485191F10B13600A250A6 /* FTMobileCoreUI.h */,
@@ -226,6 +229,14 @@
 			);
 			name = Utilites;
 			path = BaseComponents/Utilites;
+			sourceTree = "<group>";
+		};
+		DEA4EDBD1F4F246D00C15C11 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DEA4EDBE1F4F246D00C15C11 /* FTMobileCoreUI.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		DEB569781F17DC2600B5F187 /* FTMobileCoreUITests */ = {
@@ -370,6 +381,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEA4EDBF1F4F246D00C15C11 /* FTMobileCoreUI.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

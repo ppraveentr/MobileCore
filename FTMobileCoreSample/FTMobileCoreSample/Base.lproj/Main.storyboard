@@ -81,7 +81,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="n7k-Jm-TaY"/>
                     <connections>
-                        <outlet property="baseView" destination="aor-vE-5kh" id="SO5-gh-Yxo"/>
+                        <outlet property="baseView" destination="aor-vE-5kh" id="9OM-Vu-mW3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

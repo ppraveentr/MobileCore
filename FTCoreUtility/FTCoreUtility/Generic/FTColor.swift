@@ -59,9 +59,6 @@ public extension UIColor {
         return UIColor(red: r, green: g, blue: b, a: CGFloat(a) / 255.0)
     }
     
-    
-
-    
     public func generateImage(opacity: CGFloat = 1, contextSize: CGSize = CGSize(width: 1, height: 1), contentsScale: CGFloat = CGFloat.greatestFiniteMagnitude) -> UIImage {
         
         let rect = CGRect(origin: .zero, size: contextSize)
@@ -79,5 +76,27 @@ public extension UIColor {
         let img = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return img!
+    }
+}
+
+public extension UIImage {
+    
+    public func getColor(atPoint: CGPoint = CGPoint(x: 1, y: 1) ) -> UIColor?{
+        
+        guard
+            let pixelData = self.cgImage?.dataProvider?.data,
+            let data = CFDataGetBytePtr(pixelData) else {
+            return nil
+        }
+        
+//        let pixelInfo: Int = Int((self.size.width  * atPoint.y) + atPoint.x ) * 4; // The image is png
+        let pixelInfo: Int = Int(0) * 4; // The image is png
+        
+        let red = data[pixelInfo]
+        let green = data[(pixelInfo + 1)]
+        let blue = data[pixelInfo + 2]
+        let alpha = data[pixelInfo + 3]
+        
+        return UIColor(red: UInt32(red), green: UInt32(green), blue: UInt32(blue), a: CGFloat(alpha) / 255.0)
     }
 }

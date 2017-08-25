@@ -11,7 +11,7 @@ import UIKit
 open class FTBaseViewController : UIViewController {
     
     @IBOutlet
-    public var baseView: FTBaseView? = FTBaseView()
+    lazy open var baseView: FTBaseView? = FTBaseView()
     
     open override func loadView() {
         //Make it as Views RooView

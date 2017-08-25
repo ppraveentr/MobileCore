@@ -82,6 +82,60 @@ extension FTBaseTableViewController {
         
         return local
     }
+    
+    override open func viewDidLayoutSubviews() {
+        
+        self.updateTableViewHeaderViewHeight()
+        
+        super.viewDidLayoutSubviews()
+        
+        DispatchQueue.main.async {
+            if self.tableView.tableHeaderView != nil || self.tableView.tableFooterView != nil {
+                self.updateTableViewHeaderViewHeight()
+            }
+        }
+    }
+    
+    /**
+     tableView's tableViewHeaderView contains wrapper view, which height is evaluated
+     with Auto Layout. Here I use evaluated height and update tableView's
+     tableViewHeaderView's frame.
+     
+     New height for tableViewHeaderView is applied not without magic, that's why
+     I call -resetTableViewHeaderView.
+     And again, this doesn't work due to some internals of UITableView,
+     so -resetTableViewHeaderView call is scheduled in the main run loop.
+     */
+    func updateTableViewHeaderViewHeight() {
+        
+        // get height of the wrapper and apply it to a header
+        if let view = self.tableView.tableHeaderView {
+            var Frame = self.tableView.tableHeaderView?.frame
+            view.resizeToFitSubviews()
+            Frame?.size.height = (view.frame.size.height)
+            Frame?.size.width = self.tableView.frame.width
+            self.tableView.tableHeaderView?.frame = Frame!
+        }
+        
+        if let view = self.tableView.tableFooterView {
+            var Frame = self.tableView.tableFooterView?.frame
+            view.resizeToFitSubviews()
+            Frame?.size.height = (view.frame.size.height)
+            Frame?.size.width = self.tableView.frame.width
+            self.tableView.tableFooterView?.frame = Frame!
+        }
+        
+        DispatchQueue.main.async {
+            // whew, this could be animated!
+            UIView.beginAnimations("tableHeaderView", context: nil)
+            self.tableView.tableHeaderView = self.tableView.tableHeaderView
+            UIView.commitAnimations()
+            
+            UIView.beginAnimations("tableFooterView", context: nil)
+            self.tableView.tableFooterView = self.tableView.tableFooterView
+            UIView.commitAnimations()
+        }
+    }
 }
 
 extension FTBaseTableViewController: UITableViewDataSource {

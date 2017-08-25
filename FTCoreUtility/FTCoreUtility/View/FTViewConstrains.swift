@@ -458,7 +458,7 @@ public extension UIView {
     //If invoked after ".AutoSize or addSelfSizing", the view will not auto-resize the width & height.
     public func addSizeConstraint(_ width: CGFloat = -10, _ height: CGFloat = -10){
         
-        self.viewLayoutConstraint.autoSizing = false
+        self.viewLayoutConstraint.autoSizing = true
 
         self.translatesAutoresizingMaskIntoConstraints = false
         
@@ -503,7 +503,7 @@ public extension UIView {
     }
     
     //Incudes Negative screen offset
-    func  resizeToFitSubviews() {
+    func resizeToFitSubviews() {
         
         let reducedSize = self.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
        
@@ -515,8 +515,8 @@ public extension UIView {
         if !self.frame.size.equalTo(reducedSize) {
 
             self.frame.size = reducedSize
-            self.setViewSize(reducedSize)
-            
+            self.setViewSize(reducedSize, relation: .equal)
+                        
             //Update Screen layout
 //            DispatchQueue.main.async {
 //                self.superview?.setNeedsLayout()
@@ -533,6 +533,11 @@ public extension UIView {
         
         public var constraintWidth: NSLayoutConstraint?
         public var constraintHeight: NSLayoutConstraint?
+        
+        public var heightDimension: NSLayoutDimension?
+        public var widthDimension: NSLayoutDimension?
+
+
     }
     
     fileprivate static let aoLayoutConstraint = FTAssociatedObject<FTViewLayoutConstraint>()
@@ -551,34 +556,68 @@ public extension UIView {
         }
     }
     
-    public func setViewSize(_ size: CGSize, createConstraint: Bool = false) {
-        self.setViewHeight(size.height, createConstraint: createConstraint)
-        self.setViewWidth(size.width, createConstraint: createConstraint)
+    public func setViewSize(_ size: CGSize, createConstraint: Bool = false, relation:  NSLayoutRelation = .greaterThanOrEqual) {
+        self.setViewHeight(size.height, createConstraint: createConstraint, relation: relation)
+        self.setViewWidth(size.width, createConstraint: createConstraint, relation: relation)
     }
     
-    public func setViewHeight(_ height: CGFloat, createConstraint: Bool = false) {
+    public func setViewHeight(_ height: CGFloat, createConstraint: Bool = false, relation:  NSLayoutRelation = .greaterThanOrEqual) {
         
         if createConstraint || self.viewLayoutConstraint.autoSizing {
             let con = self.viewLayoutConstraint
             
-            if con.constraintHeight == nil {
-                con.constraintHeight =  self.heightAnchor.constraint(greaterThanOrEqualToConstant: height)
+            if con.constraintHeight == nil || (createConstraint && con.constraintHeight?.relation != relation) {
+                
+                con.heightDimension = self.heightAnchor
+                
+                switch relation {
+                    
+                case .equal:
+                    con.constraintHeight =  self.heightAnchor.constraint(equalToConstant: height)
+                    break
+                    
+                case .lessThanOrEqual:
+                    con.constraintHeight =  self.heightAnchor.constraint(lessThanOrEqualToConstant: height)
+                    break
+                    
+                default:
+                    con.constraintHeight =  self.heightAnchor.constraint(greaterThanOrEqualToConstant: height)
+                }
+                
                 con.constraintHeight?.isActive = true
-            }else {
+            }
+            else {
                 con.constraintHeight?.constant = height
             }
         }
     }
     
-    public func setViewWidth(_ width: CGFloat, createConstraint: Bool = false) {
+    public func setViewWidth(_ width: CGFloat, createConstraint: Bool = false, relation:  NSLayoutRelation = .greaterThanOrEqual) {
         
         if createConstraint || self.viewLayoutConstraint.autoSizing {
             let con = self.viewLayoutConstraint
             
-            if con.constraintWidth == nil {
-                con.constraintWidth =  self.widthAnchor.constraint(greaterThanOrEqualToConstant: width)
+            if con.constraintWidth == nil || (createConstraint && con.constraintWidth?.relation != relation) {
+                
+                con.widthDimension = self.widthAnchor
+
+                switch relation {
+                    
+                case .equal:
+                    con.constraintWidth =  self.widthAnchor.constraint(equalToConstant: width)
+                    break
+
+                case .lessThanOrEqual:
+                    con.constraintWidth =  self.widthAnchor.constraint(lessThanOrEqualToConstant: width)
+                    break
+                    
+                default:
+                    con.constraintWidth =  self.widthAnchor.constraint(greaterThanOrEqualToConstant: width)
+                }
+                
                 con.constraintWidth?.isActive = true
-            }else {
+            }
+            else {
                 con.constraintWidth?.constant = width
             }
         }

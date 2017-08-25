@@ -14,27 +14,28 @@ open class FTExtendedNavigationBarView: FTView {
      *  Called when the view is about to be displayed.  May be called more than
      *  once.
      */
-     override open func willMove(toWindow newWindow: UIWindow?) {
-        super.willMove(toWindow: newWindow)
-        
-        // Use the layer shadow to draw a one pixel hairline under this view.
-        layer.shadowOffset = CGSize(width: 0, height: CGFloat(1) / UIScreen.main.scale)
-        layer.shadowRadius = 0
-        
-        // UINavigationBar's hairline is adaptive, its properties change with
-        // the contents it overlies.  You may need to experiment with these
-        // values to best match your content.
-        layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).cgColor
-        layer.shadowOpacity = 0.25
-    }
+//     override open func willMove(toWindow newWindow: UIWindow?) {
+//        super.willMove(toWindow: newWindow)
+//        
+//        // Use the layer shadow to draw a one pixel hairline under this view.
+//        layer.shadowOffset = CGSize(width: 0, height: CGFloat(1) / UIScreen.main.scale)
+//        layer.shadowRadius = 0
+//        
+//        // UINavigationBar's hairline is adaptive, its properties change with
+//        // the contents it overlies.  You may need to experiment with these
+//        // values to best match your content.
+//        layer.shadowColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).cgColor
+//        layer.shadowOpacity = 0.25
+//    }
 }
 
-extension UINavigationBar {
+public extension UINavigationBar {
     
     /**
      *  Configures the navigation bar to use an image as its background.
      */
-    class func applyBackgroundImage(navigationBar: UINavigationBar?, defaultImage: UIImage = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).generateImage(), landScapeImage landScape: UIImage = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).generateImage()) {
+    public class func applyBackgroundImage(navigationBar: UINavigationBar?, defaultImage: UIImage = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).generateImage(), landScapeImage landScape: UIImage = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).generateImage()) {
+        
         // These background images contain a small pattern which is displayed
         // in the lower right corner of the navigation bar.
         var defaultImage = defaultImage
@@ -74,7 +75,7 @@ extension UINavigationBar {
      *  Configures the navigation bar to use a transparent background (see-through
      *  but without any blur).
      */
-    class func applyTransparentBackground(navigationBar: UINavigationBar?, _ opacity: CGFloat) {
+    public class func applyTransparentBackground(navigationBar: UINavigationBar?, _ opacity: CGFloat) {
         
         let navigationBar = navigationBar ?? UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
 
@@ -86,7 +87,7 @@ extension UINavigationBar {
         //
         // Below, background image is dynamically generated with the desired
         // opacity.
-        let transparentBackground: UIImage = UIColor.clear.generateImage(opacity: opacity,
+        let transparentBackground: UIImage = UIColor.white.generateImage(opacity: opacity,
                                                                          contentsScale: navigationBar.layer.contentsScale)
 
         navigationBar.setBackgroundImage(transparentBackground, for: .default)
@@ -96,7 +97,7 @@ extension UINavigationBar {
      *  Configures the navigation bar to use a custom color as its background.
      *  The navigation bar remains translucent.
      */
-    class func applyTintColor(navigationBar: UINavigationBar?, _ color: UIColor) {
+    public class func applyTintColor(navigationBar: UINavigationBar?, _ color: UIColor) {
         
         let navigationBar = navigationBar ?? UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
         

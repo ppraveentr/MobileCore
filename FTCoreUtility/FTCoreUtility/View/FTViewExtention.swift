@@ -10,10 +10,26 @@ import Foundation
 
 public extension UIView {
     
+    public class func embedView(contentView: UIView) -> UIView {
+        
+        let local = self.init()
+        local.backgroundColor = UIColor.clear
+        
+        local.pin(view: contentView, withEdgeInsets: [.All], withLayoutPriority: (UILayoutPriorityRequired - 1))
+        local.pin(view: contentView, withEdgeInsets: [.CenterMargin], withLayoutPriority: UILayoutPriorityDefaultLow)
+        local.pin(view: contentView, withEdgeInsets: [.EqualWidth, .Top])
+        
+        return local
+    }
+    
     public func removeSubviews() {
         for subview in subviews {
             subview.removeFromSuperview()
         }
+    }
+    
+    public class func getNIBFile() -> UINib? {
+        return UINib(nibName: get_classNameAsString(obj: self) ?? "", bundle: nil)
     }
     
     public class func fromNib(named name: String) -> UIView? {
@@ -32,5 +48,20 @@ public extension UIView {
     public func removeAllConstraints() {
         var cont: [NSLayoutConstraint] = self.constraints
         cont.removeAll()
+    }
+    
+    public func findShadowImage() -> UIImageView? {
+        
+        if self is UIImageView && self.bounds.size.height <= 1 {
+            return (self as! UIImageView)
+        }
+        
+        for subview in self.subviews {
+            if let imageView = subview.findShadowImage() {
+                return imageView
+            }
+        }
+        
+        return nil
     }
 }

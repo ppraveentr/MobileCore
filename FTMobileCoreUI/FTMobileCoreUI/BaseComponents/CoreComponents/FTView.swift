@@ -8,7 +8,6 @@
 
 import Foundation
 
-@IBDesignable
 open class FTView: FTUIView {
     
     open override func layoutSubviews() {

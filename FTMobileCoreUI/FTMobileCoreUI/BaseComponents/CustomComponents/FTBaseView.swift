@@ -8,7 +8,6 @@
 
 import Foundation
 
-@IBDesignable
 open class FTBaseView: FTView {
     
     //Set as BaseView, so that "pin'ning" subViews wont alter the base position
@@ -65,20 +64,18 @@ open class FTBaseView: FTView {
         var viewArray = [FTView]()
         
         //Embed in Temp view to auto-size the view layout
-        if topPinnedView != nil {
-            let tempView = FTView()
-            tempView.backgroundColor = UIColor.clear
-            tempView.pin(view: topPinnedView!, withEdgeInsets: [.All])
+        if
+            topPinnedView != nil,
+            let tempView = FTView.embedView(contentView: topPinnedView!) as? FTView {
             viewArray.append(tempView)
         }
         
         viewArray.append(mainPinnedView)
 
         //Embed in Temp view to auto-size the view layout
-        if bottomPinnedView != nil {
-            let tempView = FTView()
-            tempView.backgroundColor = UIColor.clear
-            tempView.pin(view: bottomPinnedView!, withEdgeInsets: [.All])
+        if
+            bottomPinnedView != nil,
+            let tempView = FTView.embedView(contentView: bottomPinnedView!) as? FTView {
             viewArray.append(tempView)
         }
         
@@ -95,6 +92,10 @@ open class FTBaseView: FTView {
         
         //Pin : BottomMargin of the lastView to Root
         rootView.pin(view: viewArray.last!, withEdgeInsets: [.BottomMargin])
+        
+        //Pin : MainView to margin
+        rootView.pin(view: self.mainPinnedView, withEdgeInsets: .Horizontal )
+
     }
 }
 

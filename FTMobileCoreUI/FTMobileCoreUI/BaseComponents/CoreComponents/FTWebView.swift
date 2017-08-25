@@ -9,7 +9,6 @@
 import Foundation
 import WebKit
 
-@IBDesignable
 open class FTWebView: WKWebView {
     
 //    public override func addSelfSizing() {
