@@ -80,7 +80,7 @@ open class FTBaseView: FTView {
         }
         
         //Pin : Top and Side - margin of the firstView to Root
-        rootView.pin(view: viewArray.first!, withEdgeInsets: [.TopMargin, .Horizontal])
+        rootView.pin(view: viewArray.first!, withEdgeInsets: [.Top, .Horizontal])
 
         if viewArray.count > 1 {
             
@@ -91,7 +91,7 @@ open class FTBaseView: FTView {
         }
         
         //Pin : BottomMargin of the lastView to Root
-        rootView.pin(view: viewArray.last!, withEdgeInsets: [.BottomMargin])
+        rootView.pin(view: viewArray.last!, withEdgeInsets: .Bottom)
         
         //Pin : MainView to margin
         rootView.pin(view: self.mainPinnedView, withEdgeInsets: .Horizontal )

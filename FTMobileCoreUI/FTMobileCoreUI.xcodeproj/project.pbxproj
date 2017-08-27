@@ -12,6 +12,8 @@
 		DE1485301F10B82100A250A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE14852F1F10B82100A250A6 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DE1485631F1159BD00A250A6 /* FTBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1485601F1159BD00A250A6 /* FTBaseViewController.swift */; };
 		DE1485641F1159BD00A250A6 /* FTLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1485621F1159BD00A250A6 /* FTLabel.swift */; };
+		DE29B6921F507AED00BE1529 /* FTSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE29B6911F507AED00BE1529 /* FTSearchBar.swift */; };
+		DE29B6991F509E7000BE1529 /* FTFloatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE29B6981F509E7000BE1529 /* FTFloatingView.swift */; };
 		DE98541B1F46FE1C001AFF89 /* FTMobileCoreUIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE98541A1F46FE1C001AFF89 /* FTMobileCoreUIConstants.swift */; };
 		DE98541E1F4705BE001AFF89 /* FTBaseScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE98541D1F4705BE001AFF89 /* FTBaseScrollViewController.swift */; };
 		DE9854201F4715A5001AFF89 /* FTBaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE98541F1F4715A5001AFF89 /* FTBaseTabBarController.swift */; };
@@ -96,6 +98,8 @@
 		DE14852F1F10B82100A250A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DE1485601F1159BD00A250A6 /* FTBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseViewController.swift; sourceTree = "<group>"; };
 		DE1485621F1159BD00A250A6 /* FTLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLabel.swift; sourceTree = "<group>"; };
+		DE29B6911F507AED00BE1529 /* FTSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTSearchBar.swift; sourceTree = "<group>"; };
+		DE29B6981F509E7000BE1529 /* FTFloatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTFloatingView.swift; sourceTree = "<group>"; };
 		DE98541A1F46FE1C001AFF89 /* FTMobileCoreUIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMobileCoreUIConstants.swift; sourceTree = "<group>"; };
 		DE98541D1F4705BE001AFF89 /* FTBaseScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseScrollViewController.swift; sourceTree = "<group>"; };
 		DE98541F1F4715A5001AFF89 /* FTBaseTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseTabBarController.swift; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 				DEB569881F17E0AB00B5F187 /* FTWebView.swift */,
 				DEB5698A1F17E0B400B5F187 /* FTButton.swift */,
 				DEA7E1A71F4983200002C148 /* FTTableView.swift */,
+				DE29B6911F507AED00BE1529 /* FTSearchBar.swift */,
 			);
 			path = CoreComponents;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 				DEA4ED871F4CA8EA00C15C11 /* FTNavigationBar.swift */,
 				DED539D41F13C4E60055BECA /* FTBaseView.swift */,
 				DEB5698C1F17E0E500B5F187 /* FTContentView.swift */,
+				DE29B6981F509E7000BE1529 /* FTFloatingView.swift */,
 			);
 			path = CustomComponents;
 			sourceTree = "<group>";
@@ -405,11 +411,13 @@
 				DEB5698D1F17E0E500B5F187 /* FTContentView.swift in Sources */,
 				DEB5698F1F17E11500B5F187 /* FTBaseNavigationController.swift in Sources */,
 				DE9854201F4715A5001AFF89 /* FTBaseTabBarController.swift in Sources */,
+				DE29B6921F507AED00BE1529 /* FTSearchBar.swift in Sources */,
 				DE1485641F1159BD00A250A6 /* FTLabel.swift in Sources */,
 				DEB569871F17E0A100B5F187 /* FTScrollView.swift in Sources */,
 				DEA7E1A81F4983200002C148 /* FTTableView.swift in Sources */,
 				DEA4ED881F4CA8EA00C15C11 /* FTNavigationBar.swift in Sources */,
 				DE98541B1F46FE1C001AFF89 /* FTMobileCoreUIConstants.swift in Sources */,
+				DE29B6991F509E7000BE1529 /* FTFloatingView.swift in Sources */,
 				DED539D21F13C4940055BECA /* FTView.swift in Sources */,
 				DEB569931F17E1D600B5F187 /* UIControl+FTActionBlock.swift in Sources */,
 				DEB5698B1F17E0B400B5F187 /* FTButton.swift in Sources */,

@@ -56,6 +56,8 @@ open class FTBaseTableViewController: FTBaseViewController {
     
     open func class_TableViewStyle() -> UITableViewStyle { return .plain }
     
+    open func class_TableViewEdgeOffsets() -> FTEdgeOffsets { return .FTEdgeOffsetsZero() }
+    
     open override func loadView() {
         super.loadView()
         
@@ -72,7 +74,7 @@ extension FTBaseTableViewController {
         
         self.addChildViewController(local)
         
-        self.mainView?.pin(view: local.view)
+        self.mainView?.pin(view: local.view, withEdgeOffsets: self.class_TableViewEdgeOffsets())
         
         //Set default Cell
         local.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "kCellIdentifer")

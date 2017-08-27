@@ -77,11 +77,36 @@ public extension UIColor {
         UIGraphicsEndImageContext()
         return img!
     }
+    
+    
+    func hexColor() -> String {
+        var r:CGFloat = 0
+        var g:CGFloat = 0
+        var b:CGFloat = 0
+        var a:CGFloat = 0
+        
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+        
+        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+        
+        return String(format:"#%06x", rgb)
+    }
+    
+//    func hexColor() -> String {
+//        
+//        let components = self.cgColor.components ?? [1,1,1]
+//
+//        let r = components.count > 0 ? components[0] : 1
+//        let g = components.count > 1 ? components[1] : 1
+//        let b = components.count > 2 ? components[2] : 1
+//        
+//        return String(format: "#%02X%02X%02X", arguments: [(Int)(r * 255), (Int)(g * 255), (Int)(b * 255)])
+//    }
 }
 
 public extension UIImage {
     
-    public func getColor(atPoint: CGPoint = CGPoint(x: 1, y: 1) ) -> UIColor?{
+    public func getColor(atPoint: CGPoint = CGPoint(x: 1, y: 1), a: CGFloat = -10) -> UIColor?{
         
         guard
             let pixelData = self.cgImage?.dataProvider?.data,
@@ -97,6 +122,6 @@ public extension UIImage {
         let blue = data[pixelInfo + 2]
         let alpha = data[pixelInfo + 3]
         
-        return UIColor(red: UInt32(red), green: UInt32(green), blue: UInt32(blue), a: CGFloat(alpha) / 255.0)
+        return UIColor(red: UInt32(red), green: UInt32(green), blue: UInt32(blue), a: (a > 0 ? a : CGFloat(alpha)) / 255.0)
     }
 }

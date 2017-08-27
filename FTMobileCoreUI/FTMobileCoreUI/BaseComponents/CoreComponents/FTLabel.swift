@@ -132,6 +132,10 @@ extension FTLabel {
     
     func sanitizeAttributedString(attributedString: NSAttributedString) -> NSMutableAttributedString {
         
+        if attributedString.length == 0 {
+            return attributedString.mutableCopy() as! NSMutableAttributedString
+        }
+        
         var range = NSMakeRange(0, attributedString.length)
         
         guard let praStryle: NSParagraphStyle = attributedString.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: &range) as? NSParagraphStyle else {

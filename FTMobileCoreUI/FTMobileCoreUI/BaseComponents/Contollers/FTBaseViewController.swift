@@ -21,6 +21,11 @@ open class FTBaseViewController : UIViewController {
         setupBaseView()
     }
     
+    //Setup baseView's topLayoutGuide by sending true in subControllers if needed
+    public func shouldSetTopLayoutGuide() -> Bool {
+        return false
+    }
+    
     public var mainView: FTView? {
 
         //If baseView is not added, then retun nil
@@ -65,8 +70,10 @@ extension FTBaseViewController {
 //        self.view.pin(view: local, withEdgeInsets: [.Horizontal, .Bottom])
         
         /* Pin view bellow status bar */
-        local?.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor,
-                                   constant: 0.0).isActive = true
+        if shouldSetTopLayoutGuide() {
+            local?.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor,
+                                        constant: 0.0).isActive = true
+        }
         
         local?.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor,
                                    constant: 0.0).isActive = true

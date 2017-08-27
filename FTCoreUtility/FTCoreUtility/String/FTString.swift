@@ -31,7 +31,23 @@ public extension String {
 //MARK: String Size
     
     func trimming(string: String) -> String? {
+        guard string.length > 0 else { return self}
         return self.replacingOccurrences(of: string, with: "")
+    }
+    
+    mutating func trimString(string: String) {
+        guard string.length > 0 else { return }
+        self = self.replacingOccurrences(of: string, with: "")
+    }
+    
+    mutating func trimPrefix(_ string: String) {
+        
+        guard string.length > 0 else { return }
+        
+        while self.hasPrefix(string) {
+            let range: Range<String.Index> = self.range(of: string)!
+            self.removeSubrange(range)
+        }
     }
     
     func substring(with range: NSRange) -> String? {

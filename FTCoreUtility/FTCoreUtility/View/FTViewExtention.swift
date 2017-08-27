@@ -50,18 +50,29 @@ public extension UIView {
         cont.removeAll()
     }
     
-    public func findShadowImage() -> UIImageView? {
+    public func findShadowImage() -> [UIImageView]? {
+        
+        var imgs: [UIImageView] = []
         
         if self is UIImageView && self.bounds.size.height <= 1 {
-            return (self as! UIImageView)
+            return [(self as! UIImageView)]
         }
         
         for subview in self.subviews {
-            if let imageView = subview.findShadowImage() {
-                return imageView
+            if
+                let imageViews = subview.findShadowImage(),
+                imageViews.count > 0 {
+                imgs.append(contentsOf: imageViews)
             }
         }
         
-        return nil
+        return imgs
+    }
+    
+    public func hideShadowImage() {
+        
+        self.findShadowImage()?.forEach({ (shadowImageView) in
+            shadowImageView.isHidden = true
+        })
     }
 }
