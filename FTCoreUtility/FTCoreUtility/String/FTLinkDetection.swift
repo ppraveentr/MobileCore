@@ -29,7 +29,8 @@ open class FTLinkDetection {
     public var description : String {
         return "(Type: \(self.linkType), Range: -location \(self.linkRange.location), -length \(self.linkRange.length), URL: \(self.linkURL))"
     }
-        
+    
+    //Get list of FTLinkDetection from the String
     public static func getURLLinkRanges(_ text: String) -> [FTLinkDetection] {
         
         var rangeOfURL = [FTLinkDetection]()

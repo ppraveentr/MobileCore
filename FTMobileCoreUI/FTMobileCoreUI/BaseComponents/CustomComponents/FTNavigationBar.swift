@@ -34,12 +34,22 @@ public extension UINavigationBar {
     /**
      *  Configures the navigation bar to use an image as its background.
      */
-    public class func applyBackgroundImage(navigationBar: UINavigationBar?, defaultImage: UIImage = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).generateImage(), landScapeImage landScape: UIImage = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).generateImage()) {
+    public class func applyBackgroundImage(navigationBar: UINavigationBar?, defaultColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+                                           landScapeColor landScape: UIColor? = nil) {
+        self.applyBackgroundImage(navigationBar: navigationBar, defaultImage: defaultColor.generateImage(),
+                                  landScapeImage: landScape?.generateImage() ?? defaultColor.generateImage())
+    }
+    
+    /**
+     *  Configures the navigation bar to use an image as its background.
+     */
+    public class func applyBackgroundImage(navigationBar: UINavigationBar?, defaultImage: UIImage = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).generateImage(),
+                                           landScapeImage landScape: UIImage? = nil) {
         
         // These background images contain a small pattern which is displayed
         // in the lower right corner of the navigation bar.
         var defaultImage = defaultImage
-        var landScape = landScape
+        var landScape = landScape ?? defaultImage
         
         // Both of the above images are smaller than the navigation bar's
         // size.  To enable the images to resize gracefully while keeping their
@@ -58,7 +68,8 @@ public extension UINavigationBar {
                                                                          bottom: landScape.size.height - 1,
                                                                          right: landScape.size.width - 1))
         
-        let navigationBar = navigationBar ?? UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
+        let navigationBar = navigationBar ??
+            UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
         
         // The bar metrics associated with a background image determine when it
         // is used.  The background image associated with the defaultImage bar metrics
@@ -77,7 +88,8 @@ public extension UINavigationBar {
      */
     public class func applyTransparentBackground(navigationBar: UINavigationBar?, _ opacity: CGFloat) {
         
-        let navigationBar = navigationBar ?? UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
+        let navigationBar = navigationBar ??
+            UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
 
         // The background of a navigation bar switches from being translucent
         // to transparent when a background image is applied.  The intensity of
@@ -99,7 +111,8 @@ public extension UINavigationBar {
      */
     public class func applyTintColor(navigationBar: UINavigationBar?, _ color: UIColor) {
         
-        let navigationBar = navigationBar ?? UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
+        let navigationBar = navigationBar ??
+            UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
         
         navigationBar.barTintColor = color
     }

@@ -23,6 +23,7 @@ public extension String {
 final public class FTReflection {
     
     /// Variable that can be set using registerBundleIdentifiers
+    //TODO: Make it a SET, so to have unquie elements
     fileprivate static var bundleIdentifiers: [String]? = []
     
     /**

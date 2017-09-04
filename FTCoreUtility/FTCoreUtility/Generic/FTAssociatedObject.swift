@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Generic way of storing values on runtime
 public class FTAssociatedObject<T> {
     
     private let aoPolicy: objc_AssociationPolicy

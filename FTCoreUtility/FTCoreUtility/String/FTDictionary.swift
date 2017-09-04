@@ -19,7 +19,8 @@ public extension Dictionary {
 //    return (dic as NSDictionary).value(forKeyPath: key as! String) as! V
 //}
 
-//MARK: Dictionary : Operator Overloading
+//MARK: Dictionary : 
+//Operator '+' Overloading
 public func + <K,V> (left: [K:V], right: [K:V]) -> [K:V] {
     
     var computedValue = left
@@ -40,6 +41,7 @@ public func + <K,V> (left: [K:V], right: [K:V]) -> [K:V] {
     return computedValue
 }
 
+//Operator '+=' Overloading
 public func += <K,V> (left: inout [K:V], right: [K:V]) {
     
     for (k, v) in right {

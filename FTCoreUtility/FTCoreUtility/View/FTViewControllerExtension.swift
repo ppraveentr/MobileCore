@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Get top-most ViewController in window
 public func topViewController() -> UIViewController? {
     
     var topController = UIApplication.shared.keyWindow?.rootViewController

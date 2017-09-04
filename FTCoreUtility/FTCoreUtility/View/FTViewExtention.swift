@@ -10,6 +10,7 @@ import Foundation
 
 public extension UIView {
     
+    //Add 'contentView' as subView and pin the View to all edges
     public class func embedView(contentView: UIView) -> UIView {
         
         let local = self.init()
@@ -22,18 +23,35 @@ public extension UIView {
         return local
     }
     
+    //Remove all subViews
     public func removeSubviews() {
         for subview in subviews {
             subview.removeFromSuperview()
         }
     }
     
+    //Remove all of its Constraints
+    public func removeAllConstraints() {
+        var cont: [NSLayoutConstraint] = self.constraints
+        cont.removeAll()
+    }
+    
+    //MARK: XIB
+    //Get nib based on once's class name
     public class func getNIBFile() -> UINib? {
         return UINib(nibName: get_classNameAsString(obj: self) ?? "", bundle: nil)
     }
     
-    public class func fromNib(named name: String) -> UIView? {
-        let allObjects = Bundle.main.loadNibNamed(name, owner: nil, options: nil) ?? []
+    //Get view based on once's class name
+    public class func fromNib(_ owner: Any? = nil) -> UIView? {
+        return fromNib(named: get_classNameAsString(obj: self) ?? "", owner: owner)
+    }
+    
+    //Retruns first view from the nib file
+    public class func fromNib(named name: String, owner: Any? = nil) -> UIView? {
+        //Get all object inside the nib
+        let allObjects = Bundle.main.loadNibNamed(name, owner: owner, options: nil) ?? []
+        //Get first view object
         if let nib = allObjects.first as? UIView {
             return nib
         }
@@ -41,15 +59,30 @@ public extension UIView {
         return nil
     }
     
-    public class func fromNib() -> UIView? {
-        return fromNib(named: get_classNameAsString(obj: self) ?? "")
+    //Add once's xib-view as subView
+    public func xibSetup(className: UIView.Type) {
+        var contentView : UIView?
+        
+        //Get view from nib
+        contentView = className.fromNib(self)
+        //Set contents tag as self'hash, just for unique identifiation
+        contentView?.tag = self.hash
+        
+        // use bounds not frame or it'll be offset
+        contentView!.frame = bounds
+        
+        // Make the view stretch with containing view
+        contentView!.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        
+        // Adding custom subview on top of our view (over any custom drawing > see note below)
+        addSubview(contentView!)
     }
+}
+
+//Used for Bar items
+public extension UIView {
     
-    public func removeAllConstraints() {
-        var cont: [NSLayoutConstraint] = self.constraints
-        cont.removeAll()
-    }
-    
+    //Find all UIImageView with 'height <= 1'
     public func findShadowImage() -> [UIImageView]? {
         
         var imgs: [UIImageView] = []
@@ -69,6 +102,7 @@ public extension UIView {
         return imgs
     }
     
+    //Remove all UIImageView's with 'height <= 1'
     public func hideShadowImage() {
         
         self.findShadowImage()?.forEach({ (shadowImageView) in

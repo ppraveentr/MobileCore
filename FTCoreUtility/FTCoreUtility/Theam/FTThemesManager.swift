@@ -8,50 +8,29 @@
 
 import Foundation
 
-public typealias FTThemeDic = [String : Any]
-
-//Used for UIView subclasses Type
-@objc public protocol FTThemeProtocol {
-    
-    //Retruns 'ThemeStyle' specific to current state of object.
-    //Say if UIView is disabled, retrun "disabled", which can be clubed with main Theme style.
-    //Eg, if currentTheme is 'viewB', then when disabled state, theme willbe : 'viewB:disabled'
-    func get_ThemeSubType() -> String?
-    
-    //Custom Subclass can implement, to config Custom component
-    @objc optional func updateTheme(_ theme: FTThemeDic)
-    
-    //Used for Label
-    @objc optional func theme_isLinkUnderlineEnabled(_ bool: Bool)
-    @objc optional func theme_isLinkDetectionEnabled(_ bool: Bool)
-    @objc optional func theme_textfont(_ font: UIFont)
-    @objc optional func theme_textcolor(_ color: UIColor)
-    
-    //Common for all UIView
-    @objc optional func theme_backgroundColor(_ color: UIColor)
-}
-
-//Used for UIControl objects, when multiple states are possible to set at initalization
-@objc public protocol FTUIControlThemeProtocol {
-    
-    @objc optional func get_AllThemeSubType() -> Bool
-    @objc optional func setThemes(_ themes: FTThemeDic)
-    @objc optional func update(themeDic: FTThemeDic, state: UIControlState)
-}
-
-//Propery variable to store theme's value.
-public protocol FTUILabelThemeProperyProtocol {
-    var theme_linkUndelineEnabled: Bool { get set }
-    var theme_linkDetectionEnabled: Bool { get set }
-}
-
 open class FTThemesManager {
 
-    static var themesJSON: FTThemeDic = [:]
+    //Theme JSON file loaded from Main-App
+    static var themesJSON: FTThemeDic = [:] {
+        willSet{
+            if themesJSON.isEmpty && !newValue.isEmpty {
+                //Inital view config
+                 UIView.__setupThemes__()
+            }
+        }
+    }
     
-    public class func setupThemes(themes: FTThemeDic) {
+    //
+    public class func setupThemes(themes: FTThemeDic, imageSourceBundle imageSource: [AnyClass]? = nil) {
+        
+        //Usefull for loading Images that are stored in bundle which are defined in Themes's JSON
+        if let imageSource = imageSource {
+            FTReflection.registerBundleIdentifier(imageSource)
+        }
+
+        //Update theme with new config
+        //NOTE: currently does not spport merging of two theme files
         FTThemesManager.themesJSON = themes
-        UIView.__setupThemes__()
     }
     
     //MARK: Theme components
@@ -64,6 +43,7 @@ open class FTThemesManager {
             styleName = styleName + ":" + subStyle
         }
         
+        //Get theme component
         guard let currentTheme: FTThemeDic = FTThemesManager.getViewComponent(name, styleName: styleName)
             else { //print("Theme of type \(styleName) not avaialble for class \(name)" )
                 return nil }
@@ -72,7 +52,7 @@ open class FTThemesManager {
     }
     
     //MARK: ViewComponents
-    //TODO: custom themes for view
+    //TODO: custom themes for view-objects
     open class func getViewComponent(_ componentName: String, styleName: String?) -> FTThemeDic? {
         guard (styleName != nil) else { return nil }
         return FTThemesManager.getDefaults(type: .Component, keyName: componentName, styleName: styleName) as? FTThemeDic
@@ -129,8 +109,12 @@ extension FTThemesManager {
     fileprivate class var themeComponent: FTThemeDic? { return FTThemesManager.themesJSON["components"] as? FTThemeDic }
     fileprivate class func getThemeComponent(_ component: String, styleName: String? = nil) -> FTThemeDic? {
         
+        //TODO: Merge all sub-styles into single JSON, for easy parsing.
+        
+        //Get all the components of spefic type
         guard let baseComponent = self.themeComponent?[component] as? FTThemeDic else { return nil }
         
+        //Get pirticular style
         if styleName != nil {
             return baseComponent[styleName!] as? FTThemeDic
         }
@@ -167,21 +151,24 @@ extension FTThemesManager {
                 let viewComponent = actualComponents,
                 let superType = viewComponent["_super"] as? String,
                 var superCom = getThemeComponent(key,styleName: superType) {
-                
+                //If view-component has super's style, use it as base component and merge its own style
                 superCom += viewComponent
                 superCom.removeValue(forKey: "_super")
                 
+                //Merged result
                 return superCom
             }
 
             return actualComponents
             
+        //Convert JSON to UIColor
         case .Color:
             superBlock = { (colorName) in
                 return getThemeColor(colorName)
             }
             break
             
+            //Convert JSON to UIFont
         case .Font:
             superBlock = { (fontName) in
                 return getThemeFont(fontName)
@@ -192,6 +179,7 @@ extension FTThemesManager {
         
         var actualComponents: Any? = nil
 
+        //If component of specifc type is not found, search for "default" style
         let components: Any? = superBlock?(key) ?? superBlock?("default")
 
         //TODO: iterative 'super' is still pending
@@ -200,6 +188,7 @@ extension FTThemesManager {
             let superType = currentComponent["_super"] as? String,
             let superComponents = superBlock?(superType) as? FTThemeDic {
             
+            //Merge super's style with current theme
             actualComponents = superComponents + currentComponent
         }
         

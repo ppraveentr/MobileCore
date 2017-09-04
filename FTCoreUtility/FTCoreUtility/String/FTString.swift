@@ -30,16 +30,20 @@ public extension String {
     
 //MARK: String Size
     
+    //Remove's 'sting' from self -> and retruns new 'String'
+    //Original value is not affected
     func trimming(string: String) -> String? {
         guard string.length > 0 else { return self}
         return self.replacingOccurrences(of: string, with: "")
     }
     
+    //Remove's 'sting' from self -> and update the 'self'
     mutating func trimString(string: String) {
         guard string.length > 0 else { return }
         self = self.replacingOccurrences(of: string, with: "")
     }
     
+    //Remove prefix "string"
     mutating func trimPrefix(_ string: String) {
         
         guard string.length > 0 else { return }
@@ -50,19 +54,23 @@ public extension String {
         }
     }
     
+    //Get subString within the 'range'
     func substring(with range: NSRange) -> String? {
         return (self as NSString).substring(with: range) as String! ?? nil
     }
     
+    //Get subString 'from-index' to 'to-index'
     func substring(from fromIndex: Int, to toIndex: Int) -> String? {
         let substring = self.substring(with: NSMakeRange(fromIndex, toIndex - fromIndex))
         return substring
     }
     
+    //Verify if self contains a subString
     func contains(_ find: String) -> Bool {
         return self.range(of: find) != nil
     }
     
+    //Length of string or no of characters in self
     var length: Int {
         return characters.count
     }

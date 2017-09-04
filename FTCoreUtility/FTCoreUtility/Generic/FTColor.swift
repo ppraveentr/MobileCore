@@ -19,6 +19,15 @@ public extension UIColor {
         )
     }
     
+    fileprivate convenience init(red: CGFloat, green: CGFloat, blue: CGFloat, a: CGFloat = 1.0) {
+        self.init(
+            red: CGFloat(red) / 255.0,
+            green: CGFloat(green) / 255.0,
+            blue: CGFloat(blue) / 255.0,
+            alpha: a
+        )
+    }
+    
     public convenience init(rgb: UInt32, a: CGFloat = 1.0) {
         self.init(
             red: (rgb >> 16 & 0xFF),
@@ -35,6 +44,19 @@ public extension UIColor {
             blue: (rgba >> 8 & 0xFF),
             a: CGFloat(rgba >> 0 & 0xFF)
         )
+    }
+    
+    func hexString() -> String {
+        var r:CGFloat = 0
+        var g:CGFloat = 0
+        var b:CGFloat = 0
+        var a:CGFloat = 0
+        
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+        
+        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+        
+        return String(format:"#%06x", rgb)
     }
     
     public class func hexColor (_ hex:String) -> UIColor? {
@@ -78,30 +100,46 @@ public extension UIColor {
         return img!
     }
     
-    
-    func hexColor() -> String {
-        var r:CGFloat = 0
-        var g:CGFloat = 0
-        var b:CGFloat = 0
-        var a:CGFloat = 0
-        
-        getRed(&r, green: &g, blue: &b, alpha: &a)
-        
-        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
-        
-        return String(format:"#%06x", rgb)
+    //Amount should be between 0 and 1
+    public func lighterColor(_ amount: CGFloat) -> UIColor{
+        return UIColor.blendColors(color: self, destinationColor: UIColor.white, amount: amount)
     }
     
-//    func hexColor() -> String {
-//        
-//        let components = self.cgColor.components ?? [1,1,1]
-//
-//        let r = components.count > 0 ? components[0] : 1
-//        let g = components.count > 1 ? components[1] : 1
-//        let b = components.count > 2 ? components[2] : 1
-//        
-//        return String(format: "#%02X%02X%02X", arguments: [(Int)(r * 255), (Int)(g * 255), (Int)(b * 255)])
-//    }
+    public func darkerColor(_ amount: CGFloat) -> UIColor{
+        return UIColor.blendColors(color: self, destinationColor: UIColor.black, amount: amount)
+    }
+    
+    public static func blendColors(color: UIColor, destinationColor: UIColor, amount : CGFloat) -> UIColor{
+        var amountToBlend = amount;
+        if amountToBlend > 1{
+            amountToBlend = 1.0
+        }
+        else if amountToBlend < 0{
+            amountToBlend = 0
+        }
+        
+        var r,g,b, alpha : CGFloat
+        r = 0
+        g = 0
+        b = 0
+        alpha = 0
+        color.getRed(&r, green: &g, blue: &b, alpha: &alpha) //gets the rgba values (0-1)
+        
+        //Get the destination rgba values
+        var dest_r, dest_g, dest_b, dest_alpha : CGFloat
+        dest_r = 0
+        dest_g = 0
+        dest_b = 0
+        dest_alpha = 0
+        destinationColor.getRed(&dest_r, green: &dest_g, blue: &dest_b, alpha: &dest_alpha)
+        
+        r = amountToBlend * (dest_r * 255) + (1 - amountToBlend) * (r * 255)
+        g = amountToBlend * (dest_g * 255) + (1 - amountToBlend) * (g * 255)
+        b = amountToBlend * (dest_b * 255) + (1 - amountToBlend) * (b * 255)
+        alpha = fabs(alpha / dest_alpha)
+        
+        return UIColor(red: r, green: g, blue: b, a: alpha)
+    }
 }
 
 public extension UIImage {
