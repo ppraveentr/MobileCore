@@ -18,7 +18,7 @@ public class FTAssociatedObject<T> {
     }
     
     public convenience init(){
-        self.init(policy: objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        self.init(policy: .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
     
     public subscript(instance: AnyObject) -> T? {

@@ -8,6 +8,10 @@
 
 import UIKit
 
+class CustomButton: FTButton {
+    
+}
+
 class ViewController: FTBaseViewController {
     
 //    override var prefersStatusBarHidden: Bool {
@@ -18,7 +22,7 @@ class ViewController: FTBaseViewController {
         super.viewDidLoad()
         
         //MARK: TopView
-        let button = FTButton()
+        let button = CustomButton()
         button.theme = "button14R"
         button.setTitle("Tap me", for: .normal)
         //        button.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 10, 5)

@@ -25,7 +25,7 @@ class FTCoreUtilityTests: XCTestCase {
         
 //        print(UIView.fromNib()!)
         
-        print("class name", get_classNameAsString(obj: self))
+//        print("class name", get_classNameAsString(obj: self))
     }
     
     func testPerformanceExample() {

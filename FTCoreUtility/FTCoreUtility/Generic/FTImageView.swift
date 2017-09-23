@@ -15,9 +15,13 @@ public extension UIImageView {
      - parameter url: Image's url from which need to download
      - parameter contentMode: ImageView's content mode, defalut to 'scaleAspectFit'
      */
-    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit, comletionHandler: (() -> Void)? = nil) {
+    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit,
+                        comletionHandler: (() -> Void)? = nil) {
+        
+        //Image's Content mode
         contentMode = mode
         
+        //Setup URLSession
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             
             guard

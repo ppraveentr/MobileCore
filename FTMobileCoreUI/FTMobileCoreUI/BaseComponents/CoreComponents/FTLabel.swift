@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class FTLabel : FTUILabel, NSLayoutManagerDelegate {
+open class FTLabel : FTUILabel, FTUILabelThemeProperyProtocol, NSLayoutManagerDelegate {
     
     public lazy var textStorage: NSTextStorage = self.getTextStorage()
     
@@ -19,8 +19,16 @@ open class FTLabel : FTUILabel, NSLayoutManagerDelegate {
     fileprivate var linkRanges: [FTLinkDetection]?
 
     //FTUILabelThemeProperyProtocol
-    fileprivate var linkDetectionEnabled = false
-    fileprivate var isLinkUnderLineEnabled = false
+    public var islinkDetectionEnabled = false {
+        didSet{
+            self.updateLabelStyleProperty()
+        }
+    }
+    public var isLinkUnderLineEnabled = false {
+        didSet{
+            self.updateLabelStyleProperty()
+        }
+    }
     //End: FTUILabelThemeProperyProtocol
     
     open override var text: String? {
@@ -75,25 +83,6 @@ open class FTLabel : FTUILabel, NSLayoutManagerDelegate {
     }
 }
 
-extension FTLabel: FTUILabelThemeProperyProtocol {
-    
-    public var theme_linkUndelineEnabled: Bool {
-        set {
-            isLinkUnderLineEnabled = newValue
-            self.updateLabelStyleProperty()
-        }
-        get { return isLinkUnderLineEnabled }
-    }
-    
-    public var theme_linkDetectionEnabled: Bool {
-        set {
-            self.linkDetectionEnabled = newValue
-            self.updateLabelStyleProperty()
-        }
-        get { return linkDetectionEnabled }
-    }
-}
-
 //MARK: Text Farmatting
 extension FTLabel {
     
@@ -138,7 +127,8 @@ extension FTLabel {
         
         var range = NSMakeRange(0, attributedString.length)
         
-        guard let praStryle: NSParagraphStyle = attributedString.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: &range) as? NSParagraphStyle else {
+        guard let praStryle: NSParagraphStyle = attributedString.attribute(.paragraphStyle,
+                                                                           at: 0, effectiveRange: &range) as? NSParagraphStyle else {
             return attributedString.mutableCopy() as! NSMutableAttributedString
         }
         
@@ -146,7 +136,7 @@ extension FTLabel {
         mutablePraStryle.lineBreakMode = .byWordWrapping
         
         let restyledString: NSMutableAttributedString = attributedString.mutableCopy() as! NSMutableAttributedString
-        restyledString.addAttribute(NSParagraphStyleAttributeName, value: mutablePraStryle, range: NSMakeRange(0, restyledString.length))
+        restyledString.addAttribute(.paragraphStyle, value: mutablePraStryle, range: NSMakeRange(0, restyledString.length))
         
         return restyledString
     }
@@ -165,7 +155,7 @@ extension FTLabel {
 //TODO: Themess
 extension FTLabel {
     
-    func getStyleProperties() -> [String : Any] {
+    func getStyleProperties() -> [NSAttributedStringKey : Any] {
         
         let paragrahStyle = NSMutableParagraphStyle()
         paragrahStyle.alignment = self.textAlignment
@@ -176,11 +166,11 @@ extension FTLabel {
         
         let bgColor = self.backgroundColor ?? UIColor.clear
         
-        let properties = [NSParagraphStyleAttributeName : paragrahStyle,
-                          NSFontAttributeName: font,
-                          NSForegroundColorAttributeName: color,
-                          NSBackgroundColorAttributeName: bgColor
-            ] as [String : Any]
+        let properties:[NSAttributedStringKey : Any] = [.paragraphStyle : paragrahStyle,
+                          .font: font,
+                          .foregroundColor: color,
+                          .backgroundColor: bgColor
+                        ]
         
         return properties
     }
@@ -214,14 +204,14 @@ extension FTLabel {
         textBounds = self.layoutManager.boundingRect(forGlyphRange: glyphRange, in: self.textContainer)
         
         textBounds.origin = bounds.origin
-        textBounds.size.width = CGFloat(ceilf(Float(textBounds.size.width)))
-        textBounds.size.height = CGFloat(ceilf(Float(textBounds.size.height)))
+        textBounds.size.width = CGFloat(ceilf(Float(textBounds.width)))
+        textBounds.size.height = CGFloat(ceilf(Float(textBounds.height)))
         
         self.textContainer.size = savedContainerSize
         self.textContainer.maximumNumberOfLines = savedContainerNoLines
         
-        self.setViewHeight(textBounds.size.height)
-        self.setViewWidth(textBounds.size.width)
+        self.setViewHeight(textBounds.height)
+        self.setViewWidth(textBounds.width)
         
         return textBounds
     }
@@ -231,7 +221,7 @@ extension FTLabel {
         var textOffset: CGPoint = .zero
         
         let textBounds = self.layoutManager.boundingRect(forGlyphRange: range, in: self.textContainer)
-        let paddingHeight = (self.bounds.size.height - textBounds.size.height) / 2.0
+        let paddingHeight = (self.bounds.height - textBounds.height) / 2.0
         
         if paddingHeight > 0 {
             textOffset.y = paddingHeight

@@ -42,3 +42,54 @@ open class FTWebView: WKWebView {
         }
     }
 }
+
+extension FTWebView {
+    
+    @discardableResult public func loadHTMLBody(_ string: String, baseURL: URL? = nil) -> WKNavigation? {
+        return self.loadHTMLString("<html><meta name=\"viewport\" content=\"initial-scale=1.0\" /><body>\(string)</body></html>",
+            baseURL: baseURL)
+    }
+    
+    func getBodyText() -> String {
+        return "document.getElementsByTagName('body')[0]"
+    }
+    
+    public func setContentFontSize(_ size: Int) {
+        
+        if size >= 10 {
+            let js = self.getBodyText() + ".style.webkitTextSizeAdjust= '\(size)%'"
+            self.insertCSSString(jsString: js)
+        }
+    }
+    
+    public func setContentColor(textColor: UIColor? = nil, backgroundColor: UIColor? = nil) {
+        
+        if let bgHex = backgroundColor?.hexString() {
+            let bgJS = self.getBodyText() + ".style.backgroundColor= \"\(bgHex)\";"
+            self.insertCSSString(jsString: bgJS)
+        }
+        
+        if let fontHex = textColor?.hexString() {
+            let fontJS = self.getBodyText() + ".style.color= \"\(fontHex)\";"
+            self.insertCSSString(jsString: fontJS)
+        }
+    }
+    
+    public func setContentFontFamily(_ fontName: String?) {
+        
+        //base document style
+        var css = self.getBodyText() + ".style.fontFamily= \""
+        
+        //user selected font
+        css += ( (fontName != nil && fontName != "") ? "\(fontName!)," : "")
+        
+        //Default font
+        css += "-apple-system\";"
+        
+        self.insertCSSString(jsString: css)
+    }
+    
+    func insertCSSString(jsString: String) {
+        self.evaluateJavaScript(jsString, completionHandler: nil)
+    }
+}

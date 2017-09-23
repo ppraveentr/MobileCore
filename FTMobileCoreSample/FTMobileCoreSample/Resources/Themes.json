@@ -1,14 +1,15 @@
 {
     "type": "Themes",
     "color": {
-        "default": "#000000",
+        "default": "#FFFFFF",
         "AA": "#16c5ce",
         "clear": "clear",
         "black": "#000000",
         "red": "#b70b39",
         "blue": "#1059ce",
         "green": "#10ce1a",
-        "yellow": "#cecb10"
+        "yellow": "#cecb10",
+        "white": "#FFFFFF"
     },
     "font": {
         "default": {
@@ -20,10 +21,32 @@
             "size": "14.0"
         }
     },
+    "appearance": {
+        "UINavigationBar:UINavigationController": {
+            "barTintColor": "white",
+            "tintColor": "white",
+            "isTranslucent": false,
+            "backgroundImage": {
+                "default": "@Pixel"
+            },
+            "shadowImage": "@empty"
+        },
+        "UINavigationBar": {
+            "barTintColor": "black",
+            "isTranslucent": true
+        },
+        "UISegmentedControl": {
+            "tintColor": "black",
+            "backgroundImage": {
+                "default": "@upArrow",
+                "selected": "@Pixel"
+            },
+        }
+    },
     "components": {
         "FTView": {
             "default": {
-                "backgroundColor": "clear"
+                "backgroundColor": "white"
             }
         },
         "FTButton": {

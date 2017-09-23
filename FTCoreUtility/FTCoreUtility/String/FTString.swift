@@ -32,26 +32,30 @@ public extension String {
     
     //Remove's 'sting' from self -> and retruns new 'String'
     //Original value is not affected
-    func trimming(string: String) -> String? {
+    func trimming(string: String) -> String {
         guard string.length > 0 else { return self}
         return self.replacingOccurrences(of: string, with: "")
     }
     
     //Remove's 'sting' from self -> and update the 'self'
-    mutating func trimString(string: String) {
-        guard string.length > 0 else { return }
+    @discardableResult mutating func trimString(string: String) -> String {
+        guard string.length > 0 else { return self}
         self = self.replacingOccurrences(of: string, with: "")
+        
+        return self
     }
     
     //Remove prefix "string"
-    mutating func trimPrefix(_ string: String) {
+    @discardableResult mutating func trimPrefix(_ string: String) -> String {
         
-        guard string.length > 0 else { return }
+        guard string.length > 0 else { return self}
         
         while self.hasPrefix(string) {
             let range: Range<String.Index> = self.range(of: string)!
             self.removeSubrange(range)
         }
+        
+        return self
     }
     
     //Get subString within the 'range'

@@ -65,9 +65,9 @@ public func FTTextSize(text: String?, font: UIFont,
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.lineBreakMode = lineBreakMode;
     
-    let attributes: [String : Any] = [
-        NSFontAttributeName: font,
-        NSParagraphStyleAttributeName: paragraphStyle,
+    let attributes: [NSAttributedStringKey : Any] = [
+        .font: font,
+        .paragraphStyle: paragraphStyle,
     ]
     
     let attributedString = NSAttributedString(string: text, attributes: attributes)

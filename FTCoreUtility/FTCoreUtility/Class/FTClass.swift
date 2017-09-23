@@ -13,12 +13,16 @@ public let FTInstanceSwizzling: (AnyClass, Selector, Selector) -> () = { klass, 
     let originalMethod = class_getInstanceMethod(klass, originalSelector)
     let swizzledMethod = class_getInstanceMethod(klass, swizzledSelector)
     
-    let didAddMethod = class_addMethod(klass, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
+    let didAddMethod = class_addMethod(klass, originalSelector,
+                                       method_getImplementation(swizzledMethod!),
+                                       method_getTypeEncoding(swizzledMethod!))
     
     if didAddMethod {
-        class_replaceMethod(klass, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
+        class_replaceMethod(klass, swizzledSelector,
+                            method_getImplementation(originalMethod!),
+                            method_getTypeEncoding(originalMethod!))
     } else {
-        method_exchangeImplementations(originalMethod, swizzledMethod);
+        method_exchangeImplementations(originalMethod!, swizzledMethod!);
     }
 }
 
@@ -41,39 +45,39 @@ fileprivate let baseTypesMap: Dictionary<String, Any> = [
  *  _HOWEVER_ this does not work if its an optional type.
  *  e.g. Int? <--- DOES NOT WORK
  */
-public func getClassPropertyNames(_ myClass: Any) -> Dictionary<String,Any>? {
-    
-    var results: Dictionary<String,Any> = [:]
-    
-    // retrieve the properties via the class_copyPropertyList function
-    var count: UInt32 = 0
-    
-    //TODO : throws
-    guard let properties = class_copyPropertyList(type(of: myClass) as! AnyClass, &count) else { return nil }
-    
-    // iterate each objc_property_t struct
-    for i in 0 ..< Int(count) {
-        
-        guard
-            // property
-            let property: objc_property_t = properties[i],
-            // property name
-            let cname = property_getName(property),
-            // property Attributes
-            let cattribure = property_getAttributes(property)
-            else { continue }
-        
-        let attribure = String(cString: cattribure)
-        let name = String(cString: cname)
-        
-        results[name] = attribure.get_propertyAttributeType()
-    }
-    
-    // release objc_property_t structs
-    free(properties)
-    
-    return results
-}
+//public func getClassPropertyNames(_ myClass: Any) -> Dictionary<String,Any>? {
+//    
+//    var results: Dictionary<String,Any> = [:]
+//    
+//    // retrieve the properties via the class_copyPropertyList function
+//    var count: UInt32 = 0
+//    
+//    //TODO : throws
+//    guard let properties = class_copyPropertyList(type(of: myClass) as! AnyClass, &count) else { return nil }
+//    
+//    // iterate each objc_property_t struct
+//    for i in 0 ..< Int(count) {
+//        
+//        guard
+//            // property
+//            let property: objc_property_t? = properties[i],
+//            // property name
+//            let cname = property_getName(property),
+//            // property Attributes
+//            let cattribure = property_getAttributes(property)
+//            else { continue }
+//        
+//        let attribure = String(cString: cattribure)
+//        let name = String(cString: cname)
+//        
+//        results[name] = attribure.get_propertyAttributeType()
+//    }
+//    
+//    // release objc_property_t structs
+//    free(properties)
+//    
+//    return results
+//}
 
 //String Extension
 public extension String {

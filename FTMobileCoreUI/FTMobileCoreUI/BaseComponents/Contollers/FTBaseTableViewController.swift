@@ -91,8 +91,8 @@ extension FTBaseTableViewController {
         
         super.viewDidLayoutSubviews()
         
-        DispatchQueue.main.async {
-            if self.tableView.tableHeaderView != nil || self.tableView.tableFooterView != nil {
+        if self.tableView.tableHeaderView != nil || self.tableView.tableFooterView != nil {
+            DispatchQueue.main.async {
                 self.updateTableViewHeaderViewHeight()
             }
         }
@@ -114,7 +114,7 @@ extension FTBaseTableViewController {
         if let view = self.tableView.tableHeaderView {
             var Frame = self.tableView.tableHeaderView?.frame
             view.resizeToFitSubviews()
-            Frame?.size.height = (view.frame.size.height)
+            Frame?.size.height = (view.frame.height)
             Frame?.size.width = self.tableView.frame.width
             self.tableView.tableHeaderView?.frame = Frame!
         }
@@ -122,7 +122,7 @@ extension FTBaseTableViewController {
         if let view = self.tableView.tableFooterView {
             var Frame = self.tableView.tableFooterView?.frame
             view.resizeToFitSubviews()
-            Frame?.size.height = (view.frame.size.height)
+            Frame?.size.height = (view.frame.height)
             Frame?.size.width = self.tableView.frame.width
             self.tableView.tableFooterView?.frame = Frame!
         }
@@ -168,6 +168,4 @@ extension FTBaseTableViewController: UITableViewDelegate {
     open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
-
 }
-

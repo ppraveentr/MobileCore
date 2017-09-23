@@ -1,0 +1,20 @@
+//
+//  FTImage.swift
+//  FTCoreUtility
+//
+//  Created by Praveen Prabhakar on 13/09/17.
+//  Copyright © 2017 Praveen Prabhakar. All rights reserved.
+//
+
+import Foundation
+
+class FTImage: UIImage {
+    
+}
+
+public extension UIImage {
+    
+    public class func named(_ named: String) -> UIImage? {
+        return FTThemesManager.getImage(named)
+    }
+}

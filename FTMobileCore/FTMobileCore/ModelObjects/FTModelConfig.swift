@@ -22,7 +22,7 @@ public class FTModelConfig {
     
     static let sharedInstance = FTModelConfig()
     
-    init() { FTReflection.registerBundleIdentifier(FTModelConfig.self) }
+    init() { FTReflection.registerModuleIdentifier(FTModelConfig.self) }
     
     var modelSchema = JSON()
     

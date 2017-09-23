@@ -81,7 +81,8 @@ public extension UIColor {
         return UIColor(red: r, green: g, blue: b, a: CGFloat(a) / 255.0)
     }
     
-    public func generateImage(opacity: CGFloat = 1, contextSize: CGSize = CGSize(width: 1, height: 1), contentsScale: CGFloat = CGFloat.greatestFiniteMagnitude) -> UIImage {
+    public func generateImage(opacity: CGFloat = 1, contextSize: CGSize = CGSize(width: 1, height: 1),
+                              contentsScale: CGFloat = CGFloat.greatestFiniteMagnitude) -> UIImage {
         
         let rect = CGRect(origin: .zero, size: contextSize)
         

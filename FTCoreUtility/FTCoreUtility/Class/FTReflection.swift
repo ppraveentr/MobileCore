@@ -22,28 +22,31 @@ public extension String {
 }
 final public class FTReflection {
     
-    /// Variable that can be set using registerBundleIdentifiers
+    /// Variable that can be set using registermoduleIdentifiers
     //TODO: Make it a SET, so to have unquie elements
-    fileprivate static var bundleIdentifiers: [String]? = []
+    fileprivate static var moduleIdentifiers: [String] = []
     
+    public class func getRegisterdModuleIdentifier() -> [String] {
+        return moduleIdentifiers
+    }
     /**
      - parameter object: The class that will be used to find the appName for in which we can find classes by string.
      */
-    public class func registerBundleIdentifier(_ object: Any? = nil) {
+    public class func registerModuleIdentifier(_ object: Any? = nil) {
         
-        if bundleIdentifiers?.count == 0 {
-            bundleIdentifiers?.append(nameForBundle(Bundle(for: self)))
+        if moduleIdentifiers.count == 0 {
+            moduleIdentifiers.append(nameForBundle(Bundle(for: self)))
         }
         
         if let className = object as? AnyClass {
-            bundleIdentifiers?.append(nameForBundle(Bundle(for: className)))
+            moduleIdentifiers.append(nameForBundle(Bundle(for: className)))
         }
         else if let classIdentier = object as? String {
-            bundleIdentifiers?.append(classIdentier)
+            moduleIdentifiers.append(classIdentier)
         }
         else if let classes = object as? Array<Any> {
             for aClass in classes {
-                self.registerBundleIdentifier(aClass)
+                self.registerModuleIdentifier(aClass)
             }
         }
     }
@@ -55,7 +58,7 @@ final public class FTReflection {
         // get the bundle name from what is set in the infoDictionary
         var appName = bundle.infoDictionary?[kCFBundleExecutableKey as String] as? String ?? ""
         
-        // If it was not set, then use the bundleIdentifier (which is the same as kCFBundleIdentifierKey)
+        // If it was not set, then use the ModuleIdentifier (which is the same as kCFModuleIdentifierKey)
         if appName == "" {
             appName = bundle.bundleIdentifier ?? ""
             appName = appName.characters.split(whereSeparator: {$0 == "."}).map({ String($0) }).last ?? ""
@@ -78,13 +81,12 @@ final public class FTReflection {
             return c
         }
         
-        if let bundleIdentifiers = bundleIdentifiers {
-            for aBundle in bundleIdentifiers {
-                if let existingClass = NSClassFromString("\(aBundle).\(className)") {
-                    return existingClass
-                }
+        for aBundle in moduleIdentifiers {
+            if let existingClass = NSClassFromString("\(aBundle).\(className)") {
+                return existingClass
             }
         }
+        //        }
         
         return nil
     }

@@ -8,6 +8,9 @@
 
 import Foundation
 
+//UILayoutPriority value little lessThan .required
+public let FTLayoutPriorityRequiredLow = UILayoutPriority(UILayoutPriority.required.rawValue - 1)
+
 public enum FTLayoutDirection {
     case TopToBottom
     case LeftToRight
@@ -164,6 +167,34 @@ public struct FTEdgeInsets: OptionSet {
 //    }
 }
 
+public protocol FTViewConstrains {
+    
+    func pin(view : UIView, withEdgeOffsets FTEdgeOffsets: FTEdgeOffsets?,
+    withEdgeInsets edgeInsets: FTEdgeInsets?,
+    withLayoutPriority priority: UILayoutPriority?, addToSubView: Bool?)
+    
+    func stackView(views: [UIView], layoutDirection direction: FTLayoutDirection,
+    spacing: CGFloat, edgeInsets: FTEdgeInsets?,
+    layoutPriority priority: UILayoutPriority?)
+    
+    func addSizeConstraint(_ width: CGFloat, _ height: CGFloat)
+    
+    //Auto-size to self height and width
+     func addSelfSizing()
+    
+    //All Produces Positive Screen offset size
+    func resizeToFitSubviewsInScreen()
+    
+    //Incudes Negative screen offset
+    func resizeToFitSubviews()
+    
+    func setViewSize(_ size: CGSize, createConstraint: Bool, relation:  NSLayoutRelation)
+    
+    func setViewHeight(_ height: CGFloat, createConstraint: Bool, relation:  NSLayoutRelation)
+    
+    func setViewWidth(_ width: CGFloat, createConstraint: Bool, relation:  NSLayoutRelation)
+}
+
 public extension UIView {
     
     fileprivate func hasSameBaseView(_ view: UIView) -> Bool {
@@ -181,13 +212,13 @@ public extension UIView {
     
     public func pin(view : UIView, withEdgeOffsets FTEdgeOffsets: FTEdgeOffsets = .FTEdgeOffsetsZero(),
                     withEdgeInsets edgeInsets: FTEdgeInsets = .All,
-                    withLayoutPriority priority: UILayoutPriority = UILayoutPriorityRequired, addToSubView: Bool = true) {
+                    withLayoutPriority priority: UILayoutPriority = .required, addToSubView: Bool = true) {
         
         var priority = priority
-        if priority < 0  {
-            priority = 1
-        } else if priority > UILayoutPriorityRequired  {
-            priority = UILayoutPriorityRequired
+        if Int(priority.rawValue) < 0  {
+            priority = UILayoutPriority(rawValue: 1)
+        } else if priority.rawValue > UILayoutPriority.required.rawValue  {
+            priority = .required
         }
         
         let hasSameBase = self.hasSameBaseView(view)
@@ -348,7 +379,7 @@ public extension UIView {
     
     public func stackView(views: [UIView], layoutDirection direction: FTLayoutDirection = .TopToBottom,
                           spacing: CGFloat = 0, edgeInsets: FTEdgeInsets = .None,
-                          layoutPriority priority: UILayoutPriority = UILayoutPriorityRequired) {
+                          layoutPriority priority: UILayoutPriority = UILayoutPriority.required) {
         
         //Add views to subView, if not present
         views.forEach { (view) in
@@ -366,15 +397,15 @@ public extension UIView {
         let pinEachViewToSuperView = { (index: Int, view: UIView) in
             
             //Fix to
-            let priorityL = priority - Float(views.count + index)
+            let priorityL = priority.rawValue - Float(views.count + index)
             let defaultOffset = FTEdgeOffsets(0)
             
             if direction == .TopToBottom {
                 self.pin(view: view, withEdgeOffsets: defaultOffset, withEdgeInsets: .TopLayoutMargin,
-                         withLayoutPriority: priorityL)
+                         withLayoutPriority: UILayoutPriority(rawValue: priorityL))
             } else {
                 self.pin(view: view, withEdgeOffsets: defaultOffset, withEdgeInsets: .LeftLayoutMargin,
-                         withLayoutPriority: priorityL)
+                         withLayoutPriority: UILayoutPriority(rawValue: priorityL))
             }
         }
         
@@ -392,9 +423,9 @@ public extension UIView {
                 let Preview = views[localIndex+pos]
                 localIndex = localIndex+1
                 
-                let priorityS = priority - Float(pos)
+                let priorityS = priority.rawValue - Float(pos)
                 locallastView.pin(view: Preview, withEdgeOffsets: offSet, withEdgeInsets: subEdgeInsets,
-                                  withLayoutPriority: priorityS)
+                                  withLayoutPriority: UILayoutPriority(rawValue: priorityS))
             }
         }
         
@@ -485,7 +516,7 @@ public extension UIView {
     }
     
     //All Produces Positive Screen offset size
-    func resizeToFitSubviewsInScreen() {
+    public func resizeToFitSubviewsInScreen() {
 
         let subviewsRect = subviews.reduce(CGRect.zero) {
             $0.union($1.frame)
@@ -503,7 +534,7 @@ public extension UIView {
     }
     
     //Incudes Negative screen offset
-    func resizeToFitSubviews() {
+    public func resizeToFitSubviews() {
         
         let reducedSize = self.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
        
@@ -536,8 +567,6 @@ public extension UIView {
         
         public var heightDimension: NSLayoutDimension?
         public var widthDimension: NSLayoutDimension?
-
-
     }
     
     fileprivate static let aoLayoutConstraint = FTAssociatedObject<FTViewLayoutConstraint>()
@@ -556,12 +585,14 @@ public extension UIView {
         }
     }
     
-    public func setViewSize(_ size: CGSize, createConstraint: Bool = false, relation:  NSLayoutRelation = .greaterThanOrEqual) {
+    public func setViewSize(_ size: CGSize, createConstraint: Bool = false,
+                            relation:  NSLayoutRelation = .greaterThanOrEqual) {
         self.setViewHeight(size.height, createConstraint: createConstraint, relation: relation)
         self.setViewWidth(size.width, createConstraint: createConstraint, relation: relation)
     }
     
-    public func setViewHeight(_ height: CGFloat, createConstraint: Bool = false, relation:  NSLayoutRelation = .greaterThanOrEqual) {
+    public func setViewHeight(_ height: CGFloat, createConstraint: Bool = false,
+                              relation:  NSLayoutRelation = .greaterThanOrEqual) {
         
         if createConstraint || self.viewLayoutConstraint.autoSizing {
             let con = self.viewLayoutConstraint
@@ -592,7 +623,8 @@ public extension UIView {
         }
     }
     
-    public func setViewWidth(_ width: CGFloat, createConstraint: Bool = false, relation:  NSLayoutRelation = .greaterThanOrEqual) {
+    public func setViewWidth(_ width: CGFloat, createConstraint: Bool = false,
+                             relation:  NSLayoutRelation = .greaterThanOrEqual) {
         
         if createConstraint || self.viewLayoutConstraint.autoSizing {
             let con = self.viewLayoutConstraint

@@ -16,6 +16,7 @@ open class FTBaseViewController : UIViewController {
     open override func loadView() {
         //Make it as Views RooView
         self.view = self.baseView
+        self.baseView?.theme = "default"
         
         //Setup baseView's topLayoutGuide & bottomLayoutGuide
         setupBaseView()

@@ -15,7 +15,7 @@ open class FTAppDelegate: UIResponder, UIApplicationDelegate {
     open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         //Register self's type as BundleIdentifer for getting class name
-        FTReflection.registerBundleIdentifier(FTAppDelegate.self)
+        FTReflection.registerModuleIdentifier(FTAppDelegate.self)
 
         return true
     }

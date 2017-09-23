@@ -38,7 +38,8 @@ open class FTLinkDetection {
         let types: NSTextCheckingResult.CheckingType = [ .link, .phoneNumber]
         let detector = try? NSDataDetector(types: types.rawValue)
         
-        detector?.enumerateMatches(in: text, options: [], range: NSMakeRange(0, (text as NSString).length)) { (result, flags, _) in
+        detector?.enumerateMatches(in: text, options: [],
+                                   range: NSMakeRange(0, (text as NSString).length)) { (result, flags, _) in
             
             if
                 let url = result?.url,

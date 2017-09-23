@@ -48,12 +48,16 @@ open class FTContentView: FTScrollView {
         observing = false
     }
     
-    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override open func observeValue(forKeyPath keyPath: String?, of object: Any?,
+                                    change: [NSKeyValueChangeKey : Any]?,
+                                    context: UnsafeMutableRawPointer?) {
+        
         guard let keyPath = keyPath,
             let context = context else {
                 super.observeValue(forKeyPath: nil, of: object, change: change, context: nil)
                 return
         }
+        
         switch (keyPath, context) {
         case("contentSize", &MyObservationContext):
             

@@ -30,6 +30,8 @@
 		DE9854241F47168E001AFF89 /* FTUITabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9854231F47168E001AFF89 /* FTUITabBar.swift */; };
 		DE9854261F4717DF001AFF89 /* FTUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9854251F4717DF001AFF89 /* FTUIButton.swift */; };
 		DEA0DB3C1F36028D00D9AFA8 /* FTThemeView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA0DB3B1F36028D00D9AFA8 /* FTThemeView+Utility.swift */; };
+		DEA1ED661F698BCC001AA3C6 /* FTImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA1ED651F698BCC001AA3C6 /* FTImage.swift */; };
+		DEA1ED6D1F6CF233001AA3C6 /* FTUINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA1ED6C1F6CF233001AA3C6 /* FTUINavigationBar.swift */; };
 		DEA7E12E1F48150B0002C148 /* FTViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7E12D1F48150B0002C148 /* FTViewControllerExtension.swift */; };
 		DEA7E1301F4816B20002C148 /* FTApplicationCoreUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7E12F1F4816B20002C148 /* FTApplicationCoreUtility.swift */; };
 		DEA7E1321F48282E0002C148 /* FTMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7E1311F48282E0002C148 /* FTMath.swift */; };
@@ -85,6 +87,8 @@
 		DE9854231F47168E001AFF89 /* FTUITabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUITabBar.swift; sourceTree = "<group>"; };
 		DE9854251F4717DF001AFF89 /* FTUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIButton.swift; sourceTree = "<group>"; };
 		DEA0DB3B1F36028D00D9AFA8 /* FTThemeView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FTThemeView+Utility.swift"; sourceTree = "<group>"; };
+		DEA1ED651F698BCC001AA3C6 /* FTImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTImage.swift; sourceTree = "<group>"; };
+		DEA1ED6C1F6CF233001AA3C6 /* FTUINavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUINavigationBar.swift; sourceTree = "<group>"; };
 		DEA7E12D1F48150B0002C148 /* FTViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTViewControllerExtension.swift; sourceTree = "<group>"; };
 		DEA7E12F1F4816B20002C148 /* FTApplicationCoreUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTApplicationCoreUtility.swift; sourceTree = "<group>"; };
 		DEA7E1311F48282E0002C148 /* FTMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMath.swift; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 				DE098ACD1F37659000675878 /* FTUIView.swift */,
 				DE9854231F47168E001AFF89 /* FTUITabBar.swift */,
 				DE9854251F4717DF001AFF89 /* FTUIButton.swift */,
+				DEA1ED6C1F6CF233001AA3C6 /* FTUINavigationBar.swift */,
 			);
 			path = ThemeComponents;
 			sourceTree = "<group>";
@@ -200,6 +205,7 @@
 				DE680BC51F30ED9C00A9F68C /* FTColor.swift */,
 				DEA7E1311F48282E0002C148 /* FTMath.swift */,
 				DE4383A81F4B0960003DF8A7 /* FTImageView.swift */,
+				DEA1ED651F698BCC001AA3C6 /* FTImage.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -282,17 +288,19 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Praveen Prabhakar";
 				TargetAttributes = {
 					DE680B121F2BBD9500A9F68C = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = W6W48SVQX7;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					DE680B1B1F2BBD9500A9F68C = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = W6W48SVQX7;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -344,6 +352,7 @@
 				DE680B9E1F2D067900A9F68C /* FTAppDelegate.swift in Sources */,
 				DE680B751F2BC22B00A9F68C /* FTRect.swift in Sources */,
 				DEA7E12E1F48150B0002C148 /* FTViewControllerExtension.swift in Sources */,
+				DEA1ED6D1F6CF233001AA3C6 /* FTUINavigationBar.swift in Sources */,
 				DE680BC61F30ED9C00A9F68C /* FTColor.swift in Sources */,
 				DE680B681F2BC18900A9F68C /* FTString.swift in Sources */,
 				DE680B6D1F2BC1A800A9F68C /* FTLinkDetection.swift in Sources */,
@@ -353,6 +362,7 @@
 				DEA0DB3C1F36028D00D9AFA8 /* FTThemeView+Utility.swift in Sources */,
 				DE680B9B1F2CF86500A9F68C /* FTAssociatedObject.swift in Sources */,
 				DE098AB71F36375500675878 /* FTReflection.swift in Sources */,
+				DEA1ED661F698BCC001AA3C6 /* FTImage.swift in Sources */,
 				DEA7E1301F4816B20002C148 /* FTApplicationCoreUtility.swift in Sources */,
 				DE680B701F2BC1CF00A9F68C /* FTViewExtention.swift in Sources */,
 				DE680B991F2CF5A600A9F68C /* FTThemesManager.swift in Sources */,
@@ -392,7 +402,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -400,7 +412,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -446,7 +462,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -454,7 +472,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -500,7 +522,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTCoreUtility;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -521,7 +544,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTCoreUtility;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -534,7 +558,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTCoreUtilityTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -547,7 +572,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTCoreUtilityTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

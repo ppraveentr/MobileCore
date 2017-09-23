@@ -8,29 +8,79 @@
 
 import Foundation
 
-open class FTUILabel: UILabel, FTThemeProtocol {
+//Used for UIView subclasses Type
+public protocol FTUILabelThemeProtocol: FTThemeProtocol {
+
+    //Used for Label
+    func theme_isLinkUnderlineEnabled(_ bool: Bool)
+    func theme_isLinkDetectionEnabled(_ bool: Bool)
+    func theme_textfont(_ font: UIFont)
+    func theme_textcolor(_ color: UIColor)
+}
+
+//Propery variable to store theme's value.
+public protocol FTUILabelThemeProperyProtocol {
+//    var theme_linkUndelineEnabled: Bool { get set }
+//    var theme_linkDetectionEnabled: Bool { get set }
+    
+    var islinkDetectionEnabled: Bool { get set }
+    var isLinkUnderLineEnabled: Bool { get set }
+}
+
+open class FTUILabel: UILabel, FTUILabelThemeProtocol {
+    
+    //If view is disabled, check for ".disabledStyle" style
+    @objc public override func get_ThemeSubType() -> String? {
+        return self.isEnabled ? nil : ThemeStyle.disabledStyle
+    }
     
     //Force update theme attibute
     public func updateTheme(_ theme: FTThemeDic) {
-        self.updateVisualThemes()
-    }
-
-    //If view is disabled, check for ".disabledStyle" style
-    public func get_ThemeSubType() -> String? {
-        return self.isEnabled ? nil : ThemeStyle.disabledStyle
+        
+        defer {
+            self.updateVisualThemes()
+        }
+        
+        for (kind, value) in theme {
+            
+            switch kind {
+                
+            case "isLinkUnderlineEnabled":
+                self.theme_isLinkUnderlineEnabled(value as! Bool)
+                
+            case "isLinkDetectionEnabled":
+                self.theme_isLinkDetectionEnabled(value as! Bool)
+                
+            case "textfont":
+                
+                let fontName: String? = value as? String
+                let font = FTThemesManager.getFont(fontName)
+                
+                if let font = font { self.theme_textfont(font) }
+                
+            case "textcolor":
+                let colorName: String? = value as? String
+                let color = FTThemesManager.getColor(colorName)
+                
+                if let color = color { self.theme_textcolor(color) }
+                
+            default:
+                break
+            }
+        }
     }
     
     //Should underline hyper-link
     open func theme_isLinkUnderlineEnabled(_ bool: Bool) {
         if var labelTheme = self as? FTUILabelThemeProperyProtocol {
-            labelTheme.theme_linkUndelineEnabled = bool
+            labelTheme.isLinkUnderLineEnabled = bool
         }
     }
     
     //should allow detecction for hyper-link
     open func theme_isLinkDetectionEnabled(_ bool: Bool) {
         if var labelTheme = self as? FTUILabelThemeProperyProtocol {
-            labelTheme.theme_linkDetectionEnabled = bool
+            labelTheme.islinkDetectionEnabled = bool
         }
     }
     
@@ -39,10 +89,7 @@ open class FTUILabel: UILabel, FTThemeProtocol {
     
     //text font color
     open func theme_textcolor(_ color: UIColor) { self.textColor = color }
-    
-    //text background color
-    open func theme_backgroundColor(_ color: UIColor) { self.backgroundColor = color }
-    
+        
     //Force Update text with same value to trigger Theme changes  
     public func updateVisualThemes() {
         

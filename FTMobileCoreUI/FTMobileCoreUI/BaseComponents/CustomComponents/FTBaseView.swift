@@ -13,6 +13,7 @@ open class FTBaseView: FTView {
     //Set as BaseView, so that "pin'ning" subViews wont alter the base position
     public var rootView = FTView()
     
+    //Top portion of view
     public var topPinnedView: FTView? {
         didSet {
             self.restConstraints()
@@ -43,13 +44,15 @@ open class FTBaseView: FTView {
     
     func setupView() {
         
-        self.mainPinnedView.backgroundColor = UIColor.clear
-        self.rootView.backgroundColor = UIColor.clear
+        self.mainPinnedView.backgroundColor = .clear
+        self.rootView.backgroundColor = .clear
+        if self.backgroundColor == nil {
+             self.backgroundColor = .white
+        }
 
         //Set lowerPriority to avoid contraint issues with viewControllers's rootView
-        self.pin(view: rootView, withLayoutPriority: UILayoutPriorityRequired-1)
+        self.pin(view: rootView, withLayoutPriority: FTLayoutPriorityRequiredLow)
 
-        self.backgroundColor = UIColor.white
         self.restConstraints()
     }
     

@@ -14,10 +14,10 @@ public extension UIView {
     public class func embedView(contentView: UIView) -> UIView {
         
         let local = self.init()
-        local.backgroundColor = UIColor.clear
+        local.backgroundColor = .clear
         
-        local.pin(view: contentView, withEdgeInsets: [.All], withLayoutPriority: (UILayoutPriorityRequired - 1))
-        local.pin(view: contentView, withEdgeInsets: [.CenterMargin], withLayoutPriority: UILayoutPriorityDefaultLow)
+        local.pin(view: contentView, withEdgeInsets: [.All], withLayoutPriority: FTLayoutPriorityRequiredLow)
+        local.pin(view: contentView, withEdgeInsets: [.CenterMargin], withLayoutPriority: .defaultLow)
         local.pin(view: contentView, withEdgeInsets: [.EqualWidth, .Top])
         
         return local
@@ -72,7 +72,7 @@ public extension UIView {
         contentView!.frame = bounds
         
         // Make the view stretch with containing view
-        contentView!.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        contentView!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         // Adding custom subview on top of our view (over any custom drawing > see note below)
         addSubview(contentView!)
@@ -87,7 +87,7 @@ public extension UIView {
         
         var imgs: [UIImageView] = []
         
-        if self is UIImageView && self.bounds.size.height <= 1 {
+        if self is UIImageView && self.bounds.height <= 1 {
             return [(self as! UIImageView)]
         }
         

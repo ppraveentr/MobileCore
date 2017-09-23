@@ -21,7 +21,7 @@ open class FTSearchBar: UISearchBar {
         preferredFont = font
         preferredTextColor = textColor
         
-        searchBarStyle = UISearchBarStyle.prominent
+        searchBarStyle = .prominent
         isTranslucent = false
     }
     
@@ -40,9 +40,9 @@ open class FTSearchBar: UISearchBar {
             let searchField: UITextField = (subviews[0] ).subviews[index] as! UITextField
             
             // Set its frame.
-            searchField.frame = CGRect(x: 5.0, y: 5.0, width: frame.size.width - 10.0, height: frame.size.height - 10.0)
+            searchField.frame = CGRect(x: 5.0, y: 5.0, width: frame.width - 10.0, height: frame.height - 10.0)
             
-            var att: [String:AnyObject] = [:]
+            var att: [NSAttributedStringKey:AnyObject] = [:]
             
             // Set the font and text color of the search field.
             if preferredFont != nil {
@@ -50,12 +50,12 @@ open class FTSearchBar: UISearchBar {
             }
             
             if let font = searchField.font?.withSize((searchField.font?.pointSize)! - 1) {
-                att[NSFontAttributeName] = font
+                att[.font] = font
             }
             
             if preferredTextColor != nil {
                 searchField.textColor = preferredTextColor
-                att[NSForegroundColorAttributeName] = preferredTextColor
+                att[.foregroundColor] = preferredTextColor
             }
             
             if let sting = searchField.attributedPlaceholder?.string, att.count > 0 {
@@ -110,12 +110,12 @@ open class FTSearchBar: UISearchBar {
         let textField = self.value(forKey: "searchField") as! UITextField
         
         if let glassIconView = textField.leftView as? UIImageView {
-            glassIconView.image = glassIconView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+            glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
             glassIconView.tintColor = tintColor
         }
         
         if let clearButton = textField.value(forKey: "clearButton") as? UIButton {
-            clearButton.setImage(clearButton.imageView?.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), for: .normal)
+            clearButton.setImage(clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
             clearButton.tintColor = tintColor
         }
     }

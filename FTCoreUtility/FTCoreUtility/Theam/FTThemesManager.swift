@@ -10,6 +10,8 @@ import Foundation
 
 open class FTThemesManager {
 
+    static var imageSourceBundle: [AnyClass] = []
+    
     //Theme JSON file loaded from Main-App
     static var themesJSON: FTThemeDic = [:] {
         willSet{
@@ -18,6 +20,10 @@ open class FTThemesManager {
                  UIView.__setupThemes__()
             }
         }
+        didSet{
+            //Setup App config
+            FTAppearanceManager.__setupThemes__()
+        }
     }
     
     //
@@ -25,7 +31,8 @@ open class FTThemesManager {
         
         //Usefull for loading Images that are stored in bundle which are defined in Themes's JSON
         if let imageSource = imageSource {
-            FTReflection.registerBundleIdentifier(imageSource)
+            imageSourceBundle.append(contentsOf: imageSource)
+//            FTReflection.registerModuleIdentifier(imageSource)
         }
 
         //Update theme with new config
@@ -52,6 +59,10 @@ open class FTThemesManager {
     }
     
     //MARK: ViewComponents
+    open class func isViewComponentValid(componentName: String) -> Bool {
+        return self.isThemeComponentValid(componentName)
+    }
+    
     //TODO: custom themes for view-objects
     open class func getViewComponent(_ componentName: String, styleName: String?) -> FTThemeDic? {
         guard (styleName != nil) else { return nil }
@@ -87,13 +98,47 @@ open class FTThemesManager {
             let size = NumberFormatter().number(from: sizeValue) {
             
             if name == "system" {
-                return UIFont.systemFont(ofSize: CGFloat(size))
+                return UIFont.systemFont(ofSize: CGFloat(truncating: size))
             }
             
-            return UIFont(name: name, size: CGFloat(size))
+            return UIFont(name: name, size: CGFloat(truncating: size))
         }
         
         return UIFont.systemFont(ofSize: 14.0)
+    }
+    
+    //MARK: UIImage
+    open class func getImage(_ imageName: Any?) -> UIImage? {
+        
+        guard let imageName = imageName else { return nil }
+        
+        if var imageName = imageName as? String {
+            
+            if imageName == "@empty" {
+                return UIImage()
+            }
+            
+            if imageName.hasPrefix("@") {
+                
+                //Search for image in all available bundles
+                for bundleName in FTThemesManager.imageSourceBundle {
+                    
+                    let bundle = Bundle(for: bundleName)
+                    
+                    if let image = UIImage.init(named: imageName.trimPrefix("@"), in: bundle, compatibleWith: nil){
+                        return image
+                    }
+                }
+            }
+        }
+        
+        return nil
+    }
+    
+    //MARK: App Appearance
+    //TODO: custom themes for view-objects
+    open class func getAppearance(_ appearanceName: String? = nil) -> Any? {
+        return getThemeAppearance(appearanceName)
     }
 }
 
@@ -107,6 +152,12 @@ extension FTThemesManager {
     
     //MARK: Component
     fileprivate class var themeComponent: FTThemeDic? { return FTThemesManager.themesJSON["components"] as? FTThemeDic }
+    fileprivate class func isThemeComponentValid(_ component: String) -> Bool {
+        //Get all the components of spefic type
+        guard (self.themeComponent?[component] as? FTThemeDic != nil) else { return false }
+        
+        return true
+    }
     fileprivate class func getThemeComponent(_ component: String, styleName: String? = nil) -> FTThemeDic? {
         
         //TODO: Merge all sub-styles into single JSON, for easy parsing.
@@ -132,8 +183,28 @@ extension FTThemesManager {
         return self.themeFont?[fontName] as? FTThemeDic
     }
 
+    //Appearance
+    fileprivate class var themeAppearance: FTThemeDic? { return FTThemesManager.themesJSON["appearance"] as? FTThemeDic }
+    fileprivate class func getThemeAppearance(_ appearanceName: String? = nil) -> Any? {
+        
+        //If 'appearanceName' is missing retrun all themes
+        guard let appearanceName = appearanceName else {
+            return self.themeAppearance
+        }
+        
+        //If requested for particular appearance
+        if appearanceName.contains(":") {
+            return self.themeAppearance?[appearanceName] as? FTThemeDic
+        }
+
+        //Retruns all appearance, which has same base name
+        let baseObptions = self.themeAppearance?.filter{ $0.0.hasPrefix(appearanceName) }
+        
+        return baseObptions
+    }
+    
     //Defaults
-    fileprivate class func getDefaults(type: FTThemesType, keyName: String?, styleName: String? = nil) -> Any?  {
+    fileprivate class func getDefaults(type: FTThemesType, keyName: String? = nil, styleName: String? = nil) -> Any?  {
         
         guard let key = keyName else { return nil }
         

@@ -13,14 +13,14 @@ class AppDelegate: FTAppDelegate {
 
     public override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        FTReflection.registerBundleIdentifier([AppDelegate.self,FTBaseView.self])
+        FTReflection.registerModuleIdentifier([AppDelegate.self,FTBaseView.self])
 
         if
             let resource = Bundle.main.path(forResource: "MobileCodeSampleBundle", ofType: "bundle"),
             let theme = Bundle(path: resource)?.path(forResource: "Themes", ofType: "json"),
-            let themeContent = try? theme.JSONContentAtPath() as! Dictionary<String,Any> {
+            let themeContent: FTThemeDic = try! theme.JSONContentAtPath() as? FTThemeDic {
         
-            FTThemesManager.setupThemes(themes: themeContent)
+            FTThemesManager.setupThemes(themes: themeContent, imageSourceBundle: [AppDelegate.self])
         }
         
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
