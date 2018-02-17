@@ -8,8 +8,14 @@
 
 import Foundation
 
+//Propery variable to store theme's value.
+public protocol FTUILabelThemeProperyProtocol {
+    var islinkDetectionEnabled: Bool { get set }
+    var isLinkUnderLineEnabled: Bool { get set }
+}
+
 //Used for UIView subclasses Type
-public protocol FTUILabelThemeProtocol: FTThemeProtocol {
+protocol FTUILabelThemeProtocol: FTThemeProtocol {
 
     //Used for Label
     func theme_isLinkUnderlineEnabled(_ bool: Bool)
@@ -18,19 +24,10 @@ public protocol FTUILabelThemeProtocol: FTThemeProtocol {
     func theme_textcolor(_ color: UIColor)
 }
 
-//Propery variable to store theme's value.
-public protocol FTUILabelThemeProperyProtocol {
-//    var theme_linkUndelineEnabled: Bool { get set }
-//    var theme_linkDetectionEnabled: Bool { get set }
-    
-    var islinkDetectionEnabled: Bool { get set }
-    var isLinkUnderLineEnabled: Bool { get set }
-}
-
-open class FTUILabel: UILabel, FTUILabelThemeProtocol {
+public extension FTThemeProtocol where Self: UILabel {
     
     //If view is disabled, check for ".disabledStyle" style
-    @objc public override func get_ThemeSubType() -> String? {
+    public func get_ThemeSubType() -> String? {
         return self.isEnabled ? nil : ThemeStyle.disabledStyle
     }
     
@@ -69,6 +66,9 @@ open class FTUILabel: UILabel, FTUILabelThemeProtocol {
             }
         }
     }
+}
+
+extension UILabel: FTUILabelThemeProtocol {
     
     //Should underline hyper-link
     open func theme_isLinkUnderlineEnabled(_ bool: Bool) {
@@ -100,4 +100,4 @@ open class FTUILabel: UILabel, FTUILabelThemeProtocol {
             self.text = text
         }
     }
-}
+} 

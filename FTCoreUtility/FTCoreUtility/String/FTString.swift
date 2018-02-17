@@ -76,7 +76,7 @@ public extension String {
     
     //Length of string or no of characters in self
     var length: Int {
-        return characters.count
+        return self.count
     }
 
 //MARK: JSON

@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class FTLabel : FTUILabel, FTUILabelThemeProperyProtocol, NSLayoutManagerDelegate {
+open class FTLabel : UILabel, FTUILabelThemeProperyProtocol, NSLayoutManagerDelegate {
     
     public lazy var textStorage: NSTextStorage = self.getTextStorage()
     
@@ -148,7 +148,6 @@ extension FTLabel {
         //HTTP links
         let links = FTLinkDetection.getURLLinkRanges((attributedText?.string) ?? "")
         self.linkRanges?.insert(contentsOf: links, at: 0)
-        
     }
 }
 
@@ -266,5 +265,4 @@ extension FTLabel {
         
         return local
     }
-    
 }

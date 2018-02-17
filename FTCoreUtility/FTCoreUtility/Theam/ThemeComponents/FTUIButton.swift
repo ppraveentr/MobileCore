@@ -11,7 +11,7 @@ import Foundation
 open class FTUIButton: UIButton, FTUIControlThemeProtocol {
     
     //check view state, to update style
-    @objc public override func get_ThemeSubType() -> String? {
+    public func get_ThemeSubType() -> String? {
         if self.isEnabled {
             return nil
         }

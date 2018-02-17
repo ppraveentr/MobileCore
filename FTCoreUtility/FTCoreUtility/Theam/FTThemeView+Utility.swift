@@ -24,7 +24,7 @@ public struct ThemeStyle {
 }
 
 //Used for UIView subclasses Type
-public protocol FTThemeProtocol: AnyObject {
+public protocol FTThemeProtocol {
     
     //Retruns 'ThemeStyle' specific to current state of object.
     //Say if UIView is disabled, retrun "disabled", which can be clubed with main Theme style.
@@ -33,6 +33,13 @@ public protocol FTThemeProtocol: AnyObject {
     
     //Custom Subclass can implement, to config Custom component
     func updateTheme(_ theme: FTThemeDic)
+}
+
+public extension FTThemeProtocol where Self: UIView {
+    func get_ThemeSubType() -> String? {
+        //If view is disabled, check for ".disabledStyle" style
+        return self.isUserInteractionEnabled ? nil : ThemeStyle.disabledStyle
+    }
 }
 
 //Used for UIControl objects, when multiple states are possible to set at initalization
@@ -198,11 +205,6 @@ fileprivate extension UIView {
 
 //MARK: UIView: FTThemeProtocol
 extension UIView {
-    
-    public func get_ThemeSubType() -> String? {
-        //If view is disabled, check for ".disabledStyle" style
-         return self.isUserInteractionEnabled ? nil : ThemeStyle.disabledStyle
-    }
     
     @objc public func swizzled_updateTheme(_ theme: FTThemeDic) {
         

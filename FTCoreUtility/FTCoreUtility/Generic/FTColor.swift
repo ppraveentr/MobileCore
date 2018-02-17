@@ -67,7 +67,7 @@ public extension UIColor {
         Scanner(string: cString).scanHexInt32(&int)
         
         let a, r, g, b: UInt32
-        switch hex.characters.count-1 {
+        switch hex.length-1 {
         case 3: // RGB (12-bit)
             (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
         case 6: // RGB (24-bit)

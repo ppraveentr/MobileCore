@@ -61,7 +61,7 @@ final public class FTReflection {
         // If it was not set, then use the ModuleIdentifier (which is the same as kCFModuleIdentifierKey)
         if appName == "" {
             appName = bundle.bundleIdentifier ?? ""
-            appName = appName.characters.split(whereSeparator: {$0 == "."}).map({ String($0) }).last ?? ""
+            appName = appName.split(whereSeparator: { $0 == "." }).map(String.init).last ?? ""
         }
         
         // Clean up special characters

@@ -282,10 +282,10 @@ public extension UIView {
         
         //Top Margin
         if edgeInsets.contains(.TopLayoutMargin) {
-            let constraintTop = self.pin(\UIView.topAnchor, toView: view, priority: priority, constant: 0)
+            let constraintTop = self.pin(\UIView.topAnchor, toView: view, priority: priority)
             localConstraint.append(constraintTop)
             
-            let constraintBottom = self.pin(\UIView.bottomAnchor, toView: view, priority: priority, constant: 0)
+            let constraintBottom = self.pin(\UIView.bottomAnchor, toView: view, priority: priority)
             localConstraint.append(constraintBottom)
         }
         
@@ -309,13 +309,13 @@ public extension UIView {
         //CenterXMargin
         if edgeInsets.contains(.CenterXMargin) {
             
-            let constraint = self.pin(\UIView.centerXAnchor, toView: view, priority: priority, constant: 0)
+            let constraint = self.pin(\UIView.centerXAnchor, toView: view, priority: priority)
             localConstraint.append(constraint)
         }
         
         //CenterYMargin
         if edgeInsets.contains(.CenterYMargin) {
-            let constraint = self.pin(\UIView.centerYAnchor, toView: view, priority: priority, constant: 0)
+            let constraint = self.pin(\UIView.centerYAnchor, toView: view, priority: priority)
             localConstraint.append(constraint)
         }
         
@@ -343,13 +343,13 @@ public extension UIView {
         
             //Leading
             if edgeInsets.contains(.LeadingMargin) {
-                let constraint = self.pin(\UIView.leadingAnchor, toView: view, priority: priority, constant: 0)
+                let constraint = self.pin(\UIView.leadingAnchor, toView: view, priority: priority)
                 localConstraint.append(constraint)
             }
             
             //Traling
             if edgeInsets.contains(.TrailingMargin) {
-                let constraint = self.pin(\UIView.trailingAnchor, toView: view, priority: priority, constant: 0)
+                let constraint = self.pin(\UIView.trailingAnchor, toView: view, priority: priority)
                 localConstraint.append(constraint)
             }
             
@@ -422,7 +422,6 @@ public extension UIView {
             }
         }
         
-        //TODO: Simply the logic
         //Pin each view to nextView with zeroOffSet-spacing, with lower priority.
         //Used of .AutoMargin edgeInsets,
         //If any view is removed, this will reset the remaningViews to defaults
@@ -469,6 +468,7 @@ public extension UIView {
             
             lastView = view
             
+            //TODO: Simplfy the logic
             if(localEdgeInsets.contains(.AutoMargin)) {
                 
                 //Pin each view to self with Default-padding.
