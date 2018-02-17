@@ -8,8 +8,10 @@
 
 import Foundation
 
+private let kFTCellIdentifier = "FT.kCellIdentifer"
+
 open class FTCoreTableViewController: UITableViewController {
-    
+
     var tableViewStyle: UITableViewStyle = .plain
     
     public override init(style: UITableViewStyle) {
@@ -45,7 +47,7 @@ open class FTCoreTableViewController: UITableViewController {
 
 open class FTBaseTableViewController: FTBaseViewController {
     
-    public lazy var tableViewController: FTCoreTableViewController = self.getTableView()
+    public lazy var tableViewController: FTCoreTableViewController = self.getTableViewController()
     public var tableView: FTTableView {
         get { return self.tableViewController.tableView as! FTTableView }
     }
@@ -64,11 +66,8 @@ open class FTBaseTableViewController: FTBaseViewController {
         //Setup tableView by invoking it
         _ = self.tableView
     }
-}
-
-extension FTBaseTableViewController {
     
-    func getTableView() -> FTCoreTableViewController {
+    func getTableViewController() -> FTCoreTableViewController {
         
         let local = self.class_TableViewController()
         
@@ -77,7 +76,7 @@ extension FTBaseTableViewController {
         self.mainView?.pin(view: local.view, withEdgeOffsets: self.class_TableViewEdgeOffsets())
         
         //Set default Cell
-        local.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "kCellIdentifer")
+        local.tableView.register(UITableViewCell.self, forCellReuseIdentifier: kFTCellIdentifier)
 
         local.tableView.dataSource = self
         local.tableView.delegate = self
@@ -98,6 +97,10 @@ extension FTBaseTableViewController {
         }
     }
     
+}
+
+extension FTBaseTableViewController {
+    
     /**
      tableView's tableViewHeaderView contains wrapper view, which height is evaluated
      with Auto Layout. Here I use evaluated height and update tableView's
@@ -112,19 +115,19 @@ extension FTBaseTableViewController {
         
         // get height of the wrapper and apply it to a header
         if let view = self.tableView.tableHeaderView {
-            var Frame = self.tableView.tableHeaderView?.frame
+            var originalFrame = self.tableView.tableHeaderView?.frame
             view.resizeToFitSubviews()
-            Frame?.size.height = (view.frame.height)
-            Frame?.size.width = self.tableView.frame.width
-            self.tableView.tableHeaderView?.frame = Frame!
+            originalFrame?.size.height = (view.frame.height)
+            originalFrame?.size.width = self.tableView.frame.width
+            self.tableView.tableHeaderView?.frame = originalFrame!
         }
         
         if let view = self.tableView.tableFooterView {
-            var Frame = self.tableView.tableFooterView?.frame
+            var originalFrame = self.tableView.tableFooterView?.frame
             view.resizeToFitSubviews()
-            Frame?.size.height = (view.frame.height)
-            Frame?.size.width = self.tableView.frame.width
-            self.tableView.tableFooterView?.frame = Frame!
+            originalFrame?.size.height = (view.frame.height)
+            originalFrame?.size.width = self.tableView.frame.width
+            self.tableView.tableFooterView?.frame = originalFrame!
         }
         
         DispatchQueue.main.async {
@@ -152,9 +155,7 @@ extension FTBaseTableViewController: UITableViewDataSource {
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "kCellIdentifer", for: indexPath)
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: kFTCellIdentifier, for: indexPath)
         return cell
     }
 }

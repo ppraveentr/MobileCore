@@ -7,3 +7,26 @@
 //
 
 import Foundation
+
+open class FTBaseScrollViewController: FTBaseViewController {
+    
+    public lazy var scrollView: FTScrollView = self.getScrollView()
+    
+    open override func loadView() {
+        super.loadView()
+        
+        _ = self.scrollView
+    }
+}
+
+extension FTBaseScrollViewController {
+    
+    func getScrollView() -> FTScrollView {
+        
+        let local = FTScrollView()
+        
+        self.mainView?.pin(view: local, withEdgeOffsets: .FTEdgeOffsetsZero())
+        
+        return local
+    }
+}

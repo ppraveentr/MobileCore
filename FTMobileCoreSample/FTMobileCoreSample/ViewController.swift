@@ -70,13 +70,21 @@ class ViewController: FTBaseViewController {
         bottomL.text = "bottom"
         bottomL.theme = "system14Y"
         
-        scrollView.contentView.pin(view: label, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Left, .Vertical ])
-        scrollView.contentView.pin(view: bottomL, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Right ])
+//        scrollView.contentView.pin(view: label, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Left, .Vertical ])
+//        scrollView.contentView.pin(view: bottomL, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Right ])
+//
+//        scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, bottomL],
+//                                         layoutDirection: .LeftToRight, spacing: 20,
+//                                         edgeInsets: [.AutoSize, .TopMargin])
 
+        
+        scrollView.contentView.pin(view: label, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Top, .Horizontal ])
+        scrollView.contentView.pin(view: bottomL, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Bottom ])
+        
         scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, bottomL],
-                                         layoutDirection: .LeftToRight, spacing: 20,
-                                         edgeInsets: [.AutoSize, .TopMargin])
-
+                                         layoutDirection: .TopToBottom, spacing: 20,
+                                         edgeInsets: [.EqualSize, .LeadingMargin])
+        
         
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
 //            label.removeFromSuperview()

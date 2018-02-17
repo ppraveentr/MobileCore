@@ -24,7 +24,7 @@ open class FTBaseViewController : UIViewController {
     
     //Setup baseView's topLayoutGuide by sending true in subControllers if needed
     public func shouldSetTopLayoutGuide() -> Bool {
-        return false
+        return true
     }
     
     public var mainView: FTView? {
@@ -34,41 +34,16 @@ open class FTBaseViewController : UIViewController {
         
         return self.baseView?.mainPinnedView
     }
-    
-    //MARK: Notification whenever view is loaded
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        NotificationCenter.default.post(name: .FTMobileCoreUI_ViewController_DidLoad, object: self)
-    }
-    
-    open override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        NotificationCenter.default.post(name: .FTMobileCoreUI_ViewController_WillAppear, object: self)
-    }
-    
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        NotificationCenter.default.post(name: .FTMobileCoreUI_ViewController_DidAppear, object: self)
-    }
-    
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.post(name: .FTMobileCoreUI_ViewController_WillDisappear, object: self)
-    }
-    
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.post(name: .FTMobileCoreUI_ViewController_DidDisappear, object: self)
-    }
 }
 
+//MARK: Layout Guide for rootView
 extension FTBaseViewController {
     
     func setupBaseView() {
         
         let local = self.baseView?.rootView
         
-//        self.view.pin(view: local, withEdgeInsets: [.Horizontal, .Bottom])
+        //        self.view.pin(view: local, withEdgeInsets: [.Horizontal, .Bottom])
         
         /* Pin view bellow status bar */
         if shouldSetTopLayoutGuide() {
@@ -77,7 +52,35 @@ extension FTBaseViewController {
         }
         
         local?.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor,
-                                   constant: 0.0).isActive = true
+                                       constant: 0.0).isActive = true
         
+    }
+}
+
+//MARK: Notification whenever view is loaded
+extension FTBaseViewController {
+    
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        postNotification(name: .FTMobileCoreUI_ViewController_WillAppear)
+    }
+    
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        postNotification(name: .FTMobileCoreUI_ViewController_DidAppear)
+    }
+    
+    open override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        postNotification(name: .FTMobileCoreUI_ViewController_WillDisappear)
+    }
+    
+    open override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        postNotification(name: .FTMobileCoreUI_ViewController_DidDisappear)
     }
 }

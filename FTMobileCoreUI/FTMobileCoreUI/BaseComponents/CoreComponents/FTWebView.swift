@@ -50,14 +50,14 @@ extension FTWebView {
             baseURL: baseURL)
     }
     
-    func getBodyText() -> String {
+    func getHTMLBodyText() -> String {
         return "document.getElementsByTagName('body')[0]"
     }
     
     public func setContentFontSize(_ size: Int) {
         
         if size >= 10 {
-            let js = self.getBodyText() + ".style.webkitTextSizeAdjust= '\(size)%'"
+            let js = self.getHTMLBodyText() + ".style.webkitTextSizeAdjust= '\(size)%'"
             self.insertCSSString(jsString: js)
         }
     }
@@ -65,12 +65,12 @@ extension FTWebView {
     public func setContentColor(textColor: UIColor? = nil, backgroundColor: UIColor? = nil) {
         
         if let bgHex = backgroundColor?.hexString() {
-            let bgJS = self.getBodyText() + ".style.backgroundColor= \"\(bgHex)\";"
+            let bgJS = self.getHTMLBodyText() + ".style.backgroundColor= \"\(bgHex)\";"
             self.insertCSSString(jsString: bgJS)
         }
         
         if let fontHex = textColor?.hexString() {
-            let fontJS = self.getBodyText() + ".style.color= \"\(fontHex)\";"
+            let fontJS = self.getHTMLBodyText() + ".style.color= \"\(fontHex)\";"
             self.insertCSSString(jsString: fontJS)
         }
     }
@@ -78,7 +78,7 @@ extension FTWebView {
     public func setContentFontFamily(_ fontName: String?) {
         
         //base document style
-        var css = self.getBodyText() + ".style.fontFamily= \""
+        var css = self.getHTMLBodyText() + ".style.fontFamily= \""
         
         //user selected font
         css += ( (fontName != nil && fontName != "") ? "\(fontName!)," : "")
