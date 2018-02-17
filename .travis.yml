@@ -3,4 +3,5 @@ xcode_workspace: FTMobileCoreSampleWorkspace.xcworkspace # path to your xcodepro
 osx_image: xcode9.2
 xcode_scheme: FTMobileCoreSample
 script:
- - xcodebuild -workspace "FTMobileCoreSampleWorkspace.xcworkspace" -scheme FTMobileCoreSample -sdk "iphoneos" -configuration Release -arch arm64 -arch armv7 -arch armv7s only_active_arch=no defines_module=yes
+ - xcodebuild -workspace "FTMobileCoreSampleWorkspace.xcworkspace" -scheme FTMobileCoreSample  -sdk "iphonesimulator" -configuration Release -arch x86_64 -arch i386 only_active_arch=no defines_module=yes
+ #- xcodebuild -workspace "FTMobileCoreSampleWorkspace.xcworkspace" -scheme FTMobileCoreSample -sdk "iphoneos" -configuration Release -arch arm64 -arch armv7 -arch armv7s only_active_arch=no defines_module=yes
