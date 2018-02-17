@@ -1,5 +1,6 @@
 language: objective-c
 xcode_project: FTCoreUtility/FTCoreUtility.xcodeproj # path to your xcodeproj folder
-xcode_scheme: FTCoreUtility
 osx_image: xcode9.2
-os: osx
+script:
+  - xcodebuild -target FTCoreUtility -configuration Release -arch arm64 -arch armv7 -arch armv7s only_active_arch=no defines_module=yes -sdk "iphoneos"
+  - xcodebuild -target FTCoreUtility -configuration Release -arch x86_64 -arch i386 only_active_arch=no defines_module=yes -sdk "iphonesimulator"
