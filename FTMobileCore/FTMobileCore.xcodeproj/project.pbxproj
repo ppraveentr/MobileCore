@@ -117,17 +117,9 @@
 		DE6BC9B820542F5900D59B12 /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
-				DE6BC9C820544CF800D59B12 /* NetworkLayer */,
-			);
-			path = NetworkLayer;
-			sourceTree = "<group>";
-		};
-		DE6BC9C820544CF800D59B12 /* NetworkLayer */ = {
-			isa = PBXGroup;
-			children = (
 				DE6BC9C920544CF800D59B12 /* FTServiceClient.swift */,
 			);
-			name = NetworkLayer;
+			path = NetworkLayer;
 			sourceTree = "<group>";
 		};
 		DE92219C1EF28C9B000C8FC7 = {
