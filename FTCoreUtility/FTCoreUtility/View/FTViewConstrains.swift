@@ -179,7 +179,7 @@ public struct FTEdgeInsets: OptionSet {
 //    }
 }
 
-public protocol FTViewConstrains {
+public protocol FTViewConstrains: AnyObject {
     
     func pin(view : UIView, withEdgeOffsets FTEdgeOffsets: FTEdgeOffsets?,
     withEdgeInsets edgeInsets: FTEdgeInsets?,
@@ -395,14 +395,7 @@ public extension UIView {
                           layoutPriority priority: UILayoutPriority = UILayoutPriority.required) {
         
         //Add views to subView, if not present
-        views.forEach { (view) in
-            
-            if !self.subviews.contains(view) {
-                self.addSubview(view)
-            }
-            
-            view.translatesAutoresizingMaskIntoConstraints = false
-        }
+        views.filter { !self.subviews.contains($0) }.forEach(addSubview(_:))
         
         //Pin each view to self with Default-padding, with lower priority.
         //Used of .AutoMargin edgeInsets, 
@@ -461,6 +454,8 @@ public extension UIView {
         
         views.enumerated().forEach { (index, view) in
             
+            view.translatesAutoresizingMaskIntoConstraints = false
+
             if (lastView != nil) {
                 lastView?.pin(view: view, withEdgeOffsets: offSet, withEdgeInsets: localEdgeInsets,
                               withLayoutPriority: priority)

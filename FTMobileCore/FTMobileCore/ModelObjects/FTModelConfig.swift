@@ -41,12 +41,6 @@ public class FTModelConfig {
     }
     
     public class func schemaForClass(classKey: String) throws -> JSON? {
-        
-        //TODO: throws
-//        if let data = self.sharedInstance.modelSchema[classKey] {
-//            return data
-//        }
-        
         return self.sharedInstance.modelSchema[classKey] as? JSON
     }
 }

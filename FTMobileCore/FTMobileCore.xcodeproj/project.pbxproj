@@ -8,20 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		DE0C49A51F4612D50010A5BE /* FTCoreUtility.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C49961F4612A20010A5BE /* FTCoreUtility.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DE2FB94C1F3F760F00581064 /* JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = DE2FB9391F3F760F00581064 /* JSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DE2FB94D1F3F760F00581064 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2FB93A1F3F760F00581064 /* JSONModel.m */; };
-		DE2FB94E1F3F760F00581064 /* JSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = DE2FB93B1F3F760F00581064 /* JSONModelClassProperty.h */; };
-		DE2FB94F1F3F760F00581064 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2FB93C1F3F760F00581064 /* JSONModelClassProperty.m */; };
-		DE2FB9501F3F760F00581064 /* JSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = DE2FB93D1F3F760F00581064 /* JSONModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DE2FB9511F3F760F00581064 /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2FB93E1F3F760F00581064 /* JSONModelError.m */; };
-		DE2FB9521F3F760F00581064 /* JSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = DE2FB93F1F3F760F00581064 /* JSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DE2FB9591F3F760F00581064 /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = DE2FB9481F3F760F00581064 /* JSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DE2FB95A1F3F760F00581064 /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2FB9491F3F760F00581064 /* JSONKeyMapper.m */; };
-		DE2FB95B1F3F760F00581064 /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = DE2FB94A1F3F760F00581064 /* JSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DE2FB95C1F3F760F00581064 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2FB94B1F3F760F00581064 /* JSONValueTransformer.m */; };
+		DE6BC9CA20544CF800D59B12 /* FTServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6BC9C920544CF800D59B12 /* FTServiceClient.swift */; };
 		DE9221B01EF28C9C000C8FC7 /* FTMobileCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9221A61EF28C9B000C8FC7 /* FTMobileCore.framework */; };
 		DE9221B51EF28C9C000C8FC7 /* FTMobileCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221B41EF28C9C000C8FC7 /* FTMobileCoreTests.swift */; };
 		DE9221B71EF28C9C000C8FC7 /* FTMobileCore.h in Headers */ = {isa = PBXBuildFile; fileRef = DE9221A91EF28C9B000C8FC7 /* FTMobileCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DEA7654020515D070009F7F7 /* FTDataModelCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7653F20515D070009F7F7 /* FTDataModelCreator.swift */; };
 		DEC55DD71EF2964600FAE024 /* FTDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DD61EF2964600FAE024 /* FTDataModel.swift */; };
 		DEC55DEA1EF2AE0300FAE024 /* FTModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DE91EF2AE0300FAE024 /* FTModelObject.swift */; };
 		DEC55DEC1EF2B09700FAE024 /* FTModelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DEB1EF2B09700FAE024 /* FTModelConfig.swift */; };
@@ -74,23 +65,14 @@
 
 /* Begin PBXFileReference section */
 		DE0C49901F4612A20010A5BE /* FTCoreUtility.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FTCoreUtility.xcodeproj; path = ../FTCoreUtility/FTCoreUtility.xcodeproj; sourceTree = "<group>"; };
-		DE2FB9391F3F760F00581064 /* JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModel.h; sourceTree = "<group>"; };
-		DE2FB93A1F3F760F00581064 /* JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModel.m; sourceTree = "<group>"; };
-		DE2FB93B1F3F760F00581064 /* JSONModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelClassProperty.h; sourceTree = "<group>"; };
-		DE2FB93C1F3F760F00581064 /* JSONModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModelClassProperty.m; sourceTree = "<group>"; };
-		DE2FB93D1F3F760F00581064 /* JSONModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelError.h; sourceTree = "<group>"; };
-		DE2FB93E1F3F760F00581064 /* JSONModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModelError.m; sourceTree = "<group>"; };
-		DE2FB93F1F3F760F00581064 /* JSONModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelLib.h; sourceTree = "<group>"; };
-		DE2FB9481F3F760F00581064 /* JSONKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKeyMapper.h; sourceTree = "<group>"; };
-		DE2FB9491F3F760F00581064 /* JSONKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKeyMapper.m; sourceTree = "<group>"; };
-		DE2FB94A1F3F760F00581064 /* JSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONValueTransformer.h; sourceTree = "<group>"; };
-		DE2FB94B1F3F760F00581064 /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONValueTransformer.m; sourceTree = "<group>"; };
+		DE6BC9C920544CF800D59B12 /* FTServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTServiceClient.swift; sourceTree = "<group>"; };
 		DE9221A61EF28C9B000C8FC7 /* FTMobileCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FTMobileCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9221A91EF28C9B000C8FC7 /* FTMobileCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTMobileCore.h; sourceTree = "<group>"; };
 		DE9221AA1EF28C9B000C8FC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE9221AF1EF28C9C000C8FC7 /* FTMobileCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9221B41EF28C9C000C8FC7 /* FTMobileCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMobileCoreTests.swift; sourceTree = "<group>"; };
 		DE9221B61EF28C9C000C8FC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DEA7653F20515D070009F7F7 /* FTDataModelCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTDataModelCreator.swift; sourceTree = "<group>"; };
 		DEC55DD61EF2964600FAE024 /* FTDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTDataModel.swift; sourceTree = "<group>"; };
 		DEC55DE91EF2AE0300FAE024 /* FTModelObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTModelObject.swift; sourceTree = "<group>"; };
 		DEC55DEB1EF2B09700FAE024 /* FTModelConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTModelConfig.swift; sourceTree = "<group>"; };
@@ -124,48 +106,28 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DE2FB9371F3F760F00581064 /* JSONModel */ = {
-			isa = PBXGroup;
-			children = (
-				DE2FB9381F3F760F00581064 /* JSONModel */,
-				DE2FB93F1F3F760F00581064 /* JSONModelLib.h */,
-				DE2FB9471F3F760F00581064 /* JSONModelTransformations */,
-			);
-			name = JSONModel;
-			path = Framework/JSONModel/JSONModel;
-			sourceTree = "<group>";
-		};
-		DE2FB9381F3F760F00581064 /* JSONModel */ = {
-			isa = PBXGroup;
-			children = (
-				DE2FB9391F3F760F00581064 /* JSONModel.h */,
-				DE2FB93A1F3F760F00581064 /* JSONModel.m */,
-				DE2FB93B1F3F760F00581064 /* JSONModelClassProperty.h */,
-				DE2FB93C1F3F760F00581064 /* JSONModelClassProperty.m */,
-				DE2FB93D1F3F760F00581064 /* JSONModelError.h */,
-				DE2FB93E1F3F760F00581064 /* JSONModelError.m */,
-			);
-			path = JSONModel;
-			sourceTree = "<group>";
-		};
-		DE2FB9471F3F760F00581064 /* JSONModelTransformations */ = {
-			isa = PBXGroup;
-			children = (
-				DE2FB9481F3F760F00581064 /* JSONKeyMapper.h */,
-				DE2FB9491F3F760F00581064 /* JSONKeyMapper.m */,
-				DE2FB94A1F3F760F00581064 /* JSONValueTransformer.h */,
-				DE2FB94B1F3F760F00581064 /* JSONValueTransformer.m */,
-			);
-			path = JSONModelTransformations;
-			sourceTree = "<group>";
-		};
 		DE680B3D1F2BBDE900A9F68C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				DE0C49901F4612A20010A5BE /* FTCoreUtility.xcodeproj */,
-				DE2FB9371F3F760F00581064 /* JSONModel */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE6BC9B820542F5900D59B12 /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				DE6BC9C820544CF800D59B12 /* NetworkLayer */,
+			);
+			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		DE6BC9C820544CF800D59B12 /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				DE6BC9C920544CF800D59B12 /* FTServiceClient.swift */,
+			);
+			name = NetworkLayer;
 			sourceTree = "<group>";
 		};
 		DE92219C1EF28C9B000C8FC7 = {
@@ -190,6 +152,7 @@
 		DE9221A81EF28C9B000C8FC7 /* FTMobileCore */ = {
 			isa = PBXGroup;
 			children = (
+				DE6BC9B820542F5900D59B12 /* NetworkLayer */,
 				DEC55DD31EF2962800FAE024 /* ModelObjects */,
 				DE9221A91EF28C9B000C8FC7 /* FTMobileCore.h */,
 				DE9221AA1EF28C9B000C8FC7 /* Info.plist */,
@@ -212,6 +175,7 @@
 				DEC55DD61EF2964600FAE024 /* FTDataModel.swift */,
 				DEC55DE91EF2AE0300FAE024 /* FTModelObject.swift */,
 				DEC55DEB1EF2B09700FAE024 /* FTModelConfig.swift */,
+				DEA7653F20515D070009F7F7 /* FTDataModelCreator.swift */,
 			);
 			path = ModelObjects;
 			sourceTree = "<group>";
@@ -223,13 +187,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE2FB9521F3F760F00581064 /* JSONModelLib.h in Headers */,
-				DE2FB94C1F3F760F00581064 /* JSONModel.h in Headers */,
-				DE2FB9591F3F760F00581064 /* JSONKeyMapper.h in Headers */,
-				DE2FB9501F3F760F00581064 /* JSONModelError.h in Headers */,
-				DE2FB95B1F3F760F00581064 /* JSONValueTransformer.h in Headers */,
 				DE9221B71EF28C9C000C8FC7 /* FTMobileCore.h in Headers */,
-				DE2FB94E1F3F760F00581064 /* JSONModelClassProperty.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,13 +318,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE2FB9511F3F760F00581064 /* JSONModelError.m in Sources */,
+				DEA7654020515D070009F7F7 /* FTDataModelCreator.swift in Sources */,
 				DEC55DEA1EF2AE0300FAE024 /* FTModelObject.swift in Sources */,
-				DE2FB94D1F3F760F00581064 /* JSONModel.m in Sources */,
-				DE2FB95A1F3F760F00581064 /* JSONKeyMapper.m in Sources */,
-				DE2FB95C1F3F760F00581064 /* JSONValueTransformer.m in Sources */,
-				DE2FB94F1F3F760F00581064 /* JSONModelClassProperty.m in Sources */,
 				DEC55DEC1EF2B09700FAE024 /* FTModelConfig.swift in Sources */,
+				DE6BC9CA20544CF800D59B12 /* FTServiceClient.swift in Sources */,
 				DEC55DD71EF2964600FAE024 /* FTDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

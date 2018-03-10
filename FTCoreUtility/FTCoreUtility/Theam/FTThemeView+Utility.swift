@@ -24,7 +24,7 @@ public struct ThemeStyle {
 }
 
 //Used for UIView subclasses Type
-public protocol FTThemeProtocol {
+public protocol FTThemeProtocol: AnyObject {
     
     //Retruns 'ThemeStyle' specific to current state of object.
     //Say if UIView is disabled, retrun "disabled", which can be clubed with main Theme style.
@@ -53,9 +53,10 @@ public protocol FTUIControlThemeProtocol: FTThemeProtocol {
 extension UIView {
 
     //Swizzling out view's layoutSubviews property for Updating Visual theme
-    class func __setupThemes__() {
-        FTInstanceSwizzling(self, #selector(layoutSubviews), #selector(swizzled_layoutSubviews))
+    static var SwizzleLayoutSubview = {
+        FTInstanceSwizzling(UIView.self, #selector(layoutSubviews), #selector(swizzled_layoutSubviews))
     }
+    class func __setupThemes__() { _ = SwizzleLayoutSubview }
     
     //Theme style-name for the view
     @IBInspectable
@@ -114,7 +115,7 @@ fileprivate extension UIView {
         //Get ThemeName and view's name to get Theme's property
         guard let (className, themeName) = self.get_ThemeName() else { return }
         
-        //Checkout if view supports Theming protocal
+        //Checkout if view supports Theming protocol
         let delegate: FTThemeProtocol? = self as? FTThemeProtocol
         
         //Get Theme property of view based on its state
@@ -123,10 +124,10 @@ fileprivate extension UIView {
                                                                   withSubStyleName: delegate?.get_ThemeSubType())
             else { return }
         
-        //Config view with new Theme-style
+        //Step 1. Config view with new Theme-style
         self.configureTheme(themeDic)
         
-        //Only needed for UIControl types, Eg. Button
+        //Step 2. Only needed for UIControl types, Eg. Button
         guard let controlThemeSelf = self as? FTUIControlThemeProtocol else { return }
 
         //Get styles for diffrent states of UIControl

@@ -8,7 +8,8 @@
 
 import Foundation
 
-public class FTModelObject {
+public struct FTModelObject1 {
+    
     
 //    public class func createDataModelOfType(_ baseClass: FTDataModel.Type, fromDictionary: Dictionary<String, Any>) -> Any? {
 //        

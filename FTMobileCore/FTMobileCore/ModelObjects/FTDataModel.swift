@@ -7,8 +7,12 @@
 //
 
 import Foundation
-import ObjectiveC.runtime
-import ObjectiveC.message
+//import ObjectiveC.runtime
+//import ObjectiveC.message
+
+public protocol FTDataModel: Codable {
+    
+}
 
 //open class FTDataModel : JSONModel {
 

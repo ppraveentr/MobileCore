@@ -9,7 +9,7 @@
 import Foundation
 
 //Propery variable to store theme's value.
-public protocol FTUILabelThemeProperyProtocol {
+public protocol FTUILabelThemeProperyProtocol: AnyObject {
     var islinkDetectionEnabled: Bool { get set }
     var isLinkUnderLineEnabled: Bool { get set }
 }
@@ -72,14 +72,14 @@ extension UILabel: FTUILabelThemeProtocol {
     
     //Should underline hyper-link
     open func theme_isLinkUnderlineEnabled(_ bool: Bool) {
-        if var labelTheme = self as? FTUILabelThemeProperyProtocol {
+        if let labelTheme = self as? FTUILabelThemeProperyProtocol {
             labelTheme.isLinkUnderLineEnabled = bool
         }
     }
     
     //should allow detecction for hyper-link
     open func theme_isLinkDetectionEnabled(_ bool: Bool) {
-        if var labelTheme = self as? FTUILabelThemeProperyProtocol {
+        if let labelTheme = self as? FTUILabelThemeProperyProtocol {
             labelTheme.islinkDetectionEnabled = bool
         }
     }

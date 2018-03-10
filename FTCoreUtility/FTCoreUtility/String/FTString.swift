@@ -8,6 +8,18 @@
 
 import Foundation
 
+// Since all optionals are actual enum values in Swift,
+public extension Optional where Wrapped == String {
+    var isNilOrEmpty: Bool {
+        switch self {
+        case let string?:
+            return string.isEmpty
+        case nil:
+            return true
+        }
+    }
+}
+
 public extension String {
     
     //Enmuration
@@ -38,7 +50,8 @@ public extension String {
     }
     
     //Remove's 'sting' from self -> and update the 'self'
-    @discardableResult mutating func trimString(string: String) -> String {
+    @discardableResult
+    mutating func trimString(string: String) -> String {
         guard string.length > 0 else { return self}
         self = self.replacingOccurrences(of: string, with: "")
         
@@ -46,7 +59,8 @@ public extension String {
     }
     
     //Remove prefix "string"
-    @discardableResult mutating func trimPrefix(_ string: String) -> String {
+    @discardableResult
+    mutating func trimPrefix(_ string: String) -> String {
         
         guard string.length > 0 else { return self}
         
