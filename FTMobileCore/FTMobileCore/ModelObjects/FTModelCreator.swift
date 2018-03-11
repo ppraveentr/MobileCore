@@ -1,5 +1,5 @@
 //
-//  FTDataModelCreator.swift
+//  FTModelCreator.swift
 //  FTMobileCore
 //
 //  Created by Praveen Prabhakar on 08/03/18.
@@ -14,21 +14,21 @@ enum FTModelBindType: String {
     case Int
 }
 
-fileprivate let kRootModel = "FTDataModel"
+fileprivate let kRootModel = "FTModelData"
 fileprivate let kStringType = "String"
 
 fileprivate let kBindingKey = "bindKey"
 fileprivate let kBindingAsType = "bindAs"
 fileprivate let kBindingAsArray = "arrayOf"
 
-open class FTDataModelCreator {
+open class FTModelCreator {
     
     static var sourcePath: String = ""
     static var outputPath: String = ""
 
     //MARK: Configurations
-    static open func configureSourcePath(path: String) { FTDataModelCreator.sourcePath = path }
-    static open func configureOutputPath(path: String) { FTDataModelCreator.outputPath = path }
+    static open func configureSourcePath(path: String) { FTModelCreator.sourcePath = path }
+    static open func configureOutputPath(path: String) { FTModelCreator.outputPath = path }
     
     //MARK:
     static open func generateOutput() {
@@ -57,7 +57,7 @@ open class FTDataModelCreator {
     }
 }
 
-extension FTDataModelCreator {
+extension FTModelCreator {
     static func createModelClass(jsonString: [String: AnyObject],
                                  fileWriterHandler: @escaping (_ fileName: String, _ fileContent: String) -> Swift.Void) {
         
@@ -145,7 +145,7 @@ extension FTDataModelCreator {
                 //
                 decoderKeys += decoderCase(key: key, type: bindParams.0)
                 //
-                encoderKeys += encoderCase(key: key)
+                encoderKeys += encoderCase(key: key, isOptional: bindParams.3)
             }
         }
         
@@ -216,7 +216,7 @@ extension FTDataModelCreator {
         let string =
         """
         if let value = try container?.decodeIfPresent(\(type).self, forKey: .\(key)) {
-        self.\(key) = value
+            self.\(key) = value
         }
         """
         return string + "\n"
@@ -236,11 +236,13 @@ extension FTDataModelCreator {
     }
     
     //MARK: Encoder case
-    static func encoderCase(key: String) -> String {
-        let string =
+    static func encoderCase(key: String, isOptional: Bool) -> String {
+        let string = "if " +
+            (isOptional ? "\(key) != nil" : "!\(key).isEmpty")
+            + " {"
+            + "\n" +
         """
-        if \(key) != nil {
-        try container.encode(\(key), forKey: .\(key))
+            try container.encode(\(key), forKey: .\(key))
         }
         """
         return string + "\n"

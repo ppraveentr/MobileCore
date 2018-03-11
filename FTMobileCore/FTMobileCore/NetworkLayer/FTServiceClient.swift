@@ -16,14 +16,18 @@ open class FTServiceClient {
             let myURL = URL(string: string)
             
             self.getContentFromURL(myURL!, completionHandler: { (htmlString, data, httpURLResponse) in
-                completionHandler(htmlString, data, httpURLResponse)
+                DispatchQueue.main.async() { () -> Void in
+                    completionHandler(htmlString, data, httpURLResponse)
+                }
             })
             
             return
         }
         
         let html: String = try! String(contentsOfFile: string)
-        completionHandler(html, html.data(using: .utf8)!, HTTPURLResponse())
+        DispatchQueue.main.async() { () -> Void in
+            completionHandler(html, html.data(using: .utf8)!, HTTPURLResponse())
+        }
     }
     
     open class func getContentFromURL(_ url: URL,

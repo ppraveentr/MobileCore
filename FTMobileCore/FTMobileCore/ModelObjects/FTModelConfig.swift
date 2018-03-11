@@ -8,9 +8,6 @@
 
 import Foundation
 
-//typealias
-public typealias JSON = Dictionary<String, Any>
-
 //Operator Overloading
 func += <K,V> ( left: inout [K:V], right: [K:V]){
     for (k, v) in right {

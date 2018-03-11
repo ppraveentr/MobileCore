@@ -12,9 +12,9 @@
 		DE9221B01EF28C9C000C8FC7 /* FTMobileCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9221A61EF28C9B000C8FC7 /* FTMobileCore.framework */; };
 		DE9221B51EF28C9C000C8FC7 /* FTMobileCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221B41EF28C9C000C8FC7 /* FTMobileCoreTests.swift */; };
 		DE9221B71EF28C9C000C8FC7 /* FTMobileCore.h in Headers */ = {isa = PBXBuildFile; fileRef = DE9221A91EF28C9B000C8FC7 /* FTMobileCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DEA7654020515D070009F7F7 /* FTDataModelCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7653F20515D070009F7F7 /* FTDataModelCreator.swift */; };
-		DEC55DD71EF2964600FAE024 /* FTDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DD61EF2964600FAE024 /* FTDataModel.swift */; };
-		DEC55DEA1EF2AE0300FAE024 /* FTModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DE91EF2AE0300FAE024 /* FTModelObject.swift */; };
+		DEA45CBC20551712008FA401 /* FTModelStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA45CBB20551712008FA401 /* FTModelStack.swift */; };
+		DEA7654020515D070009F7F7 /* FTModelCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7653F20515D070009F7F7 /* FTModelCreator.swift */; };
+		DEC55DEA1EF2AE0300FAE024 /* FTModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DE91EF2AE0300FAE024 /* FTModelData.swift */; };
 		DEC55DEC1EF2B09700FAE024 /* FTModelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DEB1EF2B09700FAE024 /* FTModelConfig.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,9 +72,9 @@
 		DE9221AF1EF28C9C000C8FC7 /* FTMobileCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9221B41EF28C9C000C8FC7 /* FTMobileCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMobileCoreTests.swift; sourceTree = "<group>"; };
 		DE9221B61EF28C9C000C8FC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DEA7653F20515D070009F7F7 /* FTDataModelCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTDataModelCreator.swift; sourceTree = "<group>"; };
-		DEC55DD61EF2964600FAE024 /* FTDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTDataModel.swift; sourceTree = "<group>"; };
-		DEC55DE91EF2AE0300FAE024 /* FTModelObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTModelObject.swift; sourceTree = "<group>"; };
+		DEA45CBB20551712008FA401 /* FTModelStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTModelStack.swift; sourceTree = "<group>"; };
+		DEA7653F20515D070009F7F7 /* FTModelCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTModelCreator.swift; sourceTree = "<group>"; };
+		DEC55DE91EF2AE0300FAE024 /* FTModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTModelData.swift; sourceTree = "<group>"; };
 		DEC55DEB1EF2B09700FAE024 /* FTModelConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTModelConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +117,7 @@
 		DE6BC9B820542F5900D59B12 /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
+				DEA45CBB20551712008FA401 /* FTModelStack.swift */,
 				DE6BC9C920544CF800D59B12 /* FTServiceClient.swift */,
 			);
 			path = NetworkLayer;
@@ -164,10 +165,9 @@
 		DEC55DD31EF2962800FAE024 /* ModelObjects */ = {
 			isa = PBXGroup;
 			children = (
-				DEC55DD61EF2964600FAE024 /* FTDataModel.swift */,
-				DEC55DE91EF2AE0300FAE024 /* FTModelObject.swift */,
+				DEC55DE91EF2AE0300FAE024 /* FTModelData.swift */,
 				DEC55DEB1EF2B09700FAE024 /* FTModelConfig.swift */,
-				DEA7653F20515D070009F7F7 /* FTDataModelCreator.swift */,
+				DEA7653F20515D070009F7F7 /* FTModelCreator.swift */,
 			);
 			path = ModelObjects;
 			sourceTree = "<group>";
@@ -310,11 +310,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEA7654020515D070009F7F7 /* FTDataModelCreator.swift in Sources */,
-				DEC55DEA1EF2AE0300FAE024 /* FTModelObject.swift in Sources */,
+				DEA7654020515D070009F7F7 /* FTModelCreator.swift in Sources */,
+				DEC55DEA1EF2AE0300FAE024 /* FTModelData.swift in Sources */,
 				DEC55DEC1EF2B09700FAE024 /* FTModelConfig.swift in Sources */,
+				DEA45CBC20551712008FA401 /* FTModelStack.swift in Sources */,
 				DE6BC9CA20544CF800D59B12 /* FTServiceClient.swift in Sources */,
-				DEC55DD71EF2964600FAE024 /* FTDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

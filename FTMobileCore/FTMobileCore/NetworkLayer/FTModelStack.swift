@@ -1,5 +1,5 @@
 //
-//  FTDataModel.swift
+//  FTModelStack.swift
 //  FTMobileCore
 //
 //  Created by Praveen Prabhakar on 15/06/17.
@@ -7,14 +7,16 @@
 //
 
 import Foundation
-//import ObjectiveC.runtime
-//import ObjectiveC.message
 
-public protocol FTDataModel: Codable {
+open class FTModelStack {
+    var _modelStack: [FTModelData] = []
     
+    public func addModelData(_ data: FTModelData) {
+        _modelStack.append(data)
+    }
 }
 
-//open class FTDataModel : JSONModel {
+//open class FTModelData : JSONModel {
 
 //    var jsonData: JSON = [:]
 //    var classType: AnyClass = FTDataModel.self

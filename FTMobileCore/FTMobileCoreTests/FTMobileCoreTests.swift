@@ -9,6 +9,10 @@
 import XCTest
 @testable import FTMobileCore
 
+struct Account: FTModelData {
+    var name: String = ""
+}
+
 class FTMobileCoreTests: XCTestCase {
     
     override func setUp() {
@@ -27,8 +31,8 @@ class FTMobileCoreTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
             
-//        let sample = FTDataModel.dataModelOfType("MDASample", withJSON: ["id":"sample"])
-//        let sample = try? FTDataModel.init(dictionary: ["id":"sample"])
+//        let sample = FTModelD.dataModelOfType("MDASample", withJSON: ["id":"sample"])
+//        let sample = try? FTModelD.init(dictionary: ["id":"sample"])
 //        print(sample ?? "properties of type MDASample are empty");
     }
     
@@ -40,5 +44,30 @@ class FTMobileCoreTests: XCTestCase {
     func testFTModelBindType_Failure() {
         let sample: FTModelBindType? = FTModelBindType(rawValue: "String22")
         assert(sample == nil, "properties is nil as excepted")
+    }
+    
+    func testModelDataCreation_FromString() {
+        let className = FTReflection.swiftClassTypeFromString("Account")
+        
+        print(className)
+//        do {
+//            if let className = FTReflection.swiftClassTypeFromString("Account") as? FTModelData {
+//                try FTModelObject.createDataModel(ofType: className().self, fromJSON: 23)
+//            }
+//        }catch {
+//            print("Unexpected error: \(error).")
+//            assertionFailure("Error block dont match")
+//        }
+    }
+    
+    func testModelDataCreation_Failure() {
+        do {
+            try FTModelObject.createDataModel(ofType: Account.self, fromJSON: 23)
+        }catch FTJsonParserError.invalidJSON {
+            XCTAssert(true)
+        }catch {
+            print("Unexpected error: \(error).")
+            assertionFailure("Error block dont match")
+        }
     }
 }
