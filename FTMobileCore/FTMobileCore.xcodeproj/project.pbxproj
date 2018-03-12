@@ -14,6 +14,8 @@
 		DE9221B71EF28C9C000C8FC7 /* FTMobileCore.h in Headers */ = {isa = PBXBuildFile; fileRef = DE9221A91EF28C9B000C8FC7 /* FTMobileCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DEA45CBC20551712008FA401 /* FTModelStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA45CBB20551712008FA401 /* FTModelStack.swift */; };
 		DEA7654020515D070009F7F7 /* FTModelCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7653F20515D070009F7F7 /* FTModelCreator.swift */; };
+		DEAD33FA2056EACD0064C46A /* FTOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAD33F92056EACD0064C46A /* FTOperationQueue.swift */; };
+		DEAD33FD2056EAEF0064C46A /* FTServiceOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAD33FC2056EAEF0064C46A /* FTServiceOperation.swift */; };
 		DEC55DEA1EF2AE0300FAE024 /* FTModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DE91EF2AE0300FAE024 /* FTModelData.swift */; };
 		DEC55DEC1EF2B09700FAE024 /* FTModelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DEB1EF2B09700FAE024 /* FTModelConfig.swift */; };
 /* End PBXBuildFile section */
@@ -74,6 +76,8 @@
 		DE9221B61EF28C9C000C8FC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEA45CBB20551712008FA401 /* FTModelStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTModelStack.swift; sourceTree = "<group>"; };
 		DEA7653F20515D070009F7F7 /* FTModelCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTModelCreator.swift; sourceTree = "<group>"; };
+		DEAD33F92056EACD0064C46A /* FTOperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTOperationQueue.swift; sourceTree = "<group>"; };
+		DEAD33FC2056EAEF0064C46A /* FTServiceOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTServiceOperation.swift; sourceTree = "<group>"; };
 		DEC55DE91EF2AE0300FAE024 /* FTModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTModelData.swift; sourceTree = "<group>"; };
 		DEC55DEB1EF2B09700FAE024 /* FTModelConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTModelConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,6 +123,8 @@
 			children = (
 				DEA45CBB20551712008FA401 /* FTModelStack.swift */,
 				DE6BC9C920544CF800D59B12 /* FTServiceClient.swift */,
+				DEAD33F92056EACD0064C46A /* FTOperationQueue.swift */,
+				DEAD33FC2056EAEF0064C46A /* FTServiceOperation.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -313,6 +319,8 @@
 				DEA7654020515D070009F7F7 /* FTModelCreator.swift in Sources */,
 				DEC55DEA1EF2AE0300FAE024 /* FTModelData.swift in Sources */,
 				DEC55DEC1EF2B09700FAE024 /* FTModelConfig.swift in Sources */,
+				DEAD33FA2056EACD0064C46A /* FTOperationQueue.swift in Sources */,
+				DEAD33FD2056EAEF0064C46A /* FTServiceOperation.swift in Sources */,
 				DEA45CBC20551712008FA401 /* FTModelStack.swift in Sources */,
 				DE6BC9CA20544CF800D59B12 /* FTServiceClient.swift in Sources */,
 			);

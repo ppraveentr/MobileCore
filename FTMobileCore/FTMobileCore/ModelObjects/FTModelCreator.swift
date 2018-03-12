@@ -14,6 +14,11 @@ enum FTModelBindType: String {
     case Int
 }
 
+public enum FTModelDataType: String {
+    case classType = "class"
+    case structType = "struct"
+}
+
 fileprivate let kRootModel = "FTModelData"
 fileprivate let kStringType = "String"
 
@@ -25,11 +30,14 @@ open class FTModelCreator {
     
     static var sourcePath: String = ""
     static var outputPath: String = ""
+    
+    static var modelType: FTModelDataType = .classType
 
     //MARK: Configurations
     static open func configureSourcePath(path: String) { FTModelCreator.sourcePath = path }
     static open func configureOutputPath(path: String) { FTModelCreator.outputPath = path }
-    
+    static open func configureModel(type: FTModelDataType) { FTModelCreator.modelType = type }
+
     //MARK:
     static open func generateOutput() {
         //        let manager: FileManager = FileManager()
@@ -172,7 +180,7 @@ extension FTModelCreator {
     
     //MARK: struct definition
     static func modalHeader(name: String) -> String {
-        return "struct \(name): \(kRootModel)"
+        return "final \(modelType.rawValue) \(name): \(kRootModel)"
     }
     
     //MARK: struck params

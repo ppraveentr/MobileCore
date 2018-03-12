@@ -20,6 +20,7 @@ public protocol FTModelData: Codable {
     static func createModelData(json: Data) throws -> Self
 }
 
+//FIXIT: To Extend 'FTModelData' to sequence Item with confirms 'Codable'.
 extension Array: FTModelData { }
 extension Dictionary: FTModelData { }
 

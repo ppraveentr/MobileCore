@@ -8,8 +8,37 @@
 
 import Foundation
 
+public enum FTSericeStatus: Error {
+    case success(FTModelStack, Int)
+    case failed(FTModelStack, Int)
+}
+
 open class FTModelStack {
-    var _modelStack: [FTModelData] = []
+    
+    fileprivate var serviceName: String?
+    
+    open var _modelStack: [FTModelData] = []
+    
+    /// The header values in HTTP response.
+    open var requestHeaders: Dictionary<String,String>?
+    open var responseHeaders: Dictionary<String,String>?
+    
+    /// The mime type of the HTTP response.
+    fileprivate var mimeType: String?
+    
+    /// The body data of the HTTP response.
+    open var data: Data?
+    
+    /// The status code of the HTTP response.
+    open var statusCode: Int?
+    /// The URL of the HTTP response.
+    open var URL: Foundation.URL?
+    
+    /// The Error of the HTTP response (if there was one).
+    open var error: Error?
+    
+    ///Returns the response as a string
+    open var responseString: String?
     
     public func addModelData(_ data: FTModelData) {
         _modelStack.append(data)
