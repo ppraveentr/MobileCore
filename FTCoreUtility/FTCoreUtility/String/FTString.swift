@@ -96,12 +96,26 @@ public extension String {
 //MARK: JSON
     
     //Loading Data from given Path
-    func JSONContentAtPath() throws -> Any? {
+    func jsonContentAtPath<T>() throws -> T? {
         
         guard let content = try? Data.init(contentsOf: URL(fileURLWithPath: self)) else {
             return nil
         }
         
-        return try? JSONSerialization.jsonObject(with: content, options: .allowFragments)
+        return try JSONSerialization.jsonObject(with: content, options: .allowFragments) as? T
+    }
+    
+    //MARK: File
+    //Loading Data from given Path
+    func filesAtPath(_ fileAtPath: @escaping (_ path: String) -> () ) throws {
+        let fileManger = FileManager.default
+        do {
+            let filelist = try fileManger.contentsOfDirectory(atPath: self)
+            _ = filelist.map({ fileAtPath((self + "/\($0)")) })
+        } catch {
+            if fileManger.contents(atPath: self) != nil {
+                fileAtPath(self)
+            }
+        }
     }
 }

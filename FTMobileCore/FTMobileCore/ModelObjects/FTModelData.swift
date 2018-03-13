@@ -12,6 +12,13 @@ enum FTJsonParserError: Error {
     case invalidJSON
 }
 
+//Operator Overloading
+func += <K,V> ( left: inout [K:V], right: [K:V]){
+    for (k, v) in right {
+        left[k] = v
+    }
+}
+
 //typealias
 public typealias JSON = Dictionary<String, Any>
 

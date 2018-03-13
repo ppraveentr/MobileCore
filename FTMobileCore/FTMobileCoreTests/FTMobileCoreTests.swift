@@ -19,7 +19,7 @@ class FTMobileCoreTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-//        try? FTModelConfig.loadModelSchema(["MDASample": ["identifier":"id"] ])
+//        try? FTMobileConfig.loadModelSchema(["MDASample": ["identifier":"id"] ])
     }
     
     override func tearDown() {

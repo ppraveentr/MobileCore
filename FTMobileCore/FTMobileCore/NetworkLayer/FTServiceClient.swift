@@ -16,10 +16,10 @@ open class FTServiceClient {
     static var defaultSession = sharedInstance.createURLSession()
     
     open class func make(_ serviceName: String,
-                         modelStack: FTModelStack?,
-                         completionHandler: @escaping (FTSericeStatus) -> Swift.Void) {
+                         modelStack: FTModelStack? = nil,
+                         completionHandler: ((FTSericeStatus) -> Swift.Void)? = nil) {
         
-        let operation = FTServiceOperation(serviceName: serviceName,
+        let operation = FTServiceOperation(name: serviceName,
                                            modelStack: modelStack ?? FTModelStack(),
                                            completionHandler: completionHandler)
         
@@ -28,8 +28,8 @@ open class FTServiceClient {
                                                completionHandler: operation.sessionHandler())
             task.resume()
         }
-        else{
-            DispatchQueue.main.async() { completionHandler(FTSericeStatus.failed(operation.responseModelStack(), 500)) }
+        else {
+            DispatchQueue.main.async() { completionHandler?(FTSericeStatus.failed(operation.responseModelStack(), 500)) }
         }
         
     }

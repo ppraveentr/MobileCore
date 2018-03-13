@@ -29,35 +29,47 @@ fileprivate let kBindingAsArray = "arrayOf"
 open class FTModelCreator {
     
     static var sourcePath: String = ""
-    static var outputPath: String = ""
+    static var outputPath: URL? = FTModelCreator.outputModelPath()
+    
+    static func outputModelPath() -> URL? {
+        var outputPath: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        outputPath?.appendPathComponent("Models")
+        return outputPath
+    }
+    
+    static func fileWriter() -> (String,String) -> () {
+        
+        let fileWriter = { (_ name: String,_ content: String) in
+            if var url = outputPath {
+                url.appendPathComponent(name); url.appendPathExtension("swift");
+                try? content.write(to: url, atomically: true, encoding: .utf8)
+                print("Path: ",url.absoluteString)
+            }
+        }
+        
+        return fileWriter
+    }
     
     static var modelType: FTModelDataType = .classType
 
     //MARK: Configurations
     static open func configureSourcePath(path: String) { FTModelCreator.sourcePath = path }
-    static open func configureOutputPath(path: String) { FTModelCreator.outputPath = path }
+    static open func configureOutputPath(path: String) { FTModelCreator.outputPath = URL(string: path) }
     static open func configureModel(type: FTModelDataType) { FTModelCreator.modelType = type }
 
     //MARK:
     static open func generateOutput() {
-        //        let manager: FileManager = FileManager()
-        //
-        //        let att = try? manager.attributesOfItem(atPath: sourcePath)
-        //        print(att![FileAttributeKey.type] ?? "")
-        //
-        //        print(att ?? "hk")
+        try? sourcePath.filesAtPath({ (filePath) in
+            generateModelAt(path: filePath, completionHandler: fileWriter())
+        })
+    }
+    
+    static func generateModelAt(path: String, completionHandler: @escaping (_ name: String, _ content: String) -> ()) {
+        
         do {
-            if let data = try? Data(contentsOf: URL(fileURLWithPath: sourcePath)) {
-                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : AnyObject] {
-                    createModelClass(jsonString: json) { (name, content) in
-                        if let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                            var path = url.appendingPathComponent(name)
-                            path.appendPathExtension("swift")
-                            try? content.write(to: path, atomically: true, encoding: .utf8)
-                            print("path: ", path)
-                        }
-                    }
-                }
+            if let json: [String: AnyObject] = try path.jsonContentAtPath() {
+                //Create ".swift" for each object in Dic
+                createModelClass(jsonString: json, fileWriterHandler: completionHandler)
             }
         } catch {
             print("Error reading Data")
@@ -66,6 +78,7 @@ open class FTModelCreator {
 }
 
 extension FTModelCreator {
+    
     static func createModelClass(jsonString: [String: AnyObject],
                                  fileWriterHandler: @escaping (_ fileName: String, _ fileContent: String) -> Swift.Void) {
         
