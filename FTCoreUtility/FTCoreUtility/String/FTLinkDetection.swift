@@ -11,8 +11,8 @@ import Foundation
 open class FTLinkDetection {
 
     enum FTLinkType {
-        case LinkTypeURL
-        case LinkTypeHashTag
+        case url
+        case hashTag
     }
     
     var linkType: FTLinkType
@@ -44,7 +44,7 @@ open class FTLinkDetection {
             if
                 let url = result?.url,
                 let range = result?.range {
-                    let dec = FTLinkDetection(linkType: .LinkTypeURL, linkRange: range, linkURL: url)
+                    let dec = FTLinkDetection(linkType: .url, linkRange: range, linkURL: url)
                     rangeOfURL.append(dec)
             }
         }
@@ -68,7 +68,7 @@ open class FTLinkDetection {
                 let range = result?.range,
                 let subText = (text as NSString).substring(with: NSMakeRange(range.location, range.length)) as String!,
                 let url = URL(string: subText) {
-                    let dec = FTLinkDetection(linkType: .LinkTypeHashTag, linkRange: range, linkURL: url)
+                    let dec = FTLinkDetection(linkType: .hashTag, linkRange: range, linkURL: url)
                     rangeOfURL.append(dec)
             }
         }

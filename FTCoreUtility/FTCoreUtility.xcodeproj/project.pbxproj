@@ -35,6 +35,7 @@
 		DEA7E12E1F48150B0002C148 /* FTViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7E12D1F48150B0002C148 /* FTViewControllerExtension.swift */; };
 		DEA7E1301F4816B20002C148 /* FTApplicationCoreUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7E12F1F4816B20002C148 /* FTApplicationCoreUtility.swift */; };
 		DEA7E1321F48282E0002C148 /* FTMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7E1311F48282E0002C148 /* FTMath.swift */; };
+		DEF9A7C8205AD33A00617FBF /* FTSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF9A7C7205AD33A00617FBF /* FTSequence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		DEA7E12D1F48150B0002C148 /* FTViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTViewControllerExtension.swift; sourceTree = "<group>"; };
 		DEA7E12F1F4816B20002C148 /* FTApplicationCoreUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTApplicationCoreUtility.swift; sourceTree = "<group>"; };
 		DEA7E1311F48282E0002C148 /* FTMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMath.swift; sourceTree = "<group>"; };
+		DEF9A7C7205AD33A00617FBF /* FTSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTSequence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 				DEA7E1311F48282E0002C148 /* FTMath.swift */,
 				DE4383A81F4B0960003DF8A7 /* FTImageView.swift */,
 				DEA1ED651F698BCC001AA3C6 /* FTImage.swift */,
+				DEF9A7C7205AD33A00617FBF /* FTSequence.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				DE9854261F4717DF001AFF89 /* FTUIButton.swift in Sources */,
 				DE098AD01F37659000675878 /* FTUIView.swift in Sources */,
 				DE680B9E1F2D067900A9F68C /* FTAppDelegate.swift in Sources */,
+				DEF9A7C8205AD33A00617FBF /* FTSequence.swift in Sources */,
 				DE680B751F2BC22B00A9F68C /* FTRect.swift in Sources */,
 				DEA7E12E1F48150B0002C148 /* FTViewControllerExtension.swift in Sources */,
 				DEA1ED6D1F6CF233001AA3C6 /* FTUINavigationBar.swift in Sources */,

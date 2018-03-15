@@ -18,6 +18,7 @@
 		DEAD33FD2056EAEF0064C46A /* FTServiceOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAD33FC2056EAEF0064C46A /* FTServiceOperation.swift */; };
 		DEC55DEA1EF2AE0300FAE024 /* FTModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DE91EF2AE0300FAE024 /* FTModelData.swift */; };
 		DEC55DEC1EF2B09700FAE024 /* FTMobileConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DEB1EF2B09700FAE024 /* FTMobileConfig.swift */; };
+		DEF9A7BE20599DAB00617FBF /* FTRequestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF9A7BD20599DAB00617FBF /* FTRequestObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		DEAD33FC2056EAEF0064C46A /* FTServiceOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTServiceOperation.swift; sourceTree = "<group>"; };
 		DEC55DE91EF2AE0300FAE024 /* FTModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTModelData.swift; sourceTree = "<group>"; };
 		DEC55DEB1EF2B09700FAE024 /* FTMobileConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMobileConfig.swift; sourceTree = "<group>"; };
+		DEF9A7BD20599DAB00617FBF /* FTRequestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTRequestObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				DE6BC9C920544CF800D59B12 /* FTServiceClient.swift */,
 				DEAD33F92056EACD0064C46A /* FTOperationQueue.swift */,
 				DEAD33FC2056EAEF0064C46A /* FTServiceOperation.swift */,
+				DEF9A7BD20599DAB00617FBF /* FTRequestObject.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			files = (
 				DEA7654020515D070009F7F7 /* FTModelCreator.swift in Sources */,
 				DEC55DEA1EF2AE0300FAE024 /* FTModelData.swift in Sources */,
+				DEF9A7BE20599DAB00617FBF /* FTRequestObject.swift in Sources */,
 				DEC55DEC1EF2B09700FAE024 /* FTMobileConfig.swift in Sources */,
 				DEAD33FA2056EACD0064C46A /* FTOperationQueue.swift in Sources */,
 				DEAD33FD2056EAEF0064C46A /* FTServiceOperation.swift in Sources */,

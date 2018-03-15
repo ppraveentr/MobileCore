@@ -21,6 +21,8 @@ public enum FTModelDataType: String {
 
 fileprivate let kRootModel = "FTModelData"
 fileprivate let kStringType = "String"
+fileprivate let kDefaultStringValue = "nil"
+fileprivate let kDefaultArrayValue = "nil" //[]
 
 fileprivate let kBindingKey = "bindKey"
 fileprivate let kBindingAsType = "bindAs"
@@ -34,6 +36,9 @@ open class FTModelCreator {
     static func outputModelPath() -> URL? {
         var outputPath: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         outputPath?.appendPathComponent("Models")
+        if outputPath != nil {
+            try? FileManager.default.createDirectory(at: outputPath!, withIntermediateDirectories: true, attributes: nil)
+        }
         return outputPath
     }
     
@@ -79,6 +84,7 @@ open class FTModelCreator {
 
 extension FTModelCreator {
     
+    ///Create Model class for-each dic key
     static func createModelClass(jsonString: [String: AnyObject],
                                  fileWriterHandler: @escaping (_ fileName: String, _ fileContent: String) -> Swift.Void) {
         
@@ -88,6 +94,7 @@ extension FTModelCreator {
         }
     }
     
+    ///Default values for each data type
     static func getDefaultValue(bindType:AnyObject, isSubIteration: Bool = false) -> AnyObject {
         
         if bindType is String {
@@ -95,7 +102,7 @@ extension FTModelCreator {
             if let bindType = FTModelBindType(rawValue: bindType as! String) {
                 switch (bindType) {
                 case .String:
-                    return "\"\"" as AnyObject
+                    return kDefaultStringValue as AnyObject
                 case .Decimal:
                     return 0 as AnyObject
                 case .Int:
@@ -103,7 +110,7 @@ extension FTModelCreator {
                 }
             }
             else if !isSubIteration {
-                return "\"\"" as AnyObject
+                return kDefaultStringValue as AnyObject
             }
         }
         else if bindType is [String:String] {
@@ -112,13 +119,14 @@ extension FTModelCreator {
                 return getDefaultValue(bindType: bindAsType as AnyObject, isSubIteration: true )
             }
             else if (bindType[kBindingAsArray]) != nil {
-                return "[]" as AnyObject
+                return kDefaultArrayValue as AnyObject
             }
         }
         
-        return "nil" as AnyObject
+        return kDefaultStringValue as AnyObject
     }
     
+    ///setup binding params for file creation, for each param in model-dic
     static func getBindings(params: AnyObject) -> (String, String, AnyObject, Bool)? {
         
         if let value = params as? String {
@@ -131,11 +139,11 @@ extension FTModelCreator {
             
             if let bindAsType = value[kBindingAsType] {
                 let value = getDefaultValue(bindType: params)
-                let isOptionalType = (((value as? String) != nil) && value as! String == "nil")
+                let isOptionalType = (((value as? String) != nil) && value as! String == kDefaultStringValue)
                 return (bindAsType, bindKey, value, isOptionalType)
             }
             else if let bindAsType = value[kBindingAsArray] {
-                return ("[\(bindAsType)]", bindKey, "[]" as AnyObject, false)
+                return ("[\(bindAsType)]", bindKey, kDefaultArrayValue as AnyObject, false)
             }
             
             return nil
@@ -144,49 +152,33 @@ extension FTModelCreator {
         return nil
     }
     
+    //MARK: File Content Creator
     static func createModelFile(modelName: String, params: [String: AnyObject]) -> String {
         
-        var paramDef: String = ""
-        var codingKeys: String = ""
-        var decoderKeys: String = ""
-        var encoderKeys: String = ""
+        var paramDef: String = "", codingKeys: String = ""
+        //var decoderKeys: String = "", encoderKeys: String = ""
         
         params.forEach { (key, type) in
-            
             if let bindParams = getBindings(params: type) {
-                //
-                if (bindParams.3) {
-                    paramDef += paramKeysCase(key: key, type: bindParams.0 + "?", defaultValues: bindParams.2 as AnyObject)
-                }
-                else {
-                    paramDef += paramKeysCase(key: key, type: bindParams.0, defaultValues: bindParams.2 as AnyObject)
-                }
-                //
+                //if (bindParams.3) is true, then :'type': will be \(bindParams.0 + "?")
+                paramDef += paramKeysCase(key: key, type: bindParams.0, defaultValues: bindParams.2 as AnyObject)
                 codingKeys += codingKeysCase(key: key, value: bindParams.1)
-                //
-                decoderKeys += decoderCase(key: key, type: bindParams.0)
-                //
-                encoderKeys += encoderCase(key: key, isOptional: bindParams.3)
+                //decoderKeys += decoderCase(key: key, type: bindParams.0)
+                //encoderKeys += encoderCase(key: key, isOptional: bindParams.3)
             }
         }
-        
-        let string =
-        """
-        \(modalHeader(name: modelName)) {
-        \(paramDef)
-        
-        /* Coding Keys */
-        \(codingKeysHeader(keyValueCase: codingKeys))
-        
-        /* Decoder */
-        \(decoderHeader(keyValueCase: decoderKeys))
-        
-        /* Encoder */
-        \(encoderHeader(keyValueCase: encoderKeys))
-        
-        }
-        
-        """
+    
+        var string = modalHeader(name: modelName) + " {" + "\n"
+        string += "\n" + paramDef + "\n"
+        string += "/* Coding Keys */" + "\n"
+        string += codingKeysHeader(keyValueCase: codingKeys) + "\n"
+        /*
+        string += "\n" + "/* Decoder */" + "\n"
+        string += decoderHeader(keyValueCase: decoderKeys) + "\n"
+        string += "\n" + "/* Encoder */" + "\n"
+        string += encoderHeader(keyValueCase: encoderKeys) + "\n"
+        */
+        string += "}"
         
         return string
     }
@@ -198,14 +190,14 @@ extension FTModelCreator {
     
     //MARK: struck params
     static func paramKeysCase(key: String, type: String, defaultValues: AnyObject) -> String {
-        return "var \(key): \(type) = \(defaultValues)" + "\n"
+        return "var \(key): \(type)? = \(defaultValues)" + "\n"
     }
     
     //MARK: CodingKey enum definition
     static func codingKeysHeader(keyValueCase value: String) -> String {
         let string =
         """
-        enum CodingKeys: String, CodingKey  { \n
+        enum CodingKeys: String, CodingKey  {
         \(value)
         }
         """
@@ -234,12 +226,15 @@ extension FTModelCreator {
     
     //MARK: Decoder case
     static func decoderCase(key: String, type: String) -> String {
-        let string =
-        """
-        if let value = try container?.decodeIfPresent(\(type).self, forKey: .\(key)) {
-            self.\(key) = value
-        }
-        """
+        /*
+         """
+         if let value = try container?.decodeIfPresent(\(type).self, forKey: .\(key)) {
+         self.\(key) = value
+         }
+         """
+         */
+        
+        let string = "self.\(key) = try container?.decodeIfPresent(\(type).self, forKey: .\(key))"
         return string + "\n"
     }
     
@@ -258,6 +253,7 @@ extension FTModelCreator {
     
     //MARK: Encoder case
     static func encoderCase(key: String, isOptional: Bool) -> String {
+        /*
         let string = "if " +
             (isOptional ? "\(key) != nil" : "!\(key).isEmpty")
             + " {"
@@ -266,6 +262,9 @@ extension FTModelCreator {
             try container.encode(\(key), forKey: .\(key))
         }
         """
+        */
+        
+        let string = "try container.encode(\(key), forKey: .\(key))"
         return string + "\n"
     }
 }

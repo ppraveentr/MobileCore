@@ -8,23 +8,6 @@
 
 import Foundation
 
-/**
- The standard HTTP Verbs
- */
-public enum HTTPVerb: String {
-    case GET
-    case POST
-    case PUT
-   /* case HEAD
-    case DELETE
-    case PATCH
-    case OPTIONS
-    case TRACE
-    case CONNECT
-     */
-    case UNKNOWN
-}
-
 open class FTServiceOperation {
     
     let serviceName: String
@@ -88,14 +71,18 @@ extension FTServiceOperation {
     func urlRequest() -> URLRequest {
         print("serviceSchema: ", self.serviceSchema ?? "Empty")
         
-        return URLRequest(url: URL(fileURLWithPath: serviceName))
+        let urlReq = URLRequest(url: URL(fileURLWithPath: serviceName))
+        
+        return urlReq
     }
     
     func responseModelStack() -> FTModelStack {
         return responseStack
     }
     
-    func sessionHandler() -> (Data?, URLResponse?, Error?) -> () {
+    func sessionHandler() -> ((Data?, URLResponse?, Error?) -> ())? {
+        
+        guard completionHandler != nil else { return nil }
         
         let decodeHandler = { [unowned self] (data: Data?, response: URLResponse?, error: Error?) -> () in
             
@@ -106,6 +93,8 @@ extension FTServiceOperation {
                 self.resposne = httpURLResponse
                 self.statusCode = httpURLResponse.statusCode
             }
+            
+            self.completionHandler!(FTSericeStatus.success(self.responseStack, self.statusCode ?? 500))
             
             return
         }

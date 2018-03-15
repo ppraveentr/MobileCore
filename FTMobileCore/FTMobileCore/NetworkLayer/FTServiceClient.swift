@@ -24,8 +24,15 @@ open class FTServiceClient {
                                            completionHandler: completionHandler)
         
         if  operation.isValid() {
-            let task = defaultSession.dataTask(with: operation.urlRequest(),
-                                               completionHandler: operation.sessionHandler())
+            let task: URLSessionDataTask
+            
+            if completionHandler != nil {
+                task = defaultSession.dataTask(with: operation.urlRequest(),
+                                               completionHandler: operation.sessionHandler()!)
+            }else {
+                task = defaultSession.dataTask(with: operation.urlRequest())
+            }
+            
             task.resume()
         }
         else {
