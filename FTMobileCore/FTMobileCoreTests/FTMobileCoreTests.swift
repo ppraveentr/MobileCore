@@ -9,8 +9,15 @@
 import XCTest
 @testable import FTMobileCore
 
+struct AccountDetail: FTModelData {
+    var value: String = ""
+    var name: String = ""
+}
+
 struct Account: FTModelData {
     var name: String = ""
+    var type: AccountDetail? = nil
+    var data: [String] = []
 }
 
 class FTMobileCoreTests: XCTestCase {
@@ -28,12 +35,17 @@ class FTMobileCoreTests: XCTestCase {
     }
     
     func testFTDataModel() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-            
-//        let sample = FTModelD.dataModelOfType("MDASample", withJSON: ["id":"sample"])
-//        let sample = try? FTModelD.init(dictionary: ["id":"sample"])
-//        print(sample ?? "properties of type MDASample are empty");
+
+        var account1De = AccountDetail(value: "Details_1", name: "name")
+        var account1 = Account(name: "stsda", type: account1De, data: ["adas","fasda"])
+        var account2De = AccountDetail(value: "Details_2", name: "name")
+        let account2 = Account(name: "da", type: account2De, data: ["adas","fasda"])
+
+        print(account1.jsonString())
+        account1.merge(data: account2)
+        print(account1.jsonString())
+
+        assert(account1.type?.value == "Details_2", "FTDataModel data merging failed")
     }
     
     func testFTModelBindType_Success() {

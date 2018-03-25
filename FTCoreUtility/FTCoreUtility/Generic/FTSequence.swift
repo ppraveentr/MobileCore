@@ -52,3 +52,24 @@ public extension FTFlattenIterator {
         return self
     }
 }
+
+public extension Dictionary {
+    mutating func merge(another: [Key: Value]) {
+        for (key, value) in another {
+            self[key] = value
+        }
+    }
+}
+
+public extension Dictionary where Value: RangeReplaceableCollection {
+    mutating func merge(another: [Key: Value]) {
+        var result: [Key: Value] = [:]
+        for (key, value) in another {
+            if let collection = result[key] {
+                self[key] = collection + value
+            } else {
+                self[key] = value
+            }
+        }
+    }
+}

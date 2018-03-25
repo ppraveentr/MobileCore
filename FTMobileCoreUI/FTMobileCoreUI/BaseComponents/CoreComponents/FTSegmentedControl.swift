@@ -8,11 +8,13 @@
 
 import UIKit
 
+public typealias FTSegmentedHandler = ( (_ index: Int) -> () )
+
 open class FTSegmentedControl: UISegmentedControl {
  
-    var handler: ((_ index: Int) -> ())?
-    
-    public required convenience init(items: [Any], completionHandler: @escaping (Int) -> () ) {
+    public var handler: FTSegmentedHandler?
+
+    public required convenience init(items: [Any], completionHandler: FTSegmentedHandler? ) {
         self.init(items: items)
         selectedSegmentIndex = 0
         handler = completionHandler

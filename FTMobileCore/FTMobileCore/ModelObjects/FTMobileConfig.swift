@@ -20,6 +20,15 @@ public class FTMobileConfig {
             }
         }
     }
+    static public var mockURL: String = "" {
+        didSet {
+            if !appBaseURL.hasSuffix("/") {
+                appBaseURL.append("/")
+            }
+        }
+    }
+     static public var isMockData: Bool = false
+
     static var modelBindingPath: String = ""
     static public var serviceBindingPath: String = "" {
         didSet {

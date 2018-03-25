@@ -6,23 +6,26 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
+public enum FTSericeStatus: Error {
+    case success(FTModelData?, Int)
+    case failed(FTModelData?, Int)
+}
+
 open class FTServiceClient {
     
     static var sessionConfiguration: URLSessionConfiguration = .ephemeral
     static var sessionDelegate: URLSessionDelegate? = nil
 
     static let sharedInstance = FTServiceClient()
-    static var sessionQueue = FTOperationQueue()
+    static var sessionQueue = OperationQueue()
     static var defaultSession = sharedInstance.createURLSession()
     
-    open class func make(_ serviceName: String,
-                         modelStack: FTModelStack? = nil,
+    open class func make(_ serviceName: FTServiceStack.Type,
+                         modelStack: FTModelData? = nil,
                          completionHandler: ((FTSericeStatus) -> Swift.Void)? = nil) {
-        
-        let operation = FTServiceOperation(name: serviceName,
-                                           modelStack: modelStack ?? FTModelStack(),
-                                           completionHandler: completionHandler)
-        
+
+        let operation = serviceName.init(modelStack: modelStack, completionHandler: completionHandler)
+
         if  operation.isValid() {
             let task: URLSessionDataTask
             

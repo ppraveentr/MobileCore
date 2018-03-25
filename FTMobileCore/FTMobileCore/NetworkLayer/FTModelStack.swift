@@ -8,11 +8,6 @@
 
 import Foundation
 
-public enum FTSericeStatus: Error {
-    case success(FTModelStack, Int)
-    case failed(FTModelStack, Int)
-}
-
 open class FTModelStack {
     
     fileprivate var serviceName: String?

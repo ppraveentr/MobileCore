@@ -16,15 +16,35 @@ enum FTJsonParserError: Error {
 }
 
 //Operator Overloading
-func += <K,V> ( left: inout [K:V], right: [K:V]){
+func += <K,V> ( left: inout [K:V], right: [K:V]) {
     for (k, v) in right {
         left[k] = v
+    }
+}
+
+func += <K,V> ( left: inout [K:V], right: [K:V]) where V: RangeReplaceableCollection {
+    for (k, v) in right {
+        if let collection = left[k] {
+            left[k] = collection + v
+        } else {
+            left[k] = v
+        }
+    }
+}
+
+func += <K> ( left: inout [K], right: [K]){
+    for (k) in right {
+        left.append(k)
     }
 }
 
 public protocol FTModelData: Codable {
     static func createModelData(json: String) throws -> Self
     static func createModelData(json: Data) throws -> Self
+    static func createEmpytModel() -> Self
+
+    //JSON
+    func jsonModel() -> JSON?
     func jsonModelData() throws -> Data?
 }
 
@@ -33,7 +53,11 @@ extension Array: FTModelData { }
 extension Dictionary: FTModelData { }
 
 public extension FTModelData {
-    
+
+    static func createEmpytModel() -> Self {
+        return try! createModelData(json: [:])
+    }
+
     static public func createModelData(json: String) throws  -> Self {
         let jsonData = json.data(using: .utf8)
         let data = try JSONDecoder().decode(Self.self, from:jsonData!)
@@ -44,7 +68,12 @@ public extension FTModelData {
         let data = try JSONDecoder().decode(Self.self, from:json)
         return data
     }
-    
+
+    static public func createModelData(json: JSON) throws  -> Self {
+        let data = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+        return try self.createModelData(json: data)
+    }
+
     func jsonModelData() -> Data? {
         var data: Data?
         do {
@@ -52,22 +81,75 @@ public extension FTModelData {
         } catch {}
         return data
     }
+
+    func jsonModel() -> JSON? {
+
+        do {
+            let data: Data = try JSONEncoder().encode(self)
+            return try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? JSON
+
+        } catch {}
+
+        return nil
+    }
     
     func jsonString() -> String? {
         var string: String? = nil
         
         do {
-            var data: Data = try JSONEncoder().encode(self)
-            if var jsn: JSON = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? JSON {
+            if var jsn: JSON = self.jsonModel() {
                 jsn.stripNilElements()
                 if JSONSerialization.isValidJSONObject(jsn){
-                    data = try JSONSerialization.data(withJSONObject: jsn, options: .prettyPrinted)
+                    let data = try JSONSerialization.data(withJSONObject: jsn, options: .prettyPrinted)
                     string = String(data: data, encoding: .utf8)
                 }
             }
         } catch {}
         
         return string
+    }
+
+    mutating func merge(data: FTModelData) {
+
+        let json = self.jsonModel()
+        let data = json?.merging((data.jsonModel())!, uniquingKeysWith: { (left, right) -> Any in
+            if var leftJson = left as? FTModelData,
+               let rightJson = right as? FTModelData {
+                return leftJson.merge(data: rightJson)
+            }
+            else
+                if let leftJson = left as? [Any],
+                let rightJson = right as? [Any] {
+                return leftJson + rightJson
+            }
+
+            return right
+        })
+
+        self = try! Self.createModelData(json: data!)
+    }
+    
+    //URL
+    func queryItems() -> [URLQueryItem] {
+
+        guard let json = self.jsonModel() else { return [] }
+
+        var query:[URLQueryItem] = []
+        _ = json.map { (key, value) -> URLQueryItem? in
+            if let value = value as? String {
+                query.append(URLQueryItem(name: key , value: value))
+            }
+            else {
+                if let value = value as? FTModelData,
+                    let valueModel = value.jsonModel()  {
+                    query.append(contentsOf: valueModel.queryItems())
+                }
+            }
+            return nil
+        }
+
+        return query
+
     }
 }
 
