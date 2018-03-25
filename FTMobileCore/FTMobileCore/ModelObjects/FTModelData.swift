@@ -46,6 +46,10 @@ public protocol FTModelData: Codable {
     //JSON
     func jsonModel() -> JSON?
     func jsonModelData() throws -> Data?
+    func jsonString() -> String?
+    mutating func merge(data: FTModelData)
+    //URL
+    func queryItems() -> [URLQueryItem]
 }
 
 //FIXIT: To Extend 'FTModelData' to sequence Item with confirms 'Codable'.
