@@ -38,12 +38,12 @@ final class FTRequestObject: FTModelData {
     var type: HTTPVerb
     var path: String?
     var baseURL: String?
-//    var requestQuery: [String:Any]?
+    var requestQuery: [String:String]?
 //    var response: JSON?
 
     /* Coding Keys */
     enum CodingKeys: String, CodingKey  {
-        case type, path, baseURL//, requestQuery, response
+        case type, path, baseURL, requestQuery//, response
     }
 }
 

@@ -7,8 +7,8 @@
 //
 
 public enum FTSericeStatus: Error {
-    case success(FTModelData?, Int)
-    case failed(FTModelData?, Int)
+    case success(FTServiceStack, Int)
+    case failed(FTServiceStack?, Int)
 }
 
 open class FTServiceClient {
@@ -19,29 +19,43 @@ open class FTServiceClient {
     static let sharedInstance = FTServiceClient()
     static var sessionQueue = OperationQueue()
     static var defaultSession = sharedInstance.createURLSession()
-    
-    open class func make(_ serviceName: FTServiceStack.Type,
+
+    open class func make(_ serviceName: String,
                          modelStack: FTModelData? = nil,
                          completionHandler: ((FTSericeStatus) -> Swift.Void)? = nil) {
 
-        let operation = serviceName.init(modelStack: modelStack, completionHandler: completionHandler)
+        //get class.Type from serviceName string
+        let className: FTServiceStack.Type? = FTReflection.swiftClassTypeFromString(serviceName) as? FTServiceStack.Type
+        //Setup 'serviceStack' from class
+        let serviceStack = className?.setup(modelStack: modelStack, completionHandler: completionHandler)
 
+        //Make sure serviceStack is non-nil
+        guard serviceStack != nil else {
+            DispatchQueue.main.async() { completionHandler?(FTSericeStatus.failed(nil, 500)) }
+            return
+        }
+
+        let operation:FTServiceStack = serviceStack!
+
+        //Check if operation request is valid
         if  operation.isValid() {
             let task: URLSessionDataTask
-            
+
+            //Setup session-dataTask with completion handler
             if completionHandler != nil {
                 task = defaultSession.dataTask(with: operation.urlRequest(),
                                                completionHandler: operation.sessionHandler()!)
             }else {
                 task = defaultSession.dataTask(with: operation.urlRequest())
             }
-            
+
             task.resume()
         }
         else {
-            DispatchQueue.main.async() { completionHandler?(FTSericeStatus.failed(operation.responseModelStack(), 500)) }
+            //Fails, if urlRequest was not generated.
+            DispatchQueue.main.async() { completionHandler?(FTSericeStatus.failed(operation, 500)) }
         }
-        
+
     }
     
     open class func getContentFromURL(_ string: String,

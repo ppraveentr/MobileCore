@@ -11,26 +11,21 @@ import Foundation
 public protocol FTServiceStackProtocal {
     func serviceName() -> String
     func responseType() -> FTModelData.Type
+    static func setup(modelStack: FTModelData?, completionHandler: ((FTSericeStatus) -> Swift.Void)?) -> Self
+}
+
+public protocol FTServiceRulesProtocal {
+    static func configure(requestHeaders urlRequest: URLRequest)
 }
 
 open class FTServiceStack: FTServiceStackProtocal {
+
     open func serviceName() -> String { return "" }
     open func responseType() -> FTModelData.Type { return FTModelData.self as! FTModelData.Type }
 
-    fileprivate var serviceRequet: FTRequestObject? = nil
-    fileprivate func serviceSchema() -> Bool {
-        do {
-            if
-                serviceRequet == nil,
-                let data = try! FTMobileConfig.schemaForClass(classKey: self.serviceName()) {
-                self.serviceRequet = try! FTRequestObject.createModelData(json: data)
-            }
-        }
-        return serviceRequet != nil
-    }
-
+    lazy var serviceRequet: FTRequestObject? = setupServiceRequest()
     fileprivate var inputStack: FTModelData?
-    fileprivate var responseStack: FTModelData?
+    open var responseStack: FTModelData?
 
     /// The header values in HTTP response.
     open var requestHeaders: Dictionary<String,String>?
@@ -69,32 +64,19 @@ open class FTServiceStack: FTServiceStackProtocal {
 //    var security: HTTPSecurity?
 
     required public init(modelStack: FTModelData?, completionHandler: ((FTSericeStatus) -> Swift.Void)?) {
-            
         self.inputStack = modelStack
         self.completionHandler = completionHandler
-        _ = self.serviceSchema() //= try FTMobileConfig.schemaForClass(classKey: self.serviceName)
     }
 
-//    required public init(modelStack: FTModelData?, completionHandler: ((FTSericeStatus) -> Swift.Void)?) {
-//        self.inputStack = modelStack
-//        self.completionHandler = completionHandler
-//
-//        do {
-//            _ = try self.serviceSchema() //= try FTMobileConfig.schemaForClass(classKey: self.serviceName)
-//        } catch {
-//            completionHandler?(FTSericeStatus.failed(self.responseStack, 500))
-//        }
-//    }
-
+    public static func setup(modelStack: FTModelData?, completionHandler: ((FTSericeStatus) -> Swift.Void)?) -> Self {
+        return self.init(modelStack: modelStack, completionHandler: completionHandler)
+    }
 }
 
-extension FTServiceStack {
-    
-    func isValid() -> Bool {
-        return (self.serviceSchema())
-    }
-    
-    func urlRequest() -> URLRequest {
+fileprivate extension FTServiceStack {
+
+    //Service Base URL
+    func getBaseURL() -> String {
 
         //Service App Base URL
         var baseURL = FTMobileConfig.isMockData ? FTMobileConfig.mockURL : FTMobileConfig.appBaseURL
@@ -103,6 +85,41 @@ extension FTServiceStack {
         if ((serviceRequet?.baseURL) != nil) {
             baseURL = (serviceRequet?.baseURL)!
         }
+
+        return baseURL
+    }
+
+    func getQueryItems() -> [URLQueryItem]? {
+
+        let querys = inputStack?.queryItems()
+        //        if let requestQuery = serviceRequet?.requestQuery {
+        //
+        //        }
+
+        return querys
+    }
+}
+
+extension FTServiceStack {
+
+    func setupServiceRequest() -> FTRequestObject? {
+        do {
+            if
+                let data = try! FTMobileConfig.schemaForClass(classKey: self.serviceName()) {
+                serviceRequet = try! FTRequestObject.createModelData(json: data)
+            }
+        }
+        return serviceRequet
+    }
+
+    func isValid() -> Bool {
+        return (serviceRequet != nil)
+    }
+
+    func urlRequest() -> URLRequest {
+
+        //Service App Base URL
+        let baseURL = getBaseURL()
 
         //Create URL Components
         var components = URLComponents(string: baseURL)!
@@ -119,7 +136,7 @@ extension FTServiceStack {
         if let type = serviceRequet?.type {
             switch type {
             case .GET:
-                components.queryItems = inputStack?.queryItems()
+                components.queryItems = self.getQueryItems()
                 break
             case .POST:
                 httpBody = try! inputStack?.jsonModelData()
@@ -131,15 +148,32 @@ extension FTServiceStack {
 
         //Create URLRequest from 'components'
         var urlReq = URLRequest(url: components.url!)
+        print("urlReq: ", urlReq.url?.absoluteString.removingPercentEncoding ?? "Empty")
+
+        //Request 'type'
         urlReq.httpMethod = serviceRequet?.type.rawValue
+
+        //Reqeust Body if any
         urlReq.httpBody = httpBody
+        if let bodyData = httpBody {
+            print("urlBody: ", String(bytes: bodyData, encoding: .utf8) ?? "Empty")
+        }
+
+        //Request headers
+        self.requestHeaders?.forEach({ (key,value) in
+            urlReq.setValue(value, forHTTPHeaderField: key)
+        })
+
         
         return urlReq
     }
     
     func responseModelStack() -> FTModelData? {
+
         guard self.data != nil else { return nil }
-        return try! self.responseType().createModelData(json: self.data!)
+        responseStack = try! self.responseType().createModelData(json: self.data!)
+
+        return responseStack
     }
 
     static var i: Int = 0
@@ -158,9 +192,9 @@ extension FTServiceStack {
                 let stubData = ["state": "completed", "page":"1", "totalItems": "\(FTServiceStack.i, +100)", "type": "topview", "category": "all"]
                 FTServiceStack.i += 2
                 self.data = stubData.jsonModelData()
-                print(self.responseModelStack() ?? "")
+                self.setupResponseStack()
                 DispatchQueue.main.async {
-                    self.completionHandler!(FTSericeStatus.success(self.responseModelStack(), self.statusCode ?? 500))
+                    self.completionHandler!(FTSericeStatus.success(self, self.statusCode ?? 500))
                 }
                 return
             }
@@ -169,8 +203,9 @@ extension FTServiceStack {
             if let httpURLResponse = response as? HTTPURLResponse {
                 self.resposne = httpURLResponse
                 self.statusCode = httpURLResponse.statusCode
+                self.setupResponseStack()
                 DispatchQueue.main.async {
-                    self.completionHandler!(FTSericeStatus.success(self.responseModelStack(), self.statusCode ?? 500))
+                    self.completionHandler!(FTSericeStatus.success(self, self.statusCode ?? 500))
                 }
             }else {
                 DispatchQueue.main.async {
@@ -182,5 +217,12 @@ extension FTServiceStack {
         }
         
         return decodeHandler
+    }
+}
+
+extension FTServiceStack {
+    func setupResponseStack() {
+        responseStack = try! self.responseType().createModelData(json: self.data!)
+        print(responseStack?.jsonString() ?? "")
     }
 }

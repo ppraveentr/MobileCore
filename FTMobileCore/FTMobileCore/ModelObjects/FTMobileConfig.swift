@@ -11,8 +11,9 @@ import Foundation
 public class FTMobileConfig {
     
     static let sharedInstance = FTMobileConfig()
-    
+
     //MARK: Configurations
+    //MARK: Requst Paths
     static public var appBaseURL: String = "" {
         didSet {
             if !appBaseURL.hasSuffix("/") {
@@ -27,37 +28,50 @@ public class FTMobileConfig {
             }
         }
     }
-     static public var isMockData: Bool = false
+    static public var isMockData: Bool = false
 
+    //MARK: Model Binding
     static var modelBindingPath: String = ""
     static public var serviceBindingPath: String = "" {
         didSet {
-//            if let path = serviceBindingDirectory() {
-                try? FTMobileConfig.loadModelSchema(fromPath: serviceBindingDirectory())
-//            }
+            try? FTMobileConfig.loadModelSchema(fromPath: serviceBindingDirectory())
         }
     }
-    static public func serviceBindingDirectory() -> String {
+
+    //MARK: Rules Binding
+     var serviceRuels = JSON()
+    static public var serviceBindingRulesName: String = "" {
+        didSet {
+            try? FTMobileConfig.loadBindingRules()
+        }
+    }
+
+    //MARK: Model Schema
+    var modelSchema = JSON()
+    
+    //MARK: Init with Relection
+    init() { FTReflection.registerModuleIdentifier(FTMobileConfig.self) }
+}
+
+//MARK: Model Schema
+extension FTMobileConfig {
+
+    static func serviceBindingDirectory() -> String {
         if let resourcePath = Bundle.main.resourceURL?.appendingPathComponent(self.serviceBindingPath) {
             return resourcePath.path
         }
         return ""
     }
-    
-    //MARK:
-    init() { FTReflection.registerModuleIdentifier(FTMobileConfig.self) }
-    
-    var modelSchema = JSON()
-    
+
     public class func loadModelSchema(_ data: [String : Any] ) throws {
-        
+
         if JSONSerialization.isValidJSONObject(data) {
             self.sharedInstance.modelSchema += data
         }
     }
-    
+
     public class func loadModelSchema(fromPath path: String ) throws {
-        
+
         let path = serviceBindingDirectory()
         try path.filesAtPath({ (filePath) in
             do {
@@ -67,8 +81,23 @@ public class FTMobileConfig {
             } catch {}
         })
     }
-    
+
     public class func schemaForClass(classKey: String) throws -> JSON? {
         return self.sharedInstance.modelSchema[classKey] as? JSON
+    }
+}
+
+//MARK: Binding Rules
+extension FTMobileConfig {
+
+    public class func loadBindingRules() throws {
+
+        if
+            let resourcePath = Bundle.main.path(forResource: self.serviceBindingRulesName, ofType: nil),
+            let content: JSON = NSMutableDictionary(contentsOfFile: resourcePath) as? JSON {
+            if JSONSerialization.isValidJSONObject(content) {
+                self.sharedInstance.serviceRuels += content
+            }
+        }
     }
 }

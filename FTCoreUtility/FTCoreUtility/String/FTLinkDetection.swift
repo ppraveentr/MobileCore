@@ -66,7 +66,7 @@ open class FTLinkDetection {
             
             if
                 let range = result?.range,
-                let subText = (text as NSString).substring(with: NSMakeRange(range.location, range.length)) as String!,
+                let subText = (text as NSString).substring(with: NSMakeRange(range.location, range.length)) as String?,
                 let url = URL(string: subText) {
                     let dec = FTLinkDetection(linkType: .hashTag, linkRange: range, linkURL: url)
                     rangeOfURL.append(dec)
