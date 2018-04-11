@@ -26,6 +26,7 @@
 		DE680BB91F2E548F00A9F68C /* FTThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680BB81F2E548F00A9F68C /* FTThemesTests.swift */; };
 		DE680BC41F30C12900A9F68C /* FTDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680BC31F30C12900A9F68C /* FTDictionary.swift */; };
 		DE680BC61F30ED9C00A9F68C /* FTColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680BC51F30ED9C00A9F68C /* FTColor.swift */; };
+		DE6C7929207E61250011F027 /* FTData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6C7928207E61250011F027 /* FTData.swift */; };
 		DE9411B01F56557200938DA6 /* FTAppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9411AF1F56557200938DA6 /* FTAppearanceManager.swift */; };
 		DE9854241F47168E001AFF89 /* FTUITabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9854231F47168E001AFF89 /* FTUITabBar.swift */; };
 		DE9854261F4717DF001AFF89 /* FTUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9854251F4717DF001AFF89 /* FTUIButton.swift */; };
@@ -84,6 +85,7 @@
 		DE680BB81F2E548F00A9F68C /* FTThemesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTThemesTests.swift; sourceTree = "<group>"; };
 		DE680BC31F30C12900A9F68C /* FTDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTDictionary.swift; sourceTree = "<group>"; };
 		DE680BC51F30ED9C00A9F68C /* FTColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTColor.swift; sourceTree = "<group>"; };
+		DE6C7928207E61250011F027 /* FTData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTData.swift; sourceTree = "<group>"; };
 		DE9411AF1F56557200938DA6 /* FTAppearanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTAppearanceManager.swift; sourceTree = "<group>"; };
 		DE9854231F47168E001AFF89 /* FTUITabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUITabBar.swift; sourceTree = "<group>"; };
 		DE9854251F4717DF001AFF89 /* FTUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIButton.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				DE680B6C1F2BC1A800A9F68C /* FTLinkDetection.swift */,
 				DE680B661F2BC18900A9F68C /* FTString.swift */,
 				DE680BC31F30C12900A9F68C /* FTDictionary.swift */,
+				DE6C7928207E61250011F027 /* FTData.swift */,
 			);
 			path = String;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				DE680B9E1F2D067900A9F68C /* FTAppDelegate.swift in Sources */,
 				DEF9A7C8205AD33A00617FBF /* FTSequence.swift in Sources */,
 				DE680B751F2BC22B00A9F68C /* FTRect.swift in Sources */,
+				DE6C7929207E61250011F027 /* FTData.swift in Sources */,
 				DEA7E12E1F48150B0002C148 /* FTViewControllerExtension.swift in Sources */,
 				DEA1ED6D1F6CF233001AA3C6 /* FTUINavigationBar.swift in Sources */,
 				DE680BC61F30ED9C00A9F68C /* FTColor.swift in Sources */,

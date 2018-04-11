@@ -8,10 +8,12 @@
 
 import Foundation
 
+public typealias FTServiceCompletionBlock = (FTSericeStatus) -> Swift.Void
+
 public protocol FTServiceStackProtocal {
     func serviceName() -> String
     func responseType() -> FTModelData.Type
-    static func setup(modelStack: FTModelData?, completionHandler: ((FTSericeStatus) -> Swift.Void)?) -> Self
+    static func setup(modelStack: FTModelData?, completionHandler: FTServiceCompletionBlock?) -> Self
 }
 
 public protocol FTServiceRulesProtocal {
@@ -36,18 +38,16 @@ open class FTServiceStack: FTServiceStackProtocal {
     
     /// The body data of the HTTP response.
     open var resposne: HTTPURLResponse?
-    
+    open var resposneString: String?
+
     /// The status code of the HTTP response.
     open var statusCode: Int?
     
     /// The Error of the HTTP response (if there was one).
     open var error: Error?
-    
-//    ///holds the collected data
-//    var collectData = NSMutableData()
-    
+
     ///finish closure
-    var completionHandler:((FTSericeStatus) -> Void)?
+    var completionHandler: FTServiceCompletionBlock?
     
 //    //progress closure. Progress is between 0 and 1.
 //    var progressHandler:((Float) -> Void)?
@@ -63,12 +63,12 @@ open class FTServiceStack: FTServiceStackProtocal {
 //    ///This is for doing SSL pinning
 //    var security: HTTPSecurity?
 
-    required public init(modelStack: FTModelData?, completionHandler: ((FTSericeStatus) -> Swift.Void)?) {
+    required public init(modelStack: FTModelData?, completionHandler: FTServiceCompletionBlock?) {
         self.inputStack = modelStack
         self.completionHandler = completionHandler
     }
 
-    public static func setup(modelStack: FTModelData?, completionHandler: ((FTSericeStatus) -> Swift.Void)?) -> Self {
+    public static func setup(modelStack: FTModelData?, completionHandler: FTServiceCompletionBlock?) -> Self {
         return self.init(modelStack: modelStack, completionHandler: completionHandler)
     }
 }
@@ -155,15 +155,12 @@ extension FTServiceStack {
 
         //Reqeust Body if any
         urlReq.httpBody = httpBody
-        if let bodyData = httpBody {
-            print("urlBody: ", String(bytes: bodyData, encoding: .utf8) ?? "Empty")
-        }
+        print("urlBody: ", httpBody?.decodeToString() ?? "Empty")
 
         //Request headers
         self.requestHeaders?.forEach({ (key,value) in
             urlReq.setValue(value, forHTTPHeaderField: key)
         })
-
         
         return urlReq
     }
@@ -178,7 +175,7 @@ extension FTServiceStack {
 
     static var i: Int = 0
 
-    func sessionHandler() -> ((Data?, URLResponse?, Error?) -> ())? {
+    func sessionHandler() -> FTURLSessionCompletionBlock? {
         
         guard completionHandler != nil else { return nil }
         
@@ -187,18 +184,14 @@ extension FTServiceStack {
             self.data = data
             self.error = error
 
-            //Stub
+            //TODO: Stub
             if FTMobileConfig.isMockData {
-                let stubData = ["state": "completed", "page":"1", "totalItems": "\(FTServiceStack.i, +100)", "type": "topview", "category": "all"]
-                FTServiceStack.i += 2
-                self.data = stubData.jsonModelData()
-                self.setupResponseStack()
-                DispatchQueue.main.async {
-                    self.completionHandler!(FTSericeStatus.success(self, self.statusCode ?? 500))
-                }
-                return
+                //return self.stubData()
             }
             //Stub
+
+            //Decoded responseString
+            self.resposneString = data?.decodeToString(forResponse: response)
 
             if let httpURLResponse = response as? HTTPURLResponse {
                 self.resposne = httpURLResponse
@@ -222,7 +215,17 @@ extension FTServiceStack {
 
 extension FTServiceStack {
     func setupResponseStack() {
-        responseStack = try! self.responseType().createModelData(json: self.data!)
+        responseStack = try? self.responseType().createModelData(json: self.data!)
         print(responseStack?.jsonString() ?? "")
+    }
+
+    func stubData() {
+        let stubData = ["state": "completed", "page":"1", "totalItems": "\(FTServiceStack.i, +100)", "type": "topview", "category": "all"]
+        FTServiceStack.i += 2
+        self.data = stubData.jsonModelData()
+        self.setupResponseStack()
+        DispatchQueue.main.async {
+            self.completionHandler!(FTSericeStatus.success(self, self.statusCode ?? 500))
+        }
     }
 }
