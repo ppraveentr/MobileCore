@@ -104,7 +104,17 @@ public extension String {
         
         return content.jsonContent() as? T
     }
-    
+
+    //Loading Data from given Path
+    func dataAtPath() throws -> Data? {
+
+        guard let content = try? Data.init(contentsOf: URL(fileURLWithPath: self)) else {
+            return nil
+        }
+
+        return content
+    }
+
     //MARK: File
     //Loading Data from given Path
     func filesAtPath(_ fileAtPath: @escaping (_ path: String) -> () ) throws {
@@ -117,5 +127,10 @@ public extension String {
                 fileAtPath(self)
             }
         }
+    }
+
+    //MARK: Bundle
+    func bundleURL() -> URL? {
+        return Bundle.main.resourceURL?.appendingPathComponent(self)
     }
 }

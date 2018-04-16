@@ -48,6 +48,8 @@ open class FTServiceStack: FTServiceStackProtocal {
 
     ///finish closure
     var completionHandler: FTServiceCompletionBlock?
+
+     var mockDataHandler: FTServiceCompletionBlock?
     
 //    //progress closure. Progress is between 0 and 1.
 //    var progressHandler:((Float) -> Void)?
@@ -79,7 +81,7 @@ fileprivate extension FTServiceStack {
     func getBaseURL() -> String {
 
         //Service App Base URL
-        var baseURL = FTMobileConfig.isMockData ? FTMobileConfig.mockURL : FTMobileConfig.appBaseURL
+        var baseURL = FTMobileConfig.appBaseURL
 
         //If service has customeBase URL
         if ((serviceRequet?.baseURL) != nil) {
@@ -169,6 +171,7 @@ extension FTServiceStack {
         guard self.data != nil else { return nil }
         responseStack = try? self.responseType().createModelData(json: self.data!)
         print("jsonString:: ", responseStack?.jsonString() ?? "")
+        print("rawData::",String(bytes: self.data!, encoding: .utf8) ?? "")
         return responseStack
     }
 
@@ -176,15 +179,16 @@ extension FTServiceStack {
 
     func sessionHandler() -> FTURLSessionCompletionBlock? {
         
-//        guard completionHandler != nil else { return nil }
+        //guard completionHandler != nil else { return nil }
+
         let decodeHandler = { (data: Data?, response: URLResponse?, error: Error?) -> () in
 
             self.data = data
             self.error = error
 
-            //TODO: Stub
+            //Stub
             if FTMobileConfig.isMockData {
-                //return self.stubData()
+                return self.stubData()
             }
             //Stub
 
@@ -194,7 +198,7 @@ extension FTServiceStack {
             if let httpURLResponse = response as? HTTPURLResponse {
                 self.resposne = httpURLResponse
                 self.statusCode = httpURLResponse.statusCode
-                self.setupResponseStack()
+                self.buildResponseStack()
                 DispatchQueue.main.async {
                     self.completionHandler?(FTSericeStatus.success(self, self.statusCode ?? 500))
                 }
@@ -212,15 +216,18 @@ extension FTServiceStack {
 }
 
 extension FTServiceStack {
-    func setupResponseStack() {
+    func buildResponseStack() {
         self.responseModelStack()
     }
 
     func stubData() {
-        let stubData = ["state": "completed", "page":"1", "totalItems": "\(FTServiceStack.i, +100)", "type": "topview", "category": "all"]
-        FTServiceStack.i += 2
-        self.data = stubData.jsonModelData()
-        self.setupResponseStack()
+
+        print(self.serviceName(), ": is data stubbed.")
+        if let data: String = FTMobileConfig.mockBundle?.path(forResource: self.serviceName(), ofType: "json") {
+            self.data = try! data.dataAtPath()
+        }
+
+        self.buildResponseStack()
         DispatchQueue.main.async {
             self.completionHandler!(FTSericeStatus.success(self, self.statusCode ?? 500))
         }

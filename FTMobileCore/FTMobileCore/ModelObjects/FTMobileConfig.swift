@@ -21,17 +21,28 @@ public class FTMobileConfig {
             }
         }
     }
-    static public var mockURL: String = "" {
+
+    //Check for stubData
+    static fileprivate var isMockDataModel: Bool = false
+    static public var isMockData: Bool {
+        set { isMockDataModel = newValue }
+        get { return isMockDataModel && mockBundle != nil }
+    }
+
+    //Stub data bundle, used by FTServiceStack
+    static var mockBundle: Bundle? = nil
+    static public var mockBundleResource: URL? = nil {
         didSet {
-            if !appBaseURL.hasSuffix("/") {
-                appBaseURL.append("/")
+            if mockBundleResource != nil {
+                mockBundle = Bundle(url: mockBundleResource!)
+            }else{
+                mockBundle = nil
             }
         }
     }
-    static public var isMockData: Bool = false
-
     //MARK: Model Binding
     static var modelBindingPath: String = ""
+    //TODO: To support multiple sources
     static public var serviceBindingPath: String = "" {
         didSet {
             try? FTMobileConfig.loadModelSchema(fromPath: serviceBindingDirectory())
