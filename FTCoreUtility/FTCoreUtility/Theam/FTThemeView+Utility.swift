@@ -11,7 +11,7 @@ import Foundation
 public typealias FTThemeDic = [String : Any]
 
 public struct ThemeStyle {
-    static let defaultStyle = "default"
+    public static let defaultStyle = "default"
     static let highlightedStyle = "highlighted"
     static let selectedStyle = "selected"
     static let disabledStyle = "disabled"

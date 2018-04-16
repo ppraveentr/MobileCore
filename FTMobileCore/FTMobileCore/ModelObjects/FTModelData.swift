@@ -45,7 +45,7 @@ public protocol FTModelData: Codable {
 
     //JSON
     func jsonModel() -> JSON?
-    func jsonModelData() throws -> Data?
+    func jsonModelData() -> Data?
     func jsonString() -> String?
     mutating func merge(data: FTModelData)
     //URL
@@ -81,8 +81,8 @@ public extension FTModelData {
     func jsonModelData() -> Data? {
         var data: Data?
         do {
-            data = try JSONEncoder().encode(self)
-        } catch {}
+            data = try? JSONEncoder().encode(self)
+        }
         return data
     }
 
@@ -90,7 +90,7 @@ public extension FTModelData {
 
         do {
             let data: Data = try JSONEncoder().encode(self)
-            return try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? JSON
+            return data.jsonContent() as? JSON
 
         } catch {}
 
@@ -105,7 +105,7 @@ public extension FTModelData {
                 jsn.stripNilElements()
                 if JSONSerialization.isValidJSONObject(jsn){
                     let data = try JSONSerialization.data(withJSONObject: jsn, options: .prettyPrinted)
-                    string = String(data: data, encoding: .utf8)
+                    string = data.decodeToString()
                 }
             }
         } catch {}

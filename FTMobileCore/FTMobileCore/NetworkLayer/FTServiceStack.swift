@@ -104,8 +104,7 @@ extension FTServiceStack {
 
     func setupServiceRequest() -> FTRequestObject? {
         do {
-            if
-                let data = try! FTMobileConfig.schemaForClass(classKey: self.serviceName()) {
+            if let data = try! FTMobileConfig.schemaForClass(classKey: self.serviceName()) {
                 serviceRequet = try! FTRequestObject.createModelData(json: data)
             }
         }
@@ -139,7 +138,7 @@ extension FTServiceStack {
                 components.queryItems = self.getQueryItems()
                 break
             case .POST:
-                httpBody = try! inputStack?.jsonModelData()
+                httpBody = inputStack?.jsonModelData()
                 break
             default:
                 break
@@ -164,12 +163,12 @@ extension FTServiceStack {
         
         return urlReq
     }
-    
+
+    @discardableResult
     func responseModelStack() -> FTModelData? {
-
         guard self.data != nil else { return nil }
-        responseStack = try! self.responseType().createModelData(json: self.data!)
-
+        responseStack = try? self.responseType().createModelData(json: self.data!)
+        print("jsonString:: ", responseStack?.jsonString() ?? "")
         return responseStack
     }
 
@@ -177,8 +176,7 @@ extension FTServiceStack {
 
     func sessionHandler() -> FTURLSessionCompletionBlock? {
         
-        guard completionHandler != nil else { return nil }
-        
+//        guard completionHandler != nil else { return nil }
         let decodeHandler = { (data: Data?, response: URLResponse?, error: Error?) -> () in
 
             self.data = data
@@ -198,11 +196,11 @@ extension FTServiceStack {
                 self.statusCode = httpURLResponse.statusCode
                 self.setupResponseStack()
                 DispatchQueue.main.async {
-                    self.completionHandler!(FTSericeStatus.success(self, self.statusCode ?? 500))
+                    self.completionHandler?(FTSericeStatus.success(self, self.statusCode ?? 500))
                 }
             }else {
                 DispatchQueue.main.async {
-                    self.completionHandler!(FTSericeStatus.failed(nil, self.statusCode ?? 500))
+                    self.completionHandler?(FTSericeStatus.failed(nil, self.statusCode ?? 500))
                 }
             }
 
@@ -215,8 +213,7 @@ extension FTServiceStack {
 
 extension FTServiceStack {
     func setupResponseStack() {
-        responseStack = try? self.responseType().createModelData(json: self.data!)
-        print(responseStack?.jsonString() ?? "")
+        self.responseModelStack()
     }
 
     func stubData() {

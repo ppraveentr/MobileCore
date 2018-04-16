@@ -60,9 +60,14 @@ public extension UIColor {
     }
     
     public class func hexColor (_ hex:String) -> UIColor? {
-                
+
+        //Check if its acutal hex coded string
+        if !hex.hasPrefix("#") { return nil }
+
+        //Strip non-alphanumerics, and Make it capitalized
         let cString:String = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted).uppercased()
-        
+
+        //Read hex string into Int32
         var int = UInt32()
         Scanner(string: cString).scanHexInt32(&int)
         

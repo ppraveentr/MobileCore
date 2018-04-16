@@ -30,7 +30,7 @@ extension UIView : FTAppearanceManagerProtocol {
         type(of: self).setUpAppearance(theme: theme, inContainerClass: cclassName)
     }
     
-    open class func setUpAppearance(theme: FTThemeDic, inContainerClass cclassName: String?) {
+    @objc open class func setUpAppearance(theme: FTThemeDic, inContainerClass cclassName: String?) {
         
         let appearance = self.appearance()
         
@@ -51,8 +51,8 @@ extension UIView : FTAppearanceManagerProtocol {
         }
     }
     
-    open class func setBackgroundImage(_ imageTheme: Any) {
-        self.setBackgroundImage(imageType: "default", imageName: imageTheme)
+    @objc open class func setBackgroundImage(_ imageTheme: Any) {
+        self.setBackgroundImage(imageType: ThemeStyle.defaultStyle, imageName: imageTheme)
     }
     
     open class func setBackgroundImage(imageType: String?, imageName: Any) {

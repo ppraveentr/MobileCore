@@ -251,7 +251,7 @@ extension FTThemesManager {
         var actualComponents: Any? = nil
 
         //If component of specifc type is not found, search for "default" style
-        let components: Any? = superBlock?(key) ?? superBlock?("default")
+        let components: Any? = superBlock?(key) ?? superBlock?(ThemeStyle.defaultStyle)
 
         //TODO: iterative 'super' is still pending
         if

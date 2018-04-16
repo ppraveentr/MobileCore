@@ -74,7 +74,7 @@ public extension String {
     
     //Get subString within the 'range'
     func substring(with range: NSRange) -> String? {
-        return (self as NSString).substring(with: range) as String! ?? nil
+        return (self as NSString).substring(with: range) as String? ?? nil
     }
     
     //Get subString 'from-index' to 'to-index'
@@ -102,7 +102,7 @@ public extension String {
             return nil
         }
         
-        return try JSONSerialization.jsonObject(with: content, options: .allowFragments) as? T
+        return content.jsonContent() as? T
     }
     
     //MARK: File
