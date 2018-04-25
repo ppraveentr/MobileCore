@@ -1,4 +1,53 @@
 # MobileCore
-Any Mobile application that needs to connect to backed needs more-or-less way requiered to make RESTfull service calls, followed by response parsing and Domain Object creation and population and so forth. This Core component takes care of all these hassles for you.
 
-Note: This is jsut the inital code submition and doesn't have any major code structure or any default standard architecture to speek of.
+[![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat
+)](https://developer.apple.com/iphone/index.action)
+[![Language](http://img.shields.io/badge/language-swift-brightgreen.svg?style=flat
+)](https://developer.apple.com/swift)
+[![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat
+)](http://mit-license.org)
+
+Lets consider you are developing a Mobile application, be it for Prototyping or Enterprise, writing Auto-Layout or Network-layer code from scratch isn't always easy and its time consuming. This Core component takes care of all these hassles for you.
+
+MobileCore is a Swift library consisting in a set of extensions to help dealing with 
+- [x] Auto Layout programatically. 
+- [x] Defining and managing RESTfull service layer in JSON format.
+- [x] Utility for Domain Object creation from JSON to Swift classes.
+
+
+## Manually from GitHub
+
+- Download the source files in the MobileCore subdirectory.
+- Add the source files to your Xcode project.
+- Add the following imports to your bridging header.
+	- #import <FTMobileCore/FTMobileCore.h>
+	- #import <FTMobileCoreUI/FTMobileCoreUI.h>
+
+That's it - now go write some beautiful Auto Layout code!
+
+### What's included
+
+Within the download you'll find the following sub-projects and an integrated sample workspace `FTMobileCoreSampleWorkspace`.
+
+```
+MobileCore/
+├── FTMobileCore
+├── FTMobileCoreUI
+├── FTCoreUtility
+└── FTMobileCoreSampleWorkspace
+```
+
+#### Note
+MobileCore architecture is still under evolution.
+
+## Credits
+
+Owned and maintained by Praveen P (@ppraveentr).
+
+## Contributing
+
+Bug reports and pull requests are welcome.
+
+## License
+
+MobileCore is released under the MIT license. See LICENSE for details.
