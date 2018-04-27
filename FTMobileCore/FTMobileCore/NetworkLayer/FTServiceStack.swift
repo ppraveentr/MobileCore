@@ -107,10 +107,10 @@ extension FTServiceStack {
     func setupServiceRequest() -> FTRequestObject? {
         do {
             if let data = try! FTMobileConfig.schemaForClass(classKey: self.serviceName()) {
-                serviceRequet = try! FTRequestObject.createModelData(json: data)
+                return try! FTRequestObject.createModelData(json: data)
             }
         }
-        return serviceRequet
+        return nil
     }
 
     func isValid() -> Bool {
