@@ -1,6 +1,6 @@
 language: objective-c
 xcode_workspace: FTMobileCoreSampleWorkspace.xcworkspace # path to your xcodeproj folder
-osx_image: xcode9.2
+osx_image: xcode9.3
 xcode_scheme: FTMobileCoreSample
 script:
  - xcodebuild -workspace "FTMobileCoreSampleWorkspace.xcworkspace" -scheme FTMobileCoreSample  -sdk "iphonesimulator" -configuration Release -arch x86_64 -arch i386 only_active_arch=no defines_module=yes
