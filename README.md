@@ -7,6 +7,12 @@
 
 Lets consider you are developing a Mobile application, be it for Prototyping or Enterprise, writing Auto-Layout or Network-layer code from scratch isn't always easy and its time consuming. This Core component takes care of all these hassles for you.
 
+[`NovelReader`](https://github.com/ppraveentr/Concepts/tree/master/NovelReader) is a prototype describing working of MobileCore.
+[![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
+[![Language](http://img.shields.io/badge/language-swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
+[![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
+[![Build Status](https://travis-ci.org/ppraveentr/Concepts.svg?branch=master)](https://travis-ci.org/ppraveentr/Concepts)
+
 MobileCore is a Swift library consisting in a set of extensions to help dealing with 
 - [x] Auto Layout programatically. 
 - [x] Defining and managing RESTfull service layer in JSON format.
