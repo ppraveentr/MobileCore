@@ -534,7 +534,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTCoreUtility;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -556,7 +556,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTCoreUtility;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
