@@ -8,7 +8,7 @@
 
 import Foundation
 
-private let kFTCellIdentifier = "FT.kCellIdentifer"
+private let kFTCellIdentifier = "FT.kCellIdentifier"
 
 open class FTCoreTableViewController: UITableViewController {
 
