@@ -113,10 +113,10 @@ public extension FTModelData {
         return string
     }
 
-    mutating func merge(data: FTModelData) {
+    mutating func merge(data sourceData: FTModelData) {
 
         let json = self.jsonModel()
-        let data = json?.merging((data.jsonModel())!, uniquingKeysWith: { (left, right) -> Any in
+        let data = json?.merging(sourceData.jsonModel()!, uniquingKeysWith: { (left, right) -> Any in
             if var leftJson = left as? FTModelData,
                let rightJson = right as? FTModelData {
                 return leftJson.merge(data: rightJson)
