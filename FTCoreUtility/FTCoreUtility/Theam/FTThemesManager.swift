@@ -10,7 +10,7 @@ import Foundation
 
 open class FTThemesManager {
 
-    static var imageSourceBundle: [AnyClass] = []
+    static var imageSourceBundle: [Bundle] = []
     
     //Theme JSON file loaded from Main-App
     static var themesJSON: FTThemeDic = [:] {
@@ -25,15 +25,26 @@ open class FTThemesManager {
             FTAppearanceManager.__setupThemes__()
         }
     }
-    
+
     //
-    public class func setupThemes(themes: FTThemeDic, imageSourceBundle imageSource: [AnyClass]? = nil) {
-        
+    public class func addImageSourceBundle(imageSource: Bundle? = nil, imageSources: [Bundle]? = nil) {
         //Usefull for loading Images that are stored in bundle which are defined in Themes's JSON
         if let imageSource = imageSource {
-            imageSourceBundle.append(contentsOf: imageSource)
-//            FTReflection.registerModuleIdentifier(imageSource)
+            imageSourceBundle.append(imageSource)
         }
+
+        if let imageSources = imageSources {
+            imageSourceBundle.append(contentsOf: imageSources)
+        }
+
+        //FTReflection.registerModuleIdentifier(imageSource)
+
+    }
+    //
+    public class func setupThemes(themes: FTThemeDic, imageSourceBundle imageSource: [Bundle]? = nil) {
+        
+        //Usefull for loading Images that are stored in bundle which are defined in Themes's JSON
+       self.addImageSourceBundle(imageSource: nil, imageSources: imageSource)
 
         //Update theme with new config
         //NOTE: currently does not spport merging of two theme files
@@ -111,7 +122,7 @@ open class FTThemesManager {
     open class func getImage(_ imageName: Any?) -> UIImage? {
         
         guard let imageName = imageName else { return nil }
-        
+
         if var imageName = imageName as? String {
             
             if imageName == "@empty" {
@@ -119,13 +130,9 @@ open class FTThemesManager {
             }
             
             if imageName.hasPrefix("@") {
-                
                 //Search for image in all available bundles
                 for bundleName in FTThemesManager.imageSourceBundle {
-                    
-                    let bundle = Bundle(for: bundleName)
-                    
-                    if let image = UIImage.init(named: imageName.trimPrefix("@"), in: bundle, compatibleWith: nil){
+                    if let image = UIImage.init(named: imageName.trimPrefix("@"), in: bundleName, compatibleWith: nil){
                         return image
                     }
                 }
@@ -133,6 +140,44 @@ open class FTThemesManager {
         }
         
         return nil
+    }
+
+    //MARK: CALayer
+    @discardableResult
+    open class func getBackgroundLayer(_ layer: FTThemeDic?, toLayer: CALayer? = nil) -> CALayer? {
+
+        guard let layer = layer else { return nil }
+
+        let floatValue = { (value: Any) -> CGFloat in
+            if let i = value as? Float {
+                return CGFloat(i)
+            }
+            return 0.0
+        }
+        
+        let caLayer = toLayer ?? CALayer()
+
+        for (name, value) in layer {
+            switch name {
+            case "cornerRadius":
+                caLayer.cornerRadius = floatValue(value)
+                break
+            case "borderWidth":
+                caLayer.borderWidth = floatValue(value)
+                break
+            case "masksToBounds":
+                caLayer.masksToBounds = floatValue(value) > 0
+                break
+            case "borderColor":
+                let value = value as? String
+                    caLayer.borderColor = FTThemesManager.getColor(value)?.cgColor
+                break
+            default:
+                break
+            }
+        }
+
+        return caLayer
     }
     
     //MARK: App Appearance

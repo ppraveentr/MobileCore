@@ -496,18 +496,18 @@ public extension UIView {
     //Sets height & width of the View
     //Negative values will skip setting constraints
     //If invoked after ".AutoSize or addSelfSizing", the view will not auto-resize the width & height.
-    public func addSizeConstraint(_ width: CGFloat = -10, _ height: CGFloat = -10){
+    public func addSizeConstraint(_ width: CGFloat = -10, _ height: CGFloat = -10, relation:  NSLayoutRelation = .equal){
         
         self.viewLayoutConstraint.autoSizing = true
 
         self.translatesAutoresizingMaskIntoConstraints = false
         
         if width >= 0 {
-            self.setViewWidth(width, createConstraint: true)
+            self.setViewWidth(width, createConstraint: true, relation: relation)
         }
         
         if height >= 0 {
-            self.setViewHeight(height, createConstraint: true)
+            self.setViewHeight(height, createConstraint: true, relation: relation)
         }
     }
     

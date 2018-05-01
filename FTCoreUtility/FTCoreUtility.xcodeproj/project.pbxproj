@@ -27,6 +27,8 @@
 		DE680BC41F30C12900A9F68C /* FTDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680BC31F30C12900A9F68C /* FTDictionary.swift */; };
 		DE680BC61F30ED9C00A9F68C /* FTColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680BC51F30ED9C00A9F68C /* FTColor.swift */; };
 		DE6C7929207E61250011F027 /* FTData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6C7928207E61250011F027 /* FTData.swift */; };
+		DE72817120986F9A00CA09E0 /* FTActionBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE72816F20986F9A00CA09E0 /* FTActionBlock.swift */; };
+		DE72817320987C5900CA09E0 /* FTURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE72817220987C5900CA09E0 /* FTURL.swift */; };
 		DE9411B01F56557200938DA6 /* FTAppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9411AF1F56557200938DA6 /* FTAppearanceManager.swift */; };
 		DE9854241F47168E001AFF89 /* FTUITabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9854231F47168E001AFF89 /* FTUITabBar.swift */; };
 		DE9854261F4717DF001AFF89 /* FTUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9854251F4717DF001AFF89 /* FTUIButton.swift */; };
@@ -86,6 +88,8 @@
 		DE680BC31F30C12900A9F68C /* FTDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTDictionary.swift; sourceTree = "<group>"; };
 		DE680BC51F30ED9C00A9F68C /* FTColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTColor.swift; sourceTree = "<group>"; };
 		DE6C7928207E61250011F027 /* FTData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTData.swift; sourceTree = "<group>"; };
+		DE72816F20986F9A00CA09E0 /* FTActionBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTActionBlock.swift; sourceTree = "<group>"; };
+		DE72817220987C5900CA09E0 /* FTURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTURL.swift; sourceTree = "<group>"; };
 		DE9411AF1F56557200938DA6 /* FTAppearanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTAppearanceManager.swift; sourceTree = "<group>"; };
 		DE9854231F47168E001AFF89 /* FTUITabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUITabBar.swift; sourceTree = "<group>"; };
 		DE9854251F4717DF001AFF89 /* FTUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIButton.swift; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 		DE680B731F2BC22500A9F68C /* Generic */ = {
 			isa = PBXGroup;
 			children = (
+				DE72816F20986F9A00CA09E0 /* FTActionBlock.swift */,
 				DE680B741F2BC22B00A9F68C /* FTRect.swift */,
 				DE680B9A1F2CF86500A9F68C /* FTAssociatedObject.swift */,
 				DE680BC51F30ED9C00A9F68C /* FTColor.swift */,
@@ -212,6 +217,7 @@
 				DE4383A81F4B0960003DF8A7 /* FTImageView.swift */,
 				DEA1ED651F698BCC001AA3C6 /* FTImage.swift */,
 				DEF9A7C7205AD33A00617FBF /* FTSequence.swift */,
+				DE72817220987C5900CA09E0 /* FTURL.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -362,6 +368,7 @@
 				DEA7E12E1F48150B0002C148 /* FTViewControllerExtension.swift in Sources */,
 				DEA1ED6D1F6CF233001AA3C6 /* FTUINavigationBar.swift in Sources */,
 				DE680BC61F30ED9C00A9F68C /* FTColor.swift in Sources */,
+				DE72817320987C5900CA09E0 /* FTURL.swift in Sources */,
 				DE680B681F2BC18900A9F68C /* FTString.swift in Sources */,
 				DE680B6D1F2BC1A800A9F68C /* FTLinkDetection.swift in Sources */,
 				DE098ACF1F37659000675878 /* FTUILabel.swift in Sources */,
@@ -375,6 +382,7 @@
 				DE680B701F2BC1CF00A9F68C /* FTViewExtention.swift in Sources */,
 				DE680B991F2CF5A600A9F68C /* FTThemesManager.swift in Sources */,
 				DE9411B01F56557200938DA6 /* FTAppearanceManager.swift in Sources */,
+				DE72817120986F9A00CA09E0 /* FTActionBlock.swift in Sources */,
 				DE680B721F2BC1EB00A9F68C /* FTViewConstrains.swift in Sources */,
 				DE9854241F47168E001AFF89 /* FTUITabBar.swift in Sources */,
 			);

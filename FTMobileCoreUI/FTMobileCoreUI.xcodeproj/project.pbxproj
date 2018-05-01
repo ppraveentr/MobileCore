@@ -30,7 +30,6 @@
 		DEB5698D1F17E0E500B5F187 /* FTContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB5698C1F17E0E500B5F187 /* FTContentView.swift */; };
 		DEB5698F1F17E11500B5F187 /* FTBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB5698E1F17E11500B5F187 /* FTBaseNavigationController.swift */; };
 		DEB569911F17E12100B5F187 /* FTBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB569901F17E12100B5F187 /* FTBaseTableViewController.swift */; };
-		DEB569931F17E1D600B5F187 /* UIControl+FTActionBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB569921F17E1D600B5F187 /* UIControl+FTActionBlock.swift */; };
 		DED539D21F13C4940055BECA /* FTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED539D11F13C4940055BECA /* FTView.swift */; };
 		DED539D51F13C4E60055BECA /* FTBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED539D41F13C4E60055BECA /* FTBaseView.swift */; };
 		DEE988CF1F1B5C9E00F9C974 /* FTStringUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE988CE1F1B5C9E00F9C974 /* FTStringUtilityTests.swift */; };
@@ -117,7 +116,6 @@
 		DEB5698C1F17E0E500B5F187 /* FTContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTContentView.swift; sourceTree = "<group>"; };
 		DEB5698E1F17E11500B5F187 /* FTBaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseNavigationController.swift; sourceTree = "<group>"; };
 		DEB569901F17E12100B5F187 /* FTBaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseTableViewController.swift; sourceTree = "<group>"; };
-		DEB569921F17E1D600B5F187 /* UIControl+FTActionBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+FTActionBlock.swift"; sourceTree = "<group>"; };
 		DED539D11F13C4940055BECA /* FTView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTView.swift; sourceTree = "<group>"; };
 		DED539D41F13C4E60055BECA /* FTBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseView.swift; sourceTree = "<group>"; };
 		DEE988CE1F1B5C9E00F9C974 /* FTStringUtilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStringUtilityTests.swift; sourceTree = "<group>"; };
@@ -232,7 +230,6 @@
 		DE1485651F1159E600A250A6 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
-				DEB569921F17E1D600B5F187 /* UIControl+FTActionBlock.swift */,
 				DE98541A1F46FE1C001AFF89 /* FTMobileCoreUIConstants.swift */,
 			);
 			name = Utilites;
@@ -423,7 +420,6 @@
 				DE5A775F204DA79B008B19ED /* FTSegmentedControl.swift in Sources */,
 				DE29B6991F509E7000BE1529 /* FTFloatingView.swift in Sources */,
 				DED539D21F13C4940055BECA /* FTView.swift in Sources */,
-				DEB569931F17E1D600B5F187 /* UIControl+FTActionBlock.swift in Sources */,
 				DEB5698B1F17E0B400B5F187 /* FTButton.swift in Sources */,
 				DEB569891F17E0AB00B5F187 /* FTWebView.swift in Sources */,
 				DE1485631F1159BD00A250A6 /* FTBaseViewController.swift in Sources */,

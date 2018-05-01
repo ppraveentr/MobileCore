@@ -212,14 +212,18 @@ extension UIView {
         for (kind, value) in theme {
             
             switch kind {
-                //TODO: have work on borderStyle and othes
-            //Will be done by generating a layer and add it as subView
             case "backgroundColor":
                 let colorName: String? = value as? String
                 let color = FTThemesManager.getColor(colorName)
                 
                 if let color = color { self.theme_backgroundColor(color) }
-                
+
+            case "layer":
+                //TODO: to generate a layer and add it as subView
+                if let layerValue = value as? FTThemeDic {
+                    FTThemesManager.getBackgroundLayer(layerValue, toLayer: self.layer)
+                }
+
             default:
                 break
             }

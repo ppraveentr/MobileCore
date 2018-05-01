@@ -98,7 +98,7 @@ public extension String {
     //Loading Data from given Path
     func jsonContentAtPath<T>() throws -> T? {
         
-        guard let content = try? Data.init(contentsOf: URL(fileURLWithPath: self)) else {
+        guard let content = try? Data(contentsOf: URL(fileURLWithPath: self)) else {
             return nil
         }
         
@@ -130,7 +130,19 @@ public extension String {
     }
 
     //MARK: Bundle
-    func bundleURL() -> URL? {
-        return Bundle.main.resourceURL?.appendingPathComponent(self)
+    func bundleURL(extention: String = "bundle") -> URL? {
+        var value = self
+        if !value.hasSuffix(".bundle") {
+            value.append(".bundle")
+        }
+        return Bundle.main.resourceURL?.appendingPathComponent(value)
+    }
+    
+    func bundle() -> Bundle? {
+
+        if let bundleURL = self.bundleURL() {
+            return Bundle(url: bundleURL)
+        }
+        return nil
     }
 }

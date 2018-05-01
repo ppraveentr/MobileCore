@@ -9,7 +9,7 @@
 import Foundation
 
 open class FTUIButton: UIButton, FTUIControlThemeProtocol {
-    
+
     //check view state, to update style
     public func get_ThemeSubType() -> String? {
         if self.isEnabled {
@@ -34,9 +34,7 @@ open class FTUIButton: UIButton, FTUIControlThemeProtocol {
     public func update(themeDic: FTThemeDic, state: UIControlState) {
         
         for (kind, value) in themeDic {
-            
             switch kind {
-                
             case "textcolor":
                 let colorName: String? = value as? String
                 let color = FTThemesManager.getColor(colorName)
@@ -45,7 +43,12 @@ open class FTUIButton: UIButton, FTUIControlThemeProtocol {
                     self.setTitleColor(color, for: state)
                     //TODO: For attributed title
                 }
-                
+
+            case "image":
+                if let image = FTThemesManager.getImage(value) {
+                    self.setImage(image, for: state)
+                }
+
             default:
                 break
             }
