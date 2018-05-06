@@ -1,14 +1,48 @@
+## FTCoreUtility
+
+Contains most frequently used utilities as extension files. 
+More information about this project can be at [`FTCoreUtility`]().
+
+### Application Theming
+
+* `@IBInspectable public var theme: String?` — inspectable property to set appearance style from Interface Builder for all UIView elements
+
+All you need to do is load the `Themes.json` in AppleDelegate file and you are set for start developing the application. also pass on `Bundle` for the images used.
+
+#### Theme loading
+```swift
+ if
+    let theme = Bundle.main.path(forResource: "Themes", ofType: "json"),
+    let themeContent: FTThemeDic = try! theme.jsonContentAtPath() {
+        FTThemesManager.setupThemes(themes: themeContent, imageSourceBundle: [Bundle(for: AppDelegate.self)])
+	}
+```
+The appearance of each unique property can be added as entity in `Themes.json` and set the respective property name for UIElements. 
+
+#### Theme Example
+![Button theme](https://github.com/ppraveentr/Gif-images/blob/master/MobileCore-Button-Tap.gif)
+```swift
+
+ let button = FTButton()
+ button.theme = "button14R"
+ button.setTitle("Tap me", for: .normal)
+        
+        
+ let buttonDisabled = FTButton()
+ buttonDisabled.theme = "button14R"
+ buttonDisabled.setTitle("Disabled", for: .normal)
+ buttonDisabled.isEnabled = false
+```
+
+#### Sample Themes.json
+```json
 {
     "type": "Themes",
     "color": {
         "default": "#FFFFFF",
-        "AA": "#16c5ce",
         "clear": "clear",
         "black": "#000000",
         "red": "#b70b39",
-        "blue": "#1059ce",
-        "green": "#10ce1a",
-        "yellow": "#cecb10",
         "white": "#FFFFFF"
     },
     "font": {
@@ -84,23 +118,8 @@
             "system14R": {
                 "_super": "default",
                 "textcolor": "red"
-            },
-            "system14B": {
-                "_super": "default",
-                "textcolor": "blue"
-            },
-            "system14G": {
-                "_super": "default",
-                "textcolor": "green"
-            },
-            "system14Y": {
-                "_super": "default",
-                "textcolor": "yellow"
-            },
-            "system14AA": {
-                "_super": "default",
-                "textcolor": "AA"
             }
         }
     }
 }
+```
