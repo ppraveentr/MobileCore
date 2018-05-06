@@ -32,25 +32,19 @@ open class FTUIButton: UIButton, FTUIControlThemeProtocol {
     
     //For custome key:value pairs
     public func update(themeDic: FTThemeDic, state: UIControlState) {
-        
-        for (kind, value) in themeDic {
-            switch kind {
-            case "textcolor":
-                let colorName: String? = value as? String
-                let color = FTThemesManager.getColor(colorName)
-                
-                if let color = color {
-                    self.setTitleColor(color, for: state)
-                    //TODO: For attributed title
-                }
 
-            case "image":
-                if let image = FTThemesManager.getImage(value) {
-                    self.setImage(image, for: state)
-                }
+        if let textcolor = themeDic["textcolor"] {
+            if
+                let colorName = textcolor as? String,
+                let color = FTThemesManager.getColor(colorName) {
+                self.setTitleColor(color, for: state)
+                //TODO: For attributed title
+            }
+        }
 
-            default:
-                break
+        if let imageName = themeDic["image"] {
+            if let image = FTThemesManager.getImage(imageName) {
+                self.setImage(image, for: state)
             }
         }
     }

@@ -9,7 +9,45 @@
 import Foundation
 //TODO: In progress
 protocol FTAppearanceManagerProtocol {
-    func setUpAppearance(theme: FTThemeDic, inContainerClass cclassName: String?)
+    @discardableResult
+    func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance
+}
+
+open class FTAppearanceManager {
+
+    class func getComponentName(_ appearanceName: String) -> (String, String?) {
+        let components = appearanceName.components(separatedBy: ":")
+
+        if components.count > 1 {
+            return (components.first!, components.last)
+        }
+
+        return (appearanceName, nil)
+    }
+
+    class func __setupThemes__() {
+        guard let app = FTThemesManager.getAppearance() as? FTThemeDic else { return }
+
+        for theme in app where ((theme.value as? FTThemeDic) != nil) {
+
+            if let themeObj: FTThemeDic = theme.value as? FTThemeDic {
+
+                let components = getComponentName(theme.key)
+
+                if let classTy: FTAppearanceManagerProtocol = FTReflection.swiftClassFromString(components.0) as? FTAppearanceManagerProtocol {
+
+                    var appearanceContainer: [UIAppearanceContainer.Type]? = nil
+                    if
+                        (components.1 != nil),
+                        let objecClass = FTReflection.swiftClassTypeFromString(components.1!) {
+                        appearanceContainer = [objecClass] as? [UIAppearanceContainer.Type]
+                    }
+
+                    classTy.setUpAppearance(theme: themeObj, containerClass: appearanceContainer)
+                }
+            }
+        }
+    }
 }
 
 extension FTThemesManager {
@@ -25,30 +63,25 @@ extension FTThemesManager {
 }
 
 extension UIView : FTAppearanceManagerProtocol {
-    
-    public func setUpAppearance(theme: FTThemeDic, inContainerClass cclassName: String?) {
-        type(of: self).setUpAppearance(theme: theme, inContainerClass: cclassName)
+
+    public func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?)  -> UIAppearance {
+        return type(of: self).setUpAppearance(theme: theme, containerClass: containerClass)
     }
-    
-    @objc open class func setUpAppearance(theme: FTThemeDic, inContainerClass cclassName: String?) {
-        
-        let appearance = self.appearance()
-        
-        theme.forEach { (key, value) in
-            
-            switch key {
-            case "tintColor":
-                appearance.tintColor = FTThemesManager.getColor(value as? String)
-                break
-                
-            case "backgroundImage":
-                self.setBackgroundImage(value)
-                break
-                
-            default:
-                break
-            }
+
+    @discardableResult
+    @objc open class func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?)  -> UIAppearance {
+
+        let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
+
+        if let tintColor = theme["tintColor"] {
+            appearance.tintColor = FTThemesManager.getColor(tintColor as? String)
         }
+
+        if let backgroundImage = theme["backgroundImage"] {
+            self.setBackgroundImage(backgroundImage)
+        }
+
+        return appearance
     }
     
     @objc open class func setBackgroundImage(_ imageTheme: Any) {
@@ -72,42 +105,12 @@ extension UIView : FTAppearanceManagerProtocol {
     }
 }
 
-
-open class FTAppearanceManager {
-    
-    class func getComponentName(_ appearanceName: String) -> (String, String?) {
-        let components = appearanceName.components(separatedBy: ":")
-        
-        if components.count > 1 {
-            return (components.first!, components.last)
-        }
-        
-        return (appearanceName, nil)
-    }
-    
-    class func __setupThemes__() {
-        guard let app = FTThemesManager.getAppearance() as? FTThemeDic else { return }
-        
-        for theme in app where ((theme.value as? FTThemeDic) != nil) {
-        
-            if let themeObj: FTThemeDic = theme.value as? FTThemeDic {
-                
-                let components = getComponentName(theme.key)
-                
-                if let classTy: FTAppearanceManagerProtocol = FTReflection.swiftClassTypeFromString(components.0) as? FTAppearanceManagerProtocol {
-                    classTy.setUpAppearance(theme: themeObj, inContainerClass: components.1)
-                }
-            }
-        }
-    }
-}
-
-
 extension UISegmentedControl {
-    
-    open override class func setUpAppearance(theme: FTThemeDic, inContainerClass cclassName: String?) {
-        super.setUpAppearance(theme: theme, inContainerClass: cclassName)
-        
+
+    open override class func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?)  -> UIAppearance {
+        return super.setUpAppearance(theme: theme, containerClass: containerClass)
+//        let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
+//        return appearance
     }
     
     open class func setBackgroundImage(imageType: String, image: UIImage) {
@@ -130,26 +133,28 @@ extension UISegmentedControl {
 
 extension UINavigationBar {
     
-    open override class func setUpAppearance(theme: FTThemeDic, inContainerClass cclassName: String?) {
-        super.setUpAppearance(theme: theme, inContainerClass: cclassName)
-        
-        let appearance = self.appearance()
-        
-        theme.forEach { (key, value) in
-            
-            switch key {
-            case "backIndicatorImage":
-                appearance.backIndicatorImage = FTThemesManager.getImage(value)
-                break
-                
-            case "backIndicatorTransitionMaskImage":
-                appearance.backIndicatorTransitionMaskImage = FTThemesManager.getImage(value)
-                break
-                
-            default:
-                break
-            }
+    open override class func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
+        super.setUpAppearance(theme: theme, containerClass: containerClass)
+
+        let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
+
+        if let value = theme["backIndicatorImage"] {
+            appearance.backIndicatorImage = FTThemesManager.getImage(value)
         }
+        if let value = theme["backIndicatorTransitionMaskImage"] {
+            appearance.backIndicatorTransitionMaskImage = FTThemesManager.getImage(value)
+        }
+        if let value = theme["shadowImage"] {
+            appearance.shadowImage = FTThemesManager.getImage(value)
+        }
+        if let value = theme["titleText"] as? FTThemeDic {
+            appearance.titleTextAttributes = FTThemesManager.getTextAttributes(value)
+        }
+        if let value = theme["isTranslucent"] as? Bool {
+            appearance.isTranslucent = value
+        }
+
+        return appearance
     }
     
     open override class func setBackgroundImage(_ image: Any) {

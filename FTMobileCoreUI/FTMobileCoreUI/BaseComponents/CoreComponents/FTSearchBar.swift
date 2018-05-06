@@ -33,11 +33,9 @@ open class FTSearchBar: UISearchBar {
     // An empty implementation adversely affects performance during animation.
     override open func draw(_ rect: CGRect) {
         // Drawing code
-        
+
         // Find the index of the search field in the search bar subviews.
-        if let index = indexOfSearchFieldInSubviews() {
-            // Access the search field
-            let searchField: UITextField = (subviews[0] ).subviews[index] as! UITextField
+        if let searchField: UITextField =  self.findInSubView() {
             
             // Set its frame.
             searchField.frame = CGRect(x: 5.0, y: 5.0, width: frame.width - 10.0, height: frame.height - 10.0)
@@ -119,22 +117,10 @@ open class FTSearchBar: UISearchBar {
             clearButton.tintColor = tintColor
         }
     }
-    
-    func indexOfSearchFieldInSubviews() -> Int! {
-        // Uncomment the next line to see the search bar subviews.
-        // println(subviews[0].subviews)
-        
-        var index: Int!
-        let searchBarView = subviews[0]
-        
-        for i in 0 ..< (searchBarView.subviews.count) {
-            if searchBarView.subviews[i].isKind(of: UITextField.self) {
-                index = i
-                break
-            }
-        }
-        
-        return index
+
+    func searchFieldInSubviews() -> UITextField? {
+        let textField: UITextField? =  self.findInSubView()
+        return textField
     }
 }
 

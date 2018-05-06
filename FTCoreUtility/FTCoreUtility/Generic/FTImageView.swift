@@ -25,8 +25,10 @@ public extension UIImageView {
 
         //Download Image from async in background
         url.downloadedImage { (image) in
-            self.image = image
-            comletionHandler?(image)
+            DispatchQueue.main.async {
+                self.image = image
+                comletionHandler?(image)
+            }
         }
     }
     

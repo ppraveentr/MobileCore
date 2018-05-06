@@ -83,9 +83,18 @@ open class FTThemesManager {
     //MARK: UIColor
     //TODO: gradian, rgb, alpha, ...
     open class func getColor(_ colorName: String?) -> UIColor? {
-        
+
+        //Check if its image coded string
+        if
+            (colorName?.hasPrefix("@"))!,
+            let image = self.getImage(colorName) {
+            return image.getColor()
+        }
+
+        //Get hex color
         if let hexColor = UIColor.hexColor(colorName ?? "") { return hexColor }
-        
+
+        //Color coded to hex-string
         let color: String = FTThemesManager.getDefaults(type: .Color, keyName: colorName) as? String ?? ""
         
         if let hexColor = UIColor.hexColor(color) { return hexColor }
@@ -140,6 +149,19 @@ open class FTThemesManager {
         }
         
         return nil
+    }
+
+    //MARK: UIImage
+    open class func getTextAttributes(_ theme: FTThemeDic?) -> [NSAttributedStringKey:AnyObject]? {
+
+        guard let theme = theme else { return nil }
+
+        var attributes = [NSAttributedStringKey:AnyObject]()
+        if let value = theme["foregroundColor"] as? String {
+            attributes[.foregroundColor] = self.getColor(value)
+        }
+
+        return attributes
     }
 
     //MARK: CALayer

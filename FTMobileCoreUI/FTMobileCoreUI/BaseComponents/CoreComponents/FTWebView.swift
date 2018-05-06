@@ -45,7 +45,8 @@ open class FTWebView: WKWebView {
 
 extension FTWebView {
     
-    @discardableResult public func loadHTMLBody(_ string: String, baseURL: URL? = nil) -> WKNavigation? {
+    @discardableResult
+    public func loadHTMLBody(_ string: String, baseURL: URL? = nil) -> WKNavigation? {
         return self.loadHTMLString("<html><meta name=\"viewport\" content=\"initial-scale=1.0\" /><body>\(string)</body></html>",
             baseURL: baseURL)
     }

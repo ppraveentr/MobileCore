@@ -10,6 +10,11 @@ import Foundation
 
 public typealias FTThemeDic = [String : Any]
 
+public extension NSNotification.Name {
+    public static let FTSwiftyAppearanceWillRefreshWindow = NSNotification.Name(rawValue: "FTSwiftyAppearanceWillRefreshWindow.Notofication")
+    public static let FTSwiftyAppearanceDidRefreshWindow = NSNotification.Name(rawValue: "FTSwiftyAppearanceDidRefreshWindow.Notofication")
+}
+
 public struct ThemeStyle {
     public static let defaultStyle = "default"
     static let highlightedStyle = "highlighted"
@@ -208,25 +213,21 @@ fileprivate extension UIView {
 extension UIView {
     
     @objc public func swizzled_updateTheme(_ theme: FTThemeDic) {
-        
-        for (kind, value) in theme {
-            
-            switch kind {
-            case "backgroundColor":
-                let colorName: String? = value as? String
-                let color = FTThemesManager.getColor(colorName)
-                
-                if let color = color { self.theme_backgroundColor(color) }
 
-            case "layer":
-                //TODO: to generate a layer and add it as subView
-                if let layerValue = value as? FTThemeDic {
-                    FTThemesManager.getBackgroundLayer(layerValue, toLayer: self.layer)
-                }
-
-            default:
-                break
+        //"backgroundColor"
+        if let textcolor = theme["backgroundColor"] {
+            if
+                let colorName = textcolor as? String,
+                let color = FTThemesManager.getColor(colorName) {
+                self.theme_backgroundColor(color)
+                //TODO: For attributed title
             }
+        }
+
+        //"layer"
+        //TODO: to generate a layer and add it as subView
+        if let layerValue = theme["layer"] as? FTThemeDic {
+            FTThemesManager.getBackgroundLayer(layerValue, toLayer: self.layer)
         }
         
         //Only needed for UIView types that has extended from FTThemeProtocol
@@ -275,5 +276,30 @@ extension UIControl {
                 break
             }
         }
+    }
+}
+
+//MARK: Window Refresh
+public extension UIWindow {
+
+    @nonobjc private func _refreshAppearance() {
+        let constraints = self.constraints
+        removeConstraints(constraints)
+        for subview in subviews {
+            subview.removeFromSuperview()
+            addSubview(subview)
+        }
+        addConstraints(constraints)
+    }
+
+    /// Refreshes appearance for the window
+    /// - Parameter animated: if the refresh should be animated
+    public func refreshAppearance(animated: Bool) {
+        NotificationCenter.default.post(name: .FTSwiftyAppearanceWillRefreshWindow, object: self)
+        UIView.animate(withDuration: animated ? 0.25 : 0, animations: {
+            self._refreshAppearance()
+        }, completion: { _ in
+            NotificationCenter.default.post(name: .FTSwiftyAppearanceDidRefreshWindow, object: self)
+        })
     }
 }

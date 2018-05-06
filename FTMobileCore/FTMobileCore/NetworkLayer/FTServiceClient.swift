@@ -17,26 +17,32 @@ open class FTServiceClient {
 
     open class func make(_ serviceName: String, modelStack: FTModelData? = nil,
                          completionHandler: FTServiceCompletionBlock? = nil) {
-
         //get class.Type from serviceName string
         let className: FTServiceStack.Type? = FTReflection.swiftClassTypeFromString(serviceName) as? FTServiceStack.Type
 
-        //Setup 'serviceStack' from class
-        let serviceStack = className?.setup(modelStack: modelStack, completionHandler: completionHandler)
-
         //Make sure serviceStack is non-nil
-        guard let operation = serviceStack else {
+        guard let operation = className else {
             DispatchQueue.main.async() { completionHandler?(FTSericeStatus.failed(nil, 500)) }
             return
         }
+
+        self.make(operation, modelStack: modelStack, completionHandler: completionHandler)
+    }
+
+    open class func make(_ serviceName: FTServiceStack.Type, modelStack: FTModelData? = nil,
+                         completionHandler: FTServiceCompletionBlock? = nil) {
+
+        //Setup 'serviceStack'
+        let serviceStack = serviceName.setup(modelStack: modelStack, completionHandler: completionHandler)
+
         //Check if operation request is valid
-        if  operation.isValid() {
+        if  serviceStack.isValid() {
             //Setup session-dataTask with serviceStack
-            FTURLSession.startDataTask(with: operation)
+            FTURLSession.startDataTask(with: serviceStack)
         }
         else {
             //Fails, if urlRequest was not generated.
-            DispatchQueue.main.async() { completionHandler?(FTSericeStatus.failed(operation, 500)) }
+            DispatchQueue.main.async() { completionHandler?(FTSericeStatus.failed(serviceStack, 500)) }
         }
     }
 }

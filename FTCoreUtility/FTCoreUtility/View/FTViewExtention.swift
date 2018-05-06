@@ -77,6 +77,19 @@ public extension UIView {
         // Adding custom subview on top of our view (over any custom drawing > see note below)
         addSubview(contentView!)
     }
+
+    public func findInSubView<T>() -> T? {
+
+        for val in self.subviews.compactMap({ $0 }) {
+            if val is T {
+                return val as? T
+            }else if val.subviews.count > 0 {
+                let subType: T? =  val.findInSubView()
+                return subType
+            }
+        }
+        return nil
+    }
 }
 
 //Used for Bar items
