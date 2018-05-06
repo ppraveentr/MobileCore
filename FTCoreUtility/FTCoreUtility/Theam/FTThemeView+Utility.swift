@@ -65,7 +65,7 @@ extension UIView {
     
     //Theme style-name for the view
     @IBInspectable
-    open var theme: String? {
+    public var theme: String? {
         get { return UIView.aoThemes[self] }
         set {
             UIView.aoThemes[self] = newValue
@@ -75,7 +75,7 @@ extension UIView {
     }
     
     //To tigger view-Theme styling
-    open var needsThemesUpdate: Bool {
+    private var needsThemesUpdate: Bool {
         get { return UIView.aoThemesNeedsUpdate[self] ?? false }
         set {
             UIView.aoThemesNeedsUpdate[self] = newValue

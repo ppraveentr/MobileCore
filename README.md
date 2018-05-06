@@ -34,26 +34,24 @@ More information about this project can be at [`FTCoreUtility`]().
 
 * `@IBInspectable public var theme: String?` — inspectable property to set appearance style from Interface Builder for all UIView elements
 
-All you need to do is load the `Themes.json` in AppleDelegate file and you are set for start developing the application. also pass on `Bundle` for the images used.
+All you need to do is load the `Themes.json` in AppleDelegate file and you are set for start developing the application also pass on `Bundle` for the images used.
 
-#### Theme loading
+#### Theme Configuration
 ```swift
  if
     let theme = Bundle.main.path(forResource: "Themes", ofType: "json"),
     let themeContent: FTThemeDic = try! theme.jsonContentAtPath() {
         FTThemesManager.setupThemes(themes: themeContent, imageSourceBundle: [Bundle(for: AppDelegate.self)])
-	}
+ }
 ```
 The appearance of each unique property can be added as entity in `Themes.json` and set the respective property name for UIElements. 
 
-#### Theme Example
+#### Example
 ![Button theme](https://github.com/ppraveentr/Gif-images/blob/master/MobileCore-Button-Tap.gif)
 ```swift
-
  let button = FTButton()
  button.theme = "button14R"
  button.setTitle("Tap me", for: .normal)
-        
         
  let buttonDisabled = FTButton()
  buttonDisabled.theme = "button14R"
@@ -61,7 +59,7 @@ The appearance of each unique property can be added as entity in `Themes.json` a
  buttonDisabled.isEnabled = false
 ```
 
-#### Sample Themes.json
+#### Themes.json
 ```json
 {
     "type": "Themes",
@@ -152,22 +150,32 @@ The appearance of each unique property can be added as entity in `Themes.json` a
 ```
 
 
+## Manually setup from GitHub
+
+- Download the source ['MobileCore'](https://github.com/ppraveentr/MobileCore.git) to your subdirectory.
+- Add below Projects to yours workspace.
+```
+MobileCore/
+├── FTCoreUtility
+├── FTMobileCore
+└── FTMobileCoreUI
+```
+- Folow the steps provided in ['Embedding Frameworks In An App'](https://developer.apple.com/library/content/technotes/tn2435/_index.html) to link the 'MobileCore' frameworks to your Xcode project.
+- Add the following imports to your bridging header.
+	- #import <FTMobileCore/FTMobileCore.h>
+	- #import <FTMobileCoreUI/FTMobileCoreUI.h>
+
+That's it - now your are good to go and start writing beautiful applicaiton! Let the MobileCode most of the heavy lifting for you.
+
+
 ## Prototype
 [`NovelReader`](https://github.com/ppraveentr/Concepts/tree/master/NovelReader) is a prototype describing working of MobileCore.
+
 [![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
 [![Language](http://img.shields.io/badge/language-swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 [![Build Status](https://travis-ci.org/ppraveentr/Concepts.svg?branch=master)](https://travis-ci.org/ppraveentr/Concepts)
 
-## Manually setup from GitHub
-
-- Download the source files in the MobileCore subdirectory.
-- Add the source files to your Xcode project.
-- Add the following imports to your bridging header.
-	- #import <FTMobileCore/FTMobileCore.h>
-	- #import <FTMobileCoreUI/FTMobileCoreUI.h>
-
-That's it - now go write some beautiful Auto Layout code!
 
 ## Credits
 
