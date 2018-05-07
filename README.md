@@ -9,8 +9,8 @@ Lets consider you are developing a Mobile application, be it for Prototyping or 
 
 MobileCore is a Swift library consisting in a set of extensions to help dealing with 
 - [x] Auto Layout programatically. 
-- [x] Defining and managing RESTfull service layer in JSON format.
-- [x] Utility for Domain Object creation from JSON to Swift classes.
+- [x] Configure entier Application's theme using simple JSON. 
+- [x] Defining, creating and managing RESTfull service layer and Domain Object in JSON format.
 
 
 ### What's included
@@ -32,34 +32,55 @@ More information about this project can be at [`FTCoreUtility`]().
 
 ### Application Theming
 
-* `@IBInspectable public var theme: String?` — inspectable property to set appearance style from Interface Builder for all UIView elements
+FTCoreUtility provides iOS developers the ability to create a coherent color theme throughout their entire application, removing the need to mess with the dozens of UIAppearance proxies for each UI component in a single line of code.
 
-All you need to do is load the `Themes.json` in AppleDelegate file and you are set for start developing the application also pass on `Bundle` for the images used.
+It provides hierarchical management of themes based on user defined components, so that it is easy to over-ride your default theme for particular contexts.
 
-#### Theme Configuration
+Themes are customized via JSON configuration file which make them easy for editing. Additionally, this repository can build a theme browser universal application that designers may use to see the themes already configured.
+
+All you need to do is load the respective `Themes.json` file once and you are all set for start developing the application. 
+
+Incase if you need to use images for background, all you need to also load respetive image's source `Bundle` into FTThemesManager.
+
 ```swift
  if
     let theme = Bundle.main.path(forResource: "Themes", ofType: "json"),
     let themeContent: FTThemeDic = try! theme.jsonContentAtPath() {
         FTThemesManager.setupThemes(themes: themeContent, imageSourceBundle: [Bundle(for: AppDelegate.self)])
  }
+ 
+ //Searches for respective bundle's name in main
+ FTThemesManager.addImageSourceBundle(imageSource: "AppDelegate".bundle())
+ 
+ //Loads the bundle respetive to the class's Module
+ FTThemesManager.addImageSourceBundle(imageSource: Bundle(for: AppDelegate.self))
+ 
 ```
+
+#### Theme Configuration
+
 The appearance of each unique property can be added as entity in `Themes.json` and set the respective property name for UIElements. 
 
-#### Example
-![Button theme](https://github.com/ppraveentr/Gif-images/blob/master/MobileCore-Button-Tap.gif)
+* `@IBInspectable public var theme: String?` — inspectable property to set appearance style from Interface Builder for all UIView elements
+
+#### Usage
+![UIElements: Button theme](https://github.com/ppraveentr/Gif-images/blob/master/MobileCore-Button-Tap.gif)
 ```swift
+//Enabled Button
  let button = FTButton()
  button.theme = "button14R"
  button.setTitle("Tap me", for: .normal)
         
+//Disabled Button
  let buttonDisabled = FTButton()
  buttonDisabled.theme = "button14R"
  buttonDisabled.setTitle("Disabled", for: .normal)
  buttonDisabled.isEnabled = false
 ```
 
-#### Themes.json
+#### Themes.json sample
+Here is the sample Theme.json used in 'FTMobileCoreSampleWorkspace'.
+
 ```json
 {
     "type": "Themes",
@@ -149,8 +170,7 @@ The appearance of each unique property can be added as entity in `Themes.json` a
 }
 ```
 
-
-## Manually setup from GitHub
+## Get Started
 
 - Download the source ['MobileCore'](https://github.com/ppraveentr/MobileCore.git) to your subdirectory.
 - Add below Projects to yours workspace.
