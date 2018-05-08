@@ -187,6 +187,15 @@ MobileCore/
 
 That's it - now your are good to go and start writing beautiful applicaiton! Let the MobileCode most of the heavy lifting for you.
 
+## TODO List
+
+Below are the list of things I’m in plan adding into Mobile Core.
+
+- Deeplinking and flow controler with content passing.
+- Content Management for multi-language using Core-data.
+- Secure storage with Keychain.
+- Inbuild Crash reporter.
+- Push notification.
 
 ## Prototype
 [`NovelReader`](https://github.com/ppraveentr/Concepts/tree/master/NovelReader) is a prototype describing working of MobileCore.
@@ -203,11 +212,10 @@ Owned and maintained by Praveen P (@ppraveentr).
 
 ## Contributing
 
-Bug reports and pull requests are welcome.
+Bug reports and pull requests are most welcome.
 
 ## License
 
 MobileCore is released under the MIT license. See LICENSE for details.
 
-#### Note
-MobileCore architecture is still under evolution.
+#### Note: The architecture is still under evolution.
