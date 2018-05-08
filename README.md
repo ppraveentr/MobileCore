@@ -5,17 +5,18 @@
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 [![Build Status](https://travis-ci.org/ppraveentr/MobileCore.svg?branch=master)](https://travis-ci.org/ppraveentr/MobileCore)
 
-Lets consider you are developing a Mobile application, be it for Prototyping or Enterprise, writing Auto-Layout or Network-layer code from scratch isn't always easy and its time consuming. This Core component takes care of all these hassles for you.
+Lets consider you are developing a Mobile application, be it for Prototyping or Enterprise, finding right set of utitlies all in one place or configuring application Theme, writing a Network-layer  isn't always easy and its time consuming to write the code from scratch. 
 
-MobileCore is a Swift library consisting in a set of extensions to help dealing with 
-- [x] Auto Layout programatically. 
-- [x] Configure entier Application's theme using simple JSON. 
-- [x] Defining, creating and managing RESTfull service layer and Domain Object in JSON format.
+MobileCore takes care of all these hassles for you. Its a Swift library consisting in a set of extensions to help dealing with 
+- [x] Programatically groping set of UIElements using auto-layout. 
+- [x] Configuring and maintaining Application's theme via simple JSON. 
+- [x] Creating and managing RESTfull service layer and Domain Object via JSON.
+- [x] Customized UIKit elements.
 
 
 ### What's included
 
-Within the download you'll find the following sub-projects and an integrated sample workspace `FTMobileCoreSampleWorkspace`.
+MobileCore contains the following projects, an integrated sample workspace `FTMobileCoreSampleWorkspace` featuring the usecase on how these framework works together.
 
 ```
 MobileCore/
@@ -27,7 +28,8 @@ MobileCore/
 
 ## FTCoreUtility
 
-Contains most frequently used utilities as extension files. 
+FTCoreUtility is a shared component used accross MobileCore. This contains most frequently used extension utilites. 
+
 More information about this project can be at [`FTCoreUtility`]().
 
 ### Application Theming
@@ -192,10 +194,12 @@ That's it - now your are good to go and start writing beautiful applicaiton! Let
 Below are the list of things I’m in plan adding into Mobile Core.
 
 - Deeplinking and flow controler with content passing.
-- Content Management for multi-language using Core-data.
+- Content Management for multi-language support using Core-data.
 - Secure storage with Keychain.
 - Inbuild Crash reporter.
-- Push notification.
+- Customizing Push notification.
+- Simplyfing FTCoreUtility’s FTUI<elements> to swift extension.
+- and more!!! as I think through 🤔
 
 ## Prototype
 [`NovelReader`](https://github.com/ppraveentr/Concepts/tree/master/NovelReader) is a prototype describing working of MobileCore.
