@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DE0C49A51F4612D50010A5BE /* FTCoreUtility.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C49961F4612A20010A5BE /* FTCoreUtility.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DE6BC9CA20544CF800D59B12 /* FTServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6BC9C920544CF800D59B12 /* FTServiceClient.swift */; };
 		DE6C7926207E53160011F027 /* FTURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6C7924207E53160011F027 /* FTURLSession.swift */; };
 		DE6C7927207E53160011F027 /* FTOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6C7925207E53160011F027 /* FTOperationQueue.swift */; };
+		DE6FC98D20A221EE00121E22 /* FTCoreUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C49961F4612A20010A5BE /* FTCoreUtility.framework */; };
 		DE9221B01EF28C9C000C8FC7 /* FTMobileCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9221A61EF28C9B000C8FC7 /* FTMobileCore.framework */; };
 		DE9221B51EF28C9C000C8FC7 /* FTMobileCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221B41EF28C9C000C8FC7 /* FTMobileCoreTests.swift */; };
 		DE9221B71EF28C9C000C8FC7 /* FTMobileCore.h in Headers */ = {isa = PBXBuildFile; fileRef = DE9221A91EF28C9B000C8FC7 /* FTMobileCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,13 +36,6 @@
 			remoteGlobalIDString = DE680B1C1F2BBD9500A9F68C;
 			remoteInfo = FTCoreUtilityTests;
 		};
-		DE0C49A61F4612DA0010A5BE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DE0C49901F4612A20010A5BE /* FTCoreUtility.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = DE680B121F2BBD9500A9F68C;
-			remoteInfo = FTCoreUtility;
-		};
 		DE9221B11EF28C9C000C8FC7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DE92219D1EF28C9B000C8FC7 /* Project object */;
@@ -57,9 +50,8 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolderSpec = 11;
 			files = (
-				DE0C49A51F4612D50010A5BE /* FTCoreUtility.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE6FC98D20A221EE00121E22 /* FTCoreUtility.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +209,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				DE0C49A71F4612DA0010A5BE /* PBXTargetDependency */,
 			);
 			name = FTMobileCore;
 			productName = FTMobileCore;
@@ -349,11 +341,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DE0C49A71F4612DA0010A5BE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FTCoreUtility;
-			targetProxy = DE0C49A61F4612DA0010A5BE /* PBXContainerItemProxy */;
-		};
 		DE9221B21EF28C9C000C8FC7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DE9221A51EF28C9B000C8FC7 /* FTMobileCore */;

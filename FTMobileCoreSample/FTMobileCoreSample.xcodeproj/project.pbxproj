@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DE0C49881F46124E0010A5BE /* FTMobileCoreUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C49851F4612460010A5BE /* FTMobileCoreUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DE0C49891F46124E0010A5BE /* FTMobileCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C496D1F4612070010A5BE /* FTMobileCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DE0C498B1F4612520010A5BE /* FTCoreUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C498A1F4612520010A5BE /* FTCoreUtility.framework */; };
 		DE2FB8EA1F3A0C5900581064 /* FTMobileCoreSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2FB8E91F3A0C5900581064 /* FTMobileCoreSampleTests.swift */; };
 		DE680BB11F2E038B00A9F68C /* Themes.json in Resources */ = {isa = PBXBuildFile; fileRef = DE680BB01F2E038800A9F68C /* Themes.json */; };
 		DE680BB21F2E03D300A9F68C /* MobileCodeSampleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DE680BAA1F2E037B00A9F68C /* MobileCodeSampleBundle.bundle */; };
 		DE680BB71F2E048600A9F68C /* Schemas.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DEBDC8AF1EF45C9F00AC77A9 /* Schemas.bundle */; };
+		DE6FC99720A2226600121E22 /* FTMobileCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C496D1F4612070010A5BE /* FTMobileCore.framework */; };
+		DE6FC99820A2226900121E22 /* FTMobileCoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C49851F4612460010A5BE /* FTMobileCoreUI.framework */; };
 		DE9221CD1EF28CDF000C8FC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */; };
 		DE9221CF1EF28CDF000C8FC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221CE1EF28CDF000C8FC7 /* ViewController.swift */; };
 		DE9221D21EF28CDF000C8FC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D01EF28CDF000C8FC7 /* Main.storyboard */; };
@@ -54,20 +54,6 @@
 			remoteGlobalIDString = DEB569771F17DC2600B5F187;
 			remoteInfo = FTMobileCoreUITests;
 		};
-		DE0C498C1F4612590010A5BE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DE0C497F1F4612460010A5BE /* FTMobileCoreUI.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = DE1485151F10B13600A250A6;
-			remoteInfo = FTMobileCoreUI;
-		};
-		DE0C498E1F4612590010A5BE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DE0C49671F4612070010A5BE /* FTMobileCore.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = DE9221A51EF28C9B000C8FC7;
-			remoteInfo = FTMobileCore;
-		};
 		DE2FB8EC1F3A0C5900581064 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DE9221C11EF28CDF000C8FC7 /* Project object */;
@@ -98,8 +84,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DE0C49881F46124E0010A5BE /* FTMobileCoreUI.framework in Embed Frameworks */,
-				DE0C49891F46124E0010A5BE /* FTMobileCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,6 +135,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE6FC99820A2226900121E22 /* FTMobileCoreUI.framework in Frameworks */,
+				DE6FC99720A2226600121E22 /* FTMobileCore.framework in Frameworks */,
 				DE0C498B1F4612520010A5BE /* FTCoreUtility.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,8 +324,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				DE0C498D1F4612590010A5BE /* PBXTargetDependency */,
-				DE0C498F1F4612590010A5BE /* PBXTargetDependency */,
 				DE680BB61F2E047700A9F68C /* PBXTargetDependency */,
 				DE680BB41F2E046E00A9F68C /* PBXTargetDependency */,
 			);
@@ -545,16 +529,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DE0C498D1F4612590010A5BE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FTMobileCoreUI;
-			targetProxy = DE0C498C1F4612590010A5BE /* PBXContainerItemProxy */;
-		};
-		DE0C498F1F4612590010A5BE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FTMobileCore;
-			targetProxy = DE0C498E1F4612590010A5BE /* PBXContainerItemProxy */;
-		};
 		DE2FB8ED1F3A0C5900581064 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DE9221C81EF28CDF000C8FC7 /* FTMobileCoreSample */;
