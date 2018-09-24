@@ -52,7 +52,7 @@ public protocol FTUIControlThemeProtocol: FTThemeProtocol {
     
     func get_AllThemeSubType() -> Bool
     func setThemes(_ themes: FTThemeDic)
-    func update(themeDic: FTThemeDic, state: UIControlState)
+    func update(themeDic: FTThemeDic, state: UIControl.State)
 }
 
 extension UIView {

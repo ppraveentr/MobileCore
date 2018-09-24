@@ -58,12 +58,12 @@ open class FTModelCreator {
     static var modelType: FTModelDataType = .classType
 
     //MARK: Configurations
-    static open func configureSourcePath(path: String) { FTModelCreator.sourcePath = path }
-    static open func configureOutputPath(path: String) { FTModelCreator.outputPath = URL(string: path) }
-    static open func configureModel(type: FTModelDataType) { FTModelCreator.modelType = type }
+    class open func configureSourcePath(path: String) { FTModelCreator.sourcePath = path }
+    class open func configureOutputPath(path: String) { FTModelCreator.outputPath = URL(string: path) }
+    class open func configureModel(type: FTModelDataType) { FTModelCreator.modelType = type }
 
     //MARK:
-    static open func generateOutput() {
+    class open func generateOutput() {
         try? sourcePath.filesAtPath({ (filePath) in
             generateModelAt(path: filePath, completionHandler: fileWriter())
         })

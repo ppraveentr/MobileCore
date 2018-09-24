@@ -52,7 +52,7 @@ public class FTFloatingView: FTView {
         self.floatingWindow = FloatingWindow(frame: view.frame)
         self.floatingWindow?.topView = view
         self.floatingWindow?.rootViewController?.view = view
-        self.floatingWindow?.windowLevel = layer
+        self.floatingWindow?.windowLevel = UIWindow.Level(rawValue: layer)
         self.floatingWindow?.makeKeyAndVisible()
         
         let panGesture = UIPanGestureRecognizer(target: self, action:#selector(handlePanGesture(panGesture:)))

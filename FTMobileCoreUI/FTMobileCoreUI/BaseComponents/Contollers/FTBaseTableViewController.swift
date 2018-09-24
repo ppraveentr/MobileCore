@@ -12,9 +12,9 @@ private let kFTCellIdentifier = "FT.kCellIdentifier"
 
 open class FTCoreTableViewController: UITableViewController {
 
-    var tableViewStyle: UITableViewStyle = .plain
+    var tableViewStyle: UITableView.Style = .plain
     
-    public override init(style: UITableViewStyle) {
+    public override init(style: UITableView.Style) {
         super.init(style: style)
         self.tableViewStyle = style
     }
@@ -40,7 +40,7 @@ open class FTCoreTableViewController: UITableViewController {
     
     open func getFTTableView() -> FTTableView {
         let local = FTTableView(frame: .zero, style: self.tableViewStyle)
-        local.estimatedRowHeight = UITableViewAutomaticDimension
+        local.estimatedRowHeight = UITableView.automaticDimension
         return local
     }
 }
@@ -56,7 +56,7 @@ open class FTBaseTableViewController: FTBaseViewController {
         return FTCoreTableViewController(style: self.class_TableViewStyle())
     }
     
-    open func class_TableViewStyle() -> UITableViewStyle { return .plain }
+    open func class_TableViewStyle() -> UITableView.Style { return .plain }
     
     open func class_TableViewEdgeOffsets() -> FTEdgeOffsets { return .FTEdgeOffsetsZero() }
     
@@ -71,7 +71,7 @@ open class FTBaseTableViewController: FTBaseViewController {
         
         let local = self.class_TableViewController()
         
-        self.addChildViewController(local)
+        self.addChild(local)
         
         self.mainView?.pin(view: local.view, withEdgeOffsets: self.class_TableViewEdgeOffsets())
         
@@ -147,7 +147,7 @@ extension FTBaseTableViewController: UITableViewDataSource {
     
     //For calculating TableCell height
     open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -31,7 +31,7 @@ open class FTUIButton: UIButton, FTUIControlThemeProtocol {
     }
     
     //For custome key:value pairs
-    public func update(themeDic: FTThemeDic, state: UIControlState) {
+    public func update(themeDic: FTThemeDic, state: UIControl.State) {
 
         if let textcolor = themeDic["textcolor"] {
             if

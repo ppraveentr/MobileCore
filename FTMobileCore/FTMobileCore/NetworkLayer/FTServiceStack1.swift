@@ -10,20 +10,19 @@ import Foundation
 
 public typealias FTServiceCompletionBlock = (FTSericeStatus) -> Swift.Void
 
-public protocol FTServiceStackProtocal {
-    func serviceName() -> String
-    func responseType() -> FTModelData.Type
+public protocol FTServiceStackProtocol {
+    var serviceName: String { get }
+    var responseType: FTModelData.Type { get }
     static func setup(modelStack: FTModelData?, completionHandler: FTServiceCompletionBlock?) -> Self
 }
 
-public protocol FTServiceRulesProtocal {
+public protocol FTServiceRulesProtocol {
     static func configure(requestHeaders urlRequest: URLRequest)
 }
 
-open class FTServiceStack: FTServiceStackProtocal {
-
-    open func serviceName() -> String { return "" }
-    open func responseType() -> FTModelData.Type { return FTModelData.self as! FTModelData.Type }
+open class FTServiceStack1: FTServiceStackProtocol {
+    open var serviceName: String { return "" }
+    open var responseType: FTModelData.Type { return FTModelData.self as! FTModelData.Type }
 
     lazy var serviceRequet: FTRequestObject? = setupServiceRequest()
     fileprivate var inputStack: FTModelData?
@@ -102,11 +101,11 @@ fileprivate extension FTServiceStack {
     }
 }
 
-extension FTServiceStack {
+extension FTServiceStack1 {
 
     func setupServiceRequest() -> FTRequestObject? {
         do {
-            if let data = try! FTMobileConfig.schemaForClass(classKey: self.serviceName()) {
+            if let data = try! FTMobileConfig.schemaForClass(classKey: self.serviceName) {
                 return try! FTRequestObject.createModelData(json: data)
             }
         }
@@ -169,8 +168,8 @@ extension FTServiceStack {
     @discardableResult
     func responseModelStack() -> FTModelData? {
         guard self.data != nil else { return nil }
-        responseStack = try? self.responseType().createModelData(json: self.data!)
-        print("jsonString:: ", responseStack?.jsonString() ?? "")
+        responseStack = try? self.responseType.createModelData(json: self.data!)
+        //print("jsonString:: ", responseStack?.jsonString() ?? "")
         print("rawData::",String(bytes: self.data!, encoding: .utf8) ?? "")
         return responseStack
     }
@@ -215,15 +214,15 @@ extension FTServiceStack {
     }
 }
 
-extension FTServiceStack {
+extension FTServiceStack1 {
     func buildResponseStack() {
         self.responseModelStack()
     }
 
     func stubData() {
 
-        print(self.serviceName(), ": is data stubbed.")
-        if let data: String = FTMobileConfig.mockBundle?.path(forResource: self.serviceName(), ofType: "json") {
+        print(self.serviceName, ": is data stubbed.")
+        if let data: String = FTMobileConfig.mockBundle?.path(forResource: self.serviceName, ofType: "json") {
             self.data = try! data.dataAtPath()
         }
 

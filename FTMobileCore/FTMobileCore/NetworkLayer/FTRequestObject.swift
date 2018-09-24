@@ -11,7 +11,7 @@ import Foundation
 /**
  The standard HTTP Verbs
  */
-public enum HTTPVerb: String, Codable {
+public enum FTReqeustPathType: String, Codable {
     case GET
     case POST
     case PUT
@@ -28,23 +28,23 @@ public enum HTTPVerb: String, Codable {
 final class FTRequestBase: FTModelData {
     var timeOut: Int?
 
-    /* Coding Keys */
-    enum CodingKeys: String, CodingKey  {
-        case timeOut
-    }
+//    /* Coding Keys */
+//    enum CodingKeys: String, CodingKey  {
+//        case timeOut
+//    }
 }
 
 final class FTRequestObject: FTModelData {
-    var type: HTTPVerb
+    var type: FTReqeustPathType = .POST
     var path: String?
     var baseURL: String?
     var requestQuery: [String:String]?
     var request: [String:String]?
-//    var response: JSON?
+    var responseType: String?
 
-    /* Coding Keys */
-    enum CodingKeys: String, CodingKey  {
-        case type, path, baseURL, requestQuery, request //, response
-    }
+//    /* Coding Keys */
+//    enum CodingKeys: String, CodingKey  {
+//        case type, path, baseURL, requestQuery, request //, response
+//    }
 }
 

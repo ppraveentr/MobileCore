@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DE6BC9CA20544CF800D59B12 /* FTServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6BC9C920544CF800D59B12 /* FTServiceClient.swift */; };
+		DE15BF0C213AEE3D0003BD81 /* FTServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15BF0B213AEE3D0003BD81 /* FTServiceClient.swift */; };
 		DE6C7926207E53160011F027 /* FTURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6C7924207E53160011F027 /* FTURLSession.swift */; };
 		DE6C7927207E53160011F027 /* FTOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6C7925207E53160011F027 /* FTOperationQueue.swift */; };
 		DE6FC98D20A221EE00121E22 /* FTCoreUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C49961F4612A20010A5BE /* FTCoreUtility.framework */; };
@@ -15,7 +15,6 @@
 		DE9221B51EF28C9C000C8FC7 /* FTMobileCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221B41EF28C9C000C8FC7 /* FTMobileCoreTests.swift */; };
 		DE9221B71EF28C9C000C8FC7 /* FTMobileCore.h in Headers */ = {isa = PBXBuildFile; fileRef = DE9221A91EF28C9B000C8FC7 /* FTMobileCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DEA7654020515D070009F7F7 /* FTModelCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7653F20515D070009F7F7 /* FTModelCreator.swift */; };
-		DEAD33FD2056EAEF0064C46A /* FTServiceStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAD33FC2056EAEF0064C46A /* FTServiceStack.swift */; };
 		DEC55DEA1EF2AE0300FAE024 /* FTModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DE91EF2AE0300FAE024 /* FTModelData.swift */; };
 		DEC55DEC1EF2B09700FAE024 /* FTMobileConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DEB1EF2B09700FAE024 /* FTMobileConfig.swift */; };
 		DEF9A7BE20599DAB00617FBF /* FTRequestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF9A7BD20599DAB00617FBF /* FTRequestObject.swift */; };
@@ -60,7 +59,7 @@
 
 /* Begin PBXFileReference section */
 		DE0C49901F4612A20010A5BE /* FTCoreUtility.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FTCoreUtility.xcodeproj; path = ../FTCoreUtility/FTCoreUtility.xcodeproj; sourceTree = "<group>"; };
-		DE6BC9C920544CF800D59B12 /* FTServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTServiceClient.swift; sourceTree = "<group>"; };
+		DE15BF0B213AEE3D0003BD81 /* FTServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTServiceClient.swift; sourceTree = "<group>"; };
 		DE6C7924207E53160011F027 /* FTURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTURLSession.swift; sourceTree = "<group>"; };
 		DE6C7925207E53160011F027 /* FTOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTOperationQueue.swift; sourceTree = "<group>"; };
 		DE9221A61EF28C9B000C8FC7 /* FTMobileCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FTMobileCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,7 +69,7 @@
 		DE9221B41EF28C9C000C8FC7 /* FTMobileCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMobileCoreTests.swift; sourceTree = "<group>"; };
 		DE9221B61EF28C9C000C8FC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEA7653F20515D070009F7F7 /* FTModelCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTModelCreator.swift; sourceTree = "<group>"; };
-		DEAD33FC2056EAEF0064C46A /* FTServiceStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTServiceStack.swift; sourceTree = "<group>"; };
+		DEAD33FC2056EAEF0064C46A /* FTServiceStack1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTServiceStack1.swift; sourceTree = "<group>"; };
 		DEC55DE91EF2AE0300FAE024 /* FTModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTModelData.swift; sourceTree = "<group>"; };
 		DEC55DEB1EF2B09700FAE024 /* FTMobileConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMobileConfig.swift; sourceTree = "<group>"; };
 		DEF9A7BD20599DAB00617FBF /* FTRequestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTRequestObject.swift; sourceTree = "<group>"; };
@@ -116,9 +115,9 @@
 		DE6BC9B820542F5900D59B12 /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
-				DE6BC9C920544CF800D59B12 /* FTServiceClient.swift */,
-				DEAD33FC2056EAEF0064C46A /* FTServiceStack.swift */,
+				DEAD33FC2056EAEF0064C46A /* FTServiceStack1.swift */,
 				DEF9A7BD20599DAB00617FBF /* FTRequestObject.swift */,
+				DE15BF0B213AEE3D0003BD81 /* FTServiceClient.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -252,6 +251,7 @@
 					DE9221AE1EF28C9C000C8FC7 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = W6W48SVQX7;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -321,12 +321,11 @@
 			files = (
 				DEA7654020515D070009F7F7 /* FTModelCreator.swift in Sources */,
 				DE6C7927207E53160011F027 /* FTOperationQueue.swift in Sources */,
+				DE15BF0C213AEE3D0003BD81 /* FTServiceClient.swift in Sources */,
 				DEC55DEA1EF2AE0300FAE024 /* FTModelData.swift in Sources */,
 				DEF9A7BE20599DAB00617FBF /* FTRequestObject.swift in Sources */,
 				DE6C7926207E53160011F027 /* FTURLSession.swift in Sources */,
 				DEC55DEC1EF2B09700FAE024 /* FTMobileConfig.swift in Sources */,
-				DEAD33FD2056EAEF0064C46A /* FTServiceStack.swift in Sources */,
-				DE6BC9CA20544CF800D59B12 /* FTServiceClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,7 +537,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com..FTMobileCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -551,7 +551,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com..FTMobileCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

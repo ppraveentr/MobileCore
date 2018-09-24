@@ -17,7 +17,7 @@ public extension UIImageView {
      - parameter url: Image's url from which need to download
      - parameter contentMode: ImageView's content mode, defalut to 'scaleAspectFit'
      */
-    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit,
+    func downloadedFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit,
                         comletionHandler: FTUIImageViewComletionHandler? = nil) {
         
         //Image's Content mode
@@ -37,7 +37,7 @@ public extension UIImageView {
      - parameter link: Image's urlString from which need to download
      - parameter contentMode: ImageView's content mode, defalut to 'scaleAspectFit'
      */
-    func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit, comletionHandler: FTUIImageViewComletionHandler? = nil) {
+    func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit, comletionHandler: FTUIImageViewComletionHandler? = nil) {
         
         //Validate urlString
         guard let url = URL(string: link) else { return }

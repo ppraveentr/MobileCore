@@ -10,15 +10,15 @@ import Foundation
 
 open class FTLinkDetection {
 
-    enum FTLinkType {
+    public enum FTLinkType {
         case url
         case hashTag
     }
     
-    var linkType: FTLinkType
-    var linkRange: NSRange
+    public var linkType: FTLinkType
+    public var linkRange: NSRange
     
-    var linkURL: URL
+    public var linkURL: URL
     
     init(linkType: FTLinkType, linkRange: NSRange, linkURL: URL) {
         self.linkType = linkType

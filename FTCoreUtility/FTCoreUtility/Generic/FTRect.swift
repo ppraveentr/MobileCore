@@ -48,7 +48,9 @@ public func FTEdgeInsetsOutsetSize(size: CGSize, insets: UIEdgeInsets) -> CGSize
 public func FTEdgeInsetsInsetSize(size: CGSize, insets: UIEdgeInsets) -> CGSize {
     var rect: CGRect = .zero
     rect.size = size;
-    return UIEdgeInsetsInsetRect(rect, insets).size;
+
+    //WARNING
+    return rect.inset(by: insets).size;
 }
 
 /**
@@ -65,7 +67,7 @@ public func FTTextSize(text: String?, font: UIFont,
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.lineBreakMode = lineBreakMode;
     
-    let attributes: [NSAttributedStringKey : Any] = [
+    let attributes: [NSAttributedString.Key : Any] = [
         .font: font,
         .paragraphStyle: paragraphStyle,
     ]

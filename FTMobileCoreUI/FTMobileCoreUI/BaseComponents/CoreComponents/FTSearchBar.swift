@@ -40,7 +40,7 @@ open class FTSearchBar: UISearchBar {
             // Set its frame.
             searchField.frame = CGRect(x: 5.0, y: 5.0, width: frame.width - 10.0, height: frame.height - 10.0)
             
-            var att: [NSAttributedStringKey:AnyObject] = [:]
+            var att: [NSAttributedString.Key:AnyObject] = [:]
             
             // Set the font and text color of the search field.
             if preferredFont != nil {

@@ -29,7 +29,7 @@ public class FTMobileConfig {
         get { return isMockDataModel && mockBundle != nil }
     }
 
-    //Stub data bundle, used by FTServiceStack
+    //Stub data bundle, used by FTServiceClient
     static var mockBundle: Bundle? = nil
     static public var mockBundleResource: URL? = nil {
         didSet {

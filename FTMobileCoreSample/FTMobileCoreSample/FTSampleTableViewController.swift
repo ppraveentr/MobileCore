@@ -10,7 +10,7 @@ import Foundation
 
 class FTSampleTableViewController: FTBaseTableViewController {
     
-    override func class_TableViewStyle() -> UITableViewStyle {
+    override func class_TableViewStyle() -> UITableView.Style {
         return .grouped
     }
     

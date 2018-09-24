@@ -21,7 +21,33 @@ public extension Optional where Wrapped == String {
 }
 
 public extension String {
-    
+
+    func isHTMLString() -> Bool {
+        if self.range(of:"<[^>]+>", options: .regularExpression) != nil {
+            return true
+        }
+        return false
+    }
+
+    func stripHTML() -> String {
+        return self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+    }
+
+
+    func htmlAttributedString() -> NSMutableAttributedString {
+
+        guard (self.length > 0) else { return NSMutableAttributedString() }
+
+        guard (self.isHTMLString()) else { return NSMutableAttributedString(string: self) }
+
+        guard let data = data(using: .utf8, allowLossyConversion: true) else { return NSMutableAttributedString() }
+        do{
+            return try NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+        }catch{
+            return NSMutableAttributedString()
+        }
+    }
+
     //Enmuration
     func enumerate(pattern: String, using block: ((NSTextCheckingResult?) -> Void )? ) {
         

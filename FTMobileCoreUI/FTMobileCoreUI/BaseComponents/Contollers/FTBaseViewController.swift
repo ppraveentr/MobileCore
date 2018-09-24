@@ -23,7 +23,7 @@ open class FTBaseViewController : UIViewController {
     }
     
     //Setup baseView's topLayoutGuide by sending true in subControllers if needed
-    public func shouldSetTopLayoutGuide() -> Bool {
+    public func shouldSetSafeAreaLayoutGuide() -> Bool {
         return true
     }
     
@@ -43,16 +43,30 @@ extension FTBaseViewController {
         
         let local = self.baseView?.rootView
         
-        //        self.view.pin(view: local, withEdgeInsets: [.Horizontal, .Bottom])
-        
+//        self.view.pin(view: local!, withEdgeInsets: [.Horizontal, .Bottom])
+
         /* Pin view bellow status bar */
-        if shouldSetTopLayoutGuide() {
-            local?.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor,
-                                        constant: 0.0).isActive = true
+        if shouldSetSafeAreaLayoutGuide() {
+            if #available(iOS 11.0, *) {
+                local?.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                            constant: 0.0).isActive = true
+                local?.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor,
+                                            constant: 0.0).isActive = true
+                local?.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
+                                            constant: 0.0).isActive = true
+            } else {
+                local?.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor,
+                                            constant: 0.0).isActive = true
+            }
         }
         
-        local?.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor,
-                                       constant: 0.0).isActive = true
+        if #available(iOS 11.0, *) {
+            local?.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                                           constant: 0.0).isActive = true
+        } else {
+            local?.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor,
+                                           constant: 0.0).isActive = true
+        }
         
     }
 }

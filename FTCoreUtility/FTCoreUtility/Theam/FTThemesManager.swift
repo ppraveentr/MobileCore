@@ -152,11 +152,11 @@ open class FTThemesManager {
     }
 
     //MARK: UIImage
-    open class func getTextAttributes(_ theme: FTThemeDic?) -> [NSAttributedStringKey:AnyObject]? {
+    open class func getTextAttributes(_ theme: FTThemeDic?) -> [NSAttributedString.Key:AnyObject]? {
 
         guard let theme = theme else { return nil }
 
-        var attributes = [NSAttributedStringKey:AnyObject]()
+        var attributes = [NSAttributedString.Key:AnyObject]()
         if let value = theme["foregroundColor"] as? String {
             attributes[.foregroundColor] = self.getColor(value)
         }

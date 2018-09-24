@@ -125,7 +125,7 @@ extension UISegmentedControl {
             appearance.setBackgroundImage(image, for: .selected, barMetrics: .default)
             break;
         default:
-            appearance.setBackgroundImage(image, for: UIControlState(), barMetrics: .default)
+            appearance.setBackgroundImage(image, for: UIControl.State(), barMetrics: .default)
             break;
         }
     }
@@ -238,15 +238,15 @@ struct ThemeManager {
         let tabResizableIndicator = tabIndicator?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 2.0, bottom: 0, right: 2.0))
         UITabBar.appearance().selectionIndicatorImage = tabResizableIndicator
                 
-        UIStepper.appearance().setDecrementImage(UIImage(named: "fewerPaws"), for: UIControlState())
-        UIStepper.appearance().setIncrementImage(UIImage(named: "morePaws"), for: UIControlState())
+        UIStepper.appearance().setDecrementImage(UIImage(named: "fewerPaws"), for: UIControl.State())
+        UIStepper.appearance().setIncrementImage(UIImage(named: "morePaws"), for: UIControl.State())
         
-        UISlider.appearance().setThumbImage(UIImage(named: "sliderThumb"), for: UIControlState())
+        UISlider.appearance().setThumbImage(UIImage(named: "sliderThumb"), for: UIControl.State())
         UISlider.appearance().setMaximumTrackImage(UIImage(named: "maximumTrack")?
-            .resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0.0, bottom: 0, right: 6.0)), for: UIControlState())
+            .resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0.0, bottom: 0, right: 6.0)), for: UIControl.State())
         UISlider.appearance().setMinimumTrackImage(UIImage(named: "minimumTrack")?
             .withRenderingMode(.alwaysTemplate)
-            .resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 6.0, bottom: 0, right: 0)), for: UIControlState())
+            .resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 6.0, bottom: 0, right: 0)), for: UIControl.State())
         
         UISwitch.appearance().onTintColor = theme.mainColor.withAlphaComponent(0.3)
         UISwitch.appearance().thumbTintColor = theme.mainColor
