@@ -33,7 +33,7 @@ public func + <K,V> (left: [K:V], right: [K:V]) -> [K:V] {
         if subObject != nil, superObject != nil {
             superObject! += subObject!
             computedValue[k]! = (superObject as? V)!
-        }else {
+        } else {
             computedValue[k] = v
         }
     }
@@ -52,7 +52,7 @@ public func += <K,V> (left: inout [K:V], right: [K:V]) {
         if subObject != nil, superObject != nil {
             superObject! += subObject!
             left[k]! = (superObject as? V)!
-        }else {
+        } else {
             left[k] = v
         }
     }

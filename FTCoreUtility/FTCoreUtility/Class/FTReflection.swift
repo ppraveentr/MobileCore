@@ -12,7 +12,7 @@ public func get_classNameAsString(obj: Any) -> String? {
     return FTReflection.swiftStringFromClass(obj)
 }
 
-//String Extension
+// String Extension
 public extension String {
     
     //String Extension
@@ -20,15 +20,17 @@ public extension String {
         return FTReflection.swiftClassTypeFromString(self)
     }
 }
+
 final public class FTReflection {
     
     /// Variable that can be set using registermoduleIdentifiers
-    //TODO: Make it a SET, so to have unquie elements
+    // TODO: Make it a SET, so to have unquie elements
     fileprivate static var moduleIdentifiers: [String] = []
     
     public class func getRegisterdModuleIdentifier() -> [String] {
         return moduleIdentifiers
     }
+    
     /**
      - parameter object: The class that will be used to find the appName for in which we can find classes by string.
      */
@@ -86,7 +88,6 @@ final public class FTReflection {
                 return existingClass
             }
         }
-        //        }
 
         return nil
     }

@@ -42,7 +42,7 @@ public protocol FTThemeProtocol: AnyObject {
 
 public extension FTThemeProtocol where Self: UIView {
     func get_ThemeSubType() -> String? {
-        //If view is disabled, check for ".disabledStyle" style
+        // If view is disabled, check for ".disabledStyle" style
         return self.isUserInteractionEnabled ? nil : ThemeStyle.disabledStyle
     }
 }
@@ -96,7 +96,7 @@ extension UIView {
         if self.needsThemesUpdate {
             self.__updateVisualThemes__()
         }
-        //Invoke view's original layoutSubviews
+        // Invoke view's original layoutSubviews
         self.swizzled_layoutSubviews()
     }
 }
@@ -108,34 +108,41 @@ fileprivate extension UIView {
 
     final func __updateVisualThemes__() {
         self.needsThemesUpdate = false
-        //Update View with Theme properties
+        // Update View with Theme properties
         self.generateVisualThemes()
     }
     
     func generateVisualThemes() {
         
-        //If Theme is emtpy, retrun
-        guard !FTThemesManager.themesJSON.isEmpty else { return }
+        // If Theme is emtpy, retrun
+        guard !FTThemesManager.themesJSON.isEmpty else {
+            return
+        }
         
-        //Get ThemeName and view's name to get Theme's property
-        guard let (className, themeName) = self.get_ThemeName() else { return }
+        // Get ThemeName and view's name to get Theme's property
+        guard let (className, themeName) = self.get_ThemeName() else {
+            return
+        }
         
-        //Checkout if view supports Theming protocol
+        // Checkout if view supports Theming protocol
         let delegate: FTThemeProtocol? = self as? FTThemeProtocol
         
-        //Get Theme property of view based on its state
+        // Get Theme property of view based on its state
         guard let themeDic = FTThemesManager.generateVisualThemes(forClass: className,
                                                                   withStyleName: themeName,
-                                                                  withSubStyleName: delegate?.get_ThemeSubType())
-            else { return }
+                                                                  withSubStyleName: delegate?.get_ThemeSubType()) else {
+            return
+        }
         
-        //Step 1. Config view with new Theme-style
+        // Step 1. Config view with new Theme-style
         self.configureTheme(themeDic)
         
-        //Step 2. Only needed for UIControl types, Eg. Button
-        guard let controlThemeSelf = self as? FTUIControlThemeProtocol else { return }
+        // Step 2. Only needed for UIControl types, Eg. Button
+        guard let controlThemeSelf = self as? FTUIControlThemeProtocol else {
+            return
+        }
 
-        //Get styles for diffrent states of UIControl
+        // Get styles for diffrent states of UIControl
         if controlThemeSelf.get_AllThemeSubType() == true {
             
             let baseName = themeName.components(separatedBy: ":").first
@@ -162,15 +169,16 @@ fileprivate extension UIView {
     //Retruns ('classname', 'Theme-style-name') only if both are valid
     func get_ThemeName() -> (String, String)? {
         
-        //Vadidate className and ThemeName
+        // Vadidate className and ThemeName
         guard
             let className = get_classNameAsString(obj: self),
-            let themeName = self.theme
-            else { return nil }
+            let themeName = self.theme else {
+            return nil
+        }
         
         var baseClassName: String? = className
     
-        //Iterate through superClass till we get a valid Theme class
+        // Iterate through superClass till we get a valid Theme class
         while (baseClassName != nil && !FTThemesManager.isViewComponentValid(componentName: baseClassName!)) {
             //Get super Class
             let superClass: AnyClass? = class_getSuperclass(type(of: self))
@@ -178,32 +186,36 @@ fileprivate extension UIView {
             //If SuperClass becomes invalid, terminate loop
             if (superClass != nil) && superClass != NSObject.self {
                  baseClassName = get_classNameAsString(obj: superClass!)
-            }else{
+            } else{
                 break
             }
         }
         
-        //If there is no valid Theme, return nil
+        // If there is no valid Theme, return nil
         if baseClassName == nil {
             return nil
         }
         
-        //Create (class,theme) name pair
+        // Create (class,theme) name pair
         return (baseClassName!, themeName)
     }
     
     //Update view with styleValues
     @objc func configureTheme(_ themeDic: FTThemeDic?) {
         
-        guard let theme = themeDic else { return }
+        guard let theme = themeDic else {
+            return
+        }
         
-        //Set theme for view
+        // Set theme for view
         self.swizzled_updateTheme(theme)
         
-        //Only needed for UIControl types, Eg. Button
-        guard let controlThemeSelf = self as? FTUIControlThemeProtocol else { return }
+        // Only needed for UIControl types, Eg. Button
+        guard let controlThemeSelf = self as? FTUIControlThemeProtocol else {
+            return
+        }
         
-        //Get all subTheme for all stats of the control
+        // Get all subTheme for all stats of the control
         let themeDic = [controlThemeSelf.get_ThemeSubType() ?? ThemeStyle.defaultStyle : theme]
         controlThemeSelf.setThemes(themeDic)
     }
@@ -214,24 +226,27 @@ extension UIView {
     
     @objc public func swizzled_updateTheme(_ theme: FTThemeDic) {
 
-        //"backgroundColor"
+        // "backgroundColor"
         if let textcolor = theme["backgroundColor"] {
             if
                 let colorName = textcolor as? String,
                 let color = FTThemesManager.getColor(colorName) {
                 self.theme_backgroundColor(color)
-                //TODO: For attributed title
+                // TODO: For attributed title
             }
         }
 
-        //"layer"
-        //TODO: to generate a layer and add it as subView
+        // "layer"
+        // TODO: to generate a layer and add it as subView
         if let layerValue = theme["layer"] as? FTThemeDic {
             FTThemesManager.getBackgroundLayer(layerValue, toLayer: self.layer)
         }
         
-        //Only needed for UIView types that has extended from FTThemeProtocol
-        guard let controlThemeSelf = self as? FTThemeProtocol else { return }
+        // Only needed for UIView types that has extended from FTThemeProtocol
+        guard let controlThemeSelf = self as? FTThemeProtocol else {
+            return
+        }
+        
         controlThemeSelf.updateTheme(theme)
     }
     
@@ -248,7 +263,9 @@ extension UIControl {
 
     public func setThemes(_ themes: FTThemeDic) {
         
-        guard let themeSelf = self as? FTUIControlThemeProtocol else { return }
+        guard let themeSelf = self as? FTUIControlThemeProtocol else {
+            return
+        }
 
         for (kind, value) in themes {
             

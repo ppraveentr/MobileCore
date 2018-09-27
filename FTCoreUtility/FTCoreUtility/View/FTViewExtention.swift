@@ -49,9 +49,9 @@ public extension UIView {
     
     //Retruns first view from the nib file
     public class func fromNib(named name: String, owner: Any? = nil) -> UIView? {
-        //Get all object inside the nib
+        // Get all object inside the nib
         let allObjects = Bundle.main.loadNibNamed(name, owner: owner, options: nil) ?? []
-        //Get first view object
+        // Get first view object
         if let nib = allObjects.first as? UIView {
             return nib
         }
@@ -63,9 +63,9 @@ public extension UIView {
     public func xibSetup(className: UIView.Type) {
         var contentView : UIView?
         
-        //Get view from nib
+        // Get view from nib
         contentView = className.fromNib(self)
-        //Set contents tag as self'hash, just for unique identifiation
+        // Set contents tag as self'hash, just for unique identifiation
         contentView?.tag = self.hash
         
         // use bounds not frame or it'll be offset
@@ -83,7 +83,7 @@ public extension UIView {
         for val in self.subviews.compactMap({ $0 }) {
             if val is T {
                 return val as? T
-            }else if val.subviews.count > 0 {
+            } else if val.subviews.count > 0 {
                 let subType: T? =  val.findInSubView()
                 return subType
             }

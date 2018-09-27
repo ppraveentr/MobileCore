@@ -36,7 +36,9 @@ open class FTTableView: UITableView {
     
     open func setTableHeaderView(view: UIView?) {
         
-        guard (view != nil || (view?.isKind(of: UIView.self))! ) else { return }
+        guard (view != nil || (view?.isKind(of: UIView.self))! ) else {
+            return
+        }
         
         var view = view
         if (view as? FTTableViewHeaderFooterView) == nil {
@@ -48,7 +50,9 @@ open class FTTableView: UITableView {
     
     open func setTableFooterView(view: UIView?) {
         
-        guard (view != nil || (view?.isKind(of: UIView.self))! ) else { return }
+        guard (view != nil || (view?.isKind(of: UIView.self))! ) else {
+            return
+        }
         
         var view = view
         if (view as? FTTableViewHeaderFooterView) == nil {

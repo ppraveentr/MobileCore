@@ -39,7 +39,7 @@ public extension CGRect {
  */
 public func FTEdgeInsetsOutsetSize(size: CGSize, insets: UIEdgeInsets) -> CGSize {
     return CGSize(width: insets.left + size.width + insets.right,
-                  height: insets.top + size.height + insets.bottom);
+                  height: insets.top + size.height + insets.bottom)
 }
 
 /**

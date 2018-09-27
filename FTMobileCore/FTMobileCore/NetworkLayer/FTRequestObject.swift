@@ -15,6 +15,7 @@ public enum FTReqeustPathType: String, Codable {
     case GET
     case POST
     case PUT
+    case FORM
     /* case HEAD
      case DELETE
      case PATCH

@@ -88,7 +88,7 @@ open class FTSearchBar: UISearchBar {
         super.draw(rect)
     }
     
-    public func configure(barTintColor: UIColor? = nil, tintColor: UIColor? = nil, textColor: UIColor? = nil){
+    public func configure(barTintColor: UIColor? = nil, tintColor: UIColor? = nil, textColor: UIColor? = nil) {
         
         if let barTintColor = barTintColor {
             self.barTintColor = barTintColor
@@ -101,7 +101,9 @@ open class FTSearchBar: UISearchBar {
 //            UILabel.appearance(whenContainedInInstancesOf: UISearchBar.self).textColor = preferredTextColor
         }
         
-        guard let tintColor = tintColor else { return }
+        guard let tintColor = tintColor else {
+            return
+        }
         
         self.tintColor = tintColor
         

@@ -66,7 +66,7 @@ public extension FTServiceClient {
     func responseModelStack() -> FTModelData? {
         guard let data = self.responseData else { return nil }
         let responseStack: FTModelData? = try! self.responseType()?.createModelData(json: data)
-        //print("jsonString:: ", responseStack?.jsonString() ?? "")
+        // print("jsonString:: ", responseStack?.jsonString() ?? "")
         print("rawData::",String(bytes: data, encoding: .utf8) ?? "")
         return responseStack
     }
@@ -108,21 +108,21 @@ extension FTServiceClient {
 //            responseType = FTReflection.swiftClassTypeFromString(repsType) as? FTModelData.Type
 //        }
 
-        //Service App Base URL
+        // Service App Base URL
         let baseURL = getBaseURL(serviceRequest)
 
-        //Create URL Components
+        // Create URL Components
         var components = URLComponents(string: baseURL)!
 
-        //Update subPath url
+        // Update subPath url
         if let path = serviceRequest?.path {
             components.path.append(path)
         }
 
-        //URL httpBody for POST type
+        // URL httpBody for POST type
         var httpBody: Data? = nil
 
-        //Setup URL 'queryItems' or 'httpBody'
+        // Setup URL 'queryItems' or 'httpBody'
         if let reqstType = serviceRequest?.type {
             switch reqstType {
             case .GET:
@@ -136,18 +136,18 @@ extension FTServiceClient {
             }
         }
 
-        //Create URLRequest from 'components'
+        // Create URLRequest from 'components'
         var urlReq = URLRequest(url: components.url!)
         print("urlReq: ", urlReq.url?.absoluteString.removingPercentEncoding ?? "Empty")
 
-        //Request 'type'
+        // Request 'type'
         urlReq.httpMethod = serviceRequest?.type.rawValue
 
-        //Reqeust Body if any
+        // Reqeust Body if any
         urlReq.httpBody = httpBody
         print("urlBody: ", httpBody?.decodeToString() ?? "Empty")
 
-        //Request headers
+        // Request headers
         self.requestHeaders().forEach({ (key,value) in
             urlReq.setValue(value, forHTTPHeaderField: key)
         })
@@ -164,14 +164,14 @@ extension FTServiceClient {
 //    func responseModelStack() -> FTModelData? {
 //        guard self.data != nil else { return nil }
 //        responseStack = try? self.responseType.createModelData(json: self.data!)
-//        //print("jsonString:: ", responseStack?.jsonString() ?? "")
+//        // print("jsonString:: ", responseStack?.jsonString() ?? "")
 //        print("rawData::",String(bytes: self.data!, encoding: .utf8) ?? "")
 //        return responseStack
 //    }
 
     func sessionHandler(_ completionHandler: FTServiceCompletionBlock<Self>? = nil) -> FTURLSessionCompletionBlock {
 
-        //guard completionHandler != nil else { return nil }
+        // guard completionHandler != nil else { return nil }
 
         let handler: FTURLSessionCompletionBlock = { (data: Data?, response: URLResponse?, error: Error?) -> () in
 

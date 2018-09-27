@@ -14,11 +14,11 @@ open class FTBaseViewController : UIViewController {
     lazy open var baseView: FTBaseView? = FTBaseView()
     
     open override func loadView() {
-        //Make it as Views RooView
+        // Make it as Views RooView
         self.view = self.baseView
         self.baseView?.theme = ThemeStyle.defaultStyle
         
-        //Setup baseView's topLayoutGuide & bottomLayoutGuide
+        // Setup baseView's topLayoutGuide & bottomLayoutGuide
         setupBaseView()
     }
     
@@ -29,7 +29,7 @@ open class FTBaseViewController : UIViewController {
     
     public var mainView: FTView? {
 
-        //If baseView is not added, then retun nil
+        // If baseView is not added, then retun nil
         if self.baseView?.superview != self.view, self.view != self.baseView { return nil }
         
         return self.baseView?.mainPinnedView

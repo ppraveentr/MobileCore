@@ -44,7 +44,7 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
             if islinkDetectionEnabled, (newValue != nil && newValue!.isHTMLString()) {
                 self.text = newValue!.stripHTML()
                 updateWithHtmlString(text: newValue)
-            }else{
+            } else{
                 self.updateLabelStyleProperty()
             }
         }
@@ -134,7 +134,7 @@ extension FTLabel {
 
         if attributedString == nil {
             self.textStorage.setAttributedString(NSMutableAttributedString(string: ""))
-        }else {
+        } else {
 
             let sanitizedString = self.sanitizeAttributedString(attributedString: attributedString!)
             sanitizedString.addAttributes(self.getStyleProperties(), range: NSMakeRange(0, sanitizedString.length))
@@ -158,7 +158,7 @@ extension FTLabel {
         
         self.linkRanges = [FTLinkDetection]()
 
-        //HTTP links
+        // HTTP links
         let links = FTLinkDetection.getURLLinkRanges((attributedString.string))
         self.linkRanges?.insert(contentsOf: links, at: 0)
 
@@ -169,7 +169,7 @@ extension FTLabel {
     }
 }
 
-//TODO: Themes
+// TODO: Themes
 extension FTLabel {
     
     func getStyleProperties() -> [NSAttributedString.Key : Any] {

@@ -20,10 +20,10 @@ public extension UIImageView {
     func downloadedFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit,
                         comletionHandler: FTUIImageViewComletionHandler? = nil) {
         
-        //Image's Content mode
+        // Image's Content mode
         contentMode = mode
 
-        //Download Image from async in background
+        // Download Image from async in background
         url.downloadedImage { (image) in
             DispatchQueue.main.async {
                 self.image = image
@@ -39,10 +39,12 @@ public extension UIImageView {
      */
     func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit, comletionHandler: FTUIImageViewComletionHandler? = nil) {
         
-        //Validate urlString
-        guard let url = URL(string: link) else { return }
+        // Validate urlString
+        guard let url = URL(string: link) else {
+            return
+        }
         
-        //Download image using valid URL
+        // Download image using valid URL
         downloadedFrom(url: url, contentMode: mode, comletionHandler: comletionHandler)
     }
 }

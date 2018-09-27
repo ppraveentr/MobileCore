@@ -60,8 +60,8 @@ open class FTLinkDetection {
         
         var rangeOfURL = [FTLinkDetection]()
         
-        //Hi #wellcome thanks.
-        //Here, "#wellcome" is retuned
+        // Hi #wellcome thanks.
+        // Here, "#wellcome" is retuned
         text.enumerate(pattern: "(?<!\\w)#([\\w]+)") { (result) in
             
             if

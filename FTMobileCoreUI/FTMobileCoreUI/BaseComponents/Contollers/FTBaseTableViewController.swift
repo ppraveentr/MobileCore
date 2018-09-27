@@ -63,7 +63,7 @@ open class FTBaseTableViewController: FTBaseViewController {
     open override func loadView() {
         super.loadView()
         
-        //Setup tableView by invoking it
+        // Setup tableView by invoking it
         _ = self.tableView
     }
     
@@ -75,7 +75,7 @@ open class FTBaseTableViewController: FTBaseViewController {
         
         self.mainView?.pin(view: local.view, withEdgeOffsets: self.class_TableViewEdgeOffsets())
         
-        //Set default Cell
+        // Set default Cell
         local.tableView.register(UITableViewCell.self, forCellReuseIdentifier: kFTCellIdentifier)
 
         local.tableView.dataSource = self

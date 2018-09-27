@@ -21,7 +21,7 @@ public extension FTFlattenIterator {
     @discardableResult
     mutating func stripNilElements() -> Self {
         
-        //Sub-Elements
+        // Sub-Elements
         let stripSubElements = { (_ val: inout Any) -> Any in
             if var updated = val as? [String: Any?] {
                 return updated.stripNilElements()
@@ -32,7 +32,7 @@ public extension FTFlattenIterator {
             return val
         }
         
-        //Dic
+        // Dic
         if var dicSub = self as? [String: Any?] {
             dicSub = dicSub.filter({ $1 != nil })
             self = dicSub.mapValues({ (val) -> Any in
@@ -40,7 +40,7 @@ public extension FTFlattenIterator {
                 return stripSubElements(&value!)
             }) as! Self
         }
-        //Array
+        // Array
         else if var dicArray = self as? [Any?] {
             dicArray = dicArray.filter({ $0 != nil })
             self = dicArray.map({ (val) -> Any in

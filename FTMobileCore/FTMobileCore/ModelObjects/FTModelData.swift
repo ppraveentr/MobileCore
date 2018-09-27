@@ -32,7 +32,7 @@ func += <K,V> ( left: inout [K:V], right: [K:V]) where V: RangeReplaceableCollec
     }
 }
 
-func += <K> ( left: inout [K], right: [K]){
+func += <K> ( left: inout [K], right: [K]) {
     for (k) in right {
         left.append(k)
     }
@@ -103,7 +103,7 @@ public extension FTModelData {
         do {
             if var jsn: JSON = self.jsonModel() {
                 jsn.stripNilElements()
-                if JSONSerialization.isValidJSONObject(jsn){
+                if JSONSerialization.isValidJSONObject(jsn) {
                     let data = try JSONSerialization.data(withJSONObject: jsn, options: .prettyPrinted)
                     string = data.decodeToString()
                 }

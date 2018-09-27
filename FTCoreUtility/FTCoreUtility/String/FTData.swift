@@ -19,7 +19,7 @@ public extension Data {
 
         var html: String? = nil
 
-        //Try to decode the String
+        // Try to decode the String
         for type in encodingList {
             html = String(bytes: self, encoding: type)
             if html != nil {

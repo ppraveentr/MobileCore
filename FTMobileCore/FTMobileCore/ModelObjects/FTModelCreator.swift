@@ -46,7 +46,8 @@ open class FTModelCreator {
         
         let fileWriter = { (_ name: String,_ content: String) in
             if var url = outputPath {
-                url.appendPathComponent(name); url.appendPathExtension("swift");
+                url.appendPathComponent(name)
+                url.appendPathExtension("swift")
                 try? content.write(to: url, atomically: true, encoding: .utf8)
                 print("Path: ",url.absoluteString)
             }
@@ -156,7 +157,7 @@ extension FTModelCreator {
     static func createModelFile(modelName: String, params: [String: AnyObject]) -> String {
         
         var paramDef: String = "", codingKeys: String = ""
-        //var decoderKeys: String = "", encoderKeys: String = ""
+        // var decoderKeys: String = "", encoderKeys: String = ""
         
         params.forEach { (key, type) in
             if let bindParams = getBindings(params: type) {

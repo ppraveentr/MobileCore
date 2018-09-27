@@ -27,7 +27,6 @@ open class FTUIButton: UIButton, FTUIControlThemeProtocol {
     }
     
     public func updateTheme(_ theme: FTThemeDic) {
-        
     }
     
     //For custome key:value pairs
@@ -38,7 +37,7 @@ open class FTUIButton: UIButton, FTUIControlThemeProtocol {
                 let colorName = textcolor as? String,
                 let color = FTThemesManager.getColor(colorName) {
                 self.setTitleColor(color, for: state)
-                //TODO: For attributed title
+                // TODO: For attributed title
             }
         }
 

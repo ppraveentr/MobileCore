@@ -61,13 +61,13 @@ public extension UIColor {
     
     public class func hexColor (_ hex:String) -> UIColor? {
 
-        //Check if its acutal hex coded string
+        // Check if its acutal hex coded string
         if !hex.hasPrefix("#") { return nil }
 
-        //Strip non-alphanumerics, and Make it capitalized
+        // Strip non-alphanumerics, and Make it capitalized
         let cString:String = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted).uppercased()
 
-        //Read hex string into Int32
+        // Read hex string into Int32
         var int = UInt32()
         Scanner(string: cString).scanHexInt32(&int)
         
@@ -93,7 +93,7 @@ public extension UIColor {
         
         if contentsScale == CGFloat.greatestFiniteMagnitude {
             UIGraphicsBeginImageContext(contextSize)
-        }else {
+        } else {
             UIGraphicsBeginImageContextWithOptions(contextSize, false, contentsScale)
         }
         
@@ -131,7 +131,7 @@ public extension UIColor {
         alpha = 0
         color.getRed(&r, green: &g, blue: &b, alpha: &alpha) //gets the rgba values (0-1)
         
-        //Get the destination rgba values
+        // Get the destination rgba values
         var dest_r, dest_g, dest_b, dest_alpha : CGFloat
         dest_r = 0
         dest_g = 0

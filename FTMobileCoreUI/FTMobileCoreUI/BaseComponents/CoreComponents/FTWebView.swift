@@ -78,13 +78,13 @@ extension FTWebView {
     
     public func setContentFontFamily(_ fontName: String?) {
         
-        //base document style
+        // base document style
         var css = self.getHTMLBodyText() + ".style.fontFamily= \""
         
-        //user selected font
+        // user selected font
         css += ( (fontName != nil && fontName != "") ? "\(fontName!)," : "")
         
-        //Default font
+        // Default font
         css += "-apple-system\";"
         
         self.insertCSSString(jsString: css)

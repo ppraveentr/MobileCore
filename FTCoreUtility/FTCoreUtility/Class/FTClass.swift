@@ -22,7 +22,7 @@ public let FTInstanceSwizzling: (AnyClass, Selector, Selector) -> () = { klass, 
                             method_getImplementation(originalMethod!),
                             method_getTypeEncoding(originalMethod!))
     } else {
-        method_exchangeImplementations(originalMethod!, swizzledMethod!);
+        method_exchangeImplementations(originalMethod!, swizzledMethod!)
     }
 }
 
@@ -52,7 +52,7 @@ fileprivate let baseTypesMap: Dictionary<String, Any> = [
 //    // retrieve the properties via the class_copyPropertyList function
 //    var count: UInt32 = 0
 //    
-//    //TODO : throws
+//    // TODO : throws
 //    guard let properties = class_copyPropertyList(type(of: myClass) as! AnyClass, &count) else { return nil }
 //    
 //    // iterate each objc_property_t struct
@@ -83,7 +83,7 @@ fileprivate let baseTypesMap: Dictionary<String, Any> = [
 public extension String {
     
     func get_propertyAttributeWithBaseType() -> Any {
-        //TB,N,Vid
+        // TB,N,Vid
         guard
             let letter = self.substring(from: 1, to: 2),
             let type = baseTypesMap[letter]
@@ -95,7 +95,7 @@ public extension String {
         
         var attribure: Any?
         
-        //T@"NSMutableArray",N,&,Vid
+        // T@"NSMutableArray",N,&,Vid
         self.enumerate(pattern: "(?<=T@\")([\\w]+)(?=\",)") { (result) in
             if
                 let range = result?.range,
@@ -104,10 +104,11 @@ public extension String {
             }
         }
         
-        //TB,N,Vid
+        // TB,N,Vid
         guard let type = attribure else {
             return self.get_propertyAttributeWithBaseType()
         }
+        
         return NSClassFromString(type as! String) ?? Any.self
     }
 }

@@ -13,7 +13,7 @@ public typealias FTURLSessionCompletionBlock = (Data?, URLResponse?, Error?) -> 
 open class FTURLSession: NSObject {
 
     static let sharedInstance = FTURLSession()
-    static var sessionConfiguration: URLSessionConfiguration = .default
+    static var sessionConfiguration: URLSessionConfiguration = .ephemeral
     static var sessionDelegate: URLSessionDelegate? = FTURLSession.sharedInstance
     static var sessionQueue = OperationQueue()
 
@@ -31,10 +31,10 @@ open class FTURLSession: NSObject {
 
         let task: URLSessionDataTask
 
-        //Setup session-dataTask with completion handler
+        // Setup session-dataTask with completion handler
         if completionHandler != nil {
             task = FTURLSession.defaultSession.dataTask(with: request, completionHandler: completionHandler!)
-        }else {
+        } else {
             task = FTURLSession.defaultSession.dataTask(with: request)
         }
 
@@ -46,14 +46,15 @@ open class FTURLSession: NSObject {
 
 extension FTURLSession: URLSessionDelegate {
     class func createURLSession() -> URLSession {
+//        return URLSession.shared
         return URLSession(configuration: FTURLSession.sessionConfiguration,
                           delegate: FTURLSession.sessionDelegate,
-                          delegateQueue: FTURLSession.sessionQueue)
+                          delegateQueue: nil)
     }
 
     public func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
-        
     }
+
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
 
     }

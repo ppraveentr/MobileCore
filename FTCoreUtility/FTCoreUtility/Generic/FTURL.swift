@@ -17,7 +17,7 @@ public extension URL {
      */
     func downloadedImage(_ comletionHandler: FTUIImageViewComletionHandler? = nil) {
 
-        //Setup URLSession
+        // Setup URLSession
         URLSession.shared.dataTask(with: self) { (data, response, error) in
 
             guard

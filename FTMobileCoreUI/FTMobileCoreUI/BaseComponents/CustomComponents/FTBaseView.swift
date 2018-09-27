@@ -50,14 +50,14 @@ open class FTBaseView: FTView {
              self.backgroundColor = .white
         }
 
-        //Set lowerPriority to avoid contraint issues with viewControllers's rootView
+        // Set lowerPriority to avoid contraint issues with viewControllers's rootView
         self.pin(view: rootView, withLayoutPriority: FTLayoutPriorityRequiredLow)
 
         self.restConstraints()
     }
     
     func restConstraints() {
-        //Remove all previous constrains, while resting the views
+        // Remove all previous constrains, while resting the views
         rootView.removeSubviews()
         
         self.topPinnedView?.removeAllConstraints()
@@ -66,7 +66,7 @@ open class FTBaseView: FTView {
         
         var viewArray = [FTView]()
         
-        //Embed in Temp view to auto-size the view layout
+        // Embed in Temp view to auto-size the view layout
         if
             topPinnedView != nil,
             let tempView = FTView.embedView(contentView: topPinnedView!) as? FTView {
@@ -75,14 +75,14 @@ open class FTBaseView: FTView {
         
         viewArray.append(mainPinnedView)
 
-        //Embed in Temp view to auto-size the view layout
+        // Embed in Temp view to auto-size the view layout
         if
             bottomPinnedView != nil,
             let tempView = FTView.embedView(contentView: bottomPinnedView!) as? FTView {
             viewArray.append(tempView)
         }
         
-        //Pin : Top and Side - margin of the firstView to Root
+        // Pin : Top and Side - margin of the firstView to Root
         rootView.pin(view: viewArray.first!, withEdgeInsets: [.Top, .Horizontal])
 
         if viewArray.count > 1 {
@@ -93,10 +93,10 @@ open class FTBaseView: FTView {
                                edgeInsets: [.LeadingMargin, .TrailingMargin, .EqualWidth])
         }
         
-        //Pin : BottomMargin of the lastView to Root
+        // Pin : BottomMargin of the lastView to Root
         rootView.pin(view: viewArray.last!, withEdgeInsets: .Bottom)
         
-        //Pin : MainView to margin
+        // Pin : MainView to margin
         rootView.pin(view: self.mainPinnedView, withEdgeInsets: .Horizontal )
 
     }
@@ -108,7 +108,7 @@ extension FTBaseView {
     open override func addSubview(_ view: UIView) {
         if view != self.mainPinnedView, view != rootView {
             self.mainPinnedView.addSubview(view)
-        }else{
+        } else{
             super.addSubview(view)
         }
     }

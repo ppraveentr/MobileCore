@@ -7,7 +7,7 @@
 //
 
 import Foundation
-//TODO: In progress
+// TODO: In progress
 protocol FTAppearanceManagerProtocol {
     @discardableResult
     func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance
@@ -26,7 +26,9 @@ open class FTAppearanceManager {
     }
 
     class func __setupThemes__() {
-        guard let app = FTThemesManager.getAppearance() as? FTThemeDic else { return }
+        guard let app = FTThemesManager.getAppearance() as? FTThemeDic else {
+            return
+        }
 
         for theme in app where ((theme.value as? FTThemeDic) != nil) {
 
@@ -94,9 +96,11 @@ extension UIView : FTAppearanceManagerProtocol {
             types.forEach({ setBackgroundImage(imageType: $0, imageName: $1) })
         }
         
-        guard let imageType = imageType else { return }
+        guard let imageType = imageType else {
+            return
+        }
         
-        if let image = FTThemesManager.getImage(imageName as? String){
+        if let image = FTThemesManager.getImage(imageName as? String) {
             
             if let segmentSelf = self as? UISegmentedControl.Type {
                 segmentSelf.setBackgroundImage(imageType:imageType, image: image)
@@ -185,7 +189,7 @@ extension UITabBar {
     }
 }
 
-//TODO: In progress
+// TODO: In progress
 enum Theme: Int {
     case `default`, dark, graphical
     

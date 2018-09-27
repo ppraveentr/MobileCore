@@ -19,7 +19,7 @@ public class FTAssociatedObject<T> {
         self.aoPolicy = aoPolicy
     }
     
-    public convenience init(){
+    public convenience init() {
         self.init(policy: .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
     

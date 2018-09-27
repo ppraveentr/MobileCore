@@ -75,7 +75,7 @@ public extension UINavigationBar {
         // the background image's alpha channel is inversely related to the
         // transparency of the bar.  That is, a smaller alpha channel intensity
         // results in a more transparent bar and vis-versa.
-        //
+        // 
         // Below, background image is dynamically generated with the desired
         // opacity.
         let transparentBackground: UIImage = UIColor.white.generateImage(opacity: opacity,

@@ -35,14 +35,14 @@ public class FTMobileConfig {
         didSet {
             if mockBundleResource != nil {
                 mockBundle = Bundle(url: mockBundleResource!)
-            }else{
+            } else{
                 mockBundle = nil
             }
         }
     }
     //MARK: Model Binding
     static var modelBindingPath: String = ""
-    //TODO: To support multiple sources
+    // TODO: To support multiple sources
     static public var serviceBindingPath: String = "" {
         didSet {
             try? FTMobileConfig.loadModelSchema(fromPath: serviceBindingDirectory())

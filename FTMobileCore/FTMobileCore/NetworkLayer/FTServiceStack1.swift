@@ -79,10 +79,10 @@ fileprivate extension FTServiceStack {
     //Service Base URL
     func getBaseURL() -> String {
 
-        //Service App Base URL
+        // Service App Base URL
         var baseURL = FTMobileConfig.appBaseURL
 
-        //If service has customeBase URL
+        // If service has customeBase URL
         if ((serviceRequet?.baseURL) != nil) {
             baseURL = (serviceRequet?.baseURL)!
         }
@@ -94,7 +94,7 @@ fileprivate extension FTServiceStack {
 
         let querys = inputStack?.queryItems()
         //        if let requestQuery = serviceRequet?.requestQuery {
-        //
+        // 
         //        }
 
         return querys
@@ -118,21 +118,21 @@ extension FTServiceStack1 {
 
     func urlRequest() -> URLRequest {
 
-        //Service App Base URL
+        // Service App Base URL
         let baseURL = getBaseURL()
 
-        //Create URL Components
+        // Create URL Components
         var components = URLComponents(string: baseURL)!
 
-        //Update subPath url
+        // Update subPath url
         if let path = serviceRequet?.path {
             components.path.append(path)
         }
 
-        //URL httpBody for POST type
+        // URL httpBody for POST type
         var httpBody: Data? = nil
 
-        //Setup URL 'queryItems' or 'httpBody'
+        // Setup URL 'queryItems' or 'httpBody'
         if let type = serviceRequet?.type {
             switch type {
             case .GET:
@@ -146,18 +146,18 @@ extension FTServiceStack1 {
             }
         }
 
-        //Create URLRequest from 'components'
+        // Create URLRequest from 'components'
         var urlReq = URLRequest(url: components.url!)
         print("urlReq: ", urlReq.url?.absoluteString.removingPercentEncoding ?? "Empty")
 
-        //Request 'type'
+        // Request 'type'
         urlReq.httpMethod = serviceRequet?.type.rawValue
 
-        //Reqeust Body if any
+        // Reqeust Body if any
         urlReq.httpBody = httpBody
         print("urlBody: ", httpBody?.decodeToString() ?? "Empty")
 
-        //Request headers
+        // Request headers
         self.requestHeaders?.forEach({ (key,value) in
             urlReq.setValue(value, forHTTPHeaderField: key)
         })
@@ -169,7 +169,7 @@ extension FTServiceStack1 {
     func responseModelStack() -> FTModelData? {
         guard self.data != nil else { return nil }
         responseStack = try? self.responseType.createModelData(json: self.data!)
-        //print("jsonString:: ", responseStack?.jsonString() ?? "")
+        // print("jsonString:: ", responseStack?.jsonString() ?? "")
         print("rawData::",String(bytes: self.data!, encoding: .utf8) ?? "")
         return responseStack
     }
@@ -178,7 +178,7 @@ extension FTServiceStack1 {
 
     func sessionHandler() -> FTURLSessionCompletionBlock? {
         
-        //guard completionHandler != nil else { return nil }
+        // guard completionHandler != nil else { return nil }
 
         let decodeHandler = { (data: Data?, response: URLResponse?, error: Error?) -> () in
 
@@ -201,7 +201,7 @@ extension FTServiceStack1 {
                 DispatchQueue.main.async {
                     self.completionHandler?(FTSericeStatus.success(self, self.statusCode ?? 500))
                 }
-            }else {
+            } else {
                 DispatchQueue.main.async {
                     self.completionHandler?(FTSericeStatus.failed(nil, self.statusCode ?? 500))
                 }

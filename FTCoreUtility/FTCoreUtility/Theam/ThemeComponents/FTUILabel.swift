@@ -93,10 +93,10 @@ extension UILabel: FTUILabelThemeProtocol {
     //Force Update text with same value to trigger Theme changes  
     public func updateVisualThemes() {
         
-        //Force update
+        // Force update
         if let text = self.attributedText {
             self.attributedText = text
-        }else if let text = self.text {
+        } else if let text = self.text {
             self.text = text
         }
     }
