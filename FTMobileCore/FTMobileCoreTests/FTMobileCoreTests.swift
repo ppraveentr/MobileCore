@@ -9,7 +9,7 @@
 import XCTest
 @testable import FTMobileCore
 
-class AccountDetail: FTModelData {
+class AccountDetail: FTServiceModel {
     var value: String = ""
     var name: String = ""
     init(value: String, name: String) {
@@ -18,7 +18,7 @@ class AccountDetail: FTModelData {
     }
 }
 
-class Account: FTModelData {
+class Account: FTServiceModel {
     var name: String = ""
     var type: AccountDetail? = nil
     var data: [String] = []
@@ -35,7 +35,7 @@ class TestService: FTServiceClient {
     var inputStack: Account?
     var responseStack: AccountDetail?
 
-    required init(inputStack: FTModelData?) {
+    required init(inputStack: FTServiceModel?) {
         self.inputStack = inputStack as? Account
     }
 }
@@ -87,7 +87,7 @@ class FTMobileCoreTests: XCTestCase {
 
                 print(className.self)
 
-                try FTModelObject.createDataModel(ofType: AccountDetail.self, fromJSON: [
+                try FTServiceModel.makeModel(json: [
                     "value" : "Details_2",
                     "name" : "name"
                 ])
@@ -100,7 +100,7 @@ class FTMobileCoreTests: XCTestCase {
 
     func testModelDataCreation_Failure() {
         do {
-            try FTModelObject.createDataModel(ofType: Account.self, fromJSON: 23)
+            try FTServiceModel.makeModel(json: 23)
         }catch FTJsonParserError.invalidJSON {
             XCTAssert(true)
         }catch {

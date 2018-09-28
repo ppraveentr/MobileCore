@@ -13,7 +13,7 @@ public extension UINavigationBar {
     /**
      *  Configures the navigation bar to use an image as its background.
      */
-    public class func applyBackgroundImage(navigationBar: UINavigationBar?, defaultColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+    public static func applyBackgroundImage(navigationBar: UINavigationBar?, defaultColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
                                            landScapeColor landScape: UIColor? = nil) {
         self.applyBackgroundImage(navigationBar: navigationBar, defaultImage: defaultColor.generateImage(),
                                   landScapeImage: landScape?.generateImage() ?? defaultColor.generateImage())
@@ -22,7 +22,7 @@ public extension UINavigationBar {
     /**
      *  Configures the navigation bar to use an image as its background.
      */
-    public class func applyBackgroundImage(navigationBar: UINavigationBar?, defaultImage: UIImage = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).generateImage(),
+    public static func applyBackgroundImage(navigationBar: UINavigationBar?, defaultImage: UIImage = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).generateImage(),
                                            landScapeImage landScape: UIImage? = nil) {
         
         // These background images contain a small pattern which is displayed
@@ -65,7 +65,7 @@ public extension UINavigationBar {
      *  Configures the navigation bar to use a transparent background (see-through
      *  but without any blur).
      */
-    public class func applyTransparentBackground(navigationBar: UINavigationBar?, _ opacity: CGFloat) {
+    public static func applyTransparentBackground(navigationBar: UINavigationBar?, _ opacity: CGFloat) {
         
         let navigationBar = navigationBar ??
             UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
@@ -88,7 +88,7 @@ public extension UINavigationBar {
      *  Configures the navigation bar to use a custom color as its background.
      *  The navigation bar remains translucent.
      */
-    public class func applyTintColor(navigationBar: UINavigationBar?, _ color: UIColor) {
+    public static func applyTintColor(navigationBar: UINavigationBar?, _ color: UIColor) {
         
         let navigationBar = navigationBar ??
             UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])

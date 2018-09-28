@@ -59,7 +59,7 @@ public extension UIColor {
         return String(format:"#%06x", rgb)
     }
     
-    public class func hexColor (_ hex:String) -> UIColor? {
+    public static func hexColor (_ hex:String) -> UIColor? {
 
         // Check if its acutal hex coded string
         if !hex.hasPrefix("#") { return nil }

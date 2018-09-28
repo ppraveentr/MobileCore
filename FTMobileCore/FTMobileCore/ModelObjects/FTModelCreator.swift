@@ -14,12 +14,12 @@ enum FTModelBindType: String {
     case Int
 }
 
-public enum FTModelDataType: String {
+public enum FTServiceModelType: String {
     case classType = "class"
     case structType = "struct"
 }
 
-fileprivate let kRootModel = "FTModelData"
+fileprivate let kRootModel = "FTServiceModel"
 fileprivate let kStringType = "String"
 fileprivate let kDefaultStringValue = "nil"
 fileprivate let kDefaultArrayValue = "nil" //[]
@@ -27,6 +27,17 @@ fileprivate let kDefaultArrayValue = "nil" //[]
 fileprivate let kBindingKey = "bindKey"
 fileprivate let kBindingAsType = "bindAs"
 fileprivate let kBindingAsArray = "arrayOf"
+
+/*
+ switch repsType {
+ case "arrayOf":
+ if let obje = "Array<\(repsModelName)>".classInstance() {
+ modelType = obje
+ }
+ default:
+ break
+ }
+ */
 
 open class FTModelCreator {
     
@@ -56,12 +67,12 @@ open class FTModelCreator {
         return fileWriter
     }
     
-    static var modelType: FTModelDataType = .classType
+    static var modelType: FTServiceModelType = .classType
 
     //MARK: Configurations
     class open func configureSourcePath(path: String) { FTModelCreator.sourcePath = path }
     class open func configureOutputPath(path: String) { FTModelCreator.outputPath = URL(string: path) }
-    class open func configureModel(type: FTModelDataType) { FTModelCreator.modelType = type }
+    class open func configureModel(type: FTServiceModelType) { FTModelCreator.modelType = type }
 
     //MARK:
     class open func generateOutput() {

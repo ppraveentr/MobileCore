@@ -28,12 +28,12 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
 
     //FTUILabelThemeProperyProtocol
     public var islinkDetectionEnabled = true {
-        didSet{
+        didSet {
             self.updateLabelStyleProperty()
         }
     }
     public var isLinkUnderLineEnabled = true {
-        didSet{
+        didSet {
             self.updateLabelStyleProperty()
         }
     }
@@ -72,7 +72,7 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
                 self.bounds = CGRect(origin: bounds.origin, size: CGSize(width: frame.width, height: bounds.height))
             }
         }
-        didSet{
+        didSet {
             self.updateTextContainerSize()
         }
     }

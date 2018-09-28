@@ -61,7 +61,9 @@ public class FTMobileConfig {
     var modelSchema = JSON()
     
     //MARK: Init with Relection
-    init() { FTReflection.registerModuleIdentifier(FTMobileConfig.self) }
+    init() {
+        FTReflection.registerModuleIdentifier(FTMobileConfig.self)
+    }
 }
 
 //MARK: Model Schema
@@ -74,26 +76,28 @@ extension FTMobileConfig {
         return ""
     }
 
-    public class func loadModelSchema(_ data: [String : Any] ) throws {
+    public static func loadModelSchema(_ data: [String : Any] ) throws {
 
         if JSONSerialization.isValidJSONObject(data) {
             self.sharedInstance.modelSchema += data
         }
     }
 
-    public class func loadModelSchema(fromPath path: String ) throws {
+    public static func loadModelSchema(fromPath path: String ) throws {
 
         let path = serviceBindingDirectory()
         try path.filesAtPath({ (filePath) in
             do {
                 if let content: JSON = try filePath.jsonContentAtPath() {
-                    try? loadModelSchema(content)
+                    try loadModelSchema(content)
                 }
-            } catch {}
+            } catch {
+                print(error)
+            }
         })
     }
 
-    public class func schemaForClass(classKey: String) throws -> JSON? {
+    public static func schemaForClass(classKey: String) throws -> JSON? {
         return self.sharedInstance.modelSchema[classKey] as? JSON
     }
 }
@@ -101,7 +105,7 @@ extension FTMobileConfig {
 //MARK: Binding Rules
 extension FTMobileConfig {
 
-    public class func loadBindingRules() throws {
+    public static func loadBindingRules() throws {
 
         if
             let resourcePath = Bundle.main.path(forResource: self.serviceBindingRulesName, ofType: nil),

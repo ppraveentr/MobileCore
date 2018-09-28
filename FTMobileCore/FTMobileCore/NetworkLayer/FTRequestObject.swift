@@ -11,7 +11,7 @@ import Foundation
 /**
  The standard HTTP Verbs
  */
-public enum FTReqeustPathType: String, Codable {
+public enum FTReqeustType: String, Codable {
     case GET
     case POST
     case PUT
@@ -24,28 +24,25 @@ public enum FTReqeustPathType: String, Codable {
      case CONNECT
      */
     case UNKNOWN
+
+    func stringValue() -> String {
+        if self == .FORM {
+            return FTReqeustType.POST.rawValue
+        }
+        return self.rawValue
+    }
 }
 
-final class FTRequestBase: FTModelData {
+final class FTRequestBase: FTServiceModel {
     var timeOut: Int?
-
-//    /* Coding Keys */
-//    enum CodingKeys: String, CodingKey  {
-//        case timeOut
-//    }
 }
 
-final class FTRequestObject: FTModelData {
-    var type: FTReqeustPathType = .POST
+final class FTRequestObject: FTServiceModel {
+    var type: FTReqeustType = .POST
     var path: String?
     var baseURL: String?
     var requestQuery: [String:String]?
     var request: [String:String]?
-    var responseType: String?
-
-//    /* Coding Keys */
-//    enum CodingKeys: String, CodingKey  {
-//        case type, path, baseURL, requestQuery, request //, response
-//    }
+    var responseType: [String:String]?
 }
 

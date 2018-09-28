@@ -15,7 +15,7 @@ protocol FTAppearanceManagerProtocol {
 
 open class FTAppearanceManager {
 
-    class func getComponentName(_ appearanceName: String) -> (String, String?) {
+    static func getComponentName(_ appearanceName: String) -> (String, String?) {
         let components = appearanceName.components(separatedBy: ":")
 
         if components.count > 1 {
@@ -25,7 +25,7 @@ open class FTAppearanceManager {
         return (appearanceName, nil)
     }
 
-    class func __setupThemes__() {
+    static func __setupThemes__() {
         guard let app = FTThemesManager.getAppearance() as? FTThemeDic else {
             return
         }
@@ -54,7 +54,7 @@ open class FTAppearanceManager {
 
 extension FTThemesManager {
 
-    public class func setStatusBarBackgroundColor(_ color: UIColor) {
+    public static func setStatusBarBackgroundColor(_ color: UIColor) {
         
         if
             let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as? UIView,
@@ -71,7 +71,7 @@ extension UIView : FTAppearanceManagerProtocol {
     }
 
     @discardableResult
-    @objc open class func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?)  -> UIAppearance {
+    @objc public class func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?)  -> UIAppearance {
 
         let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
 
@@ -86,11 +86,11 @@ extension UIView : FTAppearanceManagerProtocol {
         return appearance
     }
     
-    @objc open class func setBackgroundImage(_ imageTheme: Any) {
+    @objc public class func setBackgroundImage(_ imageTheme: Any) {
         self.setBackgroundImage(imageType: ThemeStyle.defaultStyle, imageName: imageTheme)
     }
     
-    open class func setBackgroundImage(imageType: String?, imageName: Any) {
+    public class func setBackgroundImage(imageType: String?, imageName: Any) {
         
         if let types = imageName as? FTThemeDic {
             types.forEach({ setBackgroundImage(imageType: $0, imageName: $1) })
@@ -111,13 +111,13 @@ extension UIView : FTAppearanceManagerProtocol {
 
 extension UISegmentedControl {
 
-    open override class func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?)  -> UIAppearance {
+    override public class func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?)  -> UIAppearance {
         return super.setUpAppearance(theme: theme, containerClass: containerClass)
 //        let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
 //        return appearance
     }
     
-    open class func setBackgroundImage(imageType: String, image: UIImage) {
+    public class func setBackgroundImage(imageType: String, image: UIImage) {
         
         let image = image.withRenderingMode(.alwaysTemplate)
             .resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3))
@@ -137,11 +137,11 @@ extension UISegmentedControl {
 
 extension UINavigationBar {
     
-    open override class func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
+    override public class func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         super.setUpAppearance(theme: theme, containerClass: containerClass)
 
         let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
-
+        
         if let value = theme["backIndicatorImage"] {
             appearance.backIndicatorImage = FTThemesManager.getImage(value)
         }
@@ -161,7 +161,7 @@ extension UINavigationBar {
         return appearance
     }
     
-    open override class func setBackgroundImage(_ image: Any) {
+    override public class func setBackgroundImage(_ image: Any) {
         
         var defaultImage: UIImage? = FTThemesManager.getImage(image)
         var landScapeImage: UIImage? = nil
@@ -179,7 +179,7 @@ extension UINavigationBar {
 
 extension UITabBar {
     
-    open override class func setBackgroundImage(_ image: Any) {
+    override public class func setBackgroundImage(_ image: Any) {
         
         let appearance = self.appearance()
 

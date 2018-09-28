@@ -1,5 +1,5 @@
 //
-//  FTModelObject.swift
+//  FTServiceModel.swift
 //  FTMobileCore
 //
 //  Created by Praveen Prabhakar on 15/06/17.
@@ -38,44 +38,44 @@ func += <K> ( left: inout [K], right: [K]) {
     }
 }
 
-public protocol FTModelData: Codable {
-    static func createModelData(json: String) throws -> Self
-    static func createModelData(json: Data) throws -> Self
+public protocol FTServiceModel: Codable {
+    static func makeModel(json: String) throws -> Self
+    static func makeModel(json: Data) throws -> Self
     static func createEmpytModel() -> Self
 
     //JSON
     func jsonModel() -> JSON?
     func jsonModelData() -> Data?
     func jsonString() -> String?
-    mutating func merge(data: FTModelData)
+    mutating func merge(data: FTServiceModel)
     //URL
     func queryItems() -> [URLQueryItem]
 }
 
-//FIXIT: To Extend 'FTModelData' to sequence Item with confirms 'Codable'.
-extension Array: FTModelData where Element: Codable { }
-extension Dictionary: FTModelData where Key: Codable, Value: Codable { }
+//FIXIT: To Extend 'FTServiceModel' to sequence Item with confirms 'Codable'.
+extension Array: FTServiceModel where Element: Codable { }
+extension Dictionary: FTServiceModel where Key: Codable, Value: Codable { }
 
-public extension FTModelData {
+public extension FTServiceModel {
 
     static func createEmpytModel() -> Self {
-        return try! createModelData(json: [:])
+        return try! makeModel(json: [:])
     }
 
-    static public func createModelData(json: String) throws  -> Self {
+    static public func makeModel(json: String) throws  -> Self {
         let jsonData = json.data(using: .utf8)
         let data = try JSONDecoder().decode(Self.self, from:jsonData!)
         return data
     }
     
-    static public func createModelData(json: Data) throws  -> Self {
+    static public func makeModel(json: Data) throws  -> Self {
         let data = try JSONDecoder().decode(Self.self, from:json)
         return data
     }
 
-    static public func createModelData(json: JSON) throws  -> Self {
+    static public func makeModel(json: JSON) throws  -> Self {
         let data = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-        return try self.createModelData(json: data)
+        return try self.makeModel(json: data)
     }
 
     func jsonModelData() -> Data? {
@@ -113,12 +113,12 @@ public extension FTModelData {
         return string
     }
 
-    mutating func merge(data sourceData: FTModelData) {
+    mutating func merge(data sourceData: FTServiceModel) {
 
         let json = self.jsonModel()
         let data = json?.merging(sourceData.jsonModel()!, uniquingKeysWith: { (left, right) -> Any in
-            if var leftJson = left as? FTModelData,
-               let rightJson = right as? FTModelData {
+            if var leftJson = left as? FTServiceModel,
+               let rightJson = right as? FTServiceModel {
                 return leftJson.merge(data: rightJson)
             }
             else
@@ -130,7 +130,7 @@ public extension FTModelData {
             return right
         })
 
-        self = try! Self.createModelData(json: data!)
+        self = try! Self.makeModel(json: data!)
     }
 
     // Encode complex key/value objects in NSRULQueryItem pairs
@@ -170,12 +170,33 @@ public extension FTModelData {
         return query
 
     }
+
+    //FORM
+    func formData() -> Data? {
+        
+        guard let json = self.jsonModel() else { return nil }
+
+        var postData: Data? = nil
+
+        json.forEach { (arg) in
+            if let value = arg.value as? String {
+                let key = arg.key
+                if postData == nil {
+                    postData = "\(key)=\(value)".data(using: String.Encoding.utf8)!
+                }else {
+                    postData!.append("&\(key)=\(value)".data(using: String.Encoding.utf8)!)
+                }
+            }
+        }
+
+        return postData
+    }
 }
 
-public class FTModelObject {
+open class FTServiceModelObject: FTServiceModel {
     
     @discardableResult
-    public class func createDataModel<S: FTModelData>(ofType modelType: S.Type,
+    public static func makeModel<S: FTServiceModel>(ofType modelType: S.Type,
                                       fromJSON json: Any) throws -> S {
         
         guard (json is String) || (json is Data) else {
@@ -183,9 +204,9 @@ public class FTModelObject {
         }
         
         if (json is String) {
-            return try modelType.createModelData(json: json as! String)
+            return try modelType.makeModel(json: json as! String)
         }
         
-        return try modelType.createModelData(json: json as! Data)
+        return try modelType.makeModel(json: json as! Data)
     }
 }

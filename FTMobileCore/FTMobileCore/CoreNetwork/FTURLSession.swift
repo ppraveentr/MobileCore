@@ -13,7 +13,7 @@ public typealias FTURLSessionCompletionBlock = (Data?, URLResponse?, Error?) -> 
 open class FTURLSession: NSObject {
 
     static let sharedInstance = FTURLSession()
-    static var sessionConfiguration: URLSessionConfiguration = .ephemeral
+    static var sessionConfiguration: URLSessionConfiguration = .default
     static var sessionDelegate: URLSessionDelegate? = FTURLSession.sharedInstance
     static var sessionQueue = OperationQueue()
 
@@ -45,24 +45,10 @@ open class FTURLSession: NSObject {
 }
 
 extension FTURLSession: URLSessionDelegate {
-    class func createURLSession() -> URLSession {
-//        return URLSession.shared
+    static func createURLSession() -> URLSession {
         return URLSession(configuration: FTURLSession.sessionConfiguration,
                           delegate: FTURLSession.sessionDelegate,
                           delegateQueue: nil)
     }
 
-    public func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
-    }
-
-    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-
-    }
-
-
-    public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        if challenge.protectionSpace.host == "127.0.0.1", let trust = challenge.protectionSpace.serverTrust {
-            challenge.sender?.use(URLCredential.init(trust: trust), for: challenge)
-        }
-    }
 }

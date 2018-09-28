@@ -16,7 +16,7 @@ public func get_classNameAsString(obj: Any) -> String? {
 public extension String {
     
     //String Extension
-    func getClassInstance () -> AnyClass? {
+    func classInstance () -> AnyClass? {
         return FTReflection.swiftClassTypeFromString(self)
     }
 }
@@ -27,14 +27,14 @@ final public class FTReflection {
     // TODO: Make it a SET, so to have unquie elements
     fileprivate static var moduleIdentifiers: [String] = []
     
-    public class func getRegisterdModuleIdentifier() -> [String] {
+    public static func getRegisterdModuleIdentifier() -> [String] {
         return moduleIdentifiers
     }
     
     /**
      - parameter object: The class that will be used to find the appName for in which we can find classes by string.
      */
-    public class func registerModuleIdentifier(_ object: Any? = nil) {
+    public static func registerModuleIdentifier(_ object: Any? = nil) {
         
         if moduleIdentifiers.count == 0 {
             moduleIdentifiers.append(nameForBundle(Bundle(for: self)))
@@ -78,7 +78,7 @@ final public class FTReflection {
      
      - returns: The Class type
      */
-    public class func swiftClassTypeFromString(_ className: String) -> AnyClass? {
+    public static func swiftClassTypeFromString(_ className: String) -> AnyClass? {
         if let c = NSClassFromString(className) {
             return c
         }
@@ -99,7 +99,7 @@ final public class FTReflection {
      
      - returns: The Class type
      */
-    public class func swiftClassFromString(_ className: String) -> NSObject? {
+    public static func swiftClassFromString(_ className: String) -> NSObject? {
         return (swiftClassTypeFromString(className) as? NSObject.Type)?.init()
     }
     
@@ -111,7 +111,7 @@ final public class FTReflection {
 
      - returns: The string representation of the class (name of the bundle dot name of the class)
      */
-    public class func swiftStringFromClass(_ theObject: Any) -> String? {
+    public static func swiftStringFromClass(_ theObject: Any) -> String? {
         
         var classNanme = theObject
         
@@ -134,7 +134,7 @@ final public class FTReflection {
      
      - returns: A cleaned up name of the app.
      */
-    public class func getCleanAppName(_ forObject: Any? = nil) -> String {
+    public static func getCleanAppName(_ forObject: Any? = nil) -> String {
         // if an object was specified, then always use the bundle name of that class
         if let object = forObject as? NSObject {
             return nameForBundle(Bundle(for: type(of: object)))

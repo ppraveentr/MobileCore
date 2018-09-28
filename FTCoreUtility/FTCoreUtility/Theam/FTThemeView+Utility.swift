@@ -61,7 +61,7 @@ extension UIView {
     static var SwizzleLayoutSubview = {
         FTInstanceSwizzling(UIView.self, #selector(layoutSubviews), #selector(swizzled_layoutSubviews))
     }
-    class func __setupThemes__() { _ = SwizzleLayoutSubview }
+    static func __setupThemes__() { _ = SwizzleLayoutSubview }
     
     //Theme style-name for the view
     @IBInspectable

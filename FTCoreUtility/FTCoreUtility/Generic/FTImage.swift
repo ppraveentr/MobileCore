@@ -14,7 +14,7 @@ class FTImage: UIImage {
 
 public extension UIImage {
     
-    public class func named(_ named: String) -> UIImage? {
+    public static func named(_ named: String) -> UIImage? {
         return FTThemesManager.getImage(named)
     }
 }

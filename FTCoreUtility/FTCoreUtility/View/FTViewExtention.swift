@@ -11,7 +11,7 @@ import Foundation
 public extension UIView {
     
     //Add 'contentView' as subView and pin the View to all edges
-    public class func embedView(contentView: UIView) -> UIView {
+    public static func embedView(contentView: UIView) -> UIView {
         
         let local = self.init()
         local.backgroundColor = .clear
@@ -38,17 +38,17 @@ public extension UIView {
     
     //MARK: XIB
     //Get nib based on once's class name
-    public class func getNIBFile() -> UINib? {
+    public static func getNIBFile() -> UINib? {
         return UINib(nibName: get_classNameAsString(obj: self) ?? "", bundle: nil)
     }
     
     //Get view based on once's class name
-    public class func fromNib(_ owner: Any? = nil) -> UIView? {
+    public static func fromNib(_ owner: Any? = nil) -> UIView? {
         return fromNib(named: get_classNameAsString(obj: self) ?? "", owner: owner)
     }
     
     //Retruns first view from the nib file
-    public class func fromNib(named name: String, owner: Any? = nil) -> UIView? {
+    public static func fromNib(named name: String, owner: Any? = nil) -> UIView? {
         // Get all object inside the nib
         let allObjects = Bundle.main.loadNibNamed(name, owner: owner, options: nil) ?? []
         // Get first view object
