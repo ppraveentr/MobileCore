@@ -1,5 +1,6 @@
 # MobileCore
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7f21a2951bb342bba9ace6509f1192b4)](https://app.codacy.com/app/ppraveentr/MobileCore?utm_source=github.com&utm_medium=referral&utm_content=ppraveentr/MobileCore&utm_campaign=Badge_Grade_Settings)
 [![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
 [![Language](http://img.shields.io/badge/language-swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
