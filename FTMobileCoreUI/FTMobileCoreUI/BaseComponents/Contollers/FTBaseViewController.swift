@@ -12,7 +12,8 @@ open class FTBaseViewController : UIViewController {
     
     @IBOutlet
     lazy open var baseView: FTBaseView? = FTBaseView()
-    
+    public static var kLeftButtonAction = #selector(leftButtonAction)
+
     open override func loadView() {
         // Make it as Views RooView
         self.view = self.baseView
@@ -23,7 +24,7 @@ open class FTBaseViewController : UIViewController {
     }
     
     //Setup baseView's topLayoutGuide by sending true in subControllers if needed
-    public func shouldSetSafeAreaLayoutGuide() -> Bool {
+    open func shouldSetSafeAreaLayoutGuide() -> Bool {
         return true
     }
     
@@ -34,11 +35,83 @@ open class FTBaseViewController : UIViewController {
         
         return self.baseView?.mainPinnedView
     }
+
+    // MARK: Navigation Bar
+    public func setupNavigationbar(title: String,
+                            leftButtonTitle: String? = nil, leftButtonImage: UIImage? = nil, leftButtonAction: Selector? = kLeftButtonAction,
+                            rightButtonTitle: String? = nil, rightButtonImage: UIImage? = nil, rightButtonAction: Selector? = #selector(rightButtonAction)) {
+        self.title = title
+
+        if leftButtonTitle != nil || leftButtonImage != nil {
+            self.leftButton(title: leftButtonTitle, image: leftButtonImage, buttonAction: leftButtonAction)
+        }
+        if rightButtonTitle != nil || rightButtonImage != nil {
+            self.setRightButton(title: rightButtonTitle, image: rightButtonImage, buttonAction: rightButtonAction)
+        }
+    }
+
+    public func setupNavigationbar(title: String,
+                                   leftButton: UIBarButtonItem? = nil, rightButton: UIBarButtonItem? = nil) {
+        self.title = title
+        self.navigationItem.leftBarButtonItem = leftButton
+        self.navigationItem.rightBarButtonItem = rightButton
+    }
+
+    @discardableResult
+    public func leftButton(title: String? = nil, image: UIImage? = nil, buttonType: UIBarButtonItem.SystemItem = .stop, buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem {
+        let backButton = self.navigationBarButton(title: title, image: image, buttonType:buttonType, buttonAction: buttonAction)
+        self.navigationItem.leftBarButtonItem = backButton
+        return backButton
+    }
+
+    @discardableResult
+    public func setRightButton(title: String? = nil, image: UIImage? = nil, buttonType: UIBarButtonItem.SystemItem = .done, buttonAction: Selector? = #selector(rightButtonAction)) -> UIBarButtonItem? {
+        let backButton = self.navigationBarButton(title: title, image: image, buttonType: buttonType, buttonAction: buttonAction)
+        self.navigationItem.rightBarButtonItem = backButton
+        return backButton
+    }
+
+    public func navigationBarButton(title: String? = nil, image: UIImage? = nil, buttonType: UIBarButtonItem.SystemItem, buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem {
+
+        guard title != nil, image != nil else {
+            return UIBarButtonItem(barButtonSystemItem: buttonType, target: self, action: buttonAction)
+        }
+
+        let button = FTButton(type: .custom)
+        button.titleLabel?.text = title
+        button.imageView?.image = image
+        if let buttonAction = buttonAction {
+            button.target(forAction: buttonAction, withSender: self)
+        }
+
+        let backButton = UIBarButtonItem(customView: button)
+        return backButton
+    }
+
+    //MARK: Dissmiss Self model
+    public func dismissSelf(_ animated: Bool = true) {
+        if navigationController != nil, navigationController?.viewControllers.first != self {
+            navigationController?.popViewController(animated: animated)
+        }
+        else if let presentedViewController = self.presentedViewController {
+            presentedViewController.dismiss(animated: animated, completion: nil)
+        }else{
+            self.dismiss(animated: animated, completion: nil)
+        }
+    }
+
+    @objc public func leftButtonAction() {
+        dismissSelf()
+    }
+
+    @objc public func rightButtonAction() {
+    }
+    
 }
 
-//MARK: Layout Guide for rootView
 extension FTBaseViewController {
-    
+
+    //MARK: Layout Guide for rootView
     func setupBaseView() {
         
         let local = self.baseView?.rootView

@@ -31,7 +31,7 @@ open class FTContentView: FTScrollView {
         stopObservingHeight()
     }
     
-    
+    // Observe webview content height
     func startObservingHeight(_ webView: FTWebView) {
         
         webView.scrollView.isScrollEnabled = false
