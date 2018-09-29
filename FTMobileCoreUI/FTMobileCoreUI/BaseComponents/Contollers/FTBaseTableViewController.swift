@@ -50,7 +50,7 @@ open class FTBaseTableViewController: FTBaseViewController {
     }
 
     public var tableView: FTTableView {
-        //madates to FTTableView.
+        // madates to FTTableView.
         get {
             return self.tableViewController.tableView as! FTTableView
         }

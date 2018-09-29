@@ -8,13 +8,13 @@
 
 import Foundation
 
-//Propery variable to store theme's value.
+// Propery variable to store theme's value.
 public protocol FTUILabelThemeProperyProtocol: AnyObject {
     var islinkDetectionEnabled: Bool { get set }
     var isLinkUnderLineEnabled: Bool { get set }
 }
 
-//Used for UIView subclasses Type
+// Used for UIView subclasses Type
 protocol FTUILabelThemeProtocol: FTThemeProtocol {
     // aUsed for Label
     func theme_isLinkUnderlineEnabled(_ bool: Bool)
@@ -67,7 +67,9 @@ public extension FTThemeProtocol where Self: UILabel {
             default:
                 break
             }
+
         }
+
     }
     
 }

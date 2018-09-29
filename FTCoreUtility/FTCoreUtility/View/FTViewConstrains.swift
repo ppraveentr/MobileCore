@@ -28,7 +28,7 @@ public class FTViewLayoutConstraint {
     public var widthDimension: NSLayoutDimension?
 }
 
-//public struct FTLayoutDirection: OptionSet {
+// public struct FTLayoutDirection: OptionSet {
 //    
 //    public let rawValue: UInt
 //    public init(rawValue: UInt) { self.rawValue = rawValue }
@@ -40,7 +40,7 @@ public class FTViewLayoutConstraint {
 ////    public static let PinFirstAlone = FTLayoutDirection(1 << 3)
 ////    public static let PinLastAlone = FTLayoutDirection(1 << 4)
 ////    public static let PinBothSides:FTLayoutDirection = [ .PinFirstAlone, .PinLastAlone ]
-//}
+// }
 
 public struct FTEdgeOffsets {
     
@@ -65,9 +65,14 @@ public struct FTEdgeOffsets {
     
     public static func FTEdgeOffsetsZero() -> FTEdgeOffsets { return FTEdgeOffsets(0, 0, 0, 0) }
     
-    func getRight() -> CGFloat { return -self.right }
+    func getRight() -> CGFloat {
+        return -self.right
+    }
     
-    func getBottom() -> CGFloat { return -self.bottom }
+    func getBottom() -> CGFloat {
+        return -self.bottom
+    }
+    
 }
 
 public struct FTEdgeInsets: OptionSet {

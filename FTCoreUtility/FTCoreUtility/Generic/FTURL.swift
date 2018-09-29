@@ -33,7 +33,7 @@ public extension URL {
 
             // Update view's image in main thread
             DispatchQueue.main.async() { () in
-                //After Image download compeltion
+                // After Image download compeltion
                 comletionHandler?(image)
             }
 

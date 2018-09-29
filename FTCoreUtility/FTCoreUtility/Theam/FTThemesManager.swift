@@ -16,7 +16,7 @@ open class FTThemesManager {
     static var themesJSON: FTThemeDic = [:] {
         willSet {
             if themesJSON.isEmpty && !newValue.isEmpty {
-                //Inital view config
+                // Inital view config
                  UIView.__setupThemes__()
             }
         }
@@ -233,7 +233,9 @@ extension FTThemesManager {
     }
     
     // MARK: Component
-    fileprivate class var themeComponent: FTThemeDic? { return FTThemesManager.themesJSON["components"] as? FTThemeDic }
+    fileprivate class var themeComponent: FTThemeDic? {
+        return FTThemesManager.themesJSON["components"] as? FTThemeDic
+    }
 
     fileprivate static func isThemeComponentValid(_ component: String) -> Bool {
         // Get all the components of spefic type
@@ -265,10 +267,14 @@ extension FTThemesManager {
     fileprivate class var themeColor: FTThemeDic? { return FTThemesManager.themesJSON["color"] as? FTThemeDic }
 
     // Color -
-    fileprivate static func themeColor(_ colorName: String) -> String? { return self.themeColor?[colorName] as? String }
+    fileprivate static func themeColor(_ colorName: String) -> String? {
+        return self.themeColor?[colorName] as? String
+    }
 
     // MARK: Font
-    fileprivate class var themeFont: FTThemeDic? { return FTThemesManager.themesJSON["font"] as? FTThemeDic }
+    fileprivate class var themeFont: FTThemeDic? {
+        return FTThemesManager.themesJSON["font"] as? FTThemeDic
+    }
 
     // Font -
     fileprivate static func themeFont(_ fontName: String) -> FTThemeDic? {
@@ -276,7 +282,9 @@ extension FTThemesManager {
     }
 
     // MARK: Appearance
-    fileprivate class var themeAppearance: FTThemeDic? { return FTThemesManager.themesJSON["appearance"] as? FTThemeDic }
+    fileprivate class var themeAppearance: FTThemeDic? {
+        return FTThemesManager.themesJSON["appearance"] as? FTThemeDic
+    }
 
     // Appearance -
     fileprivate static func themeAppearance(_ appearanceName: String? = nil) -> Any? {
@@ -322,7 +330,7 @@ extension FTThemesManager {
                 superCom += viewComponent
                 superCom.removeValue(forKey: "_super")
                 
-                //Merged result
+                // Merged result
                 return superCom
             }
 
@@ -335,7 +343,7 @@ extension FTThemesManager {
             }
             break
             
-            //Convert JSON to UIFont
+            // Convert JSON to UIFont
         case .Font:
             superBlock = { (fontName) in
                 return themeFont(fontName)
@@ -355,7 +363,7 @@ extension FTThemesManager {
             let superType = currentComponent["_super"] as? String,
             let superComponents = superBlock?(superType) as? FTThemeDic {
             
-            //Merge super's style with current theme
+            // Merge super's style with current theme
             actualComponents = superComponents + currentComponent
         }
         

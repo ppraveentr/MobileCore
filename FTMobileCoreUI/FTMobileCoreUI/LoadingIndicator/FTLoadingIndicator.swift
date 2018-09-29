@@ -200,6 +200,7 @@ public class FTLoadingIndicator: UIView {
     /**
      *  Loader View
      */
+    // MARK: CALoadingView
     class CALoadingView : UIView {
         
         private var speed : Int?
@@ -296,11 +297,11 @@ public class FTLoadingIndicator: UIView {
             self.isSpinning? = false
         }
     }
-    
-    
+
     /**
      * Loader config
      */
+    // MARK: Loader config
     public struct Config {
         
         /**

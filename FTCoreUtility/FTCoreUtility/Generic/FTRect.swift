@@ -10,6 +10,7 @@ import Foundation
 
 // MARK: CGRect
 public extension CGRect {
+    
     // Usefull if used in ObjC
     func getX() -> CGFloat {
         return self.origin.x

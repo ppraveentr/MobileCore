@@ -10,7 +10,7 @@ import Foundation
 
 fileprivate var AssociatedObjectDescriptiveName = "FTAssociatedObject_AssociatedObjectDescriptiveName"
 
-//Generic way of storing values on runtime
+// Generic way of storing values on runtime
 public class FTAssociatedObject<T> {
     
     private var aoPolicy: objc_AssociationPolicy

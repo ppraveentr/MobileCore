@@ -93,7 +93,7 @@ public extension UIView {
     
 }
 
-//Used for Bar items
+// Used for Bar items
 public extension UIView {
     
     // Find all UIImageView with 'height <= 1'

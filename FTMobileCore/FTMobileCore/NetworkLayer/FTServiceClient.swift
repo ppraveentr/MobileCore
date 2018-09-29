@@ -201,6 +201,7 @@ public extension FTServiceClient {
 
     func fireAfter(data: Data?, response: URLResponse?, error: Error?) {
     }
+
 }
 
 extension FTServiceClient {

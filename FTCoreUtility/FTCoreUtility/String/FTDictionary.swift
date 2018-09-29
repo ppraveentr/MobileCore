@@ -9,14 +9,16 @@
 import Foundation
 
 public extension Dictionary {
+
     public func keyPath<T>(_ keyPath: String) -> T? {
         return (self as NSDictionary).value(forKeyPath: keyPath) as? T
     }
+    
 }
 
-//public func <-- <K,V> (dic: [K:V], key: K) -> V {
+// public func <-- <K,V> (dic: [K:V], key: K) -> V {
 //    return (dic as NSDictionary).value(forKeyPath: key as! String) as! V
-//}
+// }
 
 // MARK: Dictionary : 
 // Operator '+' Overloading

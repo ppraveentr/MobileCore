@@ -29,7 +29,7 @@ public struct ThemeStyle {
     
 }
 
-//Used for UIView subclasses Type
+// Used for UIView subclasses Type
 public protocol FTThemeProtocol: AnyObject {
     
     // Retruns 'ThemeStyle' specific to current state of object.
@@ -50,7 +50,7 @@ public extension FTThemeProtocol where Self: UIView {
     
 }
 
-//Used for UIControl objects, when multiple states are possible to set at initalization
+// Used for UIControl objects, when multiple states are possible to set at initalization
 public protocol FTUIControlThemeProtocol: FTThemeProtocol {
     
     func get_AllThemeSubType() -> Bool

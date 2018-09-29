@@ -119,7 +119,7 @@ public extension UIColor {
     
     public static func blendColors(color: UIColor, destinationColor: UIColor, amount : CGFloat) -> UIColor {
         var amountToBlend = amount
-        if amountToBlend > 1{
+        if amountToBlend > 1 {
             amountToBlend = 1.0
         }
         else if amountToBlend < 0 {

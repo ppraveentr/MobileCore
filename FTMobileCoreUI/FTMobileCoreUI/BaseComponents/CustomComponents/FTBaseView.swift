@@ -87,7 +87,7 @@ open class FTBaseView: FTView {
 
         if viewArray.count > 1 {
             
-            //Make all subViews of sameSize, to auto-size the view layout
+            // Make all subViews of sameSize, to auto-size the view layout
             rootView.stackView(views: viewArray,
                                layoutDirection: .TopToBottom,
                                edgeInsets: [.LeadingMargin, .TrailingMargin, .EqualWidth])
