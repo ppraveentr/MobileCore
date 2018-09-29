@@ -31,35 +31,22 @@ open class FTTableViewHeaderFooterView: FTView {
         
         return local
     }
+    
 }
 
 
 open class FTTableView: UITableView {
     
     open func setTableHeaderView(view: UIView?) {
-        
-        guard (view != nil || (view?.isKind(of: UIView.self))! ) else {
-            return
-        }
-        
-        var view = view
-        if (view as? FTTableViewHeaderFooterView) == nil {
-            view = FTTableViewHeaderFooterView.embedView(view: view)
-        }
-        
-        self.tableHeaderView = view
+        self.tableHeaderView = embededView(view: view)
     }
     
     open func setTableFooterView(view: UIView?) {
-        
-        guard var view = view else {
-            return
-        }
-        
-        if (view as? FTTableViewHeaderFooterView) == nil {
-            view = FTTableViewHeaderFooterView.embedView(view: view)
-        }
-        
-        self.tableFooterView = view
+        self.tableFooterView = embededView(view: view)
     }
+
+    func embededView(view: UIView?) -> FTTableViewHeaderFooterView? {
+        return view as? FTTableViewHeaderFooterView ?? FTTableViewHeaderFooterView.embedView(view: view)
+    }
+
 }

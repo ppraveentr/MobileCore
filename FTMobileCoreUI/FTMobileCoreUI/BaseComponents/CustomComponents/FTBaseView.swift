@@ -100,6 +100,7 @@ open class FTBaseView: FTView {
         rootView.pin(view: self.mainPinnedView, withEdgeInsets: .Horizontal )
 
     }
+    
 }
 
 extension FTBaseView {
@@ -112,4 +113,5 @@ extension FTBaseView {
             super.addSubview(view)
         }
     }
+    
 }

@@ -75,4 +75,5 @@ open class FTLinkDetection {
         
         return rangeOfURL
     }
+    
 }

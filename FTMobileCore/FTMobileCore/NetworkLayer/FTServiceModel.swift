@@ -20,6 +20,7 @@ func += <K,V> ( left: inout [K:V], right: [K:V]) {
     for (k, v) in right {
         left[k] = v
     }
+    
 }
 
 func += <K,V> ( left: inout [K:V], right: [K:V]) where V: RangeReplaceableCollection {
@@ -30,12 +31,14 @@ func += <K,V> ( left: inout [K:V], right: [K:V]) where V: RangeReplaceableCollec
             left[k] = v
         }
     }
+    
 }
 
 func += <K> ( left: inout [K], right: [K]) {
     for (k) in right {
         left.append(k)
     }
+    
 }
 
 public protocol FTServiceModel: Codable {
@@ -191,6 +194,7 @@ public extension FTServiceModel {
 
         return postData
     }
+    
 }
 
 open class FTServiceModelObject: FTServiceModel {
@@ -209,4 +213,5 @@ open class FTServiceModelObject: FTServiceModel {
         
         return try modelType.makeModel(json: json as! Data)
     }
+    
 }

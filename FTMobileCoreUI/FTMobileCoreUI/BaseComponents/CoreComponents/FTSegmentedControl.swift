@@ -26,4 +26,5 @@ open class FTSegmentedControl: UISegmentedControl {
             completionBlock(self.selectedSegmentIndex)
         }
     }
+    
 }

@@ -126,4 +126,5 @@ open class FTSearchBar: UISearchBar {
         let textField: UITextField? =  self.findInSubView()
         return textField
     }
+    
 }

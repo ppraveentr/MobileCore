@@ -31,6 +31,7 @@ public enum FTReqeustType: String, Codable {
         }
         return self.rawValue
     }
+    
 }
 
 final class FTRequestBase: FTServiceModel {

@@ -119,4 +119,5 @@ class FTThemesTests: XCTestCase {
         
         XCTAssertTrue(theme.count == 1, "Valid no themes not found")
     }
+    
 }

@@ -142,6 +142,7 @@ extension FTBaseViewController {
         }
         
     }
+    
 }
 
 //MARK: Notification whenever view is loaded
@@ -170,4 +171,5 @@ extension FTBaseViewController {
         super.viewDidDisappear(animated)
         postNotification(name: .FTMobileCoreUI_ViewController_DidDisappear)
     }
+    
 }

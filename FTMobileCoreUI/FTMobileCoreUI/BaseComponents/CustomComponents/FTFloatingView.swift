@@ -29,6 +29,7 @@ class FloatingWindow : UIWindow {
         }
         return nil
     }
+    
 }
 
 public class FTFloatingView: FTView {
@@ -138,4 +139,5 @@ public class FTFloatingView: FTView {
             }
         })
     }
+    
 }

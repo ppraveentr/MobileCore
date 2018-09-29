@@ -92,6 +92,7 @@ open class FTModelCreator {
             print("Error reading Data")
         }
     }
+    
 }
 
 extension FTModelCreator {
@@ -279,4 +280,5 @@ extension FTModelCreator {
         let string = "try container.encode(\(key), forKey: .\(key))"
         return string + "\n"
     }
+    
 }

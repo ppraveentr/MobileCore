@@ -24,13 +24,19 @@ public class FTMobileConfig {
 
     // Check for stubData
     static fileprivate var isMockDataModel: Bool = false
+    
     static public var isMockData: Bool {
-        set { isMockDataModel = newValue }
-        get { return isMockDataModel && mockBundle != nil }
+        set {
+            isMockDataModel = newValue
+        }
+        get {
+            return isMockDataModel && mockBundle != nil
+        }
     }
 
     // Stub data bundle, used by FTServiceClient
     static var mockBundle: Bundle? = nil
+
     static public var mockBundleResource: URL? = nil {
         didSet {
             if mockBundleResource != nil {
@@ -42,6 +48,7 @@ public class FTMobileConfig {
     }
     // MARK: Model Binding
     static var modelBindingPath: String = ""
+
     //  TODO: To support multiple sources
     static public var serviceBindingPath: String = "" {
         didSet {
@@ -50,7 +57,8 @@ public class FTMobileConfig {
     }
 
     // MARK: Rules Binding
-     var serviceRuels = JSON()
+    var serviceRuels = JSON()
+
     static public var serviceBindingRulesName: String = "" {
         didSet {
             try? FTMobileConfig.loadBindingRules()
@@ -64,6 +72,7 @@ public class FTMobileConfig {
     init() {
         FTReflection.registerModuleIdentifier(FTMobileConfig.self)
     }
+    
 }
 
 //MARK: Model Schema
@@ -100,6 +109,7 @@ extension FTMobileConfig {
     public static func schemaForClass(classKey: String) throws -> JSON? {
         return self.sharedInstance.modelSchema[classKey] as? JSON
     }
+    
 }
 
 //MARK: Binding Rules
@@ -115,4 +125,5 @@ extension FTMobileConfig {
             }
         }
     }
+    
 }

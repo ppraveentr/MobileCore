@@ -95,4 +95,5 @@ public extension UINavigationBar {
         
         navigationBar.barTintColor = color
     }
+    
 }

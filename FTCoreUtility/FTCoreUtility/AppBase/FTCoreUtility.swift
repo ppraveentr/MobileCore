@@ -37,6 +37,7 @@ open class FTCoreUtility {
 
         return self.topViewController(presentedViewController)
     }
+    
 }
 
 //+ (BOOL)isRegisteredURLScheme:(NSString *)urlScheme {

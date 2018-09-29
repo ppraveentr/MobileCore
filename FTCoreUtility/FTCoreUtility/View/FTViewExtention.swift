@@ -90,6 +90,7 @@ public extension UIView {
         }
         return nil
     }
+    
 }
 
 //Used for Bar items
@@ -122,4 +123,5 @@ public extension UIView {
             shadowImageView.isHidden = true
         }
     }
+    
 }

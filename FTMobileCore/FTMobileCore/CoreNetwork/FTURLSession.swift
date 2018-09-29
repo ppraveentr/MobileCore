@@ -42,9 +42,11 @@ open class FTURLSession: NSObject {
 
         return task
     }
+    
 }
 
 extension FTURLSession: URLSessionDelegate {
+    
     static func createURLSession() -> URLSession {
         return URLSession(configuration: FTURLSession.sessionConfiguration,
                           delegate: FTURLSession.sessionDelegate,

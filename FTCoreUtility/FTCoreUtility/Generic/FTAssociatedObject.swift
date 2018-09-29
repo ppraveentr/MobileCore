@@ -24,8 +24,12 @@ public class FTAssociatedObject<T> {
     }
     
     public subscript(instance: AnyObject) -> T? {
-        get { return objc_getAssociatedObject(instance, Unmanaged.passUnretained(self).toOpaque()) as? T }
-        set { objc_setAssociatedObject(instance, Unmanaged.passUnretained(self).toOpaque(), newValue, self.aoPolicy)}
+        get {
+            return objc_getAssociatedObject(instance, Unmanaged.passUnretained(self).toOpaque()) as? T
+        }
+        set {
+            objc_setAssociatedObject(instance, Unmanaged.passUnretained(self).toOpaque(), newValue, self.aoPolicy)
+        }
     }
 
     public static func setAssociated<T>(instance: Any, value: T?) {
@@ -35,4 +39,5 @@ public class FTAssociatedObject<T> {
     public static func getAssociated(instance: Any) -> T? {
         return objc_getAssociatedObject(instance, &AssociatedObjectDescriptiveName) as? T
     }
+    
 }

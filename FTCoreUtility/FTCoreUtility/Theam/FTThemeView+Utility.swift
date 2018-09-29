@@ -26,6 +26,7 @@ public struct ThemeStyle {
                 ThemeStyle.selectedStyle,
                 ThemeStyle.disabledStyle]
     }
+    
 }
 
 //Used for UIView subclasses Type
@@ -41,10 +42,12 @@ public protocol FTThemeProtocol: AnyObject {
 }
 
 public extension FTThemeProtocol where Self: UIView {
+    
     func get_ThemeSubType() -> String? {
         // If view is disabled, check for ".disabledStyle" style
         return self.isUserInteractionEnabled ? nil : ThemeStyle.disabledStyle
     }
+    
 }
 
 //Used for UIControl objects, when multiple states are possible to set at initalization
@@ -61,12 +64,15 @@ extension UIView {
     static var SwizzleLayoutSubview = {
         FTInstanceSwizzling(UIView.self, #selector(layoutSubviews), #selector(swizzled_layoutSubviews))
     }
+
     static func __setupThemes__() { _ = SwizzleLayoutSubview }
     
     // Theme style-name for the view
     @IBInspectable
     public var theme: String? {
-        get { return UIView.aoThemes[self] }
+        get {
+            return UIView.aoThemes[self]
+        }
         set {
             UIView.aoThemes[self] = newValue
             //Relaod view's theme, if styleName changes, when next time view layouts
@@ -76,7 +82,9 @@ extension UIView {
     
     // To tigger view-Theme styling
     private var needsThemesUpdate: Bool {
-        get { return UIView.aoThemesNeedsUpdate[self] ?? false }
+        get {
+            return UIView.aoThemesNeedsUpdate[self] ?? false
+        }
         set {
             UIView.aoThemesNeedsUpdate[self] = newValue
             if newValue {
@@ -99,6 +107,7 @@ extension UIView {
         // Invoke view's original layoutSubviews
         self.swizzled_layoutSubviews()
     }
+    
 }
 
 fileprivate extension UIView {
@@ -219,6 +228,7 @@ fileprivate extension UIView {
         let themeDic = [controlThemeSelf.get_ThemeSubType() ?? ThemeStyle.defaultStyle : theme]
         controlThemeSelf.setThemes(themeDic)
     }
+
 }
 
 //MARK: UIView: FTThemeProtocol
@@ -254,6 +264,7 @@ extension UIView {
     public func theme_backgroundColor(_ color: UIColor) {
         self.backgroundColor = color
     }
+
 }
 
 //MARK: UIControl : Style for Different states for UIControl object
@@ -294,6 +305,7 @@ extension UIControl {
             }
         }
     }
+    
 }
 
 //MARK: Window Refresh
@@ -319,4 +331,5 @@ public extension UIWindow {
             NotificationCenter.default.post(name: .FTSwiftyAppearanceDidRefreshWindow, object: self)
         })
     }
+    
 }

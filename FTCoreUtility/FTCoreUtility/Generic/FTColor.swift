@@ -107,15 +107,15 @@ public extension UIColor {
     }
     
     // Amount should be between 0 and 1
-    public func lighterColor(_ amount: CGFloat) -> UIColor{
+    public func lighterColor(_ amount: CGFloat) -> UIColor {
         return UIColor.blendColors(color: self, destinationColor: UIColor.white, amount: amount)
     }
     
-    public func darkerColor(_ amount: CGFloat) -> UIColor{
+    public func darkerColor(_ amount: CGFloat) -> UIColor {
         return UIColor.blendColors(color: self, destinationColor: UIColor.black, amount: amount)
     }
     
-    public static func blendColors(color: UIColor, destinationColor: UIColor, amount : CGFloat) -> UIColor{
+    public static func blendColors(color: UIColor, destinationColor: UIColor, amount : CGFloat) -> UIColor {
         var amountToBlend = amount
         if amountToBlend > 1{
             amountToBlend = 1.0
@@ -146,6 +146,7 @@ public extension UIColor {
         
         return UIColor(red: r, green: g, blue: b, a: alpha)
     }
+
 }
 
 public extension UIImage {
@@ -169,4 +170,5 @@ public extension UIImage {
         
         return UIColor(red: UInt32(red), green: UInt32(green), blue: UInt32(blue), a: (a > 0 ? a : CGFloat(alpha)) / 255.0)
     }
+    
 }

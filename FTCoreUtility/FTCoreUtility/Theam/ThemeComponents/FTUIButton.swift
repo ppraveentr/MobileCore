@@ -47,4 +47,5 @@ open class FTUIButton: UIButton, FTUIControlThemeProtocol {
             }
         }
     }
+    
 }

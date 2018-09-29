@@ -14,4 +14,5 @@ open class FTUIView: UIView {
 //    public func get_ThemeSubType() -> String? {
 //        return self.isUserInteractionEnabled ? nil : ThemeStyle.disabledStyle
 //    }
+    
 }

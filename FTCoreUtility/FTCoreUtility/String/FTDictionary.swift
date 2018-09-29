@@ -13,6 +13,7 @@ public extension Dictionary {
     public func keyPath<T>(_ keyPath: String) -> T? {
         return (self as NSDictionary).value(forKeyPath: keyPath) as? T
     }
+    
 }
 
 //public func <-- <K,V> (dic: [K:V], key: K) -> V {
@@ -56,4 +57,5 @@ public func += <K,V> (left: inout [K:V], right: [K:V]) {
             left[k] = v
         }
     }
+    
 }

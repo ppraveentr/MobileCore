@@ -17,6 +17,7 @@ open class FTBaseScrollViewController: FTBaseViewController {
         
         _ = self.scrollView
     }
+    
 }
 
 extension FTBaseScrollViewController {
@@ -29,4 +30,5 @@ extension FTBaseScrollViewController {
         
         return local
     }
+    
 }

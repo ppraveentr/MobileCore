@@ -66,6 +66,7 @@ public extension FTThemeProtocol where Self: UILabel {
             }
         }
     }
+    
 }
 
 extension UILabel: FTUILabelThemeProtocol {
@@ -100,4 +101,5 @@ extension UILabel: FTUILabelThemeProtocol {
             self.text = text
         }
     }
+    
 } 

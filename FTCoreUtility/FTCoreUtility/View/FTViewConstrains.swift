@@ -177,6 +177,7 @@ public struct FTEdgeInsets: OptionSet {
 //        
 //        return local
 //    }
+    
 }
 
 public protocol FTViewConstrains: AnyObject {
@@ -218,6 +219,7 @@ public extension UIView {
             
             return constraint
     }
+    
 }
 
 public extension UIView {
@@ -651,4 +653,5 @@ public extension UIView {
             }
         }
     }
+    
 }

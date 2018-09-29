@@ -12,11 +12,11 @@ private let kFTCellIdentifier = "FT.kCellIdentifier"
 
 open class FTCoreTableViewController: UITableViewController {
 
-    var tableViewStyle: UITableView.Style = .plain
+    var tableStyle: UITableView.Style = .plain
     
     public override init(style: UITableView.Style) {
         super.init(style: style)
-        self.tableViewStyle = style
+        self.tableStyle = style
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -25,11 +25,7 @@ open class FTCoreTableViewController: UITableViewController {
 
     var ftTableView: FTTableView {
         get {
-            if let local = self.tableView as? FTTableView {
-                return local
-            }
-
-            let local = FTTableView(frame: .zero, style: self.tableViewStyle)
+            let local = FTTableView(frame: .zero, style: self.tableStyle)
             local.estimatedRowHeight = UITableView.automaticDimension
             local.dataSource = self
             local.delegate = self
@@ -44,21 +40,28 @@ open class FTCoreTableViewController: UITableViewController {
     final override public func loadView() {
         _ = self.ftTableView
     }
+    
 }
 
 open class FTBaseTableViewController: FTBaseViewController {
 
     // TableView style, defalut: .plain
-    open func tableViewStyle() -> UITableView.Style { return .plain }
+    open func tableStyle() -> UITableView.Style {
+        return .plain
+    }
 
     public var tableView: FTTableView {
         //madates to FTTableView.
-        get { return self.tableViewController.tableView as! FTTableView }
+        get {
+            return self.tableViewController.tableView as! FTTableView
+        }
     }
 
     public lazy var tableViewController: FTCoreTableViewController = self.class_TableViewController()
 
-    open func tableViewEdgeOffsets() -> FTEdgeOffsets { return .FTEdgeOffsetsZero() }
+    open func tableViewEdgeOffsets() -> FTEdgeOffsets {
+        return .FTEdgeOffsetsZero()
+    }
     
     open override func loadView() {
         super.loadView()
@@ -86,8 +89,10 @@ extension FTBaseTableViewController {
 
     fileprivate func class_TableViewController() -> FTCoreTableViewController {
 
-        let local = FTCoreTableViewController(style: self.tableViewStyle())
+        //create tableView based on user provided style
+        let local = FTCoreTableViewController(style: self.tableStyle())
 
+        //Add as child view controller
         self.addChild(local)
 
         self.mainView?.pin(view: local.view, withEdgeOffsets: self.tableViewEdgeOffsets())
@@ -141,6 +146,7 @@ extension FTBaseTableViewController {
             UIView.commitAnimations()
         }
     }
+    
 }
 
 extension FTBaseTableViewController: UITableViewDataSource {
@@ -158,6 +164,7 @@ extension FTBaseTableViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: kFTCellIdentifier, for: indexPath)
         return cell
     }
+    
 }
 
 extension FTBaseTableViewController: UITableViewDelegate {
@@ -169,4 +176,5 @@ extension FTBaseTableViewController: UITableViewDelegate {
     open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
+    
 }

@@ -27,6 +27,7 @@ public enum FTSericeStatus<T: FTServiceClient>: Error {
             }
         }
     }
+    
 }
 
 public protocol FTServiceRulesProtocol {
@@ -74,9 +75,11 @@ public protocol FTServiceClient {
 
 public extension FTServiceClient {
     var serviceName: String { return "" }
+
     func requestHeaders() -> [String:String] { return [:] }
 
     public var inputStack: FTServiceModel? { return nil }
+
     public var responseStack: FTServiceModel? { return nil }
 
     func isValid() -> Bool {
@@ -95,11 +98,15 @@ public extension FTServiceClient {
 
 
     var responseString: String? {
-        get { return  responseData?.base64EncodedString() }
+        get {
+            return  responseData?.base64EncodedString()
+        }
     }
 
     var responseData: Data? {
-        get { return  FTAssociatedObject<Data>.getAssociated(instance: self) }
+        get {
+            return  FTAssociatedObject<Data>.getAssociated(instance: self)
+        }
     }
 
     @discardableResult
@@ -174,10 +181,17 @@ public extension FTServiceClient {
     }
 
     // Service Rules
-    func fireBefore() { }
-    func fireBefore(urlRequest: inout URLRequest) { }
-    func fireAfter(modelData: inout FTServiceModel?) { }
-    func fireAfter(data: Data?, response: URLResponse?, error: Error?) { }
+    func fireBefore() {
+    }
+
+    func fireBefore(urlRequest: inout URLRequest) {
+    }
+
+    func fireAfter(modelData: inout FTServiceModel?) {
+    }
+
+    func fireAfter(data: Data?, response: URLResponse?, error: Error?) {
+    }
 }
 
 extension FTServiceClient {
@@ -230,6 +244,7 @@ extension FTServiceClient {
 
             components.path.append(path)
         }
+        
         return components
     }
 
@@ -348,4 +363,5 @@ extension FTServiceClient {
 
         return handler
     }
+    
 }

@@ -19,6 +19,7 @@ public extension String {
     func classInstance () -> AnyClass? {
         return FTReflection.swiftClassTypeFromString(self)
     }
+    
 }
 
 final public class FTReflection {
@@ -146,4 +147,5 @@ final public class FTReflection {
         // use the bundle name from the main bundle, if that's not set use the identifier
         return nameForBundle(Bundle.main)
     }
+    
 }

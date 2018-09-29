@@ -18,6 +18,7 @@ public extension Optional where Wrapped == String {
             return true
         }
     }
+    
 }
 
 public extension String {
@@ -171,4 +172,5 @@ public extension String {
         }
         return nil
     }
+    
 }

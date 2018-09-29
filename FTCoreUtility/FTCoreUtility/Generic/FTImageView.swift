@@ -47,4 +47,5 @@ public extension UIImageView {
         // Download image using valid URL
         downloadedFrom(url: url, contentMode: mode, comletionHandler: comletionHandler)
     }
+    
 }

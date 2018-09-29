@@ -51,6 +51,7 @@ public extension FTFlattenIterator {
         
         return self
     }
+    
 }
 
 public extension Dictionary {
@@ -59,6 +60,7 @@ public extension Dictionary {
             self[key] = value
         }
     }
+    
 }
 
 public extension Dictionary where Value: RangeReplaceableCollection {
@@ -72,4 +74,5 @@ public extension Dictionary where Value: RangeReplaceableCollection {
             }
         }
     }
+    
 }

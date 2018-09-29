@@ -24,6 +24,7 @@ public let FTInstanceSwizzling: (AnyClass, Selector, Selector) -> () = { klass, 
     } else {
         method_exchangeImplementations(originalMethod!, swizzledMethod!)
     }
+    
 }
 
 fileprivate let baseTypesMap: Dictionary<String, Any> = [
@@ -115,4 +116,5 @@ public extension String {
 
         return Any.self
     }
+    
 }

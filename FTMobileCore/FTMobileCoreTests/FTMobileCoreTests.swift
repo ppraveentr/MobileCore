@@ -16,6 +16,7 @@ class AccountDetail: FTServiceModel {
         self.value = value
         self.name = name
     }
+    
 }
 
 class Account: FTServiceModel {
@@ -27,6 +28,7 @@ class Account: FTServiceModel {
         self.type = type
         self.data = data
     }
+    
 }
 
 class TestService: FTServiceClient {
@@ -38,6 +40,7 @@ class TestService: FTServiceClient {
     required init(inputStack: FTServiceModel?) {
         self.inputStack = inputStack as? Account
     }
+    
 }
 
 class FTMobileCoreTests: XCTestCase {
@@ -108,4 +111,5 @@ class FTMobileCoreTests: XCTestCase {
             assertionFailure("Error block dont match")
         }
     }
+    
 }

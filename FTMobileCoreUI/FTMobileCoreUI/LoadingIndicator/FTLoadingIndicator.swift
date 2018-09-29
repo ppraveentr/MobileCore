@@ -84,7 +84,7 @@ public class FTLoadingIndicator: UIView {
         
         loader.center = center
         
-        if (loader.superview == nil) {
+        if loader.superview == nil {
             loader.baseView = UIView(frame: currentWindow.bounds)
             loader.baseView?.backgroundColor = loader.config.foregroundColor.withAlphaComponent(loader.config.foregroundAlpha)
             
@@ -120,7 +120,7 @@ public class FTLoadingIndicator: UIView {
     private func start() {
         self.loadingView?.start()
         
-        if (self.animated) {
+        if self.animated {
             UIView.animate(withDuration: 0.3, animations: { () in
                 self.alpha = 1
             }, completion: { (finished) -> Void in
@@ -133,7 +133,7 @@ public class FTLoadingIndicator: UIView {
     
     private func stop() {
         
-        if (self.animated) {
+        if self.animated {
             UIView.animate(withDuration: 0.3, animations: { () in
                 self.alpha = 0
             }, completion: { (finished) -> Void in
@@ -154,14 +154,14 @@ public class FTLoadingIndicator: UIView {
         self.layer.cornerRadius = self.config.cornerRadius
         let loadingViewSize = self.frame.size.width - (loaderSpinnerMarginSide * 2)
         
-        if (self.loadingView == nil) {
+        if self.loadingView == nil {
             self.loadingView = CALoadingView(frame: self.frameForSpinner())
             self.addSubview(self.loadingView!)
         } else {
             self.loadingView?.frame = self.frameForSpinner()
         }
         
-        if (self.titleLabel == nil) {
+        if self.titleLabel == nil {
             self.titleLabel = UILabel(frame: CGRect(origin: CGPoint(x: loaderTitleMargin, y: loaderSpinnerMarginTop + loadingViewSize), size: CGSize(width: self.frame.width - loaderTitleMargin*2, height:  42.0)))
             self.addSubview(self.titleLabel!)
             self.titleLabel?.numberOfLines = 1
@@ -181,7 +181,7 @@ public class FTLoadingIndicator: UIView {
     func frameForSpinner() -> CGRect {
         let loadingViewSize = self.frame.size.width - (loaderSpinnerMarginSide * 2)
         
-        if (self.title == nil) {
+        if self.title == nil {
             let yOffset = (self.frame.size.height - loadingViewSize) / 2
             return CGRect(origin: CGPoint(x: loaderSpinnerMarginSide, y: yOffset), size: CGSize(width: loadingViewSize, height: loadingViewSize))
         }
@@ -265,7 +265,7 @@ public class FTLoadingIndicator: UIView {
             let processBackgroundPath : UIBezierPath = UIBezierPath()
             processBackgroundPath.lineWidth = CGFloat(self.lineWidth!)
             
-            if (partial) {
+            if partial {
                 endAngle = (1.8 * CGFloat.pi) + startAngle
             }
             
@@ -361,4 +361,5 @@ public class FTLoadingIndicator: UIView {
         public init() {}
         
     }
+    
 }

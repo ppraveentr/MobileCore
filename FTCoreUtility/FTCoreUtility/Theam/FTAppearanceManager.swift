@@ -50,6 +50,7 @@ open class FTAppearanceManager {
             }
         }
     }
+    
 }
 
 extension FTThemesManager {
@@ -62,6 +63,7 @@ extension FTThemesManager {
             statusBar.backgroundColor = color
         }
     }
+    
 }
 
 extension UIView : FTAppearanceManagerProtocol {
@@ -107,6 +109,7 @@ extension UIView : FTAppearanceManagerProtocol {
             }
         }
     }
+    
 }
 
 extension UISegmentedControl {
@@ -133,6 +136,7 @@ extension UISegmentedControl {
             break
         }
     }
+    
 }
 
 extension UINavigationBar {
@@ -175,6 +179,7 @@ extension UINavigationBar {
             self.applyBackgroundImage(navigationBar: nil, defaultImage: defaultImage!, landScapeImage: landScapeImage)
         }
     }
+    
 }
 
 extension UITabBar {
@@ -187,6 +192,7 @@ extension UITabBar {
             appearance.backgroundImage = defaultImage
         }
     }
+    
 }
 
 // TODO: In progress
@@ -212,6 +218,7 @@ enum Theme: Int {
             return .black
         }
     }
+    
 }
 
 let SelectedThemeKey = "SelectedTheme"
@@ -256,4 +263,5 @@ struct ThemeManager {
         UISwitch.appearance().thumbTintColor = theme.mainColor
         
     }
+    
 }

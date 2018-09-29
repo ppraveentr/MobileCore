@@ -27,4 +27,5 @@ open class FTExtendedNavigationBarView: FTView {
 //        layer.shadowColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).cgColor
 //        layer.shadowOpacity = 0.25
 //    }
+    
 }

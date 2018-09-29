@@ -94,6 +94,7 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
         super.layoutSubviews()
         self.updateTextContainerSize()
     }
+    
 }
 
 //MARK: Text Formatting
@@ -167,6 +168,7 @@ extension FTLabel {
             attributedString.addAttributes(att, range: link.linkRange)
         }
     }
+    
 }
 
 // TODO: Themes
@@ -207,6 +209,7 @@ extension FTLabel {
 
         return properties
     }
+    
 }
 
 //MARK: Text Sanitizing
@@ -243,6 +246,7 @@ extension FTLabel: NSLayoutManagerDelegate {
 
         return restyledString
     }
+    
 }
 
 //MARK: Text Rendering
@@ -299,6 +303,7 @@ extension FTLabel {
         
         return textOffset
     }
+    
 }
 
 //MARK: Container SetUp
@@ -337,4 +342,5 @@ extension FTLabel {
         
         return local
     }
+    
 }

@@ -41,6 +41,7 @@ open class FTWebView: WKWebView {
             }
         }
     }
+    
 }
 
 extension FTWebView {
@@ -93,4 +94,5 @@ extension FTWebView {
     func insertCSSString(jsString: String) {
         self.evaluateJavaScript(jsString, completionHandler: nil)
     }
+    
 }
