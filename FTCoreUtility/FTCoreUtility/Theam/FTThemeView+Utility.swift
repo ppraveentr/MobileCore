@@ -77,7 +77,7 @@ extension UIView {
         }
         set {
             UIView.aoThemes[self] = newValue
-            //Relaod view's theme, if styleName changes, when next time view layouts
+            // Relaod view's theme, if styleName changes, when next time view layouts
             self.needsThemesUpdate = true
         }
     }
@@ -91,7 +91,7 @@ extension UIView {
             UIView.aoThemesNeedsUpdate[self] = newValue
             if newValue {
                 self.setNeedsLayout()
-                //Update View with Theme properties
+                // Update View with Theme properties
                 self.generateVisualThemes()
             }
         }
@@ -160,19 +160,19 @@ fileprivate extension UIView {
 
             var styles: FTThemeDic = [:]
 
-            //For each style, get Theme value
+            // For each style, get Theme value
             ThemeStyle.allStyles().forEach { (style) in
                 
                 if let styleThemeDic = FTThemesManager.generateVisualThemes(forClass: className,
                                                                        withStyleName: baseName!,
                                                                        withSubStyleName: style) {
                     
-                    //Create FTThemeDic as, ['ThemeStyle.UIControlState' : 'ActualTheme for the state']
+                    // Create FTThemeDic as, ['ThemeStyle.UIControlState' : 'ActualTheme for the state']
                     styles[style] = styleThemeDic
                 }
             }
             
-            //Setup visual component for each style
+            // Setup visual component for each style
             controlThemeSelf.setThemes(styles)
         }
     }
@@ -191,10 +191,10 @@ fileprivate extension UIView {
     
         // Iterate through superClass till we get a valid Theme class
         while baseClassName != nil && !FTThemesManager.isViewComponentValid(componentName: baseClassName!) {
-            //Get super Class
+            // Get super Class
             let superClass: AnyClass? = class_getSuperclass(type(of: self))
             
-            //If SuperClass becomes invalid, terminate loop
+            // If SuperClass becomes invalid, terminate loop
             if (superClass != nil) && superClass != NSObject.self {
                  baseClassName = get_classNameAsString(obj: superClass!)
             } else {
@@ -233,7 +233,7 @@ fileprivate extension UIView {
 
 }
 
-//MARK: UIView: FTThemeProtocol
+// MARK: UIView: FTThemeProtocol
 extension UIView {
     
     @objc public func swizzled_updateTheme(_ theme: FTThemeDic) {
@@ -269,7 +269,7 @@ extension UIView {
 
 }
 
-//MARK: UIControl : Style for Different states for UIControl object
+// MARK: UIControl : Style for Different states for UIControl object
 extension UIControl {
     
     public func get_AllThemeSubType() -> Bool {
@@ -312,7 +312,7 @@ extension UIControl {
     
 }
 
-//MARK: Window Refresh
+// MARK: Window Refresh
 public extension UIWindow {
 
     @nonobjc private func _refreshAppearance() {
@@ -325,8 +325,8 @@ public extension UIWindow {
         addConstraints(constraints)
     }
 
-    // / Refreshes appearance for the window
-    // / - Parameter animated: if the refresh should be animated
+    /// Refreshes appearance for the window
+    /// - Parameter animated: if the refresh should be animated
     public func refreshAppearance(animated: Bool) {
         NotificationCenter.default.post(name: .FTSwiftyAppearanceWillRefreshWindow, object: self)
         UIView.animate(withDuration: animated ? 0.25 : 0, animations: {

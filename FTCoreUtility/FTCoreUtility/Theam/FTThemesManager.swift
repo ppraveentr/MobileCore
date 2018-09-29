@@ -21,7 +21,7 @@ open class FTThemesManager {
             }
         }
         didSet {
-            //Setup App config
+            // Setup App config
             FTAppearanceManager.__setupThemes__()
         }
     }
@@ -64,7 +64,7 @@ open class FTThemesManager {
         
         // Get theme component
         guard let currentTheme: FTThemeDic = FTThemesManager.getViewComponent(name, styleName: styleName)
-            else { //print("Theme of type \(styleName) not avaialble for class \(name)" )
+            else { // print("Theme of type \(styleName) not avaialble for class \(name)" )
                 return nil
         }
         
@@ -76,7 +76,7 @@ open class FTThemesManager {
         return self.isThemeComponentValid(componentName)
     }
     
-    //  TODO: custom themes for view-objects
+    // TODO: custom themes for view-objects
     public static func getViewComponent(_ componentName: String, styleName: String?) -> FTThemeDic? {
         guard styleName != nil else {
             return nil
@@ -85,7 +85,7 @@ open class FTThemesManager {
     }
     
     // MARK: UIColor
-    //  TODO: gradian, rgb, alpha, ...
+    // TODO: gradian, rgb, alpha, ...
     public static func getColor(_ colorName: String?) -> UIColor? {
 
         // Check if its image coded string
@@ -115,7 +115,7 @@ open class FTThemesManager {
     }
     
     // MARK: UIFont
-    //  TODO: bold, thin, ...
+    // TODO: bold, thin, ...
     public static func getFont(_ fontName: String?) -> UIFont? {
         
         var font: FTThemeDic = self.getDefaults(type: .Font, keyName: fontName) as? FTThemeDic ?? [:]
@@ -149,7 +149,7 @@ open class FTThemesManager {
             }
             
             if imageName.hasPrefix("@") {
-                //Search for image in all available bundles
+                // Search for image in all available bundles
                 for bundleName in FTThemesManager.imageSourceBundle {
                     if let image = UIImage.init(named: imageName.trimPrefix("@"), in: bundleName, compatibleWith: nil) {
                         return image
@@ -217,7 +217,7 @@ open class FTThemesManager {
     }
     
     // MARK: App Appearance
-    //  TODO: custom themes for view-objects
+    // TODO: custom themes for view-objects
     public static func getAppearance(_ appearanceName: String? = nil) -> Any? {
         return themeAppearance(appearanceName)
     }
@@ -318,7 +318,7 @@ extension FTThemesManager {
                 let viewComponent = actualComponents,
                 let superType = viewComponent["_super"] as? String,
                 var superCom = getThemeComponent(key,styleName: superType) {
-                //If view-component has super's style, use it as base component and merge its own style
+                // If view-component has super's style, use it as base component and merge its own style
                 superCom += viewComponent
                 superCom.removeValue(forKey: "_super")
                 

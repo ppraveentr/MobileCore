@@ -31,7 +31,7 @@ open class FTContentView: FTScrollView {
         stopObservingHeight()
     }
     
-    //  Observe webview content height
+    // Observe webview content height
     func startObservingHeight(_ webView: FTWebView) {
         
         webView.scrollView.isScrollEnabled = false
@@ -72,13 +72,13 @@ open class FTContentView: FTScrollView {
         }
     }
     
-//    func updateHeight() {
-//        
-//        self.webView.evaluateJavaScript("document.body.scrollHeight") { (obj, error) in
-//            if let hei = obj as? CGFloat {
-//                self.contentView.viewLayoutConstraint.constraintHeight?.constant = hei
-//            }
-//        }
-//    }
+//   func updateHeight() {
+//       
+//       self.webView.evaluateJavaScript("document.body.scrollHeight") { (obj, error) in
+//           if let hei = obj as? CGFloat {
+//               self.contentView.viewLayoutConstraint.constraintHeight?.constant = hei
+//           }
+//       }
+//   }
     
 }

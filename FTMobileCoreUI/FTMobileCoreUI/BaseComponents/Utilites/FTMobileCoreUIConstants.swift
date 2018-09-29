@@ -8,7 +8,7 @@
 
 import Foundation
 
-//Notification constans name
+// Notification constans name
 public extension Notification.Name {
     
     // ViewController - lifeCycle changes

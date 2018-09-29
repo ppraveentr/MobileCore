@@ -49,7 +49,7 @@ public class FTMobileConfig {
     // MARK: Model Binding
     static var modelBindingPath: String = ""
 
-    //  TODO: To support multiple sources
+    // TODO: To support multiple sources
     static public var serviceBindingPath: String = "" {
         didSet {
             try? FTMobileConfig.loadModelSchema(fromPath: serviceBindingDirectory())
@@ -75,7 +75,7 @@ public class FTMobileConfig {
     
 }
 
-//MARK: Model Schema
+// MARK: Model Schema
 extension FTMobileConfig {
 
     static func serviceBindingDirectory() -> String {
@@ -112,7 +112,7 @@ extension FTMobileConfig {
     
 }
 
-//MARK: Binding Rules
+// MARK: Binding Rules
 extension FTMobileConfig {
 
     public static func loadBindingRules() throws {

@@ -97,7 +97,7 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
     
 }
 
-//MARK: Text Formatting
+// MARK: Text Formatting
 extension FTLabel {
 
     func updateWithHtmlString(text: String?) {
@@ -212,7 +212,7 @@ extension FTLabel {
     
 }
 
-//MARK: Text Sanitizing
+// MARK: Text Sanitizing
 extension FTLabel: NSLayoutManagerDelegate {
 
 //    public func layoutManager(_ layoutManager: NSLayoutManager, shouldBreakLineByWordBeforeCharacterAt charIndex: Int) -> Bool {
@@ -249,7 +249,7 @@ extension FTLabel: NSLayoutManagerDelegate {
     
 }
 
-//MARK: Text Rendering
+// MARK: Text Rendering
 extension FTLabel {
     
     open override func drawText(in rect: CGRect) {
@@ -306,7 +306,7 @@ extension FTLabel {
     
 }
 
-//MARK: Container SetUp
+// MARK: Container SetUp
 extension FTLabel {
     
     func getTextStorage() -> NSTextStorage {

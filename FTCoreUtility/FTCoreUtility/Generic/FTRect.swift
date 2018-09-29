@@ -8,7 +8,7 @@
 
 import Foundation
 
-//CGRect
+// MARK: CGRect
 public extension CGRect {
     // Usefull if used in ObjC
     func getX() -> CGFloat {

@@ -10,7 +10,7 @@ import Foundation
 
 open class FTCoreUtility {
 
-    //TODO: top-most ViewController in window's rootViewController
+    // TODO: top-most ViewController in window's rootViewController
     public static var topViewController: UIViewController? {
         get {
             let keyWindow = UIApplication.shared.delegate?.window ?? UIApplication.shared.keyWindow
@@ -21,7 +21,7 @@ open class FTCoreUtility {
         }
     }
 
-    //Get top-most controller in provided `viewController`
+    // Get top-most controller in provided `viewController`
     fileprivate static func topViewController(_ viewController: UIViewController?) -> UIViewController? {
 
         let presentedViewController = viewController?.presentedViewController
@@ -42,25 +42,25 @@ open class FTCoreUtility {
     
 }
 
-//+ (BOOL)isRegisteredURLScheme:(NSString *)urlScheme {
-//    static dispatch_once_t fetchBundleOnce;
-//    static NSArray *urlTypes = nil;
-//    
-//    dispatch_once(&fetchBundleOnce, ^{
-//    urlTypes = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleURLTypes"];
-//    });
-//    for (NSDictionary *urlType in urlTypes) {
-//        NSArray *urlSchemes = [urlType valueForKey:@"CFBundleURLSchemes"];
-//        if ([urlSchemes containsObject:urlScheme]) {
-//            return YES;
-//        }
-//    }
-//    return NO;
-//}
+// + (BOOL)isRegisteredURLScheme:(NSString *)urlScheme {
+//   static dispatch_once_t fetchBundleOnce;
+//   static NSArray *urlTypes = nil;
+//   
+//   dispatch_once(&fetchBundleOnce, ^{
+//   urlTypes = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleURLTypes"];
+//   });
+//   for (NSDictionary *urlType in urlTypes) {
+//       NSArray *urlSchemes = [urlType valueForKey:@"CFBundleURLSchemes"];
+//       if ([urlSchemes containsObject:urlScheme]) {
+//           return YES;
+//       }
+//   }
+//   return NO;
+// }
 
-//+ (unsigned long)currentTimeInMilliseconds
-//    {
-//        struct timeval time
-//        gettimeofday(&time, NULL)
-//        return (time.tv_sec * 1000) + (time.tv_usec / 1000)
-//}
+// + (unsigned long)currentTimeInMilliseconds
+//   {
+//       struct timeval time
+//       gettimeofday(&time, NULL)
+//       return (time.tv_sec * 1000) + (time.tv_usec / 1000)
+// }

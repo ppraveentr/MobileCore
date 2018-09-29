@@ -29,8 +29,8 @@ open class FTSearchBar: UISearchBar {
         super.init(coder: aDecoder)
     }
     
-    //  Only override drawRect: if you perform custom drawing.
-    //  An empty implementation adversely affects performance during animation.
+    // Only override drawRect: if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
     override open func draw(_ rect: CGRect) {
         // Drawing code
 

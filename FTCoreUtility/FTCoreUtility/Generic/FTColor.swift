@@ -131,7 +131,7 @@ public extension UIColor {
         g = 0
         b = 0
         alpha = 0
-        color.getRed(&r, green: &g, blue: &b, alpha: &alpha) //gets the rgba values (0-1)
+        color.getRed(&r, green: &g, blue: &b, alpha: &alpha) // Gets the rgba values (0-1)
         
         // Get the destination rgba values
         var dest_r, dest_g, dest_b, dest_alpha : CGFloat
@@ -161,7 +161,7 @@ public extension UIImage {
             return nil
         }
         
-//        let pixelInfo: Int = Int((self.size.width  * atPoint.y) + atPoint.x ) * 4; // The image is png
+//       let pixelInfo: Int = Int((self.size.width  * atPoint.y) + atPoint.x ) * 4; // The image is png
         // The image is png
         let pixelInfo: Int = Int(0) * 4
         

@@ -67,7 +67,7 @@ public extension String {
         return UIColor.hexColor(self)
     }
     
-//MARK: String Size
+// MARK: String Size
     
     // Remove's 'sting' from self -> and retruns new 'String'
     // Original value is not affected
@@ -120,7 +120,7 @@ public extension String {
         return self.count
     }
 
-//MARK: JSON
+// MARK: JSON
     
     // Loading Data from given Path
     func jsonContentAtPath<T>() throws -> T? {

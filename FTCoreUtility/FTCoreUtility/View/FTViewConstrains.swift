@@ -16,7 +16,7 @@ public enum FTLayoutDirection {
     case LeftToRight
 }
 
-//MARK: AssociatedObject for view Layout constraints
+// MARK: AssociatedObject for view Layout constraints
 public class FTViewLayoutConstraint {
     
     public var autoSizing = false
@@ -355,7 +355,7 @@ public extension UIView {
                 localConstraint.append(constraint)
             }
             
-            //TopMargin
+            // TopMargin
             if edgeInsets.contains(.TopMargin) {
                 let constraint = NSLayoutConstraint(item: view, attribute: .topMargin, relatedBy: .equal, toItem: self,
                                                     attribute: .topMargin, multiplier: 1.0, constant: 0)

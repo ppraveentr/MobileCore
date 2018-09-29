@@ -26,12 +26,12 @@ public extension URL {
                 let data = data, error == nil,
                 let image = UIImage(data: data)
                 else {
-                    //If image download fails
+                    // If image download fails
                     comletionHandler?(nil)
                     return
             }
 
-            //Update view's image in main thread
+            // Update view's image in main thread
             DispatchQueue.main.async() { () in
                 //After Image download compeltion
                 comletionHandler?(image)

@@ -88,10 +88,10 @@ extension FTBaseTableViewController {
 
     fileprivate func class_TableViewController() -> FTCoreTableViewController {
 
-        //create tableView based on user provided style
+        // Create tableView based on user provided style
         let local = FTCoreTableViewController(style: self.tableStyle())
 
-        //Add as child view controller
+        // Add as child view controller
         self.addChild(local)
 
         self.mainView?.pin(view: local.view, withEdgeOffsets: self.tableViewEdgeOffsets())

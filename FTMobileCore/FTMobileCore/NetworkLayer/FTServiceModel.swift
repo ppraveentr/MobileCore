@@ -136,7 +136,7 @@ public extension FTServiceModel {
         self = try! Self.makeModel(json: data!)
     }
 
-    //  Encode complex key/value objects in NSRULQueryItem pairs
+    // Encode complex key/value objects in NSRULQueryItem pairs
     private func _queryItems(_ key: String, _ value: Any?) -> [URLQueryItem] {
         var result = [] as [URLQueryItem]
 

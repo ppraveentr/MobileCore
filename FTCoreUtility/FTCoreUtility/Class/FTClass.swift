@@ -29,10 +29,10 @@ fileprivate let baseTypesMap: Dictionary<String, Any> = [
     "c" : Int8.self,
     "s" : Int16.self,
     "i" : Int32.self,
-    "q" : Int.self, //also: Int64, NSInteger, only true on 64 bit platforms
+    "q" : Int.self, // also: Int64, NSInteger, only true on 64 bit platforms
     "S" : UInt16.self,
     "I" : UInt32.self,
-    "Q" : UInt.self, //also UInt64, only true on 64 bit platforms
+    "Q" : UInt.self, // also UInt64, only true on 64 bit platforms
     "B" : Bool.self,
     "d" : Double.self,
     "f" : Float.self,
@@ -44,41 +44,41 @@ fileprivate let baseTypesMap: Dictionary<String, Any> = [
  *  _HOWEVER_ this does not work if its an optional type.
  *  e.g. Int? <--- DOES NOT WORK
  */
-//public func getClassPropertyNames(_ myClass: Any) -> Dictionary<String,Any>? {
-//    
-//    var results: Dictionary<String,Any> = [:]
-//    
-//    //  retrieve the properties via the class_copyPropertyList function
-//    var count: UInt32 = 0
-//    
-//    //  TODO: throws
-//    guard let properties = class_copyPropertyList(type(of: myClass) as! AnyClass, &count) else { return nil }
-//    
-//    //  iterate each objc_property_t struct
-//    for i in 0 ..< Int(count) {
-//        
-//        guard
-//            // property
-//            let property: objc_property_t? = properties[i],
-//            // property name
-//            let cname = property_getName(property),
-//            // property Attributes
-//            let cattribure = property_getAttributes(property)
-//            else { continue }
-//        
-//        let attribure = String(cString: cattribure)
-//        let name = String(cString: cname)
-//        
-//        results[name] = attribure.get_propertyAttributeType()
-//    }
-//    
-//    //  release objc_property_t structs
-//    free(properties)
-//    
-//    return results
-//}
+// public func getClassPropertyNames(_ myClass: Any) -> Dictionary<String,Any>? {
+//   
+//   var results: Dictionary<String,Any> = [:]
+//   
+//   // retrieve the properties via the class_copyPropertyList function
+//   var count: UInt32 = 0
+//   
+//   // TODO: throws
+//   guard let properties = class_copyPropertyList(type(of: myClass) as! AnyClass, &count) else { return nil }
+//   
+//   // iterate each objc_property_t struct
+//   for i in 0 ..< Int(count) {
+//       
+//       guard
+//           // property
+//           let property: objc_property_t? = properties[i],
+//           // property name
+//           let cname = property_getName(property),
+//           // property Attributes
+//           let cattribure = property_getAttributes(property)
+//           else { continue }
+//       
+//       let attribure = String(cString: cattribure)
+//       let name = String(cString: cname)
+//       
+//       results[name] = attribure.get_propertyAttributeType()
+//   }
+//   
+//   // release objc_property_t structs
+//   free(properties)
+//   
+//   return results
+// }
 
-//String Extension
+// String Extension
 public extension String {
     
     func get_propertyAttributeWithBaseType() -> Any {

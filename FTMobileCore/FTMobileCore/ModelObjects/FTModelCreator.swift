@@ -85,7 +85,7 @@ open class FTModelCreator {
         
         do {
             if let json: [String: AnyObject] = try path.jsonContentAtPath() {
-                //Create ".swift" for each object in Dic
+                // Create ".swift" for each object in Dic
                 modelClass(jsonString: json, fileWriterHandler: completionHandler)
             }
         } catch {
@@ -97,7 +97,7 @@ open class FTModelCreator {
 
 extension FTModelCreator {
     
-    // /Create Model class for-each dic key
+    /// Create Model class for-each dic key
     static func modelClass(jsonString: [String: AnyObject],
                                  fileWriterHandler: @escaping (_ fileName: String, _ fileContent: String) -> Swift.Void) {
         
@@ -107,7 +107,7 @@ extension FTModelCreator {
         }
     }
     
-    // /Default values for each data type
+    ///Default values for each data type
     static func defaultValue(bindType:AnyObject, isSubIteration: Bool = false) -> AnyObject {
         
         if let bindType = bindType as? String {
@@ -139,7 +139,7 @@ extension FTModelCreator {
         return kDefaultStringValue as AnyObject
     }
     
-    // /setup binding params for file creation, for each param in model-dic
+    /// Setup binding params for file creation, for each param in model-dic
     static func bindings(forParams params: AnyObject) -> (String, String, AnyObject, Bool)? {
         
         if let value = params as? String {
@@ -173,11 +173,11 @@ extension FTModelCreator {
         
         params.forEach { (key, type) in
             if let bindParams = bindings(forParams: type) {
-                //if (bindParams.3) is true, then :'type': will be \(bindParams.0 + "?")
+                // If (bindParams.3) is true, then :'type': will be \(bindParams.0 + "?")
                 paramDef += paramKeysCase(key: key, type: bindParams.0, defaultValues: bindParams.2 as AnyObject)
                 codingKeys += codingKeysCase(key: key, value: bindParams.1)
-                //decoderKeys += decoderCase(key: key, type: bindParams.0)
-                //encoderKeys += encoderCase(key: key, isOptional: bindParams.3)
+                // decoderKeys += decoderCase(key: key, type: bindParams.0)
+                // encoderKeys += encoderCase(key: key, isOptional: bindParams.3)
             }
         }
     

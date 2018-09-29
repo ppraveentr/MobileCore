@@ -233,20 +233,20 @@ extension FTServiceClient {
 
     fileprivate func getURLComponents(_ requestObject: FTRequestObject? = nil) -> URLComponents {
 
-        //Service App Base URL
+        // Service App Base URL
         let baseURL = getBaseURL(requestObject)
 
-        //Create URL Components
+        // Create URL Components
         var components = URLComponents(string: baseURL)!
 
-        //Update subPath url
+        // Update subPath url
         if var path = requestObject?.path {
 
-            //Remove extra "/"
+            // Remove extra "/"
             if baseURL.hasSuffix("/") && path.hasPrefix("/") {
                 path.trimPrefix("/")
             }
-                //Add missing "/"
+                // Add missing "/"
             else if !baseURL.hasSuffix("/") && !path.hasPrefix("/") {
                 path = "/" + path
             }
@@ -267,10 +267,10 @@ extension FTServiceClient {
         // URL httpBody for POST type
         var httpBody: Data? = nil
 
-        //Service Rules
+        // Service Rules
         self.fireBefore()
 
-        //Create URLRequest from 'components'
+        // Create URLRequest from 'components'
         var urlReq = URLRequest(url: components.url!)
         print("\nCAServiceRequest: \(String(describing: self)): ", urlReq.url?.absoluteString.removingPercentEncoding ?? "Empty")
 

@@ -124,7 +124,7 @@ public class FTFloatingView: FTView {
     }
     
     
-    //  Handleing movement of view
+    // Handleing movement of view
     private func viewDidMove(to location:CGPoint) {
         UIView.animate(withDuration: 0.1, delay: 0.0, options: [.beginFromCurrentState,.curveEaseInOut], animations: {
             let point = (self.floatingWindow?.convert(location, to: self.appWindow))!

@@ -38,7 +38,7 @@ open class FTBaseViewController : UIViewController {
         return self.baseView?.mainPinnedView
     }
 
-    //  MARK: Navigation Bar
+    // MARK: Navigation Bar
     public func setupNavigationbar(title: String,
                             leftButtonTitle: String? = nil, leftButtonImage: UIImage? = nil, leftButtonAction: Selector? = kLeftButtonAction,
                             rightButtonTitle: String? = nil, rightButtonImage: UIImage? = nil, rightButtonAction: Selector? = #selector(rightButtonAction)) {
@@ -119,7 +119,7 @@ extension FTBaseViewController {
         
         let local = self.baseView?.rootView
         
-//        self.view.pin(view: local!, withEdgeInsets: [.Horizontal, .Bottom])
+//       self.view.pin(view: local!, withEdgeInsets: [.Horizontal, .Bottom])
 
         /* Pin view bellow status bar */
         if shouldSetSafeAreaLayoutGuide() {
@@ -148,7 +148,7 @@ extension FTBaseViewController {
     
 }
 
-//MARK: Notification whenever view is loaded
+// MARK: Notification whenever view is loaded
 extension FTBaseViewController {
     
     open override func viewDidLoad() {
