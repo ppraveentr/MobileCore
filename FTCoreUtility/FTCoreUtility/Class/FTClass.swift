@@ -9,10 +9,8 @@
 import Foundation
 
 public let FTInstanceSwizzling: (AnyClass, Selector, Selector) -> () = { klass, originalSelector, swizzledSelector in
-    
     let originalMethod = class_getInstanceMethod(klass, originalSelector)
     let swizzledMethod = class_getInstanceMethod(klass, swizzledSelector)
-    
     let didAddMethod = class_addMethod(klass, originalSelector,
                                        method_getImplementation(swizzledMethod!),
                                        method_getTypeEncoding(swizzledMethod!))

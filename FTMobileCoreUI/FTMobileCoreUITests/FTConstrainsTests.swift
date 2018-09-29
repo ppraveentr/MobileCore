@@ -10,7 +10,6 @@ import XCTest
 @testable import FTMobileCoreUI
 
 class FTConstrainsTests: XCTestCase {
-    
     var mainView: UIView = UIView()
     var viewsArray = [UIView]()
     

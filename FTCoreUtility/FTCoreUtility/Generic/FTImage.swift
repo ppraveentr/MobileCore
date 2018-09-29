@@ -9,7 +9,6 @@
 import Foundation
 
 class FTImage: UIImage {
-    
 }
 
 public extension UIImage {

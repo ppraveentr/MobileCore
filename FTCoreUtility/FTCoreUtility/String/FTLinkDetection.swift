@@ -14,10 +14,8 @@ open class FTLinkDetection {
         case url
         case hashTag
     }
-    
     public var linkType: FTLinkType
     public var linkRange: NSRange
-    
     public var linkURL: URL
     
     init(linkType: FTLinkType, linkRange: NSRange, linkURL: URL) {

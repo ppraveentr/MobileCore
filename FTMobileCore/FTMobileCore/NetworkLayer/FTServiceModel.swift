@@ -177,7 +177,9 @@ public extension FTServiceModel {
     // FORM
     func formData() -> Data? {
         
-        guard let json = self.jsonModel() else { return nil }
+        guard let json = self.jsonModel() else {
+            return nil
+        }
 
         var postData: Data? = nil
 
@@ -186,7 +188,7 @@ public extension FTServiceModel {
                 let key = arg.key
                 if postData == nil {
                     postData = "\(key)=\(value)".data(using: String.Encoding.utf8)!
-                }else {
+                } else {
                     postData!.append("&\(key)=\(value)".data(using: String.Encoding.utf8)!)
                 }
             }

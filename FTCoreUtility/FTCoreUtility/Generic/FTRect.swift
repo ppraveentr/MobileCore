@@ -10,7 +10,6 @@ import Foundation
 
 //CGRect
 public extension CGRect {
-    
     // Usefull if used in ObjC
     func getX() -> CGFloat {
         return self.origin.x
@@ -75,8 +74,7 @@ public func FTEdgeInsetsInsetSize(size: CGSize, insets: UIEdgeInsets) -> CGSize 
  */
 public func FTTextSize(text: String?, font: UIFont,
                           constrainedSize: CGSize,
-                          lineBreakMode: NSLineBreakMode) -> CGSize
-{
+                          lineBreakMode: NSLineBreakMode) -> CGSize {
     guard let text = text, text.length > 0 else {
         return .zero
     }

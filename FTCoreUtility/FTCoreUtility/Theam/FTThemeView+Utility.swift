@@ -65,7 +65,9 @@ extension UIView {
         FTInstanceSwizzling(UIView.self, #selector(layoutSubviews), #selector(swizzled_layoutSubviews))
     }
 
-    static func __setupThemes__() { _ = SwizzleLayoutSubview }
+    static func __setupThemes__() {
+        _ = SwizzleLayoutSubview
+    }
     
     // Theme style-name for the view
     @IBInspectable
@@ -195,7 +197,7 @@ fileprivate extension UIView {
             //If SuperClass becomes invalid, terminate loop
             if (superClass != nil) && superClass != NSObject.self {
                  baseClassName = get_classNameAsString(obj: superClass!)
-            } else{
+            } else {
                 break
             }
         }
@@ -270,7 +272,9 @@ extension UIView {
 //MARK: UIControl : Style for Different states for UIControl object
 extension UIControl {
     
-    public func get_AllThemeSubType() -> Bool { return true }
+    public func get_AllThemeSubType() -> Bool {
+        return true
+    }
 
     public func setThemes(_ themes: FTThemeDic) {
         

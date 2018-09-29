@@ -32,7 +32,6 @@ class Account: FTServiceModel {
 }
 
 class TestService: FTServiceClient {
-
     var serviceName: String = "TestService"
     var inputStack: Account?
     var responseStack: AccountDetail?

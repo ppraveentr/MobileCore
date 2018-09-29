@@ -8,4 +8,5 @@
 
 import Foundation
 
-open class FTButton: FTUIButton { }
+open class FTButton: FTUIButton {
+}

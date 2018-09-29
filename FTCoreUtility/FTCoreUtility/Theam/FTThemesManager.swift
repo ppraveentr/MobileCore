@@ -14,7 +14,7 @@ open class FTThemesManager {
     
     // Theme JSON file loaded from Main-App
     static var themesJSON: FTThemeDic = [:] {
-        willSet{
+        willSet {
             if themesJSON.isEmpty && !newValue.isEmpty {
                 //Inital view config
                  UIView.__setupThemes__()
@@ -292,7 +292,7 @@ extension FTThemesManager {
         }
 
         // Retruns all appearance, which has same base name
-        let baseObptions = self.themeAppearance?.filter{ $0.0.hasPrefix(appearanceName) }
+        let baseObptions = self.themeAppearance?.filter { $0.0.hasPrefix(appearanceName) }
         
         return baseObptions
     }

@@ -21,7 +21,7 @@ open class FTUIButton: UIButton, FTUIControlThemeProtocol {
         else if self.isHighlighted {
             return ThemeStyle.highlightedStyle
         }
-        else{
+        else {
             return ThemeStyle.disabledStyle
         }
     }

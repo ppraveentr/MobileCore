@@ -62,7 +62,9 @@ public extension UIColor {
     public static func hexColor (_ hex:String) -> UIColor? {
 
         // Check if its acutal hex coded string
-        if !hex.hasPrefix("#") { return nil }
+        if !hex.hasPrefix("#") {
+            return nil
+        }
 
         // Strip non-alphanumerics, and Make it capitalized
         let cString:String = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted).uppercased()
@@ -120,7 +122,7 @@ public extension UIColor {
         if amountToBlend > 1{
             amountToBlend = 1.0
         }
-        else if amountToBlend < 0{
+        else if amountToBlend < 0 {
             amountToBlend = 0
         }
         
@@ -151,7 +153,7 @@ public extension UIColor {
 
 public extension UIImage {
     
-    public func getColor(atPoint: CGPoint = CGPoint(x: 1, y: 1), a: CGFloat = -10) -> UIColor?{
+    public func getColor(atPoint: CGPoint = CGPoint(x: 1, y: 1), a: CGFloat = -10) -> UIColor? {
         
         guard
             let pixelData = self.cgImage?.dataProvider?.data,

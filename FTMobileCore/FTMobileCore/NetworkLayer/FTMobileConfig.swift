@@ -41,7 +41,7 @@ public class FTMobileConfig {
         didSet {
             if mockBundleResource != nil {
                 mockBundle = Bundle(url: mockBundleResource!)
-            } else{
+            } else {
                 mockBundle = nil
             }
         }

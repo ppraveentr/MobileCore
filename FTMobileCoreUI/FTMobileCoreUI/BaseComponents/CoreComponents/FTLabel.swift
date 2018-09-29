@@ -44,7 +44,7 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
             if islinkDetectionEnabled, newValue != nil, newValue!.isHTMLString() {
                 self.text = newValue!.stripHTML()
                 updateWithHtmlString(text: newValue)
-            } else{
+            } else {
                 self.updateLabelStyleProperty()
             }
         }

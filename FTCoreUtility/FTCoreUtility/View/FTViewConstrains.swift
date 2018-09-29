@@ -128,7 +128,7 @@ public struct FTEdgeInsets: OptionSet {
                 self.insert(.CenterXMargin)
             }
             
-        } else{
+        } else {
             
             self.remove([.LeadingMargin, .TrailingMargin])
             self.remove(.CenterXMargin)
@@ -163,7 +163,7 @@ public struct FTEdgeInsets: OptionSet {
 //                local.remove(.Top)
 //            }
 //            
-//        } else{
+//        } else {
 //            local.remove(.Horizontal)
 //            
 //            if isFirstView {

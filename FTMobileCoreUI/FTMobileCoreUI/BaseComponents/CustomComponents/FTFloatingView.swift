@@ -92,7 +92,9 @@ public class FTFloatingView: FTView {
      Showing floating view
      */
     public func show() {
-        if self.isShowing { return }
+        if self.isShowing {
+            return
+        }
         self.floatingWindow?.addSubview(self.floatingView)
         self.isShowing = true
         floatingWindow?.isHidden = false

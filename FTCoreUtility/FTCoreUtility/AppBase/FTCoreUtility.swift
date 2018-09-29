@@ -14,7 +14,9 @@ open class FTCoreUtility {
     public static var topViewController: UIViewController? {
         get {
             let keyWindow = UIApplication.shared.delegate?.window ?? UIApplication.shared.keyWindow
-            guard let rootViewController = keyWindow?.rootViewController else { return nil }
+            guard let rootViewController = keyWindow?.rootViewController else {
+                return nil
+            }
             return self.topViewController(rootViewController)
         }
     }

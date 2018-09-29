@@ -109,7 +109,7 @@ extension FTBaseView {
     open override func addSubview(_ view: UIView) {
         if view != self.mainPinnedView, view != rootView {
             self.mainPinnedView.addSubview(view)
-        } else{
+        } else {
             super.addSubview(view)
         }
     }

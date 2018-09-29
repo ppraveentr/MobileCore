@@ -11,7 +11,6 @@ import Foundation
 private let kFTCellIdentifier = "FT.kCellIdentifier"
 
 open class FTCoreTableViewController: UITableViewController {
-
     var tableStyle: UITableView.Style = .plain
     
     public override init(style: UITableView.Style) {

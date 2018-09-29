@@ -31,7 +31,9 @@ open class FTBaseViewController : UIViewController {
     public var mainView: FTView? {
 
         // If baseView is not added, then retun nil
-        if self.baseView?.superview != self.view, self.view != self.baseView { return nil }
+        if self.baseView?.superview != self.view, self.view != self.baseView {
+            return nil
+        }
         
         return self.baseView?.mainPinnedView
     }
@@ -95,7 +97,8 @@ open class FTBaseViewController : UIViewController {
         }
         else if let presentedViewController = self.presentedViewController {
             presentedViewController.dismiss(animated: animated, completion: nil)
-        }else{
+        }
+        else {
             self.dismiss(animated: animated, completion: nil)
         }
     }

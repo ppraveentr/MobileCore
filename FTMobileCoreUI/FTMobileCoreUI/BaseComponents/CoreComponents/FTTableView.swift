@@ -10,7 +10,7 @@ import Foundation
 
 open class FTTableViewHeaderFooterView: FTView {
     var embView: UIView? {
-        willSet{
+        willSet {
             self.embView?.removeSubviews()
         }
         didSet {
@@ -23,7 +23,7 @@ open class FTTableViewHeaderFooterView: FTView {
         }
     }
     
-    static func embedView(view: UIView?) -> FTTableViewHeaderFooterView{
+    static func embedView(view: UIView?) -> FTTableViewHeaderFooterView {
         
         let local = FTTableViewHeaderFooterView()
         local.embView = view
@@ -34,9 +34,8 @@ open class FTTableViewHeaderFooterView: FTView {
     
 }
 
-
 open class FTTableView: UITableView {
-    
+
     open func setTableHeaderView(view: UIView?) {
         self.tableHeaderView = embededView(view: view)
     }

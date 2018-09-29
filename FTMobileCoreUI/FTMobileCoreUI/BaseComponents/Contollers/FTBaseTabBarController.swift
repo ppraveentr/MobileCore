@@ -9,5 +9,4 @@
 import Foundation
 
 open class FTBaseTabBarController: UITabBarController {
-    
 }

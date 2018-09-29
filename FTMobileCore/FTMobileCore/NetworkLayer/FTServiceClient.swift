@@ -76,11 +76,18 @@ public protocol FTServiceClient {
 public extension FTServiceClient {
     var serviceName: String { return "" }
 
-    func requestHeaders() -> [String:String] { return [:] }
+    func requestHeaders() -> [String:String] {
+        return [:]
+    }
 
-    public var inputStack: FTServiceModel? { return nil }
+    public var inputStack: FTServiceModel? {
+        return nil
+    }
 
-    public var responseStack: FTServiceModel? { return nil }
+    public var responseStack: FTServiceModel? {
+        return nil
+
+    }
 
     func isValid() -> Bool {
         return (serviceRequest() != nil)
@@ -105,7 +112,7 @@ public extension FTServiceClient {
 
     var responseData: Data? {
         get {
-            return  FTAssociatedObject<Data>.getAssociated(instance: self)
+            return  FTAssociatedObject.getAssociated(instance: self)
         }
     }
 
@@ -116,7 +123,9 @@ public extension FTServiceClient {
             return parsedModel
         }
 
-        guard let data = self.responseData else { return nil }
+        guard let data = self.responseData else {
+                return nil
+            }
 
         var responseModelData: FTServiceModel?
         do {
@@ -303,7 +312,7 @@ extension FTServiceClient {
 
     func sessionHandler(_ completionHandler: FTServiceCompletionBlock<Self>? = nil) -> FTURLSessionCompletionBlock {
 
-        // guard completionHandler != nil else { return nil }
+        // guard completionHandler != nil else {return nil }
 
         let handler: FTURLSessionCompletionBlock = { (data: Data?, response: URLResponse?, error: Error?) -> () in
 

@@ -16,7 +16,6 @@ public protocol FTUILabelThemeProperyProtocol: AnyObject {
 
 //Used for UIView subclasses Type
 protocol FTUILabelThemeProtocol: FTThemeProtocol {
-
     // aUsed for Label
     func theme_isLinkUnderlineEnabled(_ bool: Bool)
     func theme_isLinkDetectionEnabled(_ bool: Bool)
@@ -53,13 +52,17 @@ public extension FTThemeProtocol where Self: UILabel {
                 let fontName: String? = value as? String
                 let font = FTThemesManager.getFont(fontName)
                 
-                if let font = font { self.theme_textfont(font) }
+                if let font = font {
+                    self.theme_textfont(font)
+                }
                 
             case "textcolor":
                 let colorName: String? = value as? String
                 let color = FTThemesManager.getColor(colorName)
                 
-                if let color = color { self.theme_textcolor(color) }
+                if let color = color {
+                    self.theme_textcolor(color)
+                }
                 
             default:
                 break
