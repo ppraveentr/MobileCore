@@ -23,7 +23,7 @@ open class FTBaseViewController : UIViewController {
         setupBaseView()
     }
     
-    //Setup baseView's topLayoutGuide by sending true in subControllers if needed
+    // Setup baseView's topLayoutGuide by sending true in subControllers if needed
     open func shouldSetSafeAreaLayoutGuide() -> Bool {
         return true
     }
@@ -36,7 +36,7 @@ open class FTBaseViewController : UIViewController {
         return self.baseView?.mainPinnedView
     }
 
-    // MARK: Navigation Bar
+    //  MARK: Navigation Bar
     public func setupNavigationbar(title: String,
                             leftButtonTitle: String? = nil, leftButtonImage: UIImage? = nil, leftButtonAction: Selector? = kLeftButtonAction,
                             rightButtonTitle: String? = nil, rightButtonImage: UIImage? = nil, rightButtonAction: Selector? = #selector(rightButtonAction)) {
@@ -88,7 +88,7 @@ open class FTBaseViewController : UIViewController {
         return backButton
     }
 
-    //MARK: Dissmiss Self model
+    // MARK: Dissmiss Self model
     public func dismissSelf(_ animated: Bool = true) {
         if navigationController != nil, navigationController?.viewControllers.first != self {
             navigationController?.popViewController(animated: animated)
@@ -111,7 +111,7 @@ open class FTBaseViewController : UIViewController {
 
 extension FTBaseViewController {
 
-    //MARK: Layout Guide for rootView
+    // MARK: Layout Guide for rootView
     func setupBaseView() {
         
         let local = self.baseView?.rootView

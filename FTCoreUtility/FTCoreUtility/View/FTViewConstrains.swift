@@ -76,7 +76,7 @@ public struct FTEdgeInsets: OptionSet {
     public init(rawValue: UInt) { self.rawValue = rawValue }
     public init(_ rawValue: UInt) { self.rawValue = rawValue }
     
-    //View Margin
+    // View Margin
     public static let None = FTEdgeInsets(1 << 0)
     public static let Top = FTEdgeInsets(1 << 1)
     public static let Left = FTEdgeInsets(1 << 2)
@@ -86,7 +86,7 @@ public struct FTEdgeInsets: OptionSet {
     public static let Vertical: FTEdgeInsets = [.Top, .Bottom]
     public static let All: FTEdgeInsets = [.Horizontal, .Vertical]
     
-    //Stacking View - Margin
+    // Stacking View - Margin
     public static let LeadingMargin = FTEdgeInsets(1 << 5)
     public static let TrailingMargin = FTEdgeInsets(1 << 6)
     public static let TopMargin = FTEdgeInsets(1 << 7)
@@ -96,7 +96,7 @@ public struct FTEdgeInsets: OptionSet {
     public static let CenterMargin: FTEdgeInsets = [.CenterXMargin, .CenterYMargin]
     public static let AutoMargin = FTEdgeInsets(1 << 11)
     
-    //Private
+    // Private
 //    fileprivate static let AllLayoutMargin: FTEdgeInsets = [.LeadingMargin, .TrailingMargin,
 //                                                            .TopMargin, .BottomMargin,
 //                                                            .CenterMargin, .AutoMargin]
@@ -106,16 +106,16 @@ public struct FTEdgeInsets: OptionSet {
     fileprivate static let TopBottomMargin = FTEdgeInsets(1 << 14)
     fileprivate static let LeftRightMargin = FTEdgeInsets(1 << 15)
 
-    //Stacking View - Size
+    // Stacking View - Size
     public static let EqualWidth = FTEdgeInsets(1 << 16)
     public static let EqualHeight = FTEdgeInsets(1 << 17)
     public static let EqualSize: FTEdgeInsets = [.EqualWidth, .EqualHeight]
-    //Note: 'AutoSize', should be only used if we are stacking View, 
-    //else if used in normal 'pin' UI will break.
+    // Note: 'AutoSize', should be only used if we are stacking View, 
+    // else if used in normal 'pin' UI will break.
     public static let AutoSize = FTEdgeInsets(1 << 18)
 
     
-    //Remove inValid Constrains
+    // Remove inValid Constrains
     mutating func stanitize(forDirection direction: FTLayoutDirection) {
         self.remove(.All)
         
@@ -146,7 +146,7 @@ public struct FTEdgeInsets: OptionSet {
         }
     }
     
-//    //Remove inValid Constrains
+//    // Remove inValid Constrains
 //    func stanitize(forFirstLastView direction: FTLayoutDirection, forFirstView isFirstView: Bool) -> FTEdgeInsets {
 //        
 //        var local = self
@@ -191,13 +191,13 @@ public protocol FTViewConstrains: AnyObject {
     
     func addSizeConstraint(_ width: CGFloat, _ height: CGFloat)
     
-    //Auto-size to self height and width
+    // Auto-size to self height and width
      func addSelfSizing()
     
-    //All Produces Positive Screen offset size
+    // All Produces Positive Screen offset size
     func resizeToFitSubviewsInScreen()
     
-    //Incudes Negative screen offset
+    // Incudes Negative screen offset
     func resizeToFitSubviews()
     
     func setViewSize(_ size: CGSize, createConstraint: Bool, relation:  NSLayoutConstraint.Relation)
@@ -493,9 +493,9 @@ public extension UIView {
 
     }
     
-    //Sets height & width of the View
-    //Negative values will skip setting constraints
-    //If invoked after ".AutoSize or addSelfSizing", the view will not auto-resize the width & height.
+    // Sets height & width of the View
+    // Negative values will skip setting constraints
+    // If invoked after ".AutoSize or addSelfSizing", the view will not auto-resize the width & height.
     public func addSizeConstraint(_ width: CGFloat = -10, _ height: CGFloat = -10, relation:  NSLayoutConstraint.Relation = .equal) {
         
         self.viewLayoutConstraint.autoSizing = true
@@ -511,7 +511,7 @@ public extension UIView {
         }
     }
     
-    //Auto-size to self height and width
+    // Auto-size to self height and width
     public func addSelfSizing() {
         
         self.viewLayoutConstraint.autoSizing = true
@@ -524,7 +524,7 @@ public extension UIView {
         self.sizeToFit()
     }
     
-    //All Produces Positive Screen offset size
+    // All Produces Positive Screen offset size
     public func resizeToFitSubviewsInScreen() {
 
         let subviewsRect = subviews.reduce(CGRect.zero) {
@@ -542,7 +542,7 @@ public extension UIView {
         self.setViewSize(subviewsRect.size)
     }
     
-    //Incudes Negative screen offset
+    // Incudes Negative screen offset
     public func resizeToFitSubviews() {
         
         let reducedSize = self.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
@@ -565,7 +565,7 @@ public extension UIView {
         }
     }
     
-    //MARK: AssociatedObject for view Layout constraints
+    // MARK: AssociatedObject for view Layout constraints
     fileprivate static let aoLayoutConstraint = FTAssociatedObject<FTViewLayoutConstraint>()
     
     public var viewLayoutConstraint: FTViewLayoutConstraint {

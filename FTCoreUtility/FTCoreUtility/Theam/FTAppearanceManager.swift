@@ -40,7 +40,7 @@ open class FTAppearanceManager {
 
                     var appearanceContainer: [UIAppearanceContainer.Type]? = nil
                     if
-                        (components.1 != nil),
+                        components.1 != nil,
                         let objecClass = FTReflection.swiftClassTypeFromString(components.1!) {
                         appearanceContainer = [objecClass] as? [UIAppearanceContainer.Type]
                     }
@@ -66,12 +66,12 @@ extension FTThemesManager {
 
 extension UIView : FTAppearanceManagerProtocol {
 
-    public func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?)  -> UIAppearance {
+    public func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         return type(of: self).setUpAppearance(theme: theme, containerClass: containerClass)
     }
 
     @discardableResult
-    @objc public class func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?)  -> UIAppearance {
+    @objc public class func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
 
         let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
 
@@ -93,7 +93,7 @@ extension UIView : FTAppearanceManagerProtocol {
     public class func setBackgroundImage(imageType: String?, imageName: Any) {
         
         if let types = imageName as? FTThemeDic {
-            types.forEach({ setBackgroundImage(imageType: $0, imageName: $1) })
+            types.forEach { setBackgroundImage(imageType: $0, imageName: $1) }
         }
         
         guard let imageType = imageType else {
@@ -111,7 +111,7 @@ extension UIView : FTAppearanceManagerProtocol {
 
 extension UISegmentedControl {
 
-    override public class func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?)  -> UIAppearance {
+    override public class func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         return super.setUpAppearance(theme: theme, containerClass: containerClass)
 //        let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
 //        return appearance
@@ -127,10 +127,10 @@ extension UISegmentedControl {
         switch imageType {
         case "selected":
             appearance.setBackgroundImage(image, for: .selected, barMetrics: .default)
-            break;
+            break
         default:
             appearance.setBackgroundImage(image, for: UIControl.State(), barMetrics: .default)
-            break;
+            break
         }
     }
 }

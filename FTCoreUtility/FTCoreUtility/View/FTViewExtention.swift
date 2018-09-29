@@ -10,7 +10,7 @@ import Foundation
 
 public extension UIView {
     
-    //Add 'contentView' as subView and pin the View to all edges
+    // Add 'contentView' as subView and pin the View to all edges
     public static func embedView(contentView: UIView) -> UIView {
         
         let local = self.init()
@@ -23,31 +23,31 @@ public extension UIView {
         return local
     }
     
-    //Remove all subViews
+    // Remove all subViews
     public func removeSubviews() {
         for subview in subviews {
             subview.removeFromSuperview()
         }
     }
     
-    //Remove all of its Constraints
+    // Remove all of its Constraints
     public func removeAllConstraints() {
         var cont: [NSLayoutConstraint] = self.constraints
         cont.removeAll()
     }
     
-    //MARK: XIB
-    //Get nib based on once's class name
+    // MARK: XIB
+    // Get nib based on once's class name
     public static func getNIBFile() -> UINib? {
         return UINib(nibName: get_classNameAsString(obj: self) ?? "", bundle: nil)
     }
     
-    //Get view based on once's class name
+    // Get view based on once's class name
     public static func fromNib(_ owner: Any? = nil) -> UIView? {
         return fromNib(named: get_classNameAsString(obj: self) ?? "", owner: owner)
     }
     
-    //Retruns first view from the nib file
+    // Retruns first view from the nib file
     public static func fromNib(named name: String, owner: Any? = nil) -> UIView? {
         // Get all object inside the nib
         let allObjects = Bundle.main.loadNibNamed(name, owner: owner, options: nil) ?? []
@@ -59,7 +59,7 @@ public extension UIView {
         return nil
     }
     
-    //Add once's xib-view as subView
+    // Add once's xib-view as subView
     public func xibSetup(className: UIView.Type) {
         var contentView : UIView?
         
@@ -80,7 +80,7 @@ public extension UIView {
 
     public func findInSubView<T>() -> T? {
 
-        for val in self.subviews.compactMap({ $0 }) {
+        for val in ( self.subviews.compactMap { $0 } ) {
             if val is T {
                 return val as? T
             } else if val.subviews.count > 0 {
@@ -95,13 +95,13 @@ public extension UIView {
 //Used for Bar items
 public extension UIView {
     
-    //Find all UIImageView with 'height <= 1'
+    // Find all UIImageView with 'height <= 1'
     public func findShadowImage() -> [UIImageView]? {
         
         var imgs: [UIImageView] = []
         
-        if self is UIImageView && self.bounds.height <= 1 {
-            return [(self as! UIImageView)]
+        if self is UIImageView && self.bounds.height <= 1, let selfImamge = self as? UIImageView {
+            return [selfImamge]
         }
         
         for subview in self.subviews {
@@ -115,11 +115,11 @@ public extension UIView {
         return imgs
     }
     
-    //Remove all UIImageView's with 'height <= 1'
+    // Remove all UIImageView's with 'height <= 1'
     public func hideShadowImage() {
         
-        self.findShadowImage()?.forEach({ (shadowImageView) in
+        self.findShadowImage()?.forEach { (shadowImageView) in
             shadowImageView.isHidden = true
-        })
+        }
     }
 }

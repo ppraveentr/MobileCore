@@ -1,4 +1,3 @@
-
 //  ViewController.swift
 //  FTMobileCoreSample
 //
@@ -90,7 +89,7 @@ class ViewController: FTBaseViewController {
 //            label.removeFromSuperview()
 //        }
         
-        //MARK: TODO: Service
+        //TODO: Service
                 
 //        try? FTModelConfig.loadModelSchema(["MDASample": ["identifier":"id"] ])
 //        

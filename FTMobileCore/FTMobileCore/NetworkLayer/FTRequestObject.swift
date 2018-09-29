@@ -45,4 +45,3 @@ final class FTRequestObject: FTServiceModel {
     var request: [String:String]?
     var responseType: [String:String]?
 }
-

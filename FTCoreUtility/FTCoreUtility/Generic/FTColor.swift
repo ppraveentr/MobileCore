@@ -106,7 +106,7 @@ public extension UIColor {
         return img!
     }
     
-    //Amount should be between 0 and 1
+    // Amount should be between 0 and 1
     public func lighterColor(_ amount: CGFloat) -> UIColor{
         return UIColor.blendColors(color: self, destinationColor: UIColor.white, amount: amount)
     }
@@ -116,7 +116,7 @@ public extension UIColor {
     }
     
     public static func blendColors(color: UIColor, destinationColor: UIColor, amount : CGFloat) -> UIColor{
-        var amountToBlend = amount;
+        var amountToBlend = amount
         if amountToBlend > 1{
             amountToBlend = 1.0
         }
@@ -159,7 +159,8 @@ public extension UIImage {
         }
         
 //        let pixelInfo: Int = Int((self.size.width  * atPoint.y) + atPoint.x ) * 4; // The image is png
-        let pixelInfo: Int = Int(0) * 4; // The image is png
+        // The image is png
+        let pixelInfo: Int = Int(0) * 4
         
         let red = data[pixelInfo]
         let green = data[(pixelInfo + 1)]

@@ -15,7 +15,7 @@ public func get_classNameAsString(obj: Any) -> String? {
 // String Extension
 public extension String {
     
-    //String Extension
+    // String Extension
     func classInstance () -> AnyClass? {
         return FTReflection.swiftClassTypeFromString(self)
     }
@@ -23,8 +23,8 @@ public extension String {
 
 final public class FTReflection {
     
-    /// Variable that can be set using registermoduleIdentifiers
-    // TODO: Make it a SET, so to have unquie elements
+    // / Variable that can be set using registermoduleIdentifiers
+    //  TODO: Make it a SET, so to have unquie elements
     fileprivate static var moduleIdentifiers: [String] = []
     
     public static func getRegisterdModuleIdentifier() -> [String] {
@@ -53,7 +53,7 @@ final public class FTReflection {
         }
     }
     
-    /// Character that will be replaced by _ from the keys in a dictionary / json
+    // / Character that will be replaced by _ from the keys in a dictionary / json
     fileprivate static let illegalCharacterSet = CharacterSet(charactersIn: " -&%#@!$^*()<>?.,:;")
 
     fileprivate static func nameForBundle(_ bundle: Bundle) -> String {

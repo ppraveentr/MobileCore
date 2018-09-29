@@ -14,9 +14,11 @@ open class FTTableViewHeaderFooterView: FTView {
             self.embView?.removeSubviews()
         }
         didSet {
-            if (embView != nil) {
-                self.addSubview(embView!)
-                self.pin(view: embView!, withEdgeInsets: [.All, .EqualSize], withLayoutPriority: FTLayoutPriorityRequiredLow )
+            if let embView = embView {
+                self.addSubview(embView)
+                self.pin(view: embView,
+                         withEdgeInsets: [.All, .EqualSize],
+                         withLayoutPriority: FTLayoutPriorityRequiredLow )
             }
         }
     }
@@ -50,11 +52,10 @@ open class FTTableView: UITableView {
     
     open func setTableFooterView(view: UIView?) {
         
-        guard (view != nil || (view?.isKind(of: UIView.self))! ) else {
+        guard var view = view else {
             return
         }
         
-        var view = view
         if (view as? FTTableViewHeaderFooterView) == nil {
             view = FTTableViewHeaderFooterView.embedView(view: view)
         }

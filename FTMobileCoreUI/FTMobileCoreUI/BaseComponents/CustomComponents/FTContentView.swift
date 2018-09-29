@@ -31,7 +31,7 @@ open class FTContentView: FTScrollView {
         stopObservingHeight()
     }
     
-    // Observe webview content height
+    //  Observe webview content height
     func startObservingHeight(_ webView: FTWebView) {
         
         webView.scrollView.isScrollEnabled = false
@@ -40,7 +40,7 @@ open class FTContentView: FTScrollView {
         
         let options = NSKeyValueObservingOptions([.new])
         webView.scrollView.addObserver(self, forKeyPath: "contentSize", options: options, context: &MyObservationContext)
-        observing = true;
+        observing = true
     }
     
     func stopObservingHeight() {

@@ -10,7 +10,7 @@ import Foundation
 
 open class FTUIButton: UIButton, FTUIControlThemeProtocol {
 
-    //check view state, to update style
+    // check view state, to update style
     public func get_ThemeSubType() -> String? {
         if self.isEnabled {
             return nil
@@ -29,7 +29,7 @@ open class FTUIButton: UIButton, FTUIControlThemeProtocol {
     public func updateTheme(_ theme: FTThemeDic) {
     }
     
-    //For custome key:value pairs
+    // For custome key:value pairs
     public func update(themeDic: FTThemeDic, state: UIControl.State) {
 
         if let textcolor = themeDic["textcolor"] {

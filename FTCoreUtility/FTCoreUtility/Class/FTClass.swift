@@ -49,13 +49,13 @@ fileprivate let baseTypesMap: Dictionary<String, Any> = [
 //    
 //    var results: Dictionary<String,Any> = [:]
 //    
-//    // retrieve the properties via the class_copyPropertyList function
+//    //  retrieve the properties via the class_copyPropertyList function
 //    var count: UInt32 = 0
 //    
-//    // TODO : throws
+//    //  TODO: throws
 //    guard let properties = class_copyPropertyList(type(of: myClass) as! AnyClass, &count) else { return nil }
 //    
-//    // iterate each objc_property_t struct
+//    //  iterate each objc_property_t struct
 //    for i in 0 ..< Int(count) {
 //        
 //        guard
@@ -73,7 +73,7 @@ fileprivate let baseTypesMap: Dictionary<String, Any> = [
 //        results[name] = attribure.get_propertyAttributeType()
 //    }
 //    
-//    // release objc_property_t structs
+//    //  release objc_property_t structs
 //    free(properties)
 //    
 //    return results
@@ -108,7 +108,11 @@ public extension String {
         guard let type = attribure else {
             return self.get_propertyAttributeWithBaseType()
         }
-        
-        return NSClassFromString(type as! String) ?? Any.self
+
+        if let typeString = type as? String, let className = NSClassFromString(typeString) {
+            return className
+        }
+
+        return Any.self
     }
 }

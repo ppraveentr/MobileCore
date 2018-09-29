@@ -1,3 +1,4 @@
+#!/bin/bash
 mkdir -p "Frameworks"
 
 xcodebuild -scheme FTCoreUtility archive

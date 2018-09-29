@@ -43,12 +43,12 @@ public protocol FTServiceModel: Codable {
     static func makeModel(json: Data) throws -> Self
     static func createEmpytModel() -> Self
 
-    //JSON
+    // JSON
     func jsonModel() -> JSON?
     func jsonModelData() -> Data?
     func jsonString() -> String?
     mutating func merge(data: FTServiceModel)
-    //URL
+    // URL
     func queryItems() -> [URLQueryItem]
 }
 
@@ -133,7 +133,7 @@ public extension FTServiceModel {
         self = try! Self.makeModel(json: data!)
     }
 
-    // Encode complex key/value objects in NSRULQueryItem pairs
+    //  Encode complex key/value objects in NSRULQueryItem pairs
     private func _queryItems(_ key: String, _ value: Any?) -> [URLQueryItem] {
         var result = [] as [URLQueryItem]
 
@@ -156,7 +156,7 @@ public extension FTServiceModel {
         return result
     }
 
-    //URL
+    // URL
     func queryItems() -> [URLQueryItem] {
 
         guard let json = self.jsonModel() else { return [] }
@@ -171,7 +171,7 @@ public extension FTServiceModel {
 
     }
 
-    //FORM
+    // FORM
     func formData() -> Data? {
         
         guard let json = self.jsonModel() else { return nil }

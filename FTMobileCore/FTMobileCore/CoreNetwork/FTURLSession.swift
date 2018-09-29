@@ -19,13 +19,13 @@ open class FTURLSession: NSObject {
 
     static var defaultSession: URLSession = FTURLSession.createURLSession()
 
-    //Setup urlsession-dataTask with FTServiceClient
+    // Setup urlsession-dataTask with FTServiceClient
     @discardableResult
     class open func startDataTask<T>( with operation: T) -> URLSessionDataTask where T: FTServiceClient {
         return self.startDataTask(with: operation.urlRequest(), completionHandler: operation.sessionHandler())
     }
 
-    //Setup urlsession-dataTask with request & completionHandler
+    // Setup urlsession-dataTask with request & completionHandler
     @discardableResult
     class open func startDataTask(with request: URLRequest, completionHandler: FTURLSessionCompletionBlock?) -> URLSessionDataTask {
 

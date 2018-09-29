@@ -69,12 +69,12 @@ open class FTModelCreator {
     
     static var modelType: FTServiceModelType = .classType
 
-    //MARK: Configurations
+    // MARK: Configurations
     class open func configureSourcePath(path: String) { FTModelCreator.sourcePath = path }
     class open func configureOutputPath(path: String) { FTModelCreator.outputPath = URL(string: path) }
     class open func configureModel(type: FTServiceModelType) { FTModelCreator.modelType = type }
 
-    //MARK:
+    // MARK:
     class open func generateOutput() {
         try? sourcePath.filesAtPath({ (filePath) in
             generateModelAt(path: filePath, completionHandler: fileWriter())
@@ -86,7 +86,7 @@ open class FTModelCreator {
         do {
             if let json: [String: AnyObject] = try path.jsonContentAtPath() {
                 //Create ".swift" for each object in Dic
-                createModelClass(jsonString: json, fileWriterHandler: completionHandler)
+                modelClass(jsonString: json, fileWriterHandler: completionHandler)
             }
         } catch {
             print("Error reading Data")
@@ -96,8 +96,8 @@ open class FTModelCreator {
 
 extension FTModelCreator {
     
-    ///Create Model class for-each dic key
-    static func createModelClass(jsonString: [String: AnyObject],
+    // /Create Model class for-each dic key
+    static func modelClass(jsonString: [String: AnyObject],
                                  fileWriterHandler: @escaping (_ fileName: String, _ fileContent: String) -> Swift.Void) {
         
         jsonString.forEach { (key, value) in
@@ -106,12 +106,12 @@ extension FTModelCreator {
         }
     }
     
-    ///Default values for each data type
-    static func getDefaultValue(bindType:AnyObject, isSubIteration: Bool = false) -> AnyObject {
+    // /Default values for each data type
+    static func defaultValue(bindType:AnyObject, isSubIteration: Bool = false) -> AnyObject {
         
-        if bindType is String {
+        if let bindType = bindType as? String {
             
-            if let bindType = FTModelBindType(rawValue: bindType as! String) {
+            if let bindType = FTModelBindType(rawValue: bindType) {
                 switch (bindType) {
                 case .String:
                     return kDefaultStringValue as AnyObject
@@ -128,7 +128,7 @@ extension FTModelCreator {
         else if bindType is [String:String] {
             
             if let bindAsType = bindType[kBindingAsType] {
-                return getDefaultValue(bindType: bindAsType as AnyObject, isSubIteration: true )
+                return defaultValue(bindType: bindAsType as AnyObject, isSubIteration: true )
             }
             else if (bindType[kBindingAsArray]) != nil {
                 return kDefaultArrayValue as AnyObject
@@ -138,11 +138,11 @@ extension FTModelCreator {
         return kDefaultStringValue as AnyObject
     }
     
-    ///setup binding params for file creation, for each param in model-dic
-    static func getBindings(params: AnyObject) -> (String, String, AnyObject, Bool)? {
+    // /setup binding params for file creation, for each param in model-dic
+    static func bindings(forParams params: AnyObject) -> (String, String, AnyObject, Bool)? {
         
         if let value = params as? String {
-            return (kStringType, value, getDefaultValue(bindType: params), false)
+            return (kStringType, value, defaultValue(bindType: params), false)
         }
         
         if
@@ -150,7 +150,7 @@ extension FTModelCreator {
             let bindKey = value[kBindingKey] {
             
             if let bindAsType = value[kBindingAsType] {
-                let value = getDefaultValue(bindType: params)
+                let value = defaultValue(bindType: params)
                 let isOptionalType = (((value as? String) != nil) && value as! String == kDefaultStringValue)
                 return (bindAsType, bindKey, value, isOptionalType)
             }
@@ -164,14 +164,14 @@ extension FTModelCreator {
         return nil
     }
     
-    //MARK: File Content Creator
+    // MARK: File Content Creator
     static func createModelFile(modelName: String, params: [String: AnyObject]) -> String {
         
         var paramDef: String = "", codingKeys: String = ""
         // var decoderKeys: String = "", encoderKeys: String = ""
         
         params.forEach { (key, type) in
-            if let bindParams = getBindings(params: type) {
+            if let bindParams = bindings(forParams: type) {
                 //if (bindParams.3) is true, then :'type': will be \(bindParams.0 + "?")
                 paramDef += paramKeysCase(key: key, type: bindParams.0, defaultValues: bindParams.2 as AnyObject)
                 codingKeys += codingKeysCase(key: key, value: bindParams.1)
@@ -195,17 +195,17 @@ extension FTModelCreator {
         return string
     }
     
-    //MARK: struct definition
+    // MARK: struct definition
     static func modalHeader(name: String) -> String {
         return "final \(modelType.rawValue) \(name): \(kRootModel)"
     }
     
-    //MARK: struck params
+    // MARK: struck params
     static func paramKeysCase(key: String, type: String, defaultValues: AnyObject) -> String {
         return "var \(key): \(type)? = \(defaultValues)" + "\n"
     }
     
-    //MARK: CodingKey enum definition
+    // MARK: CodingKey enum definition
     static func codingKeysHeader(keyValueCase value: String) -> String {
         let string =
         """
@@ -216,7 +216,7 @@ extension FTModelCreator {
         return string
     }
     
-    //MARK: CodingKey params
+    // MARK: CodingKey params
     static func codingKeysCase(key: String, value: String) -> String {
         if key == value {
             return "case \(key)" + "\n"
@@ -224,7 +224,7 @@ extension FTModelCreator {
         return "case \(key) = \"\(value)\"" + "\n"
     }
     
-    //MARK: Decoder definition
+    // MARK: Decoder definition
     static func decoderHeader(keyValueCase value: String) -> String {
         let string =
         """
@@ -236,7 +236,7 @@ extension FTModelCreator {
         return string
     }
     
-    //MARK: Decoder case
+    // MARK: Decoder case
     static func decoderCase(key: String, type: String) -> String {
         /*
          """
@@ -250,7 +250,7 @@ extension FTModelCreator {
         return string + "\n"
     }
     
-    //MARK: Encoder definition
+    // MARK: Encoder definition
     static func encoderHeader(keyValueCase value: String) -> String {
         let string =
         """
@@ -263,7 +263,7 @@ extension FTModelCreator {
         return string
     }
     
-    //MARK: Encoder case
+    // MARK: Encoder case
     static func encoderCase(key: String, isOptional: Bool) -> String {
         /*
         let string = "if " +

@@ -11,7 +11,7 @@ import Foundation
 //CGRect
 public extension CGRect {
     
-    //Usefull if used in ObjC
+    // Usefull if used in ObjC
     func getX() -> CGFloat { return self.origin.x }
     
     func getY() -> CGFloat { return self.origin.y }
@@ -47,10 +47,10 @@ public func FTEdgeInsetsOutsetSize(size: CGSize, insets: UIEdgeInsets) -> CGSize
  */
 public func FTEdgeInsetsInsetSize(size: CGSize, insets: UIEdgeInsets) -> CGSize {
     var rect: CGRect = .zero
-    rect.size = size;
+    rect.size = size
 
-    //WARNING
-    return rect.inset(by: insets).size;
+    // WARNING
+    return rect.inset(by: insets).size
 }
 
 /**
@@ -60,12 +60,12 @@ public func FTTextSize(text: String?, font: UIFont,
                           constrainedSize: CGSize,
                           lineBreakMode: NSLineBreakMode) -> CGSize
 {
-    guard let text = text, (text.length > 0) else {
+    guard let text = text, text.length > 0 else {
         return .zero
     }
     
     let paragraphStyle = NSMutableParagraphStyle()
-    paragraphStyle.lineBreakMode = lineBreakMode;
+    paragraphStyle.lineBreakMode = lineBreakMode
     
     let attributes: [NSAttributedString.Key : Any] = [
         .font: font,

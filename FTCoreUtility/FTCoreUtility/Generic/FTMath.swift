@@ -22,4 +22,3 @@ public func FTSizeMax() -> CGSize {
     return CGSize(width: CGFloat.greatestFiniteMagnitude,
                   height: CGFloat.greatestFiniteMagnitude)
 }
-

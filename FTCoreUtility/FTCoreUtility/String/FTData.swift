@@ -20,7 +20,7 @@ public extension Data {
         return nil
     }
 
-    //Data decoder based on resposne mimeType or defaluts to [.utf8, .unicode]
+    // Data decoder based on resposne mimeType or defaluts to [.utf8, .unicode]
     func decodeToString(forResponse response: URLResponse? = nil, encodingList: [String.Encoding] = [.utf8, .unicode]) -> String? {
 
         var html: String? = nil

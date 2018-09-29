@@ -29,8 +29,8 @@ open class FTSearchBar: UISearchBar {
         super.init(coder: aDecoder)
     }
     
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
+    //  Only override drawRect: if you perform custom drawing.
+    //  An empty implementation adversely affects performance during animation.
     override open func draw(_ rect: CGRect) {
         // Drawing code
 
@@ -106,8 +106,10 @@ open class FTSearchBar: UISearchBar {
         }
         
         self.tintColor = tintColor
-        
-        let textField = self.value(forKey: "searchField") as! UITextField
+
+        guard let textField = self.value(forKey: "searchField") as? UITextField else {
+            return
+        }
         
         if let glassIconView = textField.leftView as? UIImageView {
             glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
@@ -125,4 +127,3 @@ open class FTSearchBar: UISearchBar {
         return textField
     }
 }
-

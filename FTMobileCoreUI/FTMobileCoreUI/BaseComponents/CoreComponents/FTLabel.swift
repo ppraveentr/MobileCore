@@ -26,7 +26,7 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
 //        addSelfSizing()
     }
 
-    //FTUILabelThemeProperyProtocol
+    // FTUILabelThemeProperyProtocol
     public var islinkDetectionEnabled = true {
         didSet {
             self.updateLabelStyleProperty()
@@ -37,11 +37,11 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
             self.updateLabelStyleProperty()
         }
     }
-    //End: FTUILabelThemeProperyProtocol
+    // End: FTUILabelThemeProperyProtocol
     
     open override var text: String? {
         willSet {
-            if islinkDetectionEnabled, (newValue != nil && newValue!.isHTMLString()) {
+            if islinkDetectionEnabled, newValue != nil, newValue!.isHTMLString() {
                 self.text = newValue!.stripHTML()
                 updateWithHtmlString(text: newValue)
             } else{
@@ -149,7 +149,7 @@ extension FTLabel {
         updateTextContainerSize()
         setNeedsDisplay()
 
-        if (completionBlock != nil) {
+        if completionBlock != nil {
             completionBlock!()
         }
     }
@@ -162,10 +162,10 @@ extension FTLabel {
         let links = FTLinkDetection.getURLLinkRanges((attributedString.string))
         self.linkRanges?.insert(contentsOf: links, at: 0)
 
-        self.linkRanges?.forEach({ (link) in
+        self.linkRanges?.forEach { (link) in
             let att = getStyleProperties(forLink: link)
             attributedString.addAttributes(att, range: link.linkRange)
-        })
+        }
     }
 }
 

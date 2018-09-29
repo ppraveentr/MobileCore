@@ -36,7 +36,7 @@
 		DEA1ED661F698BCC001AA3C6 /* FTImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA1ED651F698BCC001AA3C6 /* FTImage.swift */; };
 		DEA1ED6D1F6CF233001AA3C6 /* FTUINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA1ED6C1F6CF233001AA3C6 /* FTUINavigationBar.swift */; };
 		DEA7E12E1F48150B0002C148 /* FTViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7E12D1F48150B0002C148 /* FTViewControllerExtension.swift */; };
-		DEA7E1301F4816B20002C148 /* FTApplicationCoreUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7E12F1F4816B20002C148 /* FTApplicationCoreUtility.swift */; };
+		DEA7E1301F4816B20002C148 /* FTCoreUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7E12F1F4816B20002C148 /* FTCoreUtility.swift */; };
 		DEA7E1321F48282E0002C148 /* FTMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7E1311F48282E0002C148 /* FTMath.swift */; };
 		DEF9A7C8205AD33A00617FBF /* FTSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF9A7C7205AD33A00617FBF /* FTSequence.swift */; };
 /* End PBXBuildFile section */
@@ -97,7 +97,7 @@
 		DEA1ED651F698BCC001AA3C6 /* FTImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTImage.swift; sourceTree = "<group>"; };
 		DEA1ED6C1F6CF233001AA3C6 /* FTUINavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUINavigationBar.swift; sourceTree = "<group>"; };
 		DEA7E12D1F48150B0002C148 /* FTViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTViewControllerExtension.swift; sourceTree = "<group>"; };
-		DEA7E12F1F4816B20002C148 /* FTApplicationCoreUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTApplicationCoreUtility.swift; sourceTree = "<group>"; };
+		DEA7E12F1F4816B20002C148 /* FTCoreUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTCoreUtility.swift; sourceTree = "<group>"; };
 		DEA7E1311F48282E0002C148 /* FTMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMath.swift; sourceTree = "<group>"; };
 		DEF9A7C7205AD33A00617FBF /* FTSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTSequence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,7 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				DE680B9D1F2D067900A9F68C /* FTAppDelegate.swift */,
-				DEA7E12F1F4816B20002C148 /* FTApplicationCoreUtility.swift */,
+				DEA7E12F1F4816B20002C148 /* FTCoreUtility.swift */,
 			);
 			path = AppBase;
 			sourceTree = "<group>";
@@ -378,7 +378,7 @@
 				DE680B9B1F2CF86500A9F68C /* FTAssociatedObject.swift in Sources */,
 				DE098AB71F36375500675878 /* FTReflection.swift in Sources */,
 				DEA1ED661F698BCC001AA3C6 /* FTImage.swift in Sources */,
-				DEA7E1301F4816B20002C148 /* FTApplicationCoreUtility.swift in Sources */,
+				DEA7E1301F4816B20002C148 /* FTCoreUtility.swift in Sources */,
 				DE680B701F2BC1CF00A9F68C /* FTViewExtention.swift in Sources */,
 				DE680B991F2CF5A600A9F68C /* FTThemesManager.swift in Sources */,
 				DE9411B01F56557200938DA6 /* FTAppearanceManager.swift in Sources */,

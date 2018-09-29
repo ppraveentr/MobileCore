@@ -10,10 +10,10 @@ import Foundation
 
 open class FTBaseView: FTView {
     
-    //Set as BaseView, so that "pin'ning" subViews wont alter the base position
+    // Set as BaseView, so that "pin'ning" subViews wont alter the base position
     public var rootView = FTView()
     
-    //Top portion of view
+    // Top portion of view
     public var topPinnedView: FTView? {
         didSet {
             self.restConstraints()

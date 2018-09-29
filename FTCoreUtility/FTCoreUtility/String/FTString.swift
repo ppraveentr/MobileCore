@@ -48,7 +48,7 @@ public extension String {
         }
     }
 
-    //Enmuration
+    // Enmuration
     func enumerate(pattern: String, using block: ((NSTextCheckingResult?) -> Void )? ) {
         
         let exp = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
@@ -61,21 +61,21 @@ public extension String {
         })
     }
 
-    //Color
+    // Color
     func hexColor() -> UIColor? {
         return UIColor.hexColor(self)
     }
     
 //MARK: String Size
     
-    //Remove's 'sting' from self -> and retruns new 'String'
-    //Original value is not affected
+    // Remove's 'sting' from self -> and retruns new 'String'
+    // Original value is not affected
     func trimming(string: String) -> String {
         guard string.length > 0 else { return self}
         return self.replacingOccurrences(of: string, with: "")
     }
     
-    //Remove's 'sting' from self -> and update the 'self'
+    // Remove's 'sting' from self -> and update the 'self'
     @discardableResult
     mutating func trimString(string: String) -> String {
         guard string.length > 0 else { return self}
@@ -84,7 +84,7 @@ public extension String {
         return self
     }
     
-    //Remove prefix "string"
+    // Remove prefix "string"
     @discardableResult
     mutating func trimPrefix(_ string: String) -> String {
         
@@ -98,30 +98,30 @@ public extension String {
         return self
     }
     
-    //Get subString within the 'range'
+    // Get subString within the 'range'
     func substring(with range: NSRange) -> String? {
         return (self as NSString).substring(with: range) as String? ?? nil
     }
     
-    //Get subString 'from-index' to 'to-index'
+    // Get subString 'from-index' to 'to-index'
     func substring(from fromIndex: Int, to toIndex: Int) -> String? {
         let substring = self.substring(with: NSMakeRange(fromIndex, toIndex - fromIndex))
         return substring
     }
     
-    //Verify if self contains a subString
+    // Verify if self contains a subString
     func contains(_ find: String) -> Bool {
         return self.range(of: find) != nil
     }
     
-    //Length of string or no of characters in self
+    // Length of string or no of characters in self
     var length: Int {
         return self.count
     }
 
 //MARK: JSON
     
-    //Loading Data from given Path
+    // Loading Data from given Path
     func jsonContentAtPath<T>() throws -> T? {
         
         guard let content = try? Data(contentsOf: URL(fileURLWithPath: self)) else {
@@ -131,7 +131,7 @@ public extension String {
         return content.jsonContent() as? T
     }
 
-    //Loading Data from given Path
+    // Loading Data from given Path
     func dataAtPath() throws -> Data? {
 
         guard let content = try? Data.init(contentsOf: URL(fileURLWithPath: self)) else {
@@ -141,8 +141,8 @@ public extension String {
         return content
     }
 
-    //MARK: File
-    //Loading Data from given Path
+    // MARK: File
+    // Loading Data from given Path
     func filesAtPath(_ fileAtPath: @escaping (_ path: String) -> () ) throws {
         let fileManger = FileManager.default
         do {
@@ -155,7 +155,7 @@ public extension String {
         }
     }
 
-    //MARK: Bundle
+    // MARK: Bundle
     func bundleURL(extention: String = "bundle") -> URL? {
         var value = self
         if !value.hasSuffix(".bundle") {

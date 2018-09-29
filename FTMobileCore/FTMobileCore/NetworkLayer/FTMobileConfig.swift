@@ -12,8 +12,8 @@ public class FTMobileConfig {
     
     static let sharedInstance = FTMobileConfig()
 
-    //MARK: Configurations
-    //MARK: Requst Paths
+    // MARK: Configurations
+    // MARK: Requst Paths
     static public var appBaseURL: String = "" {
         didSet {
             if !appBaseURL.hasSuffix("/") {
@@ -22,14 +22,14 @@ public class FTMobileConfig {
         }
     }
 
-    //Check for stubData
+    // Check for stubData
     static fileprivate var isMockDataModel: Bool = false
     static public var isMockData: Bool {
         set { isMockDataModel = newValue }
         get { return isMockDataModel && mockBundle != nil }
     }
 
-    //Stub data bundle, used by FTServiceClient
+    // Stub data bundle, used by FTServiceClient
     static var mockBundle: Bundle? = nil
     static public var mockBundleResource: URL? = nil {
         didSet {
@@ -40,16 +40,16 @@ public class FTMobileConfig {
             }
         }
     }
-    //MARK: Model Binding
+    // MARK: Model Binding
     static var modelBindingPath: String = ""
-    // TODO: To support multiple sources
+    //  TODO: To support multiple sources
     static public var serviceBindingPath: String = "" {
         didSet {
             try? FTMobileConfig.loadModelSchema(fromPath: serviceBindingDirectory())
         }
     }
 
-    //MARK: Rules Binding
+    // MARK: Rules Binding
      var serviceRuels = JSON()
     static public var serviceBindingRulesName: String = "" {
         didSet {
@@ -57,10 +57,10 @@ public class FTMobileConfig {
         }
     }
 
-    //MARK: Model Schema
+    // MARK: Model Schema
     var modelSchema = JSON()
     
-    //MARK: Init with Relection
+    // MARK: Init with Relection
     init() {
         FTReflection.registerModuleIdentifier(FTMobileConfig.self)
     }
@@ -86,7 +86,7 @@ extension FTMobileConfig {
     public static func loadModelSchema(fromPath path: String ) throws {
 
         let path = serviceBindingDirectory()
-        try path.filesAtPath({ (filePath) in
+        try path.filesAtPath { (filePath) in
             do {
                 if let content: JSON = try filePath.jsonContentAtPath() {
                     try loadModelSchema(content)
@@ -94,7 +94,7 @@ extension FTMobileConfig {
             } catch {
                 print(error)
             }
-        })
+        }
     }
 
     public static func schemaForClass(classKey: String) throws -> JSON? {

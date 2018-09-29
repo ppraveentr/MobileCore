@@ -22,66 +22,49 @@ open class FTCoreTableViewController: UITableViewController {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
+    var ftTableView: FTTableView {
+        get {
+            if let local = self.tableView as? FTTableView {
+                return local
+            }
+
+            let local = FTTableView(frame: .zero, style: self.tableViewStyle)
+            local.estimatedRowHeight = UITableView.automaticDimension
+            local.dataSource = self
+            local.delegate = self
+
+            self.view = local
+            self.tableView = local
+
+            return local
+        }
+    }
+
     final override public func loadView() {
-        self.setupCustomeTableView()
-    }
-    
-    //override self's view and tableView with the 'getCustomeTableView()' value
-    open func setupCustomeTableView() {
-        
-        let local = self.getFTTableView()
-        local.dataSource = self;
-        local.delegate = self;
-        
-        self.view = local
-        self.tableView = local
-    }
-    
-    open func getFTTableView() -> FTTableView {
-        let local = FTTableView(frame: .zero, style: self.tableViewStyle)
-        local.estimatedRowHeight = UITableView.automaticDimension
-        return local
+        _ = self.ftTableView
     }
 }
 
 open class FTBaseTableViewController: FTBaseViewController {
-    
-    public lazy var tableViewController: FTCoreTableViewController = self.getTableViewController()
+
+    // TableView style, defalut: .plain
+    open func tableViewStyle() -> UITableView.Style { return .plain }
+
     public var tableView: FTTableView {
+        //madates to FTTableView.
         get { return self.tableViewController.tableView as! FTTableView }
     }
-    
-    open func class_TableViewController() -> FTCoreTableViewController {
-        return FTCoreTableViewController(style: self.class_TableViewStyle())
-    }
-    
-    open func class_TableViewStyle() -> UITableView.Style { return .plain }
-    
-    open func class_TableViewEdgeOffsets() -> FTEdgeOffsets { return .FTEdgeOffsetsZero() }
+
+    public lazy var tableViewController: FTCoreTableViewController = self.class_TableViewController()
+
+    open func tableViewEdgeOffsets() -> FTEdgeOffsets { return .FTEdgeOffsetsZero() }
     
     open override func loadView() {
         super.loadView()
         
         // Setup tableView by invoking it
         _ = self.tableView
-    }
-    
-    func getTableViewController() -> FTCoreTableViewController {
-        
-        let local = self.class_TableViewController()
-        
-        self.addChild(local)
-        
-        self.mainView?.pin(view: local.view, withEdgeOffsets: self.class_TableViewEdgeOffsets())
-        
-        // Set default Cell
-        local.tableView.register(UITableViewCell.self, forCellReuseIdentifier: kFTCellIdentifier)
-
-        local.tableView.dataSource = self
-        local.tableView.delegate = self
-        
-        return local
     }
     
     override open func viewDidLayoutSubviews() {
@@ -100,7 +83,24 @@ open class FTBaseTableViewController: FTBaseViewController {
 }
 
 extension FTBaseTableViewController {
-    
+
+    fileprivate func class_TableViewController() -> FTCoreTableViewController {
+
+        let local = FTCoreTableViewController(style: self.tableViewStyle())
+
+        self.addChild(local)
+
+        self.mainView?.pin(view: local.view, withEdgeOffsets: self.tableViewEdgeOffsets())
+
+        // Set default Cell
+        local.tableView.register(UITableViewCell.self, forCellReuseIdentifier: kFTCellIdentifier)
+
+        local.tableView.dataSource = self
+        local.tableView.delegate = self
+
+        return local
+    }
+
     /**
      tableView's tableViewHeaderView contains wrapper view, which height is evaluated
      with Auto Layout. Here I use evaluated height and update tableView's
@@ -145,7 +145,7 @@ extension FTBaseTableViewController {
 
 extension FTBaseTableViewController: UITableViewDataSource {
     
-    //For calculating TableCell height
+    // For calculating TableCell height
     open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }

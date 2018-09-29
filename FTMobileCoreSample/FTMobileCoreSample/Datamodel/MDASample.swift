@@ -21,4 +21,3 @@ import FTMobileCore
 //        return JSONKeyMapper(modelToJSONDictionary: ["identifier":"id","amount":"amount.usd"])
 //    }
 //}
-

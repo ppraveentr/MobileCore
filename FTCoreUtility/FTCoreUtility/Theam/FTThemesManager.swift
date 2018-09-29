@@ -12,7 +12,7 @@ open class FTThemesManager {
 
     static var imageSourceBundle: [Bundle] = []
     
-    //Theme JSON file loaded from Main-App
+    // Theme JSON file loaded from Main-App
     static var themesJSON: FTThemeDic = [:] {
         willSet{
             if themesJSON.isEmpty && !newValue.isEmpty {
@@ -26,7 +26,7 @@ open class FTThemesManager {
         }
     }
 
-    //
+    // 
     public static func addImageSourceBundle(imageSource: Bundle? = nil, imageSources: [Bundle]? = nil) {
         // Usefull for loading Images that are stored in bundle which are defined in Themes's JSON
         if let imageSource = imageSource {
@@ -40,7 +40,7 @@ open class FTThemesManager {
         // FTReflection.registerModuleIdentifier(imageSource)
 
     }
-    //
+    // 
     public static func setupThemes(themes: FTThemeDic, imageSourceBundle imageSource: [Bundle]? = nil) {
         
         // Usefull for loading Images that are stored in bundle which are defined in Themes's JSON
@@ -51,7 +51,7 @@ open class FTThemesManager {
         FTThemesManager.themesJSON = themes
     }
     
-    //MARK: Theme components
+    // MARK: Theme components
     public static func generateVisualThemes(forClass name: String, withStyleName styleName: String, withSubStyleName subStyle: String? = nil) -> FTThemeDic? {
         
         var styleName = styleName
@@ -70,21 +70,21 @@ open class FTThemesManager {
         return currentTheme
     }
     
-    //MARK: ViewComponents
+    // MARK: ViewComponents
     public static func isViewComponentValid(componentName: String) -> Bool {
         return self.isThemeComponentValid(componentName)
     }
     
-    // TODO: custom themes for view-objects
+    //  TODO: custom themes for view-objects
     public static func getViewComponent(_ componentName: String, styleName: String?) -> FTThemeDic? {
-        guard (styleName != nil) else {
+        guard styleName != nil else {
             return nil
         }
         return FTThemesManager.getDefaults(type: .Component, keyName: componentName, styleName: styleName) as? FTThemeDic
     }
     
-    //MARK: UIColor
-    // TODO: gradian, rgb, alpha, ...
+    // MARK: UIColor
+    //  TODO: gradian, rgb, alpha, ...
     public static func getColor(_ colorName: String?) -> UIColor? {
 
         // Check if its image coded string
@@ -113,8 +113,8 @@ open class FTThemesManager {
         return UIColor.black
     }
     
-    //MARK: UIFont
-    // TODO: bold, thin, ...
+    // MARK: UIFont
+    //  TODO: bold, thin, ...
     public static func getFont(_ fontName: String?) -> UIFont? {
         
         var font: FTThemeDic = self.getDefaults(type: .Font, keyName: fontName) as? FTThemeDic ?? [:]
@@ -134,7 +134,7 @@ open class FTThemesManager {
         return UIFont.systemFont(ofSize: 14.0)
     }
     
-    //MARK: UIImage
+    // MARK: UIImage
     public static func getImage(_ imageName: Any?) -> UIImage? {
         
         guard let imageName = imageName else {
@@ -160,7 +160,7 @@ open class FTThemesManager {
         return nil
     }
 
-    //MARK: UIImage
+    // MARK: UIImage
     public static func getTextAttributes(_ theme: FTThemeDic?) -> [NSAttributedString.Key:AnyObject]? {
 
         guard let theme = theme else {
@@ -175,7 +175,7 @@ open class FTThemesManager {
         return attributes
     }
 
-    //MARK: CALayer
+    // MARK: CALayer
     @discardableResult
     public static func getBackgroundLayer(_ layer: FTThemeDic?, toLayer: CALayer? = nil) -> CALayer? {
 
@@ -215,8 +215,8 @@ open class FTThemesManager {
         return caLayer
     }
     
-    //MARK: App Appearance
-    // TODO: custom themes for view-objects
+    // MARK: App Appearance
+    //  TODO: custom themes for view-objects
     public static func getAppearance(_ appearanceName: String? = nil) -> Any? {
         return getThemeAppearance(appearanceName)
     }
@@ -230,11 +230,11 @@ extension FTThemesManager {
         case Font
     }
     
-    //MARK: Component
+    // MARK: Component
     fileprivate class var themeComponent: FTThemeDic? { return FTThemesManager.themesJSON["components"] as? FTThemeDic }
     fileprivate static func isThemeComponentValid(_ component: String) -> Bool {
         // Get all the components of spefic type
-        guard (self.themeComponent?[component] as? FTThemeDic != nil) else {
+        guard self.themeComponent?[component] as? FTThemeDic != nil else {
             return false
         }
         
@@ -257,17 +257,17 @@ extension FTThemesManager {
         return baseComponent
     }
 
-    //Color
+    // Color
     fileprivate class var themeColor: FTThemeDic? { return FTThemesManager.themesJSON["color"] as? FTThemeDic }
     fileprivate static func getThemeColor(_ colorName: String) -> String? { return self.themeColor?[colorName] as? String }
 
-    //Font
+    // Font
     fileprivate class var themeFont: FTThemeDic? { return FTThemesManager.themesJSON["font"] as? FTThemeDic }
     fileprivate static func getThemeFont(_ fontName: String) -> FTThemeDic? {
         return self.themeFont?[fontName] as? FTThemeDic
     }
 
-    //Appearance
+    // Appearance
     fileprivate class var themeAppearance: FTThemeDic? { return FTThemesManager.themesJSON["appearance"] as? FTThemeDic }
     fileprivate static func getThemeAppearance(_ appearanceName: String? = nil) -> Any? {
         
@@ -287,7 +287,7 @@ extension FTThemesManager {
         return baseObptions
     }
     
-    //Defaults
+    // Defaults
     fileprivate static func getDefaults(type: FTThemesType, keyName: String? = nil, styleName: String? = nil) -> Any?  {
         
         guard let key = keyName else {

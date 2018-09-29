@@ -45,26 +45,26 @@ public protocol FTServiceClient {
 
     var responseModelType: Any? { get }
 
-    //    //progress closure. Progress is between 0 and 1.
-    //    var progressHandler:((Float) -> Void)?
-    //
-    //    //download closure. the URL is the file URL where the temp file has been download.
-    //    //This closure will be called so you can move the file where you desire.
-    //    var downloadHandler:((FTSericeStatus, URL) -> Void)?
-    //
-    //    ///This gets called on auth challenges. If nil, default handling is use.
-    //    ///Returning nil from this method will cause the request to be rejected and cancelled
-    //    var auth:((URLAuthenticationChallenge) -> URLCredential?)?
-    //
-    //    ///This is for doing SSL pinning
-    //    var security: HTTPSecurity?
+    //    // progress closure. Progress is between 0 and 1.
+    //     var progressHandler:((Float) -> Void)?
+    // 
+    //    // download closure. the URL is the file URL where the temp file has been download.
+    //    // This closure will be called so you can move the file where you desire.
+    //     var downloadHandler:((FTSericeStatus, URL) -> Void)?
+    // 
+    //    // /This gets called on auth challenges. If nil, default handling is use.
+    //    // /Returning nil from this method will cause the request to be rejected and cancelled
+    //     var auth:((URLAuthenticationChallenge) -> URLCredential?)?
+    // 
+    //    // /This is for doing SSL pinning
+    //     var security: HTTPSecurity?
     
     func mockDataHandler(_ completionHandler: FTServiceCompletionBlock<Self>?) -> FTServiceModel?
     init(inputStack: FTServiceModel?)
 
     static func make(modelStack: FTServiceModel?, completionHandler: FTServiceCompletionBlock<Self>?)
 
-    //Service Rules
+    // Service Rules
     func fireBefore()
     func fireBefore(urlRequest: inout URLRequest)
     func fireAfter(modelData: inout FTServiceModel?)
@@ -83,7 +83,7 @@ public extension FTServiceClient {
         return (serviceRequest() != nil)
     }
 
-    //MARK: Response Generation
+    // MARK: Response Generation
     private func responseType() -> FTServiceModel.Type? {
         let request = serviceRequest()
         if let (repsType,repsModelName) = request?.responseType?.first {
@@ -133,7 +133,7 @@ public extension FTServiceClient {
         }
 
         // Logging
-        if (responseModelData == nil || responseModelData?.queryItems().count == 0) {
+        if responseModelData == nil || responseModelData?.queryItems().count == 0 {
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
                 print("ResponseData: ", json)
@@ -148,7 +148,7 @@ public extension FTServiceClient {
         return responseModelData
     }
 
-    //MARK: Stub
+    // MARK: Stub
     func mockDataHandler(_ completionHandler: FTServiceCompletionBlock<Self>? = nil) -> FTServiceModel? {
 
         print(self.serviceName, ": is data stubbed.")
@@ -167,13 +167,13 @@ public extension FTServiceClient {
         return nil
     }
 
-    //MARK: Service Call
+    // MARK: Service Call
     static public func make(modelStack: FTServiceModel? = nil, completionHandler: FTServiceCompletionBlock<Self>? = nil) {
         let serviceStack = Self.self.init(inputStack: modelStack)
         FTURLSession.startDataTask(with: serviceStack.urlRequest(), completionHandler: serviceStack.sessionHandler(completionHandler))
     }
 
-    //Service Rules
+    // Service Rules
     func fireBefore() { }
     func fireBefore(urlRequest: inout URLRequest) { }
     func fireAfter(modelData: inout FTServiceModel?) { }
@@ -269,9 +269,9 @@ extension FTServiceClient {
         urlReq.httpMethod = request?.type.stringValue()
 
         // Request headers
-        self.requestHeaders().forEach({ (key,value) in
+        self.requestHeaders().forEach { (key,value) in
             urlReq.setValue(value, forHTTPHeaderField: key)
-        })
+        }
 
         // Reqeust Body if any
         urlReq.httpBody = httpBody

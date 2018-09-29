@@ -10,7 +10,7 @@ import Foundation
 
 open class FTUIView: UIView {
 
-    //If view is disabled, check for ".disabledStyle" style
+    // If view is disabled, check for ".disabledStyle" style
 //    public func get_ThemeSubType() -> String? {
 //        return self.isUserInteractionEnabled ? nil : ThemeStyle.disabledStyle
 //    }

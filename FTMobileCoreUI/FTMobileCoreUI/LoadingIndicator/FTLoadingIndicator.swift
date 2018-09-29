@@ -121,11 +121,11 @@ public class FTLoadingIndicator: UIView {
         self.loadingView?.start()
         
         if (self.animated) {
-            UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            UIView.animate(withDuration: 0.3, animations: { () in
                 self.alpha = 1
             }, completion: { (finished) -> Void in
                 
-            });
+            })
         } else {
             self.alpha = 1
         }
@@ -134,13 +134,13 @@ public class FTLoadingIndicator: UIView {
     private func stop() {
         
         if (self.animated) {
-            UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            UIView.animate(withDuration: 0.3, animations: { () in
                 self.alpha = 0
             }, completion: { (finished) -> Void in
                 self.removeFromSuperview()
                 self.baseView?.removeFromSuperview()
                 self.loadingView?.stop()
-            });
+            })
         } else {
             self.alpha = 0
             self.removeFromSuperview()
@@ -270,7 +270,7 @@ public class FTLoadingIndicator: UIView {
             }
             
             processBackgroundPath.addArc(withCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
-            self.backgroundLayer?.path = processBackgroundPath.cgPath;
+            self.backgroundLayer?.path = processBackgroundPath.cgPath
         }
         
         /**
@@ -283,9 +283,9 @@ public class FTLoadingIndicator: UIView {
             
             let rotationAnimation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
             rotationAnimation.toValue = NSNumber(value: Double.pi * 2.0)
-            rotationAnimation.duration = 1;
-            rotationAnimation.isCumulative = true;
-            rotationAnimation.repeatCount = HUGE;
+            rotationAnimation.duration = 1
+            rotationAnimation.isCumulative = true
+            rotationAnimation.repeatCount = HUGE
             self.backgroundLayer?.add(rotationAnimation, forKey: "rotationAnimation")
         }
         

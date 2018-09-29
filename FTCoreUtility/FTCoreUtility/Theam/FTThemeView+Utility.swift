@@ -31,12 +31,12 @@ public struct ThemeStyle {
 //Used for UIView subclasses Type
 public protocol FTThemeProtocol: AnyObject {
     
-    //Retruns 'ThemeStyle' specific to current state of object.
-    //Say if UIView is disabled, retrun "disabled", which can be clubed with main Theme style.
-    //Eg, if currentTheme is 'viewB', then when disabled state, theme willbe : 'viewB:disabled'
+    // Retruns 'ThemeStyle' specific to current state of object.
+    // Say if UIView is disabled, retrun "disabled", which can be clubed with main Theme style.
+    // Eg, if currentTheme is 'viewB', then when disabled state, theme willbe : 'viewB:disabled'
     func get_ThemeSubType() -> String?
     
-    //Custom Subclass can implement, to config Custom component
+    // Custom Subclass can implement, to config Custom component
     func updateTheme(_ theme: FTThemeDic)
 }
 
@@ -57,13 +57,13 @@ public protocol FTUIControlThemeProtocol: FTThemeProtocol {
 
 extension UIView {
 
-    //Swizzling out view's layoutSubviews property for Updating Visual theme
+    // Swizzling out view's layoutSubviews property for Updating Visual theme
     static var SwizzleLayoutSubview = {
         FTInstanceSwizzling(UIView.self, #selector(layoutSubviews), #selector(swizzled_layoutSubviews))
     }
     static func __setupThemes__() { _ = SwizzleLayoutSubview }
     
-    //Theme style-name for the view
+    // Theme style-name for the view
     @IBInspectable
     public var theme: String? {
         get { return UIView.aoThemes[self] }
@@ -74,7 +74,7 @@ extension UIView {
         }
     }
     
-    //To tigger view-Theme styling
+    // To tigger view-Theme styling
     private var needsThemesUpdate: Bool {
         get { return UIView.aoThemesNeedsUpdate[self] ?? false }
         set {
@@ -91,7 +91,7 @@ extension UIView {
 //        showErrorIfInvalidStyles()
     }
     
-    //MARK: swizzled layoutSubviews
+    // MARK: swizzled layoutSubviews
     @objc func swizzled_layoutSubviews() {
         if self.needsThemesUpdate {
             self.__updateVisualThemes__()
@@ -150,7 +150,7 @@ fileprivate extension UIView {
             var styles: FTThemeDic = [:]
 
             //For each style, get Theme value
-            ThemeStyle.allStyles().forEach({ (style) in
+            ThemeStyle.allStyles().forEach { (style) in
                 
                 if let styleThemeDic = FTThemesManager.generateVisualThemes(forClass: className,
                                                                        withStyleName: baseName!,
@@ -159,14 +159,14 @@ fileprivate extension UIView {
                     //Create FTThemeDic as, ['ThemeStyle.UIControlState' : 'ActualTheme for the state']
                     styles[style] = styleThemeDic
                 }
-            })
+            }
             
             //Setup visual component for each style
             controlThemeSelf.setThemes(styles)
         }
     }
     
-    //Retruns ('classname', 'Theme-style-name') only if both are valid
+    // Retruns ('classname', 'Theme-style-name') only if both are valid
     func get_ThemeName() -> (String, String)? {
         
         // Vadidate className and ThemeName
@@ -179,7 +179,7 @@ fileprivate extension UIView {
         var baseClassName: String? = className
     
         // Iterate through superClass till we get a valid Theme class
-        while (baseClassName != nil && !FTThemesManager.isViewComponentValid(componentName: baseClassName!)) {
+        while baseClassName != nil && !FTThemesManager.isViewComponentValid(componentName: baseClassName!) {
             //Get super Class
             let superClass: AnyClass? = class_getSuperclass(type(of: self))
             
@@ -200,7 +200,7 @@ fileprivate extension UIView {
         return (baseClassName!, themeName)
     }
     
-    //Update view with styleValues
+    // Update view with styleValues
     @objc func configureTheme(_ themeDic: FTThemeDic?) {
         
         guard let theme = themeDic else {
@@ -250,7 +250,7 @@ extension UIView {
         controlThemeSelf.updateTheme(theme)
     }
     
-    //views background color
+    // views background color
     public func theme_backgroundColor(_ color: UIColor) {
         self.backgroundColor = color
     }
@@ -309,8 +309,8 @@ public extension UIWindow {
         addConstraints(constraints)
     }
 
-    /// Refreshes appearance for the window
-    /// - Parameter animated: if the refresh should be animated
+    // / Refreshes appearance for the window
+    // / - Parameter animated: if the refresh should be animated
     public func refreshAppearance(animated: Bool) {
         NotificationCenter.default.post(name: .FTSwiftyAppearanceWillRefreshWindow, object: self)
         UIView.animate(withDuration: animated ? 0.25 : 0, animations: {
