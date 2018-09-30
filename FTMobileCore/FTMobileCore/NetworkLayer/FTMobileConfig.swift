@@ -101,7 +101,7 @@ extension FTMobileConfig {
                     try loadModelSchema(content)
                 }
             } catch {
-                print(error)
+                print("FTError: ", error)
             }
         }
     }

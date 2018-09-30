@@ -8,7 +8,9 @@
 
 import Foundation
 
-fileprivate var AssociatedObjectDescriptiveName = "FTAssociatedObject_AssociatedObjectDescriptiveName"
+public struct FTAssociatedKey {
+    static var DefaultKey = "DefaultKey"
+}
 
 // Generic way of storing values on runtime
 public class FTAssociatedObject<T> {
@@ -32,12 +34,22 @@ public class FTAssociatedObject<T> {
         }
     }
 
+    // setAssociated
     public static func setAssociated<T>(instance: Any, value: T?) {
-        objc_setAssociatedObject(instance, &AssociatedObjectDescriptiveName, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        setAssociated(instance: instance, value: value, key: &FTAssociatedKey.DefaultKey)
+    }
+    
+    public static func setAssociated<T>(instance: Any, value: T?, key: UnsafeRawPointer) {
+        objc_setAssociatedObject(instance, key, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 
+    // getAssociated
     public static func getAssociated(instance: Any) -> T? {
-        return objc_getAssociatedObject(instance, &AssociatedObjectDescriptiveName) as? T
+        return getAssociated(instance: instance, key: &FTAssociatedKey.DefaultKey)
+    }
+
+    public static func getAssociated(instance: Any, key: UnsafeRawPointer) -> T? {
+        return objc_getAssociatedObject(instance, key) as? T
     }
     
 }
