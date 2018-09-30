@@ -15,7 +15,7 @@ public extension Data {
             let content = try JSONSerialization.jsonObject(with: self, options: .allowFragments)
             return content
         } catch {
-            print(error)
+            FTLog(error)
         }
         return nil
     }

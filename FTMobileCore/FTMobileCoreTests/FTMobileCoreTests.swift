@@ -62,10 +62,10 @@ class FTMobileCoreTests: XCTestCase {
         let account2De = AccountDetail(value: "Details_2", name: "name")
         let account2 = Account(name: "da", type: account2De, data: ["account2_adas","account2_fasda"])
 
-        print("account1: ",account1.jsonString() ?? "")
-         print("account2: ",account2.jsonString() ?? "")
+        FTLog("account1: ",account1.jsonString() ?? "")
+         FTLog("account2: ",account2.jsonString() ?? "")
         account1.merge(data: account2)
-        print("merged_account1: ",account1.jsonString() ?? "")
+        FTLog("merged_account1: ",account1.jsonString() ?? "")
 
         assert(account1.type?.value == "Details_2", "FTDataModel data merging failed")
     }
@@ -83,11 +83,11 @@ class FTMobileCoreTests: XCTestCase {
     func testModelDataCreation_FromString() {
         let className = FTReflection.swiftClassTypeFromString("Account")
 
-        print(className ?? "class conversion nil")
+        FTLog(className ?? "class conversion nil")
         do {
             if let className = FTReflection.swiftClassTypeFromString("Account") {
 
-                print(className.self)
+                FTLog(className.self)
 
                 try FTServiceModel.makeModel(json: [
                     "value" : "Details_2",
@@ -95,7 +95,7 @@ class FTMobileCoreTests: XCTestCase {
                 ])
             }
         }catch {
-            print("Unexpected error: \(error).")
+            FTLog("Unexpected error: \(error).")
             assertionFailure("Error block dont match")
         }
     }
@@ -106,7 +106,7 @@ class FTMobileCoreTests: XCTestCase {
         }catch FTJsonParserError.invalidJSON {
             XCTAssert(true)
         }catch {
-            print("Unexpected error: \(error).")
+            FTLog("Unexpected error: \(error).")
             assertionFailure("Error block dont match")
         }
     }

@@ -8,6 +8,8 @@
 
 import Foundation
 
+public typealias FTLableCompletionBlock = (() -> Void)
+
 open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
 
     let dispatchQueue = DispatchQueue(label: "FTLabel.dispatchQueue")
@@ -19,12 +21,7 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
 
     fileprivate var linkRanges: [FTLinkDetection]?
 
-    public var completionBlock: (() -> Void)? = nil
-
-    open override func awakeFromNib() {
-        super.awakeFromNib()
-//        addSelfSizing()
-    }
+    public var completionBlock: FTLableCompletionBlock? = nil
 
     // FTUILabelThemeProperyProtocol
     public var islinkDetectionEnabled = true {
@@ -40,17 +37,17 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
     // End: FTUILabelThemeProperyProtocol
     
     open override var text: String? {
-        willSet {
+        set {
             if islinkDetectionEnabled, newValue != nil, newValue!.isHTMLString() {
-                self.text = newValue!.stripHTML()
+                super.text = newValue!.stripHTML()
                 updateWithHtmlString(text: newValue)
             } else {
+                super.text = newValue
                 self.updateLabelStyleProperty()
             }
         }
-        didSet {
-            self.updateLabelStyleProperty()
-//            self.updateLabelStyleProperty(isSimpleTextUpdate:true)
+        get {
+            return super.text
         }
     }
     
@@ -122,7 +119,7 @@ extension FTLabel {
             self.updateTextWithAttributedString(attributedString: nil)
         }
 
-        sizeToFit()
+        layoutView()
     }
 
     func updateTextContainerSize() {
@@ -146,9 +143,8 @@ extension FTLabel {
             self.textStorage.setAttributedString(sanitizedString)
         }
 
-        sizeToFit()
-        updateTextContainerSize()
-        setNeedsDisplay()
+        layoutView()
+
 
         if completionBlock != nil {
             completionBlock!()
@@ -308,7 +304,18 @@ extension FTLabel {
 
 // MARK: Container SetUp
 extension FTLabel {
-    
+
+    func layoutView() {
+
+        sizeToFit()
+        updateTextContainerSize()
+        setNeedsDisplay()
+        layoutIfNeeded()
+
+        self.superview?.setNeedsLayout()
+        self.superview?.layoutIfNeeded()
+    }
+
     func getTextStorage() -> NSTextStorage {
         
         let local = NSTextStorage()

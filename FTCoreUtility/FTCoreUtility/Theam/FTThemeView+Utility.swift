@@ -113,7 +113,10 @@ extension UIView {
 }
 
 fileprivate extension UIView {
-    
+
+    // invalid SuperClass, to terminate loop
+    static let kTerminalBaseClass = [UIView.self, NSObject.self, UIResponder.self]
+
     static let aoThemes = FTAssociatedObject<String>()
     static let aoThemesNeedsUpdate = FTAssociatedObject<Bool>()
 
@@ -195,8 +198,10 @@ fileprivate extension UIView {
             let superClass: AnyClass? = class_getSuperclass(type(of: self))
             
             // If SuperClass becomes invalid, terminate loop
-            if (superClass != nil) && superClass != NSObject.self {
-                 baseClassName = get_classNameAsString(obj: superClass!)
+            if let superClass = superClass, !UIView.kTerminalBaseClass.contains(where: { (obj) -> Bool in
+                return obj == superclass
+            }) {
+                 baseClassName = get_classNameAsString(obj: superClass)
             } else {
                 break
             }

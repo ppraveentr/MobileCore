@@ -145,7 +145,7 @@ extension UINavigationBar {
         super.setUpAppearance(theme: theme, containerClass: containerClass)
 
         let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
-        
+
         if let value = theme["backIndicatorImage"] {
             appearance.backIndicatorImage = FTThemesManager.getImage(value)
         }
@@ -160,6 +160,10 @@ extension UINavigationBar {
         }
         if let value = theme["isTranslucent"] as? Bool {
             appearance.isTranslucent = value
+            // FIXIT: Not able to update statusbar color if not set to `blackTranslucent`
+            if value {
+                appearance.barStyle = .blackTranslucent
+            }
         }
 
         return appearance

@@ -8,6 +8,16 @@
 
 import Foundation
 
+// Screen width.
+public var FTScreenWidth: CGFloat {
+    return UIScreen.main.bounds.width
+}
+
+// Screen height.
+public var FTScreenHeight: CGFloat {
+    return UIScreen.main.bounds.height
+}
+
 public extension UIView {
     
     // Add 'contentView' as subView and pin the View to all edges

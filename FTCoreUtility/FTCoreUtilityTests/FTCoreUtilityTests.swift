@@ -23,9 +23,9 @@ class FTCoreUtilityTests: XCTestCase {
     
     func testClassName() {
         
-//        print(UIView.fromNib()!)
+//        FTLog(UIView.fromNib()!)
         
-//        print("class name", get_classNameAsString(obj: self))
+//        FTLog("class name", get_classNameAsString(obj: self))
     }
     
     func testStrippingNilElements() {
@@ -40,7 +40,7 @@ class FTCoreUtilityTests: XCTestCase {
             "dasfdsd": ["asds", nil, "adasd"]
         ]
         dic.stripNilElements()
-        print("\n \(dic) \n")
+        FTLog("\n \(dic) \n")
     }
     
 }

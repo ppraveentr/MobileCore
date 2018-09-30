@@ -74,34 +74,34 @@ class FTThemesTests: XCTestCase {
     
     // MARK: View Component
     func testComponent() {
-        print("\n FTLabel system14W : ", FTThemesManager.getViewComponent("FTLabel", styleName: "system14W")!)
+        FTLog("\n FTLabel system14W : ", FTThemesManager.getViewComponent("FTLabel", styleName: "system14W")!)
     }
     
     // MARK: Font
     func testFonts() {
-        print("\n font 14 : ", FTThemesManager.getFont("system14")!)
+        FTLog("\n font 14 : ", FTThemesManager.getFont("system14")!)
     }
     
     // MARK: Color
     func testColorWhite() {
-        print("\n color white : ", FTThemesManager.getColor("white")!)
+        FTLog("\n color white : ", FTThemesManager.getColor("white")!)
     }
     
     func testColorBlack() {
-        print("\n color black : ", FTThemesManager.getColor("black")!)
+        FTLog("\n color black : ", FTThemesManager.getColor("black")!)
     }
     
     func testColorFail() {
-        print("\n color fail : ", FTThemesManager.getColor("orange")!)
+        FTLog("\n color fail : ", FTThemesManager.getColor("orange")!)
     }
     
     func testHashColor() {
-        print("\n color #FFFFFF00 : ", FTThemesManager.getColor("#F3F3F3F8")!)
+        FTLog("\n color #FFFFFF00 : ", FTThemesManager.getColor("#F3F3F3F8")!)
     }
     
     // MARK: appearance
     func testAppearance() {
-        print("\n getAppearance : ", FTThemesManager.getAppearance()!)
+        FTLog("\n getAppearance : ", FTThemesManager.getAppearance()!)
     }
     
     func testAppearanceNavigationBar() {

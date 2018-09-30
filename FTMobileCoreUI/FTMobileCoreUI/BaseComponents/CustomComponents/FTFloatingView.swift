@@ -137,7 +137,7 @@ public class FTFloatingView: FTView {
             case .landscapeRight :
                 self.floatingWindow?.center = CGPoint(x: point.y, y: (self.appWindow?.frame.size.width)! - point.x)
             default :
-                print("FTError: Floating View Does not Handler This Situation")
+                FTLog("FTError: Floating View Does not Handler This Situation")
             }
         })
     }

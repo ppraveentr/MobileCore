@@ -136,11 +136,11 @@ public extension FTServiceClient {
                     responseModelData = responseStack
                 }
                 if responseModelData?.queryItems().count == 0, let errorModelData = try? FTErrorModel.makeModel(json: data), errorModelData.queryItems().count != 0 {
-                    print("errorModelData: ", errorModelData)
+                    FTLog("errorModelData: ", errorModelData)
                     responseModelData = errorModelData
                 }
             } catch {
-                print("errorModelData: ", error)
+                FTLog("errorModelData: ", error)
             }
 
             if responseModelData != nil {
@@ -151,12 +151,12 @@ public extension FTServiceClient {
             if responseModelData == nil || responseModelData?.queryItems().count == 0 {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                    print("ResponseData: ", json)
+                    FTLog("ResponseData: ", json)
                     dump(json)
                 } catch {
-                    print("ResponseData: ", error)
+                    FTLog("ResponseData: ", error)
                 }
-                print("ResponseData: ",data.decodeToString() ?? "")
+                FTLog("ResponseData: ",data.decodeToString() ?? "")
             }
             // Logging
 
@@ -167,7 +167,7 @@ public extension FTServiceClient {
     // MARK: Stub
     func mockDataHandler(_ completionHandler: FTServiceCompletionBlock<Self>? = nil) -> FTServiceModel? {
 
-        print(self.serviceName, ": is data stubbed.")
+        FTLog(self.serviceName, ": is data stubbed.")
         if let path: String = FTMobileConfig.mockBundle?.path(forResource: self.serviceName, ofType: "json") {
             let data = try! path.dataAtPath()
 
@@ -187,7 +187,7 @@ public extension FTServiceClient {
     static public func make(modelStack: FTServiceModel? = nil, completionHandler: FTServiceCompletionBlock<Self>? = nil) {
         let serviceStack = Self.self.init(inputStack: modelStack)
         guard let urlRequest = serviceStack.urlRequest() else {
-            print("FTError: ", self, ": Unable to generate urlRequest.")
+            FTLog("FTError: ", self, ": Unable to generate urlRequest.")
             return
         }
         FTURLSession.startDataTask(with: urlRequest, completionHandler: serviceStack.sessionHandler(completionHandler))
@@ -213,7 +213,7 @@ extension FTServiceClient {
     @discardableResult
     private func updateData(data: Data?) -> FTServiceModel? {
         if let data = data {
-            print("rawData::",String(bytes: data, encoding: .utf8) ?? "")
+            FTLog("rawData::",String(bytes: data, encoding: .utf8) ?? "")
         }
 
         FTAssociatedObject<Data>.setAssociated(instance: self, value: data, key: &FTAssociatedKey.ResponseData)
@@ -237,9 +237,9 @@ extension FTServiceClient {
                     return request
                 }
             } catch {
-                print("FTError: ", error)
+                FTLog("FTError: ", error)
             }
-            print("serviceRequest: \(serviceName) is nil")
+            FTLog("serviceRequest: \(serviceName) is nil")
             return nil
         }
     }
@@ -277,7 +277,7 @@ extension FTServiceClient {
     func urlRequest() -> URLRequest? {
 
         guard let request = serviceRequest else {
-            print("FTError: ", self, "`FTRequestObject` generation falied.")
+            FTLog("FTError: ", self, "`FTRequestObject` generation falied.")
             return nil
         }
 
@@ -292,7 +292,7 @@ extension FTServiceClient {
 
         // Create URLRequest from 'components'
         var urlReq = URLRequest(url: components.url!)
-        print("\nCAServiceRequest: \(String(describing: self)): ", urlReq.url?.absoluteString.removingPercentEncoding ?? "Empty")
+        FTLog("\nCAServiceRequest: \(String(describing: self)): ", urlReq.url?.absoluteString.removingPercentEncoding ?? "Empty")
 
         // Setup URL 'queryItems' or 'httpBody'
         let reqstType = request.type
@@ -303,7 +303,7 @@ extension FTServiceClient {
                 httpBody = inputStack?.jsonModelData()
             case .FORM:
                 httpBody = inputStack?.formData()
-                print(httpBody ?? "Form Data empty")
+                FTLog(httpBody ?? "Form Data empty")
             default:
                 break
         }
@@ -318,13 +318,13 @@ extension FTServiceClient {
 
         // Reqeust Body if any
         urlReq.httpBody = httpBody
-        print("RequestBody: ", httpBody?.decodeToString() ?? "Empty")
+        FTLog("RequestBody: ", httpBody?.decodeToString() ?? "Empty")
 
         // Service Rules
         self.fireBefore(urlRequest: &urlReq)
 
         // Log Request headers
-        print("RequestHeaders: ",urlReq.allHTTPHeaderFields ?? "")
+        FTLog("RequestHeaders: ",urlReq.allHTTPHeaderFields ?? "")
 
         return urlReq
     }
@@ -338,9 +338,9 @@ extension FTServiceClient {
             let request = self.serviceRequest
 
             // Log Resposne
-            print("\nFTServiceResponse: \(String(describing: self)): ", self.getURLComponents(request))
+            FTLog("\nFTServiceResponse: \(String(describing: self)): ", self.getURLComponents(request))
             if error != nil {
-                print("\nError response: ", error?.localizedDescription ?? "", "\n")
+                FTLog("\nError response: ", error?.localizedDescription ?? "", "\n")
             }
 
             // Service Rules
@@ -354,7 +354,7 @@ extension FTServiceClient {
 
             // Decoded responseString
             var responseModelData: FTServiceModel? = self.updateData(data: data)
-            print("ResponseModel: ", responseModelData?.jsonModel() ?? "Response ModelData is nil")
+            FTLog("ResponseModel: ", responseModelData?.jsonModel() ?? "Response ModelData is nil")
 
             // Parse Response
             let failure = { (statusCode) in
@@ -375,7 +375,7 @@ extension FTServiceClient {
 
             if let httpURLResponse = response as? HTTPURLResponse {
                 let statusCode = httpURLResponse.statusCode
-                print("ResponseStatus: ", statusCode, "\n")
+                FTLog("ResponseStatus: ", statusCode, "\n")
 
                 if statusCode > 400 {
                     failure(statusCode)

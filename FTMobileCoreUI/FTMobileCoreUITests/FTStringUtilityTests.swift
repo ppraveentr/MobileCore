@@ -20,7 +20,7 @@ class FTStringUtilityTests: XCTestCase {
        let links = FTLinkDetection.getURLLinkRanges(testString)
         
         links.forEach {
-            print("\n" + $0.description + "\n")
+            FTLog("\n" + $0.description + "\n")
         }
     }
     
@@ -31,7 +31,7 @@ class FTStringUtilityTests: XCTestCase {
         let links = FTLinkDetection.getHashTagRanges(testString)
         
         links.forEach {
-            print("\n" + $0.description + "\n")
+            FTLog("\n" + $0.description + "\n")
         }
     }
     
