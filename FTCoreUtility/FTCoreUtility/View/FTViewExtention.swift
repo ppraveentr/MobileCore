@@ -88,6 +88,7 @@ public extension UIView {
         addSubview(contentView!)
     }
 
+    // Find subView based on output type
     public func findInSubView<T>() -> T? {
 
         for val in ( self.subviews.compactMap { $0 } ) {
@@ -100,7 +101,24 @@ public extension UIView {
         }
         return nil
     }
-    
+
+    // calculate - systemLayoutSizeFitting
+    public func compressedSize(_ size: CGSize = .zero, _ offSet: CGSize = .zero,
+                        widthPriority: UILayoutPriority = .required,
+                        heightPriority: UILayoutPriority = .fittingSizeLevel ) -> CGSize {
+
+        if size == .zero {
+            let compressedSize = self.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+            return compressedSize
+        }
+
+        let size = self.systemLayoutSizeFitting(size,
+                                                 withHorizontalFittingPriority: widthPriority,
+                                                 verticalFittingPriority: heightPriority)
+
+        return CGSize(width: size.width - offSet.width, height:  size.height - offSet.height)
+
+    }
 }
 
 // Used for Bar items
