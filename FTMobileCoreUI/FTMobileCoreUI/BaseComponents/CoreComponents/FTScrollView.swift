@@ -15,8 +15,8 @@ open class FTScrollView: UIScrollView {
     func setupContentView() -> FTView {
         
         let contentView = FTView()
-        self.pin(view: contentView, withEdgeInsets: [.All], withLayoutPriority: .required)
-        self.pin(view: contentView, withEdgeInsets: [.CenterMargin], withLayoutPriority: .defaultLow)
+        self.pin(view: contentView, edgeInsets: [.All], priority: .required)
+        self.pin(view: contentView, edgeInsets: [.CenterMargin], priority: .defaultLow)
         contentView.addSelfSizing()
         
         return contentView

@@ -51,7 +51,7 @@ open class FTBaseView: FTView {
         }
 
         // Set lowerPriority to avoid contraint issues with viewControllers's rootView
-        self.pin(view: rootView, withLayoutPriority: FTLayoutPriorityRequiredLow)
+        self.pin(view: rootView, priority: FTLayoutPriorityRequiredLow)
 
         self.restConstraints()
     }
@@ -83,7 +83,7 @@ open class FTBaseView: FTView {
         }
         
         // Pin : Top and Side - margin of the firstView to Root
-        rootView.pin(view: viewArray.first!, withEdgeInsets: [.Top, .Horizontal])
+        rootView.pin(view: viewArray.first!, edgeInsets: [.Top, .Horizontal])
 
         if viewArray.count > 1 {
             
@@ -94,10 +94,10 @@ open class FTBaseView: FTView {
         }
         
         // Pin : BottomMargin of the lastView to Root
-        rootView.pin(view: viewArray.last!, withEdgeInsets: .Bottom)
+        rootView.pin(view: viewArray.last!, edgeInsets: .Bottom)
         
         // Pin : MainView to margin
-        rootView.pin(view: self.mainPinnedView, withEdgeInsets: .Horizontal )
+        rootView.pin(view: self.mainPinnedView, edgeInsets: .Horizontal )
 
     }
     

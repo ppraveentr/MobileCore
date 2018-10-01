@@ -26,9 +26,9 @@ public extension UIView {
         let local = self.init()
         local.backgroundColor = .clear
         
-        local.pin(view: contentView, withEdgeInsets: [.All], withLayoutPriority: FTLayoutPriorityRequiredLow)
-        local.pin(view: contentView, withEdgeInsets: [.CenterMargin], withLayoutPriority: .defaultLow)
-        local.pin(view: contentView, withEdgeInsets: [.EqualWidth, .Top])
+        local.pin(view: contentView, edgeInsets: [.All], priority: FTLayoutPriorityRequiredLow)
+        local.pin(view: contentView, edgeInsets: [.CenterMargin], priority: .defaultLow)
+        local.pin(view: contentView, edgeInsets: [.EqualWidth, .Top])
         
         return local
     }
@@ -60,7 +60,7 @@ public extension UIView {
     // Retruns first view from the nib file
     public static func fromNib(named name: String, owner: Any? = nil) -> UIView? {
         // Get all object inside the nib
-        let allObjects = Bundle.main.loadNibNamed(name, owner: owner, options: nil) ?? []
+        let allObjects = Bundle(for: self).loadNibNamed(name, owner: owner, options: nil) ?? []
         // Get first view object
         if let nib = allObjects.first as? UIView {
             return nib

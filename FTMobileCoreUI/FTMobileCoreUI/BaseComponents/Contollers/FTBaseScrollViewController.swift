@@ -26,7 +26,7 @@ extension FTBaseScrollViewController {
         
         let local = FTScrollView()
         
-        self.mainView?.pin(view: local, withEdgeOffsets: .FTEdgeOffsetsZero())
+        self.mainView?.pin(view: local, edgeOffsets: .zero)
         
         return local
     }

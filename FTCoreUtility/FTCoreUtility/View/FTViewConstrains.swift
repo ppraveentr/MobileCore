@@ -48,7 +48,11 @@ public struct FTEdgeOffsets {
     public var top: CGFloat
     public var right: CGFloat
     public var bottom: CGFloat
-    
+
+    public static var zero: FTEdgeOffsets {
+        return FTEdgeOffsets(0, 0, 0, 0)
+    }
+
     public init(_ left: CGFloat, _ top: CGFloat, _ right: CGFloat, _ bottom: CGFloat) {
         self.left = left
         self.top = top
@@ -62,9 +66,7 @@ public struct FTEdgeOffsets {
         self.right = padding
         self.bottom = padding
     }
-    
-    public static func FTEdgeOffsetsZero() -> FTEdgeOffsets { return FTEdgeOffsets(0, 0, 0, 0) }
-    
+
     func getRight() -> CGFloat {
         return -self.right
     }
@@ -242,9 +244,9 @@ public extension UIView {
         return hasSameBase
     }
     
-    public func pin(view : UIView, withEdgeOffsets FTEdgeOffsets: FTEdgeOffsets = .FTEdgeOffsetsZero(),
-                    withEdgeInsets edgeInsets: FTEdgeInsets = .All,
-                    withLayoutPriority priority: UILayoutPriority = .required, addToSubView: Bool = true) {
+    public func pin(view : UIView, edgeOffsets: FTEdgeOffsets = .zero,
+                    edgeInsets: FTEdgeInsets = .All,
+                    priority: UILayoutPriority = .required, addToSubView: Bool = true) {
         
         var priority = priority
         if Int(priority.rawValue) < 0  {
@@ -265,25 +267,25 @@ public extension UIView {
         
         // Left
         if edgeInsets.contains(.Left) {
-            let constraint = self.pin(\UIView.leftAnchor, toView: view, priority: priority, constant: FTEdgeOffsets.left)
+            let constraint = self.pin(\UIView.leftAnchor, toView: view, priority: priority, constant: edgeOffsets.left)
             localConstraint.append(constraint)
         }
         
         // Right
         if edgeInsets.contains(.Right) {
-            let constraint = self.pin(\UIView.rightAnchor, toView: view, priority: priority, constant: FTEdgeOffsets.getRight())
+            let constraint = self.pin(\UIView.rightAnchor, toView: view, priority: priority, constant: edgeOffsets.getRight())
             localConstraint.append(constraint)
         }
         
         // Top
         if edgeInsets.contains(.Top) {
-            let constraint = self.pin(\UIView.topAnchor, toView: view, priority: priority, constant: FTEdgeOffsets.top)
+            let constraint = self.pin(\UIView.topAnchor, toView: view, priority: priority, constant: edgeOffsets.top)
             localConstraint.append(constraint)
         }
         
         // Bottom
         if edgeInsets.contains(.Bottom) {
-            let constraint = self.pin(\UIView.bottomAnchor, toView: view, priority: priority, constant: FTEdgeOffsets.getBottom())
+            let constraint = self.pin(\UIView.bottomAnchor, toView: view, priority: priority, constant: edgeOffsets.getBottom())
             localConstraint.append(constraint)
         }
         
@@ -302,10 +304,10 @@ public extension UIView {
             //            let constraint = self.pin(\UIView.topAnchor, toView: view, priority: priority, constant: FTEdgeOffsets.top)
             //            localConstraint.append(constraint)
             
-            let constraint = self.pin(\UIView.leftAnchor, toView: view, priority: priority, constant: FTEdgeOffsets.left)
+            let constraint = self.pin(\UIView.leftAnchor, toView: view, priority: priority, constant: edgeOffsets.left)
             localConstraint.append(constraint)
             
-            let constraintRight = self.pin(\UIView.rightAnchor, toView: view, priority: priority, constant: FTEdgeOffsets.getRight())
+            let constraintRight = self.pin(\UIView.rightAnchor, toView: view, priority: priority, constant: edgeOffsets.getRight())
             localConstraint.append(constraintRight)
             
             //Top
@@ -328,14 +330,14 @@ public extension UIView {
         
         // Right-Left Direction AutoMargin
         if edgeInsets.contains(.LeftRightMargin) {
-            let constraint = view.leftAnchor.constraint(equalTo: self.rightAnchor, constant: FTEdgeOffsets.left)
+            let constraint = view.leftAnchor.constraint(equalTo: self.rightAnchor, constant: edgeOffsets.left)
             constraint.priority = priority
             localConstraint.append(constraint)
         }
         
         // Top-Bottom Direction AutoMargin
         if edgeInsets.contains(.TopBottomMargin) {
-            let constraint = view.topAnchor.constraint(equalTo: self.bottomAnchor, constant: FTEdgeOffsets.getBottom())
+            let constraint = view.topAnchor.constraint(equalTo: self.bottomAnchor, constant: edgeOffsets.getBottom())
             constraint.priority = priority
             localConstraint.append(constraint)
         }
@@ -414,11 +416,11 @@ public extension UIView {
             let defaultOffset = FTEdgeOffsets(0)
             
             if direction == .TopToBottom {
-                self.pin(view: view, withEdgeOffsets: defaultOffset, withEdgeInsets: .TopLayoutMargin,
-                         withLayoutPriority: UILayoutPriority(rawValue: priorityL))
+                self.pin(view: view, edgeOffsets: defaultOffset, edgeInsets: .TopLayoutMargin,
+                         priority: UILayoutPriority(rawValue: priorityL))
             } else {
-                self.pin(view: view, withEdgeOffsets: defaultOffset, withEdgeInsets: .LeftLayoutMargin,
-                         withLayoutPriority: UILayoutPriority(rawValue: priorityL))
+                self.pin(view: view, edgeOffsets: defaultOffset, edgeInsets: .LeftLayoutMargin,
+                         priority: UILayoutPriority(rawValue: priorityL))
             }
         }
         
@@ -437,8 +439,8 @@ public extension UIView {
                 localIndex = localIndex+1
                 
                 let priorityS = priority.rawValue - Float(pos)
-                locallastView.pin(view: Preview, withEdgeOffsets: offSet, withEdgeInsets: subEdgeInsets,
-                                  withLayoutPriority: UILayoutPriority(rawValue: priorityS))
+                locallastView.pin(view: Preview, edgeOffsets: offSet, edgeInsets: subEdgeInsets,
+                                  priority: UILayoutPriority(rawValue: priorityS))
             }
         }
         
@@ -448,7 +450,7 @@ public extension UIView {
 
         var lastView: UIView? = nil
         
-        var offSet: FTEdgeOffsets = .FTEdgeOffsetsZero()
+        var offSet: FTEdgeOffsets = .zero
         
         if direction == .TopToBottom {
             offSet = FTEdgeOffsets(0, 0, 0, -spacing)
@@ -464,8 +466,8 @@ public extension UIView {
             view.translatesAutoresizingMaskIntoConstraints = false
 
             if (lastView != nil) {
-                lastView?.pin(view: view, withEdgeOffsets: offSet, withEdgeInsets: localEdgeInsets,
-                              withLayoutPriority: priority)
+                lastView?.pin(view: view, edgeOffsets: offSet, edgeInsets: localEdgeInsets,
+                              priority: priority)
             }
             
             lastView = view

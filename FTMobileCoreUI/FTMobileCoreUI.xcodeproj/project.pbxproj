@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE0173B9216143EC007F5546 /* FTCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0173B8216143EC007F5546 /* FTCollectionView.swift */; };
 		DE14851B1F10B13600A250A6 /* FTMobileCoreUI.h in Headers */ = {isa = PBXBuildFile; fileRef = DE1485191F10B13600A250A6 /* FTMobileCoreUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DE1485301F10B82100A250A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE14852F1F10B82100A250A6 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DE1485631F1159BD00A250A6 /* FTBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1485601F1159BD00A250A6 /* FTBaseViewController.swift */; };
 		DE1485641F1159BD00A250A6 /* FTLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1485621F1159BD00A250A6 /* FTLabel.swift */; };
 		DE29B6921F507AED00BE1529 /* FTSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE29B6911F507AED00BE1529 /* FTSearchBar.swift */; };
 		DE29B6991F509E7000BE1529 /* FTFloatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE29B6981F509E7000BE1529 /* FTFloatingView.swift */; };
+		DE2FD97421613010009E6F94 /* FTBaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2FD97321613010009E6F94 /* FTBaseCollectionViewController.swift */; };
 		DE5A775F204DA79B008B19ED /* FTSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A775E204DA79B008B19ED /* FTSegmentedControl.swift */; };
 		DE6FC99020A2223300121E22 /* FTCoreUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C499F1F4612A70010A5BE /* FTCoreUtility.framework */; };
 		DE98541B1F46FE1C001AFF89 /* FTMobileCoreUIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE98541A1F46FE1C001AFF89 /* FTMobileCoreUIConstants.swift */; };
@@ -33,6 +35,9 @@
 		DEB569911F17E12100B5F187 /* FTBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB569901F17E12100B5F187 /* FTBaseTableViewController.swift */; };
 		DED539D21F13C4940055BECA /* FTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED539D11F13C4940055BECA /* FTView.swift */; };
 		DED539D51F13C4E60055BECA /* FTBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED539D41F13C4E60055BECA /* FTBaseView.swift */; };
+		DEE34D8F21626EB70013D4ED /* FTFontPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEE34D8C21626EB70013D4ED /* FTFontPickerView.xib */; };
+		DEE34D9021626EB70013D4ED /* FTFontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE34D8D21626EB70013D4ED /* FTFontPickerViewController.swift */; };
+		DEE34D9121626EB70013D4ED /* FTFontPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE34D8E21626EB70013D4ED /* FTFontPickerView.swift */; };
 		DEE988CF1F1B5C9E00F9C974 /* FTStringUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE988CE1F1B5C9E00F9C974 /* FTStringUtilityTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +89,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DE0173B8216143EC007F5546 /* FTCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTCollectionView.swift; sourceTree = "<group>"; };
 		DE0C49991F4612A70010A5BE /* FTCoreUtility.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FTCoreUtility.xcodeproj; path = ../FTCoreUtility/FTCoreUtility.xcodeproj; sourceTree = "<group>"; };
 		DE1485161F10B13600A250A6 /* FTMobileCoreUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FTMobileCoreUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE1485191F10B13600A250A6 /* FTMobileCoreUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTMobileCoreUI.h; sourceTree = "<group>"; };
@@ -93,6 +99,7 @@
 		DE1485621F1159BD00A250A6 /* FTLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLabel.swift; sourceTree = "<group>"; };
 		DE29B6911F507AED00BE1529 /* FTSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTSearchBar.swift; sourceTree = "<group>"; };
 		DE29B6981F509E7000BE1529 /* FTFloatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTFloatingView.swift; sourceTree = "<group>"; };
+		DE2FD97321613010009E6F94 /* FTBaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTBaseCollectionViewController.swift; sourceTree = "<group>"; };
 		DE5A775E204DA79B008B19ED /* FTSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTSegmentedControl.swift; sourceTree = "<group>"; };
 		DE98541A1F46FE1C001AFF89 /* FTMobileCoreUIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMobileCoreUIConstants.swift; sourceTree = "<group>"; };
 		DE98541D1F4705BE001AFF89 /* FTBaseScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseScrollViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +119,9 @@
 		DEB569901F17E12100B5F187 /* FTBaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseTableViewController.swift; sourceTree = "<group>"; };
 		DED539D11F13C4940055BECA /* FTView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTView.swift; sourceTree = "<group>"; };
 		DED539D41F13C4E60055BECA /* FTBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseView.swift; sourceTree = "<group>"; };
+		DEE34D8C21626EB70013D4ED /* FTFontPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FTFontPickerView.xib; sourceTree = "<group>"; };
+		DEE34D8D21626EB70013D4ED /* FTFontPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTFontPickerViewController.swift; sourceTree = "<group>"; };
+		DEE34D8E21626EB70013D4ED /* FTFontPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTFontPickerView.swift; sourceTree = "<group>"; };
 		DEE988CE1F1B5C9E00F9C974 /* FTStringUtilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStringUtilityTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,6 +199,7 @@
 		DE14855E1F1159BD00A250A6 /* BaseComponents */ = {
 			isa = PBXGroup;
 			children = (
+				DEE34D8921626DC80013D4ED /* FontPicker */,
 				DED539D31F13C4E60055BECA /* CustomComponents */,
 				DE14855F1F1159BD00A250A6 /* Contollers */,
 				DE1485611F1159BD00A250A6 /* CoreComponents */,
@@ -204,6 +215,7 @@
 				DEB569901F17E12100B5F187 /* FTBaseTableViewController.swift */,
 				DE98541D1F4705BE001AFF89 /* FTBaseScrollViewController.swift */,
 				DE98541F1F4715A5001AFF89 /* FTBaseTabBarController.swift */,
+				DE2FD97321613010009E6F94 /* FTBaseCollectionViewController.swift */,
 			);
 			path = Contollers;
 			sourceTree = "<group>";
@@ -219,6 +231,7 @@
 				DEA7E1A71F4983200002C148 /* FTTableView.swift */,
 				DE29B6911F507AED00BE1529 /* FTSearchBar.swift */,
 				DE5A775E204DA79B008B19ED /* FTSegmentedControl.swift */,
+				DE0173B8216143EC007F5546 /* FTCollectionView.swift */,
 			);
 			path = CoreComponents;
 			sourceTree = "<group>";
@@ -267,6 +280,16 @@
 				DE29B6981F509E7000BE1529 /* FTFloatingView.swift */,
 			);
 			path = CustomComponents;
+			sourceTree = "<group>";
+		};
+		DEE34D8921626DC80013D4ED /* FontPicker */ = {
+			isa = PBXGroup;
+			children = (
+				DEE34D8E21626EB70013D4ED /* FTFontPickerView.swift */,
+				DEE34D8C21626EB70013D4ED /* FTFontPickerView.xib */,
+				DEE34D8D21626EB70013D4ED /* FTFontPickerViewController.swift */,
+			);
+			path = FontPicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,7 +356,6 @@
 				TargetAttributes = {
 					DE1485151F10B13600A250A6 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = W6W48SVQX7;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -391,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEA4EDBF1F4F246D00C15C11 /* FTMobileCoreUI.xcassets in Resources */,
+				DEE34D8F21626EB70013D4ED /* FTFontPickerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +434,8 @@
 				DE98541E1F4705BE001AFF89 /* FTBaseScrollViewController.swift in Sources */,
 				DEB569911F17E12100B5F187 /* FTBaseTableViewController.swift in Sources */,
 				DED539D51F13C4E60055BECA /* FTBaseView.swift in Sources */,
+				DE0173B9216143EC007F5546 /* FTCollectionView.swift in Sources */,
+				DEE34D9021626EB70013D4ED /* FTFontPickerViewController.swift in Sources */,
 				DEB5698D1F17E0E500B5F187 /* FTContentView.swift in Sources */,
 				DEB5698F1F17E11500B5F187 /* FTBaseNavigationController.swift in Sources */,
 				DE9854201F4715A5001AFF89 /* FTBaseTabBarController.swift in Sources */,
@@ -423,8 +448,10 @@
 				DE5A775F204DA79B008B19ED /* FTSegmentedControl.swift in Sources */,
 				DE29B6991F509E7000BE1529 /* FTFloatingView.swift in Sources */,
 				DED539D21F13C4940055BECA /* FTView.swift in Sources */,
+				DE2FD97421613010009E6F94 /* FTBaseCollectionViewController.swift in Sources */,
 				DEB5698B1F17E0B400B5F187 /* FTButton.swift in Sources */,
 				DEB569891F17E0AB00B5F187 /* FTWebView.swift in Sources */,
+				DEE34D9121626EB70013D4ED /* FTFontPickerView.swift in Sources */,
 				DEAACD81215E59AC0048BDC4 /* FTLoadingIndicator.swift in Sources */,
 				DE1485631F1159BD00A250A6 /* FTBaseViewController.swift in Sources */,
 			);
@@ -574,7 +601,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = W6W48SVQX7;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -599,7 +626,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = W6W48SVQX7;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

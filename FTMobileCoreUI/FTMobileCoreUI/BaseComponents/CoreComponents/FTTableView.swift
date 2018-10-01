@@ -17,8 +17,8 @@ open class FTTableViewHeaderFooterView: FTView {
             if let embView = embView {
                 self.addSubview(embView)
                 self.pin(view: embView,
-                         withEdgeInsets: [.All, .EqualSize],
-                         withLayoutPriority: FTLayoutPriorityRequiredLow )
+                         edgeInsets: [.All, .EqualSize],
+                         priority: FTLayoutPriorityRequiredLow )
             }
         }
     }
