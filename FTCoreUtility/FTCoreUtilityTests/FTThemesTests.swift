@@ -63,6 +63,13 @@ class FTThemesTests: XCTestCase {
                     ],
                     "underline": true
                 ]
+            ],
+            "FTUISearchBar": [
+                "default": [
+                    "textcolor": "white",
+                    "tintColor": "white",
+                    "barTintColor": "navBarRed"
+                ]
             ]
         ]
     ]
@@ -109,7 +116,7 @@ class FTThemesTests: XCTestCase {
         
         XCTAssertNotNil(theme)
         
-        XCTAssertTrue(theme.count == 2, "Valid no themes not found")
+        XCTAssertTrue(theme?.count == 2, "Valid no themes not found")
     }
     
     func testAppearanceSegmentedControl() {
@@ -117,7 +124,20 @@ class FTThemesTests: XCTestCase {
         
         XCTAssertNotNil(theme)
         
-        XCTAssertTrue(theme.count == 1, "Valid no themes not found")
+        XCTAssertTrue(theme?.count == 1, "Valid no themes not found")
     }
-    
+
+    func testFTUISearchBar() {
+
+        let searchBar = FTUISearchBar(frame: .zero)
+        searchBar.theme = "default"
+
+        //let theme = FTThemesManager.getViewComponent("FTSearchBar", styleName: "default")
+
+        //FTLog("\n FTSearchBar : ", theme ?? "nil")
+
+//        XCTAssertNotNil(theme)
+
+//        XCTAssertTrue(theme?.count == 1, "Valid no themes not found")
+    }
 }

@@ -27,55 +27,90 @@ open class FTBaseViewController : UIViewController {
     open func shouldSetSafeAreaLayoutGuide() -> Bool {
         return true
     }
-    
+
+    private var isBaseViewAdded: Bool {
+        get {
+            // If baseView is not added, then retun false
+            return (self.baseView?.superview != self.view && self.view != self.baseView)
+        }
+    }
     public var mainView: FTView? {
 
         // If baseView is not added, then retun nil
-        if self.baseView?.superview != self.view, self.view != self.baseView {
+        if isBaseViewAdded {
             return nil
         }
         
         return self.baseView?.mainPinnedView
     }
 
+    public func topPinnedView() -> FTView? {
+
+        // If baseView is not added, then retun nil
+        if isBaseViewAdded {
+            return nil
+        }
+
+        return self.baseView?.topPinnedView
+    }
+
     // MARK: Navigation Bar
     public func setupNavigationbar(title: String,
-                            leftButtonTitle: String? = nil, leftButtonImage: UIImage? = nil, leftButtonAction: Selector? = kLeftButtonAction,
-                            rightButtonTitle: String? = nil, rightButtonImage: UIImage? = nil, rightButtonAction: Selector? = #selector(rightButtonAction)) {
+                            leftButtonTitle: String? = nil, leftButtonImage: UIImage? = nil, leftButtonAction: Selector? = kLeftButtonAction, leftCustomView: UIView? = nil,
+                            rightButtonTitle: String? = nil, rightButtonImage: UIImage? = nil, rightButtonAction: Selector? = #selector(rightButtonAction), rightCustomView: UIView? = nil) {
         self.title = title
 
-        if leftButtonTitle != nil || leftButtonImage != nil {
-            self.leftButton(title: leftButtonTitle, image: leftButtonImage, buttonAction: leftButtonAction)
+        if leftButtonTitle != nil || leftButtonImage != nil || leftCustomView != nil {
+            self.leftButton(title: leftButtonTitle, image: leftButtonImage, customView: leftCustomView, buttonAction: leftButtonAction)
         }
-        if rightButtonTitle != nil || rightButtonImage != nil {
-            self.setRightButton(title: rightButtonTitle, image: rightButtonImage, buttonAction: rightButtonAction)
+        if rightButtonTitle != nil || rightButtonImage != nil || rightCustomView != nil {
+            self.setRightButton(title: rightButtonTitle, image: rightButtonImage, customView: rightCustomView, buttonAction: rightButtonAction)
         }
     }
 
     public func setupNavigationbar(title: String,
-                                   leftButton: UIBarButtonItem? = nil, rightButton: UIBarButtonItem? = nil) {
+                                   leftButton: UIBarButtonItem? = nil,
+                                   rightButton: UIBarButtonItem? = nil) {
         self.title = title
         self.navigationItem.leftBarButtonItem = leftButton
         self.navigationItem.rightBarButtonItem = rightButton
     }
 
     @discardableResult
-    public func leftButton(title: String? = nil, image: UIImage? = nil, buttonType: UIBarButtonItem.SystemItem = .stop, buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem {
-        let backButton = self.navigationBarButton(title: title, image: image, buttonType:buttonType, buttonAction: buttonAction)
+    public func leftButton(title: String? = nil,
+                           image: UIImage? = nil,
+                           buttonType: UIBarButtonItem.SystemItem = .stop,
+                           customView: UIView? = nil,
+                           buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem {
+        let backButton = self.navigationBarButton(title: title, image: image,
+                                                  buttonType:buttonType,
+                                                  customView: customView,
+                                                  buttonAction: buttonAction)
         self.navigationItem.leftBarButtonItem = backButton
         return backButton
     }
 
     @discardableResult
-    public func setRightButton(title: String? = nil, image: UIImage? = nil, buttonType: UIBarButtonItem.SystemItem = .done, buttonAction: Selector? = #selector(rightButtonAction)) -> UIBarButtonItem? {
-        let backButton = self.navigationBarButton(title: title, image: image, buttonType: buttonType, buttonAction: buttonAction)
+    public func setRightButton(title: String? = nil,
+                               image: UIImage? = nil,
+                               buttonType: UIBarButtonItem.SystemItem = .done,
+                               customView: UIView? = nil,
+                               buttonAction: Selector? = #selector(rightButtonAction)) -> UIBarButtonItem? {
+        let backButton = self.navigationBarButton(title: title, image: image, buttonType: buttonType, customView: customView, buttonAction: buttonAction)
         self.navigationItem.rightBarButtonItem = backButton
         return backButton
     }
 
-    public func navigationBarButton(title: String? = nil, image: UIImage? = nil, buttonType: UIBarButtonItem.SystemItem, buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem {
+    public func navigationBarButton(title: String? = nil,
+                                    image: UIImage? = nil,
+                                    buttonType: UIBarButtonItem.SystemItem,
+                                    customView: UIView? = nil,
+                                    buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem {
 
         guard title != nil, image != nil else {
+            if let customView = customView {
+                return UIBarButtonItem(customView: customView)
+            }
             return UIBarButtonItem(barButtonSystemItem: buttonType, target: self, action: buttonAction)
         }
 
@@ -103,11 +138,11 @@ open class FTBaseViewController : UIViewController {
         }
     }
 
-    @objc public func leftButtonAction() {
+    @objc @IBAction open func leftButtonAction() {
         dismissSelf()
     }
 
-    @objc public func rightButtonAction() {
+    @objc @IBAction open func rightButtonAction() {
     }
     
 }

@@ -56,8 +56,8 @@ class FTConstrainsTests: XCTestCase {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
-            self.mainView.stackView(views: self.viewsArray, paddingBetween: 10, withEdgeInsets:
-                [.AutoMargin, .EqualSize, .AutoSize, .LeadingMargin, .TrailingMargin])
+//            self.mainView.maskView(views: self.viewsArray, paddingBetween: 10, edgeInsets:
+//                [.AutoMargin, .EqualSize, .AutoSize, .LeadingMargin, .TrailingMargin])
         }
     }
     

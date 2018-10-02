@@ -47,7 +47,13 @@ public extension FTThemeProtocol where Self: UIView {
         // If view is disabled, check for ".disabledStyle" style
         return self.isUserInteractionEnabled ? nil : ThemeStyle.disabledStyle
     }
-    
+
+    func getColor(_ value: String?) -> UIColor? {
+        guard let colorName = value as? String else {
+            return nil
+        }
+        return FTThemesManager.getColor(colorName)
+    }
 }
 
 // Used for UIControl objects, when multiple states are possible to set at initalization
@@ -191,11 +197,24 @@ fileprivate extension UIView {
         }
         
         var baseClassName: String? = className
-    
+
+        let getSuperClass = { (obj: AnyObject) -> AnyClass? in
+            let superClass: AnyClass? = class_getSuperclass(type(of: obj))
+
+            if let superClass = superClass, let className = get_classNameAsString(obj: superClass) {
+                if className.hasPrefix("UI") {
+                    return nil
+                }
+            }
+
+
+            return superClass
+        }
+
         // Iterate through superClass till we get a valid Theme class
         while baseClassName != nil && !FTThemesManager.isViewComponentValid(componentName: baseClassName!) {
             // Get super Class
-            let superClass: AnyClass? = class_getSuperclass(type(of: self))
+            let superClass: AnyClass? = getSuperClass(type(of: self))
             
             // If SuperClass becomes invalid, terminate loop
             if let superClass = superClass, !UIView.kTerminalBaseClass.contains(where: { (obj) -> Bool in
