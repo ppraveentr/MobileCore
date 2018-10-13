@@ -51,7 +51,7 @@ class FTMobileCoreTests: XCTestCase {
     func testFTServiceClient() {
         let account1De = AccountDetail(value: "Details_1", name: "name")
         TestService.make(modelStack: account1De) { (statuys) in
-            dump(statuys)
+            FTLog(statuys)
         }
     }
 

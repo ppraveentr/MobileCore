@@ -31,6 +31,22 @@ public enum FTReqeustType: String, Codable {
         }
         return self.rawValue
     }
+
+    func requestBody(model: FTServiceModel?) -> Data? {
+        guard let model = model else {
+            return nil
+        }
+        
+        switch self {
+        case .POST:
+            return model.jsonModelData()
+        case .FORM:
+            return model.formData()
+        default:
+            break
+        }
+        return nil
+    }
     
 }
 

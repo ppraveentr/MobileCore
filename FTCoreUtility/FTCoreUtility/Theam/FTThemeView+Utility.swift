@@ -48,11 +48,14 @@ public extension FTThemeProtocol where Self: UIView {
         return self.isUserInteractionEnabled ? nil : ThemeStyle.disabledStyle
     }
 
-    func getColor(_ value: String?) -> UIColor? {
-        guard let colorName = value as? String else {
-            return nil
-        }
+    // Color
+    func getColor(_ colorName: String?) -> UIColor? {
         return FTThemesManager.getColor(colorName)
+    }
+
+    // Font
+    func getFont(_ fontName: String?) -> UIFont? {
+        return FTThemesManager.getFont(fontName)
     }
 }
 

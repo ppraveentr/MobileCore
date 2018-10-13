@@ -80,13 +80,12 @@ public extension FTServiceClient {
         return [:]
     }
 
-    public var inputStack: FTServiceModel? {
-        return nil
+    public var inputModelStack: FTServiceModel? {
+        return self.inputStack as? FTServiceModel
     }
 
     public var responseStack: FTServiceModel? {
         return nil
-
     }
 
     func isValid() -> Bool {
@@ -148,11 +147,10 @@ public extension FTServiceClient {
             }
 
             // Logging
-            if responseModelData == nil || responseModelData?.queryItems().count == 0 {
+            if FTLogger.enableConsoleLogging, (responseModelData == nil || responseModelData?.queryItems().count == 0) {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
                     FTLog("ResponseData: ", json)
-                    dump(json)
                 } catch {
                     FTLog("ResponseData: ", error)
                 }
@@ -171,10 +169,10 @@ public extension FTServiceClient {
         if let path: String = FTMobileConfig.mockBundle?.path(forResource: self.serviceName, ofType: "json") {
             let data = try! path.dataAtPath()
 
-            let model = self.updateData(data: data)
+            let model = self.processResponseData(data: data)
 
-            DispatchQueue.main.async {
-                completionHandler?(FTSericeStatus.success(self, (model != nil) ? 200 : 500))
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2)) {
+               completionHandler?(FTSericeStatus.success(self, (model != nil) ? 200 : 500))
             }
 
             return model
@@ -211,7 +209,7 @@ public extension FTServiceClient {
 extension FTServiceClient {
 
     @discardableResult
-    private func updateData(data: Data?) -> FTServiceModel? {
+    private func processResponseData(data: Data?) -> FTServiceModel? {
         if let data = data {
             FTLog("rawData::",String(bytes: data, encoding: .utf8) ?? "")
         }
@@ -284,29 +282,18 @@ extension FTServiceClient {
         // Create URL Components
         var components = getURLComponents(request)
 
-        // URL httpBody for POST type
-        var httpBody: Data? = nil
-
         // Service Rules
         self.fireBefore()
 
-        // Create URLRequest from 'components'
-        var urlReq = URLRequest(url: components.url!)
-        FTLog("\nCAServiceRequest: \(String(describing: self)): ", urlReq.url?.absoluteString.removingPercentEncoding ?? "Empty")
-
         // Setup URL 'queryItems' or 'httpBody'
         let reqstType = request.type
-        switch reqstType {
-            case .GET:
-                components.queryItems = inputStack?.queryItems()
-            case .POST:
-                httpBody = inputStack?.jsonModelData()
-            case .FORM:
-                httpBody = inputStack?.formData()
-                FTLog(httpBody ?? "Form Data empty")
-            default:
-                break
+        if reqstType == .GET {
+            components.queryItems = inputModelStack?.queryItems()
         }
+
+        // Create URLRequest from 'components'
+        var urlReq: URLRequest = URLRequest(url: components.url!)
+        FTLog("\nCAServiceRequest: \(String(describing: self)): ", urlReq.url?.absoluteString.removingPercentEncoding ?? "Empty")
 
         // Request 'type'
         urlReq.httpMethod = request.type.stringValue()
@@ -317,8 +304,8 @@ extension FTServiceClient {
         }
 
         // Reqeust Body if any
-        urlReq.httpBody = httpBody
-        FTLog("RequestBody: ", httpBody?.decodeToString() ?? "Empty")
+        urlReq.httpBody = reqstType.requestBody(model: inputModelStack)
+        FTLog("RequestBody: ", urlReq.httpBody?.decodeToString() ?? "Empty")
 
         // Service Rules
         self.fireBefore(urlRequest: &urlReq)
@@ -347,13 +334,13 @@ extension FTServiceClient {
             self.fireAfter(data: data, response: response, error: error)
 
             // Stub
-            if FTMobileConfig.isMockData, let _ = self.mockDataHandler() {
+            if FTMobileConfig.isMockData, let _ = self.mockDataHandler(completionHandler) {
                 return
             }
             // Stub
 
             // Decoded responseString
-            var responseModelData: FTServiceModel? = self.updateData(data: data)
+            var responseModelData: FTServiceModel? = self.processResponseData(data: data)
             FTLog("ResponseModel: ", responseModelData?.jsonModel() ?? "Response ModelData is nil")
 
             // Parse Response

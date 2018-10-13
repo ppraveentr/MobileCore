@@ -49,18 +49,12 @@ public extension FTThemeProtocol where Self: UILabel {
                 
             case "textfont":
                 
-                let fontName: String? = value as? String
-                let font = FTThemesManager.getFont(fontName)
-                
-                if let font = font {
+                if let font = getFont(value as? String) {
                     self.theme_textfont(font)
                 }
                 
             case "textcolor":
-                let colorName: String? = value as? String
-                let color = FTThemesManager.getColor(colorName)
-                
-                if let color = color {
+                if let color = getColor(value as? String) {
                     self.theme_textcolor(color)
                 }
                 
