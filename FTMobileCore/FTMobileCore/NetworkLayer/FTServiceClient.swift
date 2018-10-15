@@ -134,6 +134,11 @@ public extension FTServiceClient {
                 else if responseModelData?.queryItems().count == 0, let responseStack = try self.responseType()?.makeModel(json: data) {
                     responseModelData = responseStack
                 }
+                    // Log error message
+                else {
+                    FTLog("errorModelData: ", try ((responseModelType as? FTServiceModel.Type)?.makeModel(json: data)) ?? "")
+                }
+
                 if responseModelData?.queryItems().count == 0, let errorModelData = try? FTErrorModel.makeModel(json: data), errorModelData.queryItems().count != 0 {
                     FTLog("errorModelData: ", errorModelData)
                     responseModelData = errorModelData
@@ -341,7 +346,7 @@ extension FTServiceClient {
 
             // Decoded responseString
             var responseModelData: FTServiceModel? = self.processResponseData(data: data)
-            FTLog("ResponseModel: ", responseModelData?.jsonModel() ?? "Response ModelData is nil")
+            // FTLog("ResponseModel: ", responseModelData?.jsonModel()?.description ?? "Response ModelData is nil")
 
             // Parse Response
             let failure = { (statusCode) in

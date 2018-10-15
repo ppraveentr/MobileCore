@@ -30,6 +30,10 @@
 		DE6C7929207E61250011F027 /* FTData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6C7928207E61250011F027 /* FTData.swift */; };
 		DE72817120986F9A00CA09E0 /* FTActionBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE72816F20986F9A00CA09E0 /* FTActionBlock.swift */; };
 		DE72817320987C5900CA09E0 /* FTURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE72817220987C5900CA09E0 /* FTURL.swift */; };
+		DE8612F62174ED480064A6DC /* FTKeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8612F42174ED480064A6DC /* FTKeychainItemAccessibility.swift */; };
+		DE8612F72174ED480064A6DC /* FTKeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8612F42174ED480064A6DC /* FTKeychainItemAccessibility.swift */; };
+		DE8612F82174ED480064A6DC /* FTKeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8612F52174ED480064A6DC /* FTKeychainWrapper.swift */; };
+		DE8612F92174ED480064A6DC /* FTKeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8612F52174ED480064A6DC /* FTKeychainWrapper.swift */; };
 		DE9411B01F56557200938DA6 /* FTAppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9411AF1F56557200938DA6 /* FTAppearanceManager.swift */; };
 		DE9854241F47168E001AFF89 /* FTUITabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9854231F47168E001AFF89 /* FTUITabBar.swift */; };
 		DE9854261F4717DF001AFF89 /* FTUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9854251F4717DF001AFF89 /* FTUIButton.swift */; };
@@ -93,6 +97,8 @@
 		DE6C7928207E61250011F027 /* FTData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTData.swift; sourceTree = "<group>"; };
 		DE72816F20986F9A00CA09E0 /* FTActionBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTActionBlock.swift; sourceTree = "<group>"; };
 		DE72817220987C5900CA09E0 /* FTURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTURL.swift; sourceTree = "<group>"; };
+		DE8612F42174ED480064A6DC /* FTKeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTKeychainItemAccessibility.swift; sourceTree = "<group>"; };
+		DE8612F52174ED480064A6DC /* FTKeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTKeychainWrapper.swift; sourceTree = "<group>"; };
 		DE9411AF1F56557200938DA6 /* FTAppearanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTAppearanceManager.swift; sourceTree = "<group>"; };
 		DE9854231F47168E001AFF89 /* FTUITabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUITabBar.swift; sourceTree = "<group>"; };
 		DE9854251F4717DF001AFF89 /* FTUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIButton.swift; sourceTree = "<group>"; };
@@ -167,6 +173,7 @@
 		DE680B151F2BBD9500A9F68C /* FTCoreUtility */ = {
 			isa = PBXGroup;
 			children = (
+				DE8612F32174ED480064A6DC /* KeychainWrapper */,
 				DE0DBE4B2160DF9E008C6609 /* Logger */,
 				DE680B9C1F2D066500A9F68C /* AppBase */,
 				DE680B971F2CF59700A9F68C /* Theam */,
@@ -254,6 +261,15 @@
 				DEA7E12F1F4816B20002C148 /* FTCoreUtility.swift */,
 			);
 			path = AppBase;
+			sourceTree = "<group>";
+		};
+		DE8612F32174ED480064A6DC /* KeychainWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				DE8612F42174ED480064A6DC /* FTKeychainItemAccessibility.swift */,
+				DE8612F52174ED480064A6DC /* FTKeychainWrapper.swift */,
+			);
+			path = KeychainWrapper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,6 +389,7 @@
 				DE4383A91F4B0960003DF8A7 /* FTImageView.swift in Sources */,
 				DE680B6B1F2BC19D00A9F68C /* FTClass.swift in Sources */,
 				DE9854261F4717DF001AFF89 /* FTUIButton.swift in Sources */,
+				DE8612F82174ED480064A6DC /* FTKeychainWrapper.swift in Sources */,
 				DE098AD01F37659000675878 /* FTUIView.swift in Sources */,
 				DE680B9E1F2D067900A9F68C /* FTAppDelegate.swift in Sources */,
 				DEF9A7C8205AD33A00617FBF /* FTSequence.swift in Sources */,
@@ -389,6 +406,7 @@
 				DEA7E1321F48282E0002C148 /* FTMath.swift in Sources */,
 				DE0DBE4D2160DFB1008C6609 /* FTLogger.swift in Sources */,
 				DEA0DB3C1F36028D00D9AFA8 /* FTThemeView+Utility.swift in Sources */,
+				DE8612F62174ED480064A6DC /* FTKeychainItemAccessibility.swift in Sources */,
 				DE680B9B1F2CF86500A9F68C /* FTAssociatedObject.swift in Sources */,
 				DE098AB71F36375500675878 /* FTReflection.swift in Sources */,
 				DEA598CB216344B800B42938 /* FTUISearchBar.swift in Sources */,
@@ -407,8 +425,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE8612F72174ED480064A6DC /* FTKeychainItemAccessibility.swift in Sources */,
 				DE680B221F2BBD9500A9F68C /* FTCoreUtilityTests.swift in Sources */,
 				DE680BB91F2E548F00A9F68C /* FTThemesTests.swift in Sources */,
+				DE8612F92174ED480064A6DC /* FTKeychainWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

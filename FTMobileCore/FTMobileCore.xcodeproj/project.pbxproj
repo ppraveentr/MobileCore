@@ -11,6 +11,8 @@
 		DE6C7926207E53160011F027 /* FTURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6C7924207E53160011F027 /* FTURLSession.swift */; };
 		DE6C7927207E53160011F027 /* FTOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6C7925207E53160011F027 /* FTOperationQueue.swift */; };
 		DE6FC98D20A221EE00121E22 /* FTCoreUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C49961F4612A20010A5BE /* FTCoreUtility.framework */; };
+		DE8613062174F0030064A6DC /* FTUserCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8613052174F0030064A6DC /* FTUserCache.swift */; };
+		DE8613072174F0030064A6DC /* FTUserCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8613052174F0030064A6DC /* FTUserCache.swift */; };
 		DE9221B01EF28C9C000C8FC7 /* FTMobileCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9221A61EF28C9B000C8FC7 /* FTMobileCore.framework */; };
 		DE9221B51EF28C9C000C8FC7 /* FTMobileCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221B41EF28C9C000C8FC7 /* FTMobileCoreTests.swift */; };
 		DE9221B71EF28C9C000C8FC7 /* FTMobileCore.h in Headers */ = {isa = PBXBuildFile; fileRef = DE9221A91EF28C9B000C8FC7 /* FTMobileCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -63,6 +65,7 @@
 		DE15BF0B213AEE3D0003BD81 /* FTServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTServiceClient.swift; sourceTree = "<group>"; };
 		DE6C7924207E53160011F027 /* FTURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTURLSession.swift; sourceTree = "<group>"; };
 		DE6C7925207E53160011F027 /* FTOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTOperationQueue.swift; sourceTree = "<group>"; };
+		DE8613052174F0030064A6DC /* FTUserCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUserCache.swift; sourceTree = "<group>"; };
 		DE9221A61EF28C9B000C8FC7 /* FTMobileCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FTMobileCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9221A91EF28C9B000C8FC7 /* FTMobileCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTMobileCore.h; sourceTree = "<group>"; };
 		DE9221AA1EF28C9B000C8FC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -134,6 +137,14 @@
 			path = CoreNetwork;
 			sourceTree = "<group>";
 		};
+		DE8613042174EFF30064A6DC /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				DE8613052174F0030064A6DC /* FTUserCache.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		DE92219C1EF28C9B000C8FC7 = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +167,7 @@
 		DE9221A81EF28C9B000C8FC7 /* FTMobileCore */ = {
 			isa = PBXGroup;
 			children = (
+				DE8613042174EFF30064A6DC /* Cache */,
 				DE6C7923207E53160011F027 /* CoreNetwork */,
 				DE6BC9B820542F5900D59B12 /* NetworkLayer */,
 				DEC55DD31EF2962800FAE024 /* ModelObjects */,
@@ -322,6 +334,7 @@
 				DEA7654020515D070009F7F7 /* FTModelCreator.swift in Sources */,
 				DEAACD7C215E1B700048BDC4 /* FTErrorModel.swift in Sources */,
 				DE6C7927207E53160011F027 /* FTOperationQueue.swift in Sources */,
+				DE8613062174F0030064A6DC /* FTUserCache.swift in Sources */,
 				DE15BF0C213AEE3D0003BD81 /* FTServiceClient.swift in Sources */,
 				DEC55DEA1EF2AE0300FAE024 /* FTServiceModel.swift in Sources */,
 				DEF9A7BE20599DAB00617FBF /* FTRequestObject.swift in Sources */,
@@ -335,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE9221B51EF28C9C000C8FC7 /* FTMobileCoreTests.swift in Sources */,
+				DE8613072174F0030064A6DC /* FTUserCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
