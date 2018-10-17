@@ -41,6 +41,10 @@ open class FTURLSession: NSObject {
 extension FTURLSession: URLSessionDelegate {
     
     static func createURLSession() -> URLSession {
+        let config = FTURLSession.sessionConfiguration
+        config.timeoutIntervalForRequest = 30
+        config.timeoutIntervalForResource = 30
+
         return URLSession(configuration: FTURLSession.sessionConfiguration,
                           delegate: FTURLSession.sessionDelegate,
                           delegateQueue: nil)

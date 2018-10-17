@@ -9,15 +9,17 @@
 import Foundation
 
 // retruns ServcieResponse && Status
-public typealias FTServiceCompletionBlock<T: FTServiceClient> = (FTSericeStatus<T>) -> Swift.Void
+public typealias FTServiceCompletionBlock<T: FTServiceClient> = (FTServiceStatus<T>) -> Swift.Void
 
+// MARK: FTAssociatedKey
 private extension FTAssociatedKey {
     static var ServiceRequest = "ServiceRequest"
     static var ResponseData = "ResponseData"
     static var ModelData = "ModelData"
 }
 
-public enum FTSericeStatus<T: FTServiceClient>: Error {
+// MARK: Service Status
+public enum FTServiceStatus<T: FTServiceClient>: Error {
     case success(T?, Int)
     case failed(T?, Int)
 
@@ -25,24 +27,24 @@ public enum FTSericeStatus<T: FTServiceClient>: Error {
         get {
             switch self {
             case .success(let model, _):
-                return (true, model?.responseModel)
+                return (true, model?.responseStack)
             case .failed(let model, _):
-                return (false, model?.responseModel)
+                return (false, model?.responseStack)
             }
         }
     }
-    
+
 }
 
-// Service Rules
+// MARK: Service Rules
 public protocol FTServiceRulesProtocol {
     func fireBefore()
     func fireBefore(urlRequest: inout URLRequest)
     func fireAfter(modelData: inout FTServiceModel?)
     func fireAfter(data: Data?, response: URLResponse?, error: Error?)
-//    static func configure(requestHeaders urlRequest: URLRequest)
 }
 
+// MARK: Service Rules
 public protocol FTServiceClient: FTServiceRulesProtocol {
     associatedtype InputDataType
     associatedtype OutputDataType
@@ -51,23 +53,23 @@ public protocol FTServiceClient: FTServiceRulesProtocol {
     var requestHeaders: [String:String] { get }
     var inputStack: InputDataType? { get set }
     var responseStack: OutputDataType? { get }
-    var responseModelType: Any? { get }
+    var responseStackType: Any? { get }
 
     init(inputStack: FTServiceModel?)
 
-    //    // progress closure. Progress is between 0 and 1.
-    //     var progressHandler:((Float) -> Void)?
-    // 
-    //    // download closure. the URL is the file URL where the temp file has been download.
-    //    // This closure will be called so you can move the file where you desire.
-    //     var downloadHandler:((FTSericeStatus, URL) -> Void)?
-    // 
-    //    // /This gets called on auth challenges. If nil, default handling is use.
-    //    // /Returning nil from this method will cause the request to be rejected and cancelled
-    //     var auth:((URLAuthenticationChallenge) -> URLCredential?)?
-    // 
-    //    // /This is for doing SSL pinning
-    //     var security: HTTPSecurity?
+//    // progress closure. Progress is between 0 and 1.
+//     var progressHandler:((Float) -> Void)?
+// 
+//    // download closure. the URL is the file URL where the temp file has been download.
+//    // This closure will be called so you can move the file where you desire.
+//     var downloadHandler:((FTServiceStatus, URL) -> Void)?
+// 
+//    // /This gets called on auth challenges. If nil, default handling is use.
+//    // /Returning nil from this method will cause the request to be rejected and cancelled
+//     var auth:((URLAuthenticationChallenge) -> URLCredential?)?
+// 
+//    // /This is for doing SSL pinning
+//     var security: HTTPSecurity?
     
     func mockDataHandler(_ completionHandler: FTServiceCompletionBlock<Self>?) -> FTServiceModel?
     static func make(modelStack: FTServiceModel?, completionHandler: FTServiceCompletionBlock<Self>?)
@@ -80,12 +82,8 @@ public extension FTServiceClient {
         return [:]
     }
 
-    public var inputModelStack: FTServiceModel? {
+    var inputModelStack: FTServiceModel? {
         return self.inputStack as? FTServiceModel
-    }
-
-    public var responseStack: FTServiceModel? {
-        return nil
     }
 
     func isValid() -> Bool {
@@ -93,14 +91,6 @@ public extension FTServiceClient {
     }
 
     // MARK: Response Generation
-    private func responseType() -> FTServiceModel.Type? {
-        guard let (_ ,repsModelName) = serviceRequest?.responseType?.first else {
-            return nil
-        }
-        return FTReflection.swiftClassTypeFromString(repsModelName) as? FTServiceModel.Type
-    }
-
-
     var responseString: String? {
         get {
             return  responseData?.base64EncodedString()
@@ -113,58 +103,56 @@ public extension FTServiceClient {
         }
     }
 
-    var responseModel: FTServiceModel? {
-        get {
+    var responseStack: FTServiceModel? {
 
-            if let parsedModel: FTServiceModel = FTAssociatedObject.getAssociated(instance: self, key: &FTAssociatedKey.ModelData) {
-                return parsedModel
-            }
-
-            guard let data = self.responseData else {
-                return nil
-            }
-
-            var responseModelData: FTServiceModel?
-            do {
-                // try parsing response model: configured by `FTServiceClient` model
-                if let dataModel = responseModelType as? FTServiceModel.Type, let model: FTServiceModel = try? dataModel.makeModel(json: data), model.queryItems().count != 0 {
-                    responseModelData = model
-                }
-                    // try parsing response model: configured in service `JSON`
-                else if responseModelData?.queryItems().count == 0, let responseStack = try self.responseType()?.makeModel(json: data) {
-                    responseModelData = responseStack
-                }
-                    // Log error message
-                else {
-                    FTLog("errorModelData: ", try ((responseModelType as? FTServiceModel.Type)?.makeModel(json: data)) ?? "")
-                }
-
-                if responseModelData?.queryItems().count == 0, let errorModelData = try? FTErrorModel.makeModel(json: data), errorModelData.queryItems().count != 0 {
-                    FTLog("errorModelData: ", errorModelData)
-                    responseModelData = errorModelData
-                }
-            } catch {
-                FTLog("errorModelData: ", error)
-            }
-
-            if responseModelData != nil {
-                FTAssociatedObject<FTServiceModel>.setAssociated(instance: self, value: responseModelData, key: &FTAssociatedKey.ModelData)
-            }
-
-            // Logging
-            if FTLogger.enableConsoleLogging, (responseModelData == nil || responseModelData?.queryItems().count == 0) {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                    FTLog("ResponseData: ", json)
-                } catch {
-                    FTLog("ResponseData: ", error)
-                }
-                FTLog("ResponseData: ",data.decodeToString() ?? "")
-            }
-            // Logging
-
-            return responseModelData
+        if let parsedModel: FTServiceModel = FTAssociatedObject.getAssociated(instance: self, key: &FTAssociatedKey.ModelData) {
+            return parsedModel
         }
+
+        guard let data = self.responseData else {
+            return nil
+        }
+
+        var responseModelData: FTServiceModel?
+        do {
+            // try parsing response model: configured by `FTServiceClient` model
+            if let dataModel = responseStackType as? FTServiceModel.Type, let model: FTServiceModel = try? dataModel.makeModel(json: data), model.queryItems().count != 0 {
+                responseModelData = model
+            }
+                // try parsing response model: configured in service `JSON`
+            else if responseModelData?.queryItems().count == 0, let responseStack = try self.responseType()?.makeModel(json: data) {
+                responseModelData = responseStack
+            }
+                // Log error message
+            else {
+                FTLog("errorModelData: ", try ((responseStackType as? FTServiceModel.Type)?.makeModel(json: data)) ?? "")
+            }
+
+            if responseModelData?.queryItems().count == 0, let errorModelData = try? FTErrorModel.makeModel(json: data), errorModelData.queryItems().count != 0 {
+                FTLog("errorModelData: ", errorModelData)
+                responseModelData = errorModelData
+            }
+        } catch {
+            FTLog("errorModelData: ", error)
+        }
+
+        if responseModelData != nil {
+            FTAssociatedObject<FTServiceModel>.setAssociated(instance: self, value: responseModelData, key: &FTAssociatedKey.ModelData)
+        }
+
+        // Logging
+        if FTLogger.enableConsoleLogging, (responseModelData == nil || responseModelData?.queryItems().count == 0) {
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                FTLog("ResponseData: ", json)
+            } catch {
+                FTLog("ResponseData: ", error)
+            }
+            FTLog("ResponseData: ",data.decodeToString() ?? "")
+        }
+        // Logging
+
+        return responseModelData
     }
 
     // MARK: Stub
@@ -177,7 +165,7 @@ public extension FTServiceClient {
             let model = self.processResponseData(data: data)
 
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2)) {
-               completionHandler?(FTSericeStatus.success(self, (model != nil) ? 200 : 500))
+               completionHandler?(FTServiceStatus.success(self, (model != nil) ? 200 : 500))
             }
 
             return model
@@ -196,7 +184,7 @@ public extension FTServiceClient {
         FTURLSession.startDataTask(with: urlRequest, completionHandler: serviceStack.sessionHandler(completionHandler))
     }
 
-    // Service Rules
+    // MARK: Service Rules
     func fireBefore() {
     }
 
@@ -211,47 +199,33 @@ public extension FTServiceClient {
 
 }
 
-extension FTServiceClient {
+private extension FTServiceClient {
+
+    // MARK: Response Parsing
+    func responseType() -> FTServiceModel.Type? {
+        guard let (_ ,repsModelName) = serviceRequest?.responseType?.first else {
+            return nil
+        }
+        return FTReflection.swiftClassTypeFromString(repsModelName) as? FTServiceModel.Type
+    }
 
     @discardableResult
-    private func processResponseData(data: Data?) -> FTServiceModel? {
+    func processResponseData(data: Data?) -> FTServiceModel? {
         if let data = data {
             FTLog("rawData::",String(bytes: data, encoding: .utf8) ?? "")
         }
 
         FTAssociatedObject<Data>.setAssociated(instance: self, value: data, key: &FTAssociatedKey.ResponseData)
         // Parse response model before-hand
-        return self.responseModel
+        return self.responseStack
     }
 
-    var serviceRequest: FTRequestObject? {
-        get {
-
-            if let request: FTRequestObject = FTAssociatedObject.getAssociated(instance: self, key: &FTAssociatedKey.ServiceRequest) {
-                return request
-            }
-
-            do {
-                if let data = try FTMobileConfig.schemaForClass(classKey: serviceName) {
-                    let request = try FTRequestObject.makeModel(json: data)
-                    if request.queryItems().count > 0 {
-                        FTAssociatedObject<FTRequestObject>.setAssociated(instance: self, value: request, key: &FTAssociatedKey.ServiceRequest)
-                    }
-                    return request
-                }
-            } catch {
-                FTLog("FTError: ", error)
-            }
-            FTLog("serviceRequest: \(serviceName) is nil")
-            return nil
-        }
-    }
-
+    // MARK: URL Components
     func getBaseURL(_ requestObject: FTRequestObject? = nil) -> String {
         return requestObject?.baseURL ?? FTMobileConfig.appBaseURL
     }
 
-    fileprivate func getURLComponents(_ requestObject: FTRequestObject? = nil) -> URLComponents {
+    func getURLComponents(_ requestObject: FTRequestObject? = nil) -> URLComponents {
 
         // Service App Base URL
         let baseURL = getBaseURL(requestObject)
@@ -273,8 +247,36 @@ extension FTServiceClient {
 
             components.path.append(path)
         }
-        
+
         return components
+    }
+
+}
+
+extension FTServiceClient {
+
+    // MARK: Service Request
+    var serviceRequest: FTRequestObject? {
+        get {
+
+            if let request: FTRequestObject = FTAssociatedObject.getAssociated(instance: self, key: &FTAssociatedKey.ServiceRequest) {
+                return request
+            }
+
+            do {
+                if let data = try FTMobileConfig.schemaForClass(classKey: serviceName) {
+                    let request = try FTRequestObject.makeModel(json: data)
+                    if request.queryItems().count > 0 {
+                        FTAssociatedObject<FTRequestObject>.setAssociated(instance: self, value: request, key: &FTAssociatedKey.ServiceRequest)
+                    }
+                    return request
+                }
+            } catch {
+                FTLog("FTError: ", error)
+            }
+            FTLog("serviceRequest: \(serviceName) is nil")
+            return nil
+        }
     }
 
     func urlRequest() -> URLRequest? {
@@ -321,6 +323,7 @@ extension FTServiceClient {
         return urlReq
     }
 
+    // MARK: Response Handler
     func sessionHandler(_ completionHandler: FTServiceCompletionBlock<Self>? = nil) -> FTURLSessionCompletionBlock {
 
         // guard completionHandler != nil else {return nil }
@@ -351,14 +354,14 @@ extension FTServiceClient {
             // Parse Response
             let failure = { (statusCode) in
                 DispatchQueue.main.async {
-                    completionHandler?(FTSericeStatus.failed(self, statusCode))
+                    completionHandler?(FTServiceStatus.failed(self, statusCode))
                 }
             }
 
             // Parse Response
             let success = { (statusCode) in
                 DispatchQueue.main.async {
-                    completionHandler?(FTSericeStatus.success(self, statusCode))
+                    completionHandler?(FTServiceStatus.success(self, statusCode))
                 }
             }
 
