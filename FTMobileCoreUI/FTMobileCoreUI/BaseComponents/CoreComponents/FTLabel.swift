@@ -279,10 +279,6 @@ extension FTLabel {
         self.textContainer.size = savedContainerSize
         self.textContainer.maximumNumberOfLines = savedContainerNoLines
 
-//        self.addSizeConstraint(textBounds.width, textBounds.height, relation:.greaterThanOrEqual)
-//        self.setViewHeight(textBounds.height, createConstraint: true)
-//        self.setViewWidth(textBounds.width, createConstraint: true)
-
         return textBounds
     }
     

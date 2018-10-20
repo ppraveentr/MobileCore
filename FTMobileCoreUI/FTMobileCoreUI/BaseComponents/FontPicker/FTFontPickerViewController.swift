@@ -17,12 +17,23 @@ open class FTFontPickerViewController: FTBaseViewController {
             pickerView?.pickerDelegate = fontPickerViewDelegate
         }
     }
-    
+
+    open var fontPickerModel: FTFontPickerModel? {
+        set {
+            if let model = newValue {
+                pickerView?.fontPickerModel = model
+            }
+        }
+        get {
+            return pickerView?.fontPickerModel
+        }
+    }
+
     override open func loadView() {
         super.loadView()
         
-        if pickerView != nil {
-         self.mainView?.pin(view: pickerView!)
+        if let pickerView = pickerView {
+         self.mainView?.pin(view: pickerView)
         }
     }
     

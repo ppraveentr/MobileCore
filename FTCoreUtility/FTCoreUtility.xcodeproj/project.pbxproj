@@ -11,6 +11,7 @@
 		DE098ACF1F37659000675878 /* FTUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE098ACC1F37659000675878 /* FTUILabel.swift */; };
 		DE098AD01F37659000675878 /* FTUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE098ACD1F37659000675878 /* FTUIView.swift */; };
 		DE0DBE4D2160DFB1008C6609 /* FTLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0DBE4C2160DFB1008C6609 /* FTLogger.swift */; };
+		DE1D462E217B89910039138E /* FTView+Utiltiy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1D462D217B89910039138E /* FTView+Utiltiy.swift */; };
 		DE4383A91F4B0960003DF8A7 /* FTImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4383A81F4B0960003DF8A7 /* FTImageView.swift */; };
 		DE680B1D1F2BBD9500A9F68C /* FTCoreUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE680B131F2BBD9500A9F68C /* FTCoreUtility.framework */; };
 		DE680B221F2BBD9500A9F68C /* FTCoreUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE680B211F2BBD9500A9F68C /* FTCoreUtilityTests.swift */; };
@@ -75,6 +76,7 @@
 		DE098ACC1F37659000675878 /* FTUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUILabel.swift; sourceTree = "<group>"; };
 		DE098ACD1F37659000675878 /* FTUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIView.swift; sourceTree = "<group>"; };
 		DE0DBE4C2160DFB1008C6609 /* FTLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTLogger.swift; sourceTree = "<group>"; };
+		DE1D462D217B89910039138E /* FTView+Utiltiy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FTView+Utiltiy.swift"; sourceTree = "<group>"; };
 		DE4383A81F4B0960003DF8A7 /* FTImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTImageView.swift; sourceTree = "<group>"; };
 		DE680B131F2BBD9500A9F68C /* FTCoreUtility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FTCoreUtility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE680B161F2BBD9500A9F68C /* FTCoreUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTCoreUtility.h; sourceTree = "<group>"; };
@@ -179,8 +181,8 @@
 				DE680B971F2CF59700A9F68C /* Theam */,
 				DE680B731F2BC22500A9F68C /* Generic */,
 				DE680B6E1F2BC1C600A9F68C /* View */,
-				DE680B691F2BC19D00A9F68C /* Class */,
-				DE680B641F2BC18900A9F68C /* String */,
+				DE680B691F2BC19D00A9F68C /* ClassReflection */,
+				DE680B641F2BC18900A9F68C /* Extentions */,
 				DE680B161F2BBD9500A9F68C /* FTCoreUtility.h */,
 				DE680B171F2BBD9500A9F68C /* Info.plist */,
 			);
@@ -197,7 +199,7 @@
 			path = FTCoreUtilityTests;
 			sourceTree = "<group>";
 		};
-		DE680B641F2BC18900A9F68C /* String */ = {
+		DE680B641F2BC18900A9F68C /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
 				DE680B6C1F2BC1A800A9F68C /* FTLinkDetection.swift */,
@@ -205,16 +207,16 @@
 				DE680BC31F30C12900A9F68C /* FTDictionary.swift */,
 				DE6C7928207E61250011F027 /* FTData.swift */,
 			);
-			path = String;
+			path = Extentions;
 			sourceTree = "<group>";
 		};
-		DE680B691F2BC19D00A9F68C /* Class */ = {
+		DE680B691F2BC19D00A9F68C /* ClassReflection */ = {
 			isa = PBXGroup;
 			children = (
 				DE680B6A1F2BC19D00A9F68C /* FTClass.swift */,
 				DE098AB61F36375500675878 /* FTReflection.swift */,
 			);
-			path = Class;
+			path = ClassReflection;
 			sourceTree = "<group>";
 		};
 		DE680B6E1F2BC1C600A9F68C /* View */ = {
@@ -223,6 +225,7 @@
 				DE680B6F1F2BC1CF00A9F68C /* FTViewExtention.swift */,
 				DE680B711F2BC1EB00A9F68C /* FTViewConstrains.swift */,
 				DEA7E12D1F48150B0002C148 /* FTViewControllerExtension.swift */,
+				DE1D462D217B89910039138E /* FTView+Utiltiy.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				DEA598CB216344B800B42938 /* FTUISearchBar.swift in Sources */,
 				DEA1ED661F698BCC001AA3C6 /* FTImage.swift in Sources */,
 				DEA7E1301F4816B20002C148 /* FTCoreUtility.swift in Sources */,
+				DE1D462E217B89910039138E /* FTView+Utiltiy.swift in Sources */,
 				DE680B701F2BC1CF00A9F68C /* FTViewExtention.swift in Sources */,
 				DE680B991F2CF5A600A9F68C /* FTThemesManager.swift in Sources */,
 				DE9411B01F56557200938DA6 /* FTAppearanceManager.swift in Sources */,

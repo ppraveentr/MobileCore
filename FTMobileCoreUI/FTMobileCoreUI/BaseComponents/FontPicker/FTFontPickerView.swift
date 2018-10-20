@@ -8,73 +8,140 @@
 
 import Foundation
 
-public enum FontSizePicker {
-    case increment
-    case decrement
+public protocol FTFontPickerViewprotocol {
+    func pickerColor(textColor: UIColor, backgroundColor: UIColor)
+    func fontSize(_ size: Float)
+    func fontFamily(_ fontName: String?)
 }
 
-public protocol FTFontPickerViewprotocol {
-    
-    func pickerColor(textColor: UIColor, backgroundColor: UIColor)
-    func fontSize(_ size: FontSizePicker)
-    func fontFamily(_ fontName: String?)
+open class FTFontPickerModel {
+    var fontSizeStepValue: Float = 10.0
+    public var fontSize: Float = 140.0
+    public var fontColor: UIColor = .black
+    public var backgroundColor: UIColor = .white
+    public var fontFamily: String? = nil
+
+    // TODO: To support Custom Fonts
+    let fontTypes = ["Arial", "Courier", "Georgia", "Helvetica", "Palatino", "Times", "Verdana"]
+
+    // Avaialble Fonts
+    var fontSizeString: String {
+        return String(fontSize)
+    }
+
+    func avalilableFonts() -> [String] {
+        return fontTypes
+    }
+
+    func increaseSize() {
+        (fontSize += fontSizeStepValue)
+    }
+
+    func decreaseSize() {
+        (fontSize -= fontSizeStepValue)
+    }
+
+//    public enum FontSizePicker {
+//        case increment
+//        case decrement
+//    }
+//    func adjustFontSize(_ size: FontSizePicker) {
+//        (size == .increment) ? (fontSize += fontSizeStepValue) : (fontSize -= fontSizeStepValue)
+//    }
 }
 
 open class FTFontPickerView: FTView {
     
     var pickerDelegate: FTFontPickerViewprotocol?
-    
+    public var fontPickerModel = FTFontPickerModel() {
+        didSet {
+            // Update View-source
+            pickerDelegate?.fontSize(fontPickerModel.fontSize)
+            pickerDelegate?.fontFamily(fontPickerModel.fontFamily)
+            pickerDelegate?.pickerColor(textColor: fontPickerModel.fontColor,
+                                        backgroundColor: fontPickerModel.backgroundColor)
+
+            selectedColorButton?.addBorder()
+            fontTableView.reloadData()
+        }
+    }
+
     @IBOutlet weak var decrementFontButton: FTButton!
     @IBOutlet weak var incrementFontButton: FTButton!
-    
+    @IBOutlet weak var fontSizeLabel: FTLabel!
+
     @IBOutlet weak var whiteColorButton: FTButton!
     @IBOutlet weak var creameColorButton: FTButton!
     @IBOutlet weak var lightGrayColorButton: FTButton!
     @IBOutlet weak var blackColorButton: FTButton!
-    
+
+    weak var selectedColorButton: FTButton?
+
     @IBOutlet weak var fontTableView: FTTableView!
-    
+
     @IBAction func fontColorSelected(_ sender: FTButton) {
-        pickerDelegate?.pickerColor(textColor: sender.titleLabel?.textColor ?? .black, backgroundColor: sender.backgroundColor ?? .white)
+        // Clear Previous selected Button
+        selectedColorButton?.addBorder(color: .clear)
+        // Update latest button color
+        selectedColorButton = sender
+        selectedColorButton?.addBorder()
+
+        // Update Font Color and BG color in ViewModel
+        fontPickerModel.fontColor = sender.titleLabel?.textColor ?? .black
+        fontPickerModel.backgroundColor = sender.backgroundColor ?? .white
+
+        // Update soruce-View
+        pickerDelegate?.pickerColor(textColor: fontPickerModel.fontColor, backgroundColor: fontPickerModel.backgroundColor)
     }
     
-    @IBAction func fontSizeChanged(_ sender: FTButton) {
-        if sender == decrementFontButton {
-            pickerDelegate?.fontSize(.decrement)
-        } else {
-            pickerDelegate?.fontSize(.increment)
+    @IBAction func fontSizeChanged(_ sender: FTButton?) {
+        // Increase / Decrease fontSize
+        if let button = sender {
+            (button == decrementFontButton) ? fontPickerModel.decreaseSize() : fontPickerModel.increaseSize()
         }
+
+        fontSizeLabel.text = fontPickerModel.fontSizeString
+
+        pickerDelegate?.fontSize(fontPickerModel.fontSize)
     }
     
     var selectedFont: String? {
-        didSet {
-             pickerDelegate?.fontFamily(selectedFont)
+        set {
+            fontPickerModel.fontFamily = newValue
+            pickerDelegate?.fontFamily(newValue)
+        }
+        get {
+            return fontPickerModel.fontFamily
         }
     }
     
     // Avaialble Fonts
-    let fontTypes = ["Arial","Courier","Georgia","Helvetica","Palatino","Times","Verdana"]
+    var fontTypes: [String] {
+        return fontPickerModel.avalilableFonts()
+    }
 
     open override func awakeFromNib() {
         super .awakeFromNib()
-        
+
+        // Color Button
         whiteColorButton.imageView?.image = nil
         creameColorButton.imageView?.image = nil
         lightGrayColorButton.imageView?.image = nil
         blackColorButton.imageView?.image = nil
-        
+
+        // TextSize Label
+        fontSizeLabel.text = fontPickerModel.fontSizeString
+
+        // Font TableView
         fontTableView.backgroundView = nil
         fontTableView.register(UITableViewCell.self, forCellReuseIdentifier: "kFontType")
+        fontTableView.estimatedRowHeight = 30
     }
     
 }
 
 extension FTFontPickerView: UITableViewDataSource, UITableViewDelegate {
-    
-    public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 30
-    }
-    
+
     public func numberOfSections(in tableView: UITableView) -> Int {
         return fontTypes.count
     }

@@ -12,6 +12,7 @@
 		DE1485301F10B82100A250A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE14852F1F10B82100A250A6 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DE1485631F1159BD00A250A6 /* FTBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1485601F1159BD00A250A6 /* FTBaseViewController.swift */; };
 		DE1485641F1159BD00A250A6 /* FTLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1485621F1159BD00A250A6 /* FTLabel.swift */; };
+		DE1D4630217BACA60039138E /* FTBaseViewController+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1D462F217BACA60039138E /* FTBaseViewController+Utility.swift */; };
 		DE29B6921F507AED00BE1529 /* FTSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE29B6911F507AED00BE1529 /* FTSearchBar.swift */; };
 		DE29B6991F509E7000BE1529 /* FTFloatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE29B6981F509E7000BE1529 /* FTFloatingView.swift */; };
 		DE2FD97421613010009E6F94 /* FTBaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2FD97321613010009E6F94 /* FTBaseCollectionViewController.swift */; };
@@ -97,6 +98,7 @@
 		DE14852F1F10B82100A250A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DE1485601F1159BD00A250A6 /* FTBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseViewController.swift; sourceTree = "<group>"; };
 		DE1485621F1159BD00A250A6 /* FTLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLabel.swift; sourceTree = "<group>"; };
+		DE1D462F217BACA60039138E /* FTBaseViewController+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FTBaseViewController+Utility.swift"; sourceTree = "<group>"; };
 		DE29B6911F507AED00BE1529 /* FTSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTSearchBar.swift; sourceTree = "<group>"; };
 		DE29B6981F509E7000BE1529 /* FTFloatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTFloatingView.swift; sourceTree = "<group>"; };
 		DE2FD97321613010009E6F94 /* FTBaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTBaseCollectionViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				DE1485601F1159BD00A250A6 /* FTBaseViewController.swift */,
+				DE1D462F217BACA60039138E /* FTBaseViewController+Utility.swift */,
 				DEB5698E1F17E11500B5F187 /* FTBaseNavigationController.swift */,
 				DEB569901F17E12100B5F187 /* FTBaseTableViewController.swift */,
 				DE98541D1F4705BE001AFF89 /* FTBaseScrollViewController.swift */,
@@ -439,6 +442,7 @@
 				DEB5698D1F17E0E500B5F187 /* FTContentView.swift in Sources */,
 				DEB5698F1F17E11500B5F187 /* FTBaseNavigationController.swift in Sources */,
 				DE9854201F4715A5001AFF89 /* FTBaseTabBarController.swift in Sources */,
+				DE1D4630217BACA60039138E /* FTBaseViewController+Utility.swift in Sources */,
 				DE29B6921F507AED00BE1529 /* FTSearchBar.swift in Sources */,
 				DE1485641F1159BD00A250A6 /* FTLabel.swift in Sources */,
 				DEB569871F17E0A100B5F187 /* FTScrollView.swift in Sources */,

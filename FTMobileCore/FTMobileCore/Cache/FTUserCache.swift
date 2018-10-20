@@ -8,6 +8,7 @@
 
 import Foundation
 
+// typealias
 public typealias FTNotification = Notification.Name
 
 // Notification Constant
@@ -41,6 +42,19 @@ extension Dictionary where Key: Hashable, Value: Any {
 
 }
 
+open class FTCache {
+    var userCache = JSON()
+
+    // Save data to Session object
+    func setCacheObject(_ data: AnyObject?, forKey keyType: String) {
+        self.userCache[keyType] = data
+    }
+
+    func getCachedObject(forKey keyType: String) -> Any? {
+        return self.userCache[keyType]
+    }
+}
+
 open class FTUserCache {
 
     public static let sharedInstance = { () -> FTUserCache in
@@ -51,13 +65,13 @@ open class FTUserCache {
     // Application level cache, reset when app relaunches
     fileprivate var dataDictionary = JSON()
     // session cache, clears when user logout
-    fileprivate var _userCache: JSON? = nil
+    fileprivate var _userCache: FTCache? = nil
 
-    public static var userCache: JSON {
+    public static var userCache: FTCache {
         get {
             // Will be set-to nil when user logsOut
             if FTUserCache.sharedInstance._userCache == nil {
-                FTUserCache.sharedInstance._userCache = JSON()
+                FTUserCache.sharedInstance._userCache = FTCache()
             }
             return FTUserCache.sharedInstance._userCache!
         }
@@ -139,8 +153,7 @@ private extension FTUserCache {
 
         // USER SESSION LEVEL
         if cacheType == .user {
-            var userCache = FTUserCache.userCache
-            userCache.setCacheObject(data, forKey: key)
+            FTUserCache.userCache.setCacheObject(data, forKey: key)
             return true
         }
             // KeyChain LEVEL

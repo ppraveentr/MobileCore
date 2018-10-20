@@ -56,7 +56,7 @@ extension FTWebView {
         return "document.getElementsByTagName('body')[0]"
     }
     
-    public func setContentFontSize(_ size: Int) {
+    public func setContentFontSize(_ size: Float) {
         
         if size >= 10 {
             let js = self.getHTMLBodyText() + ".style.webkitTextSizeAdjust= '\(size)%'"

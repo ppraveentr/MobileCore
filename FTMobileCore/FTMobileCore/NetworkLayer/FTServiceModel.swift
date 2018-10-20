@@ -8,14 +8,14 @@
 
 import Foundation
 
-//typealias
+// typealias
 public typealias JSON = Dictionary<String, Any>
 
 enum FTJsonParserError: Error {
     case invalidJSON
 }
 
-//Operator Overloading
+// Operator Overloading
 func += <K,V> ( left: inout [K:V], right: [K:V]) {
     for (k, v) in right {
         left[k] = v
@@ -55,7 +55,7 @@ public protocol FTServiceModel: Codable {
     func queryItems() -> [URLQueryItem]
 }
 
-//FIXIT: To Extend 'FTServiceModel' to sequence Item with confirms 'Codable'.
+// FIXIT: To Extend 'FTServiceModel' to sequence Item with confirms 'Codable'.
 extension Array: FTServiceModel where Element: Codable { }
 extension Dictionary: FTServiceModel where Key: Codable, Value: Codable { }
 

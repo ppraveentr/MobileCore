@@ -14,31 +14,45 @@ open class FTBaseView: FTView {
     public var rootView = FTView()
     
     // Top portion of view
+    @IBOutlet
     public var topPinnedView: FTView? {
         didSet {
             self.restConstraints()
         }
     }
-    
-    public var mainPinnedView = FTView() {
-        didSet {
+
+    // Using private var, since, mainView can be set from IB.
+    // On init'coder, mainView will be nil, but on loadView it will be allocated.
+    // So using lazy, to make sure, mainView will not be nil, when accessed.
+    lazy var _mainPinnedView: FTView! = FTView()
+    @IBOutlet
+    public var mainPinnedView: FTView! {
+        set {
+            _mainPinnedView = newValue
             self.restConstraints()
         }
+        get {
+            return _mainPinnedView
+        }
     }
-    
+
+    @IBOutlet
     public var bottomPinnedView: FTView? {
         didSet {
             self.restConstraints()
         }
     }
-    
+
+    var isLoadedFromInterface = false
+    public required init?(coder aDecoder: NSCoder) {
+        isLoadedFromInterface = true
+        super.init(coder: aDecoder)
+        // don't setupView, when loaded from IB
+        isLoadedFromInterface = false
+    }
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setupView()
-    }
-    
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
         self.setupView()
     }
     
@@ -57,6 +71,14 @@ open class FTBaseView: FTView {
     }
     
     func restConstraints() {
+
+        // Will be nil, when loaded from IB
+        if rootView.superview == nil {
+            self.removeSubviews()
+            // Set lowerPriority to avoid contraint issues with viewControllers's rootView
+            self.pin(view: rootView, priority: FTLayoutPriorityRequiredLow)
+        }
+
         // Remove all previous constrains, while resting the views
         rootView.removeSubviews()
         
@@ -104,10 +126,11 @@ open class FTBaseView: FTView {
 }
 
 extension FTBaseView {
-    
+
     @available(*, deprecated)
     open override func addSubview(_ view: UIView) {
-        if view != self.mainPinnedView, view != rootView {
+        if view != mainPinnedView, view != rootView,
+            !isLoadedFromInterface {
             self.mainPinnedView.addSubview(view)
         } else {
             super.addSubview(view)
