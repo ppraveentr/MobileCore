@@ -111,7 +111,7 @@ extension FTBaseViewController {
         self.view.endEditing(true)
     }
 
-    //MARK: Responder
+    // MARK: Responder
     func self_makeResponder(status:Bool, textField: UITextField, text: String? = nil) {
         if status {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2)) {
@@ -135,7 +135,7 @@ extension FTBaseViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
     }
 
-    //MARK: AlertViewController
+    // MARK: AlertViewController
     func self_showAlert(title: String, message: String, action: UIAlertAction? = nil, actions: [UIAlertAction]? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
@@ -152,4 +152,5 @@ extension FTBaseViewController {
 
         present(alert, animated: true, completion: nil)
     }
+    
 }

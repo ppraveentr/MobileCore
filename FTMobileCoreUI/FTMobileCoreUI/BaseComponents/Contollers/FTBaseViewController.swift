@@ -32,15 +32,15 @@ public protocol FTAppBaseProtocal {
     func leftButtonAction()
     func rightButtonAction()
 
-    //MARK: Keyboard notification.
+    // MARK: Keyboard notification.
     func registerKeyboardNotifications()
     //Notifications will be unregistered in 'deinit'
     func unregisterKeyboardNotifications()
 
-    //MARK: Alert ViewController
+    // MARK: Alert ViewController
     func showAlert(title: String, message: String, action: UIAlertAction?, actions: [UIAlertAction]?)
 
-    //MARK: Responder
+    // MARK: Responder
     func makeResponder(status:Bool, textField: UITextField, text: String?)
 
 
@@ -56,9 +56,9 @@ open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
     lazy open var baseView: FTBaseView? = FTBaseView()
     public static var kLeftButtonAction = #selector(leftButtonAction)
 
-    //Unquie Identifier for eachScreen
+    // Unquie Identifier for eachScreen
     open var screenIdentifier: String? = nil
-    //modelData that can be passed from previous controller
+    // modelData that can be passed from previous controller
     open var modelStack: AnyObject? = nil
     open var completionBlock: FTAppBaseCompletionBlock? = nil
 
@@ -191,13 +191,13 @@ open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
         self.view.endEditing(true)
     }
 
-    //MARK: Responder
+    // MARK: Responder
     open func makeResponder(status:Bool, textField: UITextField, text: String? = nil) {
         self_makeResponder(status: status, textField: textField, text: text)
     }
 
     // MARK: Keyboard Notifications
-    //  Registering for keyboard notification.
+    // Registering for keyboard notification.
     open func registerKeyboardNotifications() {
         self_registerKeyboardNotifications()
     }
@@ -214,7 +214,7 @@ open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
     @objc func keyboardDidHide(_ notification : Notification?) -> Void {
     }
 
-    //MARK: AlertViewController
+    // MARK: AlertViewController
     public func showAlert(title: String, message: String,
                           action: UIAlertAction? = nil,
                           actions: [UIAlertAction]? = nil) {
