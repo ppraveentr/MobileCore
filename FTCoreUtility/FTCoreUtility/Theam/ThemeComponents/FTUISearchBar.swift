@@ -94,7 +94,7 @@ open class FTUISearchBar: UISearchBar, FTThemeProtocol {
 
 public extension FTThemeProtocol where Self: UISearchBar {
 
-    public func updateTheme(_ theme: FTThemeDic) {
+    public func updateTheme(_ theme: FTThemeModel) {
 
         var barTintColor: UIColor? = nil
         var tintColor: UIColor? = nil

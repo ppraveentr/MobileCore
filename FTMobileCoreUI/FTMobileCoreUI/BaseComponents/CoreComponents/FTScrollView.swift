@@ -9,17 +9,22 @@
 import Foundation
 
 open class FTScrollView: UIScrollView {
-    
-    public lazy var contentView: FTView = self.setupContentView()
-    
-    func setupContentView() -> FTView {
+
+    @IBOutlet
+    public lazy var contentView: FTView! = self.setupContentView()
+
+    @discardableResult
+    public func setupContentView(_ view: FTView = FTView()) -> FTView {
+
+        // Remove old contentView & update with new view
+        contentView?.removeFromSuperview()
+        self.contentView = view
+
+        self.pin(view: view, edgeInsets: [.All], priority: .required)
+        self.pin(view: view, edgeInsets: [.CenterMargin], priority: .defaultLow)
+        view.addSelfSizing()
         
-        let contentView = FTView()
-        self.pin(view: contentView, edgeInsets: [.All], priority: .required)
-        self.pin(view: contentView, edgeInsets: [.CenterMargin], priority: .defaultLow)
-        contentView.addSelfSizing()
-        
-        return contentView
+        return view
     }
     
 }

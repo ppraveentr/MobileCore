@@ -27,11 +27,11 @@ public extension FTThemeProtocol where Self: UILabel {
     
     // If view is disabled, check for ".disabledStyle" style
     public func get_ThemeSubType() -> String? {
-        return self.isEnabled ? nil : ThemeStyle.disabledStyle
+        return self.isEnabled ? nil : FTThemeStyle.disabledStyle
     }
     
     // Force update theme attibute
-    public func updateTheme(_ theme: FTThemeDic) {
+    public func updateTheme(_ theme: FTThemeModel) {
         
         defer {
             self.updateVisualThemes()

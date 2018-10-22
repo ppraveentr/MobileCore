@@ -16,29 +16,33 @@ open class FTUIButton: UIButton, FTUIControlThemeProtocol {
             return nil
         }
         else if self.isSelected {
-            return ThemeStyle.selectedStyle
+            return FTThemeStyle.selectedStyle
         }
         else if self.isHighlighted {
-            return ThemeStyle.highlightedStyle
+            return FTThemeStyle.highlightedStyle
         }
         else {
-            return ThemeStyle.disabledStyle
+            return FTThemeStyle.disabledStyle
         }
     }
     
-    public func updateTheme(_ theme: FTThemeDic) {
+    public func updateTheme(_ theme: FTThemeModel) {
     }
     
     // For custome key:value pairs
-    public func update(themeDic: FTThemeDic, state: UIControl.State) {
+    public func update(themeDic: FTThemeModel, state: UIControl.State) {
 
-        if let textcolor = themeDic["textcolor"] {
-            if
-                let colorName = textcolor as? String,
-                let color = FTThemesManager.getColor(colorName) {
+        if
+            let text = themeDic["textcolor"] as? String,
+            let color = FTThemesManager.getColor(text) {
                 self.setTitleColor(color, for: state)
                 // TODO: For attributed title
-            }
+        }
+
+        if
+            let text = themeDic["textfont"] as? String,
+            let font = FTThemesManager.getFont(text) {
+            self.titleLabel?.font = font
         }
 
         if let imageName = themeDic["image"] {

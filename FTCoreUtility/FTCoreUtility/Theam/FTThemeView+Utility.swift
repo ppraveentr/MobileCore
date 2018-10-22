@@ -8,23 +8,23 @@
 
 import Foundation
 
-public typealias FTThemeDic = [String : Any]
+public typealias FTThemeModel = [String : Any]
 
 public extension NSNotification.Name {
     public static let FTSwiftyAppearanceWillRefreshWindow = NSNotification.Name(rawValue: "FTSwiftyAppearanceWillRefreshWindow.Notofication")
     public static let FTSwiftyAppearanceDidRefreshWindow = NSNotification.Name(rawValue: "FTSwiftyAppearanceDidRefreshWindow.Notofication")
 }
 
-public struct ThemeStyle {
+public struct FTThemeStyle {
     public static let defaultStyle = "default"
     static let highlightedStyle = "highlighted"
     static let selectedStyle = "selected"
     static let disabledStyle = "disabled"
     
     static func allStyles() -> [String] {
-        return [ThemeStyle.highlightedStyle,
-                ThemeStyle.selectedStyle,
-                ThemeStyle.disabledStyle]
+        return [FTThemeStyle.highlightedStyle,
+                FTThemeStyle.selectedStyle,
+                FTThemeStyle.disabledStyle]
     }
     
 }
@@ -38,14 +38,14 @@ public protocol FTThemeProtocol: AnyObject {
     func get_ThemeSubType() -> String?
     
     // Custom Subclass can implement, to config Custom component
-    func updateTheme(_ theme: FTThemeDic)
+    func updateTheme(_ theme: FTThemeModel)
 }
 
 public extension FTThemeProtocol where Self: UIView {
     
     func get_ThemeSubType() -> String? {
         // If view is disabled, check for ".disabledStyle" style
-        return self.isUserInteractionEnabled ? nil : ThemeStyle.disabledStyle
+        return self.isUserInteractionEnabled ? nil : FTThemeStyle.disabledStyle
     }
 
     // Color
@@ -63,8 +63,8 @@ public extension FTThemeProtocol where Self: UIView {
 public protocol FTUIControlThemeProtocol: FTThemeProtocol {
     
     func get_AllThemeSubType() -> Bool
-    func setThemes(_ themes: FTThemeDic)
-    func update(themeDic: FTThemeDic, state: UIControl.State)
+    func setThemes(_ themes: FTThemeModel)
+    func update(themeDic: FTThemeModel, state: UIControl.State)
 }
 
 extension UIView {
@@ -170,10 +170,10 @@ fileprivate extension UIView {
             
             let baseName = themeName.components(separatedBy: ":").first
 
-            var styles: FTThemeDic = [:]
+            var styles: FTThemeModel = [:]
 
             // For each style, get Theme value
-            ThemeStyle.allStyles().forEach { (style) in
+            FTThemeStyle.allStyles().forEach { (style) in
                 
                 if let styleThemeDic = FTThemesManager.generateVisualThemes(forClass: className,
                                                                        withStyleName: baseName!,
@@ -239,7 +239,7 @@ fileprivate extension UIView {
     }
     
     // Update view with styleValues
-    @objc func configureTheme(_ themeDic: FTThemeDic?) {
+    @objc func configureTheme(_ themeDic: FTThemeModel?) {
         
         guard let theme = themeDic else {
             return
@@ -254,7 +254,7 @@ fileprivate extension UIView {
         }
         
         // Get all subTheme for all stats of the control
-        let themeDic = [controlThemeSelf.get_ThemeSubType() ?? ThemeStyle.defaultStyle : theme]
+        let themeDic = [controlThemeSelf.get_ThemeSubType() ?? FTThemeStyle.defaultStyle : theme]
         controlThemeSelf.setThemes(themeDic)
     }
 
@@ -263,7 +263,7 @@ fileprivate extension UIView {
 // MARK: UIView: FTThemeProtocol
 extension UIView {
     
-    @objc public func swizzled_updateTheme(_ theme: FTThemeDic) {
+    @objc public func swizzled_updateTheme(_ theme: FTThemeModel) {
 
         // "backgroundColor"
         if let textcolor = theme["backgroundColor"] {
@@ -277,7 +277,7 @@ extension UIView {
 
         // "layer"
         // TODO: to generate a layer and add it as subView
-        if let layerValue = theme["layer"] as? FTThemeDic {
+        if let layerValue = theme["layer"] as? FTThemeModel {
             FTThemesManager.getBackgroundLayer(layerValue, toLayer: self.layer)
         }
         
@@ -303,7 +303,7 @@ extension UIControl {
         return true
     }
 
-    public func setThemes(_ themes: FTThemeDic) {
+    public func setThemes(_ themes: FTThemeModel) {
         
         guard let themeSelf = self as? FTUIControlThemeProtocol else {
             return
@@ -311,23 +311,23 @@ extension UIControl {
 
         for (kind, value) in themes {
             
-            guard let theme = value as? FTThemeDic else { continue }
+            guard let theme = value as? FTThemeModel else { continue }
             
             switch kind {
                 
-            case ThemeStyle.defaultStyle:
+            case FTThemeStyle.defaultStyle:
                 themeSelf.update(themeDic: theme, state: .normal)
                 break
                 
-            case ThemeStyle.disabledStyle:
+            case FTThemeStyle.disabledStyle:
                 themeSelf.update(themeDic: theme, state: .disabled)
                 break
                 
-            case ThemeStyle.highlightedStyle:
+            case FTThemeStyle.highlightedStyle:
                 themeSelf.update(themeDic: theme, state: .highlighted)
                 break
                 
-            case ThemeStyle.selectedStyle:
+            case FTThemeStyle.selectedStyle:
                 themeSelf.update(themeDic: theme, state: .selected)
                 break
                 

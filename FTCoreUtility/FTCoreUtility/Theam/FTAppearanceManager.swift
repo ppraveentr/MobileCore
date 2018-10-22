@@ -10,7 +10,7 @@ import Foundation
 // TODO: In progress
 protocol FTAppearanceManagerProtocol {
     @discardableResult
-    func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance
+    func setUpAppearance(theme: FTThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance
 }
 
 open class FTAppearanceManager {
@@ -26,13 +26,13 @@ open class FTAppearanceManager {
     }
 
     static func __setupThemes__() {
-        guard let app = FTThemesManager.getAppearance() as? FTThemeDic else {
+        guard let app = FTThemesManager.getAppearance() as? FTThemeModel else {
             return
         }
 
-        for theme in app where ((theme.value as? FTThemeDic) != nil) {
+        for theme in app where ((theme.value as? FTThemeModel) != nil) {
 
-            if let themeObj: FTThemeDic = theme.value as? FTThemeDic {
+            if let themeObj: FTThemeModel = theme.value as? FTThemeModel {
 
                 let components = getComponentName(theme.key)
 
@@ -68,12 +68,12 @@ extension FTThemesManager {
 
 extension UIView : FTAppearanceManagerProtocol {
 
-    public func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
+    public func setUpAppearance(theme: FTThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         return type(of: self).setUpAppearance(theme: theme, containerClass: containerClass)
     }
 
     @discardableResult
-    @objc public class func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
+    @objc public class func setUpAppearance(theme: FTThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
 
         let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
 
@@ -89,12 +89,12 @@ extension UIView : FTAppearanceManagerProtocol {
     }
     
     @objc public class func setBackgroundImage(_ imageTheme: Any) {
-        self.setBackgroundImage(imageType: ThemeStyle.defaultStyle, imageName: imageTheme)
+        self.setBackgroundImage(imageType: FTThemeStyle.defaultStyle, imageName: imageTheme)
     }
     
     public class func setBackgroundImage(imageType: String?, imageName: Any) {
         
-        if let types = imageName as? FTThemeDic {
+        if let types = imageName as? FTThemeModel {
             types.forEach { setBackgroundImage(imageType: $0, imageName: $1) }
         }
         
@@ -114,7 +114,7 @@ extension UIView : FTAppearanceManagerProtocol {
 
 extension UISegmentedControl {
 
-    override public class func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
+    override public class func setUpAppearance(theme: FTThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         return super.setUpAppearance(theme: theme, containerClass: containerClass)
 //        let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
 //        return appearance
@@ -141,7 +141,7 @@ extension UISegmentedControl {
 
 extension UINavigationBar {
     
-    override public class func setUpAppearance(theme: FTThemeDic, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
+    override public class func setUpAppearance(theme: FTThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         super.setUpAppearance(theme: theme, containerClass: containerClass)
 
         let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
@@ -155,7 +155,7 @@ extension UINavigationBar {
         if let value = theme["shadowImage"] {
             appearance.shadowImage = FTThemesManager.getImage(value)
         }
-        if let value = theme["titleText"] as? FTThemeDic {
+        if let value = theme["titleText"] as? FTThemeModel {
             appearance.titleTextAttributes = FTThemesManager.getTextAttributes(value)
         }
         if let value = theme["isTranslucent"] as? Bool {
@@ -174,7 +174,7 @@ extension UINavigationBar {
         var defaultImage: UIImage? = FTThemesManager.getImage(image)
         var landScapeImage: UIImage? = nil
         
-        if let imageTheme = image as? FTThemeDic {
+        if let imageTheme = image as? FTThemeModel {
             defaultImage = FTThemesManager.getImage(imageTheme["default"])
             landScapeImage = FTThemesManager.getImage(imageTheme["landScape"])
         }

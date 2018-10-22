@@ -54,7 +54,31 @@ open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
 
     @IBOutlet
     lazy open var baseView: FTBaseView? = FTBaseView()
+    @IBInspectable
+    open var baseViewTheme: String = FTThemeStyle.defaultStyle
+
+    @IBOutlet
+    open var topPinnedButtonView: FTView? = nil {
+        didSet {
+            // updated only when `isViewLoaded` is true, else will be updated during `setupBaseView`
+            if isViewLoaded {
+                self.baseView?.topPinnedView = topPinnedButtonView
+            }
+        }
+    }
+    @IBOutlet
+    open var bottomPinnedButtonView: FTView? = nil {
+        didSet {
+            // updated only when `isViewLoaded` is true, else will be updated during `setupBaseView`
+            if isViewLoaded {
+                self.baseView?.bottomPinnedView = bottomPinnedButtonView
+            }
+        }
+    }
+
+    // default - left Button Actopm
     public static var kLeftButtonAction = #selector(leftButtonAction)
+    public static var kRightButtonAction = #selector(rightButtonAction)
 
     // Unquie Identifier for eachScreen
     open var screenIdentifier: String? = nil
@@ -86,6 +110,13 @@ open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
         }
     }
 
+    public var isLoadedFromInterface = false
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        isLoadedFromInterface = true
+    }
+
+    
     open override func loadView() {
          super.loadView()
         // Make it as Views RooView, if forget to map it in IB.
@@ -95,7 +126,7 @@ open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
         self.view = self.baseView
 
         // Set defalut theme
-        self.baseView?.theme = ThemeStyle.defaultStyle
+        self.baseView?.theme = self.baseViewTheme
         
         // Setup baseView's topLayoutGuide & bottomLayoutGuide
         setupBaseView()
@@ -128,7 +159,7 @@ open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
     // MARK: Navigation Bar
     public func setupNavigationbar(title: String,
                             leftButtonTitle: String? = nil, leftButtonImage: UIImage? = nil, leftButtonAction: Selector? = kLeftButtonAction, leftCustomView: UIView? = nil,
-                            rightButtonTitle: String? = nil, rightButtonImage: UIImage? = nil, rightButtonAction: Selector? = #selector(rightButtonAction), rightCustomView: UIView? = nil) {
+                            rightButtonTitle: String? = nil, rightButtonImage: UIImage? = nil, rightButtonAction: Selector? = kRightButtonAction, rightCustomView: UIView? = nil) {
 
         self_setupNavigationbar(title: title, leftButtonTitle: leftButtonTitle, leftButtonImage: leftButtonImage, leftButtonAction: leftButtonAction, leftCustomView: leftCustomView, rightButtonTitle: rightButtonTitle, rightButtonImage: rightButtonImage, rightButtonAction: rightButtonAction, rightCustomView: rightCustomView)
     }
@@ -159,7 +190,7 @@ open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
                                image: UIImage? = nil,
                                buttonType: UIBarButtonItem.SystemItem = .done,
                                customView: UIView? = nil,
-                               buttonAction: Selector? = #selector(rightButtonAction)) -> UIBarButtonItem? {
+                               buttonAction: Selector? = kRightButtonAction) -> UIBarButtonItem? {
         return self_rightNavigationBarButton(title: title, image: image,buttonType: buttonType, customView: customView, buttonAction: buttonAction)
     }
 
@@ -238,7 +269,15 @@ extension FTBaseViewController {
 
     // MARK: Layout Guide for rootView
     public func setupBaseView() {
-        
+
+        if let topView = self.topPinnedButtonView {
+            self.baseView?.topPinnedView = topView
+        }
+
+        if let bottomView = self.bottomPinnedButtonView {
+            self.baseView?.bottomPinnedView = bottomView
+        }
+
         let local = self.baseView?.rootView
         
 //       self.view.pin(view: local!, withEdgeInsets: [.Horizontal, .Bottom])

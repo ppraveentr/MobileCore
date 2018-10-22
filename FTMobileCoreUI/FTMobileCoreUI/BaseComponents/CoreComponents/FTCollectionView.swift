@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class FTCollectionView: UICollectionView {
+open class FTCollectionView: FTUICollectionView {
 
     public weak var viewController: FTCollectionViewProtocol? = nil
 

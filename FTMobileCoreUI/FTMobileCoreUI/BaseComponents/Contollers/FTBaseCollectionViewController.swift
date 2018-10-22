@@ -29,6 +29,15 @@ extension FTCollectionViewProtocol {
 open class FTBaseCollectionViewController: FTBaseViewController, FTCollectionViewProtocol {
 
     public lazy var collectionView: FTCollectionView = self.getCollectionView()
+    @IBInspectable
+    public var collectionViewTheme: String? = nil {
+        didSet {
+            if isViewLoaded, !collectionViewTheme.isNilOrEmpty {
+                collectionView.theme = collectionViewTheme
+            }
+        }
+    }
+
     public var  delegate: UICollectionViewDelegate? {
         didSet{
             collectionView.delegate = delegate
@@ -49,6 +58,10 @@ open class FTBaseCollectionViewController: FTBaseViewController, FTCollectionVie
         super.loadView()
 
         _ = self.collectionView
+
+        if let theme = self.collectionViewTheme {
+            self.collectionViewTheme = theme
+        }
     }
 
 }
@@ -59,9 +72,7 @@ extension FTBaseCollectionViewController {
 
         let local = FTCollectionView(frame: .zero, collectionViewLayout: flowLayout())
         local.viewController = self
-        local.backgroundColor = UIColor.white
-        local.backgroundView?.backgroundColor = UIColor.white
-        
+        local.theme = FTThemeStyle.defaultStyle
         self.mainView?.pin(view: local, edgeOffsets: .zero)
 
         return local

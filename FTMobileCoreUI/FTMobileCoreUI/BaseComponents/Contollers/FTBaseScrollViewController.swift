@@ -9,25 +9,32 @@
 import Foundation
 
 open class FTBaseScrollViewController: FTBaseViewController {
-    
-    public lazy var scrollView: FTScrollView = self.getScrollView()
-    
+
+    @IBOutlet
+    public lazy var scrollView: FTScrollView! = self.setupScrollView()
+
     open override func loadView() {
         super.loadView()
-        
-        _ = self.scrollView
+
+        // Setup ScrollView incse, view is loaded from IB
+        setupScrollView(scrollView: self.scrollView)
     }
     
 }
 
 extension FTBaseScrollViewController {
-    
-    func getScrollView() -> FTScrollView {
-        
-        let local = FTScrollView()
-        
-        self.mainView?.pin(view: local, edgeOffsets: .zero)
-        
+
+    @discardableResult
+    func setupScrollView(scrollView local: FTScrollView = FTScrollView() ) -> FTScrollView {
+
+        local.superview?.removeFromSuperview()
+        self.scrollView = local
+
+        if isLoadedFromInterface || local.superview == nil {
+            self.mainView?.pin(view: local, edgeOffsets: .zero)
+            local.setupContentView(local.contentView)
+        }
+
         return local
     }
     

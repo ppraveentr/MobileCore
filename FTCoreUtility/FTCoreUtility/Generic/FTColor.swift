@@ -8,6 +8,34 @@
 
 import Foundation
 
+/*
+ Here's a correct table of percentages to hex values. E.g. for 50% white you'd use #80FFFFFF.
+ 100% — FF
+ 95% — F2
+ 90% — E6
+ 85% — D9
+ 80% — CC
+ 75% — BF
+ 70% — B3
+ 65% — A6
+ 60% — 99
+ 55% — 8C
+ 50% — 80
+ 45% — 73
+ 40% — 66
+ 35% — 59
+ 30% — 4D
+ 25% — 40
+ 20% — 33
+ 15% — 26
+ 10% — 1A
+ 5% — 0D
+ 0% — 00
+
+ Percentage to hex values:
+ https://stackoverflow.com/questions/15852122/hex-transparency-in-colors
+ */
+
 public extension UIColor {
     
      fileprivate convenience init(red: UInt32, green: UInt32, blue: UInt32, a: CGFloat = 1.0) {
@@ -73,14 +101,15 @@ public extension UIColor {
         var int = UInt32()
         Scanner(string: cString).scanHexInt32(&int)
         
-        let a, r, g, b: UInt32
+        let r, g, b: UInt32
+        var a: UInt32 = 255
         switch hex.length-1 {
         case 3: // RGB (12-bit)
-            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+            (r, g, b) = ((int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
         case 6: // RGB (24-bit)
-            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+            (r, g, b) = (int >> 16, int >> 8 & 0xFF, int & 0xFF)
         case 8: // ARGB (32-bit)
-            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+            (r, g, b, a) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
         default:
             return nil
         }

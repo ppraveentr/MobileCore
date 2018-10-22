@@ -16,7 +16,8 @@ class FTThemesTests: XCTestCase {
         "color": [
             "default": "#FFFFFF",
             "black": "#FFFFFF",
-            "white": "#000000"
+            "white": "#000000",
+            "halfwhite": "#FF00FFBF"
         ],
         "font": [
             "default": [
@@ -92,6 +93,10 @@ class FTThemesTests: XCTestCase {
     // MARK: Color
     func testColorWhite() {
         FTLog("\n color white : ", FTThemesManager.getColor("white")!)
+    }
+
+    func testColorWithAlpha() {
+        FTLog("\n color white : ", FTThemesManager.getColor("halfwhite")!)
     }
     
     func testColorBlack() {
