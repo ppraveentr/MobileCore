@@ -19,7 +19,8 @@ public protocol FTAppBaseProtocal {
     //Bydefalut leftButton action is set to 'leftButtonAction'
     func setupNavigationbar(title: String,
     leftButtonTitle: String?, leftButtonImage: UIImage?, leftButtonAction: Selector?, leftCustomView: UIView?,
-    rightButtonTitle: String?, rightButtonImage: UIImage?, rightButtonAction: Selector?, rightCustomView: UIView?) -> Void
+    rightButtonTitle: String?, rightButtonImage: UIImage?, rightButtonAction: Selector?, rightCustomView: UIView?)
+    
     //Config Left Navbar Button
     func leftNavigationBarButton(title: String?, image: UIImage?, buttonType: UIBarButtonItem.SystemItem, customView: UIView?, buttonAction: Selector?) -> UIBarButtonItem?
     //Config right Navbar Button
@@ -87,7 +88,11 @@ open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
     open var completionBlock: FTAppBaseCompletionBlock? = nil
 
     // Setup baseView's topLayoutGuide by sending true in subControllers if needed
-    open func shouldSetSafeAreaLayoutGuide() -> Bool {
+    open func topSafeAreaLayoutGuide() -> Bool {
+        return false
+    }
+
+    open func horizontalSafeAreaLayoutGuide() -> Bool {
         return true
     }
 
@@ -206,6 +211,7 @@ open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
         self_dismissSelf()
     }
 
+    // MARK: default Nav-bar button actions
     @objc @IBAction open func leftButtonAction() {
         dismissSelf()
     }
@@ -270,33 +276,42 @@ extension FTBaseViewController {
     // MARK: Layout Guide for rootView
     public func setupBaseView() {
 
+        // Update: topPinnedButtonView
         if let topView = self.topPinnedButtonView {
             self.baseView?.topPinnedView = topView
         }
 
+        // Update: bottomPinnedButtonView
         if let bottomView = self.bottomPinnedButtonView {
             self.baseView?.bottomPinnedView = bottomView
         }
 
+        // Pin: rootView
         let local = self.baseView?.rootView
-        
-//       self.view.pin(view: local!, withEdgeInsets: [.Horizontal, .Bottom])
 
         /* Pin view bellow status bar */
-        if shouldSetSafeAreaLayoutGuide() {
+        // Pin - rootView's topAnchor
+        if topSafeAreaLayoutGuide() {
             if #available(iOS 11.0, *) {
                 local?.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                            constant: 0.0).isActive = true
-                local?.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor,
-                                            constant: 0.0).isActive = true
-                local?.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
                                             constant: 0.0).isActive = true
             } else {
                 local?.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor,
                                             constant: 0.0).isActive = true
             }
         }
-        
+
+        // Pin - rootView's topAnchor
+        if horizontalSafeAreaLayoutGuide() {
+            if #available(iOS 11.0, *) {
+                local?.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor,
+                                             constant: 0.0).isActive = true
+                local?.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
+                                              constant: 0.0).isActive = true
+            }
+        }
+
+        // Pin - rootView's bottomAnchor
         if #available(iOS 11.0, *) {
             local?.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
                                            constant: 0.0).isActive = true

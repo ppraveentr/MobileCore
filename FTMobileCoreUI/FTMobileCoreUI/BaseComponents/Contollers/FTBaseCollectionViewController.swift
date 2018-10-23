@@ -73,8 +73,8 @@ extension FTBaseCollectionViewController {
         let local = FTCollectionView(frame: .zero, collectionViewLayout: flowLayout())
         local.viewController = self
         local.theme = FTThemeStyle.defaultStyle
+        // Pin view to edges
         self.mainView?.pin(view: local, edgeOffsets: .zero)
-
         return local
     }
 

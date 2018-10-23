@@ -11,28 +11,24 @@ import Foundation
 open class FTContentView: FTScrollView {
     
     var MyObservationContext = 0
-
-    lazy public var webView: FTWebView = self.getWebView()
-    public var scrollView: UIScrollView?
-
     var observing = false
-    
+    lazy public var webView: FTWebView = self.getWebView()
+    public weak var scrollView: UIScrollView?
+
     private func getWebView() -> FTWebView {
-        
         let webView = FTWebView()
-
         super.contentView.pin(view: webView)
-        
         self.startObservingHeight(webView)
-
         return webView
     }
     
     deinit {
+        // Remove all Observer in `self`
+        NotificationCenter.default.removeObserver(self)
         stopObservingHeight()
     }
     
-    // Observe webview content height
+    // MARK: Observe webview content height
     func startObservingHeight(_ webView: FTWebView) {
 
         self.scrollView = webView.scrollView
@@ -74,14 +70,14 @@ open class FTContentView: FTScrollView {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
-    
-//   func updateHeight() {
-//       
-//       self.webView.evaluateJavaScript("document.body.scrollHeight") { (obj, error) in
-//           if let hei = obj as? CGFloat {
-//               self.contentView.viewLayoutConstraint.constraintHeight?.constant = hei
-//           }
-//       }
-//   }
-    
+
+    // MARK: JS
+//    func updateHeight() {
+//        self.webView.evaluateJavaScript("document.body.scrollHeight") { (obj, error) in
+//            if let hei = obj as? CGFloat {
+//                self.contentView.viewLayoutConstraint.constraintHeight?.constant = hei
+//            }
+//        }
+//    }
+
 }

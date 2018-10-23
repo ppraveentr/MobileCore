@@ -14,17 +14,21 @@ open class FTScrollView: UIScrollView {
     public lazy var contentView: FTView! = self.setupContentView()
 
     @discardableResult
-    public func setupContentView(_ view: FTView = FTView()) -> FTView {
+    public func setupContentView(_ view: FTView? = nil) -> FTView {
 
         // Remove old contentView & update with new view
-        contentView?.removeFromSuperview()
-        self.contentView = view
+        if view == nil {
+            self.contentView = FTView()
+        } else {
+            contentView?.removeFromSuperview()
+            self.contentView = view
+        }
 
-        self.pin(view: view, edgeInsets: [.All], priority: .required)
-        self.pin(view: view, edgeInsets: [.CenterMargin], priority: .defaultLow)
-        view.addSelfSizing()
+        self.pin(view: self.contentView, edgeInsets: [.All], priority: .required)
+        self.pin(view: self.contentView, edgeInsets: [.CenterMargin], priority: .defaultLow)
+        self.contentView.addSelfSizing()
         
-        return view
+        return self.contentView
     }
     
 }
