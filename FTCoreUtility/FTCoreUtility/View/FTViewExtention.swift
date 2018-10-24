@@ -70,22 +70,24 @@ public extension UIView {
     }
     
     // Add once's xib-view as subView
-    public func xibSetup(className: UIView.Type) {
-        var contentView : UIView?
-        
+    @discardableResult
+    public func xibSetup(className: UIView.Type) -> UIView? {
+
         // Get view from nib
-        contentView = className.fromNib(self)
+        guard let contentView = className.fromNib(self) else {
+            return nil
+        }
+
         // Set contents tag as self'hash, just for unique identifiation
-        contentView?.tag = self.hash
-        
+        contentView.tag = self.hash
         // use bounds not frame or it'll be offset
-        contentView!.frame = bounds
-        
+        contentView.frame = bounds
         // Make the view stretch with containing view
-        contentView!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
+        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         // Adding custom subview on top of our view (over any custom drawing > see note below)
-        addSubview(contentView!)
+        addSubview(contentView)
+        // Retrun contentView
+        return contentView
     }
 
     // Find subView based on output type

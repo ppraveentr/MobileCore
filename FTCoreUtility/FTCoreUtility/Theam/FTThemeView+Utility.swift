@@ -90,7 +90,11 @@ extension UIView {
             self.needsThemesUpdate = true
         }
     }
-    
+
+    public func updateVisualProperty() {
+        self.needsThemesUpdate = true
+    }
+
     // To tigger view-Theme styling
     private var needsThemesUpdate: Bool {
         get {

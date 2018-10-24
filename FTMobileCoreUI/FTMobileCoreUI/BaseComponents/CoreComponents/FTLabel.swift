@@ -86,6 +86,13 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
             self.updateTextContainerSize()
         }
     }
+
+    open override var isEnabled: Bool {
+        didSet {
+            // update with latest Theme
+            updateVisualProperty()
+        }
+    }
     
     open override func layoutSubviews() {
         super.layoutSubviews()
@@ -171,7 +178,7 @@ extension FTLabel {
 extension FTLabel {
     
     func getStyleProperties() -> [NSAttributedString.Key : Any] {
-        
+
         let paragrahStyle = NSMutableParagraphStyle()
         paragrahStyle.alignment = self.textAlignment
         paragrahStyle.lineBreakMode = self.lineBreakMode
