@@ -32,10 +32,7 @@ MobileCore/
 
 That's it - now your are good to go and start writing beautiful applicaiton! Let the MobileCode most of the heavy lifting for you.
 
-### Wiki
-
-You can find useful information about the components in the [wiki](https://github.com/ppraveentr/MobileCore/wiki). 
-You are invited to add it to the wiki.
+You can find useful information about the components in the [wiki](https://github.com/ppraveentr/MobileCore/wiki).
 
 ## TODO List
 
