@@ -89,7 +89,7 @@ open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
 
     // Setup baseView's topLayoutGuide by sending true in subControllers if needed
     open func topSafeAreaLayoutGuide() -> Bool {
-        return false
+        return true
     }
 
     open func horizontalSafeAreaLayoutGuide() -> Bool {
