@@ -28,7 +28,7 @@ public extension CGRect {
         return self.size.height
     }
     
-    public mutating func normalize() -> CGRect {
+    mutating func normalize() -> CGRect {
         
         if !self.minX.isFinite {
             self.origin.x = 0.0

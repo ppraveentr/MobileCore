@@ -175,7 +175,7 @@ public extension FTServiceClient {
     }
 
     // MARK: Service Call
-    static public func make(modelStack: FTServiceModel? = nil, completionHandler: FTServiceCompletionBlock<Self>? = nil) {
+    static func make(modelStack: FTServiceModel? = nil, completionHandler: FTServiceCompletionBlock<Self>? = nil) {
         let serviceStack = Self.self.init(inputStack: modelStack)
         guard let urlRequest = serviceStack.urlRequest() else {
             FTLog("FTError: ", self, ": Unable to generate urlRequest.")

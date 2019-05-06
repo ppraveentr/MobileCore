@@ -94,7 +94,7 @@ open class FTUISearchBar: UISearchBar, FTThemeProtocol {
 
 public extension FTThemeProtocol where Self: UISearchBar {
 
-    public func updateTheme(_ theme: FTThemeModel) {
+    func updateTheme(_ theme: FTThemeModel) {
 
         var barTintColor: UIColor? = nil
         var tintColor: UIColor? = nil
@@ -123,7 +123,7 @@ public extension FTThemeProtocol where Self: UISearchBar {
 
 public extension UISearchBar {
 
-    public func configure(barTintColor: UIColor? = nil, tintColor: UIColor? = nil, textColor: UIColor? = nil) {
+    func configure(barTintColor: UIColor? = nil, tintColor: UIColor? = nil, textColor: UIColor? = nil) {
 
         if let barTintColor = barTintColor {
             self.barTintColor = barTintColor

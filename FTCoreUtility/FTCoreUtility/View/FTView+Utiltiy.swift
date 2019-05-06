@@ -10,7 +10,7 @@ import Foundation
 
 public extension UIView {
 
-    public func addBorder(color: UIColor = .lightGray, borderWidth: CGFloat = 1.5) {
+    func addBorder(color: UIColor = .lightGray, borderWidth: CGFloat = 1.5) {
         self.layer.borderWidth = borderWidth
         self.layer.borderColor = color.cgColor
     }

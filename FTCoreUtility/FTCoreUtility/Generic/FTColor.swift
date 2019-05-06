@@ -56,7 +56,7 @@ public extension UIColor {
         )
     }
     
-    public convenience init(rgb: UInt32, a: CGFloat = 1.0) {
+    convenience init(rgb: UInt32, a: CGFloat = 1.0) {
         self.init(
             red: (rgb >> 16 & 0xFF),
             green: (rgb >> 8 & 0xFF),
@@ -65,7 +65,7 @@ public extension UIColor {
         )
     }
     
-    public convenience init(rgba: UInt32) {
+    convenience init(rgba: UInt32) {
         self.init(
             red: (rgba >> 24 & 0xFF),
             green: (rgba >> 16 & 0xFF),
@@ -87,7 +87,7 @@ public extension UIColor {
         return String(format:"#%06x", rgb)
     }
     
-    public static func hexColor (_ hex:String) -> UIColor? {
+    static func hexColor (_ hex:String) -> UIColor? {
 
         // Check if its acutal hex coded string
         if !hex.hasPrefix("#") {
@@ -117,7 +117,7 @@ public extension UIColor {
         return UIColor(red: r, green: g, blue: b, a: CGFloat(a) / 255.0)
     }
     
-    public func generateImage(opacity: CGFloat = 1, contextSize: CGSize = CGSize(width: 1, height: 1),
+    func generateImage(opacity: CGFloat = 1, contextSize: CGSize = CGSize(width: 1, height: 1),
                               contentsScale: CGFloat = CGFloat.greatestFiniteMagnitude) -> UIImage {
         
         let rect = CGRect(origin: .zero, size: contextSize)
@@ -138,15 +138,15 @@ public extension UIColor {
     }
     
     // Amount should be between 0 and 1
-    public func lighterColor(_ amount: CGFloat) -> UIColor {
+    func lighterColor(_ amount: CGFloat) -> UIColor {
         return UIColor.blendColors(color: self, destinationColor: UIColor.white, amount: amount)
     }
     
-    public func darkerColor(_ amount: CGFloat) -> UIColor {
+    func darkerColor(_ amount: CGFloat) -> UIColor {
         return UIColor.blendColors(color: self, destinationColor: UIColor.black, amount: amount)
     }
     
-    public static func blendColors(color: UIColor, destinationColor: UIColor, amount : CGFloat) -> UIColor {
+    static func blendColors(color: UIColor, destinationColor: UIColor, amount : CGFloat) -> UIColor {
         var amountToBlend = amount
         if amountToBlend > 1 {
             amountToBlend = 1.0
@@ -182,7 +182,7 @@ public extension UIColor {
 
 public extension UIImage {
     
-    public func getColor(atPoint: CGPoint = CGPoint(x: 1, y: 1), a: CGFloat = -10) -> UIColor? {
+    func getColor(atPoint: CGPoint = CGPoint(x: 1, y: 1), a: CGFloat = -10) -> UIColor? {
         
         guard
             let pixelData = self.cgImage?.dataProvider?.data,

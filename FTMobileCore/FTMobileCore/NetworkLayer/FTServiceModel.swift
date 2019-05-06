@@ -65,18 +65,18 @@ public extension FTServiceModel {
         return try! makeModel(json: [:])
     }
 
-    static public func makeModel(json: String) throws  -> Self {
+    static func makeModel(json: String) throws  -> Self {
         let jsonData = json.data(using: .utf8)
         let data = try JSONDecoder().decode(Self.self, from:jsonData!)
         return data
     }
     
-    static public func makeModel(json: Data) throws  -> Self {
+    static func makeModel(json: Data) throws  -> Self {
         let data = try JSONDecoder().decode(Self.self, from:json)
         return data
     }
 
-    static public func makeModel(json: JSON) throws  -> Self {
+    static func makeModel(json: JSON) throws  -> Self {
         let data = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
         return try self.makeModel(json: data)
     }

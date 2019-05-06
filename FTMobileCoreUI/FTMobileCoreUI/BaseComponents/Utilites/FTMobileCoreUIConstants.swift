@@ -12,9 +12,9 @@ import Foundation
 public extension Notification.Name {
     
     // ViewController - lifeCycle changes
-    public static let FTMobileCoreUI_ViewController_DidLoad = Notification.Name("FTMobileCoreUI_ViewController_DidLoad")
-    public static let FTMobileCoreUI_ViewController_WillAppear = Notification.Name("FTMobileCoreUI_ViewController_WillAppear")
-    public static let FTMobileCoreUI_ViewController_DidAppear = Notification.Name("FTMobileCoreUI_ViewController_DidAppear")
-    public static let FTMobileCoreUI_ViewController_WillDisappear = Notification.Name("FTMobileCoreUI_ViewController_WillDisappear")
-    public static let FTMobileCoreUI_ViewController_DidDisappear = Notification.Name("FTMobileCoreUI_ViewController_DidDisappear")
+    static let FTMobileCoreUI_ViewController_DidLoad = Notification.Name("FTMobileCoreUI_ViewController_DidLoad")
+    static let FTMobileCoreUI_ViewController_WillAppear = Notification.Name("FTMobileCoreUI_ViewController_WillAppear")
+    static let FTMobileCoreUI_ViewController_DidAppear = Notification.Name("FTMobileCoreUI_ViewController_DidAppear")
+    static let FTMobileCoreUI_ViewController_WillDisappear = Notification.Name("FTMobileCoreUI_ViewController_WillDisappear")
+    static let FTMobileCoreUI_ViewController_DidDisappear = Notification.Name("FTMobileCoreUI_ViewController_DidDisappear")
 }

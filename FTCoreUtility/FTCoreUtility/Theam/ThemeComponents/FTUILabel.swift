@@ -26,12 +26,12 @@ protocol FTUILabelThemeProtocol: FTThemeProtocol {
 public extension FTThemeProtocol where Self: UILabel {
     
     // If view is disabled, check for ".disabledStyle" style
-    public func get_ThemeSubType() -> String? {
+    func get_ThemeSubType() -> String? {
         return self.isEnabled ? nil : FTThemeStyle.disabledStyle
     }
     
     // Force update theme attibute
-    public func updateTheme(_ theme: FTThemeModel) {
+    func updateTheme(_ theme: FTThemeModel) {
         
         defer {
             self.updateVisualThemes()
@@ -91,7 +91,7 @@ extension UILabel: FTUILabelThemeProtocol {
     open func theme_textcolor(_ color: UIColor) { self.textColor = color }
         
     // Force Update text with same value to trigger Theme changes  
-    public func updateVisualThemes() {
+    func updateVisualThemes() {
         
         // Force update
         if let text = self.attributedText {

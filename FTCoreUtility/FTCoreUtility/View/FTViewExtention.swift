@@ -21,7 +21,7 @@ public var FTScreenHeight: CGFloat {
 public extension UIView {
     
     // Add 'contentView' as subView and pin the View to all edges
-    public static func embedView(contentView: UIView) -> UIView {
+    static func embedView(contentView: UIView) -> UIView {
         
         let local = self.init()
         local.backgroundColor = .clear
@@ -34,31 +34,31 @@ public extension UIView {
     }
     
     // Remove all subViews
-    public func removeSubviews() {
+    func removeSubviews() {
         for subview in subviews {
             subview.removeFromSuperview()
         }
     }
     
     // Remove all of its Constraints
-    public func removeAllConstraints() {
+    func removeAllConstraints() {
         var cont: [NSLayoutConstraint] = self.constraints
         cont.removeAll()
     }
     
     // MARK: XIB
     // Get nib based on once's class name
-    public static func getNIBFile() -> UINib? {
+    static func getNIBFile() -> UINib? {
         return UINib(nibName: get_classNameAsString(obj: self) ?? "", bundle: nil)
     }
     
     // Get view based on once's class name
-    public static func fromNib(_ owner: Any? = nil) -> UIView? {
+    static func fromNib(_ owner: Any? = nil) -> UIView? {
         return fromNib(named: get_classNameAsString(obj: self) ?? "", owner: owner)
     }
     
     // Retruns first view from the nib file
-    public static func fromNib(named name: String, owner: Any? = nil) -> UIView? {
+    static func fromNib(named name: String, owner: Any? = nil) -> UIView? {
         // Get all object inside the nib
         let allObjects = Bundle(for: self).loadNibNamed(name, owner: owner, options: nil) ?? []
         // Get first view object
@@ -71,7 +71,7 @@ public extension UIView {
     
     // Add once's xib-view as subView
     @discardableResult
-    public func xibSetup(className: UIView.Type) -> UIView? {
+    func xibSetup(className: UIView.Type) -> UIView? {
 
         // Get view from nib
         guard let contentView = className.fromNib(self) else {
@@ -91,7 +91,7 @@ public extension UIView {
     }
 
     // Find subView based on output type
-    public func findInSubView<T>() -> T? {
+    func findInSubView<T>() -> T? {
 
         for val in ( self.subviews.compactMap { $0 } ) {
             if val is T {
@@ -105,7 +105,7 @@ public extension UIView {
     }
 
     // calculate - systemLayoutSizeFitting
-    public func compressedSize(_ size: CGSize = .zero, _ offSet: CGSize = .zero,
+    func compressedSize(_ size: CGSize = .zero, _ offSet: CGSize = .zero,
                         widthPriority: UILayoutPriority = .required,
                         heightPriority: UILayoutPriority = .fittingSizeLevel ) -> CGSize {
 
@@ -127,7 +127,7 @@ public extension UIView {
 public extension UIView {
     
     // Find all UIImageView with 'height <= 1'
-    public func findShadowImage() -> [UIImageView]? {
+    func findShadowImage() -> [UIImageView]? {
         
         var imgs: [UIImageView] = []
         
@@ -147,7 +147,7 @@ public extension UIView {
     }
     
     // Remove all UIImageView's with 'height <= 1'
-    public func hideShadowImage() {
+    func hideShadowImage() {
         
         self.findShadowImage()?.forEach { (shadowImageView) in
             shadowImageView.isHidden = true

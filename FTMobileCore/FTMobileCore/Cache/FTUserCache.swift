@@ -15,7 +15,7 @@ public typealias FTNotification = Notification.Name
 public extension FTNotification {
     static let kCA_clearSession = Notification.Name("com.ftmobilecore.notification.name.clearSession.Application")
 
-    public func post(_ object: Any? = nil) {
+    func post(_ object: Any? = nil) {
         NotificationCenter.default.post(name: self, object: object)
     }
 }
@@ -113,30 +113,30 @@ public extension FTUserCache {
 public extension FTUserCache {
 
     @discardableResult
-    public static func clearUserData() -> Bool {
+    static func clearUserData() -> Bool {
         FTUserCache.sharedInstance._userCache = nil
         return true
     }
 
     // Save data to Session object
     @discardableResult
-    public static func setCacheObject(_ data: AnyObject, key: String, cacheType: FTUserCacheType = .user) -> Bool {
+    static func setCacheObject(_ data: AnyObject, key: String, cacheType: FTUserCacheType = .user) -> Bool {
         let key: String = String(describing: key)
         return FTUserCache.setCacheObject(data, forKey: key, cacheType: cacheType)
     }
 
-    public static func getCachedObject(key: String, cacheType: FTUserCacheType = .user) -> Any? {
+    static func getCachedObject(key: String, cacheType: FTUserCacheType = .user) -> Any? {
         let key: String = String(describing: key)
         return FTUserCache.getCachedObject(forKey:key, cacheType:cacheType)
     }
 
     @discardableResult
-    public static func setCacheObject(_ data: AnyObject, forType keyType: AnyClass, cacheType: FTUserCacheType = .user) -> Bool {
+    static func setCacheObject(_ data: AnyObject, forType keyType: AnyClass, cacheType: FTUserCacheType = .user) -> Bool {
         let key: String = String(describing: keyType)
         return FTUserCache.setCacheObject(data, forKey: key, cacheType: cacheType)
     }
 
-    public static func getCachedObject(forType keyType: AnyClass, cacheType: FTUserCacheType = .user) -> Any? {
+    static func getCachedObject(forType keyType: AnyClass, cacheType: FTUserCacheType = .user) -> Any? {
         let key: String = String(describing: keyType)
         return FTUserCache.getCachedObject(forKey:key, cacheType:cacheType)
     }

@@ -217,7 +217,7 @@ public protocol FTViewConstrains: AnyObject {
 
 public extension UIView {
     
-    public func pin<Anchor, AnchorType>(_ anchorPath: KeyPath<UIView, Anchor>, toView view: UIView,
+    func pin<Anchor, AnchorType>(_ anchorPath: KeyPath<UIView, Anchor>, toView view: UIView,
                                  priority: UILayoutPriority, constant: CGFloat = 0) -> NSLayoutConstraint
         where Anchor: NSLayoutAnchor<AnchorType> {
             
@@ -244,7 +244,7 @@ public extension UIView {
         return hasSameBase
     }
     
-    public func pin(view : UIView, edgeOffsets: FTEdgeOffsets = .zero,
+    func pin(view : UIView, edgeOffsets: FTEdgeOffsets = .zero,
                     edgeInsets: FTEdgeInsets = .All,
                     priority: UILayoutPriority = .required, addToSubView: Bool = true) {
         
@@ -399,7 +399,7 @@ public extension UIView {
         }
     }
     
-    public func stackView(views: [UIView], layoutDirection direction: FTLayoutDirection = .TopToBottom,
+    func stackView(views: [UIView], layoutDirection direction: FTLayoutDirection = .TopToBottom,
                           spacing: CGFloat = 0, edgeInsets: FTEdgeInsets = .None,
                           layoutPriority priority: UILayoutPriority = UILayoutPriority.required) {
         
@@ -505,7 +505,7 @@ public extension UIView {
     // Sets height & width of the View
     // Negative values will skip setting constraints
     // If invoked after ".AutoSize or addSelfSizing", the view will not auto-resize the width & height.
-    public func addSizeConstraint(_ width: CGFloat = -10, _ height: CGFloat = -10, relation:  NSLayoutConstraint.Relation = .equal) {
+    func addSizeConstraint(_ width: CGFloat = -10, _ height: CGFloat = -10, relation:  NSLayoutConstraint.Relation = .equal) {
         
         self.viewLayoutConstraint.autoSizing = true
 
@@ -521,7 +521,7 @@ public extension UIView {
     }
     
     // Auto-size to self height and width
-    public func addSelfSizing() {
+    func addSelfSizing() {
         
         self.viewLayoutConstraint.autoSizing = true
         
@@ -534,7 +534,7 @@ public extension UIView {
     }
     
     // All Produces Positive Screen offset size
-    public func resizeToFitSubviewsInScreen() {
+    func resizeToFitSubviewsInScreen() {
 
         let subviewsRect = subviews.reduce(CGRect.zero) {
             $0.union($1.frame)
@@ -552,7 +552,7 @@ public extension UIView {
     }
     
     // Incudes Negative screen offset
-    public func resizeToFitSubviews() {
+    func resizeToFitSubviews() {
         
         let reducedSize = self.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
        
@@ -577,7 +577,7 @@ public extension UIView {
     // MARK: AssociatedObject for view Layout constraints
     fileprivate static let aoLayoutConstraint = FTAssociatedObject<FTViewLayoutConstraint>()
     
-    public var viewLayoutConstraint: FTViewLayoutConstraint {
+    var viewLayoutConstraint: FTViewLayoutConstraint {
         get {
             if let storedLayouts = UIView.aoLayoutConstraint[self] {
                 return storedLayouts
@@ -591,13 +591,13 @@ public extension UIView {
         }
     }
     
-    public func setViewSize(_ size: CGSize, createConstraint: Bool = false,
+    func setViewSize(_ size: CGSize, createConstraint: Bool = false,
                             relation:  NSLayoutConstraint.Relation = .greaterThanOrEqual) {
         self.setViewHeight(size.height, createConstraint: createConstraint, relation: relation)
         self.setViewWidth(size.width, createConstraint: createConstraint, relation: relation)
     }
     
-    public func setViewHeight(_ height: CGFloat, createConstraint: Bool = false,
+    func setViewHeight(_ height: CGFloat, createConstraint: Bool = false,
                               relation:  NSLayoutConstraint.Relation = .greaterThanOrEqual) {
         
         if createConstraint || self.viewLayoutConstraint.autoSizing {
@@ -629,7 +629,7 @@ public extension UIView {
         }
     }
     
-    public func setViewWidth(_ width: CGFloat, createConstraint: Bool = false,
+    func setViewWidth(_ width: CGFloat, createConstraint: Bool = false,
                              relation:  NSLayoutConstraint.Relation = .greaterThanOrEqual) {
         
         if createConstraint || self.viewLayoutConstraint.autoSizing {

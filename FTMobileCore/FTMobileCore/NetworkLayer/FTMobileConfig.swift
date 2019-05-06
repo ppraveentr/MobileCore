@@ -78,7 +78,7 @@ public class FTMobileConfig {
 public extension FTMobileConfig {
 
     // MARK: Session Headers
-    public static var httpAdditionalHeaders: [String:String]? {
+    static var httpAdditionalHeaders: [String:String]? {
         set {
             FTUserCache.httpAdditionalHeaders = newValue
         }
