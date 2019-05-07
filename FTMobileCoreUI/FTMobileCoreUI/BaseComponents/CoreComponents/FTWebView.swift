@@ -25,8 +25,9 @@ open class FTWebView: WKWebView {
             }
             
             for subScrollView in subview.subviews {
-                if type(of: subScrollView) == NSClassFromString("WKContentView")! {
-                    for gesture in subScrollView.gestureRecognizers! {
+                if type(of: subScrollView) == NSClassFromString("WKContentView")!,
+                    let gestures = subScrollView.gestureRecognizers {
+                    for gesture in gestures {
                         subScrollView.removeGestureRecognizer(gesture)
                     }
                 }
