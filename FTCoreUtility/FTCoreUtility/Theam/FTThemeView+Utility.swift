@@ -183,7 +183,7 @@ fileprivate extension UIView {
                                                                        withStyleName: baseName!,
                                                                        withSubStyleName: style) {
                     
-                    // Create FTThemeDic as, ['ThemeStyle.UIControlState' : 'ActualTheme for the state']
+                    // Create FTThemeModel as, ['ThemeStyle.UIControlState' : 'ActualTheme for the state']
                     styles[style] = styleThemeDic
                 }
             }
