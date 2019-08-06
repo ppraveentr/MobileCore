@@ -91,7 +91,7 @@ open class FTThemesManager {
         // Check if its image coded string
         if
             (colorName?.hasPrefix("@"))!,
-            let image = self.getImage(colorName) {
+            let image = FTThemesManager.getImage(colorName) {
             return image.getColor()
         }
 
@@ -118,7 +118,7 @@ open class FTThemesManager {
     // TODO: bold, thin, ...
     public static func getFont(_ fontName: String?) -> UIFont? {
         
-        var font: FTThemeModel = self.getDefaults(type: .Font, keyName: fontName) as? FTThemeModel ?? [:]
+        let font: FTThemeModel = FTThemesManager.getDefaults(type: .Font, keyName: fontName) as? FTThemeModel ?? [:]
         
         if
             let name: String = font["name"] as? String,

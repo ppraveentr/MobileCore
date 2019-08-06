@@ -203,7 +203,7 @@ public protocol FTViewConstrains: AnyObject {
      func addSelfSizing()
     
     // All Produces Positive Screen offset size
-    func resizeToFitSubviewsInScreen()
+    //func resizeToFitSubviewsInScreen()
     
     // Incudes Negative screen offset
     func resizeToFitSubviews()
@@ -533,6 +533,7 @@ public extension UIView {
         self.sizeToFit()
     }
     
+    /*
     // All Produces Positive Screen offset size
     func resizeToFitSubviewsInScreen() {
 
@@ -550,6 +551,7 @@ public extension UIView {
         
         self.setViewSize(subviewsRect.size)
     }
+     */
     
     // Incudes Negative screen offset
     func resizeToFitSubviews() {

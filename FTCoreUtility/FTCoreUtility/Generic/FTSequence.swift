@@ -65,9 +65,8 @@ public extension Dictionary {
 
 public extension Dictionary where Value: RangeReplaceableCollection {
     mutating func merge(another: [Key: Value]) {
-        var result: [Key: Value] = [:]
         for (key, value) in another {
-            if let collection = result[key] {
+            if let collection = self[key] {
                 self[key] = collection + value
             } else {
                 self[key] = value

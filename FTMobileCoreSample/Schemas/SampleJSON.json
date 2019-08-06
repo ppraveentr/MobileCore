@@ -1,9 +1,0 @@
-{
-    "MultiPolygon": {
-        "id": "id",
-        "value": {
-            "key" : "value",
-            "bindAs": "BOOL"
-        }
-    }
-}
