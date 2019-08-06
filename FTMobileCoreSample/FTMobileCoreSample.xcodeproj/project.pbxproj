@@ -324,14 +324,12 @@
 					};
 					DE2FB8E61F3A0C5900581064 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = W6W48SVQX7;
 						LastSwiftMigration = 1030;
 						ProvisioningStyle = Automatic;
 						TestTargetID = DE9221C81EF28CDF000C8FC7;
 					};
 					DE9221C81EF28CDF000C8FC7 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = W6W48SVQX7;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -536,7 +534,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = W6W48SVQX7;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FTMobileCoreSampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTMobileCoreSampleTests;
@@ -550,7 +548,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = W6W48SVQX7;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FTMobileCoreSampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTMobileCoreSampleTests;
@@ -684,13 +682,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FTMobileCoreSample/FTMobileCoreSample.entitlements;
-				DEVELOPMENT_TEAM = W6W48SVQX7;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "\"${SRCROOT}/../Frameworks\"";
 				INFOPLIST_FILE = FTMobileCoreSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.FTMobileCoreSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ft.MobileCoreSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SWIFT_MODULE_NAME)/$(SWIFT_MODULE_NAME)-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -704,13 +705,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FTMobileCoreSample/FTMobileCoreSample.entitlements;
-				DEVELOPMENT_TEAM = W6W48SVQX7;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "\"${SRCROOT}/../Frameworks\"";
 				INFOPLIST_FILE = FTMobileCoreSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.FTMobileCoreSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ft.MobileCoreSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SWIFT_MODULE_NAME)/$(SWIFT_MODULE_NAME)-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
