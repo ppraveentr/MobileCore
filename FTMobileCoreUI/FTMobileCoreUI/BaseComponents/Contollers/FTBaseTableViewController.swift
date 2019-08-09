@@ -13,7 +13,7 @@ private let kFTCellIdentifier = "FT.kCellIdentifier"
 open class FTCoreTableViewController: UITableViewController {
     var tableStyle: UITableView.Style = .plain
     
-    public override init(style: UITableView.Style) {
+    override public init(style: UITableView.Style) {
         super.init(style: style)
         self.tableStyle = style
     }
@@ -62,7 +62,7 @@ open class FTBaseTableViewController: FTBaseViewController {
         return .zero
     }
     
-    open override func loadView() {
+    override open func loadView() {
         super.loadView()
         
         // Setup tableView by invoking it

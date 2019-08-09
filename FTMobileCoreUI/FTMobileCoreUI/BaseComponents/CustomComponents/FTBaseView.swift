@@ -51,7 +51,7 @@ open class FTBaseView: FTView {
         isLoadedFromInterface = false
     }
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         self.setupView()
     }
@@ -128,7 +128,7 @@ open class FTBaseView: FTView {
 extension FTBaseView {
 
     @available(*, deprecated)
-    open override func addSubview(_ view: UIView) {
+    override open func addSubview(_ view: UIView) {
         if view != mainPinnedView, view != rootView,
             !isLoadedFromInterface {
             self.mainPinnedView.addSubview(view)
