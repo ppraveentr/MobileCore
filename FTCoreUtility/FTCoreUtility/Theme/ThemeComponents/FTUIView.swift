@@ -8,11 +8,24 @@
 
 import Foundation
 
-open class FTUIView: UIView {
+// Used for UIView subclasses Type
+protocol FTUIViewThemeProtocol: FTThemeProtocol {
+    // Used for View
+   func get_ThemeSubType() -> String?
+}
 
-    // If view is disabled, check for ".disabledStyle" style
-//    func get_ThemeSubType() -> String? {
-//        return self.isUserInteractionEnabled ? nil : FTThemeStyle.disabledStyle
-//    }
+open class FTUIView: UIView, FTUIViewThemeProtocol {
     
+    public func get_ThemeSubType() -> String? {
+        if self.isUserInteractionEnabled {
+            return nil
+        }else{
+            return "disabled"
+        }
+    }
+    
+    // Force update theme attibute
+    public func updateTheme(_ theme: FTThemeModel) {
+
+    }
 }

@@ -24,12 +24,10 @@ Pod::Spec.new do |s|
   s.author           = { 'PraveenP' => 'ppraveentr@gmail.com' }
   s.source           = { :git => 'https://github.com/ppraveentr/MobileCore.git', :tag => s.version.to_s }
   s.frameworks 		 = 'UIKit'
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.dependency 'AFNetworking', '~> 2.3'
   
   s.ios.deployment_target = '9.0'
   s.swift_version = '5.0'
-  s.default_subspecs = 'FTCoreUtility', 'FTMobileCore'
+  s.default_subspecs = 'FTCoreUtility', 'FTMobileCore', 'FTMobileCoreUI'
 
   s.subspec 'FTCoreUtility' do |coreUtility|
       coreUtility.source_files = 'FTCoreUtility/FTCoreUtility/**/*'
@@ -43,9 +41,7 @@ Pod::Spec.new do |s|
   s.subspec 'FTMobileCoreUI' do |mobileCoreUI|
   	  mobileCoreUI.source_files = 'FTMobileCoreUI/FTMobileCoreUI/**/*'
       mobileCoreUI.dependency 'MobileCore/FTCoreUtility'
-      mobileCoreUI.resource_bundles = {
-   		'FTMobileCoreUI' => ['FTMobileCoreUI/FTMobileCoreUI/**/*.{imageset}']
-  	  }
+  	  #mobileCoreUI.resource_bundle = {'FTMobileCoreUI' => 'FTMobileCoreUI/FTMobileCoreUI/Resources/**/*.{xcassets,storyboard}'}
   end
 
 end

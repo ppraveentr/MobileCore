@@ -117,7 +117,6 @@ public extension FTThemeProtocol where Self: UISearchBar {
         }
 
         configure(barTintColor: barTintColor, tintColor: tintColor, textColor: textcolor)
-
     }
 }
 
