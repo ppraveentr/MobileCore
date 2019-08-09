@@ -308,13 +308,11 @@ extension FTThemesManager {
         
         // If requested for particular appearance
         if appearanceName.contains(":") {
-            return self.themeAppearance?[appearanceName] as? FTThemeModel
+            return themeAppearance?[appearanceName] as? FTThemeModel
         }
 
-        // Retruns all appearance, which has same base name
-        let baseObptions = self.themeAppearance?.filter { $0.0.hasPrefix(appearanceName) }
-        
-        return baseObptions
+        // Retruns all appearance, which has same base name        
+        return themeAppearance?.filter { $0.0.hasPrefix(appearanceName) }
     }
     
     // Defaults
