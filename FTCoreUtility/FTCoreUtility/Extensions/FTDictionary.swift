@@ -43,19 +43,48 @@ public func + <K,V> (left: [K:V], right: [K:V]) -> [K:V] {
 }
 
 // Operator '+=' Overloading
-public func += <K,V> (left: inout [K:V], right: [K:V]) {
-    
+//public func += <K,V> (left: inout [K:V], right: [K:V]) {
+//
+//    for (k, v) in right {
+//
+//        var superObject: [K:V]? = left[k] as? [K:V]
+//        let subObject = v as? [K:V]
+//
+//        if subObject != nil, superObject != nil {
+//            superObject! += subObject!
+//            left[k]! = (superObject as? V)!
+//        } else {
+//            left[k] = v
+//        }
+//    }
+//
+//}
+
+
+// Operator Overloading
+public func += <K,V> ( left: inout [K:V], right: [K:V]) {
     for (k, v) in right {
-        
-        var superObject: [K:V]? = left[k] as? [K:V]
-        let subObject = v as? [K:V]
-        
-        if subObject != nil, superObject != nil {
-            superObject! += subObject!
-            left[k]! = (superObject as? V)!
+        left[k] = v
+    }
+    
+}
+
+public func += <K,V> ( left: inout [K:V], right: [K:V]) where V: RangeReplaceableCollection {
+    for (k, v) in right {
+        if let collection = left[k] {
+            left[k] = collection + v
         } else {
             left[k] = v
         }
+    }
+    
+}
+
+
+// Mark: Array
+public func += <K> ( left: inout [K], right: [K]) {
+    for (k) in right {
+        left.append(k)
     }
     
 }

@@ -1,8 +1,8 @@
 language: swift
-xcode_workspace: FTMobileCoreSampleWorkspace.xcworkspace
+#xcode_workspace: FTMobileCoreSampleWorkspace.xcworkspace
 osx_image: xcode10.2
 xcode_destination: platform=iOS Simulator,OS=12.0,name=iPhone X
-xcode_scheme: FTMobileCoreSample
+#xcode_scheme: FTMobileCoreSample
 dist: trusty
 sudo: required
 cache:
@@ -17,7 +17,8 @@ addons:
     token:
       secure: OUL+ya5a+VYTVXOegDUNMjbRb3OxCK5qDkIJyyM6+K6HRdgKk5ndXC7NyNcbiDmq8B40c4AlAVf3iHuCebo4e6Kdev1n2M4D+n2ARmCzXy2crK9opNkKbqbIZcoiRK9/kCHYZ+KzRmJEYeDwFR4NoF/q7pW2ykc7DJcF8/wXvBYLvEI2vibUj167+CWQlbL5KXLlIy31o37tXi42CVwV5OBvDDs+UCKlyajxZAudfpgH5y42gWJPD/y+K+crlS3M8ZgGUkR3VR8LDVZYxJixsjCNr2/trkibxU5mqyoLYpmSBqA2xX37+s4DI1Qjf5iPdTPJrXvSzyIKpi79GihIfyhBbNBeNosabgtYv8Rbf2iHk9VHSb+JIMelya1HYCGGl8Rn9r939KDZ+VFXua0lIMim+iLi7HlazjhJCWGriHrcPUxCprh66k1G2qP2OAmylEbBZnNSxELdVGbkSvnv8FZgBbSRjfczgywcKCmliQ/GpA0m4phaknNP3Xofp0QRLY7tUwlMsBA24u5UmgGm7/sdaZUi61XCR4BsNZZJC6aRLwIooGsPTaaVDaQvScj26XKQ0cE/PK9pSoVh7YNpPNXkqKvBSb5Vvd04ZW3804ElNg/ZsMJ9geoLjs83qWy2GJeSka7iSS1jTCciErWt3DJ9v/IxfLfJaZLhQogL9iU=
 script:
+#- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/MobileCore.xcworkspace -scheme MobileCore-Example -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
+- pod lib lint
+#- xcodebuild -workspace "FTMobileCoreSampleWorkspace.xcworkspace" -scheme FTMobileCoreSample -sdk "iphonesimulator" -configuration Release -arch x86_64 -arch i386 only_active_arch=no defines_module=yes
 - sonar-scanner -X
-- xcodebuild -workspace "FTMobileCoreSampleWorkspace.xcworkspace" -scheme FTMobileCoreSample  -sdk
-  "iphonesimulator" -configuration Release -arch x86_64 -arch i386 only_active_arch=no
-  defines_module=yes
+

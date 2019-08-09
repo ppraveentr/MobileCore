@@ -2,7 +2,7 @@
 //  FTUISearchBar.swift
 //  FTCoreUtility
 //
-//  Created by Praveen Prabhakar on 02/10/18.
+//Users/praveenp/xCodeProject/MobileCore/FTCoreUtility/FTCoreUtility/Theme/ThemeComponents/FTUITabBar.swift:11:24: Use of undeclared type 'UITabBar'/  Created by Praveen Prabhakar on 02/10/18.
 //  Copyright © 2018 Praveen Prabhakar. All rights reserved.
 //
 
@@ -117,7 +117,6 @@ public extension FTThemeProtocol where Self: UISearchBar {
         }
 
         configure(barTintColor: barTintColor, tintColor: tintColor, textColor: textcolor)
-
     }
 }
 

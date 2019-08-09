@@ -84,6 +84,11 @@ extension UILabel: FTUILabelThemeProtocol {
         }
     }
     
+    // TODO:
+    open func theme_isUnderlineNeeded(bool: Bool) {
+        
+    }
+    
     // text font
     open func theme_textfont(_ font: UIFont) { self.font = font }
     
@@ -101,4 +106,4 @@ extension UILabel: FTUILabelThemeProtocol {
         }
     }
     
-} 
+}

@@ -22,5 +22,4 @@ open class FTUICollectionView: UICollectionView, FTThemeProtocol {
             }
         }
     }
-
 }
