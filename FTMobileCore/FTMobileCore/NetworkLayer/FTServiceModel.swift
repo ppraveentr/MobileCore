@@ -15,32 +15,6 @@ enum FTJsonParserError: Error {
     case invalidJSON
 }
 
-// Operator Overloading
-func += <K,V> ( left: inout [K:V], right: [K:V]) {
-    for (k, v) in right {
-        left[k] = v
-    }
-    
-}
-
-func += <K,V> ( left: inout [K:V], right: [K:V]) where V: RangeReplaceableCollection {
-    for (k, v) in right {
-        if let collection = left[k] {
-            left[k] = collection + v
-        } else {
-            left[k] = v
-        }
-    }
-    
-}
-
-func += <K> ( left: inout [K], right: [K]) {
-    for (k) in right {
-        left.append(k)
-    }
-    
-}
-
 public protocol FTServiceModel: Codable {
     static func makeModel(json: String) throws -> Self
     static func makeModel(json: Data) throws -> Self

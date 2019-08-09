@@ -10,6 +10,9 @@
 		D4AE907822E44487005B33B2 /* FTMobileCoreBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */; settings = {ASSET_TAGS = (Bundle, ); }; };
 		D4AE907922E44492005B33B2 /* Themes.json in Resources */ = {isa = PBXBuildFile; fileRef = DE680BB01F2E038800A9F68C /* Themes.json */; };
 		D4AE907E22E446B6005B33B2 /* FTMobileCoreBundle.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4D9573222FE0A64002D9E57 /* FTMobileCoreUI in Resources */ = {isa = PBXBuildFile; fileRef = D4D9572F22FE0A64002D9E57 /* FTMobileCoreUI */; };
+		D4D9573322FE0A64002D9E57 /* FTCoreUtility in Resources */ = {isa = PBXBuildFile; fileRef = D4D9573022FE0A64002D9E57 /* FTCoreUtility */; };
+		D4D9573422FE0A64002D9E57 /* FTMobileCore in Resources */ = {isa = PBXBuildFile; fileRef = D4D9573122FE0A64002D9E57 /* FTMobileCore */; };
 		DE0C498B1F4612520010A5BE /* FTCoreUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C498A1F4612520010A5BE /* FTCoreUtility.framework */; };
 		DE2FB8EA1F3A0C5900581064 /* FTMobileCoreSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2FB8E91F3A0C5900581064 /* FTMobileCoreSampleTests.swift */; };
 		DE6FC99720A2226600121E22 /* FTMobileCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C496D1F4612070010A5BE /* FTMobileCore.framework */; };
@@ -88,6 +91,9 @@
 /* Begin PBXFileReference section */
 		D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4AE907422E4447D005B33B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4D9572F22FE0A64002D9E57 /* FTMobileCoreUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FTMobileCoreUI; path = ../../../FTMobileCoreUI; sourceTree = "<group>"; };
+		D4D9573022FE0A64002D9E57 /* FTCoreUtility */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FTCoreUtility; path = ../../../FTCoreUtility; sourceTree = "<group>"; };
+		D4D9573122FE0A64002D9E57 /* FTMobileCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FTMobileCore; path = ../../../FTMobileCore; sourceTree = "<group>"; };
 		DE0C49671F4612070010A5BE /* FTMobileCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FTMobileCore.xcodeproj; path = FTMobileCoreSample/../../FTMobileCore/FTMobileCore.xcodeproj; sourceTree = "<group>"; };
 		DE0C497F1F4612460010A5BE /* FTMobileCoreUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FTMobileCoreUI.xcodeproj; path = FTMobileCoreSample/../../FTMobileCoreUI/FTMobileCoreUI.xcodeproj; sourceTree = "<group>"; };
 		DE0C498A1F4612520010A5BE /* FTCoreUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FTCoreUtility.framework; path = "../../../../Library/Developer/Xcode/DerivedData/FTMobileCoreSampleWorkspace-arjqdnaejhteypcgywjtpkuofijc/Build/Products/Debug-iphonesimulator/FTCoreUtility.framework"; sourceTree = "<group>"; };
@@ -142,6 +148,16 @@
 				D4AE907422E4447D005B33B2 /* Info.plist */,
 			);
 			path = FTMobileCoreBundle;
+			sourceTree = "<group>";
+		};
+		D4D9572E22FE0A56002D9E57 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D4D9573022FE0A64002D9E57 /* FTCoreUtility */,
+				D4D9573122FE0A64002D9E57 /* FTMobileCore */,
+				D4D9572F22FE0A64002D9E57 /* FTMobileCoreUI */,
+			);
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 		DE0C49681F4612070010A5BE /* Products */ = {
@@ -213,6 +229,7 @@
 		DE9221CB1EF28CDF000C8FC7 /* FTMobileCoreSample */ = {
 			isa = PBXGroup;
 			children = (
+				D4D9572E22FE0A56002D9E57 /* Frameworks */,
 				DEBDC8A21EF4520100AC77A9 /* FTMobileCoreSample.entitlements */,
 				DEBDC8931EF4508900AC77A9 /* FTMobileCoreSample-Bridging-Header.h */,
 				DEC55DD81EF2968700FAE024 /* Datamodel */,
@@ -423,7 +440,10 @@
 			files = (
 				D4AE907822E44487005B33B2 /* FTMobileCoreBundle.bundle in Resources */,
 				DE9221D71EF28CDF000C8FC7 /* LaunchScreen.storyboard in Resources */,
+				D4D9573222FE0A64002D9E57 /* FTMobileCoreUI in Resources */,
 				DE9221D41EF28CDF000C8FC7 /* Assets.xcassets in Resources */,
+				D4D9573422FE0A64002D9E57 /* FTMobileCore in Resources */,
+				D4D9573322FE0A64002D9E57 /* FTCoreUtility in Resources */,
 				DE9221D21EF28CDF000C8FC7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
