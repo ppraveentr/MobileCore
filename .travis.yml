@@ -1,8 +1,8 @@
 language: swift
-xcode_workspace: FTMobileCoreSampleWorkspace.xcworkspace
+#xcode_workspace: FTMobileCoreSampleWorkspace.xcworkspace
 osx_image: xcode10.2
 xcode_destination: platform=iOS Simulator,OS=12.0,name=iPhone X
-xcode_scheme: FTMobileCoreSample
+#xcode_scheme: FTMobileCoreSample
 dist: trusty
 sudo: required
 cache:
@@ -19,6 +19,6 @@ addons:
 script:
 #- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/MobileCore.xcworkspace -scheme MobileCore-Example -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
 - pod lib lint
-- xcodebuild -workspace "FTMobileCoreSampleWorkspace.xcworkspace" -scheme FTMobileCoreSample -sdk "iphonesimulator" -configuration Release -arch x86_64 -arch i386 only_active_arch=no defines_module=yes
+#- xcodebuild -workspace "FTMobileCoreSampleWorkspace.xcworkspace" -scheme FTMobileCoreSample -sdk "iphonesimulator" -configuration Release -arch x86_64 -arch i386 only_active_arch=no defines_module=yes
 - sonar-scanner -X
 
