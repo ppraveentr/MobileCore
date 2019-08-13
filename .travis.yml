@@ -18,7 +18,9 @@ script:
 - set -o pipefail && xcodebuild clean test -enableCodeCoverage YES -project 'FTMobileCoreSample/FTMobileCoreSample.xcodeproj' -scheme FTMobileCoreSample -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty
 - xcodebuild -project "FTMobileCoreSample/FTMobileCoreSample.xcodeproj" -scheme FTMobileCoreSample -sdk "iphonesimulator" -configuration Release -arch x86_64 -arch i386 only_active_arch=no defines_module=yes clean build
 #- sonar-scanner -X
-
-deploy:
-  - provider: script
-    script: ./MobileCoreBuild.sh
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+  
+#deploy:
+  #- provider: script
+    #script: ./MobileCoreBuild.sh
