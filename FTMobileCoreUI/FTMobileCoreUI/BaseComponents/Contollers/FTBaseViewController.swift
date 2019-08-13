@@ -122,7 +122,7 @@ open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
     }
 
     
-    open override func loadView() {
+    override open func loadView() {
          super.loadView()
         // Make it as Views RooView, if forget to map it in IB.
         if self.baseView != self.view, (self.view as? FTBaseView) != nil {
@@ -327,22 +327,22 @@ extension FTBaseViewController {
 // MARK: Notification whenever view is loaded
 extension FTBaseViewController {
 
-    open override func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         postNotification(name: .FTMobileCoreUI_ViewController_WillAppear)
     }
     
-    open override func viewDidAppear(_ animated: Bool) {
+    override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         postNotification(name: .FTMobileCoreUI_ViewController_DidAppear)
     }
     
-    open override func viewWillDisappear(_ animated: Bool) {
+    override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         postNotification(name: .FTMobileCoreUI_ViewController_WillDisappear)
     }
     
-    open override func viewDidDisappear(_ animated: Bool) {
+    override open func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         postNotification(name: .FTMobileCoreUI_ViewController_DidDisappear)
     }

@@ -10,7 +10,7 @@ import Foundation
 
 open class FTView: FTUIView {
     
-    open override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
 
         if self.viewLayoutConstraint.autoSizing {

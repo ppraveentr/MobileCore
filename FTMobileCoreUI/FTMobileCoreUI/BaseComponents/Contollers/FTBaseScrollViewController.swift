@@ -13,7 +13,7 @@ open class FTBaseScrollViewController: FTBaseViewController {
     @IBOutlet
     public lazy var scrollView: FTScrollView! = self.setupScrollView()
 
-    open override func loadView() {
+    override open func loadView() {
         super.loadView()
 
         // Setup ScrollView incse, view is loaded from IB

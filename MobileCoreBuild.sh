@@ -1,6 +1,12 @@
 #!/bin/bash
-mkdir -p "Frameworks"
+mkdir -p "buildFramework"
 
-xcodebuild -scheme FTCoreUtility archive
-xcodebuild -scheme FTMobileCore archive
-xcodebuild -scheme FTMobileCoreUI archive
+cd FTCoreUtility
+xcodebuild -scheme FTCoreUtility -configuration Release clean archive
+cd ..
+cd FTMobileCore
+xcodebuild -scheme FTMobileCore -configuration Release clean archive
+cd ..
+cd FTMobileCoreUI
+xcodebuild -scheme FTMobileCoreUI -configuration Release clean archive
+cd ..
