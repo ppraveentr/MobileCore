@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MobileCore'
-  s.version          = '0.0.3.1'
+  s.version          = '0.0.3.2'
   s.summary          = 'Shared utility.'
   #s.description      = <<-DESC
 
@@ -20,6 +20,6 @@ Pod::Spec.new do |s|
   
   s.ios.deployment_target = '9.0'
   s.swift_version = '5.0'
-  s.ios.vendored_frameworks = 'FTMobileCore.framework', 'FTCoreUtility.framework', 'FTMobileCoreUI.framework'
+  s.ios.vendored_frameworks = 'build/FTMobileCore.framework', 'build/FTCoreUtility.framework', 'build/FTMobileCoreUI.framework'
 
 end

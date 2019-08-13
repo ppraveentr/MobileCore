@@ -1,5 +1,5 @@
 #!/bin/bash
-mkdir -p "Frameworks"
+mkdir -p "build"
 
 cd FTCoreUtility
 xcodebuild -scheme FTCoreUtility -configuration Release clean archive
