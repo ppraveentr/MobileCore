@@ -55,9 +55,10 @@ open class FTAppearanceManager {
 
 extension FTThemesManager {
 
-    public static func setStatusBarBackgroundColor(_ color: UIColor) {
+    public static func setStatusBarBackgroundColor(_ color: UIColor?) {
         
         if
+            let color = color,
             let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as? UIView,
             statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
             statusBar.backgroundColor = color
