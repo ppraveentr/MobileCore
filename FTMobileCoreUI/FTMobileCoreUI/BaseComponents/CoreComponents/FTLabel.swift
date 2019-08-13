@@ -36,7 +36,7 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
     }
     // End: FTUILabelThemeProperyProtocol
     
-    open override var text: String? {
+    override open var text: String? {
         set {
             if islinkDetectionEnabled, newValue != nil, newValue!.isHTMLString() {
                 super.text = newValue!.stripHTML()
@@ -51,19 +51,19 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
         }
     }
     
-    open override var attributedText: NSAttributedString? {
+    override open var attributedText: NSAttributedString? {
         didSet {
             self.updateLabelStyleProperty()
         }
     }
     
-    open override var frame: CGRect {
+    override open var frame: CGRect {
         didSet {
             self.updateTextContainerSize()
         }
     }
     
-    open override var bounds: CGRect {
+    override open var bounds: CGRect {
         willSet {
             if frame.width != bounds.width {
                 self.bounds = CGRect(origin: bounds.origin, size: CGSize(width: frame.width, height: bounds.height))
@@ -74,27 +74,27 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
         }
     }
     
-    open override var preferredMaxLayoutWidth: CGFloat {
+    override open var preferredMaxLayoutWidth: CGFloat {
         didSet {
             self.updateTextContainerSize()
         }
     }
     
-    open override var numberOfLines: Int {
+    override open var numberOfLines: Int {
         didSet {
             self.textContainer.maximumNumberOfLines = numberOfLines
             self.updateTextContainerSize()
         }
     }
 
-    open override var isEnabled: Bool {
+    override open var isEnabled: Bool {
         didSet {
             // update with latest Theme
             updateVisualProperty()
         }
     }
     
-    open override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         self.updateTextContainerSize()
     }
@@ -255,7 +255,7 @@ extension FTLabel: NSLayoutManagerDelegate {
 // MARK: Text Rendering
 extension FTLabel {
     
-    open override func drawText(in rect: CGRect) {
+    override open func drawText(in rect: CGRect) {
 
         // Calculate the offset of the text in the view
         let range : NSRange = self.layoutManager.glyphRange(for: self.textContainer)
@@ -266,7 +266,7 @@ extension FTLabel {
         self.layoutManager.drawGlyphs(forGlyphRange: range, at: textOffset)
     }
     
-    open override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
+    override open func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
         
         let savedContainerSize = self.textContainer.size
         let savedContainerNoLines = self.textContainer.maximumNumberOfLines

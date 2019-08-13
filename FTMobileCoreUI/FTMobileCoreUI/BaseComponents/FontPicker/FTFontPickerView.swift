@@ -120,7 +120,7 @@ open class FTFontPickerView: FTView {
         return fontPickerModel.avalilableFonts()
     }
 
-    open override func awakeFromNib() {
+    override open func awakeFromNib() {
         super .awakeFromNib()
 
         // Color Button

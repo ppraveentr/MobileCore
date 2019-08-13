@@ -110,7 +110,7 @@ extension UIView {
         }
     }
     
-    open override func prepareForInterfaceBuilder() {
+    override open func prepareForInterfaceBuilder() {
 //        showErrorIfInvalidStyles()
     }
     

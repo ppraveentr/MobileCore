@@ -54,7 +54,7 @@ open class FTBaseCollectionViewController: FTBaseViewController, FTCollectionVie
         return layout
     }
 
-    open override func loadView() {
+    override open func loadView() {
         super.loadView()
 
         _ = self.collectionView
