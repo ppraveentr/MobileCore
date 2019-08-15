@@ -1,0 +1,739 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D43D0C72230525CE00C5C770 /* MobileCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43D0C6A230525A100C5C770 /* MobileCore.framework */; };
+		D4AE907822E44487005B33B2 /* FTMobileCoreBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */; settings = {ASSET_TAGS = (Bundle, ); }; };
+		D4AE907922E44492005B33B2 /* Themes.json in Resources */ = {isa = PBXBuildFile; fileRef = DE680BB01F2E038800A9F68C /* Themes.json */; };
+		D4AE907E22E446B6005B33B2 /* FTMobileCoreBundle.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DE2FB8EA1F3A0C5900581064 /* FTMobileCoreSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2FB8E91F3A0C5900581064 /* FTMobileCoreSampleTests.swift */; };
+		DE9221CD1EF28CDF000C8FC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */; };
+		DE9221CF1EF28CDF000C8FC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221CE1EF28CDF000C8FC7 /* ViewController.swift */; };
+		DE9221D21EF28CDF000C8FC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D01EF28CDF000C8FC7 /* Main.storyboard */; };
+		DE9221D41EF28CDF000C8FC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D31EF28CDF000C8FC7 /* Assets.xcassets */; };
+		DE9221D71EF28CDF000C8FC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D51EF28CDF000C8FC7 /* LaunchScreen.storyboard */; };
+		DEA7E1AA1F498B070002C148 /* FTSampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7E1A91F498B070002C148 /* FTSampleTableViewController.swift */; };
+		DEBDC8941EF4508900AC77A9 /* FTMobileCoreSample-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = DEBDC8931EF4508900AC77A9 /* FTMobileCoreSample-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DEC55DDA1EF2968700FAE024 /* MDASample.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DD91EF2968700FAE024 /* MDASample.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D43D0C69230525A100C5C770 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D42A580223047CEF003C7283;
+			remoteInfo = MobileCore;
+		};
+		D43D0C6B230525A100C5C770 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D42A580B23047CEF003C7283;
+			remoteInfo = MobileCoreTests;
+		};
+		D43D0C6E230525C700C5C770 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D42A580123047CEF003C7283;
+			remoteInfo = MobileCore;
+		};
+		DE2FB8EC1F3A0C5900581064 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE9221C11EF28CDF000C8FC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DE9221C81EF28CDF000C8FC7;
+			remoteInfo = FTMobileCoreSample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D4AE907D22E446A6005B33B2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				D4AE907E22E446B6005B33B2 /* FTMobileCoreBundle.bundle in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE1485561F10C09400A250A6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MobileCore.xcodeproj; path = ../MobileCore.xcodeproj; sourceTree = "<group>"; };
+		D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4AE907422E4447D005B33B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE2FB8E71F3A0C5900581064 /* FTMobileCoreSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE2FB8E91F3A0C5900581064 /* FTMobileCoreSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMobileCoreSampleTests.swift; sourceTree = "<group>"; };
+		DE2FB8EB1F3A0C5900581064 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE680BB01F2E038800A9F68C /* Themes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Themes.json; sourceTree = "<group>"; };
+		DE9221C91EF28CDF000C8FC7 /* FTMobileCoreSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FTMobileCoreSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DE9221CE1EF28CDF000C8FC7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DE9221D11EF28CDF000C8FC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DE9221D31EF28CDF000C8FC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DE9221D61EF28CDF000C8FC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DE9221D81EF28CDF000C8FC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DEA7E1A91F498B070002C148 /* FTSampleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTSampleTableViewController.swift; sourceTree = "<group>"; };
+		DEBDC8931EF4508900AC77A9 /* FTMobileCoreSample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTMobileCoreSample-Bridging-Header.h"; sourceTree = "<group>"; };
+		DEBDC8A21EF4520100AC77A9 /* FTMobileCoreSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FTMobileCoreSample.entitlements; sourceTree = "<group>"; };
+		DEC55DD91EF2968700FAE024 /* MDASample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDASample.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D4AE906F22E4447D005B33B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE2FB8E41F3A0C5900581064 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE9221C61EF28CDF000C8FC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D43D0C72230525CE00C5C770 /* MobileCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D43D0C65230525A100C5C770 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D43D0C6A230525A100C5C770 /* MobileCore.framework */,
+				D43D0C6C230525A100C5C770 /* MobileCoreTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D4AE907322E4447D005B33B2 /* FTMobileCoreBundle */ = {
+			isa = PBXGroup;
+			children = (
+				D4AE907422E4447D005B33B2 /* Info.plist */,
+			);
+			path = FTMobileCoreBundle;
+			sourceTree = "<group>";
+		};
+		DE2FB8E81F3A0C5900581064 /* FTMobileCoreSampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				DE2FB8E91F3A0C5900581064 /* FTMobileCoreSampleTests.swift */,
+				DE2FB8EB1F3A0C5900581064 /* Info.plist */,
+			);
+			path = FTMobileCoreSampleTests;
+			sourceTree = "<group>";
+		};
+		DE2FB9191F3DF7A400581064 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE680BA11F2E02FF00A9F68C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DE680BB01F2E038800A9F68C /* Themes.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DE9221C01EF28CDF000C8FC7 = {
+			isa = PBXGroup;
+			children = (
+				DE9221CB1EF28CDF000C8FC7 /* FTMobileCoreSample */,
+				DE2FB8E81F3A0C5900581064 /* FTMobileCoreSampleTests */,
+				D4AE907322E4447D005B33B2 /* FTMobileCoreBundle */,
+				DE9221CA1EF28CDF000C8FC7 /* Products */,
+				DE2FB9191F3DF7A400581064 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		DE9221CA1EF28CDF000C8FC7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DE9221C91EF28CDF000C8FC7 /* FTMobileCoreSample.app */,
+				DE2FB8E71F3A0C5900581064 /* FTMobileCoreSampleTests.xctest */,
+				D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DE9221CB1EF28CDF000C8FC7 /* FTMobileCoreSample */ = {
+			isa = PBXGroup;
+			children = (
+				DEBDC8A21EF4520100AC77A9 /* FTMobileCoreSample.entitlements */,
+				DEBDC8931EF4508900AC77A9 /* FTMobileCoreSample-Bridging-Header.h */,
+				DEC55DD81EF2968700FAE024 /* Datamodel */,
+				DE680BA11F2E02FF00A9F68C /* Resources */,
+				DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */,
+				DE9221CE1EF28CDF000C8FC7 /* ViewController.swift */,
+				DEA7E1A91F498B070002C148 /* FTSampleTableViewController.swift */,
+				DE9221D01EF28CDF000C8FC7 /* Main.storyboard */,
+				DE9221D31EF28CDF000C8FC7 /* Assets.xcassets */,
+				DE9221D51EF28CDF000C8FC7 /* LaunchScreen.storyboard */,
+				DE9221D81EF28CDF000C8FC7 /* Info.plist */,
+			);
+			path = FTMobileCoreSample;
+			sourceTree = "<group>";
+		};
+		DEC55DD81EF2968700FAE024 /* Datamodel */ = {
+			isa = PBXGroup;
+			children = (
+				DEC55DD91EF2968700FAE024 /* MDASample.swift */,
+			);
+			path = Datamodel;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		DEC55DE61EF2A16E00FAE024 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEBDC8941EF4508900AC77A9 /* FTMobileCoreSample-Bridging-Header.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D4AE907122E4447D005B33B2 /* FTMobileCoreBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4AE907522E4447D005B33B2 /* Build configuration list for PBXNativeTarget "FTMobileCoreBundle" */;
+			buildPhases = (
+				D4AE906E22E4447D005B33B2 /* Sources */,
+				D4AE906F22E4447D005B33B2 /* Frameworks */,
+				D4AE907022E4447D005B33B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FTMobileCoreBundle;
+			productName = FTMobileCoreBundle;
+			productReference = D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		DE2FB8E61F3A0C5900581064 /* FTMobileCoreSampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE2FB8F41F3A0C5900581064 /* Build configuration list for PBXNativeTarget "FTMobileCoreSampleTests" */;
+			buildPhases = (
+				DE2FB8E31F3A0C5900581064 /* Sources */,
+				DE2FB8E41F3A0C5900581064 /* Frameworks */,
+				DE2FB8E51F3A0C5900581064 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DE2FB8ED1F3A0C5900581064 /* PBXTargetDependency */,
+			);
+			name = FTMobileCoreSampleTests;
+			productName = FTMobileCoreSampleTests;
+			productReference = DE2FB8E71F3A0C5900581064 /* FTMobileCoreSampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DE9221C81EF28CDF000C8FC7 /* FTMobileCoreSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE9221DB1EF28CDF000C8FC7 /* Build configuration list for PBXNativeTarget "FTMobileCoreSample" */;
+			buildPhases = (
+				DE9221C51EF28CDF000C8FC7 /* Sources */,
+				DE9221C61EF28CDF000C8FC7 /* Frameworks */,
+				DE9221C71EF28CDF000C8FC7 /* Resources */,
+				DEC55DE61EF2A16E00FAE024 /* Headers */,
+				DE1485561F10C09400A250A6 /* Embed Frameworks */,
+				D4AE907D22E446A6005B33B2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D43D0C6F230525C700C5C770 /* PBXTargetDependency */,
+			);
+			name = FTMobileCoreSample;
+			productName = FTMobileCoreSample;
+			productReference = DE9221C91EF28CDF000C8FC7 /* FTMobileCoreSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DE9221C11EF28CDF000C8FC7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				KnownAssetTags = (
+					Bundle,
+				);
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Praveen Prabhakar";
+				TargetAttributes = {
+					D4AE907122E4447D005B33B2 = {
+						CreatedOnToolsVersion = 11.0;
+						ProvisioningStyle = Automatic;
+					};
+					DE2FB8E61F3A0C5900581064 = {
+						CreatedOnToolsVersion = 8.3.2;
+						LastSwiftMigration = 1030;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DE9221C81EF28CDF000C8FC7;
+					};
+					DE9221C81EF28CDF000C8FC7 = {
+						CreatedOnToolsVersion = 8.3.2;
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = DE9221C41EF28CDF000C8FC7 /* Build configuration list for PBXProject "FTMobileCoreSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DE9221C01EF28CDF000C8FC7;
+			productRefGroup = DE9221CA1EF28CDF000C8FC7 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D43D0C65230525A100C5C770 /* Products */;
+					ProjectRef = D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				DE9221C81EF28CDF000C8FC7 /* FTMobileCoreSample */,
+				DE2FB8E61F3A0C5900581064 /* FTMobileCoreSampleTests */,
+				D4AE907122E4447D005B33B2 /* FTMobileCoreBundle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D43D0C6A230525A100C5C770 /* MobileCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MobileCore.framework;
+			remoteRef = D43D0C69230525A100C5C770 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D43D0C6C230525A100C5C770 /* MobileCoreTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MobileCoreTests.xctest;
+			remoteRef = D43D0C6B230525A100C5C770 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D4AE907022E4447D005B33B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4AE907922E44492005B33B2 /* Themes.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE2FB8E51F3A0C5900581064 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE9221C71EF28CDF000C8FC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4AE907822E44487005B33B2 /* FTMobileCoreBundle.bundle in Resources */,
+				DE9221D71EF28CDF000C8FC7 /* LaunchScreen.storyboard in Resources */,
+				DE9221D41EF28CDF000C8FC7 /* Assets.xcassets in Resources */,
+				DE9221D21EF28CDF000C8FC7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D4AE906E22E4447D005B33B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE2FB8E31F3A0C5900581064 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE2FB8EA1F3A0C5900581064 /* FTMobileCoreSampleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE9221C51EF28CDF000C8FC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE9221CF1EF28CDF000C8FC7 /* ViewController.swift in Sources */,
+				DEA7E1AA1F498B070002C148 /* FTSampleTableViewController.swift in Sources */,
+				DEC55DDA1EF2968700FAE024 /* MDASample.swift in Sources */,
+				DE9221CD1EF28CDF000C8FC7 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D43D0C6F230525C700C5C770 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MobileCore;
+			targetProxy = D43D0C6E230525C700C5C770 /* PBXContainerItemProxy */;
+		};
+		DE2FB8ED1F3A0C5900581064 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DE9221C81EF28CDF000C8FC7 /* FTMobileCoreSample */;
+			targetProxy = DE2FB8EC1F3A0C5900581064 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DE9221D01EF28CDF000C8FC7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE9221D11EF28CDF000C8FC7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DE9221D51EF28CDF000C8FC7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE9221D61EF28CDF000C8FC7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D4AE907622E4447D005B33B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = FTMobileCoreBundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTMobileCoreBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		D4AE907722E4447D005B33B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = FTMobileCoreBundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTMobileCoreBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		DE2FB8EE1F3A0C5900581064 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = FTMobileCoreSampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTMobileCoreSampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FTMobileCoreSample.app/FTMobileCoreSample";
+			};
+			name = Debug;
+		};
+		DE2FB8EF1F3A0C5900581064 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = FTMobileCoreSampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ft.FTMobileCoreSampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FTMobileCoreSample.app/FTMobileCoreSample";
+			};
+			name = Release;
+		};
+		DE9221D91EF28CDF000C8FC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DE9221DA1EF28CDF000C8FC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DE9221DC1EF28CDF000C8FC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FTMobileCoreSample/FTMobileCoreSample.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = FTMobileCoreSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ft.MobileCoreSample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SWIFT_MODULE_NAME)/$(SWIFT_MODULE_NAME)-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		DE9221DD1EF28CDF000C8FC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FTMobileCoreSample/FTMobileCoreSample.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = FTMobileCoreSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ft.MobileCoreSample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SWIFT_MODULE_NAME)/$(SWIFT_MODULE_NAME)-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D4AE907522E4447D005B33B2 /* Build configuration list for PBXNativeTarget "FTMobileCoreBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4AE907622E4447D005B33B2 /* Debug */,
+				D4AE907722E4447D005B33B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE2FB8F41F3A0C5900581064 /* Build configuration list for PBXNativeTarget "FTMobileCoreSampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE2FB8EE1F3A0C5900581064 /* Debug */,
+				DE2FB8EF1F3A0C5900581064 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE9221C41EF28CDF000C8FC7 /* Build configuration list for PBXProject "FTMobileCoreSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE9221D91EF28CDF000C8FC7 /* Debug */,
+				DE9221DA1EF28CDF000C8FC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE9221DB1EF28CDF000C8FC7 /* Build configuration list for PBXNativeTarget "FTMobileCoreSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE9221DC1EF28CDF000C8FC7 /* Debug */,
+				DE9221DD1EF28CDF000C8FC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DE9221C11EF28CDF000C8FC7 /* Project object */;
+}
