@@ -14,7 +14,7 @@ script:
 - set -o pipefail && xcodebuild clean test -enableCodeCoverage YES -project 'MobileCore.xcodeproj' -scheme MobileCore -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone Xs' ONLY_ACTIVE_ARCH=NO | xcpretty
 - xcodebuild -project "MobileCoreSample/FTMobileCoreSample.xcodeproj" -scheme FTMobileCoreSample -sdk "iphonesimulator" -configuration Release only_active_arch=no defines_module=yes clean build
 - pod lib lint
-- sonar-scanner -X
+#- sonar-scanner -X
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 before_deploy:
