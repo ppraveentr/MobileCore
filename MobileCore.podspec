@@ -20,6 +20,7 @@ Pod::Spec.new do |s|
   
   s.ios.deployment_target = '9.0'
   s.swift_version = '5.0'
-  s.ios.vendored_frameworks = 'buildFramework/FTMobileCore.framework', 'buildFramework/FTCoreUtility.framework', 'buildFramework/FTMobileCoreUI.framework'
 
+  s.source_files = ['MobileCore/FTCoreUtility/FTCoreUtility/**/*', 'MobileCore/FTMobileCore/FTMobileCore/**/*', 'MobileCore/FTMobileCoreUI/FTMobileCoreUI/**/*']
+  
 end
