@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MobileCore'
-  s.version          = '0.0.3.4'
+  s.version          = '0.0.4.1'
   s.summary          = 'Shared utility.'
   #s.description      = <<-DESC
 
