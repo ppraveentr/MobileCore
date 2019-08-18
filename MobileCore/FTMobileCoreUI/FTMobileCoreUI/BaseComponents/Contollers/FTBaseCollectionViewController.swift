@@ -23,12 +23,11 @@ extension FTCollectionViewProtocol {
     public func sectionInset() -> UIEdgeInsets {
         return .zero
     }
-
 }
 
 open class FTBaseCollectionViewController: FTBaseViewController, FTCollectionViewProtocol {
 
-    public lazy var collectionView: FTCollectionView = self.getCollectionView()
+    public lazy var collectionView: UICollectionView = self.getCollectionView()
     @IBInspectable
     public var collectionViewTheme: String? = nil {
         didSet {
@@ -64,20 +63,15 @@ open class FTBaseCollectionViewController: FTBaseViewController, FTCollectionVie
         }
     }
 
-}
+    func getCollectionView() -> UICollectionView {
 
-extension FTBaseCollectionViewController {
-
-    func getCollectionView() -> FTCollectionView {
-
-        let local = FTCollectionView(frame: .zero, collectionViewLayout: flowLayout())
+        let local = UICollectionView(frame: .zero, collectionViewLayout: flowLayout())
         local.viewController = self
         local.theme = FTThemeStyle.defaultStyle
         // Pin view to edges
         self.mainView?.pin(view: local, edgeOffsets: .zero)
         return local
     }
-
 }
 
 extension FTBaseCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -89,5 +83,4 @@ extension FTBaseCollectionViewController: UICollectionViewDelegate, UICollection
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return UICollectionViewCell()
     }
-
 }

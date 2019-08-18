@@ -9,7 +9,15 @@
 import Foundation
 import WebKit
 
-open class FTWebView: WKWebView {
+extension WKWebView {
+    
+    private enum Constants: String {
+        case replaceText = "XXXX"
+        case loadHTMLBody = "<html><meta name=\"viewport\" content=\"initial-scale=1.0\" /><body>XXXX</body></html>"
+        case getDocumentBody = "document.getElementsByTagName('body')[0]"
+        case styleFontFamily = ".style.fontFamily= \""
+        case styleAppleFamily = "-apple-system\";"
+    }
     
     public func setScrollEnabled(enabled: Bool) {
         
@@ -24,9 +32,8 @@ open class FTWebView: WKWebView {
                 subview.panGestureRecognizer.isEnabled = enabled
             }
             
-            for subScrollView in subview.subviews {
-                if type(of: subScrollView) == NSClassFromString("WKContentView")!,
-                    let gestures = subScrollView.gestureRecognizers {
+            for subScrollView in subview.subviews where type(of: subScrollView) == NSClassFromString("WKContentView") {
+                if let gestures = subScrollView.gestureRecognizers {
                     for gesture in gestures {
                         subScrollView.removeGestureRecognizer(gesture)
                     }
@@ -35,18 +42,14 @@ open class FTWebView: WKWebView {
         }
     }
     
-}
-
-extension FTWebView {
-    
     @discardableResult
     public func loadHTMLBody(_ string: String, baseURL: URL? = nil) -> WKNavigation? {
-        return self.loadHTMLString("<html><meta name=\"viewport\" content=\"initial-scale=1.0\" /><body>\(string)</body></html>",
-            baseURL: baseURL)
+        let body = Constants.loadHTMLBody.rawValue.replacingOccurrences(of: Constants.replaceText.rawValue, with: string)
+        return self.loadHTMLString(body, baseURL: baseURL)
     }
     
     func getHTMLBodyText() -> String {
-        return "document.getElementsByTagName('body')[0]"
+        return Constants.getDocumentBody.rawValue
     }
     
     public func setContentFontSize(_ size: Float) {
@@ -60,12 +63,12 @@ extension FTWebView {
     public func setContentColor(textColor: UIColor? = nil, backgroundColor: UIColor? = nil) {
         
         if let bgHex = backgroundColor?.hexString() {
-            let bgJS = self.getHTMLBodyText() + ".style.backgroundColor= \"\(bgHex)\";"
+            let bgJS = self.getHTMLBodyText() + ".style.backgroundColor= '\(bgHex)';"
             self.insertCSSString(jsString: bgJS)
         }
         
         if let fontHex = textColor?.hexString() {
-            let fontJS = self.getHTMLBodyText() + ".style.color= \"\(fontHex)\";"
+            let fontJS = self.getHTMLBodyText() + ".style.color= '\(fontHex)';"
             self.insertCSSString(jsString: fontJS)
         }
     }
@@ -73,19 +76,15 @@ extension FTWebView {
     public func setContentFontFamily(_ fontName: String?) {
         
         // base document style
-        var css = self.getHTMLBodyText() + ".style.fontFamily= \""
-        
+        var css = self.getHTMLBodyText() + Constants.styleFontFamily.rawValue
         // user selected font
         css += ( (fontName != nil && fontName != "") ? "\(fontName!)," : "")
-        
         // Default font
-        css += "-apple-system\";"
-        
+        css += Constants.styleAppleFamily.rawValue
         self.insertCSSString(jsString: css)
     }
     
     func insertCSSString(jsString: String) {
         self.evaluateJavaScript(jsString, completionHandler: nil)
     }
-    
 }

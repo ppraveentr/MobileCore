@@ -51,7 +51,7 @@ public protocol FTAppBaseProtocal {
 }
 
 // `self.view` Should be a `FTBaseView`.
-open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
+open class FTBaseViewController : UIViewController {
 
     @IBOutlet
     lazy open var baseView: FTBaseView? = FTBaseView()
@@ -87,20 +87,6 @@ open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
     open var modelStack: AnyObject? = nil
     open var completionBlock: FTAppBaseCompletionBlock? = nil
 
-    // Setup baseView's topLayoutGuide by sending true in subControllers if needed
-    open func topSafeAreaLayoutGuide() -> Bool {
-        return true
-    }
-
-    open func horizontalSafeAreaLayoutGuide() -> Bool {
-        return true
-    }
-
-    // Will dismiss Keyboard by tapping on any non-interative part of the view.
-    open func shouldDissmissKeyboardOnTap() -> Bool {
-        return true
-    }
-
     private var isBaseViewAdded: Bool {
         get {
             // If baseView is not added, then retun false
@@ -116,12 +102,20 @@ open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
     }
 
     public var isLoadedFromInterface = false
+    
+    convenience public init() {
+        self.init(nibName: nil, bundle: nil)
+    }
+    
+    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         isLoadedFromInterface = true
     }
 
-    
     override open func loadView() {
          super.loadView()
         // Make it as Views RooView, if forget to map it in IB.
@@ -138,7 +132,6 @@ open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
 
         // To Dismiss keyboard on tap in view
         setupKeyboardTapRecognizer()
-
     }
 
     public var mainView: FTView? {
@@ -150,125 +143,148 @@ open class FTBaseViewController : UIViewController, FTAppBaseProtocal {
         
         return self.baseView?.mainPinnedView
     }
+}
 
-    public func topPinnedView() -> FTView? {
-
-        // If baseView is not added, then retun nil
-        if isBaseViewAdded {
-            return nil
-        }
-
-        return self.baseView?.topPinnedView
+extension FTBaseViewController: FTAppBaseProtocal {
+    // Setup baseView's topLayoutGuide by sending true in subControllers if needed
+    open func topSafeAreaLayoutGuide() -> Bool {
+        return true
     }
-
+    
+    open func horizontalSafeAreaLayoutGuide() -> Bool {
+        return true
+    }
+    
+    // Will dismiss Keyboard by tapping on any non-interative part of the view.
+    open func shouldDissmissKeyboardOnTap() -> Bool {
+        return true
+    }
+    
     // MARK: Navigation Bar
     public func setupNavigationbar(title: String,
-                            leftButtonTitle: String? = nil, leftButtonImage: UIImage? = nil, leftButtonAction: Selector? = kLeftButtonAction, leftCustomView: UIView? = nil,
-                            rightButtonTitle: String? = nil, rightButtonImage: UIImage? = nil, rightButtonAction: Selector? = kRightButtonAction, rightCustomView: UIView? = nil) {
-
+                                   // left Button
+                                   leftButtonTitle: String? = nil,
+                                   leftButtonImage: UIImage? = nil,
+                                   leftButtonAction: Selector? = kLeftButtonAction,
+                                   leftCustomView: UIView? = nil,
+                                   // right Button
+                                   rightButtonTitle: String? = nil,
+                                   rightButtonImage: UIImage? = nil,
+                                   rightButtonAction: Selector? = kRightButtonAction,
+                                   rightCustomView: UIView? = nil)
+    {
         self_setupNavigationbar(title: title, leftButtonTitle: leftButtonTitle, leftButtonImage: leftButtonImage, leftButtonAction: leftButtonAction, leftCustomView: leftCustomView, rightButtonTitle: rightButtonTitle, rightButtonImage: rightButtonImage, rightButtonAction: rightButtonAction, rightCustomView: rightCustomView)
     }
-
-    public func setupNavigationbar(title: String,
-                                   leftButton: UIBarButtonItem? = nil,
-                                   rightButton: UIBarButtonItem? = nil) {
-
+    
+    public func setupNavigationbar(title: String, leftButton: UIBarButtonItem? = nil, rightButton: UIBarButtonItem? = nil) {
         self_setupNavigationbar(title: title,
-                           leftButton: leftButton,
-                           rightButton: rightButton)
+                                leftButton: leftButton,
+                                rightButton: rightButton)
     }
-
+    
     // Left navBar button
     @discardableResult
     public func leftNavigationBarButton(title: String? = nil,
-                           image: UIImage? = nil,
-                           buttonType: UIBarButtonItem.SystemItem = .stop,
-                           customView: UIView? = nil,
-                           buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem? {
-
+                                        image: UIImage? = nil,
+                                        buttonType: UIBarButtonItem.SystemItem = .stop,
+                                        customView: UIView? = nil,
+                                        buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem?
+    {
         return self_leftNavigationBarButton(title: title, image: image, buttonType: buttonType, customView: customView, buttonAction: buttonAction)
     }
-
+    
     // Right Navbar button
     @discardableResult
     public func rightNavigationBarButton(title: String? = nil,
-                               image: UIImage? = nil,
-                               buttonType: UIBarButtonItem.SystemItem = .done,
-                               customView: UIView? = nil,
-                               buttonAction: Selector? = kRightButtonAction) -> UIBarButtonItem? {
+                                         image: UIImage? = nil,
+                                         buttonType: UIBarButtonItem.SystemItem = .done,
+                                         customView: UIView? = nil,
+                                         buttonAction: Selector? = kRightButtonAction) -> UIBarButtonItem?
+    {
         return self_rightNavigationBarButton(title: title, image: image,buttonType: buttonType, customView: customView, buttonAction: buttonAction)
     }
-
-    public func navigationBarButton(title: String? = nil, image: UIImage? = nil,
+    
+    public func navigationBarButton(title: String? = nil,
+                                    image: UIImage? = nil,
                                     buttonType: UIBarButtonItem.SystemItem,
                                     customView: UIView? = nil,
-                                    buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem {
+                                    buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem
+    {
         return self_navigationBarButton(title: title, image: image, buttonType: buttonType, customView: customView, buttonAction: buttonAction)
     }
-
+    
     // MARK: Dissmiss Self model
     public func dismissSelf(_ animated: Bool = true) {
         self_dismissSelf()
     }
-
+    
     // MARK: default Nav-bar button actions
     @objc @IBAction open func leftButtonAction() {
         dismissSelf()
     }
-
+    
     @objc @IBAction open func rightButtonAction() {
     }
-
+    
     // MARK: Keyboard
     func setupKeyboardTapRecognizer() {
         self_setupKeyboardTapRecognizer()
     }
-
+    
     @objc open func endEditing() {
         self.view.endEditing(true)
     }
-
+    
     // MARK: Responder
     open func makeResponder(status:Bool, textField: UITextField, text: String? = nil) {
         self_makeResponder(status: status, textField: textField, text: text)
     }
-
+    
     // MARK: Keyboard Notifications
     // Registering for keyboard notification.
     open func registerKeyboardNotifications() {
         self_registerKeyboardNotifications()
     }
-
+    
     open func unregisterKeyboardNotifications() {
         self_unregisterKeyboardNotifications()
     }
-
+    
     /*  UIKeyboardWillShow. */
     @objc func keyboardWillShow(_ notification : Notification?) -> Void {
     }
-
+    
     /*  UIKeyboardDidHide. */
     @objc func keyboardDidHide(_ notification : Notification?) -> Void {
     }
-
+    
     // MARK: AlertViewController
     public func showAlert(title: String, message: String,
                           action: UIAlertAction? = nil,
                           actions: [UIAlertAction]? = nil) {
         self_showAlert(title: title, message: message, action: action, actions: actions)
     }
-
+    
     // MARK:  Activity indicator
     public func showActivityIndicator() {
         FTLoadingIndicator.show()
     }
-
+    
     public func hideActivityIndicator() {
         DispatchQueue.main.async {
             FTLoadingIndicator.hide()
         }
     }
-
+    
+    public func topPinnedView() -> FTView? {
+        
+        // If baseView is not added, then retun nil
+        if isBaseViewAdded {
+            return nil
+        }
+        
+        return self.baseView?.topPinnedView
+    }
 }
 
 extension FTBaseViewController {

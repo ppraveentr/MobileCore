@@ -8,9 +8,18 @@
 
 import Foundation
 
-open class FTCollectionView: FTUICollectionView {
+extension UICollectionView {
 
-    public weak var viewController: FTCollectionViewProtocol? = nil
+    private static let aoCollectionView = FTAssociatedObject<FTCollectionViewProtocol>(policy: .OBJC_ASSOCIATION_ASSIGN)
+
+    public weak var viewController: FTCollectionViewProtocol? {
+        get {
+            return UICollectionView.aoCollectionView[self]
+        }
+        set {
+            UICollectionView.aoCollectionView[self] = newValue
+        }
+    }
 
     func collectionView(delegate: UICollectionViewDelegate?, dataSource: UICollectionViewDataSource?) {
         self.delegate = delegate

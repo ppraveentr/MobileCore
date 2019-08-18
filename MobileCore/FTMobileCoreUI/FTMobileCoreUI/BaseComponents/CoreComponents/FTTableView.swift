@@ -24,28 +24,24 @@ open class FTTableViewHeaderFooterView: FTView {
     }
     
     static func embedView(view: UIView?) -> FTTableViewHeaderFooterView {
-        
         let local = FTTableViewHeaderFooterView()
         local.embView = view
         view?.addSelfSizing()
-        
         return local
     }
-    
 }
 
-open class FTTableView: UITableView {
+public extension UITableView {
 
-    open func setTableHeaderView(view: UIView?) {
+    func setTableHeaderView(view: UIView?) {
         self.tableHeaderView = embededView(view: view)
     }
     
-    open func setTableFooterView(view: UIView?) {
+    func setTableFooterView(view: UIView?) {
         self.tableFooterView = embededView(view: view)
     }
 
     func embededView(view: UIView?) -> FTTableViewHeaderFooterView? {
         return view as? FTTableViewHeaderFooterView ?? FTTableViewHeaderFooterView.embedView(view: view)
     }
-
 }
