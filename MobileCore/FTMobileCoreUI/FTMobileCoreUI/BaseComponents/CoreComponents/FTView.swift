@@ -17,5 +17,4 @@ open class FTView: FTUIView {
              self.resizeToFitSubviews()   
         }
     }
-
 }

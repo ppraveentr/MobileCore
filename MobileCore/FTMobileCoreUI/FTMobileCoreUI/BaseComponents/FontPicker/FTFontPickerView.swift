@@ -77,7 +77,7 @@ open class FTFontPickerView: FTView {
 
     weak var selectedColorButton: FTButton?
 
-    @IBOutlet weak var fontTableView: FTTableView!
+    @IBOutlet weak var fontTableView: UITableView!
 
     @IBAction func fontColorSelected(_ sender: FTButton) {
         // Clear Previous selected Button

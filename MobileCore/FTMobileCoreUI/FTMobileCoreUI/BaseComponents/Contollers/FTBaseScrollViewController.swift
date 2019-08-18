@@ -11,7 +11,7 @@ import Foundation
 open class FTBaseScrollViewController: FTBaseViewController {
 
     @IBOutlet
-    public lazy var scrollView: FTScrollView! = self.setupScrollView()
+    public lazy var scrollView: UIScrollView! = self.setupScrollView()
 
     override open func loadView() {
         super.loadView()
@@ -25,7 +25,7 @@ open class FTBaseScrollViewController: FTBaseViewController {
 extension FTBaseScrollViewController {
 
     @discardableResult
-    func setupScrollView(scrollView local: FTScrollView = FTScrollView() ) -> FTScrollView {
+    func setupScrollView(scrollView local: UIScrollView = UIScrollView() ) -> UIScrollView {
 
         local.superview?.removeFromSuperview()
         self.scrollView = local

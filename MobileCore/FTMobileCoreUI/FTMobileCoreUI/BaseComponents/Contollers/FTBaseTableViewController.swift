@@ -22,9 +22,9 @@ open class FTCoreTableViewController: UITableViewController {
         super.init(coder: aDecoder)
     }
 
-    var ftTableView: FTTableView {
+    var ftTableView: UITableView {
         get {
-            let local = FTTableView(frame: .zero, style: self.tableStyle)
+            let local = UITableView(frame: .zero, style: self.tableStyle)
             local.estimatedRowHeight = UITableView.automaticDimension
             local.dataSource = self
             local.delegate = self
@@ -49,10 +49,9 @@ open class FTBaseTableViewController: FTBaseViewController {
         return .plain
     }
 
-    public var tableView: FTTableView {
-        // madates to FTTableView.
+    public var tableView: UITableView {
         get {
-            return self.tableViewController.tableView as! FTTableView
+            return self.tableViewController.tableView
         }
     }
 

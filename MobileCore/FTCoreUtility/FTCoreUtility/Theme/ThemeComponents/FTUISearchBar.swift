@@ -101,7 +101,6 @@ public extension FTThemeProtocol where Self: UISearchBar {
         var textcolor: UIColor? = nil
 
         for (kind, value) in theme {
-
             switch kind {
             case "barTintColor":
                 barTintColor = getColor(value as? String)
@@ -113,7 +112,6 @@ public extension FTThemeProtocol where Self: UISearchBar {
             default:
                 break
             }
-
         }
 
         configure(barTintColor: barTintColor, tintColor: tintColor, textColor: textcolor)

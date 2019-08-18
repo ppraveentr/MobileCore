@@ -10,7 +10,7 @@ import Foundation
 
 let kBackgroundViewTheme = "backgroundViewTheme"
 
-open class FTUICollectionView: UICollectionView, FTThemeProtocol {
+extension UICollectionView: FTThemeProtocol {
 
     // Force update theme attibute
     public func updateTheme(_ theme: FTThemeModel) {

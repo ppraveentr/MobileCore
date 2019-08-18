@@ -38,12 +38,12 @@ import Foundation
 
 public extension UIColor {
     
-     fileprivate convenience init(red: UInt32, green: UInt32, blue: UInt32, a: CGFloat = 1.0) {
+    convenience init(red: UInt32, green: UInt32, blue: UInt32, a: CGFloat = 1.0) {
         self.init(
-            red: CGFloat(red) / 255.0,
-            green: CGFloat(green) / 255.0,
-            blue: CGFloat(blue) / 255.0,
-            alpha: a
+            red: CGFloat(red),
+            green: CGFloat(green),
+            blue: CGFloat(blue),
+            a: a
         )
     }
     

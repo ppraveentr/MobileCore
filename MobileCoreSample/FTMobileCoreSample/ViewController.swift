@@ -32,11 +32,16 @@ class ViewController: FTBaseViewController {
         buttonD.setTitle("Disabled", for: .normal)
         buttonD.isEnabled = false
         
+        let buttonPopOver = FTButton()
+        buttonPopOver.theme = "button14R"
+        buttonPopOver.setTitle("PopOver", for: .normal)
+        buttonPopOver.addTarget(self, action: #selector(showFontPicker), for: .touchUpInside)
+        
         let topView = FTView()
         topView.pin(view: button, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .Left, .Vertical ])
-        topView.pin(view: buttonD, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .Right ])
+        topView.pin(view: buttonPopOver, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .Right ])
 
-        topView.stackView(views: [button, buttonD],
+        topView.stackView(views: [button, buttonD, buttonPopOver],
                           layoutDirection: .LeftToRight,
                           spacing: 20,
                           edgeInsets: [ .TopMargin, .EqualSize ])
@@ -46,7 +51,7 @@ class ViewController: FTBaseViewController {
         
         //MARK: MainView
         
-        let scrollView = FTScrollView()
+        let scrollView = UIScrollView()
         self.mainView?.pin(view: scrollView, edgeInsets: [.TopMargin, .Horizontal])
 
         let label = FTLabel()
@@ -103,5 +108,16 @@ class ViewController: FTBaseViewController {
 //        sample?.amount = 32.2
 //        print(sample ?? "properties of type MDASample are empty");
     }
+    
+    @objc func showFontPicker(sender: UIButton?) {
+        let popoverContent = FTFontPickerViewController()
+        popoverContent.modalPresentationStyle = .popover
+        let nav = UINavigationController(rootViewController: popoverContent)
+        nav.modalPresentationStyle = .popover
+        if let popover = nav.presentationController as? UIPopoverPresentationController, let sender = sender {
+            popover.sourceView = sender
+            popover.sourceRect = sender.bounds
+        }
+        self.present(nav, animated: true, completion: nil)
+    }
 }
- 
