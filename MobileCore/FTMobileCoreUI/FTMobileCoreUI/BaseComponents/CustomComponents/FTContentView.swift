@@ -7,17 +7,18 @@
 //
 
 import Foundation
+import WebKit
 
-open class FTContentView: FTScrollView {
+open class FTContentView: UIScrollView {
     
     var MyObservationContext = 0
     var observing = false
-    lazy public var webView: FTWebView = self.getWebView()
+    lazy public var webView: WKWebView = self.getWebView()
     public weak var scrollView: UIScrollView?
 
-    private func getWebView() -> FTWebView {
-        let webView = FTWebView()
-        super.contentView.pin(view: webView)
+    private func getWebView() -> WKWebView {
+        let webView = WKWebView()
+        super.contentView?.pin(view: webView)
         self.startObservingHeight(webView)
         return webView
     }
@@ -29,7 +30,7 @@ open class FTContentView: FTScrollView {
     }
     
     // MARK: Observe webview content height
-    func startObservingHeight(_ webView: FTWebView) {
+    func startObservingHeight(_ webView: WKWebView) {
 
         self.scrollView = webView.scrollView
 
@@ -63,7 +64,7 @@ open class FTContentView: FTScrollView {
             if let nsSize = change?[NSKeyValueChangeKey.newKey] as? NSValue {
                 let val = nsSize.cgSizeValue.height
                 // Do something here using content height.
-                self.contentView.viewLayoutConstraint.constraintHeight?.constant = val
+                self.contentView?.viewLayoutConstraint.constraintHeight?.constant = val
             }
             
         default:

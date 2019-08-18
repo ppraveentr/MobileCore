@@ -10,21 +10,29 @@ import UIKit
 
 public typealias FTSegmentedHandler = ( (_ index: Int) -> () )
 
-open class FTSegmentedControl: UISegmentedControl {
- 
-    public var handler: FTSegmentedHandler?
+public extension UISegmentedControl {
+    private static let aoHandler = FTAssociatedObject<FTSegmentedHandler>()
 
-    public required convenience init(items: [Any], completionHandler: FTSegmentedHandler? ) {
+    convenience init(items: [Any], completionHandler: FTSegmentedHandler? ) {
         self.init(items: items)
         selectedSegmentIndex = 0
-        handler = completionHandler
-        addTarget(self, action: #selector(FTSegmentedControl.segmentedControlIndexChanged(_:)), for: .valueChanged)
+        UISegmentedControl.aoHandler[self] = completionHandler
+        addTarget(self, action: #selector(UISegmentedControl.segmentedControlIndexChanged(_:)), for: .valueChanged)
     }
     
-    @objc func segmentedControlIndexChanged(_ sender: UISegmentedControl) {
-        if let completionBlock = self.handler {
-            completionBlock(self.selectedSegmentIndex)
+    var handler: FTSegmentedHandler? {
+        get {
+            return UISegmentedControl.aoHandler[self]
+        }
+        set {
+            UISegmentedControl.aoHandler[self] = newValue
         }
     }
     
+    @objc
+    func segmentedControlIndexChanged(_ sender: UISegmentedControl) {
+        if let completionBlock = UISegmentedControl.aoHandler[self]  {
+            completionBlock(self.selectedSegmentIndex)
+        }
+    }
 }

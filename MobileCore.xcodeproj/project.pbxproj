@@ -74,16 +74,16 @@
 		D42A58B523047DEA003C7283 /* FTBaseScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A589B23047DEA003C7283 /* FTBaseScrollViewController.swift */; };
 		D42A58B623047DEA003C7283 /* FTBaseViewController+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A589C23047DEA003C7283 /* FTBaseViewController+Utility.swift */; };
 		D42A58B723047DEA003C7283 /* FTBaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A589D23047DEA003C7283 /* FTBaseCollectionViewController.swift */; };
-		D42A58B823047DEA003C7283 /* FTBaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A589E23047DEA003C7283 /* FTBaseTabBarController.swift */; };
 		D42A58B923047DEA003C7283 /* FTBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A589F23047DEA003C7283 /* FTBaseViewController.swift */; };
 		D42A58BA23047DEA003C7283 /* FTBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A58A023047DEA003C7283 /* FTBaseTableViewController.swift */; };
-		D42A58BB23047DEA003C7283 /* FTBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A58A123047DEA003C7283 /* FTBaseNavigationController.swift */; };
 		D42A58BC23047DEA003C7283 /* FTLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A58A323047DEA003C7283 /* FTLoadingIndicator.swift */; };
 		D43D0C762305262B00C5C770 /* FTThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D0C742305262B00C5C770 /* FTThemesTests.swift */; };
 		D43D0C772305262B00C5C770 /* FTCoreUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D0C752305262B00C5C770 /* FTCoreUtilityTests.swift */; };
 		D43D0C7A2305263300C5C770 /* FTMobileCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D0C792305263300C5C770 /* FTMobileCoreTests.swift */; };
 		D43D0C7E2305263B00C5C770 /* FTStringUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D0C7C2305263B00C5C770 /* FTStringUtilityTests.swift */; };
 		D43D0C7F2305263B00C5C770 /* FTConstrainsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D0C7D2305263B00C5C770 /* FTConstrainsTests.swift */; };
+		D4869CFB23085F4900A7C19F /* FTUIElementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4869CFA23085F4900A7C19F /* FTUIElementsTests.swift */; };
+		D4BD161F2306B38F005DF80D /* FTUIElementThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BD161E2306B38F005DF80D /* FTUIElementThemesTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,16 +167,16 @@
 		D42A589B23047DEA003C7283 /* FTBaseScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseScrollViewController.swift; sourceTree = "<group>"; };
 		D42A589C23047DEA003C7283 /* FTBaseViewController+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FTBaseViewController+Utility.swift"; sourceTree = "<group>"; };
 		D42A589D23047DEA003C7283 /* FTBaseCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseCollectionViewController.swift; sourceTree = "<group>"; };
-		D42A589E23047DEA003C7283 /* FTBaseTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseTabBarController.swift; sourceTree = "<group>"; };
 		D42A589F23047DEA003C7283 /* FTBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseViewController.swift; sourceTree = "<group>"; };
 		D42A58A023047DEA003C7283 /* FTBaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseTableViewController.swift; sourceTree = "<group>"; };
-		D42A58A123047DEA003C7283 /* FTBaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseNavigationController.swift; sourceTree = "<group>"; };
 		D42A58A323047DEA003C7283 /* FTLoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLoadingIndicator.swift; sourceTree = "<group>"; };
 		D43D0C742305262B00C5C770 /* FTThemesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTThemesTests.swift; sourceTree = "<group>"; };
 		D43D0C752305262B00C5C770 /* FTCoreUtilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTCoreUtilityTests.swift; sourceTree = "<group>"; };
 		D43D0C792305263300C5C770 /* FTMobileCoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMobileCoreTests.swift; sourceTree = "<group>"; };
 		D43D0C7C2305263B00C5C770 /* FTStringUtilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStringUtilityTests.swift; sourceTree = "<group>"; };
 		D43D0C7D2305263B00C5C770 /* FTConstrainsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTConstrainsTests.swift; sourceTree = "<group>"; };
+		D4869CFA23085F4900A7C19F /* FTUIElementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUIElementsTests.swift; sourceTree = "<group>"; };
+		D4BD161E2306B38F005DF80D /* FTUIElementThemesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUIElementThemesTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -477,10 +477,8 @@
 				D42A589B23047DEA003C7283 /* FTBaseScrollViewController.swift */,
 				D42A589C23047DEA003C7283 /* FTBaseViewController+Utility.swift */,
 				D42A589D23047DEA003C7283 /* FTBaseCollectionViewController.swift */,
-				D42A589E23047DEA003C7283 /* FTBaseTabBarController.swift */,
 				D42A589F23047DEA003C7283 /* FTBaseViewController.swift */,
 				D42A58A023047DEA003C7283 /* FTBaseTableViewController.swift */,
-				D42A58A123047DEA003C7283 /* FTBaseNavigationController.swift */,
 			);
 			path = Contollers;
 			sourceTree = "<group>";
@@ -517,6 +515,8 @@
 			children = (
 				D43D0C7C2305263B00C5C770 /* FTStringUtilityTests.swift */,
 				D43D0C7D2305263B00C5C770 /* FTConstrainsTests.swift */,
+				D4BD161E2306B38F005DF80D /* FTUIElementThemesTests.swift */,
+				D4869CFA23085F4900A7C19F /* FTUIElementsTests.swift */,
 			);
 			name = FTMobileCoreUITests;
 			path = MobileCore/FTMobileCoreUI/FTMobileCoreUITests;
@@ -656,12 +656,10 @@
 				D42A585623047DD6003C7283 /* FTUINavigationBar.swift in Sources */,
 				D42A585923047DD6003C7283 /* FTViewConstrains.swift in Sources */,
 				D42A585B23047DD6003C7283 /* FTViewControllerExtension.swift in Sources */,
-				D42A58BB23047DEA003C7283 /* FTBaseNavigationController.swift in Sources */,
 				D42A586623047DD6003C7283 /* FTClass.swift in Sources */,
 				D42A586223047DD6003C7283 /* FTURL.swift in Sources */,
 				D42A584A23047DD6003C7283 /* FTData.swift in Sources */,
 				D42A585123047DD6003C7283 /* FTAppearanceManager.swift in Sources */,
-				D42A58B823047DEA003C7283 /* FTBaseTabBarController.swift in Sources */,
 				D42A58AC23047DEA003C7283 /* FTView.swift in Sources */,
 				D42A585323047DD6003C7283 /* FTUILabelThemeProtocol.swift in Sources */,
 				D42A586323047DD6003C7283 /* FTRect.swift in Sources */,
@@ -708,9 +706,11 @@
 			files = (
 				D43D0C7A2305263300C5C770 /* FTMobileCoreTests.swift in Sources */,
 				D43D0C7E2305263B00C5C770 /* FTStringUtilityTests.swift in Sources */,
+				D4869CFB23085F4900A7C19F /* FTUIElementsTests.swift in Sources */,
 				D42A581123047CEF003C7283 /* MobileCoreTests.swift in Sources */,
 				D43D0C7F2305263B00C5C770 /* FTConstrainsTests.swift in Sources */,
 				D43D0C762305262B00C5C770 /* FTThemesTests.swift in Sources */,
+				D4BD161F2306B38F005DF80D /* FTUIElementThemesTests.swift in Sources */,
 				D43D0C772305262B00C5C770 /* FTCoreUtilityTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
