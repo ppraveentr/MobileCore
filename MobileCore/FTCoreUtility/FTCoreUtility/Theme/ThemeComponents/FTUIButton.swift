@@ -26,30 +26,26 @@ open class FTUIButton: UIButton, FTUIControlThemeProtocol {
         }
     }
     
-    public func updateTheme(_ theme: FTThemeModel) {
-    }
-    
     // For custome key:value pairs
     public func update(themeDic: FTThemeModel, state: UIControl.State) {
 
         if
             let text = themeDic["textcolor"] as? String,
-            let color = FTThemesManager.getColor(text) {
+            let color = FTThemesManager.getColor(text)
+        {
                 self.setTitleColor(color, for: state)
                 // TODO: For attributed title
         }
 
         if
             let text = themeDic["textfont"] as? String,
-            let font = FTThemesManager.getFont(text) {
+            let font = FTThemesManager.getFont(text)
+        {
             self.titleLabel?.font = font
         }
 
-        if let imageName = themeDic["image"] {
-            if let image = FTThemesManager.getImage(imageName) {
+        if let image = FTThemesManager.getImage(themeDic["image"]) {
                 self.setImage(image, for: state)
-            }
         }
     }
-    
 }

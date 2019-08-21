@@ -17,10 +17,10 @@ open class FTContentView: UIScrollView {
     public weak var scrollView: UIScrollView?
 
     private func getWebView() -> WKWebView {
-        let webView = WKWebView()
-        super.contentView?.pin(view: webView)
-        self.startObservingHeight(webView)
-        return webView
+        let local = WKWebView()
+        super.contentView?.pin(view: local)
+        self.startObservingHeight(local)
+        return local
     }
     
     deinit {
@@ -71,14 +71,4 @@ open class FTContentView: UIScrollView {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
-
-    // MARK: JS
-//    func updateHeight() {
-//        self.webView.evaluateJavaScript("document.body.scrollHeight") { (obj, error) in
-//            if let hei = obj as? CGFloat {
-//                self.contentView.viewLayoutConstraint.constraintHeight?.constant = hei
-//            }
-//        }
-//    }
-
 }

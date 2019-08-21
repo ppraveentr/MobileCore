@@ -25,7 +25,6 @@
 		D42A585423047DD6003C7283 /* FTUITabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A582E23047DD6003C7283 /* FTUITabBar.swift */; };
 		D42A585523047DD6003C7283 /* FTUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A582F23047DD6003C7283 /* FTUIButton.swift */; };
 		D42A585623047DD6003C7283 /* FTUINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A583023047DD6003C7283 /* FTUINavigationBar.swift */; };
-		D42A585723047DD6003C7283 /* FTUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A583123047DD6003C7283 /* FTUIView.swift */; };
 		D42A585823047DD6003C7283 /* FTUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A583223047DD6003C7283 /* FTUICollectionView.swift */; };
 		D42A585923047DD6003C7283 /* FTViewConstrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A583423047DD6003C7283 /* FTViewConstrains.swift */; };
 		D42A585A23047DD6003C7283 /* FTViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A583523047DD6003C7283 /* FTViewExtention.swift */; };
@@ -82,6 +81,8 @@
 		D43D0C7A2305263300C5C770 /* FTMobileCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D0C792305263300C5C770 /* FTMobileCoreTests.swift */; };
 		D43D0C7E2305263B00C5C770 /* FTStringUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D0C7C2305263B00C5C770 /* FTStringUtilityTests.swift */; };
 		D43D0C7F2305263B00C5C770 /* FTConstrainsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D0C7D2305263B00C5C770 /* FTConstrainsTests.swift */; };
+		D45E3CF1230BF7F6005BD885 /* FTThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45E3CF0230BF7F6005BD885 /* FTThemeProtocol.swift */; };
+		D45E3CF3230BF8C8005BD885 /* FTThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45E3CF2230BF8C8005BD885 /* FTThemeManager.swift */; };
 		D4869CFB23085F4900A7C19F /* FTUIElementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4869CFA23085F4900A7C19F /* FTUIElementsTests.swift */; };
 		D4BD161F2306B38F005DF80D /* FTUIElementThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BD161E2306B38F005DF80D /* FTUIElementThemesTests.swift */; };
 /* End PBXBuildFile section */
@@ -118,7 +119,6 @@
 		D42A582E23047DD6003C7283 /* FTUITabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUITabBar.swift; sourceTree = "<group>"; };
 		D42A582F23047DD6003C7283 /* FTUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIButton.swift; sourceTree = "<group>"; };
 		D42A583023047DD6003C7283 /* FTUINavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUINavigationBar.swift; sourceTree = "<group>"; };
-		D42A583123047DD6003C7283 /* FTUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIView.swift; sourceTree = "<group>"; };
 		D42A583223047DD6003C7283 /* FTUICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUICollectionView.swift; sourceTree = "<group>"; };
 		D42A583423047DD6003C7283 /* FTViewConstrains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTViewConstrains.swift; sourceTree = "<group>"; };
 		D42A583523047DD6003C7283 /* FTViewExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTViewExtention.swift; sourceTree = "<group>"; };
@@ -175,6 +175,8 @@
 		D43D0C792305263300C5C770 /* FTMobileCoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMobileCoreTests.swift; sourceTree = "<group>"; };
 		D43D0C7C2305263B00C5C770 /* FTStringUtilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStringUtilityTests.swift; sourceTree = "<group>"; };
 		D43D0C7D2305263B00C5C770 /* FTConstrainsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTConstrainsTests.swift; sourceTree = "<group>"; };
+		D45E3CF0230BF7F6005BD885 /* FTThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTThemeProtocol.swift; sourceTree = "<group>"; };
+		D45E3CF2230BF8C8005BD885 /* FTThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTThemeManager.swift; sourceTree = "<group>"; };
 		D4869CFA23085F4900A7C19F /* FTUIElementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUIElementsTests.swift; sourceTree = "<group>"; };
 		D4BD161E2306B38F005DF80D /* FTUIElementThemesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUIElementThemesTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -287,10 +289,12 @@
 		D42A582723047DD6003C7283 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
+				D45E3CF0230BF7F6005BD885 /* FTThemeProtocol.swift */,
 				D42A582823047DD6003C7283 /* FTThemesManager.swift */,
 				D42A582923047DD6003C7283 /* FTThemeView+Utility.swift */,
 				D42A582A23047DD6003C7283 /* FTAppearanceManager.swift */,
 				D42A582B23047DD6003C7283 /* ThemeComponents */,
+				D45E3CF2230BF8C8005BD885 /* FTThemeManager.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -303,7 +307,6 @@
 				D42A582E23047DD6003C7283 /* FTUITabBar.swift */,
 				D42A582F23047DD6003C7283 /* FTUIButton.swift */,
 				D42A583023047DD6003C7283 /* FTUINavigationBar.swift */,
-				D42A583123047DD6003C7283 /* FTUIView.swift */,
 				D42A583223047DD6003C7283 /* FTUICollectionView.swift */,
 			);
 			path = ThemeComponents;
@@ -666,6 +669,7 @@
 				D42A587D23047DE3003C7283 /* FTServiceModel.swift in Sources */,
 				D42A586723047DD6003C7283 /* FTReflection.swift in Sources */,
 				D42A584F23047DD6003C7283 /* FTThemesManager.swift in Sources */,
+				D45E3CF3230BF8C8005BD885 /* FTThemeManager.swift in Sources */,
 				D42A584923047DD6003C7283 /* FTString.swift in Sources */,
 				D42A58A523047DEA003C7283 /* FTTableView.swift in Sources */,
 				D42A587A23047DE3003C7283 /* FTURLSession.swift in Sources */,
@@ -678,7 +682,6 @@
 				D42A58BA23047DEA003C7283 /* FTBaseTableViewController.swift in Sources */,
 				D42A584823047DD6003C7283 /* FTLogger.swift in Sources */,
 				D42A586123047DD6003C7283 /* FTActionBlock.swift in Sources */,
-				D42A585723047DD6003C7283 /* FTUIView.swift in Sources */,
 				D42A58B423047DEA003C7283 /* FTMobileCoreUIConstants.swift in Sources */,
 				D42A584B23047DD6003C7283 /* FTLinkDetection.swift in Sources */,
 				D42A586523047DD6003C7283 /* FTColor.swift in Sources */,
@@ -691,6 +694,7 @@
 				D42A587923047DE3003C7283 /* FTUserCache.swift in Sources */,
 				D42A58A423047DEA003C7283 /* FTSegmentedControl.swift in Sources */,
 				D42A587C23047DE3003C7283 /* FTModelCreator.swift in Sources */,
+				D45E3CF1230BF7F6005BD885 /* FTThemeProtocol.swift in Sources */,
 				D42A58B023047DEA003C7283 /* FTBaseView.swift in Sources */,
 				D42A58B223047DEA003C7283 /* FTFontPickerView.swift in Sources */,
 				D42A587B23047DE3003C7283 /* FTOperationQueue.swift in Sources */,

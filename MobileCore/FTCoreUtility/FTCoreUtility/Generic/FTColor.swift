@@ -182,7 +182,7 @@ public extension UIColor {
 
 public extension UIImage {
     
-    func getColor(atPoint: CGPoint = CGPoint(x: 1, y: 1), a: CGFloat = -10) -> UIColor? {
+    func getColor(a: CGFloat = -10) -> UIColor? {
         
         guard
             let pixelData = self.cgImage?.dataProvider?.data,
@@ -190,7 +190,6 @@ public extension UIImage {
             return nil
         }
         
-//       let pixelInfo: Int = Int((self.size.width  * atPoint.y) + atPoint.x ) * 4; // The image is png
         // The image is png
         let pixelInfo: Int = Int(0) * 4
         
@@ -201,5 +200,4 @@ public extension UIImage {
         
         return UIColor(red: UInt32(red), green: UInt32(green), blue: UInt32(blue), a: (a > 0 ? a : CGFloat(alpha)) / 255.0)
     }
-    
 }

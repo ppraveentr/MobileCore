@@ -163,7 +163,7 @@ extension FTLabel {
         self.linkRanges = [FTLinkDetection]()
 
         // HTTP links
-        let links = FTLinkDetection.getURLLinkRanges((attributedString.string))
+        let links = FTLinkDetection.getURLLinkRanges(attributedString.string)
         self.linkRanges?.insert(contentsOf: links, at: 0)
 
         self.linkRanges?.forEach { (link) in
@@ -212,21 +212,10 @@ extension FTLabel {
 
         return properties
     }
-    
 }
 
 // MARK: Text Sanitizing
 extension FTLabel: NSLayoutManagerDelegate {
-
-//    public func layoutManager(_ layoutManager: NSLayoutManager, shouldBreakLineByWordBeforeCharacterAt charIndex: Int) -> Bool {
-//
-//        var range = NSRange(location: 0, length: (attributedText?.length) ?? 0)
-//        if (layoutManager.textStorage?.attribute(.link, at: charIndex, effectiveRange: &range)) != nil {
-//            return !(charIndex > range.location && charIndex <= NSMaxRange(range))
-//        }
-//
-//        return true
-//    }
 
     func sanitizeAttributedString(attributedString: NSAttributedString) -> NSMutableAttributedString {
 
@@ -249,7 +238,6 @@ extension FTLabel: NSLayoutManagerDelegate {
 
         return restyledString
     }
-    
 }
 
 // MARK: Text Rendering
@@ -274,10 +262,8 @@ extension FTLabel {
         self.textContainer.size = bounds.size
         self.textContainer.maximumNumberOfLines = numberOfLines
         
-        var textBounds: CGRect = .zero
-        
         let glyphRange = self.layoutManager.glyphRange(for: self.textContainer)
-        textBounds = self.layoutManager.boundingRect(forGlyphRange: glyphRange, in: self.textContainer)
+        var textBounds = self.layoutManager.boundingRect(forGlyphRange: glyphRange, in: self.textContainer)
         
         textBounds.origin = bounds.origin
         textBounds.size.width = CGFloat(ceilf(Float(textBounds.width)))
@@ -302,7 +288,6 @@ extension FTLabel {
         
         return textOffset
     }
-    
 }
 
 // MARK: Container SetUp
@@ -352,5 +337,4 @@ extension FTLabel {
         
         return local
     }
-    
 }

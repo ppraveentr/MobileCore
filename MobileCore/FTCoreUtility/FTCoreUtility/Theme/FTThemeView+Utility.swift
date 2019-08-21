@@ -29,44 +29,6 @@ public struct FTThemeStyle {
     
 }
 
-// Used for UIView subclasses Type
-public protocol FTThemeProtocol: AnyObject {
-    
-    // Retruns 'ThemeStyle' specific to current state of object.
-    // Say if UIView is disabled, retrun "disabled", which can be clubed with main Theme style.
-    // Eg, if currentTheme is 'viewB', then when disabled state, theme willbe : 'viewB:disabled'
-    func get_ThemeSubType() -> String?
-    
-    // Custom Subclass can implement, to config Custom component
-    func updateTheme(_ theme: FTThemeModel)
-}
-
-public extension FTThemeProtocol where Self: UIView {
-    
-    func get_ThemeSubType() -> String? {
-        // If view is disabled, check for ".disabledStyle" style
-        return self.isUserInteractionEnabled ? nil : FTThemeStyle.disabledStyle
-    }
-
-    // Color
-    func getColor(_ colorName: String?) -> UIColor? {
-        return FTThemesManager.getColor(colorName)
-    }
-
-    // Font
-    func getFont(_ fontName: String?) -> UIFont? {
-        return FTThemesManager.getFont(fontName)
-    }
-}
-
-// Used for UIControl objects, when multiple states are possible to set at initalization
-public protocol FTUIControlThemeProtocol: FTThemeProtocol {
-    
-    func get_AllThemeSubType() -> Bool
-    func setThemes(_ themes: FTThemeModel)
-    func update(themeDic: FTThemeModel, state: UIControl.State)
-}
-
 extension UIView {
 
     // Swizzling out view's layoutSubviews property for Updating Visual theme
@@ -206,15 +168,14 @@ fileprivate extension UIView {
         var baseClassName: String? = className
 
         let getSuperClass = { (obj: AnyObject) -> AnyClass? in
-            let superClass: AnyClass? = class_getSuperclass(type(of: obj))
-
-            if let superClass = superClass, let className = get_classNameAsString(obj: superClass) {
-                if className.hasPrefix("UI") {
-                    return nil
-                }
+            guard let superClass: AnyClass = class_getSuperclass(type(of: obj)) else {
+                return nil
             }
 
-
+            if let className = get_classNameAsString(obj: superClass), className.hasPrefix("UI") {
+                return nil
+            }
+            
             return superClass
         }
 

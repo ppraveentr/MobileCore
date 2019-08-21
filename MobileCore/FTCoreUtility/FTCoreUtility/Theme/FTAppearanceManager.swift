@@ -50,7 +50,6 @@ open class FTAppearanceManager {
             }
         }
     }
-    
 }
 
 extension FTThemesManager {
@@ -64,7 +63,6 @@ extension FTThemesManager {
             statusBar.backgroundColor = color
         }
     }
-    
 }
 
 extension UIView : FTAppearanceManagerProtocol {
@@ -103,14 +101,13 @@ extension UIView : FTAppearanceManagerProtocol {
             return
         }
         
-        if let image = FTThemesManager.getImage(imageName as? String) {
-            
-            if let segmentSelf = self as? UISegmentedControl.Type {
-                segmentSelf.setBackgroundImage(imageType:imageType, image: image)
-            }
+        if
+            let image = FTThemesManager.getImage(imageName as? String),
+            let segmentSelf = self as? UISegmentedControl.Type
+        {
+            segmentSelf.setBackgroundImage(imageType:imageType, image: image)
         }
     }
-    
 }
 
 extension UISegmentedControl {
@@ -137,7 +134,6 @@ extension UISegmentedControl {
             break
         }
     }
-    
 }
 
 extension UINavigationBar {
@@ -184,7 +180,6 @@ extension UINavigationBar {
             self.applyBackgroundImage(navigationBar: nil, defaultImage: defaultImage!, landScapeImage: landScapeImage)
         }
     }
-    
 }
 
 extension UITabBar {
@@ -197,76 +192,4 @@ extension UITabBar {
             appearance.backgroundImage = defaultImage
         }
     }
-    
-}
-
-// TODO: In progress
-enum Theme: Int {
-    case `default`, dark, graphical
-    
-    var mainColor: UIColor {
-        switch self {
-        case .default:
-            return UIColor(red: 87.0/255.0, green: 188.0/255.0, blue: 95.0/255.0, alpha: 1.0)
-        case .dark:
-            return UIColor(red: 242.0/255.0, green: 101.0/255.0, blue: 34.0/255.0, alpha: 1.0)
-        case .graphical:
-            return UIColor(red: 10.0/255.0, green: 10.0/255.0, blue: 10.0/255.0, alpha: 1.0)
-        }
-    }
-    
-    var barStyle: UIBarStyle {
-        switch self {
-        case .default, .graphical:
-            return .default
-        case .dark:
-            return .black
-        }
-    }
-    
-}
-
-let SelectedThemeKey = "SelectedTheme"
-
-struct ThemeManager {
-    
-    static func currentTheme() -> Theme {
-        if
-            let storedTheme = UserDefaults.standard.value(forKey: SelectedThemeKey) as? Int {
-            return Theme(rawValue: storedTheme)!
-        } else {
-            return .default
-        }
-    }
-    
-    static func applyTheme(_ theme: Theme) {
-        UserDefaults.standard.setValue(theme.rawValue, forKey: SelectedThemeKey)
-        UserDefaults.standard.synchronize()
-        
-        let sharedApplication = UIApplication.shared
-        sharedApplication.delegate?.window??.tintColor = theme.mainColor
-        
-        UINavigationBar.appearance().barStyle = theme.barStyle
-        UITabBar.appearance().barStyle = theme.barStyle
-        
-        
-        let tabIndicator = UIImage(named: "tabBarSelectionIndicator")?.withRenderingMode(.alwaysTemplate)
-        let tabResizableIndicator = tabIndicator?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 2.0, bottom: 0, right: 2.0))
-        UITabBar.appearance().selectionIndicatorImage = tabResizableIndicator
-                
-        UIStepper.appearance().setDecrementImage(UIImage(named: "fewerPaws"), for: UIControl.State())
-        UIStepper.appearance().setIncrementImage(UIImage(named: "morePaws"), for: UIControl.State())
-        
-        UISlider.appearance().setThumbImage(UIImage(named: "sliderThumb"), for: UIControl.State())
-        UISlider.appearance().setMaximumTrackImage(UIImage(named: "maximumTrack")?
-            .resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0.0, bottom: 0, right: 6.0)), for: UIControl.State())
-        UISlider.appearance().setMinimumTrackImage(UIImage(named: "minimumTrack")?
-            .withRenderingMode(.alwaysTemplate)
-            .resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 6.0, bottom: 0, right: 0)), for: UIControl.State())
-        
-        UISwitch.appearance().onTintColor = theme.mainColor.withAlphaComponent(0.3)
-        UISwitch.appearance().thumbTintColor = theme.mainColor
-        
-    }
-    
 }

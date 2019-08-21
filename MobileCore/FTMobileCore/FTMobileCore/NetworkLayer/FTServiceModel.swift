@@ -18,7 +18,7 @@ enum FTJsonParserError: Error {
 public protocol FTServiceModel: Codable {
     static func makeModel(json: String) throws -> Self
     static func makeModel(json: Data) throws -> Self
-    static func createEmpytModel() -> Self
+    static func createEmpytModel() throws -> Self
 
     // JSON
     func jsonModel() -> JSON?
@@ -35,11 +35,12 @@ extension Dictionary: FTServiceModel where Key: Codable, Value: Codable { }
 
 public extension FTServiceModel {
 
-    static func createEmpytModel() -> Self {
-        return try! makeModel(json: [:])
+    static func createEmpytModel() throws -> Self {
+        let data = try makeModel(json: [:])
+        return data
     }
 
-    static func makeModel(json: String) throws  -> Self {
+    static func makeModel(json: String) throws -> Self {
         guard let jsonData = json.data(using: .utf8) else {
             throw FTJsonParserError.invalidJSON
         }
@@ -105,8 +106,10 @@ public extension FTServiceModel {
             }
             return right
         }
-
-        self = try! Self.makeModel(json: data)
+        
+        if let data = try? Self.makeModel(json: data) {
+            self = data
+        }
     }
 
     // Encode complex key/value objects in NSRULQueryItem pairs
