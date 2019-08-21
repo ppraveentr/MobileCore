@@ -35,8 +35,8 @@ extension UIScrollView {
     @discardableResult
     func addContentView(_ view: FTView) -> FTView {
         self.contentView = view
-        self.pin(view: view, edgeInsets: [.All], priority: .required)
-        self.pin(view: view, edgeInsets: [.CenterMargin], priority: .defaultLow)
+        self.pin(view: view, edgeInsets: [.all], priority: .required)
+        self.pin(view: view, edgeInsets: [.centerMargin], priority: .defaultLow)
         view.addSelfSizing()
         return view
     }

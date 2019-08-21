@@ -13,7 +13,7 @@ public typealias FTNotification = Notification.Name
 
 // Notification Constant
 public extension FTNotification {
-    static let kCA_clearSession = Notification.Name("com.ftmobilecore.notification.name.clearSession.Application")
+    static let kFTClearSessionCache = Notification.Name("com.ftmobilecore.notification.name.clearSession.Application")
 
     func post(_ object: Any? = nil) {
         NotificationCenter.default.post(name: self, object: object)
@@ -65,21 +65,21 @@ open class FTUserCache {
     // Application level cache, reset when app relaunches
     fileprivate var dataDictionary = JSON()
     // session cache, clears when user logout
-    fileprivate var _userCache: FTCache? = nil
+    fileprivate var localCache: FTCache? = nil
 
     public static var userCache: FTCache {
         get {
             // Will be set-to nil when user logsOut
-            if FTUserCache.sharedInstance._userCache == nil {
-                FTUserCache.sharedInstance._userCache = FTCache()
+            if FTUserCache.sharedInstance.localCache == nil {
+                FTUserCache.sharedInstance.localCache = FTCache()
             }
-            return FTUserCache.sharedInstance._userCache!
+            return FTUserCache.sharedInstance.localCache!
         }
     }
 
     public static func setupSession() {
         //
-        NotificationCenter.default.addObserver(forName: .kCA_clearSession, object: nil, queue: nil) { (notification) in
+        NotificationCenter.default.addObserver(forName: .kFTClearSessionCache, object: nil, queue: nil) { (notification) in
             FTUserCache.clearUserData()
         }
     }
@@ -114,7 +114,7 @@ public extension FTUserCache {
 
     @discardableResult
     static func clearUserData() -> Bool {
-        FTUserCache.sharedInstance._userCache = nil
+        FTUserCache.sharedInstance.localCache = nil
         return true
     }
 

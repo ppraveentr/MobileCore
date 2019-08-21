@@ -26,7 +26,6 @@ public struct FTThemeStyle {
                 FTThemeStyle.selectedStyle,
                 FTThemeStyle.disabledStyle]
     }
-    
 }
 
 extension UIView {
@@ -84,7 +83,6 @@ extension UIView {
         // Invoke view's original layoutSubviews
         self.swizzled_layoutSubviews()
     }
-    
 }
 
 fileprivate extension UIView {
@@ -109,7 +107,7 @@ fileprivate extension UIView {
         }
         
         // Get ThemeName and view's name to get Theme's property
-        guard let (className, themeName) = self.get_ThemeName() else {
+        guard let (className, themeName) = self.getThemeName() else {
             return
         }
         
@@ -119,7 +117,7 @@ fileprivate extension UIView {
         // Get Theme property of view based on its state
         guard let themeDic = FTThemesManager.generateVisualThemes(forClass: className,
                                                                   withStyleName: themeName,
-                                                                  withSubStyleName: delegate?.get_ThemeSubType()) else {
+                                                                  withSubStyleName: delegate?.getThemeSubType()) else {
             return
         }
         
@@ -132,47 +130,41 @@ fileprivate extension UIView {
         }
 
         // Get styles for diffrent states of UIControl
-        if controlThemeSelf.get_AllThemeSubType() == true {
-            
+        if controlThemeSelf.getAllThemeSubType() {
             let baseName = themeName.components(separatedBy: ":").first
-
             var styles: FTThemeModel = [:]
-
             // For each style, get Theme value
             FTThemeStyle.allStyles().forEach { (style) in
                 
                 if let styleThemeDic = FTThemesManager.generateVisualThemes(forClass: className,
                                                                        withStyleName: baseName!,
                                                                        withSubStyleName: style) {
-                    
                     // Create FTThemeModel as, ['ThemeStyle.UIControlState' : 'ActualTheme for the state']
                     styles[style] = styleThemeDic
                 }
             }
-            
             // Setup visual component for each style
             controlThemeSelf.setThemes(styles)
         }
     }
     
     // Retruns ('classname', 'Theme-style-name') only if both are valid
-    func get_ThemeName() -> (String, String)? {
+    func getThemeName() -> (String, String)? {
         
         // Vadidate className and ThemeName
         guard
-            let className = get_classNameAsString(obj: self),
+            let className = getClassNameAsString(obj: self),
             let themeName = self.theme else {
             return nil
         }
         
         var baseClassName: String? = className
-
         let getSuperClass = { (obj: AnyObject) -> AnyClass? in
             guard let superClass: AnyClass = class_getSuperclass(type(of: obj)) else {
                 return nil
             }
 
-            if let className = get_classNameAsString(obj: superClass), className.hasPrefix("UI") {
+            if let className = getClassNameAsString(obj: superClass), className.hasPrefix("UI") {
                 return nil
             }
             
@@ -188,7 +180,7 @@ fileprivate extension UIView {
             if let superClass = superClass, !UIView.kTerminalBaseClass.contains(where: { (obj) -> Bool in
                 return obj == superclass
             }) {
-                 baseClassName = get_classNameAsString(obj: superClass)
+                 baseClassName = getClassNameAsString(obj: superClass)
             } else {
                 break
             }
@@ -219,10 +211,9 @@ fileprivate extension UIView {
         }
         
         // Get all subTheme for all stats of the control
-        let themeDic = [controlThemeSelf.get_ThemeSubType() ?? FTThemeStyle.defaultStyle : theme]
+        let themeDic = [controlThemeSelf.getThemeSubType() ?? FTThemeStyle.defaultStyle : theme]
         controlThemeSelf.setThemes(themeDic)
     }
-
 }
 
 // MARK: UIView: FTThemeProtocol
@@ -235,7 +226,7 @@ extension UIView {
             if
                 let colorName = textcolor as? String,
                 let color = FTThemesManager.getColor(colorName) {
-                self.theme_backgroundColor(color)
+                self.updateBackgroundColor(color)
                 // TODO: For attributed title
             }
         }
@@ -255,16 +246,15 @@ extension UIView {
     }
     
     // views background color
-    public func theme_backgroundColor(_ color: UIColor) {
+    public func updateBackgroundColor(_ color: UIColor) {
         self.backgroundColor = color
     }
-
 }
 
 // MARK: UIControl : Style for Different states for UIControl object
 extension UIControl {
     
-    public func get_AllThemeSubType() -> Bool {
+    public func getAllThemeSubType() -> Bool {
         return true
     }
 
@@ -282,26 +272,21 @@ extension UIControl {
                 
             case FTThemeStyle.defaultStyle:
                 themeSelf.update(themeDic: theme, state: .normal)
-                break
                 
             case FTThemeStyle.disabledStyle:
                 themeSelf.update(themeDic: theme, state: .disabled)
-                break
                 
             case FTThemeStyle.highlightedStyle:
                 themeSelf.update(themeDic: theme, state: .highlighted)
-                break
                 
             case FTThemeStyle.selectedStyle:
                 themeSelf.update(themeDic: theme, state: .selected)
-                break
                 
             default:
                 break
             }
         }
     }
-    
 }
 
 // MARK: Window Refresh
@@ -327,5 +312,4 @@ public extension UIWindow {
             NotificationCenter.default.post(name: .FTSwiftyAppearanceDidRefreshWindow, object: self)
         })
     }
-    
 }

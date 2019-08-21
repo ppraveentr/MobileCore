@@ -2,7 +2,7 @@
 //  FTUISearchBar.swift
 //  FTCoreUtility
 //
-//Users/praveenp/xCodeProject/MobileCore/FTCoreUtility/FTCoreUtility/Theme/ThemeComponents/FTUITabBar.swift:11:24: Use of undeclared type 'UITabBar'/  Created by Praveen Prabhakar on 02/10/18.
+//  Created by Praveen Prabhakar on 02/10/18.
 //  Copyright © 2018 Praveen Prabhakar. All rights reserved.
 //
 
@@ -62,34 +62,12 @@ open class FTUISearchBar: UISearchBar, FTThemeProtocol {
                 searchField.attributedPlaceholder = NSAttributedString(string:sting , attributes:att)
             }
 
-
             // Set the background color of the search field.
             searchField.backgroundColor = .clear
         }
 
-        //        if let preferredTextColor = preferredTextColor {
-
-        //            self.layer.borderColor = preferredTextColor.cgColor
-        //            self.layer.borderWidth = 0.2
-        //            self.layer.cornerRadius = 5.0
-        //
-        //            let startPoint = CGPoint(x: 0.0, y: frame.size.height)
-        //            let endPoint = CGPoint(x: frame.size.width, y: frame.size.height)
-        //            let path = UIBezierPath()
-        //            path.move(to: startPoint)
-        //            path.addLine(to: endPoint)
-        //
-        //            let shapeLayer = CAShapeLayer()
-        //            shapeLayer.path = path.cgPath
-        //            shapeLayer.strokeColor = preferredTextColor.cgColor
-        //            shapeLayer.lineWidth = 2.5
-        //
-        //            layer.addSublayer(shapeLayer)
-        //        }
-
         super.draw(rect)
     }
-
 }
 
 public extension FTThemeProtocol where Self: UISearchBar {
@@ -108,7 +86,6 @@ public extension FTThemeProtocol where Self: UISearchBar {
                 tintColor = getColor(value as? String)
             case "textcolor":
                 textcolor = getColor(value as? String)
-
             default:
                 break
             }
@@ -153,5 +130,4 @@ public extension UISearchBar {
             clearButton.tintColor = tintColor
         }
     }
-
 }

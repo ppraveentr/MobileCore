@@ -15,5 +15,5 @@ open class FTErrorModel: FTServiceModel {
     public var status: String?
 
     public var error: String?
-    public var error_description: String?
+    public var errorDescription: String?
 }

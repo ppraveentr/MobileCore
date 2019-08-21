@@ -125,13 +125,11 @@ extension UISegmentedControl {
         
         let appearance = UISegmentedControl.appearance()
         
-        switch imageType {
-        case "selected":
+        if imageType == "selected" {
             appearance.setBackgroundImage(image, for: .selected, barMetrics: .default)
-            break
-        default:
+        }
+        else {
             appearance.setBackgroundImage(image, for: UIControl.State(), barMetrics: .default)
-            break
         }
     }
 }

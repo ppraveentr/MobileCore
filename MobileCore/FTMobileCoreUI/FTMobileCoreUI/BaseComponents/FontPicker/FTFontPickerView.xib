@@ -18,7 +18,7 @@
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="DOk-at-WS8">
                     <rect key="frame" x="10" y="8" width="230" height="40"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1k-hd-2aU" customClass="FTButton" customModule="FTMobileCoreUI">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1k-hd-2aU" customClass="FTButton" customModule="MobileCore" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="3.5" width="114.5" height="33"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
@@ -48,7 +48,7 @@
                                 </label>
                             </subviews>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahq-8y-c9b" customClass="FTButton" customModule="FTMobileCoreUI">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahq-8y-c9b" customClass="FTButton" customModule="MobileCore" customModuleProvider="target">
                             <rect key="frame" x="115.5" y="3.5" width="114.5" height="33"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
@@ -83,7 +83,7 @@
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="JxH-R9-9gp">
                     <rect key="frame" x="35" y="49" width="180" height="40"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wn3-00-vcK" customClass="FTButton" customModule="FTMobileCoreUI">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wn3-00-vcK" customClass="FTButton" customModule="MobileCore" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="5" width="30" height="30"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -98,7 +98,7 @@
                                 <action selector="fontColorSelected:" destination="iN0-l3-epB" eventType="touchUpInside" id="d1P-Yu-oOT"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9OF-A4-dH6" customClass="FTButton" customModule="FTMobileCoreUI">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9OF-A4-dH6" customClass="FTButton" customModule="MobileCore" customModuleProvider="target">
                             <rect key="frame" x="50" y="5" width="30" height="30"/>
                             <color key="backgroundColor" red="0.87843137250000003" green="0.84705882349999995" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -109,7 +109,7 @@
                                 <action selector="fontColorSelected:" destination="iN0-l3-epB" eventType="touchUpInside" id="pnK-Md-1N7"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4N-T6-qr1" customClass="FTButton" customModule="FTMobileCoreUI">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4N-T6-qr1" customClass="FTButton" customModule="MobileCore" customModuleProvider="target">
                             <rect key="frame" x="100" y="5" width="30" height="30"/>
                             <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.36078431372549019" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -120,7 +120,7 @@
                                 <action selector="fontColorSelected:" destination="iN0-l3-epB" eventType="touchUpInside" id="zrb-vo-5xx"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PtS-on-2Ij" customClass="FTButton" customModule="FTMobileCoreUI">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PtS-on-2Ij" customClass="FTButton" customModule="MobileCore" customModuleProvider="target">
                             <rect key="frame" x="150" y="5" width="30" height="30"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>

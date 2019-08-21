@@ -55,7 +55,7 @@ open class FTBaseTableViewController: FTBaseViewController {
         }
     }
 
-    public lazy var tableViewController: FTCoreTableViewController = self.class_TableViewController()
+    public lazy var tableViewController: FTCoreTableViewController = self.getCoreTableViewController()
 
     open func tableViewEdgeOffsets() -> FTEdgeOffsets {
         return .zero
@@ -85,22 +85,16 @@ open class FTBaseTableViewController: FTBaseViewController {
 
 extension FTBaseTableViewController {
 
-    fileprivate func class_TableViewController() -> FTCoreTableViewController {
-
+    fileprivate func getCoreTableViewController() -> FTCoreTableViewController {
         // Create tableView based on user provided style
         let local = FTCoreTableViewController(style: self.tableStyle())
-
         // Add as child view controller
         self.addChild(local)
-
         self.mainView?.pin(view: local.view, edgeOffsets: self.tableViewEdgeOffsets())
-
         // Set default Cell
         local.tableView.register(UITableViewCell.self, forCellReuseIdentifier: kFTCellIdentifier)
-
         local.tableView.dataSource = self
         local.tableView.delegate = self
-
         return local
     }
 
@@ -144,11 +138,9 @@ extension FTBaseTableViewController {
             UIView.commitAnimations()
         }
     }
-    
 }
 
 extension FTBaseTableViewController: UITableViewDataSource {
-    
     // For calculating TableCell height
     open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
@@ -162,11 +154,9 @@ extension FTBaseTableViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: kFTCellIdentifier, for: indexPath)
         return cell
     }
-    
 }
 
 extension FTBaseTableViewController: UITableViewDelegate {
-
     open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
@@ -174,5 +164,4 @@ extension FTBaseTableViewController: UITableViewDelegate {
     open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
-    
 }

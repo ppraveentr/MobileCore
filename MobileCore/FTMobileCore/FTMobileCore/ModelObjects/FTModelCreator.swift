@@ -156,8 +156,8 @@ extension FTModelCreator {
     
     // MARK: File Content Creator
     static func createModelFile(modelName: String, params: [String: AnyObject]) -> String {
-        
-        var paramDef: String = "", codingKeys: String = ""
+        var paramDef: String = ""
+        var codingKeys: String = ""
         // var decoderKeys: String = "", encoderKeys: String = ""
         
         params.forEach { (key, type) in

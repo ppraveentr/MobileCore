@@ -236,13 +236,11 @@ private extension FTServiceClient {
 
         // Service App Base URL
         let baseURL = getBaseURL(requestObject)
-
         // Create URL Components
         var components = URLComponents(string: baseURL)!
 
         // Update subPath url
         if var path = requestObject?.path {
-
             // Remove extra "/"
             if baseURL.hasSuffix("/") && path.hasPrefix("/") {
                 path.trimPrefix("/")
@@ -251,7 +249,6 @@ private extension FTServiceClient {
             else if !baseURL.hasSuffix("/") && !path.hasPrefix("/") {
                 path = "/" + path
             }
-
             components.path.append(path)
         }
 
@@ -264,11 +261,9 @@ extension FTServiceClient {
     // MARK: Service Request
     var serviceRequest: FTRequestObject? {
         get {
-
             if let request: FTRequestObject = FTAssociatedObject.getAssociated(instance: self, key: &FTAssociatedKey.ServiceRequest) {
                 return request
             }
-
             do {
                 if let data = try FTMobileConfig.schemaForClass(classKey: serviceName) {
                     let request = try FTRequestObject.makeModel(json: data)
@@ -277,7 +272,8 @@ extension FTServiceClient {
                     }
                     return request
                 }
-            } catch {
+            }
+            catch {
                 FTLog(FTLogConstants.error.rawValue, error)
             }
             FTLog("serviceRequest: \(serviceName) is nil")

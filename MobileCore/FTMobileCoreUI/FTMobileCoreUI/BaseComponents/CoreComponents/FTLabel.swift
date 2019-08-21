@@ -114,9 +114,8 @@ extension FTLabel {
     }
 
     func updateLabelStyleProperty(isSimpleTextUpdate: Bool = false) {
-
         // Now update our storage from either the attributedString or the plain text
-        if ((self.attributedText?.length ?? 0) != 0) && isSimpleTextUpdate == false {
+        if ((self.attributedText?.length ?? 0) != 0) && !isSimpleTextUpdate {
             self.updateTextWithAttributedString(attributedString: self.attributedText)
         }
         else if (text?.length ?? 0) != 0 {
@@ -125,7 +124,6 @@ extension FTLabel {
         else {
             self.updateTextWithAttributedString(attributedString: nil)
         }
-
         layoutView()
     }
 
@@ -152,7 +150,6 @@ extension FTLabel {
 
         layoutView()
 
-
         if completionBlock != nil {
             completionBlock!()
         }
@@ -178,23 +175,17 @@ extension FTLabel {
 extension FTLabel {
     
     func getStyleProperties() -> [NSAttributedString.Key : Any] {
-
         let paragrahStyle = NSMutableParagraphStyle()
         paragrahStyle.alignment = self.textAlignment
         paragrahStyle.lineBreakMode = self.lineBreakMode
         
         let font = self.font!
-        
         let color = self.textColor!
-        
         let bgColor = self.backgroundColor ?? UIColor.clear
-        
         let properties:[NSAttributedString.Key : Any] = [.paragraphStyle : paragrahStyle,
-                          .font: font,
-                          .foregroundColor: color,
-                          .backgroundColor: bgColor
-                        ]
-        
+                                                         .font: font,
+                                                         .foregroundColor: color,
+                                                         .backgroundColor: bgColor ]
         return properties
     }
 

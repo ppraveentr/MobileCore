@@ -26,7 +26,7 @@ protocol FTUILabelThemeProtocol: FTThemeProtocol {
 public extension FTThemeProtocol where Self: UILabel {
     
     // If view is disabled, check for ".disabledStyle" style
-    func get_ThemeSubType() -> String? {
+    func getThemeSubType() -> String? {
         return self.isEnabled ? nil : FTThemeStyle.disabledStyle
     }
     

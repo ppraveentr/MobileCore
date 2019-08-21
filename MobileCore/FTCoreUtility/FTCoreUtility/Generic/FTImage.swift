@@ -8,9 +8,6 @@
 
 import Foundation
 
-class FTImage: UIImage {
-}
-
 public extension UIImage {
     
     static func named(_ named: String) -> UIImage? {

@@ -113,25 +113,28 @@ public extension FTServiceModel {
     }
 
     // Encode complex key/value objects in NSRULQueryItem pairs
-    private func _queryItems(_ key: String, _ value: Any?) -> [URLQueryItem] {
+    private func queryItems(_ key: String, _ value: Any?) -> [URLQueryItem] {
         var result = [] as [URLQueryItem]
 
         if let dictionary = value as? [String: AnyObject] {
             for (nestedKey, value) in dictionary {
-                result += _queryItems("\(key).\(nestedKey)", value)
+                result += queryItems("\(key).\(nestedKey)", value)
             }
-        } else if let array = value as? [AnyObject] {
+        }
+        else if let array = value as? [AnyObject] {
             for value in array {
-                result += _queryItems(key, value)
+                result += queryItems(key, value)
             }
-        } else if let _ = value as? NSNull {
-            result.append(URLQueryItem(name: key, value: nil))
-        } else if let v = value {
-            result.append(URLQueryItem(name: key, value: "\(v)"))
-        } else {
+        }
+        else if let _ = value as? NSNull {
             result.append(URLQueryItem(name: key, value: nil))
         }
-
+        else if let v = value {
+            result.append(URLQueryItem(name: key, value: "\(v)"))
+        }
+        else {
+            result.append(URLQueryItem(name: key, value: nil))
+        }
         return result
     }
 
@@ -142,7 +145,7 @@ public extension FTServiceModel {
 
         var query:[URLQueryItem] = []
         json.forEach { (arg) in
-            let val = _queryItems(arg.key, arg.value)
+            let val = queryItems(arg.key, arg.value)
             query.append(contentsOf: val)
         }
 
