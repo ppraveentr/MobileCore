@@ -105,24 +105,22 @@ open class FTBaseView: FTView {
         }
         
         // Pin : Top and Side - margin of the firstView to Root
-        rootView.pin(view: viewArray.first!, edgeInsets: [.Top, .Horizontal])
+        rootView.pin(view: viewArray.first!, edgeInsets: [.top, .horizontal])
 
         if viewArray.count > 1 {
             
             // Make all subViews of sameSize, to auto-size the view layout
             rootView.stackView(views: viewArray,
-                               layoutDirection: .TopToBottom,
-                               edgeInsets: [.LeadingMargin, .TrailingMargin, .EqualWidth])
+                               layoutDirection: .topToBottom,
+                               edgeInsets: [.leadingMargin, .trailingMargin, .equalWidth])
         }
         
         // Pin : BottomMargin of the lastView to Root
-        rootView.pin(view: viewArray.last!, edgeInsets: .Bottom)
+        rootView.pin(view: viewArray.last!, edgeInsets: .bottom)
         
         // Pin : MainView to margin
-        rootView.pin(view: self.mainPinnedView, edgeInsets: .Horizontal )
-
+        rootView.pin(view: self.mainPinnedView, edgeInsets: .horizontal )
     }
-    
 }
 
 extension FTBaseView {
@@ -136,5 +134,4 @@ extension FTBaseView {
             super.addSubview(view)
         }
     }
-    
 }

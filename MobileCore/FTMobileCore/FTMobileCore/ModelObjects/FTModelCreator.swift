@@ -28,17 +28,6 @@ fileprivate let kBindingKey = "bindKey"
 fileprivate let kBindingAsType = "bindAs"
 fileprivate let kBindingAsArray = "arrayOf"
 
-/*
- switch repsType {
- case "arrayOf":
- if let obje = "Array<\(repsModelName)>".classInstance() {
- modelType = obje
- }
- default:
- break
- }
- */
-
 open class FTModelCreator {
     
     static var sourcePath: String = ""
@@ -167,8 +156,8 @@ extension FTModelCreator {
     
     // MARK: File Content Creator
     static func createModelFile(modelName: String, params: [String: AnyObject]) -> String {
-        
-        var paramDef: String = "", codingKeys: String = ""
+        var paramDef: String = ""
+        var codingKeys: String = ""
         // var decoderKeys: String = "", encoderKeys: String = ""
         
         params.forEach { (key, type) in
@@ -177,7 +166,7 @@ extension FTModelCreator {
                 paramDef += paramKeysCase(key: key, type: bindParams.0, defaultValues: bindParams.2 as AnyObject)
                 codingKeys += codingKeysCase(key: key, value: bindParams.1)
                 // decoderKeys += decoderCase(key: key, type: bindParams.0)
-                // encoderKeys += encoderCase(key: key, isOptional: bindParams.3)
+                // encoderKeys += encoderCase(key: key)
             }
         }
     
@@ -239,14 +228,6 @@ extension FTModelCreator {
     
     // MARK: Decoder case
     static func decoderCase(key: String, type: String) -> String {
-        /*
-         """
-         if let value = try container?.decodeIfPresent(\(type).self, forKey: .\(key)) {
-         self.\(key) = value
-         }
-         """
-         */
-        
         let string = "self.\(key) = try container?.decodeIfPresent(\(type).self, forKey: .\(key))"
         return string + "\n"
     }
@@ -265,20 +246,8 @@ extension FTModelCreator {
     }
     
     // MARK: Encoder case
-    static func encoderCase(key: String, isOptional: Bool) -> String {
-        /*
-        let string = "if " +
-            (isOptional ? "\(key) != nil" : "!\(key).isEmpty")
-            + " {"
-            + "\n" +
-        """
-            try container.encode(\(key), forKey: .\(key))
-        }
-        """
-        */
-        
+    static func encoderCase(key: String) -> String {
         let string = "try container.encode(\(key), forKey: .\(key))"
         return string + "\n"
     }
-    
 }

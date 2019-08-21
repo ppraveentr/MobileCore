@@ -330,7 +330,7 @@ open class FTKeychainWrapper {
         // Uniquely identify this keychain accessor
         keychainQueryDictionary[SecAttrService] = serviceName
         
-        // Only set accessibiilty if its passed in, we don't want to default it here in case the user didn't want it set
+        // Only set accessibiilty if its passed in
         if let accessibility = accessibility {
             keychainQueryDictionary[SecAttrAccessible] = accessibility.keychainAttrValue
         }

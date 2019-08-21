@@ -84,7 +84,7 @@ public enum FTKeychainItemAccessibility {
 }
 
 private let FTKeychainItemAccessibilityLookup: [FTKeychainItemAccessibility:CFString] = {
-    var lookup: [FTKeychainItemAccessibility:CFString] = [
+    let lookup: [FTKeychainItemAccessibility:CFString] = [
         .afterFirstUnlock: kSecAttrAccessibleAfterFirstUnlock,
         .afterFirstUnlockThisDeviceOnly: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly,
         .always: kSecAttrAccessibleAlways,

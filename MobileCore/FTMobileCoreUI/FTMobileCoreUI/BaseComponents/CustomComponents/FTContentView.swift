@@ -11,16 +11,16 @@ import WebKit
 
 open class FTContentView: UIScrollView {
     
-    var MyObservationContext = 0
+    var observationContext = 0
     var observing = false
     lazy public var webView: WKWebView = self.getWebView()
     public weak var scrollView: UIScrollView?
 
     private func getWebView() -> WKWebView {
-        let webView = WKWebView()
-        super.contentView?.pin(view: webView)
-        self.startObservingHeight(webView)
-        return webView
+        let local = WKWebView()
+        super.contentView?.pin(view: local)
+        self.startObservingHeight(local)
+        return local
     }
     
     deinit {
@@ -39,12 +39,12 @@ open class FTContentView: UIScrollView {
         webView.setScrollEnabled(enabled: false)
         
         let options = NSKeyValueObservingOptions([.new])
-        self.scrollView?.addObserver(self, forKeyPath: "contentSize", options: options, context: &MyObservationContext)
+        self.scrollView?.addObserver(self, forKeyPath: "contentSize", options: options, context: &observationContext)
         observing = true
     }
     
     func stopObservingHeight() {
-        scrollView?.removeObserver(self, forKeyPath: "contentSize", context: &MyObservationContext)
+        scrollView?.removeObserver(self, forKeyPath: "contentSize", context: &observationContext)
         observing = false
     }
     
@@ -59,7 +59,7 @@ open class FTContentView: UIScrollView {
         }
         
         switch (keyPath, context) {
-        case("contentSize", &MyObservationContext):
+        case("contentSize", &observationContext):
             
             if let nsSize = change?[NSKeyValueChangeKey.newKey] as? NSValue {
                 let val = nsSize.cgSizeValue.height
@@ -71,14 +71,4 @@ open class FTContentView: UIScrollView {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
-
-    // MARK: JS
-//    func updateHeight() {
-//        self.webView.evaluateJavaScript("document.body.scrollHeight") { (obj, error) in
-//            if let hei = obj as? CGFloat {
-//                self.contentView.viewLayoutConstraint.constraintHeight?.constant = hei
-//            }
-//        }
-//    }
-
 }

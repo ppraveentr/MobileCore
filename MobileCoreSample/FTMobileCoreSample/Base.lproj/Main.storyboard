@@ -50,12 +50,12 @@
         <!--Item-->
         <scene sceneID="1Gh-Uk-LiR">
             <objects>
-                <viewController id="Ihh-Hk-plv" customClass="FTBaseViewController" customModule="FTMobileCoreUI" sceneMemberID="viewController">
+                <viewController id="Ihh-Hk-plv" customClass="FTBaseViewController" customModule="MobileCore" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bbv-8F-dIm" customClass="FTBaseView" customModule="FTMobileCoreUI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jix-Bc-PDl" customClass="FTView" customModule="FTMobileCoreUI">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jix-Bc-PDl" customClass="FTView" customModule="MobileCore">
                                 <rect key="frame" x="10" y="30" width="355" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogN-X5-iiq">
@@ -74,7 +74,7 @@
                                     <constraint firstItem="ogN-X5-iiq" firstAttribute="leading" secondItem="Jix-Bc-PDl" secondAttribute="leading" constant="20" id="Iru-P8-79W"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U9K-uE-Gcc" customClass="FTView" customModule="FTMobileCoreUI">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U9K-uE-Gcc" customClass="FTView" customModule="MobileCore">
                                 <rect key="frame" x="0.0" y="220" width="375" height="398"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="fVk-vi-X0O">

@@ -40,27 +40,17 @@ open class FTCoreUtility {
         return self.topViewController(presentedViewController)
     }
     
+    public static func isRegisteredURLScheme(scheme: String) -> Bool {
+        if let bundleURLTypes = Bundle.main.infoDictionary?["CFBundleURLTypes"] as? NSArray {
+            for urlType in bundleURLTypes {
+                if
+                    let urlSchemes = (urlType as? NSDictionary)?.value(forKey: "CFBundleURLSchemes") as? NSArray,
+                    urlSchemes.contains(scheme)
+                {
+                    return true
+                }
+            }
+        }
+        return false
+    }
 }
-
-// + (BOOL)isRegisteredURLScheme:(NSString *)urlScheme {
-//   static dispatch_once_t fetchBundleOnce;
-//   static NSArray *urlTypes = nil;
-//   
-//   dispatch_once(&fetchBundleOnce, ^{
-//   urlTypes = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleURLTypes"];
-//   });
-//   for (NSDictionary *urlType in urlTypes) {
-//       NSArray *urlSchemes = [urlType valueForKey:@"CFBundleURLSchemes"];
-//       if ([urlSchemes containsObject:urlScheme]) {
-//           return YES;
-//       }
-//   }
-//   return NO;
-// }
-
-// + (unsigned long)currentTimeInMilliseconds
-//   {
-//       struct timeval time
-//       gettimeofday(&time, NULL)
-//       return (time.tv_sec * 1000) + (time.tv_usec / 1000)
-// }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public func get_classNameAsString(obj: Any) -> String? {
+public func getClassNameAsString(obj: Any) -> String? {
     return FTReflection.swiftStringFromClass(obj)
 }
 

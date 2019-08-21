@@ -23,11 +23,11 @@ public extension FTFlattenIterator {
         
         // Sub-Elements
         let stripSubElements = { (_ val: inout Any) -> Any in
-            if var updated = val as? [String: Any?] {
-                return updated.stripNilElements()
+            if var asJson = val as? [String: Any?] {
+                return asJson.stripNilElements()
             }
-            else if var updated = val as? [Any?] {
-                return updated.stripNilElements()
+            else if var asList = val as? [Any?] {
+                return asList.stripNilElements()
             }
             return val
         }

@@ -18,7 +18,7 @@ enum FTJsonParserError: Error {
 public protocol FTServiceModel: Codable {
     static func makeModel(json: String) throws -> Self
     static func makeModel(json: Data) throws -> Self
-    static func createEmpytModel() -> Self
+    static func createEmpytModel() throws -> Self
 
     // JSON
     func jsonModel() -> JSON?
@@ -35,11 +35,12 @@ extension Dictionary: FTServiceModel where Key: Codable, Value: Codable { }
 
 public extension FTServiceModel {
 
-    static func createEmpytModel() -> Self {
-        return try! makeModel(json: [:])
+    static func createEmpytModel() throws -> Self {
+        let data = try makeModel(json: [:])
+        return data
     }
 
-    static func makeModel(json: String) throws  -> Self {
+    static func makeModel(json: String) throws -> Self {
         guard let jsonData = json.data(using: .utf8) else {
             throw FTJsonParserError.invalidJSON
         }
@@ -105,30 +106,35 @@ public extension FTServiceModel {
             }
             return right
         }
-
-        self = try! Self.makeModel(json: data)
+        
+        if let data = try? Self.makeModel(json: data) {
+            self = data
+        }
     }
 
     // Encode complex key/value objects in NSRULQueryItem pairs
-    private func _queryItems(_ key: String, _ value: Any?) -> [URLQueryItem] {
+    private func queryItems(_ key: String, _ value: Any?) -> [URLQueryItem] {
         var result = [] as [URLQueryItem]
 
         if let dictionary = value as? [String: AnyObject] {
             for (nestedKey, value) in dictionary {
-                result += _queryItems("\(key).\(nestedKey)", value)
+                result += queryItems("\(key).\(nestedKey)", value)
             }
-        } else if let array = value as? [AnyObject] {
+        }
+        else if let array = value as? [AnyObject] {
             for value in array {
-                result += _queryItems(key, value)
+                result += queryItems(key, value)
             }
-        } else if let _ = value as? NSNull {
-            result.append(URLQueryItem(name: key, value: nil))
-        } else if let v = value {
-            result.append(URLQueryItem(name: key, value: "\(v)"))
-        } else {
+        }
+        else if let _ = value as? NSNull {
             result.append(URLQueryItem(name: key, value: nil))
         }
-
+        else if let v = value {
+            result.append(URLQueryItem(name: key, value: "\(v)"))
+        }
+        else {
+            result.append(URLQueryItem(name: key, value: nil))
+        }
         return result
     }
 
@@ -139,7 +145,7 @@ public extension FTServiceModel {
 
         var query:[URLQueryItem] = []
         json.forEach { (arg) in
-            let val = _queryItems(arg.key, arg.value)
+            let val = queryItems(arg.key, arg.value)
             query.append(contentsOf: val)
         }
 

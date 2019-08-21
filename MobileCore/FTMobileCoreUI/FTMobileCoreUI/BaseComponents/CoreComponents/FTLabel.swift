@@ -114,9 +114,8 @@ extension FTLabel {
     }
 
     func updateLabelStyleProperty(isSimpleTextUpdate: Bool = false) {
-
         // Now update our storage from either the attributedString or the plain text
-        if ((self.attributedText?.length ?? 0) != 0) && isSimpleTextUpdate == false {
+        if ((self.attributedText?.length ?? 0) != 0) && !isSimpleTextUpdate {
             self.updateTextWithAttributedString(attributedString: self.attributedText)
         }
         else if (text?.length ?? 0) != 0 {
@@ -125,7 +124,6 @@ extension FTLabel {
         else {
             self.updateTextWithAttributedString(attributedString: nil)
         }
-
         layoutView()
     }
 
@@ -152,7 +150,6 @@ extension FTLabel {
 
         layoutView()
 
-
         if completionBlock != nil {
             completionBlock!()
         }
@@ -163,7 +160,7 @@ extension FTLabel {
         self.linkRanges = [FTLinkDetection]()
 
         // HTTP links
-        let links = FTLinkDetection.getURLLinkRanges((attributedString.string))
+        let links = FTLinkDetection.getURLLinkRanges(attributedString.string)
         self.linkRanges?.insert(contentsOf: links, at: 0)
 
         self.linkRanges?.forEach { (link) in
@@ -178,23 +175,17 @@ extension FTLabel {
 extension FTLabel {
     
     func getStyleProperties() -> [NSAttributedString.Key : Any] {
-
         let paragrahStyle = NSMutableParagraphStyle()
         paragrahStyle.alignment = self.textAlignment
         paragrahStyle.lineBreakMode = self.lineBreakMode
         
         let font = self.font!
-        
         let color = self.textColor!
-        
         let bgColor = self.backgroundColor ?? UIColor.clear
-        
         let properties:[NSAttributedString.Key : Any] = [.paragraphStyle : paragrahStyle,
-                          .font: font,
-                          .foregroundColor: color,
-                          .backgroundColor: bgColor
-                        ]
-        
+                                                         .font: font,
+                                                         .foregroundColor: color,
+                                                         .backgroundColor: bgColor ]
         return properties
     }
 
@@ -212,21 +203,10 @@ extension FTLabel {
 
         return properties
     }
-    
 }
 
 // MARK: Text Sanitizing
 extension FTLabel: NSLayoutManagerDelegate {
-
-//    public func layoutManager(_ layoutManager: NSLayoutManager, shouldBreakLineByWordBeforeCharacterAt charIndex: Int) -> Bool {
-//
-//        var range = NSRange(location: 0, length: (attributedText?.length) ?? 0)
-//        if (layoutManager.textStorage?.attribute(.link, at: charIndex, effectiveRange: &range)) != nil {
-//            return !(charIndex > range.location && charIndex <= NSMaxRange(range))
-//        }
-//
-//        return true
-//    }
 
     func sanitizeAttributedString(attributedString: NSAttributedString) -> NSMutableAttributedString {
 
@@ -249,7 +229,6 @@ extension FTLabel: NSLayoutManagerDelegate {
 
         return restyledString
     }
-    
 }
 
 // MARK: Text Rendering
@@ -274,10 +253,8 @@ extension FTLabel {
         self.textContainer.size = bounds.size
         self.textContainer.maximumNumberOfLines = numberOfLines
         
-        var textBounds: CGRect = .zero
-        
         let glyphRange = self.layoutManager.glyphRange(for: self.textContainer)
-        textBounds = self.layoutManager.boundingRect(forGlyphRange: glyphRange, in: self.textContainer)
+        var textBounds = self.layoutManager.boundingRect(forGlyphRange: glyphRange, in: self.textContainer)
         
         textBounds.origin = bounds.origin
         textBounds.size.width = CGFloat(ceilf(Float(textBounds.width)))
@@ -302,7 +279,6 @@ extension FTLabel {
         
         return textOffset
     }
-    
 }
 
 // MARK: Container SetUp
@@ -352,5 +328,4 @@ extension FTLabel {
         
         return local
     }
-    
 }

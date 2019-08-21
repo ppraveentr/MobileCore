@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class FTView: FTUIView {
+open class FTView: UIView {
     
     override open func layoutSubviews() {
         super.layoutSubviews()
