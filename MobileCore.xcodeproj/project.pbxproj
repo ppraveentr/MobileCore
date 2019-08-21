@@ -22,7 +22,6 @@
 		D42A585123047DD6003C7283 /* FTAppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A582A23047DD6003C7283 /* FTAppearanceManager.swift */; };
 		D42A585223047DD6003C7283 /* FTUISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A582C23047DD6003C7283 /* FTUISearchBar.swift */; };
 		D42A585323047DD6003C7283 /* FTUILabelThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A582D23047DD6003C7283 /* FTUILabelThemeProtocol.swift */; };
-		D42A585423047DD6003C7283 /* FTUITabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A582E23047DD6003C7283 /* FTUITabBar.swift */; };
 		D42A585523047DD6003C7283 /* FTUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A582F23047DD6003C7283 /* FTUIButton.swift */; };
 		D42A585623047DD6003C7283 /* FTUINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A583023047DD6003C7283 /* FTUINavigationBar.swift */; };
 		D42A585823047DD6003C7283 /* FTUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A583223047DD6003C7283 /* FTUICollectionView.swift */; };
@@ -45,7 +44,6 @@
 		D42A586923047DD6003C7283 /* FTKeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A584723047DD6003C7283 /* FTKeychainItemAccessibility.swift */; };
 		D42A587923047DE3003C7283 /* FTUserCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A586C23047DE3003C7283 /* FTUserCache.swift */; };
 		D42A587A23047DE3003C7283 /* FTURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A586E23047DE3003C7283 /* FTURLSession.swift */; };
-		D42A587B23047DE3003C7283 /* FTOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A586F23047DE3003C7283 /* FTOperationQueue.swift */; };
 		D42A587C23047DE3003C7283 /* FTModelCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A587123047DE3003C7283 /* FTModelCreator.swift */; };
 		D42A587D23047DE3003C7283 /* FTServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A587323047DE3003C7283 /* FTServiceModel.swift */; };
 		D42A587E23047DE3003C7283 /* FTMobileConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A587423047DE3003C7283 /* FTMobileConfig.swift */; };
@@ -115,7 +113,6 @@
 		D42A582A23047DD6003C7283 /* FTAppearanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTAppearanceManager.swift; sourceTree = "<group>"; };
 		D42A582C23047DD6003C7283 /* FTUISearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUISearchBar.swift; sourceTree = "<group>"; };
 		D42A582D23047DD6003C7283 /* FTUILabelThemeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUILabelThemeProtocol.swift; sourceTree = "<group>"; };
-		D42A582E23047DD6003C7283 /* FTUITabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUITabBar.swift; sourceTree = "<group>"; };
 		D42A582F23047DD6003C7283 /* FTUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIButton.swift; sourceTree = "<group>"; };
 		D42A583023047DD6003C7283 /* FTUINavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUINavigationBar.swift; sourceTree = "<group>"; };
 		D42A583223047DD6003C7283 /* FTUICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUICollectionView.swift; sourceTree = "<group>"; };
@@ -138,7 +135,6 @@
 		D42A584723047DD6003C7283 /* FTKeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTKeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		D42A586C23047DE3003C7283 /* FTUserCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUserCache.swift; sourceTree = "<group>"; };
 		D42A586E23047DE3003C7283 /* FTURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTURLSession.swift; sourceTree = "<group>"; };
-		D42A586F23047DE3003C7283 /* FTOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTOperationQueue.swift; sourceTree = "<group>"; };
 		D42A587123047DE3003C7283 /* FTModelCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTModelCreator.swift; sourceTree = "<group>"; };
 		D42A587323047DE3003C7283 /* FTServiceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTServiceModel.swift; sourceTree = "<group>"; };
 		D42A587423047DE3003C7283 /* FTMobileConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMobileConfig.swift; sourceTree = "<group>"; };
@@ -302,7 +298,6 @@
 			children = (
 				D42A582C23047DD6003C7283 /* FTUISearchBar.swift */,
 				D42A582D23047DD6003C7283 /* FTUILabelThemeProtocol.swift */,
-				D42A582E23047DD6003C7283 /* FTUITabBar.swift */,
 				D42A582F23047DD6003C7283 /* FTUIButton.swift */,
 				D42A583023047DD6003C7283 /* FTUINavigationBar.swift */,
 				D42A583223047DD6003C7283 /* FTUICollectionView.swift */,
@@ -379,7 +374,6 @@
 			isa = PBXGroup;
 			children = (
 				D42A586E23047DE3003C7283 /* FTURLSession.swift */,
-				D42A586F23047DE3003C7283 /* FTOperationQueue.swift */,
 			);
 			path = CoreNetwork;
 			sourceTree = "<group>";
@@ -644,7 +638,6 @@
 				D42A586923047DD6003C7283 /* FTKeychainItemAccessibility.swift in Sources */,
 				D42A584E23047DD6003C7283 /* FTAppDelegate.swift in Sources */,
 				D42A588223047DE3003C7283 /* FTModelStack.swift in Sources */,
-				D42A585423047DD6003C7283 /* FTUITabBar.swift in Sources */,
 				D42A588023047DE3003C7283 /* FTRequestObject.swift in Sources */,
 				D42A585D23047DD6003C7283 /* FTAssociatedObject.swift in Sources */,
 				D42A587E23047DE3003C7283 /* FTMobileConfig.swift in Sources */,
@@ -693,7 +686,6 @@
 				D45E3CF1230BF7F6005BD885 /* FTThemeProtocol.swift in Sources */,
 				D42A58B023047DEA003C7283 /* FTBaseView.swift in Sources */,
 				D42A58B223047DEA003C7283 /* FTFontPickerView.swift in Sources */,
-				D42A587B23047DE3003C7283 /* FTOperationQueue.swift in Sources */,
 				D42A585C23047DD6003C7283 /* FTView+Utiltiy.swift in Sources */,
 				D42A58AF23047DEA003C7283 /* FTContentView.swift in Sources */,
 				D42A585E23047DD6003C7283 /* FTImageView.swift in Sources */,

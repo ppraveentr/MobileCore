@@ -38,21 +38,18 @@ class ViewController: FTBaseViewController {
         buttonPopOver.addTarget(self, action: #selector(showFontPicker), for: .touchUpInside)
         
         let topView = FTView()
-        topView.pin(view: button, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .Left, .Vertical ])
-        topView.pin(view: buttonPopOver, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .Right ])
-
+        topView.pin(view: button, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .left, .vertical ])
+        topView.pin(view: buttonPopOver, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .right ])
         topView.stackView(views: [button, buttonD, buttonPopOver],
-                          layoutDirection: .LeftToRight,
+                          layoutDirection: .leftToRight,
                           spacing: 20,
-                          edgeInsets: [ .TopMargin, .EqualSize ])
+                          edgeInsets: [ .topMargin, .equalSize ])
         
         self.baseView?.topPinnedView = topView
         
-        
         //MARK: MainView
-        
         let scrollView = UIScrollView()
-        self.mainView?.pin(view: scrollView, edgeInsets: [.TopMargin, .Horizontal])
+        self.mainView?.pin(view: scrollView, edgeInsets: [.topMargin, .horizontal])
 
         let label = FTLabel()
         label.text = "top"
@@ -74,12 +71,12 @@ class ViewController: FTBaseViewController {
         bottomL.text = "bottom"
         bottomL.theme = "system14Y"
         
-        scrollView.contentView.pin(view: label, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .Left, .Vertical ])
-        scrollView.contentView.pin(view: bottomL, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .Right ])
+        scrollView.contentView.pin(view: label, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .left, .vertical ])
+        scrollView.contentView.pin(view: bottomL, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .right ])
 
         scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, bottomL],
-                                         layoutDirection: .LeftToRight, spacing: 20,
-                                         edgeInsets: [.AutoSize, .TopMargin])
+                                         layoutDirection: .leftToRight, spacing: 20,
+                                         edgeInsets: [.autoSize, .topMargin])
 
         
 //        scrollView.contentView.pin(view: label, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Top, .Horizontal ])
