@@ -26,7 +26,7 @@ protocol FTUILabelThemeProtocol: FTThemeProtocol {
 public extension FTThemeProtocol where Self: UILabel {
     
     // If view is disabled, check for ".disabledStyle" style
-    func get_ThemeSubType() -> String? {
+    func getThemeSubType() -> String? {
         return self.isEnabled ? nil : FTThemeStyle.disabledStyle
     }
     
@@ -82,11 +82,6 @@ extension UILabel: FTUILabelThemeProtocol {
         if let labelTheme = self as? FTUILabelThemeProperyProtocol {
             labelTheme.islinkDetectionEnabled = bool
         }
-    }
-    
-    // TODO:
-    open func theme_isUnderlineNeeded(bool: Bool) {
-        
     }
     
     // text font

@@ -17,8 +17,3 @@ public func FTMaxSize(_ rhs: CGSize,_ lhs: CGSize) -> CGSize {
     return CGSize(width: max(rhs.width, lhs.width),
            height: max(rhs.height, lhs.height))
 }
-
-public func FTSizeMax() -> CGSize {
-    return CGSize(width: CGFloat.greatestFiniteMagnitude,
-                  height: CGFloat.greatestFiniteMagnitude)
-}

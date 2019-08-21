@@ -148,7 +148,9 @@ public extension String {
         let fileManger = FileManager.default
         do {
             let filelist = try fileManger.contentsOfDirectory(atPath: self)
-            _ = filelist.map({ fileAtPath((self + "/\($0)")) })
+            _ = filelist.map {
+                fileAtPath( (self + "/\($0)") )
+            }
         } catch {
             if fileManger.contents(atPath: self) != nil {
                 fileAtPath(self)
@@ -157,10 +159,10 @@ public extension String {
     }
 
     // MARK: Bundle
-    func bundleURL(extention: String = "bundle") -> URL? {
+    func bundleURL(extention: String = ".bundle") -> URL? {
         var value = self
-        if !value.hasSuffix(".bundle") {
-            value.append(".bundle")
+        if !value.hasSuffix(extention) {
+            value.append(extention)
         }
         return Bundle.main.resourceURL?.appendingPathComponent(value)
     }

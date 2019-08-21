@@ -26,9 +26,9 @@ public extension UIView {
         let local = self.init()
         local.backgroundColor = .clear
         
-        local.pin(view: contentView, edgeInsets: [.All], priority: FTLayoutPriorityRequiredLow)
-        local.pin(view: contentView, edgeInsets: [.CenterMargin], priority: .defaultLow)
-        local.pin(view: contentView, edgeInsets: [.EqualWidth, .Top])
+        local.pin(view: contentView, edgeInsets: [.all], priority: FTLayoutPriorityRequiredLow)
+        local.pin(view: contentView, edgeInsets: [.centerMargin], priority: .defaultLow)
+        local.pin(view: contentView, edgeInsets: [.equalWidth, .top])
         
         return local
     }
@@ -49,12 +49,12 @@ public extension UIView {
     // MARK: XIB
     // Get nib based on once's class name
     static func getNIBFile() -> UINib? {
-        return UINib(nibName: get_classNameAsString(obj: self) ?? "", bundle: nil)
+        return UINib(nibName: getClassNameAsString(obj: self) ?? "", bundle: nil)
     }
     
     // Get view based on once's class name
     static func fromNib(_ owner: Any? = nil) -> UIView? {
-        return fromNib(named: get_classNameAsString(obj: self) ?? "", owner: owner)
+        return fromNib(named: getClassNameAsString(obj: self) ?? "", owner: owner)
     }
     
     // Retruns first view from the nib file

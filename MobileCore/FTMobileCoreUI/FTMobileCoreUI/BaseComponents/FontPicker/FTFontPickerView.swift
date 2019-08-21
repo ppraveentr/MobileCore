@@ -40,14 +40,6 @@ open class FTFontPickerModel {
     func decreaseSize() {
         (fontSize -= fontSizeStepValue)
     }
-
-//    public enum FontSizePicker {
-//        case increment
-//        case decrement
-//    }
-//    func adjustFontSize(_ size: FontSizePicker) {
-//        (size == .increment) ? (fontSize += fontSizeStepValue) : (fontSize -= fontSizeStepValue)
-//    }
 }
 
 open class FTFontPickerView: FTView {

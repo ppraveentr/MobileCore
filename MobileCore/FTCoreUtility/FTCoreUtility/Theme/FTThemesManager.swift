@@ -209,17 +209,13 @@ open class FTThemesManager {
             switch name {
             case "cornerRadius":
                 caLayer.cornerRadius = floatValue(value)
-                break
             case "borderWidth":
                 caLayer.borderWidth = floatValue(value)
-                break
             case "masksToBounds":
                 caLayer.masksToBounds = floatValue(value) > 0
-                break
             case "borderColor":
                 let value = value as? String
                     caLayer.borderColor = FTThemesManager.getColor(value)?.cgColor
-                break
             default:
                 break
             }
@@ -351,15 +347,12 @@ extension FTThemesManager {
             superBlock = { (colorName) in
                 return themeColor(colorName)
             }
-            break
             
             // Convert JSON to UIFont
         case .Font:
             superBlock = { (fontName) in
                 return themeFont(fontName)
             }
-            
-            break
         }
         
         var actualComponents: Any? = nil

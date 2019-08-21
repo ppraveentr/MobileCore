@@ -121,11 +121,9 @@ public class FTLoadingIndicator: UIView {
         self.loadingView?.start()
         
         if self.animated {
-            UIView.animate(withDuration: 0.3, animations: { () in
+            UIView.animate(withDuration: 0.3) {
                 self.alpha = 1
-            }, completion: { (finished) -> Void in
-                
-            })
+            }
         } else {
             self.alpha = 1
         }
@@ -359,8 +357,13 @@ public class FTLoadingIndicator: UIView {
          */
         public var cornerRadius : CGFloat = 10.0
         
-        public init() {}
+        /**
+         *  Corner radius for loader
+         */
+        public var customConfig : [String:Any]?
         
+        public init(_ customConfig: [String:Any]? = nil) {
+            self.customConfig = customConfig
+        }
     }
-    
 }

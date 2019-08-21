@@ -19,11 +19,11 @@ class AppDelegate: FTAppDelegate {
         if
             let resource = Bundle.main.path(forResource: "FTMobileCoreBundle", ofType: "bundle"),
             let theme = Bundle(path: resource)?.path(forResource: "Themes", ofType: "json"),
-            let themeContent: FTThemeModel = try! theme.jsonContentAtPath() {
+            let themeContent: FTThemeModel = try? theme.jsonContentAtPath()
+        {
             FTThemesManager.setupThemes(themes: themeContent, imageSourceBundle: [Bundle(for: AppDelegate.self)])
         }
         
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
-
 }

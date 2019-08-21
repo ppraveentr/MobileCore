@@ -106,16 +106,18 @@ extension FTMobileConfig {
         }
     }
 
-    public static func loadModelSchema(fromPath path: String ) throws {
+    public static func loadModelSchema(fromPath path: String? = nil) throws {
 
-        let path = serviceBindingDirectory()
+        let path = path ?? serviceBindingDirectory()
         try path.filesAtPath { (filePath) in
             do {
                 if let content: JSON = try filePath.jsonContentAtPath() {
                     try loadModelSchema(content)
+                } else {
+                    FTLog("Files emtpy")
                 }
             } catch {
-                FTLog("FTError: ", error)
+                FTLog("Load Model Schema Error: ", error)
             }
         }
     }
@@ -123,21 +125,18 @@ extension FTMobileConfig {
     public static func schemaForClass(classKey: String) throws -> JSON? {
         return self.sharedInstance.modelSchema[classKey] as? JSON
     }
-    
 }
 
 // MARK: Binding Rules
 extension FTMobileConfig {
 
     public static func loadBindingRules() throws {
-
         if
             let resourcePath = Bundle.main.path(forResource: self.serviceBindingRulesName, ofType: nil),
-            let content: JSON = NSMutableDictionary(contentsOfFile: resourcePath) as? JSON {
-            if JSONSerialization.isValidJSONObject(content) {
+            let content: JSON = NSMutableDictionary(contentsOfFile: resourcePath) as? JSON,
+            JSONSerialization.isValidJSONObject(content)
+        {
                 self.sharedInstance.serviceRuels += content
-            }
         }
     }
-    
 }

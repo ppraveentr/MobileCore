@@ -318,13 +318,11 @@ extension FTBaseViewController {
         }
 
         // Pin - rootView's topAnchor
-        if horizontalSafeAreaLayoutGuide() {
-            if #available(iOS 11.0, *) {
-                local?.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor,
-                                             constant: 0.0).isActive = true
-                local?.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
-                                              constant: 0.0).isActive = true
-            }
+        if #available(iOS 11.0, *), horizontalSafeAreaLayoutGuide() {
+            local?.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor,
+                                         constant: 0.0).isActive = true
+            local?.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
+                                          constant: 0.0).isActive = true
         }
 
         // Pin - rootView's bottomAnchor
@@ -335,9 +333,7 @@ extension FTBaseViewController {
             local?.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor,
                                            constant: 0.0).isActive = true
         }
-        
     }
-    
 }
 
 // MARK: Notification whenever view is loaded
@@ -362,5 +358,4 @@ extension FTBaseViewController {
         super.viewDidDisappear(animated)
         postNotification(name: .FTMobileCoreUI_ViewController_DidDisappear)
     }
-    
 }
