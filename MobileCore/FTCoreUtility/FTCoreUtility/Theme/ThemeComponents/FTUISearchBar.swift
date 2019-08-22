@@ -58,8 +58,8 @@ open class FTUISearchBar: UISearchBar, FTThemeProtocol {
                 att[.foregroundColor] = preferredTextColor
             }
 
-            if let sting = searchField.attributedPlaceholder?.string, att.count > 0 {
-                searchField.attributedPlaceholder = NSAttributedString(string:sting , attributes:att)
+            if let sting = searchField.attributedPlaceholder?.string, !att.isEmpty {
+                searchField.attributedPlaceholder = NSAttributedString(string: sting, attributes: att)
             }
 
             // Set the background color of the search field.

@@ -171,15 +171,22 @@ extension FTBaseViewController: FTAppBaseProtocal {
                                    rightButtonTitle: String? = nil,
                                    rightButtonImage: UIImage? = nil,
                                    rightButtonAction: Selector? = kRightButtonAction,
-                                   rightCustomView: UIView? = nil)
-    {
-        self_setupNavigationbar(title: title, leftButtonTitle: leftButtonTitle, leftButtonImage: leftButtonImage, leftButtonAction: leftButtonAction, leftCustomView: leftCustomView, rightButtonTitle: rightButtonTitle, rightButtonImage: rightButtonImage, rightButtonAction: rightButtonAction, rightCustomView: rightCustomView)
+                                   rightCustomView: UIView? = nil) {
+        self_setupNavigationbar(
+            title: title,
+            leftButtonTitle: leftButtonTitle,
+            leftButtonImage: leftButtonImage,
+            leftButtonAction: leftButtonAction,
+            leftCustomView: leftCustomView,
+            rightButtonTitle: rightButtonTitle,
+            rightButtonImage: rightButtonImage,
+            rightButtonAction: rightButtonAction,
+            rightCustomView: rightCustomView
+        )
     }
     
     public func setupNavigationbar(title: String, leftButton: UIBarButtonItem? = nil, rightButton: UIBarButtonItem? = nil) {
-        self_setupNavigationbar(title: title,
-                                leftButton: leftButton,
-                                rightButton: rightButton)
+        self_setupNavigationbar(title: title, leftButton: leftButton, rightButton: rightButton)
     }
     
     // Left navBar button
@@ -188,8 +195,7 @@ extension FTBaseViewController: FTAppBaseProtocal {
                                         image: UIImage? = nil,
                                         buttonType: UIBarButtonItem.SystemItem = .stop,
                                         customView: UIView? = nil,
-                                        buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem?
-    {
+                                        buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem? {
         return self_leftNavigationBarButton(title: title, image: image, buttonType: buttonType, customView: customView, buttonAction: buttonAction)
     }
     
@@ -199,17 +205,15 @@ extension FTBaseViewController: FTAppBaseProtocal {
                                          image: UIImage? = nil,
                                          buttonType: UIBarButtonItem.SystemItem = .done,
                                          customView: UIView? = nil,
-                                         buttonAction: Selector? = kRightButtonAction) -> UIBarButtonItem?
-    {
-        return self_rightNavigationBarButton(title: title, image: image,buttonType: buttonType, customView: customView, buttonAction: buttonAction)
+                                         buttonAction: Selector? = kRightButtonAction) -> UIBarButtonItem? {
+        return self_rightNavigationBarButton(title: title, image: image, buttonType: buttonType, customView: customView, buttonAction: buttonAction)
     }
     
     public func navigationBarButton(title: String? = nil,
                                     image: UIImage? = nil,
-                                    buttonType: UIBarButtonItem.SystemItem,
+                                    buttonType: UIBarButtonItem.SystemItem = .done,
                                     customView: UIView? = nil,
-                                    buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem
-    {
+                                    buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem {
         return self_navigationBarButton(title: title, image: image, buttonType: buttonType, customView: customView, buttonAction: buttonAction)
     }
     
@@ -219,11 +223,13 @@ extension FTBaseViewController: FTAppBaseProtocal {
     }
     
     // MARK: default Nav-bar button actions
-    @objc @IBAction open func leftButtonAction() {
+    @objc
+    @IBAction open func leftButtonAction() {
         dismissSelf()
     }
     
-    @objc @IBAction open func rightButtonAction() {
+    @objc
+    @IBAction open func rightButtonAction() {
     }
     
     // MARK: Keyboard
@@ -344,21 +350,21 @@ extension FTBaseViewController {
 
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        postNotification(name: .FTMobileCoreUI_ViewController_WillAppear)
+        postNotification(name: .FTMobileCoreWillAppearViewController)
     }
     
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        postNotification(name: .FTMobileCoreUI_ViewController_DidAppear)
+        postNotification(name: .FTMobileCoreDidAppearViewController)
     }
     
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        postNotification(name: .FTMobileCoreUI_ViewController_WillDisappear)
+        postNotification(name: .FTMobileCoreWillDisappearViewController)
     }
     
     override open func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        postNotification(name: .FTMobileCoreUI_ViewController_DidDisappear)
+        postNotification(name: .FTMobileCoreDidDisappearViewController)
     }
 }

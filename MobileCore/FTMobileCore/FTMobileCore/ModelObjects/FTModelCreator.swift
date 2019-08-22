@@ -9,9 +9,9 @@
 import Foundation
 
 enum FTModelBindType: String {
-    case String
-    case Decimal
-    case Int
+    case string = "String"
+    case decimal = "Decimal"
+    case int = "Int"
 }
 
 public enum FTServiceModelType: String {
@@ -107,11 +107,11 @@ extension FTModelCreator {
             
             if let bindType = FTModelBindType(rawValue: bindType) {
                 switch bindType {
-                case .String:
+                case .string:
                     return kDefaultStringValue as AnyObject
-                case .Decimal:
+                case .decimal:
                     return 0 as AnyObject
-                case .Int:
+                case .int:
                     return 0 as AnyObject
                 }
             }
@@ -139,13 +139,13 @@ extension FTModelCreator {
             return (kStringType, value, defaultValue(bindType: params), false)
         }
         
-        if
-            let value = params as? [String: String],
-            let bindKey = value[kBindingKey] {
-            
+        if let value = params as? [String: String], let bindKey = value[kBindingKey] {
             if let bindAsType = value[kBindingAsType] {
                 let value = defaultValue(bindType: params)
-                let isOptionalType = (((value as? String) != nil) && value as! String == kDefaultStringValue)
+                var isOptionalType = false
+                if let value = value as? String, value == kDefaultStringValue {
+                    isOptionalType = true
+                }
                 return (bindAsType, bindKey, value, isOptionalType)
             }
             else if let bindAsType = value[kBindingAsArray] {
@@ -164,7 +164,7 @@ extension FTModelCreator {
         var codingKeys: String = ""
         // var decoderKeys: String = "", encoderKeys: String = ""
         
-        params.forEach { (key, type) in
+        params.forEach { key, type in
             if let bindParams = bindings(forParams: type) {
                 // If (bindParams.3) is true, then :'type': will be \(bindParams.0 + "?")
                 paramDef += paramKeysCase(key: key, type: bindParams.0, defaultValues: bindParams.2 as AnyObject)

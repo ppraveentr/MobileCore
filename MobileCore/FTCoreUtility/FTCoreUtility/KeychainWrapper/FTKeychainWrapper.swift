@@ -8,17 +8,17 @@
 
 import Foundation
 
-private let SecMatchLimit: String! = kSecMatchLimit as String
-private let SecReturnData: String! = kSecReturnData as String
-private let SecReturnPersistentRef: String! = kSecReturnPersistentRef as String
-private let SecValueData: String! = kSecValueData as String
-private let SecAttrAccessible: String! = kSecAttrAccessible as String
-private let SecClass: String! = kSecClass as String
-private let SecAttrService: String! = kSecAttrService as String
-private let SecAttrGeneric: String! = kSecAttrGeneric as String
-private let SecAttrAccount: String! = kSecAttrAccount as String
-private let SecAttrAccessGroup: String! = kSecAttrAccessGroup as String
-private let SecReturnAttributes: String = kSecReturnAttributes as String
+private let ftSecMatchLimit: String! = kSecMatchLimit as String
+private let ftSecReturnData: String! = kSecReturnData as String
+private let ftSecReturnPersistentRef: String! = kSecReturnPersistentRef as String
+private let ftSecValueData: String! = kSecValueData as String
+private let ftSecAttrAccessible: String! = kSecAttrAccessible as String
+private let ftSecClass: String! = kSecClass as String
+private let ftSecAttrService: String! = kSecAttrService as String
+private let ftSecAttrGeneric: String! = kSecAttrGeneric as String
+private let ftSecAttrAccount: String! = kSecAttrAccount as String
+private let ftSecAttrAccessGroup: String! = kSecAttrAccessGroup as String
+private let ftSecReturnAttributes: String = kSecReturnAttributes as String
 
 /// FTKeychainWrapper is a class to help make Keychain access in Swift more straightforward. It is designed to make accessing the Keychain services more like using NSUserDefaults, which is much more familiar to people.
 open class FTKeychainWrapper {
@@ -30,10 +30,10 @@ open class FTKeychainWrapper {
      public private (set) var serviceName: String
     
     /// AccessGroup is used for the kSecAttrAccessGroup property to identify which Keychain Access Group this entry belongs to. This allows you to use the FTKeychainWrapper with shared keychain access between different applications.
-    private (set) public var accessGroup: String?
+    public private (set) var accessGroup: String?
     
     private static let defaultServiceName: String = {
-        return Bundle.main.bundleIdentifier ?? "com.ftcoreutility.defaultKeychain"
+        Bundle.main.bundleIdentifier ?? "com.ftcoreutility.defaultKeychain"
     }()
 
     private convenience init() {
@@ -69,19 +69,19 @@ open class FTKeychainWrapper {
         var keychainQueryDictionary = setupKeychainQueryDictionary(forKey: key)
 
         // Remove accessibility attribute
-        keychainQueryDictionary.removeValue(forKey: SecAttrAccessible)
+        keychainQueryDictionary.removeValue(forKey: ftSecAttrAccessible)
         
         // Limit search results to one
-        keychainQueryDictionary[SecMatchLimit] = kSecMatchLimitOne
+        keychainQueryDictionary[ftSecMatchLimit] = kSecMatchLimitOne
 
         // Specify we want SecAttrAccessible returned
-        keychainQueryDictionary[SecReturnAttributes] = kCFBooleanTrue
+        keychainQueryDictionary[ftSecReturnAttributes] = kCFBooleanTrue
 
         // Search
         var result: AnyObject?
         let status = SecItemCopyMatching(keychainQueryDictionary as CFDictionary, &result)
 
-        guard status == noErr, let resultsDictionary = result as? [String:AnyObject], let accessibilityAttrValue = resultsDictionary[SecAttrAccessible] as? String else {
+        guard status == noErr, let resultsDictionary = result as? [String:AnyObject], let accessibilityAttrValue = resultsDictionary[ftSecAttrAccessible] as? String else {
             return nil
         }
     
@@ -157,10 +157,10 @@ open class FTKeychainWrapper {
         var keychainQueryDictionary = setupKeychainQueryDictionary(forKey: key, withAccessibility: accessibility)
         
         // Limit search results to one
-        keychainQueryDictionary[SecMatchLimit] = kSecMatchLimitOne
+        keychainQueryDictionary[ftSecMatchLimit] = kSecMatchLimitOne
         
         // Specify we want Data/CFData returned
-        keychainQueryDictionary[SecReturnData] = kCFBooleanTrue
+        keychainQueryDictionary[ftSecReturnData] = kCFBooleanTrue
         
         // Search
         var result: AnyObject?
@@ -178,10 +178,10 @@ open class FTKeychainWrapper {
         var keychainQueryDictionary = setupKeychainQueryDictionary(forKey: key, withAccessibility: accessibility)
         
         // Limit search results to one
-        keychainQueryDictionary[SecMatchLimit] = kSecMatchLimitOne
+        keychainQueryDictionary[ftSecMatchLimit] = kSecMatchLimitOne
         
         // Specify we want persistent Data/CFData reference returned
-        keychainQueryDictionary[SecReturnPersistentRef] = kCFBooleanTrue
+        keychainQueryDictionary[ftSecReturnPersistentRef] = kCFBooleanTrue
         
         // Search
         var result: AnyObject?
@@ -244,14 +244,14 @@ open class FTKeychainWrapper {
     @discardableResult open func set(_ value: Data, forKey key: String, withAccessibility accessibility: FTKeychainItemAccessibility? = nil) -> Bool {
         var keychainQueryDictionary: [String: Any] = setupKeychainQueryDictionary(forKey: key, withAccessibility: accessibility)
         
-        keychainQueryDictionary[SecValueData] = value
+        keychainQueryDictionary[ftSecValueData] = value
         
         if let accessibility = accessibility {
-            keychainQueryDictionary[SecAttrAccessible] = accessibility.keychainAttrValue
+            keychainQueryDictionary[ftSecAttrAccessible] = accessibility.keychainAttrValue
         }
         else {
             // Assign default protection - Protect the keychain entry so it's only valid when the device is unlocked
-            keychainQueryDictionary[SecAttrAccessible] = FTKeychainItemAccessibility.whenUnlocked.keychainAttrValue
+            keychainQueryDictionary[ftSecAttrAccessible] = FTKeychainItemAccessibility.whenUnlocked.keychainAttrValue
         }
         
         let status: OSStatus = SecItemAdd(keychainQueryDictionary as CFDictionary, nil)
@@ -292,7 +292,7 @@ open class FTKeychainWrapper {
     ///
     ///
     @discardableResult private static func deleteKeychainSecClass(_ secClass: AnyObject) -> Bool {
-        let query = [SecClass: secClass]
+        let query = [ftSecClass: secClass]
         let status: OSStatus = SecItemDelete(query as CFDictionary)
         
         if status == errSecSuccess {
@@ -306,11 +306,11 @@ open class FTKeychainWrapper {
     /// Update existing data associated with a specified key name. The existing data will be overwritten by the new data.
     private func update(_ value: Data, forKey key: String, withAccessibility accessibility: FTKeychainItemAccessibility? = nil) -> Bool {
         var keychainQueryDictionary: [String:Any] = setupKeychainQueryDictionary(forKey: key, withAccessibility: accessibility)
-        let updateDictionary = [SecValueData:value]
+        let updateDictionary = [ftSecValueData:value]
         
         // on update, only set accessibility if passed in
         if let accessibility = accessibility {
-            keychainQueryDictionary[SecAttrAccessible] = accessibility.keychainAttrValue
+            keychainQueryDictionary[ftSecAttrAccessible] = accessibility.keychainAttrValue
         }
         
         // Update
@@ -331,27 +331,27 @@ open class FTKeychainWrapper {
     /// - returns: A dictionary with all the needed properties setup to access the keychain on iOS
     private func setupKeychainQueryDictionary(forKey key: String, withAccessibility accessibility: FTKeychainItemAccessibility? = nil) -> [String:Any] {
         // Setup default access as generic password (rather than a certificate, internet password, etc)
-        var keychainQueryDictionary: [String: Any] = [SecClass:kSecClassGenericPassword]
+        var keychainQueryDictionary: [String: Any] = [ftSecClass:kSecClassGenericPassword]
         
         // Uniquely identify this keychain accessor
-        keychainQueryDictionary[SecAttrService] = serviceName
+        keychainQueryDictionary[ftSecAttrService] = serviceName
         
         // Only set accessibiilty if its passed in
         if let accessibility = accessibility {
-            keychainQueryDictionary[SecAttrAccessible] = accessibility.keychainAttrValue
+            keychainQueryDictionary[ftSecAttrAccessible] = accessibility.keychainAttrValue
         }
         
         // Set the keychain access group if defined
         if let accessGroup = self.accessGroup {
-            keychainQueryDictionary[SecAttrAccessGroup] = accessGroup
+            keychainQueryDictionary[ftSecAttrAccessGroup] = accessGroup
         }
         
         // Uniquely identify the account who will be accessing the keychain
         let encodedIdentifier: Data? = key.data(using: String.Encoding.utf8)
         
-        keychainQueryDictionary[SecAttrGeneric] = encodedIdentifier
+        keychainQueryDictionary[ftSecAttrGeneric] = encodedIdentifier
         
-        keychainQueryDictionary[SecAttrAccount] = encodedIdentifier
+        keychainQueryDictionary[ftSecAttrAccount] = encodedIdentifier
         
         return keychainQueryDictionary
     }

@@ -16,15 +16,17 @@ public extension NSNotification.Name {
 }
 
 public struct FTThemeStyle {
-    public static let defaultStyle = "default"
+    static let defaultStyle = "default"
     static let highlightedStyle = "highlighted"
     static let selectedStyle = "selected"
     static let disabledStyle = "disabled"
     
     static func allStyles() -> [String] {
-        return [FTThemeStyle.highlightedStyle,
-                FTThemeStyle.selectedStyle,
-                FTThemeStyle.disabledStyle]
+        return [
+            FTThemeStyle.highlightedStyle,
+            FTThemeStyle.selectedStyle,
+            FTThemeStyle.disabledStyle
+        ]
     }
 }
 
@@ -35,7 +37,7 @@ extension UIView {
         FTInstanceSwizzling(UIView.self, #selector(layoutSubviews), #selector(swizzled_layoutSubviews))
     }
 
-    static func __setupThemes__() {
+    static func setupThemes() {
         _ = SwizzleLayoutSubview
     }
     
@@ -78,7 +80,7 @@ extension UIView {
     // MARK: swizzled layoutSubviews
     @objc func swizzled_layoutSubviews() {
         if self.needsThemesUpdate {
-            self.__updateVisualThemes__()
+            self.updateVisualThemes()
         }
         // Invoke view's original layoutSubviews
         self.swizzled_layoutSubviews()
@@ -93,7 +95,7 @@ fileprivate extension UIView {
     static let aoThemes = FTAssociatedObject<String>()
     static let aoThemesNeedsUpdate = FTAssociatedObject<Bool>()
 
-    final func __updateVisualThemes__() {
+    final func updateVisualThemes() {
         self.needsThemesUpdate = false
         // Update View with Theme properties
         self.generateVisualThemes()
@@ -115,9 +117,7 @@ fileprivate extension UIView {
         let delegate: FTThemeProtocol? = self as? FTThemeProtocol
         
         // Get Theme property of view based on its state
-        guard let themeDic = FTThemesManager.generateVisualThemes(forClass: className,
-                                                                  withStyleName: themeName,
-                                                                  withSubStyleName: delegate?.getThemeSubType()) else {
+        guard let themeDic = FTThemesManager.generateVisualThemes(forClass: className, styleName: themeName, subStyleName: delegate?.getThemeSubType()) else {
             return
         }
         
@@ -135,10 +135,8 @@ fileprivate extension UIView {
             var styles: FTThemeModel = [:]
             // For each style, get Theme value
             FTThemeStyle.allStyles().forEach { style in
-                
-                if let styleThemeDic = FTThemesManager.generateVisualThemes(forClass: className,
-                                                                       withStyleName: baseName!,
-                                                                       withSubStyleName: style) {
+                if let baseName = baseName,
+                    let styleThemeDic = FTThemesManager.generateVisualThemes(forClass: className, styleName: baseName, subStyleName: style) {
                     // Create FTThemeModel as, ['ThemeStyle.UIControlState' : 'ActualTheme for the state']
                     styles[style] = styleThemeDic
                 }
@@ -185,13 +183,13 @@ fileprivate extension UIView {
             }
         }
         
-        // If there is no valid Theme, return nil
-        if baseClassName == nil {
-            return nil
+        if let baseClassName = baseClassName {
+            // Create (class,theme) name pair
+            return (baseClassName, themeName)
         }
         
-        // Create (class,theme) name pair
-        return (baseClassName!, themeName)
+        // If there is no valid Theme, return nil
+        return nil
     }
     
     // Update view with styleValues

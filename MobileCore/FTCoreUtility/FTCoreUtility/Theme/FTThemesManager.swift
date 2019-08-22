@@ -17,12 +17,12 @@ open class FTThemesManager {
         willSet {
             if themesJSON.isEmpty && !newValue.isEmpty {
                 // Inital view config
-                 UIView.__setupThemes__()
+                 UIView.setupThemes()
             }
         }
         didSet {
             // Setup App config
-            FTAppearanceManager.__setupThemes__()
+            FTAppearanceManager.setupThemes()
         }
     }
 
@@ -53,13 +53,13 @@ open class FTThemesManager {
     }
     
     // MARK: Theme components
-    public static func generateVisualThemes(forClass name: String, withStyleName styleName: String, withSubStyleName subStyle: String? = nil) -> FTThemeModel? {
+    public static func generateVisualThemes(forClass name: String, styleName: String, subStyleName subStyle: String? = nil) -> FTThemeModel? {
         
         var styleName = styleName
         
         // If any subTheme is avaiable, say when button is Highlighted, or view is disabled
         if let subStyle = subStyle, !styleName.contains(":") {
-            styleName = styleName + ":" + subStyle
+            styleName += ":" + subStyle
         }
         
         // Get theme component
@@ -81,7 +81,7 @@ open class FTThemesManager {
         guard styleName != nil else {
             return nil
         }
-        return FTThemesManager.getDefaults(type: .Component, keyName: componentName, styleName: styleName) as? FTThemeModel
+        return FTThemesManager.getDefaults(type: .component, keyName: componentName, styleName: styleName) as? FTThemeModel
     }
     
     // MARK: UIColor
@@ -101,7 +101,7 @@ open class FTThemesManager {
         }
 
         // Color coded to hex-string
-        let color: String = FTThemesManager.getDefaults(type: .Color, keyName: colorName) as? String ?? ""
+        let color: String = FTThemesManager.getDefaults(type: .color, keyName: colorName) as? String ?? ""
         
         if let hexColor = UIColor.hexColor(color) {
             return hexColor
@@ -118,7 +118,7 @@ open class FTThemesManager {
     // TODO: bold, thin, ...
     public static func getFont(_ fontName: String?) -> UIFont? {
         
-        let font: FTThemeModel = FTThemesManager.getDefaults(type: .Font, keyName: fontName) as? FTThemeModel ?? [:]
+        let font: FTThemeModel = FTThemesManager.getDefaults(type: .font, keyName: fontName) as? FTThemeModel ?? [:]
         
         if
             let name: String = font["name"] as? String,
@@ -234,9 +234,9 @@ open class FTThemesManager {
 extension FTThemesManager {
     
     enum FTThemesType {
-        case Component
-        case Color
-        case Font
+        case component
+        case color
+        case font
     }
     
     // MARK: Component
@@ -278,12 +278,12 @@ extension FTThemesManager {
         return self.themeColor?[colorName] as? String
     }
 
-    // MARK: Font
+    // MARK: font
     fileprivate class var themeFont: FTThemeModel? {
         return FTThemesManager.themesJSON["font"] as? FTThemeModel
     }
 
-    // Font -
+    // font -
     fileprivate static func themeFont(_ fontName: String) -> FTThemeModel? {
         return self.themeFont?[fontName] as? FTThemeModel
     }
@@ -322,7 +322,7 @@ extension FTThemesManager {
         switch type {
             
         // Custome UIView Component
-        case .Component:
+        case .component:
             
             let actualComponents = getThemeComponent(key,styleName: styleName)
             
@@ -342,13 +342,13 @@ extension FTThemesManager {
             return actualComponents
             
         // Convert JSON to UIColor
-        case .Color:
+        case .color:
             superBlock = { (colorName) in
                 return themeColor(colorName)
             }
             
             // Convert JSON to UIFont
-        case .Font:
+        case .font:
             superBlock = { fontName in
                 return themeFont(fontName)
             }

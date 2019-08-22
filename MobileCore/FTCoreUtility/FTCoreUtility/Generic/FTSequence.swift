@@ -32,6 +32,8 @@ public extension FTFlattenIterator {
             return val
         }
         
+        // swiftlint:disable force_unwrapping
+        // swiftlint:disable force_cast
         // Dic
         if var dicSub = self as? [String: Any?] {
             dicSub = dicSub.filter { $1 != nil }
@@ -48,6 +50,8 @@ public extension FTFlattenIterator {
                 return stripSubElements(&value!)
             } as! Self
         }
+         // swiftlint:enable force_unwrapping
+        // swiftlint:enable force_cast
         
         return self
     }

@@ -30,7 +30,7 @@ open class FTFontPickerViewController: FTBaseViewController {
     }
 
     override open func loadView() {
-        super.loadView()
+       super.loadView()
         
         if let pickerView = pickerView {
          self.mainView?.pin(view: pickerView)

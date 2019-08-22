@@ -82,38 +82,42 @@ class FTThemesTests: XCTestCase {
     
     // MARK: View Component
     func testComponent() {
-        FTLog("\n FTLabel system14W : ", FTThemesManager.getViewComponent("FTLabel", styleName: "system14W")!)
+        let value = FTThemesManager.getViewComponent("FTLabel", styleName: "system14W")
+        FTLog("\n FTLabel system14W : ", value ?? "nil")
+        XCTAssertNotNil(value)
     }
     
     // MARK: Font
     func testFonts() {
-        FTLog("\n font 14 : ", FTThemesManager.getFont("system14")!)
+        let value = FTThemesManager.getFont("system14")
+        FTLog("\n font 14 : ", value ?? "nil")
+        XCTAssertNotNil(value)
     }
     
     // MARK: Color
     func testColorWhite() {
-        FTLog("\n color white : ", FTThemesManager.getColor("white")!)
-    }
-
-    func testColorWithAlpha() {
-        FTLog("\n color white : ", FTThemesManager.getColor("halfwhite")!)
-    }
-    
-    func testColorBlack() {
-        FTLog("\n color black : ", FTThemesManager.getColor("black")!)
+        let value = FTThemesManager.getColor("white")
+        FTLog("\n color white : ", value ?? "nil")
+        XCTAssertNotNil(value)
     }
     
     func testColorFail() {
-        FTLog("\n color fail : ", FTThemesManager.getColor("orange")!)
+        let value = FTThemesManager.getColor("orange")
+        FTLog("\n color fail : ", value ?? "nil")
+        XCTAssertNil(value)
     }
     
     func testHashColor() {
-        FTLog("\n color #FFFFFF00 : ", FTThemesManager.getColor("#F3F3F3F8")!)
+        let value = FTThemesManager.getColor("#F3F3F3F8")
+        FTLog("\n color #FFFFFF00 : ", value ?? "nil")
+        XCTAssertNotNil(value)
     }
     
     // MARK: appearance
     func testAppearance() {
-        FTLog("\n getAppearance : ", FTThemesManager.getAppearance()!)
+        let value = FTThemesManager.getAppearance()
+        FTLog("\n getAppearance : ", value ?? "nil")
+        XCTAssertNotNil(value)
     }
     
 //    func testAppearanceNavigationBar() {

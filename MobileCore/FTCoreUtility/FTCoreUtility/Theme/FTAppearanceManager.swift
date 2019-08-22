@@ -25,7 +25,7 @@ open class FTAppearanceManager {
         return (appearanceName, nil)
     }
 
-    static func __setupThemes__() {
+    static func setupThemes() {
         guard let app = FTThemesManager.getAppearance() as? FTThemeModel else {
             return
         }

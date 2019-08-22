@@ -72,7 +72,7 @@ opt_in_rules:
 - xct_specific_matcher
 - yoda_condition
 
-large_tuple: 3
+large_tuple: 4
 function_body_length : 50
 function_parameter_count: 5
 warning_threshold: 1
@@ -80,7 +80,7 @@ closure_body_length: 16
 file_length: 750
 
 cyclomatic_complexity:
-  warning: 4
+  warning: 5
   ignores_case_statements: true
 
 line_length:

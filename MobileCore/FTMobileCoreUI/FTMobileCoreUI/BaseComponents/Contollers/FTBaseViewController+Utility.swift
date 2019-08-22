@@ -74,7 +74,7 @@ extension FTBaseViewController {
     func self_navigationBarButton(
         title: String? = nil,
         image: UIImage? = nil,
-        buttonType: UIBarButtonItem.SystemItem,
+        buttonType: UIBarButtonItem.SystemItem = .done,
         customView: UIView? = nil,
         buttonAction: Selector? = kLeftButtonAction
         ) -> UIBarButtonItem {

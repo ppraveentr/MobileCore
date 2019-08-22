@@ -188,7 +188,10 @@ open class FTServiceModelObject: FTServiceModel {
         if let json = json as? String {
             return try modelType.makeModel(json: json)
         }
+        else if let json = json as? Data {
+            return try modelType.makeModel(json: json)
+        }
         
-        return try modelType.makeModel(json: json as! Data)
+        throw FTJsonParserError.invalidJSON
     }
 }

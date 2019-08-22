@@ -121,22 +121,34 @@ public class FTFloatingView: FTView {
         }
     }
     
-    
     // Handleing movement of view
-    private func viewDidMove(to location:CGPoint) {
-        UIView.animate(withDuration: 0.1, delay: 0.0, options: [.beginFromCurrentState,.curveEaseInOut], animations: {
-            let point = (self.floatingWindow?.convert(location, to: self.appWindow))!
-            switch UIDevice.current.orientation {
-            case .portrait :
-                self.floatingWindow?.center = point
-            case .landscapeLeft :
-                self.floatingWindow?.center = CGPoint(x: (self.appWindow?.frame.size.height)! - point.y, y: point.x)
-                
-            case .landscapeRight :
-                self.floatingWindow?.center = CGPoint(x: point.y, y: (self.appWindow?.frame.size.width)! - point.x)
-            default :
-                FTLog("FTError: Floating View Does not Handler This Situation")
-            }
-        })
+    private func viewDidMove(to location: CGPoint) {
+        guard let point = (self.floatingWindow?.convert(location, to: self.appWindow)) else {
+            return
+        }
+
+        UIView.animate(
+            withDuration: 0.1,
+            delay: 0.0,
+            options: [.beginFromCurrentState, .curveEaseInOut],
+            animations: {
+                switch UIDevice.current.orientation {
+                case .portrait :
+                    self.floatingWindow?.center = point
+                case .landscapeLeft :
+                    if let height = self.appWindow?.frame.size.height {
+                        self.floatingWindow?.center = CGPoint(x: height - point.y, y: point.x)
+                    }
+                    
+                case .landscapeRight :
+                    if let width = self.appWindow?.frame.size.width {
+                        self.floatingWindow?.center = CGPoint(x: point.y, y: width - point.x)
+                    }
+                default :
+                    FTLog("FTError: Floating View Does not Handler This Situation")
+                }
+            },
+            completion: nil
+        )
     }
 }
