@@ -7,9 +7,9 @@
 //
 
 import UIKit
-//import MobileCore
+import MobileCore
 
-class MDASample { //: FTServiceModel {
+open class MDASample: FTServiceModel {
     var identifier: String?
     var amount: Decimal? = 0.0
 //    var isValid:Bool = false

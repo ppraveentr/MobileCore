@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		789AA8DB65C15C432EB27B65 /* Pods_FTMobileCoreSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB5C69349E3C3ADF8B28F86 /* Pods_FTMobileCoreSample.framework */; };
-		D21EB09AA441A13BF5117B7E /* Pods_FTMobileCoreSampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C4E255687033828162A864 /* Pods_FTMobileCoreSampleTests.framework */; };
 		D43D0C72230525CE00C5C770 /* MobileCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43D0C6A230525A100C5C770 /* MobileCore.framework */; };
 		D4AE907822E44487005B33B2 /* FTMobileCoreBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */; settings = {ASSET_TAGS = (Bundle, ); }; };
 		D4AE907922E44492005B33B2 /* Themes.json in Resources */ = {isa = PBXBuildFile; fileRef = DE680BB01F2E038800A9F68C /* Themes.json */; };
@@ -79,15 +77,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1B3CF9B83C4A73C84570DC2A /* Pods-FTMobileCoreSampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCoreSampleTests.release.xcconfig"; path = "Target Support Files/Pods-FTMobileCoreSampleTests/Pods-FTMobileCoreSampleTests.release.xcconfig"; sourceTree = "<group>"; };
-		4024C39EDC5CFDF9AB0F47B9 /* Pods-FTMobileCoreSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCoreSample.release.xcconfig"; path = "Target Support Files/Pods-FTMobileCoreSample/Pods-FTMobileCoreSample.release.xcconfig"; sourceTree = "<group>"; };
-		5CB5C69349E3C3ADF8B28F86 /* Pods_FTMobileCoreSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FTMobileCoreSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		84C4E255687033828162A864 /* Pods_FTMobileCoreSampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FTMobileCoreSampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A83A54A5C975A17EE136401 /* Pods-FTMobileCoreSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCoreSample.debug.xcconfig"; path = "Target Support Files/Pods-FTMobileCoreSample/Pods-FTMobileCoreSample.debug.xcconfig"; sourceTree = "<group>"; };
 		D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MobileCore.xcodeproj; path = ../MobileCore.xcodeproj; sourceTree = "<group>"; };
 		D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4AE907422E4447D005B33B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DCB2F90E059AFD9ABCF9DCB1 /* Pods-FTMobileCoreSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCoreSampleTests.debug.xcconfig"; path = "Target Support Files/Pods-FTMobileCoreSampleTests/Pods-FTMobileCoreSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DE2FB8E71F3A0C5900581064 /* FTMobileCoreSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE2FB8E91F3A0C5900581064 /* FTMobileCoreSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMobileCoreSampleTests.swift; sourceTree = "<group>"; };
 		DE2FB8EB1F3A0C5900581064 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,7 +109,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D21EB09AA441A13BF5117B7E /* Pods_FTMobileCoreSampleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,7 +117,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D43D0C72230525CE00C5C770 /* MobileCore.framework in Frameworks */,
-				789AA8DB65C15C432EB27B65 /* Pods_FTMobileCoreSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,10 +126,6 @@
 		A5B9D3D94B1FEFD0647FCDA8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9A83A54A5C975A17EE136401 /* Pods-FTMobileCoreSample.debug.xcconfig */,
-				4024C39EDC5CFDF9AB0F47B9 /* Pods-FTMobileCoreSample.release.xcconfig */,
-				DCB2F90E059AFD9ABCF9DCB1 /* Pods-FTMobileCoreSampleTests.debug.xcconfig */,
-				1B3CF9B83C4A73C84570DC2A /* Pods-FTMobileCoreSampleTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -174,8 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */,
-				5CB5C69349E3C3ADF8B28F86 /* Pods_FTMobileCoreSample.framework */,
-				84C4E255687033828162A864 /* Pods_FTMobileCoreSampleTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -271,7 +255,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE2FB8F41F3A0C5900581064 /* Build configuration list for PBXNativeTarget "FTMobileCoreSampleTests" */;
 			buildPhases = (
-				8A45FE7F450BB12B9B14C2D1 /* [CP] Check Pods Manifest.lock */,
 				DE2FB8E31F3A0C5900581064 /* Sources */,
 				DE2FB8E41F3A0C5900581064 /* Frameworks */,
 				DE2FB8E51F3A0C5900581064 /* Resources */,
@@ -290,7 +273,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE9221DB1EF28CDF000C8FC7 /* Build configuration list for PBXNativeTarget "FTMobileCoreSample" */;
 			buildPhases = (
-				22568C67F6AFF7826CC8C0DF /* [CP] Check Pods Manifest.lock */,
 				DE9221C51EF28CDF000C8FC7 /* Sources */,
 				DE9221C61EF28CDF000C8FC7 /* Frameworks */,
 				DE9221C71EF28CDF000C8FC7 /* Resources */,
@@ -417,50 +399,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		22568C67F6AFF7826CC8C0DF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FTMobileCoreSample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8A45FE7F450BB12B9B14C2D1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FTMobileCoreSampleTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D437653C230E8E5B004974CC /* swiftlint Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -477,7 +415,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+			shellScript = "#\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -588,7 +526,6 @@
 		};
 		DE2FB8EE1F3A0C5900581064 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DCB2F90E059AFD9ABCF9DCB1 /* Pods-FTMobileCoreSampleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = "";
@@ -607,7 +544,6 @@
 		};
 		DE2FB8EF1F3A0C5900581064 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B3CF9B83C4A73C84570DC2A /* Pods-FTMobileCoreSampleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = "";
@@ -745,7 +681,6 @@
 		};
 		DE9221DC1EF28CDF000C8FC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A83A54A5C975A17EE136401 /* Pods-FTMobileCoreSample.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -769,7 +704,6 @@
 		};
 		DE9221DD1EF28CDF000C8FC7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4024C39EDC5CFDF9AB0F47B9 /* Pods-FTMobileCoreSample.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

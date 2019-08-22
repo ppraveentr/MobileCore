@@ -45,7 +45,7 @@ final class TestService: FTServiceClient {
 
 class FTMobileCoreTests: XCTestCase {
 
-    func setUp() {
+    override func setUp() {
         FTReflection.registerModuleIdentifier(Account.self)
     }
 
