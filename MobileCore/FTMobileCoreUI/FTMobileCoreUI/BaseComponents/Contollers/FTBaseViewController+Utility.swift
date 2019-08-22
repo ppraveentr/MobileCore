@@ -12,9 +12,17 @@ import Foundation
 extension FTBaseViewController {
 
     // MARK: Navigation Bar
-    func self_setupNavigationbar(title: String,
-                                 leftButtonTitle: String? = nil, leftButtonImage: UIImage? = nil, leftButtonAction: Selector? = kLeftButtonAction, leftCustomView: UIView? = nil,
-                                 rightButtonTitle: String? = nil, rightButtonImage: UIImage? = nil, rightButtonAction: Selector? = #selector(rightButtonAction), rightCustomView: UIView? = nil) {
+    func self_setupNavigationbar(
+        title: String,
+        leftButtonTitle: String? = nil,
+        leftButtonImage: UIImage? = nil,
+        leftButtonAction: Selector? = kLeftButtonAction,
+        leftCustomView: UIView? = nil,
+        rightButtonTitle: String? = nil,
+        rightButtonImage: UIImage? = nil,
+        rightButtonAction: Selector? = #selector(rightButtonAction),
+        rightCustomView: UIView? = nil
+        ) {
         self.title = title
 
         if leftButtonTitle != nil || leftButtonImage != nil || leftCustomView != nil {
@@ -40,10 +48,13 @@ extension FTBaseViewController {
                                       buttonType: UIBarButtonItem.SystemItem = .stop,
                                       customView: UIView? = nil,
                                       buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem? {
-        let backButton = self.navigationBarButton(title: title, image: image,
-                                                  buttonType:buttonType,
-                                                  customView: customView,
-                                                  buttonAction: buttonAction)
+        let backButton = self.navigationBarButton(
+            title: title,
+            image: image,
+            buttonType: buttonType,
+            customView: customView,
+            buttonAction: buttonAction
+        )
         self.navigationItem.leftBarButtonItem = backButton
         return backButton
     }
@@ -60,11 +71,13 @@ extension FTBaseViewController {
         return backButton
     }
 
-    func self_navigationBarButton(title: String? = nil,
-                                  image: UIImage? = nil,
-                                  buttonType: UIBarButtonItem.SystemItem,
-                                  customView: UIView? = nil,
-                                  buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem {
+    func self_navigationBarButton(
+        title: String? = nil,
+        image: UIImage? = nil,
+        buttonType: UIBarButtonItem.SystemItem,
+        customView: UIView? = nil,
+        buttonAction: Selector? = kLeftButtonAction
+        ) -> UIBarButtonItem {
 
         guard title != nil, image != nil else {
             if let customView = customView {
@@ -112,7 +125,7 @@ extension FTBaseViewController {
     }
 
     // MARK: Responder
-    func self_makeResponder(status:Bool, textField: UITextField, text: String? = nil) {
+    func self_makeResponder(status: Bool, textField: UITextField, text: String? = nil) {
         if status {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2)) {
                 if let text = text {
@@ -126,8 +139,18 @@ extension FTBaseViewController {
     // MARK: Keyboard Notifications
     func self_registerKeyboardNotifications() {
         //  Registering for keyboard notification.
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidHide(_:)), name: UIResponder.keyboardDidHideNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.keyboardWillShow(_:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.keyboardDidHide(_:)),
+            name: UIResponder.keyboardDidHideNotification,
+            object: nil
+        )
     }
 
     func self_unregisterKeyboardNotifications() {
@@ -142,15 +165,14 @@ extension FTBaseViewController {
         if let action = action {
             alert.addAction(action)
         }
-        actions?.forEach { (action) in
+        actions?.forEach { action in
             alert.addAction(action)
         }
 
-        if alert.actions.count == 0 {
+        if alert.actions.isEmpty {
             return
         }
 
         present(alert, animated: true, completion: nil)
     }
-    
 }

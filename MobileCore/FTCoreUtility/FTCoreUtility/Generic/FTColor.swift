@@ -103,7 +103,7 @@ public extension UIColor {
         
         let r, g, b: UInt32
         var a: UInt32 = 255
-        switch hex.length-1 {
+        switch hex.length - 1 {
         case 3: // RGB (12-bit)
             (r, g, b) = ((int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
         case 6: // RGB (24-bit)
@@ -117,14 +117,16 @@ public extension UIColor {
         return UIColor(red: r, green: g, blue: b, a: CGFloat(a) / 255.0)
     }
     
-    func generateImage(opacity: CGFloat = 1, contextSize: CGSize = CGSize(width: 1, height: 1),
-                              contentsScale: CGFloat = CGFloat.greatestFiniteMagnitude) -> UIImage {
-        
+    func generateImage(opacity: CGFloat = 1,
+                       contextSize: CGSize = CGSize(width: 1, height: 1),
+                       contentsScale: CGFloat = CGFloat.greatestFiniteMagnitude
+        ) -> UIImage {
         let rect = CGRect(origin: .zero, size: contextSize)
         
         if contentsScale == CGFloat.greatestFiniteMagnitude {
             UIGraphicsBeginImageContext(contextSize)
-        } else {
+        }
+        else {
             UIGraphicsBeginImageContextWithOptions(contextSize, false, contentsScale)
         }
         
@@ -146,7 +148,7 @@ public extension UIColor {
         return UIColor.blendColors(color: self, destinationColor: UIColor.black, amount: amount)
     }
     
-    static func blendColors(color: UIColor, destinationColor: UIColor, amount : CGFloat) -> UIColor {
+    static func blendColors(color: UIColor, destinationColor: UIColor, amount: CGFloat) -> UIColor {
         var amountToBlend = amount
         if amountToBlend > 1 {
             amountToBlend = 1.0
@@ -155,7 +157,7 @@ public extension UIColor {
             amountToBlend = 0
         }
         
-        var r,g,b, alpha : CGFloat
+        var r, g, b, alpha: CGFloat
         r = 0
         g = 0
         b = 0
@@ -163,21 +165,20 @@ public extension UIColor {
         color.getRed(&r, green: &g, blue: &b, alpha: &alpha) // Gets the rgba values (0-1)
         
         // Get the destination rgba values
-        var dest_r, dest_g, dest_b, dest_alpha : CGFloat
-        dest_r = 0
-        dest_g = 0
-        dest_b = 0
-        dest_alpha = 0
-        destinationColor.getRed(&dest_r, green: &dest_g, blue: &dest_b, alpha: &dest_alpha)
+        var destR, destG, destB, destAlpha: CGFloat
+        destR = 0
+        destG = 0
+        destB = 0
+        destAlpha = 0
+        destinationColor.getRed(&destR, green: &destG, blue: &destB, alpha: &destAlpha)
         
-        r = amountToBlend * (dest_r * 255) + (1 - amountToBlend) * (r * 255)
-        g = amountToBlend * (dest_g * 255) + (1 - amountToBlend) * (g * 255)
-        b = amountToBlend * (dest_b * 255) + (1 - amountToBlend) * (b * 255)
-        alpha = abs(alpha / dest_alpha)
+        r = amountToBlend * (destR * 255) + (1 - amountToBlend) * (r * 255)
+        g = amountToBlend * (destG * 255) + (1 - amountToBlend) * (g * 255)
+        b = amountToBlend * (destB * 255) + (1 - amountToBlend) * (b * 255)
+        alpha = abs(alpha / destAlpha)
         
         return UIColor(red: r, green: g, blue: b, a: alpha)
     }
-
 }
 
 public extension UIImage {
@@ -191,8 +192,7 @@ public extension UIImage {
         }
         
         // The image is png
-        let pixelInfo: Int = Int(0) * 4
-        
+        let pixelInfo = Int(0) * 4
         let red = data[pixelInfo]
         let green = data[(pixelInfo + 1)]
         let blue = data[pixelInfo + 2]

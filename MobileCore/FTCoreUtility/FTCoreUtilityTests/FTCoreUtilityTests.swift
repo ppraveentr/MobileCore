@@ -30,7 +30,7 @@ class FTCoreUtilityTests: XCTestCase {
     
     func testStrippingNilElements() {
         
-        var dic: [String : Any?] = [
+        var dic: [String: Any?] = [
             "sa":"sada",
             "sad": nil,
             "dasd": [
@@ -42,5 +42,4 @@ class FTCoreUtilityTests: XCTestCase {
         dic.stripNilElements()
         FTLog("\n \(dic) \n")
     }
-    
 }

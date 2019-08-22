@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias FTThemeModel = [String : Any]
+public typealias FTThemeModel = [String: Any]
 
 public extension NSNotification.Name {
     static let FTSwiftyAppearanceWillRefreshWindow = NSNotification.Name(rawValue: "FTSwiftyAppearanceWillRefreshWindow.Notofication")
@@ -134,7 +134,7 @@ fileprivate extension UIView {
             let baseName = themeName.components(separatedBy: ":").first
             var styles: FTThemeModel = [:]
             // For each style, get Theme value
-            FTThemeStyle.allStyles().forEach { (style) in
+            FTThemeStyle.allStyles().forEach { style in
                 
                 if let styleThemeDic = FTThemesManager.generateVisualThemes(forClass: className,
                                                                        withStyleName: baseName!,
@@ -177,11 +177,10 @@ fileprivate extension UIView {
             let superClass: AnyClass? = getSuperClass(type(of: self))
             
             // If SuperClass becomes invalid, terminate loop
-            if let superClass = superClass, !UIView.kTerminalBaseClass.contains(where: { (obj) -> Bool in
-                return obj == superclass
-            }) {
+            if let superClass = superClass, !UIView.kTerminalBaseClass.contains { $0 == superclass } {
                  baseClassName = getClassNameAsString(obj: superClass)
-            } else {
+            }
+            else {
                 break
             }
         }
@@ -211,7 +210,7 @@ fileprivate extension UIView {
         }
         
         // Get all subTheme for all stats of the control
-        let themeDic = [controlThemeSelf.getThemeSubType() ?? FTThemeStyle.defaultStyle : theme]
+        let themeDic = [controlThemeSelf.getThemeSubType() ?? FTThemeStyle.defaultStyle: theme]
         controlThemeSelf.setThemes(themeDic)
     }
 }

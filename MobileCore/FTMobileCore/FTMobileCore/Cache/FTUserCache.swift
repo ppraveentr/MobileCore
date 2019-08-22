@@ -39,7 +39,6 @@ extension Dictionary where Key: Hashable, Value: Any {
     func getCachedObject(forKey keyType: Key) -> Any? {
         return self[keyType]
     }
-
 }
 
 open class FTCache {
@@ -65,16 +64,14 @@ open class FTUserCache {
     // Application level cache, reset when app relaunches
     fileprivate var dataDictionary = JSON()
     // session cache, clears when user logout
-    fileprivate var localCache: FTCache? = nil
+    fileprivate var localCache: FTCache?
 
     public static var userCache: FTCache {
-        get {
-            // Will be set-to nil when user logsOut
-            if FTUserCache.sharedInstance.localCache == nil {
-                FTUserCache.sharedInstance.localCache = FTCache()
-            }
-            return FTUserCache.sharedInstance.localCache!
+        // Will be set-to nil when user logsOut
+        if FTUserCache.sharedInstance.localCache == nil {
+            FTUserCache.sharedInstance.localCache = FTCache()
         }
+        return FTUserCache.sharedInstance.localCache!
     }
 
     public static func setupSession() {
@@ -85,29 +82,27 @@ open class FTUserCache {
     }
 
     // MARK: Session Headers
-    public static var httpAdditionalHeaders: [String:String]? {
+    public static var httpAdditionalHeaders: [String: String]? {
         set {
             let data = newValue
             FTUserCache.setCacheObject(data as AnyObject, forKey: "sessnion.httpAdditionalHeaders", cacheType: .application)
         }
         get {
-            return FTUserCache.getCachedObject(forKey: "sessnion.httpAdditionalHeaders") as? [String:String]
+            return FTUserCache.getCachedObject(forKey: "sessnion.httpAdditionalHeaders") as? [String: String]
         }
     }
-
 }
 
 public extension FTUserCache {
 
     // httpAdditionalHeaders
-    static func defaultSessionHeaders() -> [String:String] {
-        var headers = [String:String]()
-        FTUserCache.httpAdditionalHeaders?.forEach({ (key, value) in
+    static func defaultSessionHeaders() -> [String: String] {
+        var headers = [String: String]()
+        FTUserCache.httpAdditionalHeaders?.forEach { key, value in
             headers[key] = value
-        })
+        }
         return headers
     }
-
 }
 
 public extension FTUserCache {
@@ -121,26 +116,25 @@ public extension FTUserCache {
     // Save data to Session object
     @discardableResult
     static func setCacheObject(_ data: AnyObject, key: String, cacheType: FTUserCacheType = .user) -> Bool {
-        let key: String = String(describing: key)
+        let key = String(describing: key)
         return FTUserCache.setCacheObject(data, forKey: key, cacheType: cacheType)
     }
 
     static func getCachedObject(key: String, cacheType: FTUserCacheType = .user) -> Any? {
-        let key: String = String(describing: key)
-        return FTUserCache.getCachedObject(forKey:key, cacheType:cacheType)
+        let key = String(describing: key)
+        return FTUserCache.getCachedObject(forKey: key, cacheType:cacheType)
     }
 
     @discardableResult
     static func setCacheObject(_ data: AnyObject, forType keyType: AnyClass, cacheType: FTUserCacheType = .user) -> Bool {
-        let key: String = String(describing: keyType)
+        let key = String(describing: keyType)
         return FTUserCache.setCacheObject(data, forKey: key, cacheType: cacheType)
     }
 
     static func getCachedObject(forType keyType: AnyClass, cacheType: FTUserCacheType = .user) -> Any? {
-        let key: String = String(describing: keyType)
-        return FTUserCache.getCachedObject(forKey:key, cacheType:cacheType)
+        let key = String(describing: keyType)
+        return FTUserCache.getCachedObject(forKey: key, cacheType:cacheType)
     }
-
 }
 
 // MARK: Saving data into: .user, .keychain, .application
@@ -208,5 +202,4 @@ private extension FTUserCache {
 
         return nil
     }
-
 }

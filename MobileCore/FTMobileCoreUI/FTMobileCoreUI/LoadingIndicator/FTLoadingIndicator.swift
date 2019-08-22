@@ -7,26 +7,25 @@
 //
 
 import Foundation
-
-import UIKit
-import QuartzCore
 import CoreGraphics
+import QuartzCore
+import UIKit
 
-let loaderSpinnerMarginSide : CGFloat = 35.0
-let loaderSpinnerMarginTop : CGFloat = 20.0
-let loaderTitleMargin : CGFloat = 5.0
+let loaderSpinnerMarginSide: CGFloat = 35.0
+let loaderSpinnerMarginTop: CGFloat = 20.0
+let loaderTitleMargin: CGFloat = 5.0
 
 public class FTLoadingIndicator: UIView {
     
-    private var baseView : UIView?
-    private var titleLabel : UILabel?
-    private var loadingView : CALoadingView?
-    private var animated : Bool = true
+    private var baseView: UIView?
+    private var titleLabel: UILabel?
+    private var loadingView: CALoadingView?
+    private var animated: Bool = true
     private var canUpdated = false
     private var title: String?
     private var speed = 1
     
-    private var config : Config = Config() {
+    private var config = Config() {
         didSet {
             self.loadingView?.config = config
         }
@@ -36,15 +35,15 @@ public class FTLoadingIndicator: UIView {
         
         let loader = FTLoadingIndicator.sharedInstance
         
-        let height : CGFloat = UIScreen.main.bounds.size.height
-        let width : CGFloat = UIScreen.main.bounds.size.width
-        let center : CGPoint = CGPoint(x: width / 2.0, y: height / 2.0)
+        let height: CGFloat = UIScreen.main.bounds.size.height
+        let width: CGFloat = UIScreen.main.bounds.size.width
+        let center: CGPoint = CGPoint(x: width / 2.0, y: height / 2.0)
         
         loader.center = center
         loader.baseView?.frame = UIScreen.main.bounds
     }
     
-    override public var frame : CGRect {
+    override public var frame: CGRect {
         didSet {
             self.update()
         }
@@ -61,7 +60,7 @@ public class FTLoadingIndicator: UIView {
         self.show(title: self.sharedInstance.config.title, animated: animated)
     }
     
-    public static func show(title: String?, animated : Bool = true) {
+    public static func show(title: String?, animated: Bool = true) {
         
         // Will fail if window is not allocated
         guard let currentWindow: UIWindow = UIApplication.shared.keyWindow else {
@@ -78,9 +77,9 @@ public class FTLoadingIndicator: UIView {
                                                name: UIDevice.orientationDidChangeNotification,
                                                object: nil)
         
-        let height : CGFloat = UIScreen.main.bounds.size.height
-        let width : CGFloat = UIScreen.main.bounds.size.width
-        let center : CGPoint = CGPoint(x: width / 2.0, y: height / 2.0)
+        let height: CGFloat = UIScreen.main.bounds.size.height
+        let width: CGFloat = UIScreen.main.bounds.size.width
+        let center: CGPoint = CGPoint(x: width / 2.0, y: height / 2.0)
         
         loader.center = center
         
@@ -102,7 +101,7 @@ public class FTLoadingIndicator: UIView {
         loader.stop()
     }
     
-    public static func setConfig(config : Config) {
+    public static func setConfig(config: Config) {
         let loader = FTLoadingIndicator.sharedInstance
         loader.config = config
         loader.frame = CGRect(origin: CGPoint(x: 0, y: 0),size: CGSize(width: loader.config.size, height: loader.config.size))
@@ -124,7 +123,8 @@ public class FTLoadingIndicator: UIView {
             UIView.animate(withDuration: 0.3) {
                 self.alpha = 1
             }
-        } else {
+        }
+        else {
             self.alpha = 1
         }
     }
@@ -159,14 +159,19 @@ public class FTLoadingIndicator: UIView {
             self.loadingView?.frame = self.frameForSpinner()
         }
         
+        let frame = CGRect(
+            origin: CGPoint(x: loaderTitleMargin, y: loaderSpinnerMarginTop + loadingViewSize),
+            size: CGSize(width: self.frame.width - loaderTitleMargin * 2, height: 42.0)
+        )
+
         if self.titleLabel == nil {
-            self.titleLabel = UILabel(frame: CGRect(origin: CGPoint(x: loaderTitleMargin, y: loaderSpinnerMarginTop + loadingViewSize), size: CGSize(width: self.frame.width - loaderTitleMargin*2, height:  42.0)))
+            self.titleLabel = UILabel(frame: frame)
             self.addSubview(self.titleLabel!)
             self.titleLabel?.numberOfLines = 1
             self.titleLabel?.textAlignment = NSTextAlignment.center
             self.titleLabel?.adjustsFontSizeToFitWidth = true
         } else {
-            self.titleLabel?.frame = CGRect(origin: CGPoint(x: loaderTitleMargin, y: loaderSpinnerMarginTop + loadingViewSize), size: CGSize(width: self.frame.width - loaderTitleMargin*2, height: 42.0))
+            self.titleLabel?.frame = frame
         }
         
         self.titleLabel?.font = self.config.titleTextFont
@@ -191,7 +196,7 @@ public class FTLoadingIndicator: UIView {
         self.setup()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -199,15 +204,15 @@ public class FTLoadingIndicator: UIView {
      *  Loader View
      */
     // MARK: CALoadingView
-    class CALoadingView : UIView {
+    class CALoadingView: UIView {
         
-        private var speed : Int?
-        private var lineWidth : Float?
-        private var lineTintColor : UIColor?
-        private var backgroundLayer : CAShapeLayer?
-        private var isSpinning : Bool?
+        private var speed: Int?
+        private var lineWidth: Float?
+        private var lineTintColor: UIColor?
+        private var backgroundLayer: CAShapeLayer?
+        private var isSpinning: Bool?
         
-        var config : Config = Config() {
+        var config = Config() {
             didSet {
                 self.update()
             }
@@ -280,7 +285,7 @@ public class FTLoadingIndicator: UIView {
             self.isSpinning? = true
             self.drawBackgroundCircle(partial: true)
             
-            let rotationAnimation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+            let rotationAnimation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
             rotationAnimation.toValue = NSNumber(value: Double.pi * 2.0)
             rotationAnimation.duration = 1
             rotationAnimation.isCumulative = true
@@ -305,7 +310,7 @@ public class FTLoadingIndicator: UIView {
         /**
          *  Size of loader
          */
-        public var size : CGFloat = 120.0
+        public var size: CGFloat = 120.0
         
         /**
          *  Color of spinner view
@@ -315,22 +320,22 @@ public class FTLoadingIndicator: UIView {
         /**
          *  S
          */
-        public var spinnerLineWidth :Float = 1.0
+        public var spinnerLineWidth: Float = 1.0
         
         /**
          *  Speed of the spinner
          */
-        public var speed :Int = 1
+        public var speed: Int = 1
         
         /**
          *  Size of loader
          */
-        public var title : String? = nil
+        public var title: String?
         
         /**
          *  Font for title text in loader
          */
-        public var titleTextFont : UIFont = UIFont.boldSystemFont(ofSize: 16.0)
+        public var titleTextFont: UIFont = UIFont.boldSystemFont(ofSize: 16.0)
         
         /**
          *  Color of title text
@@ -350,19 +355,19 @@ public class FTLoadingIndicator: UIView {
         /**
          *  Foreground alpha CGFloat, between 0.0 and 1.0
          */
-        public var foregroundAlpha:CGFloat = 0.0
+        public var foregroundAlpha: CGFloat = 0.0
         
         /**
          *  Corner radius for loader
          */
-        public var cornerRadius : CGFloat = 10.0
+        public var cornerRadius: CGFloat = 10.0
         
         /**
          *  Corner radius for loader
          */
-        public var customConfig : [String:Any]?
+        public var customConfig: [String: Any]?
         
-        public init(_ customConfig: [String:Any]? = nil) {
+        public init(_ customConfig: [String: Any]? = nil) {
             self.customConfig = customConfig
         }
     }

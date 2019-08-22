@@ -63,7 +63,7 @@ public protocol FTServiceClient: FTServiceRulesProtocol {
     associatedtype OutputDataType
 
     var serviceName: String { get set }
-    var requestHeaders: [String:String] { get }
+    var requestHeaders: [String: String] { get }
     var inputStack: InputDataType? { get set }
     var responseStack: OutputDataType? { get }
     var responseStackType: Any? { get }
@@ -91,7 +91,7 @@ public protocol FTServiceClient: FTServiceRulesProtocol {
 public extension FTServiceClient {
     var serviceName: String { return "" }
 
-    var requestHeaders: [String:String] {
+    var requestHeaders: [String: String] {
         return [:]
     }
 
@@ -145,7 +145,8 @@ public extension FTServiceClient {
                 FTLog(FTLogConstants.errorModel.rawValue, errorModelData)
                 responseModelData = errorModelData
             }
-        } catch {
+        }
+        catch {
             FTLog(FTLogConstants.errorModel.rawValue, error)
         }
 
@@ -158,10 +159,11 @@ public extension FTServiceClient {
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
                 FTLog(FTLogConstants.responseData.rawValue, json)
-            } catch {
+            }
+            catch {
                 FTLog(FTLogConstants.responseData.rawValue, error)
             }
-            FTLog(FTLogConstants.responseData.rawValue,data.decodeToString() ?? "")
+            FTLog(FTLogConstants.responseData.rawValue, data.decodeToString() ?? "")
         }
         // Logging
 
@@ -207,14 +209,13 @@ public extension FTServiceClient {
 
     func fireAfter(data: Data?, response: URLResponse?, error: Error?) {
     }
-
 }
 
 private extension FTServiceClient {
 
     // MARK: Response Parsing
     func responseType() -> FTServiceModel.Type? {
-        guard let (_ ,repsModelName) = serviceRequest?.responseType?.first else {
+        guard let (_, repsModelName) = serviceRequest?.responseType?.first else {
             return nil
         }
         return FTReflection.swiftClassTypeFromString(repsModelName) as? FTServiceModel.Type
@@ -260,25 +261,23 @@ extension FTServiceClient {
 
     // MARK: Service Request
     var serviceRequest: FTRequestObject? {
-        get {
-            if let request: FTRequestObject = FTAssociatedObject.getAssociated(instance: self, key: &FTAssociatedKey.ServiceRequest) {
+        if let request: FTRequestObject = FTAssociatedObject.getAssociated(instance: self, key: &FTAssociatedKey.ServiceRequest) {
+            return request
+        }
+        do {
+            if let data = try FTMobileConfig.schemaForClass(classKey: serviceName) {
+                let request = try FTRequestObject.makeModel(json: data)
+                if !request.queryItems().isEmpty {
+                    FTAssociatedObject<FTRequestObject>.setAssociated(instance: self, value: request, key: &FTAssociatedKey.ServiceRequest)
+                }
                 return request
             }
-            do {
-                if let data = try FTMobileConfig.schemaForClass(classKey: serviceName) {
-                    let request = try FTRequestObject.makeModel(json: data)
-                    if request.queryItems().count > 0 {
-                        FTAssociatedObject<FTRequestObject>.setAssociated(instance: self, value: request, key: &FTAssociatedKey.ServiceRequest)
-                    }
-                    return request
-                }
-            }
-            catch {
-                FTLog(FTLogConstants.error.rawValue, error)
-            }
-            FTLog("serviceRequest: \(serviceName) is nil")
-            return nil
         }
+        catch {
+            FTLog(FTLogConstants.error.rawValue, error)
+        }
+        FTLog("serviceRequest: \(serviceName) is nil")
+        return nil
     }
 
     func urlRequest() -> URLRequest? {

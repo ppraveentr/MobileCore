@@ -93,10 +93,11 @@ public extension UIView {
     // Find subView based on output type
     func findInSubView<T>() -> T? {
 
-        for val in ( self.subviews.compactMap { $0 } ) {
+        for val in self.subviews.compactMap({ $0 }) {
             if val is T {
                 return val as? T
-            } else if val.subviews.count > 0 {
+            }
+            else if !val.subviews.isEmpty {
                 let subType: T? =  val.findInSubView()
                 return subType
             }
@@ -105,7 +106,8 @@ public extension UIView {
     }
 
     // calculate - systemLayoutSizeFitting
-    func compressedSize(_ size: CGSize = .zero, _ offSet: CGSize = .zero,
+    func compressedSize(_ size: CGSize = .zero,
+                        _ offSet: CGSize = .zero,
                         widthPriority: UILayoutPriority = .required,
                         heightPriority: UILayoutPriority = .fittingSizeLevel ) -> CGSize {
 
@@ -114,12 +116,13 @@ public extension UIView {
             return compressedSize
         }
 
-        let size = self.systemLayoutSizeFitting(size,
-                                                 withHorizontalFittingPriority: widthPriority,
-                                                 verticalFittingPriority: heightPriority)
+        let size = self.systemLayoutSizeFitting(
+            size,
+            withHorizontalFittingPriority: widthPriority,
+            verticalFittingPriority: heightPriority
+        )
 
         return CGSize(width: size.width - offSet.width, height:  size.height - offSet.height)
-
     }
 }
 
@@ -136,9 +139,7 @@ public extension UIView {
         }
         
         for subview in self.subviews {
-            if
-                let imageViews = subview.findShadowImage(),
-                imageViews.count > 0 {
+            if let imageViews = subview.findShadowImage(), !imageViews.isEmpty {
                 imgs.append(contentsOf: imageViews)
             }
         }
@@ -149,9 +150,8 @@ public extension UIView {
     // Remove all UIImageView's with 'height <= 1'
     func hideShadowImage() {
         
-        self.findShadowImage()?.forEach { (shadowImageView) in
+        self.findShadowImage()?.forEach { shadowImageView in
             shadowImageView.isHidden = true
         }
     }
-    
 }

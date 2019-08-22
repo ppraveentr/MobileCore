@@ -38,7 +38,7 @@ open class FTAppearanceManager {
 
                 if let classTy: FTAppearanceManagerProtocol = FTReflection.swiftClassFromString(components.0) as? FTAppearanceManagerProtocol {
 
-                    var appearanceContainer: [UIAppearanceContainer.Type]? = nil
+                    var appearanceContainer: [UIAppearanceContainer.Type]?
                     if
                         components.1 != nil,
                         let objecClass = FTReflection.swiftClassTypeFromString(components.1!) {
@@ -65,7 +65,7 @@ extension FTThemesManager {
     }
 }
 
-extension UIView : FTAppearanceManagerProtocol {
+extension UIView: FTAppearanceManagerProtocol {
 
     public func setUpAppearance(theme: FTThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         return type(of: self).setUpAppearance(theme: theme, containerClass: containerClass)
@@ -167,7 +167,7 @@ extension UINavigationBar {
     override public class func setBackgroundImage(_ image: Any) {
         
         var defaultImage: UIImage? = FTThemesManager.getImage(image)
-        var landScapeImage: UIImage? = nil
+        var landScapeImage: UIImage?
         
         if let imageTheme = image as? FTThemeModel {
             defaultImage = FTThemesManager.getImage(imageTheme["default"])

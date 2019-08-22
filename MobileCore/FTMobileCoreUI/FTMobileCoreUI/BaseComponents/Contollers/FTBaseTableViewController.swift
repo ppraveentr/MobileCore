@@ -18,7 +18,7 @@ open class FTCoreTableViewController: UITableViewController {
         self.tableStyle = style
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -39,7 +39,6 @@ open class FTCoreTableViewController: UITableViewController {
     final override public func loadView() {
         _ = self.ftTableView
     }
-    
 }
 
 open class FTBaseTableViewController: FTBaseViewController {
@@ -80,7 +79,6 @@ open class FTBaseTableViewController: FTBaseViewController {
             }
         }
     }
-    
 }
 
 extension FTBaseTableViewController {

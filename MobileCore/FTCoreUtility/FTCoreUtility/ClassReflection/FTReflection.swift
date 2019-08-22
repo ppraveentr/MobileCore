@@ -19,7 +19,6 @@ public extension String {
     func classInstance () -> AnyClass? {
         return FTReflection.swiftClassTypeFromString(self)
     }
-    
 }
 
 final public class FTReflection {
@@ -37,7 +36,7 @@ final public class FTReflection {
      */
     public static func registerModuleIdentifier(_ object: Any? = nil) {
         
-        if moduleIdentifiers.count == 0 {
+        if moduleIdentifiers.isEmpty {
             moduleIdentifiers.append(nameForBundle(Bundle(for: self)))
         }
         
@@ -47,7 +46,7 @@ final public class FTReflection {
         else if let classIdentier = object as? String {
             moduleIdentifiers.append(classIdentier)
         }
-        else if let classes = object as? Array<Any> {
+        else if let classes = object as? [Any] {
             for aClass in classes {
                 self.registerModuleIdentifier(aClass)
             }
@@ -62,15 +61,14 @@ final public class FTReflection {
         var appName = bundle.infoDictionary?[kCFBundleExecutableKey as String] as? String ?? ""
         
         // If it was not set, then use the ModuleIdentifier (which is the same as kCFModuleIdentifierKey)
-        if appName == "" {
+        if appName.isEmpty {
             appName = bundle.bundleIdentifier ?? ""
-            appName = appName.split(whereSeparator: { $0 == "." }).map(String.init).last ?? ""
+            appName = appName.split { $0 == "." }.map(String.init).last ?? ""
         }
         
         // Clean up special characters
         return appName.components(separatedBy: illegalCharacterSet).joined(separator: "_")
     }
-    
     
     /**
      Get the swift Class type from a string
@@ -147,5 +145,4 @@ final public class FTReflection {
         // use the bundle name from the main bundle, if that's not set use the identifier
         return nameForBundle(Bundle.main)
     }
-    
 }

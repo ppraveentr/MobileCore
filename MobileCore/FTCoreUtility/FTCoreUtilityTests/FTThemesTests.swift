@@ -11,7 +11,7 @@ import XCTest
 
 class FTThemesTests: XCTestCase {
     
-    let theme: [String : Any] = [
+    let theme: [String: Any] = [
         "type": "Themes",
         "color": [
             "default": "#FFFFFF",

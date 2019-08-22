@@ -15,11 +15,11 @@ enum Theme: Int {
     var mainColor: UIColor {
         switch self {
         case .default:
-            return UIColor(red: 87.0/255.0, green: 188.0/255.0, blue: 95.0/255.0, alpha: 1.0)
+            return UIColor(red: 87.0 / 255.0, green: 188.0 / 255.0, blue: 95.0 / 255.0, alpha: 1.0)
         case .dark:
-            return UIColor(red: 242.0/255.0, green: 101.0/255.0, blue: 34.0/255.0, alpha: 1.0)
+            return UIColor(red: 242.0 / 255.0, green: 101.0 / 255.0, blue: 34.0 / 255.0, alpha: 1.0)
         case .graphical:
-            return UIColor(red: 10.0/255.0, green: 10.0/255.0, blue: 10.0/255.0, alpha: 1.0)
+            return UIColor(red: 10.0 / 255.0, green: 10.0 / 255.0, blue: 10.0 / 255.0, alpha: 1.0)
         }
     }
     
@@ -31,7 +31,6 @@ enum Theme: Int {
             return .black
         }
     }
-    
 }
 
 struct ThemeManager {
@@ -42,7 +41,8 @@ struct ThemeManager {
         if
             let storedTheme = UserDefaults.standard.value(forKey: SelectedThemeKey) as? Int {
             return Theme(rawValue: storedTheme)!
-        } else {
+        }
+        else {
             return .default
         }
     }
@@ -57,7 +57,6 @@ struct ThemeManager {
         UINavigationBar.appearance().barStyle = theme.barStyle
         UITabBar.appearance().barStyle = theme.barStyle
         
-        
         let tabIndicator = UIImage(named: "tabBarSelectionIndicator")?.withRenderingMode(.alwaysTemplate)
         let tabResizableIndicator = tabIndicator?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 2.0, bottom: 0, right: 2.0))
         UITabBar.appearance().selectionIndicatorImage = tabResizableIndicator
@@ -66,14 +65,16 @@ struct ThemeManager {
         UIStepper.appearance().setIncrementImage(UIImage(named: "morePaws"), for: UIControl.State())
         
         UISlider.appearance().setThumbImage(UIImage(named: "sliderThumb"), for: UIControl.State())
-        UISlider.appearance().setMaximumTrackImage(UIImage(named: "maximumTrack")?
-            .resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0.0, bottom: 0, right: 6.0)), for: UIControl.State())
-        UISlider.appearance().setMinimumTrackImage(UIImage(named: "minimumTrack")?
-            .withRenderingMode(.alwaysTemplate)
-            .resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 6.0, bottom: 0, right: 0)), for: UIControl.State())
+        UISlider.appearance().setMaximumTrackImage(
+            UIImage(named: "maximumTrack")?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0.0, bottom: 0, right: 6.0)),
+            for: UIControl.State()
+        )
+        UISlider.appearance().setMinimumTrackImage(
+            UIImage(named: "minimumTrack")?.withRenderingMode(.alwaysTemplate).resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 6.0, bottom: 0, right: 0)),
+            for: UIControl.State()
+        )
         
         UISwitch.appearance().onTintColor = theme.mainColor.withAlphaComponent(0.3)
         UISwitch.appearance().thumbTintColor = theme.mainColor
-        
     }
 }

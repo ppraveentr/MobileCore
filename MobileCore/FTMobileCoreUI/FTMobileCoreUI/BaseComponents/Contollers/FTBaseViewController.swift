@@ -45,13 +45,13 @@ public protocol FTAppBaseProtocal {
     func makeResponder(status:Bool, textField: UITextField, text: String?)
 
 
-    // MARK:  Activity indicator
+    // MARK: Activity indicator
     func showActivityIndicator()
     func hideActivityIndicator()
 }
 
 // `self.view` Should be a `FTBaseView`.
-open class FTBaseViewController : UIViewController {
+open class FTBaseViewController: UIViewController {
 
     @IBOutlet
     lazy open var baseView: FTBaseView? = FTBaseView()
@@ -236,7 +236,7 @@ extension FTBaseViewController: FTAppBaseProtocal {
     }
     
     // MARK: Responder
-    open func makeResponder(status:Bool, textField: UITextField, text: String? = nil) {
+    open func makeResponder(status: Bool, textField: UITextField, text: String? = nil) {
         self_makeResponder(status: status, textField: textField, text: text)
     }
     
@@ -251,21 +251,24 @@ extension FTBaseViewController: FTAppBaseProtocal {
     }
     
     /*  UIKeyboardWillShow. */
-    @objc func keyboardWillShow(_ notification : Notification?) -> Void {
+    @objc func keyboardWillShow(_ notification: Notification?) {
     }
     
     /*  UIKeyboardDidHide. */
-    @objc func keyboardDidHide(_ notification : Notification?) -> Void {
+    @objc func keyboardDidHide(_ notification: Notification?) {
     }
     
     // MARK: AlertViewController
-    public func showAlert(title: String, message: String,
-                          action: UIAlertAction? = nil,
-                          actions: [UIAlertAction]? = nil) {
+    public func showAlert(
+        title: String,
+        message: String,
+        action: UIAlertAction? = nil,
+        actions: [UIAlertAction]? = nil
+        ) {
         self_showAlert(title: title, message: message, action: action, actions: actions)
     }
     
-    // MARK:  Activity indicator
+    // MARK: Activity indicator
     public func showActivityIndicator() {
         FTLoadingIndicator.show()
     }
@@ -307,31 +310,31 @@ extension FTBaseViewController {
 
         /* Pin view bellow status bar */
         // Pin - rootView's topAnchor
-        if topSafeAreaLayoutGuide() {
-            if #available(iOS 11.0, *) {
-                local?.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                            constant: 0.0).isActive = true
-            } else {
-                local?.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor,
-                                            constant: 0.0).isActive = true
-            }
+        if topSafeAreaLayoutGuide(), let local = local {
+            setupTopSafeAreaLayoutGuide(local)
         }
 
         // Pin - rootView's topAnchor
         if #available(iOS 11.0, *), horizontalSafeAreaLayoutGuide() {
-            local?.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor,
-                                         constant: 0.0).isActive = true
-            local?.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
-                                          constant: 0.0).isActive = true
+            local?.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0.0).isActive = true
+            local?.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0.0).isActive = true
         }
 
         // Pin - rootView's bottomAnchor
         if #available(iOS 11.0, *) {
-            local?.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                                           constant: 0.0).isActive = true
-        } else {
-            local?.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor,
-                                           constant: 0.0).isActive = true
+            local?.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0.0).isActive = true
+        }
+        else {
+            local?.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor, constant: 0.0).isActive = true
+        }
+    }
+    
+    private func setupTopSafeAreaLayoutGuide(_ local: FTView) {
+        if #available(iOS 11.0, *) {
+            local.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0.0).isActive = true
+        }
+        else {
+            local.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor, constant: 0.0).isActive = true
         }
     }
 }

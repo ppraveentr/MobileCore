@@ -7,15 +7,11 @@
 //
 
 import XCTest
-@testable import MobileCore
-@testable import FTMobileCoreSample
 
 class FTMobileCoreSampleTests: XCTestCase {
     
     func testMDASample() {
-        let sample: MDASample = MDASample()
+        let sample = MDASample()
         sample.amount = 34.3
-        
     }
-    
 }

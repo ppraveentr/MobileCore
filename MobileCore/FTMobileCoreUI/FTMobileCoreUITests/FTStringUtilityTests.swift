@@ -38,15 +38,14 @@ class FTStringUtilityTests: XCTestCase {
     func testPerformanceURLLink() {
         // This is an example of a performance test case.
         self.measure {
-            let _ = FTLinkDetection.getURLLinkRanges(self.testString)
+            _ = FTLinkDetection.getURLLinkRanges(self.testString)
         }
     }
     
     func testPerformanceHashLink() {
         // This is an example of a performance test case.
         self.measure {
-            let _ = FTLinkDetection.getHashTagRanges(self.testString)
+            _ = FTLinkDetection.getHashTagRanges(self.testString)
         }
     }
-    
 }

@@ -34,24 +34,23 @@ public extension FTFlattenIterator {
         
         // Dic
         if var dicSub = self as? [String: Any?] {
-            dicSub = dicSub.filter({ $1 != nil })
-            self = dicSub.mapValues({ (val) -> Any in
+            dicSub = dicSub.filter { $1 != nil }
+            self = dicSub.mapValues { val -> Any in
                 var value = val
                 return stripSubElements(&value!)
-            }) as! Self
+            } as! Self
         }
         // Array
         else if var dicArray = self as? [Any?] {
             dicArray = dicArray.filter({ $0 != nil })
-            self = dicArray.map({ (val) -> Any in
+            self = dicArray.map { val -> Any in
                 var value = val
                 return stripSubElements(&value!)
-            }) as! Self
+            } as! Self
         }
         
         return self
     }
-    
 }
 
 public extension Dictionary {
@@ -60,7 +59,6 @@ public extension Dictionary {
             self[key] = value
         }
     }
-    
 }
 
 public extension Dictionary where Value: RangeReplaceableCollection {
@@ -68,10 +66,10 @@ public extension Dictionary where Value: RangeReplaceableCollection {
         for (key, value) in another {
             if let collection = self[key] {
                 self[key] = collection + value
-            } else {
+            }
+            else {
                 self[key] = value
             }
         }
     }
-    
 }

@@ -78,9 +78,10 @@ public extension UINavigationBar {
         // 
         // Below, background image is dynamically generated with the desired
         // opacity.
-        let transparentBackground: UIImage = UIColor.white.generateImage(opacity: opacity,
-                                                                         contentsScale: navigationBar.layer.contentsScale)
-        
+        let transparentBackground: UIImage = UIColor.white.generateImage(
+            opacity: opacity,
+            contentsScale: navigationBar.layer.contentsScale
+        )
         navigationBar.setBackgroundImage(transparentBackground, for: .default)
     }
     
@@ -95,5 +96,4 @@ public extension UINavigationBar {
         
         navigationBar.barTintColor = color
     }
-    
 }

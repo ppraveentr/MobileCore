@@ -229,7 +229,6 @@ open class FTThemesManager {
     public static func getAppearance(_ appearanceName: String? = nil) -> Any? {
         return themeAppearance(appearanceName)
     }
-    
 }
 
 extension FTThemesManager {
@@ -312,7 +311,7 @@ extension FTThemesManager {
     }
     
     // Defaults
-    fileprivate static func getDefaults(type: FTThemesType, keyName: String? = nil, styleName: String? = nil) -> Any?  {
+    fileprivate static func getDefaults(type: FTThemesType, keyName: String? = nil, styleName: String? = nil) -> Any? {
         
         guard let key = keyName else {
             return nil
@@ -350,12 +349,12 @@ extension FTThemesManager {
             
             // Convert JSON to UIFont
         case .Font:
-            superBlock = { (fontName) in
+            superBlock = { fontName in
                 return themeFont(fontName)
             }
         }
         
-        var actualComponents: Any? = nil
+        var actualComponents: Any?
 
         // If component of specifc type is not found, search for "default" style
         let components: Any? = superBlock?(key) ?? superBlock?(FTThemeStyle.defaultStyle)
@@ -372,5 +371,4 @@ extension FTThemesManager {
         
         return actualComponents ?? components
     }
-    
 }

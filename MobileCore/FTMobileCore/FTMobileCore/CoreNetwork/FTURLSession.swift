@@ -20,14 +20,15 @@ open class FTURLSession: NSObject {
 
     // Setup urlsession-dataTask with request & completionHandler
     @discardableResult
-    class open func startDataTask(with request: URLRequest, completionHandler: FTURLSessionCompletionBlock?) -> URLSessionDataTask {
+    open class func startDataTask(with request: URLRequest, completionHandler: FTURLSessionCompletionBlock?) -> URLSessionDataTask {
 
         let task: URLSessionDataTask
 
         // Setup session-dataTask with completion handler
-        if completionHandler != nil {
-            task = FTURLSession.defaultSession.dataTask(with: request, completionHandler: completionHandler!)
-        } else {
+        if let completionHandler = completionHandler {
+            task = FTURLSession.defaultSession.dataTask(with: request, completionHandler: completionHandler)
+        }
+        else {
             task = FTURLSession.defaultSession.dataTask(with: request)
         }
 
@@ -35,7 +36,6 @@ open class FTURLSession: NSObject {
 
         return task
     }
-    
 }
 
 extension FTURLSession: URLSessionDelegate {
@@ -45,9 +45,10 @@ extension FTURLSession: URLSessionDelegate {
         config.timeoutIntervalForRequest = 30
         config.timeoutIntervalForResource = 30
 
-        return URLSession(configuration: FTURLSession.sessionConfiguration,
-                          delegate: FTURLSession.sessionDelegate,
-                          delegateQueue: nil)
+        return URLSession(
+            configuration: FTURLSession.sessionConfiguration,
+            delegate: FTURLSession.sessionDelegate,
+            delegateQueue: nil
+        )
     }
-
 }

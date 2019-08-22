@@ -89,7 +89,7 @@ private let FTKeychainItemAccessibilityLookup: [FTKeychainItemAccessibility:CFSt
         .afterFirstUnlockThisDeviceOnly: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly,
         .always: kSecAttrAccessibleAlways,
         .whenPasscodeSetThisDeviceOnly: kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly,
-        .alwaysThisDeviceOnly : kSecAttrAccessibleAlwaysThisDeviceOnly,
+        .alwaysThisDeviceOnly: kSecAttrAccessibleAlwaysThisDeviceOnly,
         .whenUnlocked: kSecAttrAccessibleWhenUnlocked,
         .whenUnlockedThisDeviceOnly: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
     ]
@@ -97,7 +97,7 @@ private let FTKeychainItemAccessibilityLookup: [FTKeychainItemAccessibility:CFSt
     return lookup
 }()
 
-extension FTKeychainItemAccessibility : FTKeychainAttrRepresentable {
+extension FTKeychainItemAccessibility: FTKeychainAttrRepresentable {
     internal var keychainAttrValue: CFString {
         return FTKeychainItemAccessibilityLookup[self]!
     }

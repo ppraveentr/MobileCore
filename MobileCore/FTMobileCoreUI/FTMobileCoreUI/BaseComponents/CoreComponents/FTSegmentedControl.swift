@@ -8,7 +8,7 @@
 
 import UIKit
 
-public typealias FTSegmentedHandler = ( (_ index: Int) -> () )
+public typealias FTSegmentedHandler = ( (_ index: Int) -> Void )
 
 public extension UISegmentedControl {
     private static let aoHandler = FTAssociatedObject<FTSegmentedHandler>()
@@ -31,7 +31,7 @@ public extension UISegmentedControl {
     
     @objc
     func segmentedControlIndexChanged(_ sender: UISegmentedControl) {
-        if let completionBlock = UISegmentedControl.aoHandler[self]  {
+        if let completionBlock = UISegmentedControl.aoHandler[self] {
             completionBlock(self.selectedSegmentIndex)
         }
     }

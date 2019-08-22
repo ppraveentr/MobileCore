@@ -25,6 +25,7 @@ open class FTBaseView: FTView {
     // On init'coder, mainView will be nil, but on loadView it will be allocated.
     // So using lazy, to make sure, mainView will not be nil, when accessed.
     lazy var _mainPinnedView: FTView! = FTView()
+    
     @IBOutlet
     public var mainPinnedView: FTView! {
         set {
@@ -44,6 +45,7 @@ open class FTBaseView: FTView {
     }
 
     var isLoadedFromInterface = false
+    
     public required init?(coder aDecoder: NSCoder) {
         isLoadedFromInterface = true
         super.init(coder: aDecoder)
@@ -110,9 +112,11 @@ open class FTBaseView: FTView {
         if viewArray.count > 1 {
             
             // Make all subViews of sameSize, to auto-size the view layout
-            rootView.stackView(views: viewArray,
-                               layoutDirection: .topToBottom,
-                               edgeInsets: [.leadingMargin, .trailingMargin, .equalWidth])
+            rootView.stackView(
+                views: viewArray,
+                layoutDirection: .topToBottom,
+                edgeInsets: [.leadingMargin, .trailingMargin, .equalWidth]
+            )
         }
         
         // Pin : BottomMargin of the lastView to Root
@@ -130,7 +134,8 @@ extension FTBaseView {
         if view != mainPinnedView, view != rootView,
             !isLoadedFromInterface {
             self.mainPinnedView.addSubview(view)
-        } else {
+        }
+        else {
             super.addSubview(view)
         }
     }

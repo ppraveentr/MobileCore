@@ -17,7 +17,7 @@ public class FTAssociatedObject<T> {
     
     private var aoPolicy: objc_AssociationPolicy
 
-    public init(policy aoPolicy:objc_AssociationPolicy) {
+    public init(policy aoPolicy: objc_AssociationPolicy) {
         self.aoPolicy = aoPolicy
     }
     
@@ -51,5 +51,4 @@ public class FTAssociatedObject<T> {
     public static func getAssociated(instance: Any, key: UnsafeRawPointer) -> T? {
         return objc_getAssociatedObject(instance, key) as? T
     }
-    
 }

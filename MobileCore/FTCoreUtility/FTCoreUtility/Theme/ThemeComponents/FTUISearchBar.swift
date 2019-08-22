@@ -27,7 +27,7 @@ open class FTUISearchBar: UISearchBar, FTThemeProtocol {
         isTranslucent = false
     }
 
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -74,9 +74,9 @@ public extension FTThemeProtocol where Self: UISearchBar {
 
     func updateTheme(_ theme: FTThemeModel) {
 
-        var barTintColor: UIColor? = nil
-        var tintColor: UIColor? = nil
-        var textcolor: UIColor? = nil
+        var barTintColor: UIColor?
+        var tintColor: UIColor?
+        var textcolor: UIColor?
 
         for (kind, value) in theme {
             switch kind {

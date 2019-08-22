@@ -27,7 +27,7 @@ open class FTKeychainWrapper {
     public static let standard = FTKeychainWrapper()
     
     /// ServiceName is used for the kSecAttrService property to uniquely identify this keychain accessor. If no service name is specified, FTKeychainWrapper will default to using the bundleIdentifier.
-    private (set) public var serviceName: String
+     public private (set) var serviceName: String
     
     /// AccessGroup is used for the kSecAttrAccessGroup property to identify which Keychain Access Group this entry belongs to. This allows you to use the FTKeychainWrapper with shared keychain access between different applications.
     private (set) public var accessGroup: String?
@@ -49,7 +49,7 @@ open class FTKeychainWrapper {
         self.accessGroup = accessGroup
     }
 
-    // MARK:- Public Methods
+    // MARK: Public Methods
     
     /// Checks if keychain data exists for a specified key.
     ///
@@ -57,9 +57,10 @@ open class FTKeychainWrapper {
     /// - parameter withAccessibility: Optional accessibility to use when retrieving the keychain item.
     /// - returns: True if a value exists for the key. False otherwise.
     open func hasValue(forKey key: String, withAccessibility accessibility: FTKeychainItemAccessibility? = nil) -> Bool {
-        if let _ = data(forKey: key, withAccessibility: accessibility) {
+        if data(forKey: key, withAccessibility: accessibility) != nil {
             return true
-        } else {
+        }
+        else {
             return false
         }
     }
@@ -147,7 +148,6 @@ open class FTKeychainWrapper {
         return NSKeyedUnarchiver.unarchiveObject(with: keychainData) as? NSCoding
     }
 
-    
     /// Returns a Data object for a specified key.
     ///
     /// - parameter forKey: The key to lookup data for.
@@ -168,7 +168,6 @@ open class FTKeychainWrapper {
         
         return status == noErr ? result as? Data : nil
     }
-    
     
     /// Returns a persistent data reference object for a specified key.
     ///
@@ -218,7 +217,8 @@ open class FTKeychainWrapper {
     @discardableResult open func set(_ value: String, forKey key: String, withAccessibility accessibility: FTKeychainItemAccessibility? = nil) -> Bool {
         if let data = value.data(using: .utf8) {
             return set(data, forKey: key, withAccessibility: accessibility)
-        } else {
+        }
+        else {
             return false
         }
     }
@@ -242,13 +242,14 @@ open class FTKeychainWrapper {
     /// - parameter withAccessibility: Optional accessibility to use when setting the keychain item.
     /// - returns: True if the save was successful, false otherwise.
     @discardableResult open func set(_ value: Data, forKey key: String, withAccessibility accessibility: FTKeychainItemAccessibility? = nil) -> Bool {
-        var keychainQueryDictionary: [String:Any] = setupKeychainQueryDictionary(forKey: key, withAccessibility: accessibility)
+        var keychainQueryDictionary: [String: Any] = setupKeychainQueryDictionary(forKey: key, withAccessibility: accessibility)
         
         keychainQueryDictionary[SecValueData] = value
         
         if let accessibility = accessibility {
             keychainQueryDictionary[SecAttrAccessible] = accessibility.keychainAttrValue
-        } else {
+        }
+        else {
             // Assign default protection - Protect the keychain entry so it's only valid when the device is unlocked
             keychainQueryDictionary[SecAttrAccessible] = FTKeychainItemAccessibility.whenUnlocked.keychainAttrValue
         }
@@ -257,9 +258,11 @@ open class FTKeychainWrapper {
         
         if status == errSecSuccess {
             return true
-        } else if status == errSecDuplicateItem {
+        }
+        else if status == errSecDuplicateItem {
             return update(value, forKey: key, withAccessibility: accessibility)
-        } else {
+        }
+        else {
             return false
         }
     }
@@ -270,14 +273,15 @@ open class FTKeychainWrapper {
     /// - parameter withAccessibility: Optional accessibility level to use when looking up the keychain item.
     /// - returns: True if successful, false otherwise.
     @discardableResult open func removeObject(forKey key: String, withAccessibility accessibility: FTKeychainItemAccessibility? = nil) -> Bool {
-        let keychainQueryDictionary: [String:Any] = setupKeychainQueryDictionary(forKey: key, withAccessibility: accessibility)
+        let keychainQueryDictionary: [String: Any] = setupKeychainQueryDictionary(forKey: key, withAccessibility: accessibility)
 
         // Delete
         let status: OSStatus = SecItemDelete(keychainQueryDictionary as CFDictionary)
 
         if status == errSecSuccess {
             return true
-        } else {
+        }
+        else {
             return false
         }
     }
@@ -293,7 +297,8 @@ open class FTKeychainWrapper {
         
         if status == errSecSuccess {
             return true
-        } else {
+        }
+        else {
             return false
         }
     }
@@ -313,7 +318,8 @@ open class FTKeychainWrapper {
 
         if status == errSecSuccess {
             return true
-        } else {
+        }
+        else {
             return false
         }
     }
@@ -325,7 +331,7 @@ open class FTKeychainWrapper {
     /// - returns: A dictionary with all the needed properties setup to access the keychain on iOS
     private func setupKeychainQueryDictionary(forKey key: String, withAccessibility accessibility: FTKeychainItemAccessibility? = nil) -> [String:Any] {
         // Setup default access as generic password (rather than a certificate, internet password, etc)
-        var keychainQueryDictionary: [String:Any] = [SecClass:kSecClassGenericPassword]
+        var keychainQueryDictionary: [String: Any] = [SecClass:kSecClassGenericPassword]
         
         // Uniquely identify this keychain accessor
         keychainQueryDictionary[SecAttrService] = serviceName

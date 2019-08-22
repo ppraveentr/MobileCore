@@ -33,5 +33,4 @@ extension UICollectionView {
     func sectionInset() -> UIEdgeInsets {
         return viewController?.sectionInset() ?? .zero
     }
-    
 }
