@@ -30,13 +30,11 @@ public enum FTServiceStatus<T: FTServiceClient>: Error {
     case failed(T?, Int)
 
     public var status: (isSuccess: Bool, responseModel: FTServiceModel?) {
-        get {
-            switch self {
-            case .success(let model, _):
-                return (true, model?.responseStack)
-            case .failed(let model, _):
-                return (false, model?.responseStack)
-            }
+        switch self {
+        case .success(let model, _):
+            return (true, model?.responseStack)
+        case .failed(let model, _):
+            return (false, model?.responseStack)
         }
     }
 }

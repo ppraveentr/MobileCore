@@ -6,8 +6,8 @@
 //  Copyright © 2018 Praveen Prabhakar01. All rights reserved.
 //
 
-import Foundation
 import CoreGraphics
+import Foundation
 import QuartzCore
 import UIKit
 
@@ -37,7 +37,7 @@ public class FTLoadingIndicator: UIView {
         
         let height: CGFloat = UIScreen.main.bounds.size.height
         let width: CGFloat = UIScreen.main.bounds.size.width
-        let center: CGPoint = CGPoint(x: width / 2.0, y: height / 2.0)
+        let center = CGPoint(x: width / 2.0, y: height / 2.0)
         
         loader.center = center
         loader.baseView?.frame = UIScreen.main.bounds
@@ -259,14 +259,14 @@ public class FTLoadingIndicator: UIView {
             self.backgroundLayer?.frame = self.bounds
         }
         
-        func drawBackgroundCircle(partial : Bool) {
-            let startAngle : CGFloat = CGFloat.pi / CGFloat(2.0)
-            var endAngle : CGFloat = (2.0 * CGFloat.pi) + startAngle
+        func drawBackgroundCircle(partial: Bool) {
+            let startAngle = CGFloat.pi / CGFloat(2.0)
+            var endAngle: CGFloat = (2.0 * CGFloat.pi) + startAngle
             
-            let center : CGPoint = CGPoint(x: self.bounds.size.width / 2,y: self.bounds.size.height / 2)
-            let radius : CGFloat = (CGFloat(self.bounds.size.width) - CGFloat(self.lineWidth!)) / CGFloat(2.0)
+            let center: CGPoint = CGPoint(x: self.bounds.size.width / 2, y: self.bounds.size.height / 2)
+            let radius: CGFloat = (CGFloat(self.bounds.size.width) - CGFloat(self.lineWidth!)) / CGFloat(2.0)
             
-            let processBackgroundPath : UIBezierPath = UIBezierPath()
+            let processBackgroundPath = UIBezierPath()
             processBackgroundPath.lineWidth = CGFloat(self.lineWidth!)
             
             if partial {
@@ -285,7 +285,7 @@ public class FTLoadingIndicator: UIView {
             self.isSpinning? = true
             self.drawBackgroundCircle(partial: true)
             
-            let rotationAnimation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+            let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
             rotationAnimation.toValue = NSNumber(value: Double.pi * 2.0)
             rotationAnimation.duration = 1
             rotationAnimation.isCumulative = true

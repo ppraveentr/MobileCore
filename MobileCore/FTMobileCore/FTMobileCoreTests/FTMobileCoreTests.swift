@@ -73,7 +73,7 @@ class FTMobileCoreTests: XCTestCase {
 
     func testFTModelBindType_Success() {
         let sample = FTModelBindType(rawValue: "String")
-        XCTAssert(sample == .String, "properties matches")
+        XCTAssert(sample == .string, "properties matches")
     }
 
     func testFTModelBindType_Failure() {

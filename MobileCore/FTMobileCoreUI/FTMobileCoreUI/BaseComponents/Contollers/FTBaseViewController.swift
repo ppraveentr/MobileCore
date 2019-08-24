@@ -13,7 +13,7 @@ public typealias FTAppBaseCompletionBlock = (_ isSuccess: Bool,_ modelStack: Any
 public protocol FTAppBaseProtocal {
 
     //Setup View
-    func setupBaseView() -> Void
+    func setupBaseView()
 
     // MARK: Navigation Bar
     //Bydefalut leftButton action is set to 'leftButtonAction'
@@ -44,7 +44,6 @@ public protocol FTAppBaseProtocal {
     // MARK: Responder
     func makeResponder(status:Bool, textField: UITextField, text: String?)
 
-
     // MARK: Activity indicator
     func showActivityIndicator()
     func hideActivityIndicator()
@@ -54,7 +53,7 @@ public protocol FTAppBaseProtocal {
 open class FTBaseViewController: UIViewController {
 
     @IBOutlet
-    lazy open var baseView: FTBaseView? = FTBaseView()
+    open lazy var baseView: FTBaseView? = FTBaseView()
     @IBInspectable
     open var baseViewTheme: String = FTThemeStyle.defaultStyle
 
@@ -82,16 +81,14 @@ open class FTBaseViewController: UIViewController {
     public static var kRightButtonAction = #selector(rightButtonAction)
 
     // Unquie Identifier for eachScreen
-    open var screenIdentifier: String? = nil
+    open var screenIdentifier: String?
     // modelData that can be passed from previous controller
-    open var modelStack: AnyObject? = nil
-    open var completionBlock: FTAppBaseCompletionBlock? = nil
+    open var modelStack: AnyObject?
+    open var completionBlock: FTAppBaseCompletionBlock?
 
     private var isBaseViewAdded: Bool {
-        get {
-            // If baseView is not added, then retun false
-            return (self.baseView?.superview != self.view && self.view != self.baseView)
-        }
+        // If baseView is not added, then retun false
+        return (self.baseView?.superview != self.view && self.view != self.baseView)
     }
 
     deinit {
@@ -103,7 +100,7 @@ open class FTBaseViewController: UIViewController {
 
     public var isLoadedFromInterface = false
     
-    convenience public init() {
+    public convenience init() {
         self.init(nibName: nil, bundle: nil)
     }
     
@@ -223,12 +220,10 @@ extension FTBaseViewController: FTAppBaseProtocal {
     }
     
     // MARK: default Nav-bar button actions
-    @objc
     @IBAction open func leftButtonAction() {
         dismissSelf()
     }
     
-    @objc
     @IBAction open func rightButtonAction() {
     }
     

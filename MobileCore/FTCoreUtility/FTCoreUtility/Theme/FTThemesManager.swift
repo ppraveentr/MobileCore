@@ -141,7 +141,6 @@ open class FTThemesManager {
             default:
                 return UIFont(name: name, size: sizeValue)
             }
-
         }
         
         return UIFont.systemFont(ofSize: 14.0)
@@ -163,7 +162,7 @@ open class FTThemesManager {
             if imageName.hasPrefix("@") {
                 // Search for image in all available bundles
                 for bundleName in FTThemesManager.imageSourceBundle {
-                    if let image = UIImage.init(named: imageName.trimPrefix("@"), in: bundleName, compatibleWith: nil) {
+                    if let image = UIImage(named: imageName.trimPrefix("@"), in: bundleName, compatibleWith: nil) {
                         return image
                     }
                 }
@@ -174,13 +173,13 @@ open class FTThemesManager {
     }
 
     // MARK: UIImage
-    public static func getTextAttributes(_ theme: FTThemeModel?) -> [NSAttributedString.Key:AnyObject]? {
+    public static func getTextAttributes(_ theme: FTThemeModel?) -> [NSAttributedString.Key: AnyObject]? {
 
         guard let theme = theme else {
             return nil
         }
 
-        var attributes = [NSAttributedString.Key:AnyObject]()
+        var attributes = [NSAttributedString.Key: AnyObject]()
         if let value = theme["foregroundColor"] as? String {
             attributes[.foregroundColor] = self.getColor(value)
         }

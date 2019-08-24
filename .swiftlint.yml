@@ -12,6 +12,8 @@ disabled_rules:
 - trailing_whitespace # IDE will handle it for us
 - vertical_whitespace_opening_braces # readability improves
 - override_in_extension
+- private_outlet
+- private_action
 
 opt_in_rules:
 - array_init
@@ -53,8 +55,6 @@ opt_in_rules:
 - overridden_super_call
 - override_in_extension
 - pattern_matching_keywords
-- private_outlet
-- private_action
 - prohibited_super_call
 - redundant_nil_coalescing
 - redundant_type_annotation

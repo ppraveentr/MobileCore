@@ -152,11 +152,11 @@ public protocol FTViewConstrains: AnyObject {
     // Incudes Negative screen offset
     func resizeToFitSubviews()
     
-    func setViewSize(_ size: CGSize, createConstraint: Bool, relation:  NSLayoutConstraint.Relation)
+    func setViewSize(_ size: CGSize, createConstraint: Bool, relation: NSLayoutConstraint.Relation)
     
-    func setViewHeight(_ height: CGFloat, createConstraint: Bool, relation:  NSLayoutConstraint.Relation)
+    func setViewHeight(_ height: CGFloat, createConstraint: Bool, relation: NSLayoutConstraint.Relation)
     
-    func setViewWidth(_ width: CGFloat, createConstraint: Bool, relation:  NSLayoutConstraint.Relation)
+    func setViewWidth(_ width: CGFloat, createConstraint: Bool, relation: NSLayoutConstraint.Relation)
 }
 
 public extension UIView {

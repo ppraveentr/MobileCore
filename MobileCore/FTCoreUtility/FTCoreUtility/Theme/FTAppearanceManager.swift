@@ -59,7 +59,7 @@ extension FTThemesManager {
         if
             let color = color,
             let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as? UIView,
-            statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
+            statusBar.responds(to: #selector(setter: UIView.backgroundColor)) {
             statusBar.backgroundColor = color
         }
     }
@@ -105,7 +105,7 @@ extension UIView: FTAppearanceManagerProtocol {
             let image = FTThemesManager.getImage(imageName as? String),
             let segmentSelf = self as? UISegmentedControl.Type
         {
-            segmentSelf.setBackgroundImage(imageType:imageType, image: image)
+            segmentSelf.setBackgroundImage(imageType: imageType, image: image)
         }
     }
 }
