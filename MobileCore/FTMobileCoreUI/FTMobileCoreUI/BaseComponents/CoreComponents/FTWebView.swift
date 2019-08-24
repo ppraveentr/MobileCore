@@ -19,6 +19,16 @@ extension WKWebView {
         case styleAppleFamily = "-apple-system\";"
     }
     
+    func removeGestureInWKContentView(_ view: [UIView]) {
+        for subScrollView in view where type(of: subScrollView) == NSClassFromString("WKContentView") {
+            if let gestures = subScrollView.gestureRecognizers {
+                for gesture in gestures {
+                    subScrollView.removeGestureRecognizer(gesture)
+                }
+            }
+        }
+    }
+    
     public func setScrollEnabled(enabled: Bool) {
         
         self.scrollView.isScrollEnabled = enabled
@@ -32,13 +42,7 @@ extension WKWebView {
                 subview.panGestureRecognizer.isEnabled = enabled
             }
             
-            for subScrollView in subview.subviews where type(of: subScrollView) == NSClassFromString("WKContentView") {
-                if let gestures = subScrollView.gestureRecognizers {
-                    for gesture in gestures {
-                        subScrollView.removeGestureRecognizer(gesture)
-                    }
-                }
-            }
+            removeGestureInWKContentView(subview.subviews)
         }
     }
     
@@ -78,7 +82,9 @@ extension WKWebView {
         // base document style
         var css = self.getHTMLBodyText() + Constants.styleFontFamily.rawValue
         // user selected font
-        css += ( (fontName != nil && fontName != "") ? "\(fontName!)," : "")
+        if let fontName = fontName, !fontName.isEmpty {
+            css += "\(fontName),"
+        }
         // Default font
         css += Constants.styleAppleFamily.rawValue
         self.insertCSSString(jsString: css)

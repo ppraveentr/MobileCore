@@ -8,7 +8,6 @@
 import UIKit
 
 class CustomButton: FTButton {
-    
 }
 
 class ViewController: FTBaseViewController {
@@ -20,7 +19,7 @@ class ViewController: FTBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //MARK: TopView
+        // MARK: TopView
         let button = CustomButton()
         button.theme = "button14R"
         button.setTitle("Tap me", for: .normal)
@@ -40,14 +39,16 @@ class ViewController: FTBaseViewController {
         let topView = FTView()
         topView.pin(view: button, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .left, .vertical ])
         topView.pin(view: buttonPopOver, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .right ])
-        topView.stackView(views: [button, buttonD, buttonPopOver],
-                          layoutDirection: .leftToRight,
-                          spacing: 20,
-                          edgeInsets: [ .topMargin, .equalSize ])
+        topView.stackView(
+            views: [button, buttonD, buttonPopOver],
+            layoutDirection: .leftToRight,
+            spacing: 20,
+            edgeInsets: [ .topMargin, .equalSize ]
+        )
         
         self.baseView?.topPinnedView = topView
         
-        //MARK: MainView
+        // MARK: MainView
         let scrollView = UIScrollView()
         self.mainView?.pin(view: scrollView, edgeInsets: [.topMargin, .horizontal])
 
@@ -74,18 +75,19 @@ class ViewController: FTBaseViewController {
         scrollView.contentView.pin(view: label, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .left, .vertical ])
         scrollView.contentView.pin(view: bottomL, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .right ])
 
-        scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, bottomL],
-                                         layoutDirection: .leftToRight, spacing: 20,
-                                         edgeInsets: [.autoSize, .topMargin])
+        scrollView.contentView.stackView(
+            views: [label, labelM, labelM1, labelM2, bottomL],
+            layoutDirection: .leftToRight,
+            spacing: 20,
+            edgeInsets: [.autoSize, .topMargin]
+        )
 
-        
 //        scrollView.contentView.pin(view: label, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Top, .Horizontal ])
 //        scrollView.contentView.pin(view: bottomL, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Bottom ])
 //        
 //        scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, bottomL],
 //                                         layoutDirection: .TopToBottom, spacing: 20,
 //                                         edgeInsets: [.EqualSize, .LeadingMargin])
-        
         
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
 //            label.removeFromSuperview()

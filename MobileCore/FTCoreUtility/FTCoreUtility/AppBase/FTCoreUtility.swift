@@ -12,13 +12,11 @@ open class FTCoreUtility {
 
     // TODO: top-most ViewController in window's rootViewController
     public static var topViewController: UIViewController? {
-        get {
-            let keyWindow = UIApplication.shared.delegate?.window ?? UIApplication.shared.keyWindow
-            guard let rootViewController = keyWindow?.rootViewController else {
-                return nil
-            }
-            return self.topViewController(rootViewController)
+        let keyWindow = UIApplication.shared.delegate?.window ?? UIApplication.shared.keyWindow
+        guard let rootViewController = keyWindow?.rootViewController else {
+            return nil
         }
+        return self.topViewController(rootViewController)
     }
 
     // Get top-most controller in provided `viewController`
@@ -34,7 +32,7 @@ open class FTCoreUtility {
         }
 
         if let navigationController = presentedViewController as? UINavigationController {
-            return self.topViewController(navigationController.viewControllers.last);
+            return self.topViewController(navigationController.viewControllers.last)
         }
 
         return self.topViewController(presentedViewController)

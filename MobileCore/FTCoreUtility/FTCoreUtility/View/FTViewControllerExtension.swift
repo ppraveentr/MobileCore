@@ -14,5 +14,4 @@ public extension UIViewController {
     func postNotification(name: Notification.Name, object: Any? = nil) {
         NotificationCenter.default.post(name: name, object: object ?? self)
     }
-    
 }

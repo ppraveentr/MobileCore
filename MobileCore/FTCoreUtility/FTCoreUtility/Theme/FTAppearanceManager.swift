@@ -25,7 +25,7 @@ open class FTAppearanceManager {
         return (appearanceName, nil)
     }
 
-    static func __setupThemes__() {
+    static func setupThemes() {
         guard let app = FTThemesManager.getAppearance() as? FTThemeModel else {
             return
         }
@@ -38,7 +38,7 @@ open class FTAppearanceManager {
 
                 if let classTy: FTAppearanceManagerProtocol = FTReflection.swiftClassFromString(components.0) as? FTAppearanceManagerProtocol {
 
-                    var appearanceContainer: [UIAppearanceContainer.Type]? = nil
+                    var appearanceContainer: [UIAppearanceContainer.Type]?
                     if
                         components.1 != nil,
                         let objecClass = FTReflection.swiftClassTypeFromString(components.1!) {
@@ -59,13 +59,13 @@ extension FTThemesManager {
         if
             let color = color,
             let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as? UIView,
-            statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
+            statusBar.responds(to: #selector(setter: UIView.backgroundColor)) {
             statusBar.backgroundColor = color
         }
     }
 }
 
-extension UIView : FTAppearanceManagerProtocol {
+extension UIView: FTAppearanceManagerProtocol {
 
     public func setUpAppearance(theme: FTThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         return type(of: self).setUpAppearance(theme: theme, containerClass: containerClass)
@@ -105,7 +105,7 @@ extension UIView : FTAppearanceManagerProtocol {
             let image = FTThemesManager.getImage(imageName as? String),
             let segmentSelf = self as? UISegmentedControl.Type
         {
-            segmentSelf.setBackgroundImage(imageType:imageType, image: image)
+            segmentSelf.setBackgroundImage(imageType: imageType, image: image)
         }
     }
 }
@@ -167,7 +167,7 @@ extension UINavigationBar {
     override public class func setBackgroundImage(_ image: Any) {
         
         var defaultImage: UIImage? = FTThemesManager.getImage(image)
-        var landScapeImage: UIImage? = nil
+        var landScapeImage: UIImage?
         
         if let imageTheme = image as? FTThemeModel {
             defaultImage = FTThemesManager.getImage(imageTheme["default"])

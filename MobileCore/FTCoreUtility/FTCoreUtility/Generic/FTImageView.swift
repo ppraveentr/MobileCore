@@ -17,14 +17,15 @@ public extension UIImageView {
      - parameter url: Image's url from which need to download
      - parameter contentMode: ImageView's content mode, defalut to 'scaleAspectFit'
      */
-    func downloadedFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit,
+    func downloadedFrom(url: URL,
+                        contentMode mode: UIView.ContentMode = .scaleAspectFit,
                         comletionHandler: FTUIImageViewComletionHandler? = nil) {
         
         // Image's Content mode
         contentMode = mode
 
         // Download Image from async in background
-        url.downloadedImage { (image) in
+        url.downloadedImage { image in
             DispatchQueue.main.async {
                 self.image = image
                 comletionHandler?(image)

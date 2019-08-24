@@ -17,7 +17,8 @@ extension UICollectionView: FTThemeProtocol {
         if let view = self.backgroundView {
             if let bgTheme = theme[kBackgroundViewTheme] as? String {
                 view.theme = bgTheme
-            } else {
+            }
+            else {
                 view.theme = self.theme
             }
         }

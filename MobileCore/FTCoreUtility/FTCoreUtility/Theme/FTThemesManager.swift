@@ -17,12 +17,12 @@ open class FTThemesManager {
         willSet {
             if themesJSON.isEmpty && !newValue.isEmpty {
                 // Inital view config
-                 UIView.__setupThemes__()
+                 UIView.setupThemes()
             }
         }
         didSet {
             // Setup App config
-            FTAppearanceManager.__setupThemes__()
+            FTAppearanceManager.setupThemes()
         }
     }
 
@@ -53,13 +53,13 @@ open class FTThemesManager {
     }
     
     // MARK: Theme components
-    public static func generateVisualThemes(forClass name: String, withStyleName styleName: String, withSubStyleName subStyle: String? = nil) -> FTThemeModel? {
+    public static func generateVisualThemes(forClass name: String, styleName: String, subStyleName subStyle: String? = nil) -> FTThemeModel? {
         
         var styleName = styleName
         
         // If any subTheme is avaiable, say when button is Highlighted, or view is disabled
         if let subStyle = subStyle, !styleName.contains(":") {
-            styleName = styleName + ":" + subStyle
+            styleName += ":" + subStyle
         }
         
         // Get theme component
@@ -81,7 +81,7 @@ open class FTThemesManager {
         guard styleName != nil else {
             return nil
         }
-        return FTThemesManager.getDefaults(type: .Component, keyName: componentName, styleName: styleName) as? FTThemeModel
+        return FTThemesManager.getDefaults(type: .component, keyName: componentName, styleName: styleName) as? FTThemeModel
     }
     
     // MARK: UIColor
@@ -101,7 +101,7 @@ open class FTThemesManager {
         }
 
         // Color coded to hex-string
-        let color: String = FTThemesManager.getDefaults(type: .Color, keyName: colorName) as? String ?? ""
+        let color: String = FTThemesManager.getDefaults(type: .color, keyName: colorName) as? String ?? ""
         
         if let hexColor = UIColor.hexColor(color) {
             return hexColor
@@ -111,14 +111,14 @@ open class FTThemesManager {
             return UIColor.clear
         }
         
-        return UIColor.black
+        return nil
     }
     
     // MARK: UIFont
     // TODO: bold, thin, ...
     public static func getFont(_ fontName: String?) -> UIFont? {
         
-        let font: FTThemeModel = FTThemesManager.getDefaults(type: .Font, keyName: fontName) as? FTThemeModel ?? [:]
+        let font: FTThemeModel = FTThemesManager.getDefaults(type: .font, keyName: fontName) as? FTThemeModel ?? [:]
         
         if
             let name: String = font["name"] as? String,
@@ -141,7 +141,6 @@ open class FTThemesManager {
             default:
                 return UIFont(name: name, size: sizeValue)
             }
-
         }
         
         return UIFont.systemFont(ofSize: 14.0)
@@ -163,7 +162,7 @@ open class FTThemesManager {
             if imageName.hasPrefix("@") {
                 // Search for image in all available bundles
                 for bundleName in FTThemesManager.imageSourceBundle {
-                    if let image = UIImage.init(named: imageName.trimPrefix("@"), in: bundleName, compatibleWith: nil) {
+                    if let image = UIImage(named: imageName.trimPrefix("@"), in: bundleName, compatibleWith: nil) {
                         return image
                     }
                 }
@@ -174,13 +173,13 @@ open class FTThemesManager {
     }
 
     // MARK: UIImage
-    public static func getTextAttributes(_ theme: FTThemeModel?) -> [NSAttributedString.Key:AnyObject]? {
+    public static func getTextAttributes(_ theme: FTThemeModel?) -> [NSAttributedString.Key: AnyObject]? {
 
         guard let theme = theme else {
             return nil
         }
 
-        var attributes = [NSAttributedString.Key:AnyObject]()
+        var attributes = [NSAttributedString.Key: AnyObject]()
         if let value = theme["foregroundColor"] as? String {
             attributes[.foregroundColor] = self.getColor(value)
         }
@@ -229,15 +228,14 @@ open class FTThemesManager {
     public static func getAppearance(_ appearanceName: String? = nil) -> Any? {
         return themeAppearance(appearanceName)
     }
-    
 }
 
 extension FTThemesManager {
     
     enum FTThemesType {
-        case Component
-        case Color
-        case Font
+        case component
+        case color
+        case font
     }
     
     // MARK: Component
@@ -279,12 +277,12 @@ extension FTThemesManager {
         return self.themeColor?[colorName] as? String
     }
 
-    // MARK: Font
+    // MARK: font
     fileprivate class var themeFont: FTThemeModel? {
         return FTThemesManager.themesJSON["font"] as? FTThemeModel
     }
 
-    // Font -
+    // font -
     fileprivate static func themeFont(_ fontName: String) -> FTThemeModel? {
         return self.themeFont?[fontName] as? FTThemeModel
     }
@@ -312,7 +310,7 @@ extension FTThemesManager {
     }
     
     // Defaults
-    fileprivate static func getDefaults(type: FTThemesType, keyName: String? = nil, styleName: String? = nil) -> Any?  {
+    fileprivate static func getDefaults(type: FTThemesType, keyName: String? = nil, styleName: String? = nil) -> Any? {
         
         guard let key = keyName else {
             return nil
@@ -323,15 +321,15 @@ extension FTThemesManager {
         switch type {
             
         // Custome UIView Component
-        case .Component:
+        case .component:
             
-            let actualComponents = getThemeComponent(key,styleName: styleName)
+            let actualComponents = getThemeComponent(key, styleName: styleName)
             
             // TODO: iterative 'super' is still pending
             if
                 let viewComponent = actualComponents,
                 let superType = viewComponent["_super"] as? String,
-                var superCom = getThemeComponent(key,styleName: superType) {
+                var superCom = getThemeComponent(key, styleName: superType) {
                 // If view-component has super's style, use it as base component and merge its own style
                 superCom += viewComponent
                 superCom.removeValue(forKey: "_super")
@@ -343,19 +341,15 @@ extension FTThemesManager {
             return actualComponents
             
         // Convert JSON to UIColor
-        case .Color:
-            superBlock = { (colorName) in
-                return themeColor(colorName)
-            }
+        case .color:
+            superBlock = { themeColor($0) }
             
             // Convert JSON to UIFont
-        case .Font:
-            superBlock = { (fontName) in
-                return themeFont(fontName)
-            }
+        case .font:
+            superBlock = { themeFont($0) }
         }
         
-        var actualComponents: Any? = nil
+        var actualComponents: Any?
 
         // If component of specifc type is not found, search for "default" style
         let components: Any? = superBlock?(key) ?? superBlock?(FTThemeStyle.defaultStyle)
@@ -372,5 +366,4 @@ extension FTThemesManager {
         
         return actualComponents ?? components
     }
-    
 }

@@ -6,8 +6,8 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
-import XCTest
 @testable import MobileCore
+import XCTest
 
 class FTCoreUtilityTests: XCTestCase {
     
@@ -21,26 +21,18 @@ class FTCoreUtilityTests: XCTestCase {
         super.tearDown()
     }
     
-    func testClassName() {
-        
-//        FTLog(UIView.fromNib()!)
-        
-//        FTLog("class name", get_classNameAsString(obj: self))
-    }
-    
     func testStrippingNilElements() {
         
-        var dic: [String : Any?] = [
-            "sa":"sada",
+        var dic: [String: Any?] = [
+            "sa": "sada",
             "sad": nil,
             "dasd": [
-                "adsd":"dasd",
-                "sd":nil
+                "adsd": "dasd",
+                "sd": nil
             ],
             "dasfdsd": ["asds", nil, "adasd"]
         ]
         dic.stripNilElements()
         FTLog("\n \(dic) \n")
     }
-    
 }

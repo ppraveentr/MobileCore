@@ -6,16 +6,13 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
-import XCTest
-@testable import MobileCore
 @testable import FTMobileCoreSample
+import XCTest
 
 class FTMobileCoreSampleTests: XCTestCase {
     
-    func testMDASample() {
-        let sample: MDASample = MDASample()
+    func testMDASamplee() {
+        let sample = MDASample()
         sample.amount = 34.3
-        
     }
-    
 }
