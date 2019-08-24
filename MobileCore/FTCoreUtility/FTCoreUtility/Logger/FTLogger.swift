@@ -15,5 +15,5 @@ public func FTLog(_ arg: Any ...) {
 }
 
 open class FTLogger {
-    static public var enableConsoleLogging = false
+    public static var enableConsoleLogging = false
 }

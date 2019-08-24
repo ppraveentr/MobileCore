@@ -11,9 +11,8 @@ import WebKit
 
 open class FTContentView: UIScrollView {
     
-    var observationContext = 0
-    var observing = false
-    lazy public var webView: WKWebView = self.getWebView()
+    var observationContext: NSKeyValueObservation?
+    public lazy var webView: WKWebView = self.getWebView()
     public weak var scrollView: UIScrollView?
 
     private func getWebView() -> WKWebView {
@@ -31,44 +30,20 @@ open class FTContentView: UIScrollView {
     
     // MARK: Observe webview content height
     func startObservingHeight(_ webView: WKWebView) {
-
         self.scrollView = webView.scrollView
-
         self.scrollView?.isScrollEnabled = false
-        
         webView.setScrollEnabled(enabled: false)
-        
-        let options = NSKeyValueObservingOptions([.new])
-        self.scrollView?.addObserver(self, forKeyPath: "contentSize", options: options, context: &observationContext)
-        observing = true
-    }
-    
-    func stopObservingHeight() {
-        scrollView?.removeObserver(self, forKeyPath: "contentSize", context: &observationContext)
-        observing = false
-    }
-    
-    override open func observeValue(forKeyPath keyPath: String?, of object: Any?,
-                                    change: [NSKeyValueChangeKey : Any]?,
-                                    context: UnsafeMutableRawPointer?) {
-        
-        guard let keyPath = keyPath,
-            let context = context else {
-                super.observeValue(forKeyPath: nil, of: object, change: change, context: nil)
-                return
-        }
-        
-        switch (keyPath, context) {
-        case("contentSize", &observationContext):
-            
-            if let nsSize = change?[NSKeyValueChangeKey.newKey] as? NSValue {
-                let val = nsSize.cgSizeValue.height
+        // 'contentSize' observer
+        observationContext = self.scrollView?.observe(\.contentSize) { _, change in
+            if let nsSize = change.newValue {
+                let val = nsSize.height
                 // Do something here using content height.
                 self.contentView?.viewLayoutConstraint.constraintHeight?.constant = val
             }
-            
-        default:
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
+    }
+    
+    func stopObservingHeight() {
+        observationContext?.invalidate()
     }
 }

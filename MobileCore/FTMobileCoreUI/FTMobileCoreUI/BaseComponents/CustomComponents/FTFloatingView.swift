@@ -9,16 +9,16 @@
 import Foundation
 import UIKit
 
-public protocol FTFloatingViewDelegate {
-    func viewDraggingDidBegin(view:UIView, in window:UIWindow?)
-    func viewDraggingDidEnd(view:UIView, in window:UIWindow?)
+public protocol FTFloatingViewDelegate: AnyObject {
+    func viewDraggingDidBegin(view: UIView, in window: UIWindow?)
+    func viewDraggingDidEnd(view: UIView, in window: UIWindow?)
 }
 
-class FloatingWindow : UIWindow {
-    public var topView : UIView = UIView()
-    lazy var pointInsideCalled : Bool = true
+public class FloatingWindow: UIWindow {
+    var topView = UIView()
+    lazy var pointInsideCalled: Bool = true
     
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    override public func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if self.point(inside: point, with: event) {
             self.pointInsideCalled = true
             return topView
@@ -29,23 +29,22 @@ class FloatingWindow : UIWindow {
         }
         return nil
     }
-    
 }
 
 public class FTFloatingView: FTView {
     
-    private var floatingWindow:FloatingWindow?
-    private var appWindow:UIWindow?
-    private var floatingView:UIView!
+    private var floatingWindow: FloatingWindow?
+    private var appWindow: UIWindow?
+    private var floatingView: UIView!
 
     static let sharedInstance: FTFloatingView = { FTFloatingView(with: FTView()) }()
     
-    class public func configFloatingView(view: UIView) -> FTFloatingView {
+    public class func configFloatingView(view: UIView) -> FTFloatingView {
         sharedInstance.configFloatingView(with: view)
         return sharedInstance
     }
     
-     fileprivate func configFloatingView(with view:UIView , layer:CGFloat = 1) {
+     fileprivate func configFloatingView(with view: UIView, layer: CGFloat = 1) {
         
         self.floatingView = view
 
@@ -56,11 +55,10 @@ public class FTFloatingView: FTView {
         self.floatingWindow?.windowLevel = UIWindow.Level(rawValue: layer)
         self.floatingWindow?.makeKeyAndVisible()
         
-        let panGesture = UIPanGestureRecognizer(target: self, action:#selector(handlePanGesture(panGesture:)))
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(panGesture:)))
         panGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(panGesture)
     }
-    
     
     /**
      is floating view showing
@@ -70,7 +68,7 @@ public class FTFloatingView: FTView {
     /**
      Delegate reutrn events of your floating view.
      */
-    public var delegate:FTFloatingViewDelegate?
+    public weak var floatingViewDelegate: FTFloatingViewDelegate?
     
     /**
      Initilization of FTFloatingView
@@ -79,12 +77,12 @@ public class FTFloatingView: FTView {
      - Parameter layer: The layer of Z that the View will be presented, by default it is 1. in case of have more windows change it.
      
      */
-    public init(with view:UIView , layer:CGFloat = 1) {
+    public init(with view: UIView, layer: CGFloat = 1) {
         super.init(frame: view.frame)
         self.configFloatingView(with: view, layer: layer)
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -110,11 +108,11 @@ public class FTFloatingView: FTView {
     
     @objc private func handlePanGesture(panGesture: UIPanGestureRecognizer) {
         if panGesture.state == .began {
-            self.delegate?.viewDraggingDidBegin(view: self.floatingView, in: self.floatingWindow)
+            self.floatingViewDelegate?.viewDraggingDidBegin(view: self.floatingView, in: self.floatingWindow)
         }
         
         if panGesture.state == .ended {
-            self.delegate?.viewDraggingDidEnd(view: self.floatingView, in: self.floatingWindow)
+            self.floatingViewDelegate?.viewDraggingDidEnd(view: self.floatingView, in: self.floatingWindow)
         }
         
         if panGesture.state == .changed {
@@ -123,23 +121,34 @@ public class FTFloatingView: FTView {
         }
     }
     
-    
     // Handleing movement of view
-    private func viewDidMove(to location:CGPoint) {
-        UIView.animate(withDuration: 0.1, delay: 0.0, options: [.beginFromCurrentState,.curveEaseInOut], animations: {
-            let point = (self.floatingWindow?.convert(location, to: self.appWindow))!
-            switch UIDevice.current.orientation {
-            case .portrait :
-                self.floatingWindow?.center = point
-            case .landscapeLeft :
-                self.floatingWindow?.center = CGPoint(x: (self.appWindow?.frame.size.height)! - point.y, y: point.x)
-                
-            case .landscapeRight :
-                self.floatingWindow?.center = CGPoint(x: point.y, y: (self.appWindow?.frame.size.width)! - point.x)
-            default :
-                FTLog("FTError: Floating View Does not Handler This Situation")
-            }
-        })
+    private func viewDidMove(to location: CGPoint) {
+        guard let point = (self.floatingWindow?.convert(location, to: self.appWindow)) else {
+            return
+        }
+
+        UIView.animate(
+            withDuration: 0.1,
+            delay: 0.0,
+            options: [.beginFromCurrentState, .curveEaseInOut],
+            animations: {
+                switch UIDevice.current.orientation {
+                case .portrait :
+                    self.floatingWindow?.center = point
+                case .landscapeLeft :
+                    if let height = self.appWindow?.frame.size.height {
+                        self.floatingWindow?.center = CGPoint(x: height - point.y, y: point.x)
+                    }
+                    
+                case .landscapeRight :
+                    if let width = self.appWindow?.frame.size.width {
+                        self.floatingWindow?.center = CGPoint(x: point.y, y: width - point.x)
+                    }
+                default :
+                    FTLog("FTError: Floating View Does not Handler This Situation")
+                }
+            },
+            completion: nil
+        )
     }
-    
 }

@@ -38,12 +38,12 @@ open class FTBaseCollectionViewController: FTBaseViewController, FTCollectionVie
     }
 
     public var  delegate: UICollectionViewDelegate? {
-        didSet{
+        didSet {
             collectionView.delegate = delegate
         }
     }
     public var dataSource: UICollectionViewDataSource? {
-        didSet{
+        didSet {
             collectionView.dataSource = dataSource
         }
     }

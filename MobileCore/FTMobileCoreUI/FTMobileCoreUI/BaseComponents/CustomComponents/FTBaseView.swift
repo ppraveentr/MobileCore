@@ -24,15 +24,16 @@ open class FTBaseView: FTView {
     // Using private var, since, mainView can be set from IB.
     // On init'coder, mainView will be nil, but on loadView it will be allocated.
     // So using lazy, to make sure, mainView will not be nil, when accessed.
-    lazy var _mainPinnedView: FTView! = FTView()
+    private lazy var localMainPinnedView = FTView()
+    
     @IBOutlet
     public var mainPinnedView: FTView! {
         set {
-            _mainPinnedView = newValue
+            localMainPinnedView = newValue
             self.restConstraints()
         }
         get {
-            return _mainPinnedView
+            return localMainPinnedView
         }
     }
 
@@ -44,6 +45,7 @@ open class FTBaseView: FTView {
     }
 
     var isLoadedFromInterface = false
+    
     public required init?(coder aDecoder: NSCoder) {
         isLoadedFromInterface = true
         super.init(coder: aDecoder)
@@ -90,8 +92,8 @@ open class FTBaseView: FTView {
         
         // Embed in Temp view to auto-size the view layout
         if
-            topPinnedView != nil,
-            let tempView = FTView.embedView(contentView: topPinnedView!) as? FTView {
+            let topPinnedView = topPinnedView,
+            let tempView = FTView.embedView(contentView: topPinnedView) as? FTView {
             viewArray.append(tempView)
         }
         
@@ -99,24 +101,13 @@ open class FTBaseView: FTView {
 
         // Embed in Temp view to auto-size the view layout
         if
-            bottomPinnedView != nil,
-            let tempView = FTView.embedView(contentView: bottomPinnedView!) as? FTView {
+            let bottomPinnedView = bottomPinnedView,
+            let tempView = FTView.embedView(contentView: bottomPinnedView) as? FTView {
             viewArray.append(tempView)
         }
         
-        // Pin : Top and Side - margin of the firstView to Root
-        rootView.pin(view: viewArray.first!, edgeInsets: [.top, .horizontal])
-
-        if viewArray.count > 1 {
-            
-            // Make all subViews of sameSize, to auto-size the view layout
-            rootView.stackView(views: viewArray,
-                               layoutDirection: .topToBottom,
-                               edgeInsets: [.leadingMargin, .trailingMargin, .equalWidth])
-        }
-        
-        // Pin : BottomMargin of the lastView to Root
-        rootView.pin(view: viewArray.last!, edgeInsets: .bottom)
+        // Pin : Top and Sides and Bottom
+        pinToRootView(viewArray: viewArray)
         
         // Pin : MainView to margin
         rootView.pin(view: self.mainPinnedView, edgeInsets: .horizontal )
@@ -130,8 +121,30 @@ extension FTBaseView {
         if view != mainPinnedView, view != rootView,
             !isLoadedFromInterface {
             self.mainPinnedView.addSubview(view)
-        } else {
+        }
+        else {
             super.addSubview(view)
+        }
+    }
+    
+    func pinToRootView(viewArray: [FTView]) {
+        // Pin : Top and Side - margin of the firstView to Root
+        if let firstView = viewArray.first {
+            rootView.pin(view: firstView, edgeInsets: [.top, .horizontal])
+        }
+        
+        if viewArray.count > 1 {
+            // Make all subViews of sameSize, to auto-size the view layout
+            rootView.stackView(
+                views: viewArray,
+                layoutDirection: .topToBottom,
+                edgeInsets: [.leadingMargin, .trailingMargin, .equalWidth]
+            )
+        }
+        
+        // Pin : BottomMargin of the lastView to Root
+        if let lastView = viewArray.last {
+            rootView.pin(view: lastView, edgeInsets: .bottom)
         }
     }
 }

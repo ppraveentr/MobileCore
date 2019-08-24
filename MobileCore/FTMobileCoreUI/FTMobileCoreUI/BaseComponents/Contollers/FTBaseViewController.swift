@@ -8,18 +8,26 @@
 
 import UIKit
 
-public typealias FTAppBaseCompletionBlock = (_ isSuccess: Bool,_ modelStack: AnyObject?) -> Void
+public typealias FTAppBaseCompletionBlock = (_ isSuccess: Bool, _ modelStack: AnyObject?) -> Void
 
 public protocol FTAppBaseProtocal {
 
     //Setup View
-    func setupBaseView() -> Void
+    func setupBaseView()
 
     // MARK: Navigation Bar
     //Bydefalut leftButton action is set to 'leftButtonAction'
-    func setupNavigationbar(title: String,
-    leftButtonTitle: String?, leftButtonImage: UIImage?, leftButtonAction: Selector?, leftCustomView: UIView?,
-    rightButtonTitle: String?, rightButtonImage: UIImage?, rightButtonAction: Selector?, rightCustomView: UIView?)
+    func setupNavigationbar(
+        title: String,
+        leftButtonTitle: String?,
+        leftButtonImage: UIImage?,
+        leftButtonAction: Selector?,
+        leftCustomView: UIView?,
+        rightButtonTitle: String?,
+        rightButtonImage: UIImage?,
+        rightButtonAction: Selector?,
+        rightCustomView: UIView?
+    )
     
     //Config Left Navbar Button
     func leftNavigationBarButton(title: String?, image: UIImage?, buttonType: UIBarButtonItem.SystemItem, customView: UIView?, buttonAction: Selector?) -> UIBarButtonItem?
@@ -42,19 +50,18 @@ public protocol FTAppBaseProtocal {
     func showAlert(title: String, message: String, action: UIAlertAction?, actions: [UIAlertAction]?)
 
     // MARK: Responder
-    func makeResponder(status:Bool, textField: UITextField, text: String?)
+    func makeResponder(status: Bool, textField: UITextField, text: String?)
 
-
-    // MARK:  Activity indicator
+    // MARK: Activity indicator
     func showActivityIndicator()
     func hideActivityIndicator()
 }
 
 // `self.view` Should be a `FTBaseView`.
-open class FTBaseViewController : UIViewController {
+open class FTBaseViewController: UIViewController {
 
     @IBOutlet
-    lazy open var baseView: FTBaseView? = FTBaseView()
+    open lazy var baseView: FTBaseView? = FTBaseView()
     @IBInspectable
     open var baseViewTheme: String = FTThemeStyle.defaultStyle
 
@@ -82,16 +89,14 @@ open class FTBaseViewController : UIViewController {
     public static var kRightButtonAction = #selector(rightButtonAction)
 
     // Unquie Identifier for eachScreen
-    open var screenIdentifier: String? = nil
+    open var screenIdentifier: String?
     // modelData that can be passed from previous controller
-    open var modelStack: AnyObject? = nil
-    open var completionBlock: FTAppBaseCompletionBlock? = nil
+    open var modelStack: AnyObject?
+    open var completionBlock: FTAppBaseCompletionBlock?
 
     private var isBaseViewAdded: Bool {
-        get {
-            // If baseView is not added, then retun false
-            return (self.baseView?.superview != self.view && self.view != self.baseView)
-        }
+        // If baseView is not added, then retun false
+        return (self.baseView?.superview != self.view && self.view != self.baseView)
     }
 
     deinit {
@@ -103,7 +108,7 @@ open class FTBaseViewController : UIViewController {
 
     public var isLoadedFromInterface = false
     
-    convenience public init() {
+    public convenience init() {
         self.init(nibName: nil, bundle: nil)
     }
     
@@ -171,15 +176,22 @@ extension FTBaseViewController: FTAppBaseProtocal {
                                    rightButtonTitle: String? = nil,
                                    rightButtonImage: UIImage? = nil,
                                    rightButtonAction: Selector? = kRightButtonAction,
-                                   rightCustomView: UIView? = nil)
-    {
-        self_setupNavigationbar(title: title, leftButtonTitle: leftButtonTitle, leftButtonImage: leftButtonImage, leftButtonAction: leftButtonAction, leftCustomView: leftCustomView, rightButtonTitle: rightButtonTitle, rightButtonImage: rightButtonImage, rightButtonAction: rightButtonAction, rightCustomView: rightCustomView)
+                                   rightCustomView: UIView? = nil) {
+        self_setupNavigationbar(
+            title: title,
+            leftButtonTitle: leftButtonTitle,
+            leftButtonImage: leftButtonImage,
+            leftButtonAction: leftButtonAction,
+            leftCustomView: leftCustomView,
+            rightButtonTitle: rightButtonTitle,
+            rightButtonImage: rightButtonImage,
+            rightButtonAction: rightButtonAction,
+            rightCustomView: rightCustomView
+        )
     }
     
     public func setupNavigationbar(title: String, leftButton: UIBarButtonItem? = nil, rightButton: UIBarButtonItem? = nil) {
-        self_setupNavigationbar(title: title,
-                                leftButton: leftButton,
-                                rightButton: rightButton)
+        self_setupNavigationbar(title: title, leftButton: leftButton, rightButton: rightButton)
     }
     
     // Left navBar button
@@ -188,8 +200,7 @@ extension FTBaseViewController: FTAppBaseProtocal {
                                         image: UIImage? = nil,
                                         buttonType: UIBarButtonItem.SystemItem = .stop,
                                         customView: UIView? = nil,
-                                        buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem?
-    {
+                                        buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem? {
         return self_leftNavigationBarButton(title: title, image: image, buttonType: buttonType, customView: customView, buttonAction: buttonAction)
     }
     
@@ -199,17 +210,15 @@ extension FTBaseViewController: FTAppBaseProtocal {
                                          image: UIImage? = nil,
                                          buttonType: UIBarButtonItem.SystemItem = .done,
                                          customView: UIView? = nil,
-                                         buttonAction: Selector? = kRightButtonAction) -> UIBarButtonItem?
-    {
-        return self_rightNavigationBarButton(title: title, image: image,buttonType: buttonType, customView: customView, buttonAction: buttonAction)
+                                         buttonAction: Selector? = kRightButtonAction) -> UIBarButtonItem? {
+        return self_rightNavigationBarButton(title: title, image: image, buttonType: buttonType, customView: customView, buttonAction: buttonAction)
     }
     
     public func navigationBarButton(title: String? = nil,
                                     image: UIImage? = nil,
-                                    buttonType: UIBarButtonItem.SystemItem,
+                                    buttonType: UIBarButtonItem.SystemItem = .done,
                                     customView: UIView? = nil,
-                                    buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem
-    {
+                                    buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem {
         return self_navigationBarButton(title: title, image: image, buttonType: buttonType, customView: customView, buttonAction: buttonAction)
     }
     
@@ -219,11 +228,11 @@ extension FTBaseViewController: FTAppBaseProtocal {
     }
     
     // MARK: default Nav-bar button actions
-    @objc @IBAction open func leftButtonAction() {
+    @IBAction open func leftButtonAction() {
         dismissSelf()
     }
     
-    @objc @IBAction open func rightButtonAction() {
+    @IBAction open func rightButtonAction() {
     }
     
     // MARK: Keyboard
@@ -236,7 +245,7 @@ extension FTBaseViewController: FTAppBaseProtocal {
     }
     
     // MARK: Responder
-    open func makeResponder(status:Bool, textField: UITextField, text: String? = nil) {
+    open func makeResponder(status: Bool, textField: UITextField, text: String? = nil) {
         self_makeResponder(status: status, textField: textField, text: text)
     }
     
@@ -251,21 +260,24 @@ extension FTBaseViewController: FTAppBaseProtocal {
     }
     
     /*  UIKeyboardWillShow. */
-    @objc func keyboardWillShow(_ notification : Notification?) -> Void {
+    @objc func keyboardWillShow(_ notification: Notification?) {
     }
     
     /*  UIKeyboardDidHide. */
-    @objc func keyboardDidHide(_ notification : Notification?) -> Void {
+    @objc func keyboardDidHide(_ notification: Notification?) {
     }
     
     // MARK: AlertViewController
-    public func showAlert(title: String, message: String,
-                          action: UIAlertAction? = nil,
-                          actions: [UIAlertAction]? = nil) {
+    public func showAlert(
+        title: String,
+        message: String,
+        action: UIAlertAction? = nil,
+        actions: [UIAlertAction]? = nil
+        ) {
         self_showAlert(title: title, message: message, action: action, actions: actions)
     }
     
-    // MARK:  Activity indicator
+    // MARK: Activity indicator
     public func showActivityIndicator() {
         FTLoadingIndicator.show()
     }
@@ -307,31 +319,31 @@ extension FTBaseViewController {
 
         /* Pin view bellow status bar */
         // Pin - rootView's topAnchor
-        if topSafeAreaLayoutGuide() {
-            if #available(iOS 11.0, *) {
-                local?.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                            constant: 0.0).isActive = true
-            } else {
-                local?.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor,
-                                            constant: 0.0).isActive = true
-            }
+        if topSafeAreaLayoutGuide(), let local = local {
+            setupTopSafeAreaLayoutGuide(local)
         }
 
         // Pin - rootView's topAnchor
         if #available(iOS 11.0, *), horizontalSafeAreaLayoutGuide() {
-            local?.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor,
-                                         constant: 0.0).isActive = true
-            local?.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
-                                          constant: 0.0).isActive = true
+            local?.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0.0).isActive = true
+            local?.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0.0).isActive = true
         }
 
         // Pin - rootView's bottomAnchor
         if #available(iOS 11.0, *) {
-            local?.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                                           constant: 0.0).isActive = true
-        } else {
-            local?.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor,
-                                           constant: 0.0).isActive = true
+            local?.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0.0).isActive = true
+        }
+        else {
+            local?.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor, constant: 0.0).isActive = true
+        }
+    }
+    
+    private func setupTopSafeAreaLayoutGuide(_ local: FTView) {
+        if #available(iOS 11.0, *) {
+            local.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0.0).isActive = true
+        }
+        else {
+            local.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor, constant: 0.0).isActive = true
         }
     }
 }
@@ -341,21 +353,21 @@ extension FTBaseViewController {
 
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        postNotification(name: .FTMobileCoreUI_ViewController_WillAppear)
+        postNotification(name: .FTMobileCoreWillAppearViewController)
     }
     
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        postNotification(name: .FTMobileCoreUI_ViewController_DidAppear)
+        postNotification(name: .FTMobileCoreDidAppearViewController)
     }
     
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        postNotification(name: .FTMobileCoreUI_ViewController_WillDisappear)
+        postNotification(name: .FTMobileCoreWillDisappearViewController)
     }
     
     override open func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        postNotification(name: .FTMobileCoreUI_ViewController_DidDisappear)
+        postNotification(name: .FTMobileCoreDidDisappearViewController)
     }
 }

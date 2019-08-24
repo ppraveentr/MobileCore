@@ -40,5 +40,4 @@ extension UIScrollView {
         view.addSelfSizing()
         return view
     }
-    
 }

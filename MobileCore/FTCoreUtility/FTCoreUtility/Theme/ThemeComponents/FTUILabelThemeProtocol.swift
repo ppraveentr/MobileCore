@@ -61,11 +61,8 @@ public extension FTThemeProtocol where Self: UILabel {
             default:
                 break
             }
-
         }
-
     }
-    
 }
 
 extension UILabel: FTUILabelThemeProtocol {
@@ -96,9 +93,9 @@ extension UILabel: FTUILabelThemeProtocol {
         // Force update
         if let text = self.attributedText {
             self.attributedText = text
-        } else if let text = self.text {
+        }
+        else if let text = self.text {
             self.text = text
         }
     }
-    
 }

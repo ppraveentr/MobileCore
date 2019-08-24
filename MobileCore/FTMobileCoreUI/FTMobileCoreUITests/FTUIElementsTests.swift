@@ -6,15 +6,14 @@
 //  Copyright © 2019 Praveen P. All rights reserved.
 //
 
-import XCTest
-import WebKit
 @testable import MobileCore
+import WebKit
+import XCTest
 
 class FTUIElementsTests: XCTestCase {
 
     func testExample() {
         let webView = WKWebView()
-        webView.setScrollEnabled(enabled:true)
+        webView.setScrollEnabled(enabled: true)
     }
-
 }

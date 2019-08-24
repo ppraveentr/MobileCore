@@ -19,7 +19,6 @@ public enum FTKeychainItemAccessibility {
      
      After the first unlock, the data remains accessible until the next restart. This is recommended for items that need to be accessed by background applications. Items with this attribute migrate to a new device when using encrypted backups.
     */
-    @available(iOS 4, *)
     case afterFirstUnlock
     
     /**
@@ -27,7 +26,6 @@ public enum FTKeychainItemAccessibility {
      
      After the first unlock, the data remains accessible until the next restart. This is recommended for items that need to be accessed by background applications. Items with this attribute do not migrate to a new device. Thus, after restoring from a backup of a different device, these items will not be present.
      */
-    @available(iOS 4, *)
     case afterFirstUnlockThisDeviceOnly
     
     /**
@@ -35,7 +33,6 @@ public enum FTKeychainItemAccessibility {
      
      This is not recommended for application use. Items with this attribute migrate to a new device when using encrypted backups.
      */
-    @available(iOS 4, *)
     case always
     
     /**
@@ -51,7 +48,6 @@ public enum FTKeychainItemAccessibility {
      
      This is not recommended for application use. Items with this attribute do not migrate to a new device. Thus, after restoring from a backup of a different device, these items will not be present.
      */
-    @available(iOS 4, *)
     case alwaysThisDeviceOnly
     
     /**
@@ -61,7 +57,6 @@ public enum FTKeychainItemAccessibility {
      
      This is the default value for keychain items added without explicitly setting an accessibility constant.
      */
-    @available(iOS 4, *)
     case whenUnlocked
     
     /**
@@ -69,27 +64,24 @@ public enum FTKeychainItemAccessibility {
      
      This is recommended for items that need to be accessible only while the application is in the foreground. Items with this attribute do not migrate to a new device. Thus, after restoring from a backup of a different device, these items will not be present.
      */
-    @available(iOS 4, *)
     case whenUnlockedThisDeviceOnly
     
     static func accessibilityForAttributeValue(_ keychainAttrValue: CFString) -> FTKeychainItemAccessibility? {
-        for (key, value) in FTKeychainItemAccessibilityLookup {
-            if value == keychainAttrValue {
-                return key
-            }
+        for (key, value) in FTKeychainItemAccessibilityLookup where value == keychainAttrValue {
+            return key
         }
         
         return nil
     }
 }
 
-private let FTKeychainItemAccessibilityLookup: [FTKeychainItemAccessibility:CFString] = {
-    let lookup: [FTKeychainItemAccessibility:CFString] = [
+private let FTKeychainItemAccessibilityLookup: [FTKeychainItemAccessibility: CFString] = {
+    let lookup: [FTKeychainItemAccessibility: CFString] = [
         .afterFirstUnlock: kSecAttrAccessibleAfterFirstUnlock,
         .afterFirstUnlockThisDeviceOnly: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly,
         .always: kSecAttrAccessibleAlways,
         .whenPasscodeSetThisDeviceOnly: kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly,
-        .alwaysThisDeviceOnly : kSecAttrAccessibleAlwaysThisDeviceOnly,
+        .alwaysThisDeviceOnly: kSecAttrAccessibleAlwaysThisDeviceOnly,
         .whenUnlocked: kSecAttrAccessibleWhenUnlocked,
         .whenUnlockedThisDeviceOnly: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
     ]
@@ -97,7 +89,7 @@ private let FTKeychainItemAccessibilityLookup: [FTKeychainItemAccessibility:CFSt
     return lookup
 }()
 
-extension FTKeychainItemAccessibility : FTKeychainAttrRepresentable {
+extension FTKeychainItemAccessibility: FTKeychainAttrRepresentable {
     internal var keychainAttrValue: CFString {
         return FTKeychainItemAccessibilityLookup[self]!
     }

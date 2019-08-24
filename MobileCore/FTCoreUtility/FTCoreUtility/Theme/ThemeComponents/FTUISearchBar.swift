@@ -27,7 +27,7 @@ open class FTUISearchBar: UISearchBar, FTThemeProtocol {
         isTranslucent = false
     }
 
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -42,7 +42,7 @@ open class FTUISearchBar: UISearchBar, FTThemeProtocol {
             // Set its frame.
             searchField.frame = CGRect(x: 5.0, y: 5.0, width: frame.width - 10.0, height: frame.height - 10.0)
 
-            var att: [NSAttributedString.Key:AnyObject] = [:]
+            var att: [NSAttributedString.Key: AnyObject] = [:]
 
             // Set the font and text color of the search field.
             if preferredFont != nil {
@@ -58,8 +58,8 @@ open class FTUISearchBar: UISearchBar, FTThemeProtocol {
                 att[.foregroundColor] = preferredTextColor
             }
 
-            if let sting = searchField.attributedPlaceholder?.string, att.count > 0 {
-                searchField.attributedPlaceholder = NSAttributedString(string:sting , attributes:att)
+            if let sting = searchField.attributedPlaceholder?.string, !att.isEmpty {
+                searchField.attributedPlaceholder = NSAttributedString(string: sting, attributes: att)
             }
 
             // Set the background color of the search field.
@@ -74,9 +74,9 @@ public extension FTThemeProtocol where Self: UISearchBar {
 
     func updateTheme(_ theme: FTThemeModel) {
 
-        var barTintColor: UIColor? = nil
-        var tintColor: UIColor? = nil
-        var textcolor: UIColor? = nil
+        var barTintColor: UIColor?
+        var tintColor: UIColor?
+        var textcolor: UIColor?
 
         for (kind, value) in theme {
             switch kind {

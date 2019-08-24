@@ -6,11 +6,11 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
-import XCTest
 @testable import MobileCore
+import XCTest
 
 class FTConstrainsTests: XCTestCase {
-    var mainView: UIView = UIView()
+    var mainView = UIView()
     var viewsArray = [UIView]()
     
     override func setUp() {

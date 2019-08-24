@@ -1,0 +1,13 @@
+platform :ios, '9.0'
+use_frameworks!
+
+target 'FTMobileCoreSample' do
+
+  pod 'SwiftLint'
+
+  target 'FTMobileCoreSampleTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

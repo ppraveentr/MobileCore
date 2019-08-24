@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol FTFontPickerViewprotocol {
+public protocol FTFontPickerViewprotocol: AnyObject {
     func pickerColor(textColor: UIColor, backgroundColor: UIColor)
     func fontSize(_ size: Float)
     func fontFamily(_ fontName: String?)
@@ -19,7 +19,7 @@ open class FTFontPickerModel {
     public var fontSize: Float = 140.0
     public var fontColor: UIColor = .black
     public var backgroundColor: UIColor = .white
-    public var fontFamily: String? = nil
+    public var fontFamily: String?
 
     // TODO: To support Custom Fonts
     let fontTypes = ["Arial", "Courier", "Georgia", "Helvetica", "Palatino", "Times", "Verdana"]
@@ -44,14 +44,16 @@ open class FTFontPickerModel {
 
 open class FTFontPickerView: FTView {
     
-    var pickerDelegate: FTFontPickerViewprotocol?
+    weak var pickerDelegate: FTFontPickerViewprotocol?
     public var fontPickerModel = FTFontPickerModel() {
         didSet {
             // Update View-source
             pickerDelegate?.fontSize(fontPickerModel.fontSize)
             pickerDelegate?.fontFamily(fontPickerModel.fontFamily)
-            pickerDelegate?.pickerColor(textColor: fontPickerModel.fontColor,
-                                        backgroundColor: fontPickerModel.backgroundColor)
+            pickerDelegate?.pickerColor(
+                textColor: fontPickerModel.fontColor,
+                backgroundColor: fontPickerModel.backgroundColor
+            )
 
             selectedColorButton?.addBorder()
             fontTableView.reloadData()
@@ -129,7 +131,6 @@ open class FTFontPickerView: FTView {
         fontTableView.register(UITableViewCell.self, forCellReuseIdentifier: "kFontType")
         fontTableView.estimatedRowHeight = 30
     }
-    
 }
 
 extension FTFontPickerView: UITableViewDataSource, UITableViewDelegate {
@@ -165,11 +166,11 @@ extension FTFontPickerView: UITableViewDataSource, UITableViewDelegate {
         
         if fontTypes[indexPath.section] == selectedFont {
             selectedFont = nil
-        } else {
+        }
+        else {
             selectedFont = fontTypes[indexPath.section]
         }
         
         tableView.reloadData()
     }
-    
 }

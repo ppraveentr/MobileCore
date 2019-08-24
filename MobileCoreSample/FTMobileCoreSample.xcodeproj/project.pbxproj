@@ -11,6 +11,14 @@
 		D4AE907822E44487005B33B2 /* FTMobileCoreBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */; settings = {ASSET_TAGS = (Bundle, ); }; };
 		D4AE907922E44492005B33B2 /* Themes.json in Resources */ = {isa = PBXBuildFile; fileRef = DE680BB01F2E038800A9F68C /* Themes.json */; };
 		D4AE907E22E446B6005B33B2 /* FTMobileCoreBundle.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4FF5716231127AD00F6FD96 /* FTMobileCoreBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */; };
+		D4FF571A2311280700F6FD96 /* FTThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF57182311280700F6FD96 /* FTThemesTests.swift */; };
+		D4FF571B2311280700F6FD96 /* FTCoreUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF57192311280700F6FD96 /* FTCoreUtilityTests.swift */; };
+		D4FF571E2311281100F6FD96 /* FTMobileCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF571D2311281100F6FD96 /* FTMobileCoreTests.swift */; };
+		D4FF57242311281700F6FD96 /* FTStringUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF57202311281700F6FD96 /* FTStringUtilityTests.swift */; };
+		D4FF57252311281700F6FD96 /* FTConstrainsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF57212311281700F6FD96 /* FTConstrainsTests.swift */; };
+		D4FF57262311281700F6FD96 /* FTUIElementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF57222311281700F6FD96 /* FTUIElementsTests.swift */; };
+		D4FF57272311281700F6FD96 /* FTUIElementThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF57232311281700F6FD96 /* FTUIElementThemesTests.swift */; };
 		DE2FB8EA1F3A0C5900581064 /* FTMobileCoreSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2FB8E91F3A0C5900581064 /* FTMobileCoreSampleTests.swift */; };
 		DE9221CD1EF28CDF000C8FC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */; };
 		DE9221CF1EF28CDF000C8FC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221CE1EF28CDF000C8FC7 /* ViewController.swift */; };
@@ -44,12 +52,26 @@
 			remoteGlobalIDString = D42A580123047CEF003C7283;
 			remoteInfo = MobileCore;
 		};
-		DE2FB8EC1F3A0C5900581064 /* PBXContainerItemProxy */ = {
+		D4FF57102311279C00F6FD96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DE9221C11EF28CDF000C8FC7 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DE9221C81EF28CDF000C8FC7;
 			remoteInfo = FTMobileCoreSample;
+		};
+		D4FF57122311279E00F6FD96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D42A580123047CEF003C7283;
+			remoteInfo = MobileCore;
+		};
+		D4FF5714231127A100F6FD96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D42A580A23047CEF003C7283;
+			remoteInfo = MobileCoreTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -80,6 +102,13 @@
 		D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MobileCore.xcodeproj; path = ../MobileCore.xcodeproj; sourceTree = "<group>"; };
 		D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4AE907422E4447D005B33B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4FF57182311280700F6FD96 /* FTThemesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTThemesTests.swift; sourceTree = "<group>"; };
+		D4FF57192311280700F6FD96 /* FTCoreUtilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTCoreUtilityTests.swift; sourceTree = "<group>"; };
+		D4FF571D2311281100F6FD96 /* FTMobileCoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMobileCoreTests.swift; sourceTree = "<group>"; };
+		D4FF57202311281700F6FD96 /* FTStringUtilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStringUtilityTests.swift; sourceTree = "<group>"; };
+		D4FF57212311281700F6FD96 /* FTConstrainsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTConstrainsTests.swift; sourceTree = "<group>"; };
+		D4FF57222311281700F6FD96 /* FTUIElementsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIElementsTests.swift; sourceTree = "<group>"; };
+		D4FF57232311281700F6FD96 /* FTUIElementThemesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIElementThemesTests.swift; sourceTree = "<group>"; };
 		DE2FB8E71F3A0C5900581064 /* FTMobileCoreSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE2FB8E91F3A0C5900581064 /* FTMobileCoreSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMobileCoreSampleTests.swift; sourceTree = "<group>"; };
 		DE2FB8EB1F3A0C5900581064 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,6 +152,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5B9D3D94B1FEFD0647FCDA8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D43D0C65230525A100C5C770 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,9 +176,43 @@
 			path = FTMobileCoreBundle;
 			sourceTree = "<group>";
 		};
+		D4FF57172311280700F6FD96 /* FTCoreUtilityTests */ = {
+			isa = PBXGroup;
+			children = (
+				D4FF57182311280700F6FD96 /* FTThemesTests.swift */,
+				D4FF57192311280700F6FD96 /* FTCoreUtilityTests.swift */,
+			);
+			name = FTCoreUtilityTests;
+			path = ../../MobileCore/FTCoreUtility/FTCoreUtilityTests;
+			sourceTree = "<group>";
+		};
+		D4FF571C2311281100F6FD96 /* FTMobileCoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				D4FF571D2311281100F6FD96 /* FTMobileCoreTests.swift */,
+			);
+			name = FTMobileCoreTests;
+			path = ../../MobileCore/FTMobileCore/FTMobileCoreTests;
+			sourceTree = "<group>";
+		};
+		D4FF571F2311281700F6FD96 /* FTMobileCoreUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D4FF57202311281700F6FD96 /* FTStringUtilityTests.swift */,
+				D4FF57212311281700F6FD96 /* FTConstrainsTests.swift */,
+				D4FF57222311281700F6FD96 /* FTUIElementsTests.swift */,
+				D4FF57232311281700F6FD96 /* FTUIElementThemesTests.swift */,
+			);
+			name = FTMobileCoreUITests;
+			path = ../../MobileCore/FTMobileCoreUI/FTMobileCoreUITests;
+			sourceTree = "<group>";
+		};
 		DE2FB8E81F3A0C5900581064 /* FTMobileCoreSampleTests */ = {
 			isa = PBXGroup;
 			children = (
+				D4FF571F2311281700F6FD96 /* FTMobileCoreUITests */,
+				D4FF571C2311281100F6FD96 /* FTMobileCoreTests */,
+				D4FF57172311280700F6FD96 /* FTCoreUtilityTests */,
 				DE2FB8E91F3A0C5900581064 /* FTMobileCoreSampleTests.swift */,
 				DE2FB8EB1F3A0C5900581064 /* Info.plist */,
 			);
@@ -173,6 +243,7 @@
 				D4AE907322E4447D005B33B2 /* FTMobileCoreBundle */,
 				DE9221CA1EF28CDF000C8FC7 /* Products */,
 				DE2FB9191F3DF7A400581064 /* Frameworks */,
+				A5B9D3D94B1FEFD0647FCDA8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -254,7 +325,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				DE2FB8ED1F3A0C5900581064 /* PBXTargetDependency */,
+				D4FF5715231127A100F6FD96 /* PBXTargetDependency */,
+				D4FF57132311279E00F6FD96 /* PBXTargetDependency */,
+				D4FF57112311279C00F6FD96 /* PBXTargetDependency */,
 			);
 			name = FTMobileCoreSampleTests;
 			productName = FTMobileCoreSampleTests;
@@ -271,6 +344,7 @@
 				DEC55DE61EF2A16E00FAE024 /* Headers */,
 				DE1485561F10C09400A250A6 /* Embed Frameworks */,
 				D4AE907D22E446A6005B33B2 /* CopyFiles */,
+				D437653C230E8E5B004974CC /* swiftlint Run Script */,
 			);
 			buildRules = (
 			);
@@ -373,6 +447,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4FF5716231127AD00F6FD96 /* FTMobileCoreBundle.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +464,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D437653C230E8E5B004974CC /* swiftlint Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "swiftlint Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D4AE906E22E4447D005B33B2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -401,7 +497,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4FF571E2311281100F6FD96 /* FTMobileCoreTests.swift in Sources */,
+				D4FF57242311281700F6FD96 /* FTStringUtilityTests.swift in Sources */,
+				D4FF57272311281700F6FD96 /* FTUIElementThemesTests.swift in Sources */,
 				DE2FB8EA1F3A0C5900581064 /* FTMobileCoreSampleTests.swift in Sources */,
+				D4FF57252311281700F6FD96 /* FTConstrainsTests.swift in Sources */,
+				D4FF571A2311280700F6FD96 /* FTThemesTests.swift in Sources */,
+				D4FF57262311281700F6FD96 /* FTUIElementsTests.swift in Sources */,
+				D4FF571B2311280700F6FD96 /* FTCoreUtilityTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,10 +527,20 @@
 			name = MobileCore;
 			targetProxy = D43D0C6E230525C700C5C770 /* PBXContainerItemProxy */;
 		};
-		DE2FB8ED1F3A0C5900581064 /* PBXTargetDependency */ = {
+		D4FF57112311279C00F6FD96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DE9221C81EF28CDF000C8FC7 /* FTMobileCoreSample */;
-			targetProxy = DE2FB8EC1F3A0C5900581064 /* PBXContainerItemProxy */;
+			targetProxy = D4FF57102311279C00F6FD96 /* PBXContainerItemProxy */;
+		};
+		D4FF57132311279E00F6FD96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MobileCore;
+			targetProxy = D4FF57122311279E00F6FD96 /* PBXContainerItemProxy */;
+		};
+		D4FF5715231127A100F6FD96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MobileCoreTests;
+			targetProxy = D4FF5714231127A100F6FD96 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
