@@ -111,7 +111,7 @@ open class FTThemesManager {
             return UIColor.clear
         }
         
-        return UIColor.black
+        return nil
     }
     
     // MARK: UIFont

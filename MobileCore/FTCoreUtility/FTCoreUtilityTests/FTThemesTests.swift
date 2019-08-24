@@ -103,8 +103,8 @@ class FTThemesTests: XCTestCase {
     
     func testColorFail() {
         let value = FTThemesManager.getColor("orange")
-        FTLog("\n color fail : ", value ?? "nil")
-        XCTAssertNil(value)
+        let defaultValue = FTThemesManager.getColor("default")
+        XCTAssertEqual(value, defaultValue, "color should be default to black")
     }
     
     func testHashColor() {

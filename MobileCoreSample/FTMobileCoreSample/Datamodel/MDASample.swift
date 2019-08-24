@@ -6,8 +6,8 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
-import UIKit
 import MobileCore
+import UIKit
 
 open class MDASample: FTServiceModel {
     var identifier: String?
