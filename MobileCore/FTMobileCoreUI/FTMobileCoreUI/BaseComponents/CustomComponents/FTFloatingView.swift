@@ -68,7 +68,7 @@ public class FTFloatingView: FTView {
     /**
      Delegate reutrn events of your floating view.
      */
-    public var floatingViewDelegate: FTFloatingViewDelegate?
+    public weak var floatingViewDelegate: FTFloatingViewDelegate?
     
     /**
      Initilization of FTFloatingView

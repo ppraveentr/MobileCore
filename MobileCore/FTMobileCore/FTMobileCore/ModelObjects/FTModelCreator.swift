@@ -42,7 +42,7 @@ open class FTModelCreator {
         return outputPath
     }
     
-    static func fileWriter() -> (String, String) -> () {
+    static func fileWriter() -> (String, String) -> Void {
         
         let fileWriter = { (_ name: String, _ content: String) in
             if var url = outputPath {
@@ -59,18 +59,18 @@ open class FTModelCreator {
     static var modelType: FTServiceModelType = .classType
 
     // MARK: Configurations
-    class open func configureSourcePath(path: String) { FTModelCreator.sourcePath = path }
-    class open func configureOutputPath(path: String) { FTModelCreator.outputPath = URL(string: path) }
-    class open func configureModel(type: FTServiceModelType) { FTModelCreator.modelType = type }
+    open class func configureSourcePath(path: String) { FTModelCreator.sourcePath = path }
+    open class func configureOutputPath(path: String) { FTModelCreator.outputPath = URL(string: path) }
+    open class func configureModel(type: FTServiceModelType) { FTModelCreator.modelType = type }
 
-    // MARK:
-    class open func generateOutput() {
+    // MARK: Generate File
+    open class func generateOutput() {
         try? sourcePath.filesAtPath { filePath in
             generateModelAt(path: filePath, completionHandler: fileWriter())
         }
     }
     
-    static func generateModelAt(path: String, completionHandler: @escaping (_ name: String, _ content: String) -> ()) {
+    static func generateModelAt(path: String, completionHandler: @escaping (_ name: String, _ content: String) -> Void) {
         
         do {
             if let json: [String: AnyObject] = try path.jsonContentAtPath() {

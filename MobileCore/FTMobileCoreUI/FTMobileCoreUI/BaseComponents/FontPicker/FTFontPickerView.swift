@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol FTFontPickerViewprotocol {
+public protocol FTFontPickerViewprotocol: AnyObject {
     func pickerColor(textColor: UIColor, backgroundColor: UIColor)
     func fontSize(_ size: Float)
     func fontFamily(_ fontName: String?)
@@ -44,7 +44,7 @@ open class FTFontPickerModel {
 
 open class FTFontPickerView: FTView {
     
-    var pickerDelegate: FTFontPickerViewprotocol?
+    weak var pickerDelegate: FTFontPickerViewprotocol?
     public var fontPickerModel = FTFontPickerModel() {
         didSet {
             // Update View-source

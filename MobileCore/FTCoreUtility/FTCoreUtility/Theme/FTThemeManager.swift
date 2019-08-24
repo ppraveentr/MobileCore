@@ -69,10 +69,10 @@ struct ThemeManager {
             UIImage(named: "maximumTrack")?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0.0, bottom: 0, right: 6.0)),
             for: UIControl.State()
         )
-        UISlider.appearance().setMinimumTrackImage(
-            UIImage(named: "minimumTrack")?.withRenderingMode(.alwaysTemplate).resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 6.0, bottom: 0, right: 0)),
-            for: UIControl.State()
-        )
+        if let image = UIImage(named: "minimumTrack")?.withRenderingMode(.alwaysTemplate) {
+            let reSizedImage = image.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 6.0, bottom: 0, right: 0))
+            UISlider.appearance().setMinimumTrackImage(reSizedImage, for: UIControl.State())
+        }
         
         UISwitch.appearance().onTintColor = theme.mainColor.withAlphaComponent(0.3)
         UISwitch.appearance().thumbTintColor = theme.mainColor

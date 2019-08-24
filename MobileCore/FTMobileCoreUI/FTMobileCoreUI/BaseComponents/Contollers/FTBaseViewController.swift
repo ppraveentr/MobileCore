@@ -8,7 +8,7 @@
 
 import UIKit
 
-public typealias FTAppBaseCompletionBlock = (_ isSuccess: Bool,_ modelStack: AnyObject?) -> Void
+public typealias FTAppBaseCompletionBlock = (_ isSuccess: Bool, _ modelStack: AnyObject?) -> Void
 
 public protocol FTAppBaseProtocal {
 
@@ -17,9 +17,17 @@ public protocol FTAppBaseProtocal {
 
     // MARK: Navigation Bar
     //Bydefalut leftButton action is set to 'leftButtonAction'
-    func setupNavigationbar(title: String,
-    leftButtonTitle: String?, leftButtonImage: UIImage?, leftButtonAction: Selector?, leftCustomView: UIView?,
-    rightButtonTitle: String?, rightButtonImage: UIImage?, rightButtonAction: Selector?, rightCustomView: UIView?)
+    func setupNavigationbar(
+        title: String,
+        leftButtonTitle: String?,
+        leftButtonImage: UIImage?,
+        leftButtonAction: Selector?,
+        leftCustomView: UIView?,
+        rightButtonTitle: String?,
+        rightButtonImage: UIImage?,
+        rightButtonAction: Selector?,
+        rightCustomView: UIView?
+    )
     
     //Config Left Navbar Button
     func leftNavigationBarButton(title: String?, image: UIImage?, buttonType: UIBarButtonItem.SystemItem, customView: UIView?, buttonAction: Selector?) -> UIBarButtonItem?
@@ -42,7 +50,7 @@ public protocol FTAppBaseProtocal {
     func showAlert(title: String, message: String, action: UIAlertAction?, actions: [UIAlertAction]?)
 
     // MARK: Responder
-    func makeResponder(status:Bool, textField: UITextField, text: String?)
+    func makeResponder(status: Bool, textField: UITextField, text: String?)
 
     // MARK: Activity indicator
     func showActivityIndicator()

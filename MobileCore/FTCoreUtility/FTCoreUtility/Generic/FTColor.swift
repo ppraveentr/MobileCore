@@ -75,19 +75,16 @@ public extension UIColor {
     }
     
     func hexString() -> String {
-        var r:CGFloat = 0
-        var g:CGFloat = 0
-        var b:CGFloat = 0
-        var a:CGFloat = 0
-        
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
         getRed(&r, green: &g, blue: &b, alpha: &a)
-        
-        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
-        
-        return String(format:"#%06x", rgb)
+        let rgb: Int = (Int)(r * 255) << 16 | (Int)(g * 255) << 8 | (Int)(b * 255) << 0
+        return String(format: "#%06x", rgb)
     }
     
-    static func hexColor (_ hex:String) -> UIColor? {
+    static func hexColor (_ hex: String) -> UIColor? {
 
         // Check if its acutal hex coded string
         if !hex.hasPrefix("#") {
@@ -95,7 +92,7 @@ public extension UIColor {
         }
 
         // Strip non-alphanumerics, and Make it capitalized
-        let cString:String = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted).uppercased()
+        let cString: String = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted).uppercased()
 
         // Read hex string into Int32
         var int = UInt32()
@@ -119,8 +116,7 @@ public extension UIColor {
     
     func generateImage(opacity: CGFloat = 1,
                        contextSize: CGSize = CGSize(width: 1, height: 1),
-                       contentsScale: CGFloat = CGFloat.greatestFiniteMagnitude
-        ) -> UIImage {
+                       contentsScale: CGFloat = CGFloat.greatestFiniteMagnitude) -> UIImage? {
         let rect = CGRect(origin: .zero, size: contextSize)
         
         if contentsScale == CGFloat.greatestFiniteMagnitude {
@@ -130,13 +126,14 @@ public extension UIColor {
             UIGraphicsBeginImageContextWithOptions(contextSize, false, contentsScale)
         }
         
-        let context = UIGraphicsGetCurrentContext()
-        context!.setFillColor(self.cgColor)
-        context!.setAlpha(opacity)
-        context!.fill(rect)
+        if let context = UIGraphicsGetCurrentContext() {
+            context.setFillColor(self.cgColor)
+            context.setAlpha(opacity)
+            context.fill(rect)
+        }
         let img = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return img!
+        return img
     }
     
     // Amount should be between 0 and 1

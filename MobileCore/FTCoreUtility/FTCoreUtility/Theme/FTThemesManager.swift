@@ -323,13 +323,13 @@ extension FTThemesManager {
         // Custome UIView Component
         case .component:
             
-            let actualComponents = getThemeComponent(key,styleName: styleName)
+            let actualComponents = getThemeComponent(key, styleName: styleName)
             
             // TODO: iterative 'super' is still pending
             if
                 let viewComponent = actualComponents,
                 let superType = viewComponent["_super"] as? String,
-                var superCom = getThemeComponent(key,styleName: superType) {
+                var superCom = getThemeComponent(key, styleName: superType) {
                 // If view-component has super's style, use it as base component and merge its own style
                 superCom += viewComponent
                 superCom.removeValue(forKey: "_super")
@@ -342,15 +342,11 @@ extension FTThemesManager {
             
         // Convert JSON to UIColor
         case .color:
-            superBlock = { (colorName) in
-                return themeColor(colorName)
-            }
+            superBlock = { themeColor($0) }
             
             // Convert JSON to UIFont
         case .font:
-            superBlock = { fontName in
-                return themeFont(fontName)
-            }
+            superBlock = { themeFont($0) }
         }
         
         var actualComponents: Any?

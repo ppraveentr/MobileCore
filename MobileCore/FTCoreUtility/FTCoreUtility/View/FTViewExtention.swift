@@ -122,7 +122,7 @@ public extension UIView {
             verticalFittingPriority: heightPriority
         )
 
-        return CGSize(width: size.width - offSet.width, height:  size.height - offSet.height)
+        return CGSize(width: size.width - offSet.width, height: size.height - offSet.height)
     }
 }
 

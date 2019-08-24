@@ -76,7 +76,7 @@ open class FTUserCache {
 
     public static func setupSession() {
         //
-        NotificationCenter.default.addObserver(forName: .kFTClearSessionCache, object: nil, queue: nil) { (notification) in
+        _ = NotificationCenter.default.addObserver(forName: .kFTClearSessionCache, object: nil, queue: nil) { _ in
             FTUserCache.clearUserData()
         }
     }
@@ -122,7 +122,7 @@ public extension FTUserCache {
 
     static func getCachedObject(key: String, cacheType: FTUserCacheType = .user) -> Any? {
         let key = String(describing: key)
-        return FTUserCache.getCachedObject(forKey: key, cacheType:cacheType)
+        return FTUserCache.getCachedObject(forKey: key, cacheType: cacheType)
     }
 
     @discardableResult
@@ -133,7 +133,7 @@ public extension FTUserCache {
 
     static func getCachedObject(forType keyType: AnyClass, cacheType: FTUserCacheType = .user) -> Any? {
         let key = String(describing: keyType)
-        return FTUserCache.getCachedObject(forKey: key, cacheType:cacheType)
+        return FTUserCache.getCachedObject(forKey: key, cacheType: cacheType)
     }
 }
 

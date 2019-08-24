@@ -51,7 +51,7 @@ public class FTLoadingIndicator: UIView {
     
     static var sharedInstance: FTLoadingIndicator {
         struct Singleton {
-            static let instance = FTLoadingIndicator(frame: CGRect(origin: CGPoint(x: 0,y: 0),size: CGSize(width: Config().size,height: Config().size)))
+            static let instance = FTLoadingIndicator(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: Config().size, height: Config().size)))
         }
         return Singleton.instance
     }
@@ -73,13 +73,16 @@ public class FTLoadingIndicator: UIView {
         loader.title = title
         loader.update()
         
-        NotificationCenter.default.addObserver(loader, selector: #selector(loader.rotated(notification: )),
-                                               name: UIDevice.orientationDidChangeNotification,
-                                               object: nil)
+        NotificationCenter.default.addObserver(
+            loader,
+            selector: #selector( loader.rotated(notification:) ),
+            name: UIDevice.orientationDidChangeNotification,
+            object: nil
+        )
         
         let height: CGFloat = UIScreen.main.bounds.size.height
         let width: CGFloat = UIScreen.main.bounds.size.width
-        let center: CGPoint = CGPoint(x: width / 2.0, y: height / 2.0)
+        let center = CGPoint(x: width / 2.0, y: height / 2.0)
         
         loader.center = center
         
@@ -104,7 +107,7 @@ public class FTLoadingIndicator: UIView {
     public static func setConfig(config: Config) {
         let loader = FTLoadingIndicator.sharedInstance
         loader.config = config
-        loader.frame = CGRect(origin: CGPoint(x: 0, y: 0),size: CGSize(width: loader.config.size, height: loader.config.size))
+        loader.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: loader.config.size, height: loader.config.size))
     }
     
     /**
@@ -132,14 +135,17 @@ public class FTLoadingIndicator: UIView {
     private func stop() {
         
         if self.animated {
-            UIView.animate(withDuration: 0.3, animations: { () in
-                self.alpha = 0
-            }, completion: { (finished) -> Void in
-                self.removeFromSuperview()
-                self.baseView?.removeFromSuperview()
-                self.loadingView?.stop()
-            })
-        } else {
+            UIView.animate(
+                withDuration: 0.3,
+                animations: { self.alpha = 0 },
+                completion: { _ in
+                    self.removeFromSuperview()
+                    self.baseView?.removeFromSuperview()
+                    self.loadingView?.stop()
+                }
+            )
+        }
+        else {
             self.alpha = 0
             self.removeFromSuperview()
             self.baseView?.removeFromSuperview()
@@ -155,7 +161,8 @@ public class FTLoadingIndicator: UIView {
         if self.loadingView == nil {
             self.loadingView = CALoadingView(frame: self.frameForSpinner())
             self.addSubview(self.loadingView!)
-        } else {
+        }
+        else {
             self.loadingView?.frame = self.frameForSpinner()
         }
         
@@ -170,7 +177,8 @@ public class FTLoadingIndicator: UIView {
             self.titleLabel?.numberOfLines = 1
             self.titleLabel?.textAlignment = NSTextAlignment.center
             self.titleLabel?.adjustsFontSizeToFitWidth = true
-        } else {
+        }
+        else {
             self.titleLabel?.frame = frame
         }
         
@@ -263,8 +271,8 @@ public class FTLoadingIndicator: UIView {
             let startAngle = CGFloat.pi / CGFloat(2.0)
             var endAngle: CGFloat = (2.0 * CGFloat.pi) + startAngle
             
-            let center: CGPoint = CGPoint(x: self.bounds.size.width / 2, y: self.bounds.size.height / 2)
-            let radius: CGFloat = (CGFloat(self.bounds.size.width) - CGFloat(self.lineWidth!)) / CGFloat(2.0)
+            let center = CGPoint(x: self.bounds.size.width / 2, y: self.bounds.size.height / 2)
+            let radius = (CGFloat(self.bounds.size.width) - CGFloat(self.lineWidth!)) / CGFloat(2.0)
             
             let processBackgroundPath = UIBezierPath()
             processBackgroundPath.lineWidth = CGFloat(self.lineWidth!)
@@ -335,7 +343,7 @@ public class FTLoadingIndicator: UIView {
         /**
          *  Font for title text in loader
          */
-        public var titleTextFont: UIFont = UIFont.boldSystemFont(ofSize: 16.0)
+        public var titleTextFont = UIFont.boldSystemFont(ofSize: 16.0)
         
         /**
          *  Color of title text

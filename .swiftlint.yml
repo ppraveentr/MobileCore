@@ -12,8 +12,13 @@ disabled_rules:
 - trailing_whitespace # IDE will handle it for us
 - vertical_whitespace_opening_braces # readability improves
 - override_in_extension
+
 - private_outlet
 - private_action
+- force_unwrapping
+- prohibited_super_call
+- overridden_super_call
+- convenience_type
 
 opt_in_rules:
 - array_init
@@ -74,13 +79,13 @@ opt_in_rules:
 
 large_tuple: 4
 function_body_length : 50
-function_parameter_count: 5
+function_parameter_count: 9
 warning_threshold: 1
 closure_body_length: 16
 file_length: 750
 
 cyclomatic_complexity:
-  warning: 5
+  warning: 6
   ignores_case_statements: true
 
 line_length:

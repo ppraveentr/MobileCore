@@ -21,7 +21,7 @@ public extension String {
     }
 }
 
-final public class FTReflection {
+public final class FTReflection {
     
     /// Variable that can be set using registermoduleIdentifiers
     // TODO: Make it a SET, so to have unquie elements

@@ -6,8 +6,8 @@
 //  Copyright © 2019 Praveen P. All rights reserved.
 //
 
-import XCTest
 @testable import MobileCore
+import XCTest
 
 class FTUIElementThemesTests: XCTestCase {
 

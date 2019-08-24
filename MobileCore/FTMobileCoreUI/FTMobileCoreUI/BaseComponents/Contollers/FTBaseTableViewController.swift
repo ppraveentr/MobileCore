@@ -34,7 +34,7 @@ open class FTCoreTableViewController: UITableViewController {
         return local
     }
 
-    final override public func loadView() {
+    override public final func loadView() {
         _ = self.ftTableView
     }
 }
@@ -47,9 +47,7 @@ open class FTBaseTableViewController: FTBaseViewController {
     }
 
     public var tableView: UITableView {
-        get {
-            return self.tableViewController.tableView
-        }
+        return self.tableViewController.tableView
     }
 
     public lazy var tableViewController: FTCoreTableViewController = self.getCoreTableViewController()

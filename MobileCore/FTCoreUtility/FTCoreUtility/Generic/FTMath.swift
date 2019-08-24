@@ -13,7 +13,9 @@ public func FTCeilForSize(_ size: CGSize) -> CGSize {
 }
 
 // Combine 2-diff Size objects and get max values of both
-public func FTMaxSize(_ rhs: CGSize,_ lhs: CGSize) -> CGSize {
-    return CGSize(width: max(rhs.width, lhs.width),
-           height: max(rhs.height, lhs.height))
+public func FTMaxSize(_ rhs: CGSize, _ lhs: CGSize) -> CGSize {
+    return CGSize(
+        width: max(rhs.width, lhs.width),
+        height: max(rhs.height, lhs.height)
+    )
 }

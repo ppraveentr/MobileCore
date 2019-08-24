@@ -73,10 +73,6 @@ extension UIView {
         }
     }
     
-    override open func prepareForInterfaceBuilder() {
-//        showErrorIfInvalidStyles()
-    }
-    
     // MARK: swizzled layoutSubviews
     @objc func swizzled_layoutSubviews() {
         if self.needsThemesUpdate {
@@ -303,10 +299,12 @@ public extension UIWindow {
     /// - Parameter animated: if the refresh should be animated
     func refreshAppearance(animated: Bool) {
         NotificationCenter.default.post(name: .FTSwiftyAppearanceWillRefreshWindow, object: self)
-        UIView.animate(withDuration: animated ? 0.25 : 0, animations: {
-            self._refreshAppearance()
-        }, completion: { _ in
+        UIView.animate(
+            withDuration: animated ? 0.25 : 0,
+            animations: { self._refreshAppearance() },
+            completion: { _ in
             NotificationCenter.default.post(name: .FTSwiftyAppearanceDidRefreshWindow, object: self)
-        })
+            }
+        )
     }
 }

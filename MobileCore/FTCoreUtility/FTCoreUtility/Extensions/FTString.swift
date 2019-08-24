@@ -43,7 +43,7 @@ public extension String {
             return NSMutableAttributedString()
         }
         
-        do{
+        do {
             return try NSMutableAttributedString(
                 data: data,
                 options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue],
@@ -110,7 +110,8 @@ public extension String {
     
     // Get subString 'from-index' to 'to-index'
     func substring(from fromIndex: Int, to toIndex: Int) -> String? {
-        let substring = self.substring(with: NSMakeRange(fromIndex, toIndex - fromIndex))
+        let range = NSRange(location: fromIndex, length: toIndex - fromIndex)
+        let substring = self.substring(with: range)
         return substring
     }
     

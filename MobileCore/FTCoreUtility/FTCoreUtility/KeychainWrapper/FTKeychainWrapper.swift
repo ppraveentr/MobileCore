@@ -81,7 +81,9 @@ open class FTKeychainWrapper {
         var result: AnyObject?
         let status = SecItemCopyMatching(keychainQueryDictionary as CFDictionary, &result)
 
-        guard status == noErr, let resultsDictionary = result as? [String:AnyObject], let accessibilityAttrValue = resultsDictionary[ftSecAttrAccessible] as? String else {
+        guard status == noErr,
+            let resultsDictionary = result as? [String: AnyObject],
+            let accessibilityAttrValue = resultsDictionary[ftSecAttrAccessible] as? String else {
             return nil
         }
     
@@ -286,7 +288,7 @@ open class FTKeychainWrapper {
         }
     }
 
-    // MARK:- Private Methods
+    // MARK: Private Methods
     
     /// Remove all items for a given Keychain Item Class
     ///
@@ -305,8 +307,8 @@ open class FTKeychainWrapper {
     
     /// Update existing data associated with a specified key name. The existing data will be overwritten by the new data.
     private func update(_ value: Data, forKey key: String, withAccessibility accessibility: FTKeychainItemAccessibility? = nil) -> Bool {
-        var keychainQueryDictionary: [String:Any] = setupKeychainQueryDictionary(forKey: key, withAccessibility: accessibility)
-        let updateDictionary = [ftSecValueData:value]
+        var keychainQueryDictionary: [String: Any] = setupKeychainQueryDictionary(forKey: key, withAccessibility: accessibility)
+        let updateDictionary = [ftSecValueData: value]
         
         // on update, only set accessibility if passed in
         if let accessibility = accessibility {
@@ -329,9 +331,9 @@ open class FTKeychainWrapper {
     /// - parameter forKey: The key this query is for
     /// - parameter withAccessibility: Optional accessibility to use when setting the keychain item. If none is provided, will default to .WhenUnlocked
     /// - returns: A dictionary with all the needed properties setup to access the keychain on iOS
-    private func setupKeychainQueryDictionary(forKey key: String, withAccessibility accessibility: FTKeychainItemAccessibility? = nil) -> [String:Any] {
+    private func setupKeychainQueryDictionary(forKey key: String, withAccessibility accessibility: FTKeychainItemAccessibility? = nil) -> [String: Any] {
         // Setup default access as generic password (rather than a certificate, internet password, etc)
-        var keychainQueryDictionary: [String: Any] = [ftSecClass:kSecClassGenericPassword]
+        var keychainQueryDictionary: [String: Any] = [ftSecClass: kSecClassGenericPassword]
         
         // Uniquely identify this keychain accessor
         keychainQueryDictionary[ftSecAttrService] = serviceName

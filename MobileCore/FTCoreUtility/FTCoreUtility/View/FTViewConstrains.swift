@@ -134,9 +134,12 @@ public struct FTEdgeInsets: OptionSet {
 
 public protocol FTViewConstrains: AnyObject {
     
-    func pin(view: UIView, withEdgeOffsets edgeOffsets: FTEdgeOffsets?,
-    withEdgeInsets edgeInsets: FTEdgeInsets?,
-    withLayoutPriority priority: UILayoutPriority?, addToSubView: Bool?)
+    func pin(view: UIView,
+             withEdgeOffsets edgeOffsets: FTEdgeOffsets?,
+             withEdgeInsets edgeInsets: FTEdgeInsets?,
+             withLayoutPriority priority: UILayoutPriority?,
+             addToSubView: Bool?
+    )
     
     func stackView(views: [UIView],
                    layoutDirection direction: FTLayoutDirection,
@@ -164,8 +167,7 @@ public extension UIView {
                                  toView view: UIView,
                                  priority: UILayoutPriority,
                                  constant: CGFloat = 0) -> NSLayoutConstraint
-        where Anchor: NSLayoutAnchor<AnchorType>
-    {
+        where Anchor: NSLayoutAnchor<AnchorType> {
             let constraint = view[keyPath: anchorPath].constraint(equalTo: self[keyPath: anchorPath], constant: constant)
             constraint.priority = priority
             return constraint
@@ -178,10 +180,10 @@ private extension UIView {
     }
     
     func validPriority(_ priority: UILayoutPriority) -> UILayoutPriority {
-        if Int(priority.rawValue) < 0  {
+        if Int(priority.rawValue) < 0 {
             return UILayoutPriority(rawValue: 1)
         }
-        else if priority.rawValue > UILayoutPriority.required.rawValue  {
+        else if priority.rawValue > UILayoutPriority.required.rawValue {
             return .required
         }
         return priority
@@ -291,16 +293,30 @@ private extension UIView {
         
         // TopMargin
         if edgeInsets.contains(.topMargin) {
-            let constraint = NSLayoutConstraint(item: view, attribute: .topMargin, relatedBy: .equal, toItem: self,
-                                                attribute: .topMargin, multiplier: 1.0, constant: 0)
+            let constraint = NSLayoutConstraint(
+                item: view,
+                attribute: .topMargin,
+                relatedBy: .equal,
+                toItem: self,
+                attribute: .topMargin,
+                multiplier: 1.0,
+                constant: 0
+            )
             constraint.priority = priority
             localConstraint.append(constraint)
         }
         
         //BottomMargin
         if edgeInsets.contains(.bottomMargin) {
-            let constraint = NSLayoutConstraint(item: view, attribute: .bottomMargin, relatedBy: .equal,
-                                                toItem: self, attribute: .bottomMargin, multiplier: 1.0, constant: 0)
+            let constraint = NSLayoutConstraint(
+                item: view,
+                attribute: .bottomMargin,
+                relatedBy: .equal,
+                toItem: self,
+                attribute: .bottomMargin,
+                multiplier: 1.0,
+                constant: 0
+            )
             constraint.priority = priority
             localConstraint.append(constraint)
         }
