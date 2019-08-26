@@ -6,11 +6,11 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
+import MobileCore
 import UIKit
-//import MobileCore
 
-class MDASample { //: FTServiceModel {
-    var identifier:String?
+open class MDASample: FTServiceModel {
+    var identifier: String?
     var amount: Decimal? = 0.0
 //    var isValid:Bool = false
 //    var date:NSDate?
@@ -18,7 +18,7 @@ class MDASample { //: FTServiceModel {
 //    var dicList:NSMutableDictionary?
     
     /* Coding Keys */
-    enum CodingKeys: String, CodingKey  {
+    enum CodingKeys: String, CodingKey {
         case identifier = "id"
         case amount = "amount.usd"
     }

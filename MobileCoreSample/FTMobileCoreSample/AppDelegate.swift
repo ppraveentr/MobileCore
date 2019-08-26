@@ -6,15 +6,14 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
-import UIKit
 import MobileCore
 
 @UIApplicationMain
-class AppDelegate: FTAppDelegate {
+public class AppDelegate: FTAppDelegate {
 
-    public override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    override public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        FTReflection.registerModuleIdentifier([AppDelegate.self,FTBaseView.self])
+        FTReflection.registerModuleIdentifier([AppDelegate.self, FTBaseView.self])
 
         if
             let resource = Bundle.main.path(forResource: "FTMobileCoreBundle", ofType: "bundle"),

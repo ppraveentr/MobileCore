@@ -19,7 +19,6 @@ open class FTBaseScrollViewController: FTBaseViewController {
         // Setup ScrollView incse, view is loaded from IB
         setupScrollView(scrollView: self.scrollView)
     }
-    
 }
 
 extension FTBaseScrollViewController {
@@ -37,5 +36,4 @@ extension FTBaseScrollViewController {
 
         return local
     }
-    
 }

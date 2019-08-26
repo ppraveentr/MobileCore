@@ -6,12 +6,12 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
-import XCTest
 @testable import MobileCore
+import XCTest
 
 class FTThemesTests: XCTestCase {
     
-    let theme: [String : Any] = [
+    let theme: [String: Any] = [
         "type": "Themes",
         "color": [
             "default": "#FFFFFF",
@@ -82,67 +82,57 @@ class FTThemesTests: XCTestCase {
     
     // MARK: View Component
     func testComponent() {
-        FTLog("\n FTLabel system14W : ", FTThemesManager.getViewComponent("FTLabel", styleName: "system14W")!)
+        let value = FTThemesManager.getViewComponent("FTLabel", styleName: "system14W")
+        FTLog("\n FTLabel system14W : ", value ?? "nil")
+        XCTAssertNotNil(value)
     }
     
     // MARK: Font
     func testFonts() {
-        FTLog("\n font 14 : ", FTThemesManager.getFont("system14")!)
+        let value = FTThemesManager.getFont("system14")
+        FTLog("\n font 14 : ", value ?? "nil")
+        XCTAssertNotNil(value)
     }
     
     // MARK: Color
     func testColorWhite() {
-        FTLog("\n color white : ", FTThemesManager.getColor("white")!)
-    }
-
-    func testColorWithAlpha() {
-        FTLog("\n color white : ", FTThemesManager.getColor("halfwhite")!)
-    }
-    
-    func testColorBlack() {
-        FTLog("\n color black : ", FTThemesManager.getColor("black")!)
+        let value = FTThemesManager.getColor("white")
+        FTLog("\n color white : ", value ?? "nil")
+        XCTAssertNotNil(value)
     }
     
     func testColorFail() {
-        FTLog("\n color fail : ", FTThemesManager.getColor("orange")!)
+        let value = FTThemesManager.getColor("orange")
+        let defaultValue = FTThemesManager.getColor("default")
+        XCTAssertEqual(value, defaultValue, "color should be default to black")
     }
     
     func testHashColor() {
-        FTLog("\n color #FFFFFF00 : ", FTThemesManager.getColor("#F3F3F3F8")!)
+        let value = FTThemesManager.getColor("#F3F3F3F8")
+        FTLog("\n color #FFFFFF00 : ", value ?? "nil")
+        XCTAssertNotNil(value)
     }
     
     // MARK: appearance
     func testAppearance() {
-        FTLog("\n getAppearance : ", FTThemesManager.getAppearance()!)
+        let value = FTThemesManager.getAppearance()
+        FTLog("\n getAppearance : ", value ?? "nil")
+        XCTAssertNotNil(value)
     }
     
-//    func testAppearanceNavigationBar() {
-//        let theme = FTThemesManager.getAppearance("UINavigationBar") as? [Any]
-//        
-//        XCTAssertNotNil(theme)
-//        
-//        XCTAssertTrue(theme?.count == 2, "Valid no themes not found")
-//    }
-//    
-//    func testAppearanceSegmentedControl() {
-//        let theme = FTThemesManager.getAppearance("UISegmentedControl") as? [Any]
-//        
-//        XCTAssertNotNil(theme)
-//        
-//        XCTAssertTrue(theme?.count == 1, "Valid no themes not found")
-//    }
-
-    func testFTUISearchBar() {
-
-        let searchBar = FTUISearchBar(frame: .zero)
-        searchBar.theme = "default"
-
-        //let theme = FTThemesManager.getViewComponent("FTSearchBar", styleName: "default")
-
-        //FTLog("\n FTSearchBar : ", theme ?? "nil")
-
-//        XCTAssertNotNil(theme)
-
-//        XCTAssertTrue(theme?.count == 1, "Valid no themes not found")
+    func testAppearanceNavigationBar() {
+        let theme = FTThemesManager.getAppearance("UINavigationBar")
+        XCTAssertNotNil(theme)
+        if let theme = theme as? FTThemeModel {
+            XCTAssertTrue(theme.count == 2, "Valid no themes not found")
+        }
+    }
+    
+    func testAppearanceSegmentedControl() {
+        let theme = FTThemesManager.getAppearance("UISegmentedControl")
+        XCTAssertNotNil(theme)
+        if let theme = theme as? FTThemeModel {
+            XCTAssertTrue(theme.count == 1, "Valid no themes not found")
+        }
     }
 }

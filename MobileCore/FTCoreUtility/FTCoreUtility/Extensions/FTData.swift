@@ -14,7 +14,8 @@ public extension Data {
         do {
             let content = try JSONSerialization.jsonObject(with: self, options: .allowFragments)
             return content
-        } catch {
+        }
+        catch {
             FTLog(error)
         }
         return nil
@@ -23,7 +24,7 @@ public extension Data {
     // Data decoder based on resposne mimeType or defaluts to [.utf8, .unicode]
     func decodeToString(encodingList: [String.Encoding] = [.utf8, .unicode]) -> String? {
 
-        var html: String? = nil
+        var html: String?
 
         // Try to decode the String
         for type in encodingList {
@@ -37,5 +38,4 @@ public extension Data {
         
         return (html)
     }
-    
 }

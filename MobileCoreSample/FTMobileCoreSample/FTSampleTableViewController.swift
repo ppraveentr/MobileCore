@@ -13,5 +13,4 @@ class FTSampleTableViewController: FTBaseTableViewController {
     override func tableStyle() -> UITableView.Style {
         return .grouped
     }
-    
 }

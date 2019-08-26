@@ -48,15 +48,16 @@ public extension CGRect {
         
         return self
     }
-    
 }
 
 /**
  Outsets a CGSize with the insets in a UIEdgeInsets.
  */
 public func FTEdgeInsetsOutsetSize(size: CGSize, insets: UIEdgeInsets) -> CGSize {
-    return CGSize(width: insets.left + size.width + insets.right,
-                  height: insets.top + size.height + insets.bottom)
+    return CGSize(
+        width: insets.left + size.width + insets.right,
+        height: insets.top + size.height + insets.bottom
+    )
 }
 
 /**
@@ -73,9 +74,12 @@ public func FTEdgeInsetsInsetSize(size: CGSize, insets: UIEdgeInsets) -> CGSize 
 /**
  CGSize of text based.
  */
-public func FTTextSize(text: String?, font: UIFont,
-                          constrainedSize: CGSize,
-                          lineBreakMode: NSLineBreakMode) -> CGSize {
+public func FTTextSize(
+    text: String?,
+    font: UIFont,
+    constrainedSize: CGSize,
+    lineBreakMode: NSLineBreakMode
+    ) -> CGSize {
     guard let text = text, text.length > 0 else {
         return .zero
     }
@@ -83,16 +87,17 @@ public func FTTextSize(text: String?, font: UIFont,
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.lineBreakMode = lineBreakMode
     
-    let attributes: [NSAttributedString.Key : Any] = [
+    let attributes: [NSAttributedString.Key: Any] = [
         .font: font,
-        .paragraphStyle: paragraphStyle,
+        .paragraphStyle: paragraphStyle
     ]
     
     let attributedString = NSAttributedString(string: text, attributes: attributes)
-    
-    let size = attributedString.boundingRect(with: constrainedSize,
-                                  options: [.usesDeviceMetrics, .usesLineFragmentOrigin, .usesFontLeading],
-                                  context: nil).size
+    let size = attributedString.boundingRect(
+        with: constrainedSize,
+        options: [.usesDeviceMetrics, .usesLineFragmentOrigin, .usesFontLeading],
+        context: nil
+        ).size
     
     return FTCeilForSize(size)
 }

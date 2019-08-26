@@ -47,7 +47,6 @@ public enum FTReqeustType: String, Codable {
         }
         return nil
     }
-    
 }
 
 final class FTRequestBase: FTServiceModel {
@@ -58,7 +57,7 @@ final class FTRequestObject: FTServiceModel {
     var type: FTReqeustType = .POST
     var path: String?
     var baseURL: String?
-    var requestQuery: [String:String]?
-    var request: [String:String]?
-    var responseType: [String:String]?
+    var requestQuery: [String: String]?
+    var request: [String: String]?
+    var responseType: [String: String]?
 }

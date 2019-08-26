@@ -6,8 +6,8 @@
 //  Copyright © 2019 Praveen P. All rights reserved.
 //
 
-import XCTest
 @testable import MobileCore
+import XCTest
 
 class FTUIElementThemesTests: XCTestCase {
 
@@ -68,5 +68,4 @@ class FTUIElementThemesTests: XCTestCase {
         XCTAssert(label.font == UIFont.systemFont(ofSize: 19), "Invalid font size for label")
         XCTAssert(label.textColor == UIColor(red: 207, green: 145, blue: 207, a: 1.0), "Invalid text color for label")
     }
-
 }

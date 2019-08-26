@@ -9,7 +9,7 @@
 import Foundation
 
 // typealias
-public typealias JSON = Dictionary<String, Any>
+public typealias JSON = [String: Any]
 
 enum FTJsonParserError: Error {
     case invalidJSON
@@ -44,16 +44,16 @@ public extension FTServiceModel {
         guard let jsonData = json.data(using: .utf8) else {
             throw FTJsonParserError.invalidJSON
         }
-        let data = try JSONDecoder().decode(Self.self, from:jsonData)
+        let data = try JSONDecoder().decode(Self.self, from: jsonData)
         return data
     }
     
-    static func makeModel(json: Data) throws  -> Self {
-        let data = try JSONDecoder().decode(Self.self, from:json)
+    static func makeModel(json: Data) throws -> Self {
+        let data = try JSONDecoder().decode(Self.self, from: json)
         return data
     }
 
-    static func makeModel(json: JSON) throws  -> Self {
+    static func makeModel(json: JSON) throws -> Self {
         let data = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
         return try self.makeModel(json: data)
     }
@@ -71,8 +71,8 @@ public extension FTServiceModel {
         do {
             let data: Data = try JSONEncoder().encode(self)
             return data.jsonContent() as? JSON
-
-        } catch {}
+        }
+        catch {}
 
         return nil
     }
@@ -80,7 +80,8 @@ public extension FTServiceModel {
     func jsonString() -> String? {
         if var jsn: JSON = self.jsonModel() {
             jsn.stripNilElements()
-            if JSONSerialization.isValidJSONObject(jsn),
+            if
+                JSONSerialization.isValidJSONObject(jsn),
                 let data = try? JSONSerialization.data(withJSONObject: jsn, options: .prettyPrinted)
             {
                 return data.decodeToString()
@@ -95,13 +96,12 @@ public extension FTServiceModel {
             return
         }
         
-        let data = json.merging(source) { (left, right) -> Any in
+        let data = json.merging(source) { left, right -> Any in
             if var leftJson = left as? FTServiceModel,
                let rightJson = right as? FTServiceModel {
                 return leftJson.merge(data: rightJson)
             }
-            else if let leftJson = left as? [Any], let rightJson = right as? [Any]
-                {
+            else if let leftJson = left as? [Any], let rightJson = right as? [Any] {
                 return leftJson + rightJson
             }
             return right
@@ -126,7 +126,7 @@ public extension FTServiceModel {
                 result += queryItems(key, value)
             }
         }
-        else if let _ = value as? NSNull {
+        else if (value as? NSNull) != nil {
             result.append(URLQueryItem(name: key, value: nil))
         }
         else if let v = value {
@@ -143,8 +143,8 @@ public extension FTServiceModel {
 
         guard let json = self.jsonModel() else { return [] }
 
-        var query:[URLQueryItem] = []
-        json.forEach { (arg) in
+        var query: [URLQueryItem] = []
+        json.forEach { arg in
             let val = queryItems(arg.key, arg.value)
             query.append(contentsOf: val)
         }
@@ -159,14 +159,14 @@ public extension FTServiceModel {
             return nil
         }
 
-        var postData: Data? = nil
-
-        json.forEach { (arg) in
+        var postData: Data?
+        json.forEach { arg in
             if let value = arg.value as? String {
                 let key = arg.key
                 if postData == nil {
                     postData = "\(key)=\(value)".data(using: String.Encoding.utf8)!
-                } else {
+                }
+                else {
                     postData!.append("&\(key)=\(value)".data(using: String.Encoding.utf8)!)
                 }
             }
@@ -174,23 +174,24 @@ public extension FTServiceModel {
 
         return postData
     }
-    
 }
 
 open class FTServiceModelObject: FTServiceModel {
     
     @discardableResult
-    public static func makeModel<S: FTServiceModel>(ofType modelType: S.Type,
-                                      fromJSON json: Any) throws -> S {
+    public static func makeModel<S: FTServiceModel>(ofType modelType: S.Type, fromJSON json: Any) throws -> S {
         
         guard (json is String) || (json is Data) else {
             throw FTJsonParserError.invalidJSON
         }
         
-        if (json is String) {
-            return try modelType.makeModel(json: json as! String)
+        if let json = json as? String {
+            return try modelType.makeModel(json: json)
+        }
+        else if let json = json as? Data {
+            return try modelType.makeModel(json: json)
         }
         
-        return try modelType.makeModel(json: json as! Data)
+        throw FTJsonParserError.invalidJSON
     }
 }

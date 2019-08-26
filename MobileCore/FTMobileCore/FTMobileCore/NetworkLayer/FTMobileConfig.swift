@@ -14,7 +14,7 @@ public class FTMobileConfig {
 
     // MARK: Configurations
     // MARK: Requst Paths
-    static public var appBaseURL: String = "" {
+    public static var appBaseURL: String = "" {
         didSet {
             if !appBaseURL.hasSuffix("/") {
                 appBaseURL.append("/")
@@ -23,9 +23,9 @@ public class FTMobileConfig {
     }
 
     // Check for stubData
-    static fileprivate var isMockDataModel: Bool = false
+    fileprivate static var isMockDataModel: Bool = false
     
-    static public var isMockData: Bool {
+    public static var isMockData: Bool {
         set {
             isMockDataModel = newValue
         }
@@ -35,13 +35,14 @@ public class FTMobileConfig {
     }
 
     // Stub data bundle, used by FTServiceClient
-    static var mockBundle: Bundle? = nil
+    static var mockBundle: Bundle?
 
-    static public var mockBundleResource: URL? = nil {
+    public static var mockBundleResource: URL? = nil {
         didSet {
             if mockBundleResource != nil {
                 mockBundle = Bundle(url: mockBundleResource!)
-            } else {
+            }
+            else {
                 mockBundle = nil
             }
         }
@@ -50,7 +51,7 @@ public class FTMobileConfig {
     static var modelBindingPath: String = ""
 
     // TODO: To support multiple sources
-    static public var serviceBindingPath: String = "" {
+    public static var serviceBindingPath: String = "" {
         didSet {
             try? FTMobileConfig.loadModelSchema(fromPath: serviceBindingDirectory())
         }
@@ -59,7 +60,7 @@ public class FTMobileConfig {
     // MARK: Rules Binding
     var serviceRuels = JSON()
 
-    static public var serviceBindingRulesName: String = "" {
+    public static var serviceBindingRulesName: String = "" {
         didSet {
             try? FTMobileConfig.loadBindingRules()
         }
@@ -72,13 +73,12 @@ public class FTMobileConfig {
     init() {
         FTReflection.registerModuleIdentifier(FTMobileConfig.self)
     }
-    
 }
 
 public extension FTMobileConfig {
 
     // MARK: Session Headers
-    static var httpAdditionalHeaders: [String:String]? {
+    static var httpAdditionalHeaders: [String: String]? {
         set {
             FTUserCache.httpAdditionalHeaders = newValue
         }
@@ -86,7 +86,6 @@ public extension FTMobileConfig {
             return FTUserCache.httpAdditionalHeaders
         }
     }
-
 }
 
 // MARK: Model Schema
@@ -99,7 +98,7 @@ extension FTMobileConfig {
         return ""
     }
 
-    public static func loadModelSchema(_ data: [String : Any] ) throws {
+    public static func loadModelSchema(_ data: [String: Any] ) throws {
 
         if JSONSerialization.isValidJSONObject(data) {
             self.sharedInstance.modelSchema += data
@@ -109,14 +108,16 @@ extension FTMobileConfig {
     public static func loadModelSchema(fromPath path: String? = nil) throws {
 
         let path = path ?? serviceBindingDirectory()
-        try path.filesAtPath { (filePath) in
+        try path.filesAtPath { filePath in
             do {
                 if let content: JSON = try filePath.jsonContentAtPath() {
                     try loadModelSchema(content)
-                } else {
+                }
+                else {
                     FTLog("Files emtpy")
                 }
-            } catch {
+            }
+            catch {
                 FTLog("Load Model Schema Error: ", error)
             }
         }

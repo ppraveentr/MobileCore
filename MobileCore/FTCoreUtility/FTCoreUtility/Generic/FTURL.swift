@@ -18,7 +18,7 @@ public extension URL {
     func downloadedImage(_ comletionHandler: FTUIImageViewComletionHandler? = nil) {
 
         // Setup URLSession
-        URLSession.shared.dataTask(with: self) { (data, response, error) in
+        URLSession.shared.dataTask(with: self) { data, response, error in
 
             guard
                 let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
@@ -32,12 +32,11 @@ public extension URL {
             }
 
             // Update view's image in main thread
-            DispatchQueue.main.async() { () in
+            DispatchQueue.main.async {
                 // After Image download compeltion
                 comletionHandler?(image)
             }
-
-            }.resume()
+        }
+            .resume()
     }
-    
 }

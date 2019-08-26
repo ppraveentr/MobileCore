@@ -14,6 +14,7 @@ open class FTLinkDetection {
         case url
         case hashTag
     }
+    
     public var linkType: FTLinkType
     public var linkRange: NSRange
     public var linkURL: URL
@@ -24,7 +25,7 @@ open class FTLinkDetection {
         self.linkURL = linkURL
     }
     
-    public var description : String {
+    public var description: String {
         return "(Type: \(self.linkType), Range: -location \(self.linkRange.location), -length \(self.linkRange.length), URL: \(self.linkURL))"
     }
     
@@ -36,9 +37,8 @@ open class FTLinkDetection {
         let types: NSTextCheckingResult.CheckingType = [ .link, .phoneNumber]
         let detector = try? NSDataDetector(types: types.rawValue)
         
-        detector?.enumerateMatches(in: text, options: [],
-                                   range: NSMakeRange(0, (text as NSString).length)) { (result, flags, _) in
-            
+        let range = NSRange(location: 0, length: (text as NSString).length)
+        detector?.enumerateMatches(in: text, options: [], range: range) { result, _, _ in
             if
                 let url = result?.url,
                 let range = result?.range {
@@ -60,11 +60,10 @@ open class FTLinkDetection {
         
         // Hi #wellcome thanks.
         // Here, "#wellcome" is retuned
-        text.enumerate(pattern: "(?<!\\w)#([\\w]+)") { (result) in
-            
+        text.enumerate(pattern: "(?<!\\w)#([\\w]+)") { result in
             if
                 let range = result?.range,
-                let subText = (text as NSString).substring(with: NSMakeRange(range.location, range.length)) as String?,
+                let subText = (text as NSString).substring(with: NSRange(location: range.location, length: range.length)) as String?,
                 let url = URL(string: subText) {
                     let dec = FTLinkDetection(linkType: .hashTag, linkRange: range, linkURL: url)
                     rangeOfURL.append(dec)
@@ -73,5 +72,4 @@ open class FTLinkDetection {
         
         return rangeOfURL
     }
-    
 }

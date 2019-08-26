@@ -18,28 +18,25 @@ open class FTCoreTableViewController: UITableViewController {
         self.tableStyle = style
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
     var ftTableView: UITableView {
-        get {
-            let local = UITableView(frame: .zero, style: self.tableStyle)
-            local.estimatedRowHeight = UITableView.automaticDimension
-            local.dataSource = self
-            local.delegate = self
-
-            self.view = local
-            self.tableView = local
-
-            return local
-        }
+        let local = UITableView(frame: .zero, style: self.tableStyle)
+        local.estimatedRowHeight = UITableView.automaticDimension
+        local.dataSource = self
+        local.delegate = self
+        
+        self.view = local
+        self.tableView = local
+        
+        return local
     }
 
-    final override public func loadView() {
+    override public final func loadView() {
         _ = self.ftTableView
     }
-    
 }
 
 open class FTBaseTableViewController: FTBaseViewController {
@@ -50,9 +47,7 @@ open class FTBaseTableViewController: FTBaseViewController {
     }
 
     public var tableView: UITableView {
-        get {
-            return self.tableViewController.tableView
-        }
+        return self.tableViewController.tableView
     }
 
     public lazy var tableViewController: FTCoreTableViewController = self.getCoreTableViewController()
@@ -80,7 +75,6 @@ open class FTBaseTableViewController: FTBaseViewController {
             }
         }
     }
-    
 }
 
 extension FTBaseTableViewController {
@@ -98,6 +92,14 @@ extension FTBaseTableViewController {
         return local
     }
 
+    private func updateFrame(view: UIView) {
+        var originalFrame = view.frame
+        view.resizeToFitSubviews()
+        originalFrame.size.height = (view.frame.height)
+        originalFrame.size.width = self.tableView.frame.width
+        view.frame = originalFrame
+    }
+    
     /**
      tableView's tableViewHeaderView contains wrapper view, which height is evaluated
      with Auto Layout. Here I use evaluated height and update tableView's
@@ -112,19 +114,11 @@ extension FTBaseTableViewController {
         
         // get height of the wrapper and apply it to a header
         if let view = self.tableView.tableHeaderView {
-            var originalFrame = self.tableView.tableHeaderView?.frame
-            view.resizeToFitSubviews()
-            originalFrame?.size.height = (view.frame.height)
-            originalFrame?.size.width = self.tableView.frame.width
-            self.tableView.tableHeaderView?.frame = originalFrame!
+            updateFrame(view: view)
         }
         
         if let view = self.tableView.tableFooterView {
-            var originalFrame = self.tableView.tableFooterView?.frame
-            view.resizeToFitSubviews()
-            originalFrame?.size.height = (view.frame.height)
-            originalFrame?.size.width = self.tableView.frame.width
-            self.tableView.tableFooterView?.frame = originalFrame!
+            updateFrame(view: view)
         }
         
         DispatchQueue.main.async {

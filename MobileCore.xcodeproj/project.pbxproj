@@ -50,7 +50,6 @@
 		D42A587F23047DE3003C7283 /* FTErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A587523047DE3003C7283 /* FTErrorModel.swift */; };
 		D42A588023047DE3003C7283 /* FTRequestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A587623047DE3003C7283 /* FTRequestObject.swift */; };
 		D42A588123047DE3003C7283 /* FTServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A587723047DE3003C7283 /* FTServiceClient.swift */; };
-		D42A588223047DE3003C7283 /* FTModelStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A587823047DE3003C7283 /* FTModelStack.swift */; };
 		D42A58A423047DEA003C7283 /* FTSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588623047DEA003C7283 /* FTSegmentedControl.swift */; };
 		D42A58A523047DEA003C7283 /* FTTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588723047DEA003C7283 /* FTTableView.swift */; };
 		D42A58A623047DEA003C7283 /* FTLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588823047DEA003C7283 /* FTLabel.swift */; };
@@ -141,7 +140,6 @@
 		D42A587523047DE3003C7283 /* FTErrorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTErrorModel.swift; sourceTree = "<group>"; };
 		D42A587623047DE3003C7283 /* FTRequestObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTRequestObject.swift; sourceTree = "<group>"; };
 		D42A587723047DE3003C7283 /* FTServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTServiceClient.swift; sourceTree = "<group>"; };
-		D42A587823047DE3003C7283 /* FTModelStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTModelStack.swift; sourceTree = "<group>"; };
 		D42A588623047DEA003C7283 /* FTSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTSegmentedControl.swift; sourceTree = "<group>"; };
 		D42A588723047DEA003C7283 /* FTTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTTableView.swift; sourceTree = "<group>"; };
 		D42A588823047DEA003C7283 /* FTLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLabel.swift; sourceTree = "<group>"; };
@@ -394,7 +392,6 @@
 				D42A587523047DE3003C7283 /* FTErrorModel.swift */,
 				D42A587623047DE3003C7283 /* FTRequestObject.swift */,
 				D42A587723047DE3003C7283 /* FTServiceClient.swift */,
-				D42A587823047DE3003C7283 /* FTModelStack.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -637,7 +634,6 @@
 				D42A586423047DD6003C7283 /* FTMath.swift in Sources */,
 				D42A586923047DD6003C7283 /* FTKeychainItemAccessibility.swift in Sources */,
 				D42A584E23047DD6003C7283 /* FTAppDelegate.swift in Sources */,
-				D42A588223047DE3003C7283 /* FTModelStack.swift in Sources */,
 				D42A588023047DE3003C7283 /* FTRequestObject.swift in Sources */,
 				D42A585D23047DD6003C7283 /* FTAssociatedObject.swift in Sources */,
 				D42A587E23047DE3003C7283 /* FTMobileConfig.swift in Sources */,

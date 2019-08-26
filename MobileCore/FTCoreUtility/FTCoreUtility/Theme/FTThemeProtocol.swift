@@ -33,7 +33,7 @@ public extension FTThemeProtocol where Self: UIView {
         return FTThemesManager.getColor(colorName)
     }
     
-    // Font
+    // font
     func getFont(_ fontName: String?) -> UIFont? {
         return FTThemesManager.getFont(fontName)
     }
@@ -50,5 +50,6 @@ public protocol FTUIControlThemeProtocol: FTThemeProtocol {
 
 extension FTUIControlThemeProtocol {
     public func updateTheme(_ theme: FTThemeModel) {
+        // Optional Protocal definition: Intentionally unimplemented...
     }
 }

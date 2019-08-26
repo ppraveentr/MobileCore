@@ -13,17 +13,25 @@ public extension UINavigationBar {
     /**
      *  Configures the navigation bar to use an image as its background.
      */
-    static func applyBackgroundImage(navigationBar: UINavigationBar?, defaultColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
-                                           landScapeColor landScape: UIColor? = nil) {
-        self.applyBackgroundImage(navigationBar: navigationBar, defaultImage: defaultColor.generateImage(),
-                                  landScapeImage: landScape?.generateImage() ?? defaultColor.generateImage())
+    static func applyBackgroundImage(
+        navigationBar: UINavigationBar?,
+        defaultColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+        landScapeColor landScape: UIColor? = nil ) {
+        
+        self.applyBackgroundImage(
+            navigationBar: navigationBar,
+            defaultImage: defaultColor.generateImage(),
+            landScapeImage: landScape?.generateImage() ?? defaultColor.generateImage()
+        )
     }
     
     /**
      *  Configures the navigation bar to use an image as its background.
      */
-    static func applyBackgroundImage(navigationBar: UINavigationBar?, defaultImage: UIImage = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).generateImage(),
-                                           landScapeImage landScape: UIImage? = nil) {
+    static func applyBackgroundImage(
+        navigationBar: UINavigationBar?,
+        defaultImage: UIImage? = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).generateImage(),
+        landScapeImage landScape: UIImage? = nil) {
         
         // These background images contain a small pattern which is displayed
         // in the lower right corner of the navigation bar.
@@ -39,14 +47,17 @@ public extension UINavigationBar {
         // in the topmost and leftmost pixels being stretched when the images
         // are resized.  Not coincidentally, the pixels in these rows/columns
         // are empty.
-        defaultImage = defaultImage.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0,
-                                                                               bottom: defaultImage.size.height - 1,
-                                                                               right: defaultImage.size.width - 1))
+        if let localImage = defaultImage {
+            defaultImage = localImage.resizableImage(
+                withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: localImage.size.height - 1, right: localImage.size.width - 1)
+            )
+        }
         
-        landScape = landScape.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0,
-                                                                         bottom: landScape.size.height - 1,
-                                                                         right: landScape.size.width - 1))
-        
+        if let localImage = landScape {
+            landScape = localImage.resizableImage(
+                withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: localImage.size.height - 1, right: localImage.size.width - 1)
+            )
+        }
         let navigationBar = navigationBar ??
             UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
         
@@ -78,10 +89,9 @@ public extension UINavigationBar {
         // 
         // Below, background image is dynamically generated with the desired
         // opacity.
-        let transparentBackground: UIImage = UIColor.white.generateImage(opacity: opacity,
-                                                                         contentsScale: navigationBar.layer.contentsScale)
-        
-        navigationBar.setBackgroundImage(transparentBackground, for: .default)
+        if let transparentBackground = UIColor.white.generateImage( opacity: opacity, contentsScale: navigationBar.layer.contentsScale) {
+            navigationBar.setBackgroundImage(transparentBackground, for: .default)
+        }
     }
     
     /**
@@ -95,5 +105,4 @@ public extension UINavigationBar {
         
         navigationBar.barTintColor = color
     }
-    
 }

@@ -9,9 +9,9 @@
 import Foundation
 
 enum FTModelBindType: String {
-    case String
-    case Decimal
-    case Int
+    case string = "String"
+    case decimal = "Decimal"
+    case int = "Int"
 }
 
 public enum FTServiceModelType: String {
@@ -19,14 +19,14 @@ public enum FTServiceModelType: String {
     case structType = "struct"
 }
 
-fileprivate let kRootModel = "FTServiceModel"
-fileprivate let kStringType = "String"
-fileprivate let kDefaultStringValue = "nil"
-fileprivate let kDefaultArrayValue = "nil" //[]
+private let kRootModel = "FTServiceModel"
+private let kStringType = "String"
+private let kDefaultStringValue = "nil"
+private let kDefaultArrayValue = "nil" //[]
 
-fileprivate let kBindingKey = "bindKey"
-fileprivate let kBindingAsType = "bindAs"
-fileprivate let kBindingAsArray = "arrayOf"
+private let kBindingKey = "bindKey"
+private let kBindingAsType = "bindAs"
+private let kBindingAsArray = "arrayOf"
 
 open class FTModelCreator {
     
@@ -36,20 +36,20 @@ open class FTModelCreator {
     static func outputModelPath() -> URL? {
         var outputPath: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         outputPath?.appendPathComponent("Models")
-        if outputPath != nil {
-            try? FileManager.default.createDirectory(at: outputPath!, withIntermediateDirectories: true, attributes: nil)
+        if let outputPath = outputPath {
+            try? FileManager.default.createDirectory(at: outputPath, withIntermediateDirectories: true, attributes: nil)
         }
         return outputPath
     }
     
-    static func fileWriter() -> (String,String) -> () {
+    static func fileWriter() -> (String, String) -> Void {
         
-        let fileWriter = { (_ name: String,_ content: String) in
+        let fileWriter = { (_ name: String, _ content: String) in
             if var url = outputPath {
                 url.appendPathComponent(name)
                 url.appendPathExtension("swift")
                 try? content.write(to: url, atomically: true, encoding: .utf8)
-                FTLog("Path: ",url.absoluteString)
+                FTLog("Path: ", url.absoluteString)
             }
         }
         
@@ -59,55 +59,59 @@ open class FTModelCreator {
     static var modelType: FTServiceModelType = .classType
 
     // MARK: Configurations
-    class open func configureSourcePath(path: String) { FTModelCreator.sourcePath = path }
-    class open func configureOutputPath(path: String) { FTModelCreator.outputPath = URL(string: path) }
-    class open func configureModel(type: FTServiceModelType) { FTModelCreator.modelType = type }
+    open class func configureSourcePath(path: String) { FTModelCreator.sourcePath = path }
+    open class func configureOutputPath(path: String) { FTModelCreator.outputPath = URL(string: path) }
+    open class func configureModel(type: FTServiceModelType) { FTModelCreator.modelType = type }
 
-    // MARK:
-    class open func generateOutput() {
-        try? sourcePath.filesAtPath({ (filePath) in
+    // MARK: Generate File
+    open class func generateOutput() {
+        try? sourcePath.filesAtPath { filePath in
             generateModelAt(path: filePath, completionHandler: fileWriter())
-        })
+        }
     }
     
-    static func generateModelAt(path: String, completionHandler: @escaping (_ name: String, _ content: String) -> ()) {
+    static func generateModelAt(path: String, completionHandler: @escaping (_ name: String, _ content: String) -> Void) {
         
         do {
             if let json: [String: AnyObject] = try path.jsonContentAtPath() {
                 // Create ".swift" for each object in Dic
                 modelClass(jsonString: json, fileWriterHandler: completionHandler)
             }
-        } catch {
+        }
+        catch {
             FTLog("Error reading Data")
         }
     }
-    
 }
 
 extension FTModelCreator {
     
     /// Create Model class for-each dic key
-    static func modelClass(jsonString: [String: AnyObject],
-                                 fileWriterHandler: @escaping (_ fileName: String, _ fileContent: String) -> Swift.Void) {
+    static func modelClass(
+        jsonString: [String: AnyObject],
+        fileWriterHandler: @escaping (_ fileName: String, _ fileContent: String
+        ) -> Swift.Void) {
         
-        jsonString.forEach { (key, value) in
-            let stribg = createModelFile(modelName: key, params: value as! [String : AnyObject])
-            fileWriterHandler(key, stribg)
+        jsonString.forEach { key, value in
+            if let value = value as? [String: AnyObject] {
+                let stribg = createModelFile(modelName: key, params: value)
+                fileWriterHandler(key, stribg)
+            }
         }
     }
     
     ///Default values for each data type
-    static func defaultValue(bindType:AnyObject, isSubIteration: Bool = false) -> AnyObject {
+    static func defaultValue(bindType: AnyObject, isSubIteration: Bool = false) -> AnyObject {
         
         if let bindType = bindType as? String {
             
             if let bindType = FTModelBindType(rawValue: bindType) {
-                switch (bindType) {
-                case .String:
+                switch bindType {
+                case .string:
                     return kDefaultStringValue as AnyObject
-                case .Decimal:
+                case .decimal:
                     return 0 as AnyObject
-                case .Int:
+                case .int:
                     return 0 as AnyObject
                 }
             }
@@ -115,7 +119,7 @@ extension FTModelCreator {
                 return kDefaultStringValue as AnyObject
             }
         }
-        else if bindType is [String:String] {
+        else if bindType is [String: String] {
             
             if let bindAsType = bindType[kBindingAsType] {
                 return defaultValue(bindType: bindAsType as AnyObject, isSubIteration: true )
@@ -135,13 +139,13 @@ extension FTModelCreator {
             return (kStringType, value, defaultValue(bindType: params), false)
         }
         
-        if
-            let value = params as? [String:String],
-            let bindKey = value[kBindingKey] {
-            
+        if let value = params as? [String: String], let bindKey = value[kBindingKey] {
             if let bindAsType = value[kBindingAsType] {
                 let value = defaultValue(bindType: params)
-                let isOptionalType = (((value as? String) != nil) && value as! String == kDefaultStringValue)
+                var isOptionalType = false
+                if let value = value as? String, value == kDefaultStringValue {
+                    isOptionalType = true
+                }
                 return (bindAsType, bindKey, value, isOptionalType)
             }
             else if let bindAsType = value[kBindingAsArray] {
@@ -160,7 +164,7 @@ extension FTModelCreator {
         var codingKeys: String = ""
         // var decoderKeys: String = "", encoderKeys: String = ""
         
-        params.forEach { (key, type) in
+        params.forEach { key, type in
             if let bindParams = bindings(forParams: type) {
                 // If (bindParams.3) is true, then :'type': will be \(bindParams.0 + "?")
                 paramDef += paramKeysCase(key: key, type: bindParams.0, defaultValues: bindParams.2 as AnyObject)

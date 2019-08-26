@@ -10,7 +10,7 @@ import Foundation
 
 public typealias FTLableCompletionBlock = (() -> Void)
 
-open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
+open class FTLabel: UILabel, FTUILabelThemeProperyProtocol {
 
     let dispatchQueue = DispatchQueue(label: "FTLabel.dispatchQueue")
     public lazy var textStorage: NSTextStorage = self.getTextStorage()
@@ -21,7 +21,7 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
 
     fileprivate var linkRanges: [FTLinkDetection]?
 
-    public var completionBlock: FTLableCompletionBlock? = nil
+    public var completionBlock: FTLableCompletionBlock?
 
     // FTUILabelThemeProperyProtocol
     public var islinkDetectionEnabled = true {
@@ -38,10 +38,11 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
     
     override open var text: String? {
         set {
-            if islinkDetectionEnabled, newValue != nil, newValue!.isHTMLString() {
-                super.text = newValue!.stripHTML()
+            if islinkDetectionEnabled, let newValue = newValue, newValue.isHTMLString() {
+                super.text = newValue.stripHTML()
                 updateWithHtmlString(text: newValue)
-            } else {
+            }
+            else {
                 super.text = newValue
                 self.updateLabelStyleProperty()
             }
@@ -98,7 +99,6 @@ open class FTLabel : UILabel, FTUILabelThemeProperyProtocol {
         super.layoutSubviews()
         self.updateTextContainerSize()
     }
-    
 }
 
 // MARK: Text Formatting
@@ -135,24 +135,22 @@ extension FTLabel {
     
     func updateTextWithAttributedString(attributedString: NSAttributedString?) {
 
-        if attributedString == nil {
-            self.textStorage.setAttributedString(NSMutableAttributedString(string: ""))
-        } else {
-
-            let sanitizedString = self.sanitizeAttributedString(attributedString: attributedString!)
-            sanitizedString.addAttributes(self.getStyleProperties(), range: NSMakeRange(0, sanitizedString.length))
-
+        if let attributedString = attributedString {
+            let sanitizedString = self.sanitizeAttributedString(attributedString: attributedString)
+            let range = NSRange(location: 0, length: sanitizedString.length)
+            sanitizedString.addAttributes(self.getStyleProperties(), range: range)
             if islinkDetectionEnabled {
                 updateLinkInText(attributedString: sanitizedString)
             }
             self.textStorage.setAttributedString(sanitizedString)
         }
+        else {
+             self.textStorage.setAttributedString(NSMutableAttributedString(string: ""))
+        }
 
         layoutView()
 
-        if completionBlock != nil {
-            completionBlock!()
-        }
+        completionBlock?()
     }
 
     func updateLinkInText(attributedString: NSMutableAttributedString) {
@@ -163,44 +161,45 @@ extension FTLabel {
         let links = FTLinkDetection.getURLLinkRanges(attributedString.string)
         self.linkRanges?.insert(contentsOf: links, at: 0)
 
-        self.linkRanges?.forEach { (link) in
+        self.linkRanges?.forEach { link in
             let att = getStyleProperties(forLink: link)
             attributedString.addAttributes(att, range: link.linkRange)
         }
     }
-    
 }
 
 // TODO: Themes
 extension FTLabel {
     
-    func getStyleProperties() -> [NSAttributedString.Key : Any] {
+    func getStyleProperties() -> [NSAttributedString.Key: Any] {
         let paragrahStyle = NSMutableParagraphStyle()
         paragrahStyle.alignment = self.textAlignment
         paragrahStyle.lineBreakMode = self.lineBreakMode
         
-        let font = self.font!
-        let color = self.textColor!
         let bgColor = self.backgroundColor ?? UIColor.clear
-        let properties:[NSAttributedString.Key : Any] = [.paragraphStyle : paragrahStyle,
-                                                         .font: font,
-                                                         .foregroundColor: color,
-                                                         .backgroundColor: bgColor ]
+        var properties: [NSAttributedString.Key: Any] = [
+            .paragraphStyle: paragrahStyle,
+            .backgroundColor: bgColor
+        ]
+        
+        if let font = self.font {
+            properties[.font] = font
+        }
+        
+        if let color = self.textColor {
+            properties[.foregroundColor] = color
+        }
         return properties
     }
 
-    func getStyleProperties(forLink link: FTLinkDetection) -> [NSAttributedString.Key : Any] {
-
+    func getStyleProperties(forLink link: FTLinkDetection) -> [NSAttributedString.Key: Any] {
         let underlineColor = UIColor.blue
 //        let underlineStyle = NSUnderlineStyle.styleSingle
-
         let linkTextColor = UIColor.blue
-
-        let properties:[NSAttributedString.Key : Any] = [
+        let properties: [NSAttributedString.Key: Any] = [
             .underlineColor: underlineColor,
             .foregroundColor: linkTextColor
         ]
-
         return properties
     }
 }
@@ -208,24 +207,32 @@ extension FTLabel {
 // MARK: Text Sanitizing
 extension FTLabel: NSLayoutManagerDelegate {
 
+    func getMutableAttributedString(_ string: NSAttributedString) -> NSMutableAttributedString {
+        if let value = string.mutableCopy() as? NSMutableAttributedString {
+            return value
+        }
+        return NSMutableAttributedString()
+    }
+    
     func sanitizeAttributedString(attributedString: NSAttributedString) -> NSMutableAttributedString {
 
         if attributedString.length == 0 {
-            return attributedString.mutableCopy() as! NSMutableAttributedString
+            return  getMutableAttributedString(attributedString)
         }
 
-        var range = NSMakeRange(0, attributedString.length)
-
-        guard let praStryle: NSParagraphStyle = attributedString.attribute(
-            .paragraphStyle, at: 0, effectiveRange: &range) as? NSParagraphStyle else {
-                return attributedString.mutableCopy() as! NSMutableAttributedString
+        var range = NSRange(location: 0, length: attributedString.length)
+        guard let praStryle: NSParagraphStyle = attributedString.attribute( .paragraphStyle, at: 0, effectiveRange: &range) as? NSParagraphStyle else {
+                return getMutableAttributedString(attributedString)
         }
 
-        let mutablePraStryle: NSMutableParagraphStyle = praStryle.mutableCopy() as! NSMutableParagraphStyle
+        guard let mutablePraStryle = praStryle.mutableCopy() as? NSMutableParagraphStyle else {
+            return getMutableAttributedString(attributedString)
+        }
         mutablePraStryle.lineBreakMode = .byWordWrapping
-
-        let restyledString: NSMutableAttributedString = attributedString.mutableCopy() as! NSMutableAttributedString
-        restyledString.addAttribute(.paragraphStyle, value: mutablePraStryle, range: NSMakeRange(0, restyledString.length))
+        
+        let restyledString = getMutableAttributedString(attributedString)
+        let restyledRange = NSRange(location: 0, length: restyledString.length)
+        restyledString.addAttribute(.paragraphStyle, value: mutablePraStryle, range: restyledRange)
 
         return restyledString
     }
@@ -237,7 +244,7 @@ extension FTLabel {
     override open func drawText(in rect: CGRect) {
 
         // Calculate the offset of the text in the view
-        let range : NSRange = self.layoutManager.glyphRange(for: self.textContainer)
+        let range: NSRange = self.layoutManager.glyphRange(for: self.textContainer)
         let textOffset = self.textOffsetForGlyph(range: range)
 
         // Drawing code
