@@ -10,6 +10,25 @@ import UIKit
 
 public typealias FTAppBaseCompletionBlock = (_ isSuccess: Bool, _ modelStack: AnyObject?) -> Void
 
+public struct FTNavigationBarItem {
+    var title: String?
+    var image: UIImage?
+    var customView: UIView?
+    var buttonAction: Selector?
+    var buttonType: UIBarButtonItem.SystemItem?
+    
+    public init?(title: String? = nil, image: UIImage? = nil, customView: UIView? = nil, buttonAction: Selector? = nil, buttonType: UIBarButtonItem.SystemItem? = nil) {
+        self.title = title
+        self.image = image
+        self.customView = customView
+        self.buttonAction = buttonAction
+        self.buttonType = buttonType
+        if title == nil && image == nil && customView == nil && (buttonAction == nil || buttonType == nil) {
+            return nil
+        }
+    }
+}
+
 public protocol FTAppBaseProtocal {
 
     //Setup View
@@ -17,22 +36,10 @@ public protocol FTAppBaseProtocal {
 
     // MARK: Navigation Bar
     //Bydefalut leftButton action is set to 'leftButtonAction'
-    func setupNavigationbar(
-        title: String,
-        leftButtonTitle: String?,
-        leftButtonImage: UIImage?,
-        leftButtonAction: Selector?,
-        leftCustomView: UIView?,
-        rightButtonTitle: String?,
-        rightButtonImage: UIImage?,
-        rightButtonAction: Selector?,
-        rightCustomView: UIView?
-    )
+    func setupNavigationbar(title: String, leftButton: FTNavigationBarItem?, rightButton: FTNavigationBarItem?)
     
-    //Config Left Navbar Button
-    func leftNavigationBarButton(title: String?, image: UIImage?, buttonType: UIBarButtonItem.SystemItem, customView: UIView?, buttonAction: Selector?) -> UIBarButtonItem?
-    //Config right Navbar Button
-    func rightNavigationBarButton(title: String?, image: UIImage?, buttonType: UIBarButtonItem.SystemItem, customView: UIView?, buttonAction: Selector?) -> UIBarButtonItem?
+    // Generate Navbar ButtonItem
+    func getNavigationBarButton(_ config: FTNavigationBarItem) -> UIBarButtonItem
 
     //invokes's 'popViewController' if not rootViewController or-else invokes 'dismiss'
     func dismissSelf(_ animated: Bool)
@@ -100,8 +107,7 @@ open class FTBaseViewController: UIViewController {
     }
 
     deinit {
-        // Remove all Observer in `self`
-        do {
+        do { // Remove all Observer in `self`
             NotificationCenter.default.removeObserver(self)
         }
     }
@@ -128,24 +134,19 @@ open class FTBaseViewController: UIViewController {
             self.baseView = self.view as? FTBaseView
         }
         self.view = self.baseView
-
         // Set defalut theme
         self.baseView?.theme = self.baseViewTheme
-        
         // Setup baseView's topLayoutGuide & bottomLayoutGuide
         setupBaseView()
-
         // To Dismiss keyboard on tap in view
         setupKeyboardTapRecognizer()
     }
 
     public var mainView: FTView? {
-
         // If baseView is not added, then retun nil
         if isBaseViewAdded {
             return nil
         }
-        
         return self.baseView?.mainPinnedView
     }
 }
@@ -166,60 +167,16 @@ extension FTBaseViewController: FTAppBaseProtocal {
     }
     
     // MARK: Navigation Bar
-    public func setupNavigationbar(title: String,
-                                   // left Button
-                                   leftButtonTitle: String? = nil,
-                                   leftButtonImage: UIImage? = nil,
-                                   leftButtonAction: Selector? = kLeftButtonAction,
-                                   leftCustomView: UIView? = nil,
-                                   // right Button
-                                   rightButtonTitle: String? = nil,
-                                   rightButtonImage: UIImage? = nil,
-                                   rightButtonAction: Selector? = kRightButtonAction,
-                                   rightCustomView: UIView? = nil) {
-        self_setupNavigationbar(
-            title: title,
-            leftButtonTitle: leftButtonTitle,
-            leftButtonImage: leftButtonImage,
-            leftButtonAction: leftButtonAction,
-            leftCustomView: leftCustomView,
-            rightButtonTitle: rightButtonTitle,
-            rightButtonImage: rightButtonImage,
-            rightButtonAction: rightButtonAction,
-            rightCustomView: rightCustomView
-        )
+    public func setupNavigationbar(title: String, leftButton: FTNavigationBarItem? = nil, rightButton: FTNavigationBarItem? = nil) {
+        self_setupNavigationbar(title: title, leftButton: leftButton, rightButton: rightButton)
     }
     
     public func setupNavigationbar(title: String, leftButton: UIBarButtonItem? = nil, rightButton: UIBarButtonItem? = nil) {
         self_setupNavigationbar(title: title, leftButton: leftButton, rightButton: rightButton)
     }
     
-    // Left navBar button
-    @discardableResult
-    public func leftNavigationBarButton(title: String? = nil,
-                                        image: UIImage? = nil,
-                                        buttonType: UIBarButtonItem.SystemItem = .stop,
-                                        customView: UIView? = nil,
-                                        buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem? {
-        return self_leftNavigationBarButton(title: title, image: image, buttonType: buttonType, customView: customView, buttonAction: buttonAction)
-    }
-    
-    // Right Navbar button
-    @discardableResult
-    public func rightNavigationBarButton(title: String? = nil,
-                                         image: UIImage? = nil,
-                                         buttonType: UIBarButtonItem.SystemItem = .done,
-                                         customView: UIView? = nil,
-                                         buttonAction: Selector? = kRightButtonAction) -> UIBarButtonItem? {
-        return self_rightNavigationBarButton(title: title, image: image, buttonType: buttonType, customView: customView, buttonAction: buttonAction)
-    }
-    
-    public func navigationBarButton(title: String? = nil,
-                                    image: UIImage? = nil,
-                                    buttonType: UIBarButtonItem.SystemItem = .done,
-                                    customView: UIView? = nil,
-                                    buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem {
-        return self_navigationBarButton(title: title, image: image, buttonType: buttonType, customView: customView, buttonAction: buttonAction)
+    public func getNavigationBarButton(_ config: FTNavigationBarItem) -> UIBarButtonItem {
+        return self_navigationBarButton(config)
     }
     
     // MARK: Dissmiss Self model
@@ -233,6 +190,7 @@ extension FTBaseViewController: FTAppBaseProtocal {
     }
     
     @IBAction open func rightButtonAction() {
+        // Optional Protocal definition: Intentionally unimplemented...
     }
     
     // MARK: Keyboard
@@ -261,10 +219,12 @@ extension FTBaseViewController: FTAppBaseProtocal {
     
     /*  UIKeyboardWillShow. */
     @objc func keyboardWillShow(_ notification: Notification?) {
+        // Optional Protocal definition: Intentionally unimplemented...
     }
     
     /*  UIKeyboardDidHide. */
     @objc func keyboardDidHide(_ notification: Notification?) {
+        // Optional Protocal definition: Intentionally unimplemented...
     }
     
     // MARK: AlertViewController
@@ -289,12 +249,10 @@ extension FTBaseViewController: FTAppBaseProtocal {
     }
     
     public func topPinnedView() -> FTView? {
-        
         // If baseView is not added, then retun nil
         if isBaseViewAdded {
             return nil
         }
-        
         return self.baseView?.topPinnedView
     }
 }

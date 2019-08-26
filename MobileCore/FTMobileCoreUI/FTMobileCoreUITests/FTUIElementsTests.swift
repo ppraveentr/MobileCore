@@ -16,4 +16,22 @@ class FTUIElementsTests: XCTestCase {
         let webView = WKWebView()
         webView.setScrollEnabled(enabled: true)
     }
+    
+    @objc func buttonAction() -> String{
+        return "test_funtion"
+    }
+    
+    func testNavigationBar() {
+        let empty = FTNavigationBarItem()
+        XCTAssertNil(empty)
+        
+        let title = FTNavigationBarItem(title: "title")
+        XCTAssertNotNil(title)
+        
+        let view = FTNavigationBarItem(customView: UIView())
+        XCTAssertNotNil(view)
+        
+        let action = FTNavigationBarItem(buttonAction: #selector(buttonAction), buttonType: .action)
+        XCTAssertNotNil(action)
+    }
 }

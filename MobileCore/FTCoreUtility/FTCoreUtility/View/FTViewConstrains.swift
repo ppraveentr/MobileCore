@@ -276,7 +276,7 @@ private extension UIView {
         return localConstraint
     }
     
-    func pinStackViewMargin(view: UIView, edgeOffsets: FTEdgeOffsets, edgeInsets: FTEdgeInsets, priority: UILayoutPriority) -> [NSLayoutConstraint] {
+    func pinStackViewMargin(view: UIView, edgeInsets: FTEdgeInsets, priority: UILayoutPriority) -> [NSLayoutConstraint] {
         var localConstraint = [NSLayoutConstraint]()
         
         //Leading
@@ -372,7 +372,7 @@ public extension UIView {
         }
         
         // Applicable for only Stacking, only if hasSameBase
-        let stackingMargin = pinStackViewMargin(view: view, edgeOffsets: edgeOffsets, edgeInsets: edgeInsets, priority: priority)
+        let stackingMargin = pinStackViewMargin(view: view, edgeInsets: edgeInsets, priority: priority)
         localConstraint.append(contentsOf: stackingMargin)
         
         // Add created Constraints to view

@@ -198,15 +198,19 @@ public extension FTServiceClient {
 
     // MARK: Service Rules
     func fireBefore() {
+        // Optional Protocal definition: Intentionally unimplemented...
     }
 
     func fireBefore(urlRequest: inout URLRequest) {
+        // Optional Protocal definition: Intentionally unimplemented...
     }
 
     func fireAfter(modelData: inout FTServiceModel?) {
+        // Optional Protocal definition: Intentionally unimplemented...
     }
 
     func fireAfter(data: Data?, response: URLResponse?, error: Error?) {
+        // Optional Protocal definition: Intentionally unimplemented...
     }
 }
 
