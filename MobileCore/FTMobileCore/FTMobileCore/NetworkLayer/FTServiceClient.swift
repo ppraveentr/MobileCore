@@ -198,15 +198,19 @@ public extension FTServiceClient {
 
     // MARK: Service Rules
     func fireBefore() {
+        // Optional Protocal Implementaion
     }
 
     func fireBefore(urlRequest: inout URLRequest) {
+        // Optional Protocal Implementaion
     }
 
     func fireAfter(modelData: inout FTServiceModel?) {
+        // Optional Protocal Implementaion
     }
 
     func fireAfter(data: Data?, response: URLResponse?, error: Error?) {
+        // Optional Protocal Implementaion
     }
 }
 

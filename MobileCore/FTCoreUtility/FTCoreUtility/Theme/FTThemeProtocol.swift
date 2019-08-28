@@ -10,12 +10,10 @@ import Foundation
 
 // Used for UIView subclasses Type
 public protocol FTThemeProtocol: AnyObject {
-    
     // Retruns 'ThemeStyle' specific to current state of object.
     // Say if UIView is disabled, retrun "disabled", which can be clubed with main Theme style.
     // Eg, if currentTheme is 'viewB', then when disabled state, theme willbe : 'viewB:disabled'
     func getThemeSubType() -> String?
-    
     // Custom Subclass can implement, to config Custom component
     func updateTheme(_ theme: FTThemeModel)
 }
@@ -42,7 +40,6 @@ public extension FTThemeProtocol where Self: UIView {
 // MARK: FTUIControlThemeProtocol
 // Used for UIControl objects, when multiple states are possible to set at initalization
 public protocol FTUIControlThemeProtocol: FTThemeProtocol {
-    
     func getAllThemeSubType() -> Bool
     func setThemes(_ themes: FTThemeModel)
     func update(themeDic: FTThemeModel, state: UIControl.State)
@@ -50,5 +47,6 @@ public protocol FTUIControlThemeProtocol: FTThemeProtocol {
 
 extension FTUIControlThemeProtocol {
     public func updateTheme(_ theme: FTThemeModel) {
+        // Optional Protocal Implementaion
     }
 }

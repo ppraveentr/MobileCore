@@ -11,14 +11,13 @@ disabled_rules:
 - todo # we love todos
 - trailing_whitespace # IDE will handle it for us
 - vertical_whitespace_opening_braces # readability improves
-- override_in_extension
 
 - private_outlet
 - private_action
 - force_unwrapping
 - prohibited_super_call
-- overridden_super_call
 - convenience_type
+- override_in_extension
 
 opt_in_rules:
 - array_init
@@ -29,7 +28,6 @@ opt_in_rules:
 - collection_alignment
 - conditional_returns_on_newline
 - contains_over_first_not_nil
-- convenience_type
 - discarded_notification_center_observer
 - empty_count
 - empty_string
@@ -57,8 +55,6 @@ opt_in_rules:
 - multiline_literal_brackets
 - number_separator
 - operator_usage_whitespace
-- overridden_super_call
-- override_in_extension
 - pattern_matching_keywords
 - prohibited_super_call
 - redundant_nil_coalescing

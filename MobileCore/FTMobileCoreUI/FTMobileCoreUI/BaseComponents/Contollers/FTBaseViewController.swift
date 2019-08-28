@@ -10,6 +10,33 @@ import UIKit
 
 public typealias FTAppBaseCompletionBlock = (_ isSuccess: Bool, _ modelStack: AnyObject?) -> Void
 
+public struct FTNavigationBarItem {
+    var title: String?
+    var image: UIImage?
+    var action: Selector?
+    var itemType: UIBarButtonItem.SystemItem = .done
+    var customView: UIView?
+    
+    public func barButton(sender: Any?) -> UIBarButtonItem {
+        guard title != nil, image != nil else {
+            if let customView = customView {
+                return UIBarButtonItem(customView: customView)
+            }
+            return UIBarButtonItem(barButtonSystemItem: itemType, target: sender, action: action)
+        }
+        
+        let button = FTButton(type: .custom)
+        button.titleLabel?.text = title
+        button.imageView?.image = image
+        if let buttonAction = action {
+            button.target(forAction: buttonAction, withSender: sender)
+        }
+        
+        let customButton = UIBarButtonItem(customView: button)
+        return customButton
+    }
+}
+
 public protocol FTAppBaseProtocal {
 
     //Setup View
@@ -19,20 +46,9 @@ public protocol FTAppBaseProtocal {
     //Bydefalut leftButton action is set to 'leftButtonAction'
     func setupNavigationbar(
         title: String,
-        leftButtonTitle: String?,
-        leftButtonImage: UIImage?,
-        leftButtonAction: Selector?,
-        leftCustomView: UIView?,
-        rightButtonTitle: String?,
-        rightButtonImage: UIImage?,
-        rightButtonAction: Selector?,
-        rightCustomView: UIView?
+        leftButton: FTNavigationBarItem?,
+        rightButton: FTNavigationBarItem?
     )
-    
-    //Config Left Navbar Button
-    func leftNavigationBarButton(title: String?, image: UIImage?, buttonType: UIBarButtonItem.SystemItem, customView: UIView?, buttonAction: Selector?) -> UIBarButtonItem?
-    //Config right Navbar Button
-    func rightNavigationBarButton(title: String?, image: UIImage?, buttonType: UIBarButtonItem.SystemItem, customView: UIView?, buttonAction: Selector?) -> UIBarButtonItem?
 
     //invokes's 'popViewController' if not rootViewController or-else invokes 'dismiss'
     func dismissSelf(_ animated: Bool)
@@ -166,60 +182,12 @@ extension FTBaseViewController: FTAppBaseProtocal {
     }
     
     // MARK: Navigation Bar
-    public func setupNavigationbar(title: String,
-                                   // left Button
-                                   leftButtonTitle: String? = nil,
-                                   leftButtonImage: UIImage? = nil,
-                                   leftButtonAction: Selector? = kLeftButtonAction,
-                                   leftCustomView: UIView? = nil,
-                                   // right Button
-                                   rightButtonTitle: String? = nil,
-                                   rightButtonImage: UIImage? = nil,
-                                   rightButtonAction: Selector? = kRightButtonAction,
-                                   rightCustomView: UIView? = nil) {
-        self_setupNavigationbar(
-            title: title,
-            leftButtonTitle: leftButtonTitle,
-            leftButtonImage: leftButtonImage,
-            leftButtonAction: leftButtonAction,
-            leftCustomView: leftCustomView,
-            rightButtonTitle: rightButtonTitle,
-            rightButtonImage: rightButtonImage,
-            rightButtonAction: rightButtonAction,
-            rightCustomView: rightCustomView
-        )
+    public func setupNavigationbar(title: String, leftButton: FTNavigationBarItem?, rightButton: FTNavigationBarItem?) {
+        self_setupNavigationbar(title: title, leftButton: leftButton, rightButton: rightButton)
     }
     
     public func setupNavigationbar(title: String, leftButton: UIBarButtonItem? = nil, rightButton: UIBarButtonItem? = nil) {
         self_setupNavigationbar(title: title, leftButton: leftButton, rightButton: rightButton)
-    }
-    
-    // Left navBar button
-    @discardableResult
-    public func leftNavigationBarButton(title: String? = nil,
-                                        image: UIImage? = nil,
-                                        buttonType: UIBarButtonItem.SystemItem = .stop,
-                                        customView: UIView? = nil,
-                                        buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem? {
-        return self_leftNavigationBarButton(title: title, image: image, buttonType: buttonType, customView: customView, buttonAction: buttonAction)
-    }
-    
-    // Right Navbar button
-    @discardableResult
-    public func rightNavigationBarButton(title: String? = nil,
-                                         image: UIImage? = nil,
-                                         buttonType: UIBarButtonItem.SystemItem = .done,
-                                         customView: UIView? = nil,
-                                         buttonAction: Selector? = kRightButtonAction) -> UIBarButtonItem? {
-        return self_rightNavigationBarButton(title: title, image: image, buttonType: buttonType, customView: customView, buttonAction: buttonAction)
-    }
-    
-    public func navigationBarButton(title: String? = nil,
-                                    image: UIImage? = nil,
-                                    buttonType: UIBarButtonItem.SystemItem = .done,
-                                    customView: UIView? = nil,
-                                    buttonAction: Selector? = kLeftButtonAction) -> UIBarButtonItem {
-        return self_navigationBarButton(title: title, image: image, buttonType: buttonType, customView: customView, buttonAction: buttonAction)
     }
     
     // MARK: Dissmiss Self model
@@ -233,6 +201,7 @@ extension FTBaseViewController: FTAppBaseProtocal {
     }
     
     @IBAction open func rightButtonAction() {
+        // Optional Protocal Implementaion
     }
     
     // MARK: Keyboard
@@ -261,10 +230,12 @@ extension FTBaseViewController: FTAppBaseProtocal {
     
     /*  UIKeyboardWillShow. */
     @objc func keyboardWillShow(_ notification: Notification?) {
+        // Optional Protocal Implementaion
     }
     
     /*  UIKeyboardDidHide. */
     @objc func keyboardDidHide(_ notification: Notification?) {
+        // Optional Protocal Implementaion
     }
     
     // MARK: AlertViewController
