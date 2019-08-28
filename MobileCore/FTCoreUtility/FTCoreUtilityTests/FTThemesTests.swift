@@ -83,21 +83,21 @@ class FTThemesTests: XCTestCase {
     // MARK: View Component
     func testComponent() {
         let value = FTThemesManager.getViewComponent("FTLabel", styleName: "system14W")
-        FTLog("\n FTLabel system14W : ", value ?? "nil")
+        ftLog("\n FTLabel system14W : ", value ?? "nil")
         XCTAssertNotNil(value)
     }
     
     // MARK: Font
     func testFonts() {
         let value = FTThemesManager.getFont("system14")
-        FTLog("\n font 14 : ", value ?? "nil")
+        ftLog("\n font 14 : ", value ?? "nil")
         XCTAssertNotNil(value)
     }
     
     // MARK: Color
     func testColorWhite() {
         let value = FTThemesManager.getColor("white")
-        FTLog("\n color white : ", value ?? "nil")
+        ftLog("\n color white : ", value ?? "nil")
         XCTAssertNotNil(value)
     }
     
@@ -109,14 +109,14 @@ class FTThemesTests: XCTestCase {
     
     func testHashColor() {
         let value = FTThemesManager.getColor("#F3F3F3F8")
-        FTLog("\n color #FFFFFF00 : ", value ?? "nil")
+        ftLog("\n color #FFFFFF00 : ", value ?? "nil")
         XCTAssertNotNil(value)
     }
     
     // MARK: appearance
     func testAppearance() {
         let value = FTThemesManager.getAppearance()
-        FTLog("\n getAppearance : ", value ?? "nil")
+        ftLog("\n getAppearance : ", value ?? "nil")
         XCTAssertNotNil(value)
     }
     
@@ -143,7 +143,7 @@ class FTThemesTests: XCTestCase {
 
         //let theme = FTThemesManager.getViewComponent("FTSearchBar", styleName: "default")
 
-        //FTLog("\n FTSearchBar : ", theme ?? "nil")
+        //ftLog("\n FTSearchBar : ", theme ?? "nil")
 
 //        XCTAssertNotNil(theme)
 

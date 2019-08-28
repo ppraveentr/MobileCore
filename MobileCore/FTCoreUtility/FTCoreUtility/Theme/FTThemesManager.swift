@@ -64,7 +64,7 @@ open class FTThemesManager {
         
         // Get theme component
         guard let currentTheme: FTThemeModel = FTThemesManager.getViewComponent(name, styleName: styleName) else {
-            //FTLog("FTError: Theme of type \(styleName) not avaialble for class \(name)" )
+            //ftLog("FTError: Theme of type \(styleName) not avaialble for class \(name)" )
             return nil
         }
         

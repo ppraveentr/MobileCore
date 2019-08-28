@@ -98,7 +98,9 @@ public extension UIColor {
         var int = UInt32()
         Scanner(string: cString).scanHexInt32(&int)
         
-        let r, g, b: UInt32
+        let r: UInt32
+        let g: UInt32
+        let b: UInt32
         var a: UInt32 = 255
         switch hex.length - 1 {
         case 3: // RGB (12-bit)
@@ -154,19 +156,17 @@ public extension UIColor {
             amountToBlend = 0
         }
         
-        var r, g, b, alpha: CGFloat
-        r = 0
-        g = 0
-        b = 0
-        alpha = 0
+        var r: CGFloat = 0.0
+        var g: CGFloat = 0.0
+        var b: CGFloat = 0.0
+        var alpha: CGFloat = 0.0
         color.getRed(&r, green: &g, blue: &b, alpha: &alpha) // Gets the rgba values (0-1)
         
         // Get the destination rgba values
-        var destR, destG, destB, destAlpha: CGFloat
-        destR = 0
-        destG = 0
-        destB = 0
-        destAlpha = 0
+        var destR: CGFloat = 0.0
+        var destG: CGFloat = 0.0
+        var destB: CGFloat = 0.0
+        var destAlpha: CGFloat = 0.0
         destinationColor.getRed(&destR, green: &destG, blue: &destB, alpha: &destAlpha)
         
         r = amountToBlend * (destR * 255) + (1 - amountToBlend) * (r * 255)

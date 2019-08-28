@@ -35,11 +35,11 @@ enum Theme: Int {
 
 struct ThemeManager {
     
-    static let SelectedThemeKey = "SelectedTheme"
+    static let kSelectedThemeKey = "SelectedTheme"
     
     static func currentTheme() -> Theme {
         if
-            let storedTheme = UserDefaults.standard.value(forKey: SelectedThemeKey) as? Int {
+            let storedTheme = UserDefaults.standard.value(forKey: kSelectedThemeKey) as? Int {
             return Theme(rawValue: storedTheme)!
         }
         else {
@@ -48,7 +48,7 @@ struct ThemeManager {
     }
     
     static func applyTheme(_ theme: Theme) {
-        UserDefaults.standard.setValue(theme.rawValue, forKey: SelectedThemeKey)
+        UserDefaults.standard.setValue(theme.rawValue, forKey: kSelectedThemeKey)
         UserDefaults.standard.synchronize()
         
         let sharedApplication = UIApplication.shared

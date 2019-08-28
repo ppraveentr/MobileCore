@@ -53,7 +53,7 @@ public extension CGRect {
 /**
  Outsets a CGSize with the insets in a UIEdgeInsets.
  */
-public func FTEdgeInsetsOutsetSize(size: CGSize, insets: UIEdgeInsets) -> CGSize {
+public func ftEdgeInsetsOutsetSize(size: CGSize, insets: UIEdgeInsets) -> CGSize {
     return CGSize(
         width: insets.left + size.width + insets.right,
         height: insets.top + size.height + insets.bottom
@@ -63,7 +63,7 @@ public func FTEdgeInsetsOutsetSize(size: CGSize, insets: UIEdgeInsets) -> CGSize
 /**
  Insets a CGSize with the insets in a UIEdgeInsets.
  */
-public func FTEdgeInsetsInsetSize(size: CGSize, insets: UIEdgeInsets) -> CGSize {
+public func ftEdgeInsetsInsetSize(size: CGSize, insets: UIEdgeInsets) -> CGSize {
     var rect: CGRect = .zero
     rect.size = size
 
@@ -74,7 +74,7 @@ public func FTEdgeInsetsInsetSize(size: CGSize, insets: UIEdgeInsets) -> CGSize 
 /**
  CGSize of text based.
  */
-public func FTTextSize(
+public func ftTextSize(
     text: String?,
     font: UIFont,
     constrainedSize: CGSize,
@@ -99,5 +99,5 @@ public func FTTextSize(
         context: nil
         ).size
     
-    return FTCeilForSize(size)
+    return ftCeil(size)
 }
