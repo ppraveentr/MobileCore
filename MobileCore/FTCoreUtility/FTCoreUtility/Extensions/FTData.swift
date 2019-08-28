@@ -16,7 +16,7 @@ public extension Data {
             return content
         }
         catch {
-            FTLog(error)
+            ftLog(error)
         }
         return nil
     }

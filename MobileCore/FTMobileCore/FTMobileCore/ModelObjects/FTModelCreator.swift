@@ -49,7 +49,7 @@ open class FTModelCreator {
                 url.appendPathComponent(name)
                 url.appendPathExtension("swift")
                 try? content.write(to: url, atomically: true, encoding: .utf8)
-                FTLog("Path: ", url.absoluteString)
+                ftLog("Path: ", url.absoluteString)
             }
         }
         
@@ -79,7 +79,7 @@ open class FTModelCreator {
             }
         }
         catch {
-            FTLog("Error reading Data")
+            ftLog("Error reading Data")
         }
     }
 }

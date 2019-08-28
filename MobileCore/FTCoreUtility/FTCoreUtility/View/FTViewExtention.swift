@@ -26,7 +26,7 @@ public extension UIView {
         let local = self.init()
         local.backgroundColor = .clear
         
-        local.pin(view: contentView, edgeInsets: [.all], priority: FTLayoutPriorityRequiredLow)
+        local.pin(view: contentView, edgeInsets: [.all], priority: kFTLayoutPriorityRequiredLow)
         local.pin(view: contentView, edgeInsets: [.centerMargin], priority: .defaultLow)
         local.pin(view: contentView, edgeInsets: [.equalWidth, .top])
         

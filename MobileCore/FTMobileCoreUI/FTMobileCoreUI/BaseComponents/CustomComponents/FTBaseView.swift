@@ -67,7 +67,7 @@ open class FTBaseView: FTView {
         }
 
         // Set lowerPriority to avoid contraint issues with viewControllers's rootView
-        self.pin(view: rootView, priority: FTLayoutPriorityRequiredLow)
+        self.pin(view: rootView, priority: kFTLayoutPriorityRequiredLow)
 
         self.restConstraints()
     }
@@ -78,7 +78,7 @@ open class FTBaseView: FTView {
         if rootView.superview == nil {
             self.removeSubviews()
             // Set lowerPriority to avoid contraint issues with viewControllers's rootView
-            self.pin(view: rootView, priority: FTLayoutPriorityRequiredLow)
+            self.pin(view: rootView, priority: kFTLayoutPriorityRequiredLow)
         }
 
         // Remove all previous constrains, while resting the views

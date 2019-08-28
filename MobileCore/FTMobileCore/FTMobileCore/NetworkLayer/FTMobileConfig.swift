@@ -114,11 +114,11 @@ extension FTMobileConfig {
                     try loadModelSchema(content)
                 }
                 else {
-                    FTLog("Files emtpy")
+                    ftLog("Files emtpy")
                 }
             }
             catch {
-                FTLog("Load Model Schema Error: ", error)
+                ftLog("Load Model Schema Error: ", error)
             }
         }
     }

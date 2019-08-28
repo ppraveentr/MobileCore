@@ -67,7 +67,7 @@ public enum FTKeychainItemAccessibility {
     case whenUnlockedThisDeviceOnly
     
     static func accessibilityForAttributeValue(_ keychainAttrValue: CFString) -> FTKeychainItemAccessibility? {
-        for (key, value) in FTKeychainItemAccessibilityLookup where value == keychainAttrValue {
+        for (key, value) in kFTKeychainItemAccessibilityLookup where value == keychainAttrValue {
             return key
         }
         
@@ -75,7 +75,7 @@ public enum FTKeychainItemAccessibility {
     }
 }
 
-private let FTKeychainItemAccessibilityLookup: [FTKeychainItemAccessibility: CFString] = {
+private let kFTKeychainItemAccessibilityLookup: [FTKeychainItemAccessibility: CFString] = {
     let lookup: [FTKeychainItemAccessibility: CFString] = [
         .afterFirstUnlock: kSecAttrAccessibleAfterFirstUnlock,
         .afterFirstUnlockThisDeviceOnly: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly,
@@ -91,6 +91,6 @@ private let FTKeychainItemAccessibilityLookup: [FTKeychainItemAccessibility: CFS
 
 extension FTKeychainItemAccessibility: FTKeychainAttrRepresentable {
     internal var keychainAttrValue: CFString {
-        return FTKeychainItemAccessibilityLookup[self]!
+        return kFTKeychainItemAccessibilityLookup[self]!
     }
 }

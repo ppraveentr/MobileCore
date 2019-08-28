@@ -8,7 +8,7 @@
 
 import Foundation
 
-public func FTLog(_ arg: Any ...) {
+public func ftLog(_ arg: Any ...) {
     if FTLogger.enableConsoleLogging {
         print(arg)
     }

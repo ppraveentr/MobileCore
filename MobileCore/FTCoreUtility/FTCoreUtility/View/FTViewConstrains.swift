@@ -9,7 +9,7 @@
 import Foundation
 
 //UILayoutPriority value little lessThan .required
-public let FTLayoutPriorityRequiredLow = UILayoutPriority(UILayoutPriority.required.rawValue - 1)
+public let kFTLayoutPriorityRequiredLow = UILayoutPriority(UILayoutPriority.required.rawValue - 1)
 
 public enum FTLayoutDirection {
     case topToBottom

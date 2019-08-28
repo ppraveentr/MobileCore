@@ -145,7 +145,7 @@ public class FTFloatingView: FTView {
                         self.floatingWindow?.center = CGPoint(x: point.y, y: width - point.x)
                     }
                 default :
-                    FTLog("FTError: Floating View Does not Handler This Situation")
+                    ftLog("FTError: Floating View Does not Handler This Situation")
                 }
             },
             completion: nil

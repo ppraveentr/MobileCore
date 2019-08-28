@@ -11,8 +11,8 @@ import Foundation
 public typealias FTThemeModel = [String: Any]
 
 public extension NSNotification.Name {
-    static let FTSwiftyAppearanceWillRefreshWindow = NSNotification.Name(rawValue: "FTSwiftyAppearanceWillRefreshWindow.Notofication")
-    static let FTSwiftyAppearanceDidRefreshWindow = NSNotification.Name(rawValue: "FTSwiftyAppearanceDidRefreshWindow.Notofication")
+    static let kFTSwiftyAppearanceWillRefreshWindow = NSNotification.Name(rawValue: "FTSwiftyAppearanceWillRefreshWindow.Notofication")
+    static let kFTSwiftyAppearanceDidRefreshWindow = NSNotification.Name(rawValue: "FTSwiftyAppearanceDidRefreshWindow.Notofication")
 }
 
 public struct FTThemeStyle {
@@ -33,12 +33,12 @@ public struct FTThemeStyle {
 extension UIView {
 
     // Swizzling out view's layoutSubviews property for Updating Visual theme
-    static var SwizzleLayoutSubview = {
-        FTInstanceSwizzling(UIView.self, #selector(layoutSubviews), #selector(swizzled_layoutSubviews))
+    static var kSwizzleLayoutSubview = {
+        FTInstanceSwizzling(UIView.self, #selector(layoutSubviews), #selector(swizzledLayoutSubviews))
     }
 
     static func setupThemes() {
-        _ = SwizzleLayoutSubview
+        _ = kSwizzleLayoutSubview
     }
     
     // Theme style-name for the view
@@ -74,12 +74,12 @@ extension UIView {
     }
     
     // MARK: swizzled layoutSubviews
-    @objc func swizzled_layoutSubviews() {
+    @objc func swizzledLayoutSubviews() {
         if self.needsThemesUpdate {
             self.updateVisualThemes()
         }
         // Invoke view's original layoutSubviews
-        self.swizzled_layoutSubviews()
+        self.swizzledLayoutSubviews()
     }
 }
 
@@ -196,7 +196,7 @@ fileprivate extension UIView {
         }
         
         // Set theme for view
-        self.swizzled_updateTheme(theme)
+        self.swizzledUpdateTheme(theme)
         
         // Only needed for UIControl types, Eg. Button
         guard let controlThemeSelf = self as? FTUIControlThemeProtocol else {
@@ -212,7 +212,7 @@ fileprivate extension UIView {
 // MARK: UIView: FTThemeProtocol
 extension UIView {
     
-    @objc public func swizzled_updateTheme(_ theme: FTThemeModel) {
+    @objc public func swizzledUpdateTheme(_ theme: FTThemeModel) {
 
         // "backgroundColor"
         if let textcolor = theme["backgroundColor"] {
@@ -285,7 +285,7 @@ extension UIControl {
 // MARK: Window Refresh
 public extension UIWindow {
 
-    @nonobjc private func _refreshAppearance() {
+    @nonobjc private func refreshAppearance() {
         let constraints = self.constraints
         removeConstraints(constraints)
         for subview in subviews {
@@ -298,12 +298,12 @@ public extension UIWindow {
     /// Refreshes appearance for the window
     /// - Parameter animated: if the refresh should be animated
     func refreshAppearance(animated: Bool) {
-        NotificationCenter.default.post(name: .FTSwiftyAppearanceWillRefreshWindow, object: self)
+        NotificationCenter.default.post(name: .kFTSwiftyAppearanceWillRefreshWindow, object: self)
         UIView.animate(
             withDuration: animated ? 0.25 : 0,
-            animations: { self._refreshAppearance() },
+            animations: { self.refreshAppearance() },
             completion: { _ in
-            NotificationCenter.default.post(name: .FTSwiftyAppearanceDidRefreshWindow, object: self)
+            NotificationCenter.default.post(name: .kFTSwiftyAppearanceDidRefreshWindow, object: self)
             }
         )
     }

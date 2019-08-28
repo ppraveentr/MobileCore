@@ -33,6 +33,6 @@ class FTCoreUtilityTests: XCTestCase {
             "dasfdsd": ["asds", nil, "adasd"]
         ]
         dic.stripNilElements()
-        FTLog("\n \(dic) \n")
+        ftLog("\n \(dic) \n")
     }
 }

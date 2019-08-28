@@ -52,7 +52,7 @@ class FTMobileCoreTests: XCTestCase {
     func testFTServiceClient() {
         let account1De = AccountDetail(value: "Details_1", name: "name")
         TestService.make(modelStack: account1De) { statuys in
-            FTLog(statuys)
+            ftLog(statuys)
         }
     }
 
@@ -63,10 +63,10 @@ class FTMobileCoreTests: XCTestCase {
         let account2De = AccountDetail(value: "Details_2", name: "name")
         let account2 = Account(name: "da", type: account2De, data: ["account2_adas", "account2_fasda"])
 
-        FTLog("account1: ", account1.jsonString() ?? "")
-         FTLog("account2: ", account2.jsonString() ?? "")
+        ftLog("account1: ", account1.jsonString() ?? "")
+         ftLog("account2: ", account2.jsonString() ?? "")
         account1.merge(data: account2)
-        FTLog("merged_account1: ", account1.jsonString() ?? "")
+        ftLog("merged_account1: ", account1.jsonString() ?? "")
 
         XCTAssert(account1.type?.value == "Details_2", "FTDataModel data merging failed")
     }
@@ -93,7 +93,7 @@ class FTMobileCoreTests: XCTestCase {
             XCTAssert(accountModel.value == "Details_2", "")
         }
         catch {
-            FTLog("Unexpected error: \(error).")
+            ftLog("Unexpected error: \(error).")
             XCTAssert(false, "Account model creation failure")
         }
     }
@@ -106,7 +106,7 @@ class FTMobileCoreTests: XCTestCase {
             XCTAssert(true)
         }
         catch {
-            FTLog("Unexpected error: \(error).")
+            ftLog("Unexpected error: \(error).")
             XCTAssert(true, "Account model creation failure")
         }
     }
