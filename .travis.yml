@@ -4,8 +4,8 @@ xcode_destination: platform=iOS Simulator,OS=12.0,name=iPhone X
 xcode_scheme: MobileCore
 xcode_project: MobileCore.xcodeproj
 script:
-- set -o pipefail && xcodebuild clean test build -enableCodeCoverage YES -project 'MobileCore.xcodeproj' -scheme MobileCore -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone Xs' ONLY_ACTIVE_ARCH=NO | xcpretty
-- xcodebuild build -project "MobileCoreSample/FTMobileCoreSample.xcodeproj" -scheme FTMobileCoreSample -sdk "iphonesimulator" -configuration Release only_active_arch=no defines_module=yes
+- set -o pipefail && xcodebuild clean test build -enableCodeCoverage YES -project 'MobileCore.xcodeproj' -scheme MobileCore -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone Xs' ONLY_ACTIVE_ARCH=NO | xcpretty  --report html
+- xcodebuild build -project "MobileCoreSample/FTMobileCoreSample.xcodeproj" -scheme FTMobileCoreSample -sdk "iphonesimulator" -configuration Release only_active_arch=no defines_module=yes | xcpretty  --report html
 - pod lib lint
 after_success:
   - bash <(curl -s https://codecov.io/bash)

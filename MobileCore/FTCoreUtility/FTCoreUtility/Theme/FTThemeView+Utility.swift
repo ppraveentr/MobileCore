@@ -16,12 +16,12 @@ public extension NSNotification.Name {
 }
 
 public struct FTThemeStyle {
-    static let defaultStyle = "default"
-    static let highlightedStyle = "highlighted"
-    static let selectedStyle = "selected"
-    static let disabledStyle = "disabled"
+    public static let defaultStyle = "default"
+    public static let highlightedStyle = "highlighted"
+    public static let selectedStyle = "selected"
+    public static let disabledStyle = "disabled"
     
-    static func allStyles() -> [String] {
+    public static func allStyles() -> [String] {
         return [
             FTThemeStyle.highlightedStyle,
             FTThemeStyle.selectedStyle,

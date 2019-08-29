@@ -10,64 +10,25 @@ import UIKit
 
 public typealias FTAppBaseCompletionBlock = (_ isSuccess: Bool, _ modelStack: AnyObject?) -> Void
 
-public struct FTNavigationBarItem {
-    var title: String?
-    var image: UIImage?
-    var action: Selector?
-    var itemType: UIBarButtonItem.SystemItem = .done
-    var customView: UIView?
-    
-    public func barButton(sender: Any?) -> UIBarButtonItem {
-        guard title != nil, image != nil else {
-            if let customView = customView {
-                return UIBarButtonItem(customView: customView)
-            }
-            return UIBarButtonItem(barButtonSystemItem: itemType, target: sender, action: action)
-        }
-        
-        let button = FTButton(type: .custom)
-        button.titleLabel?.text = title
-        button.imageView?.image = image
-        if let buttonAction = action {
-            button.target(forAction: buttonAction, withSender: sender)
-        }
-        
-        let customButton = UIBarButtonItem(customView: button)
-        return customButton
-    }
-}
-
 public protocol FTAppBaseProtocal {
-
     //Setup View
     func setupBaseView()
-
     // MARK: Navigation Bar
     //Bydefalut leftButton action is set to 'leftButtonAction'
-    func setupNavigationbar(
-        title: String,
-        leftButton: FTNavigationBarItem?,
-        rightButton: FTNavigationBarItem?
-    )
-
+    func setupNavigationbar(title: String, leftButton: UIBarButtonItem?, rightButton: UIBarButtonItem?)
     //invokes's 'popViewController' if not rootViewController or-else invokes 'dismiss'
     func dismissSelf(_ animated: Bool)
-
     //Navigation bar defalut Actions
     func leftButtonAction()
     func rightButtonAction()
-
     // MARK: Keyboard notification.
     func registerKeyboardNotifications()
     //Notifications will be unregistered in 'deinit'
     func unregisterKeyboardNotifications()
-
     // MARK: Alert ViewController
     func showAlert(title: String, message: String, action: UIAlertAction?, actions: [UIAlertAction]?)
-
     // MARK: Responder
     func makeResponder(status: Bool, textField: UITextField, text: String?)
-
     // MARK: Activity indicator
     func showActivityIndicator()
     func hideActivityIndicator()
@@ -116,8 +77,7 @@ open class FTBaseViewController: UIViewController {
     }
 
     deinit {
-        // Remove all Observer in `self`
-        do {
+        do { // Remove all Observer in `self`
             NotificationCenter.default.removeObserver(self)
         }
     }
@@ -144,24 +104,19 @@ open class FTBaseViewController: UIViewController {
             self.baseView = self.view as? FTBaseView
         }
         self.view = self.baseView
-
         // Set defalut theme
         self.baseView?.theme = self.baseViewTheme
-        
         // Setup baseView's topLayoutGuide & bottomLayoutGuide
         setupBaseView()
-
         // To Dismiss keyboard on tap in view
         setupKeyboardTapRecognizer()
     }
 
     public var mainView: FTView? {
-
         // If baseView is not added, then retun nil
         if isBaseViewAdded {
             return nil
         }
-        
         return self.baseView?.mainPinnedView
     }
 }
@@ -182,10 +137,6 @@ extension FTBaseViewController: FTAppBaseProtocal {
     }
     
     // MARK: Navigation Bar
-    public func setupNavigationbar(title: String, leftButton: FTNavigationBarItem?, rightButton: FTNavigationBarItem?) {
-        self_setupNavigationbar(title: title, leftButton: leftButton, rightButton: rightButton)
-    }
-    
     public func setupNavigationbar(title: String, leftButton: UIBarButtonItem? = nil, rightButton: UIBarButtonItem? = nil) {
         self_setupNavigationbar(title: title, leftButton: leftButton, rightButton: rightButton)
     }
@@ -255,21 +206,17 @@ extension FTBaseViewController: FTAppBaseProtocal {
     }
     
     public func topPinnedView() -> FTView? {
-        
         // If baseView is not added, then retun nil
         if isBaseViewAdded {
             return nil
         }
-        
         return self.baseView?.topPinnedView
     }
 }
 
+// MARK: Layout Guide for rootView
 extension FTBaseViewController {
-
-    // MARK: Layout Guide for rootView
     public func setupBaseView() {
-
         // Update: topPinnedButtonView
         if let topView = self.topPinnedButtonView {
             self.baseView?.topPinnedView = topView
