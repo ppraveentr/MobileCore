@@ -59,21 +59,17 @@ open class FTBaseView: FTView {
     }
     
     func setupView() {
-        
         self.mainPinnedView.backgroundColor = .clear
         self.rootView.backgroundColor = .clear
         if self.backgroundColor == nil {
              self.backgroundColor = .white
         }
-
         // Set lowerPriority to avoid contraint issues with viewControllers's rootView
         self.pin(view: rootView, priority: kFTLayoutPriorityRequiredLow)
-
         self.restConstraints()
     }
     
     func restConstraints() {
-
         // Will be nil, when loaded from IB
         if rootView.superview == nil {
             self.removeSubviews()
@@ -83,22 +79,19 @@ open class FTBaseView: FTView {
 
         // Remove all previous constrains, while resting the views
         rootView.removeSubviews()
-        
         self.topPinnedView?.removeAllConstraints()
         self.mainPinnedView.removeAllConstraints()
         self.bottomPinnedView?.removeAllConstraints()
         
         var viewArray = [FTView]()
-        
         // Embed in Temp view to auto-size the view layout
         if
             let topPinnedView = topPinnedView,
             let tempView = FTView.embedView(contentView: topPinnedView) as? FTView {
             viewArray.append(tempView)
         }
-        
+        // Embed mainView
         viewArray.append(mainPinnedView)
-
         // Embed in Temp view to auto-size the view layout
         if
             let bottomPinnedView = bottomPinnedView,
@@ -108,7 +101,6 @@ open class FTBaseView: FTView {
         
         // Pin : Top and Sides and Bottom
         pinToRootView(viewArray: viewArray)
-        
         // Pin : MainView to margin
         rootView.pin(view: self.mainPinnedView, edgeInsets: .horizontal )
     }
@@ -133,8 +125,8 @@ extension FTBaseView {
             rootView.pin(view: firstView, edgeInsets: [.top, .horizontal])
         }
         
+        // Make all subViews of sameSize, to auto-size the view layout
         if viewArray.count > 1 {
-            // Make all subViews of sameSize, to auto-size the view layout
             rootView.stackView(
                 views: viewArray,
                 layoutDirection: .topToBottom,
