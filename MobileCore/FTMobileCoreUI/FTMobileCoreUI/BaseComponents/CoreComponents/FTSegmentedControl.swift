@@ -17,7 +17,7 @@ public extension UISegmentedControl {
         self.init(items: items)
         selectedSegmentIndex = 0
         UISegmentedControl.aoHandler[self] = completionHandler
-        addTarget(self, action: #selector(UISegmentedControl.segmentedControlIndexChanged(_:)), for: .valueChanged)
+        addTarget(self, action: #selector(UISegmentedControl.segmentedControlIndexChanged), for: .valueChanged)
     }
     
     var handler: FTSegmentedHandler? {
@@ -30,7 +30,7 @@ public extension UISegmentedControl {
     }
     
     @objc
-    func segmentedControlIndexChanged(_ sender: UISegmentedControl) {
+    func segmentedControlIndexChanged() {
         if let completionBlock = UISegmentedControl.aoHandler[self] {
             completionBlock(self.selectedSegmentIndex)
         }

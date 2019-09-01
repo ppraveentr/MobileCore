@@ -16,8 +16,7 @@ enum FTJsonParserError: Error {
 }
 
 public protocol FTServiceModel: Codable {
-    static func makeModel(json: String) throws -> Self
-    static func makeModel(json: Data) throws -> Self
+    static func makeModel(json: Any) throws -> Self
     static func createEmpytModel() throws -> Self
 
     // JSON
@@ -40,22 +39,24 @@ public extension FTServiceModel {
         return data
     }
 
-    static func makeModel(json: String) throws -> Self {
-        guard let jsonData = json.data(using: .utf8) else {
-            throw FTJsonParserError.invalidJSON
+    static func makeModel(json: Any) throws -> Self {
+        if let jsonString = json as? String {
+            guard let data = jsonString.data(using: .utf8) else {
+                throw FTJsonParserError.invalidJSON
+            }
+            let model = try JSONDecoder().decode(Self.self, from: data)
+            return model
         }
-        let data = try JSONDecoder().decode(Self.self, from: jsonData)
-        return data
-    }
-    
-    static func makeModel(json: Data) throws -> Self {
-        let data = try JSONDecoder().decode(Self.self, from: json)
-        return data
-    }
-
-    static func makeModel(json: JSON) throws -> Self {
-        let data = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-        return try self.makeModel(json: data)
+        if let jsonData = json as? Data {
+            let model = try JSONDecoder().decode(Self.self, from: jsonData)
+            return model
+        }
+        if let json = json as? JSON {
+            let data = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+            return try self.makeModel(json: data)
+        }
+        
+        throw FTJsonParserError.invalidJSON
     }
 
     func jsonModelData() -> Data? {
@@ -173,25 +174,5 @@ public extension FTServiceModel {
         }
 
         return postData
-    }
-}
-
-open class FTServiceModelObject: FTServiceModel {
-    
-    @discardableResult
-    public static func makeModel<S: FTServiceModel>(ofType modelType: S.Type, fromJSON json: Any) throws -> S {
-        
-        guard (json is String) || (json is Data) else {
-            throw FTJsonParserError.invalidJSON
-        }
-        
-        if let json = json as? String {
-            return try modelType.makeModel(json: json)
-        }
-        else if let json = json as? Data {
-            return try modelType.makeModel(json: json)
-        }
-        
-        throw FTJsonParserError.invalidJSON
     }
 }

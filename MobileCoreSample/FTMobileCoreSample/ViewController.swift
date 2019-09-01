@@ -12,10 +12,6 @@ class CustomButton: FTButton {
 
 class ViewController: FTBaseViewController {
     
-//    override var prefersStatusBarHidden: Bool {
-//        return true
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
