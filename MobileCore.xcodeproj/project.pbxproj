@@ -50,7 +50,6 @@
 		D42A587F23047DE3003C7283 /* FTErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A587523047DE3003C7283 /* FTErrorModel.swift */; };
 		D42A588023047DE3003C7283 /* FTRequestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A587623047DE3003C7283 /* FTRequestObject.swift */; };
 		D42A588123047DE3003C7283 /* FTServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A587723047DE3003C7283 /* FTServiceClient.swift */; };
-		D42A588223047DE3003C7283 /* FTModelStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A587823047DE3003C7283 /* FTModelStack.swift */; };
 		D42A58A423047DEA003C7283 /* FTSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588623047DEA003C7283 /* FTSegmentedControl.swift */; };
 		D42A58A523047DEA003C7283 /* FTTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588723047DEA003C7283 /* FTTableView.swift */; };
 		D42A58A623047DEA003C7283 /* FTLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588823047DEA003C7283 /* FTLabel.swift */; };
@@ -79,7 +78,6 @@
 		D43D0C7E2305263B00C5C770 /* FTStringUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D0C7C2305263B00C5C770 /* FTStringUtilityTests.swift */; };
 		D43D0C7F2305263B00C5C770 /* FTConstrainsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D0C7D2305263B00C5C770 /* FTConstrainsTests.swift */; };
 		D45E3CF1230BF7F6005BD885 /* FTThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45E3CF0230BF7F6005BD885 /* FTThemeProtocol.swift */; };
-		D45E3CF3230BF8C8005BD885 /* FTThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45E3CF2230BF8C8005BD885 /* FTThemeManager.swift */; };
 		D4869CFB23085F4900A7C19F /* FTUIElementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4869CFA23085F4900A7C19F /* FTUIElementsTests.swift */; };
 		D4BD161F2306B38F005DF80D /* FTUIElementThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BD161E2306B38F005DF80D /* FTUIElementThemesTests.swift */; };
 /* End PBXBuildFile section */
@@ -141,7 +139,6 @@
 		D42A587523047DE3003C7283 /* FTErrorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTErrorModel.swift; sourceTree = "<group>"; };
 		D42A587623047DE3003C7283 /* FTRequestObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTRequestObject.swift; sourceTree = "<group>"; };
 		D42A587723047DE3003C7283 /* FTServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTServiceClient.swift; sourceTree = "<group>"; };
-		D42A587823047DE3003C7283 /* FTModelStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTModelStack.swift; sourceTree = "<group>"; };
 		D42A588623047DEA003C7283 /* FTSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTSegmentedControl.swift; sourceTree = "<group>"; };
 		D42A588723047DEA003C7283 /* FTTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTTableView.swift; sourceTree = "<group>"; };
 		D42A588823047DEA003C7283 /* FTLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLabel.swift; sourceTree = "<group>"; };
@@ -170,7 +167,6 @@
 		D43D0C7C2305263B00C5C770 /* FTStringUtilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStringUtilityTests.swift; sourceTree = "<group>"; };
 		D43D0C7D2305263B00C5C770 /* FTConstrainsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTConstrainsTests.swift; sourceTree = "<group>"; };
 		D45E3CF0230BF7F6005BD885 /* FTThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTThemeProtocol.swift; sourceTree = "<group>"; };
-		D45E3CF2230BF8C8005BD885 /* FTThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTThemeManager.swift; sourceTree = "<group>"; };
 		D4869CFA23085F4900A7C19F /* FTUIElementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUIElementsTests.swift; sourceTree = "<group>"; };
 		D4BD161E2306B38F005DF80D /* FTUIElementThemesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUIElementThemesTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -288,7 +284,6 @@
 				D42A582923047DD6003C7283 /* FTThemeView+Utility.swift */,
 				D42A582A23047DD6003C7283 /* FTAppearanceManager.swift */,
 				D42A582B23047DD6003C7283 /* ThemeComponents */,
-				D45E3CF2230BF8C8005BD885 /* FTThemeManager.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -394,7 +389,6 @@
 				D42A587523047DE3003C7283 /* FTErrorModel.swift */,
 				D42A587623047DE3003C7283 /* FTRequestObject.swift */,
 				D42A587723047DE3003C7283 /* FTServiceClient.swift */,
-				D42A587823047DE3003C7283 /* FTModelStack.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -637,7 +631,6 @@
 				D42A586423047DD6003C7283 /* FTMath.swift in Sources */,
 				D42A586923047DD6003C7283 /* FTKeychainItemAccessibility.swift in Sources */,
 				D42A584E23047DD6003C7283 /* FTAppDelegate.swift in Sources */,
-				D42A588223047DE3003C7283 /* FTModelStack.swift in Sources */,
 				D42A588023047DE3003C7283 /* FTRequestObject.swift in Sources */,
 				D42A585D23047DD6003C7283 /* FTAssociatedObject.swift in Sources */,
 				D42A587E23047DE3003C7283 /* FTMobileConfig.swift in Sources */,
@@ -659,7 +652,6 @@
 				D42A587D23047DE3003C7283 /* FTServiceModel.swift in Sources */,
 				D42A586723047DD6003C7283 /* FTReflection.swift in Sources */,
 				D42A584F23047DD6003C7283 /* FTThemesManager.swift in Sources */,
-				D45E3CF3230BF8C8005BD885 /* FTThemeManager.swift in Sources */,
 				D42A584923047DD6003C7283 /* FTString.swift in Sources */,
 				D42A58A523047DEA003C7283 /* FTTableView.swift in Sources */,
 				D42A587A23047DE3003C7283 /* FTURLSession.swift in Sources */,

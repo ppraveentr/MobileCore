@@ -193,13 +193,13 @@ extension FTLabel {
     }
 
     func getStyleProperties(forLink link: FTLinkDetection) -> [NSAttributedString.Key: Any] {
-        let underlineColor = UIColor.blue
-//        let underlineStyle = NSUnderlineStyle.styleSingle
-        let linkTextColor = UIColor.blue
-        let properties: [NSAttributedString.Key: Any] = [
-            .underlineColor: underlineColor,
-            .foregroundColor: linkTextColor
+        var properties: [NSAttributedString.Key: Any] = [
+            .underlineColor: UIColor.blue,
+            .foregroundColor: UIColor.blue
         ]
+        if link.linkType == .hashTag {
+            properties[.underlineStyle] = NSUnderlineStyle.single
+        }
         return properties
     }
 }

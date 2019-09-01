@@ -166,20 +166,20 @@ public class FTLoadingIndicator: UIView {
             self.loadingView?.frame = self.frameForSpinner()
         }
         
-        let frame = CGRect(
+        let lableFrame = CGRect(
             origin: CGPoint(x: loaderTitleMargin, y: loaderSpinnerMarginTop + loadingViewSize),
             size: CGSize(width: self.frame.width - loaderTitleMargin * 2, height: 42.0)
         )
 
         if self.titleLabel == nil {
-            self.titleLabel = UILabel(frame: frame)
+            self.titleLabel = UILabel(frame: lableFrame)
             self.addSubview(self.titleLabel!)
             self.titleLabel?.numberOfLines = 1
             self.titleLabel?.textAlignment = NSTextAlignment.center
             self.titleLabel?.adjustsFontSizeToFitWidth = true
         }
         else {
-            self.titleLabel?.frame = frame
+            self.titleLabel?.frame = lableFrame
         }
         
         self.titleLabel?.font = self.config.titleTextFont

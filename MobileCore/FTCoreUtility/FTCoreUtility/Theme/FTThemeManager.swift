@@ -10,11 +10,11 @@ import Foundation
 
 // TODO: In progress
 enum Theme: Int {
-    case `default`, dark, graphical
+    case defaultStyle, dark, graphical
     
     var mainColor: UIColor {
         switch self {
-        case .default:
+        case .defaultStyle:
             return UIColor(red: 87.0 / 255.0, green: 188.0 / 255.0, blue: 95.0 / 255.0, alpha: 1.0)
         case .dark:
             return UIColor(red: 242.0 / 255.0, green: 101.0 / 255.0, blue: 34.0 / 255.0, alpha: 1.0)
@@ -25,7 +25,7 @@ enum Theme: Int {
     
     var barStyle: UIBarStyle {
         switch self {
-        case .default, .graphical:
+        case .defaultStyle, .graphical:
             return .default
         case .dark:
             return .black
@@ -43,7 +43,7 @@ struct ThemeManager {
             return Theme(rawValue: storedTheme)!
         }
         else {
-            return .default
+            return .defaultStyle
         }
     }
     

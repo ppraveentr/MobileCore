@@ -148,7 +148,7 @@ public extension FTServiceClient {
             }
 
             if let errorModelData = try? FTErrorModel.makeModel(json: data),
-                errorModelData.queryItems().isEmpty == false {
+                !errorModelData.queryItems().isEmpty {
                 ftLog(FTLogConstants.errorModel.rawValue, errorModelData)
                 responseModelData = errorModelData
             }

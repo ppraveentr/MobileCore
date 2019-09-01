@@ -71,17 +71,17 @@ class FTMobileCoreTests: XCTestCase {
         XCTAssert(account1.type?.value == "Details_2", "FTDataModel data merging failed")
     }
 
-    func testFTModelBindType_Success() {
+    func testFTModelBindTypeSuccess() {
         let sample = FTModelBindType(rawValue: "String")
         XCTAssert(sample == .string, "properties matches")
     }
 
-    func testFTModelBindType_Failure() {
+    func testFTModelBindTypeFailure() {
         let sample: FTModelBindType? = FTModelBindType(rawValue: "String22")
         XCTAssert(sample == nil, "properties is nil as excepted")
     }
 
-    func testModelDataCreation_FromString() {
+    func testModelDataCreationFromString() {
         guard FTReflection.swiftClassTypeFromString("AccountDetail") != nil else {
             XCTAssert(false, "class conversion nil")
             return
@@ -98,7 +98,7 @@ class FTMobileCoreTests: XCTestCase {
         }
     }
 
-    func testModelDataCreation_Failure() {
+    func testModelDataCreationFailure() {
         do {
            _ = try AccountDetail.makeModel(json: [ "values": "Details_2", "names": "name"])
         }

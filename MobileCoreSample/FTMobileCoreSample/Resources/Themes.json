@@ -21,6 +21,16 @@
 			"size": "14.0"
 		}
 	},
+    "link": {
+        "url": {
+            "underlineColor": "blue",
+            "foregroundColor": "blue"
+        },
+        "hash": {
+            "underlineColor": "blue",
+            "foregroundColor": "blue"
+        }
+    },
 	"appearance": {
 		"UINavigationBar:UINavigationController": {
 			"barTintColor": "white",

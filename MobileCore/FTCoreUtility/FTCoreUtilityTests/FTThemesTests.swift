@@ -120,33 +120,15 @@ class FTThemesTests: XCTestCase {
         XCTAssertNotNil(value)
     }
     
-//    func testAppearanceNavigationBar() {
-//        let theme = FTThemesManager.getAppearance("UINavigationBar") as? [Any]
-//        
-//        XCTAssertNotNil(theme)
-//        
-//        XCTAssertTrue(theme?.count == 2, "Valid no themes not found")
-//    }
-//    
-//    func testAppearanceSegmentedControl() {
-//        let theme = FTThemesManager.getAppearance("UISegmentedControl") as? [Any]
-//        
-//        XCTAssertNotNil(theme)
-//        
-//        XCTAssertTrue(theme?.count == 1, "Valid no themes not found")
-//    }
+    func testAppearanceNavigationBar() {
+        let theme = FTThemesManager.getAppearance("UINavigationBar") as? FTThemeModel
+        XCTAssertNotNil(theme)
+        XCTAssertTrue(theme?.count == 2, "Valid no themes not found")
+    }
 
     func testFTUISearchBar() {
-
-        let searchBar = FTUISearchBar(frame: .zero)
-        searchBar.theme = "default"
-
-        //let theme = FTThemesManager.getViewComponent("FTSearchBar", styleName: "default")
-
-        //ftLog("\n FTSearchBar : ", theme ?? "nil")
-
-//        XCTAssertNotNil(theme)
-
-//        XCTAssertTrue(theme?.count == 1, "Valid no themes not found")
+        let theme: FTThemeModel? = FTThemesManager.getViewComponent("FTUISearchBar", styleName: "default")
+        XCTAssertNotNil(theme)
+        XCTAssertTrue(theme?.count == 3, "Valid no themes not found")
     }
 }
