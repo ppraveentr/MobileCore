@@ -8,10 +8,9 @@
 
 import Foundation
 
-open class FTUIButton: UIButton, FTUIControlThemeProtocol {
-
+extension UIButton: FTUIControlThemeProtocol {
     // check view state, to update style
-    public func getThemeSubType() -> String? {
+    open func getThemeSubType() -> String? {
         if self.isEnabled {
             return nil
         }
@@ -27,25 +26,25 @@ open class FTUIButton: UIButton, FTUIControlThemeProtocol {
     }
     
     // For custome key:value pairs
-    public func update(themeDic: FTThemeModel, state: UIControl.State) {
-
+    open func update(themeDic: FTThemeModel, state: UIControl.State) {
+        
         if
             let text = themeDic["textcolor"] as? String,
             let color = FTThemesManager.getColor(text)
         {
-                self.setTitleColor(color, for: state)
-                // TODO: For attributed title
+            self.setTitleColor(color, for: state)
+            // TODO: For attributed title
         }
-
+        
         if
             let text = themeDic["textfont"] as? String,
             let font = FTThemesManager.getFont(text)
         {
             self.titleLabel?.font = font
         }
-
+        
         if let image = FTThemesManager.getImage(themeDic["image"]) {
-                self.setImage(image, for: state)
+            self.setImage(image, for: state)
         }
     }
 }

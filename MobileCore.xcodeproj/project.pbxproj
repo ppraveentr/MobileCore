@@ -53,7 +53,6 @@
 		D42A58A423047DEA003C7283 /* FTSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588623047DEA003C7283 /* FTSegmentedControl.swift */; };
 		D42A58A523047DEA003C7283 /* FTTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588723047DEA003C7283 /* FTTableView.swift */; };
 		D42A58A623047DEA003C7283 /* FTLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588823047DEA003C7283 /* FTLabel.swift */; };
-		D42A58A723047DEA003C7283 /* FTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588923047DEA003C7283 /* FTButton.swift */; };
 		D42A58A823047DEA003C7283 /* FTWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588A23047DEA003C7283 /* FTWebView.swift */; };
 		D42A58A923047DEA003C7283 /* FTCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588B23047DEA003C7283 /* FTCollectionView.swift */; };
 		D42A58AA23047DEA003C7283 /* FTScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588C23047DEA003C7283 /* FTScrollView.swift */; };
@@ -142,7 +141,6 @@
 		D42A588623047DEA003C7283 /* FTSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTSegmentedControl.swift; sourceTree = "<group>"; };
 		D42A588723047DEA003C7283 /* FTTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTTableView.swift; sourceTree = "<group>"; };
 		D42A588823047DEA003C7283 /* FTLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLabel.swift; sourceTree = "<group>"; };
-		D42A588923047DEA003C7283 /* FTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTButton.swift; sourceTree = "<group>"; };
 		D42A588A23047DEA003C7283 /* FTWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTWebView.swift; sourceTree = "<group>"; };
 		D42A588B23047DEA003C7283 /* FTCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTCollectionView.swift; sourceTree = "<group>"; };
 		D42A588C23047DEA003C7283 /* FTScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTScrollView.swift; sourceTree = "<group>"; };
@@ -421,7 +419,6 @@
 				D42A588623047DEA003C7283 /* FTSegmentedControl.swift */,
 				D42A588723047DEA003C7283 /* FTTableView.swift */,
 				D42A588823047DEA003C7283 /* FTLabel.swift */,
-				D42A588923047DEA003C7283 /* FTButton.swift */,
 				D42A588A23047DEA003C7283 /* FTWebView.swift */,
 				D42A588B23047DEA003C7283 /* FTCollectionView.swift */,
 				D42A588C23047DEA003C7283 /* FTScrollView.swift */,
@@ -658,7 +655,6 @@
 				D42A58BC23047DEA003C7283 /* FTLoadingIndicator.swift in Sources */,
 				D42A58A623047DEA003C7283 /* FTLabel.swift in Sources */,
 				D42A585023047DD6003C7283 /* FTThemeView+Utility.swift in Sources */,
-				D42A58A723047DEA003C7283 /* FTButton.swift in Sources */,
 				D42A58AE23047DEA003C7283 /* FTFloatingView.swift in Sources */,
 				D42A586023047DD6003C7283 /* FTImage.swift in Sources */,
 				D42A58BA23047DEA003C7283 /* FTBaseTableViewController.swift in Sources */,

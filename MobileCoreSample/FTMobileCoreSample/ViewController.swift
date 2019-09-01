@@ -7,27 +7,24 @@
 
 import UIKit
 
-class CustomButton: FTButton {
-}
-
 class ViewController: FTBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // MARK: TopView
-        let button = CustomButton()
+        let button = UIButton()
         button.theme = "button14R"
         button.setTitle("Tap me", for: .normal)
         //        button.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 10, 5)
         //        button.setImage(UIImage(named: "Pp"), for: .normal)
         
-        let buttonD = FTButton()
+        let buttonD = UIButton()
         buttonD.theme = "button14R"
         buttonD.setTitle("Disabled", for: .normal)
         buttonD.isEnabled = false
         
-        let buttonPopOver = FTButton()
+        let buttonPopOver = UIButton()
         buttonPopOver.theme = "button14R"
         buttonPopOver.setTitle("PopOver", for: .normal)
         buttonPopOver.addTarget(self, action: #selector(showFontPicker), for: .touchUpInside)

@@ -62,7 +62,7 @@ open class FTBaseViewController: UIViewController {
     }
 
     // default - left Button Actopm
-    public static var kLeftButtonAction = #selector(leftButtonAction)
+    public static var kleftButtonAction = #selector(leftButtonAction)
     public static var kRightButtonAction = #selector(rightButtonAction)
 
     // Unquie Identifier for eachScreen
@@ -266,21 +266,21 @@ extension FTBaseViewController {
 
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        postNotification(name: .FTMobileCoreWillAppearViewController)
+        postNotification(name: .kFTMobileCoreWillAppearViewController)
     }
     
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        postNotification(name: .FTMobileCoreDidAppearViewController)
+        postNotification(name: .kFTMobileCoreDidAppearViewController)
     }
     
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        postNotification(name: .FTMobileCoreWillDisappearViewController)
+        postNotification(name: .kFTMobileCoreWillDisappearViewController)
     }
     
     override open func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        postNotification(name: .FTMobileCoreDidDisappearViewController)
+        postNotification(name: .kFTMobileCoreDidDisappearViewController)
     }
 }

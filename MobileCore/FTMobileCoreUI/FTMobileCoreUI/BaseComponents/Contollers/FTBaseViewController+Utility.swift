@@ -26,7 +26,7 @@ extension FTBaseViewController {
     // MARK: Navigation Bar
     func self_setupNavigationbar(title: String, leftButton: UIBarButtonItem? = nil, rightButton: UIBarButtonItem? = nil) {
         self.title = title
-        configureBarButton(button: leftButton, defaultAction: FTBaseViewController.kLeftButtonAction)
+        configureBarButton(button: leftButton, defaultAction: FTBaseViewController.kleftButtonAction)
         configureBarButton(button: rightButton, defaultAction: FTBaseViewController.kRightButtonAction)
         self.navigationItem.leftBarButtonItem = leftButton
         self.navigationItem.rightBarButtonItem = rightButton

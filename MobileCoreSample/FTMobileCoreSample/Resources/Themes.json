@@ -59,7 +59,7 @@
 				"backgroundColor": "white"
 			}
 		},
-		"FTButton": {
+		"UIButton": {
 			"default": {
 				"textfont": "system14",
 				"textcolor": "black",

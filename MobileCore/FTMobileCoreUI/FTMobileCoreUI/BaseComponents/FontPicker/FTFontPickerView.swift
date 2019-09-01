@@ -60,20 +60,20 @@ open class FTFontPickerView: FTView {
         }
     }
 
-    @IBOutlet weak var decrementFontButton: FTButton!
-    @IBOutlet weak var incrementFontButton: FTButton!
+    @IBOutlet weak var decrementFontButton: UIButton!
+    @IBOutlet weak var incrementFontButton: UIButton!
     @IBOutlet weak var fontSizeLabel: FTLabel!
 
-    @IBOutlet weak var whiteColorButton: FTButton!
-    @IBOutlet weak var creameColorButton: FTButton!
-    @IBOutlet weak var lightGrayColorButton: FTButton!
-    @IBOutlet weak var blackColorButton: FTButton!
+    @IBOutlet weak var whiteColorButton: UIButton!
+    @IBOutlet weak var creameColorButton: UIButton!
+    @IBOutlet weak var lightGrayColorButton: UIButton!
+    @IBOutlet weak var blackColorButton: UIButton!
 
-    weak var selectedColorButton: FTButton?
+    weak var selectedColorButton: UIButton?
 
     @IBOutlet weak var fontTableView: UITableView!
 
-    @IBAction func fontColorSelected(_ sender: FTButton) {
+    @IBAction func fontColorSelected(_ sender: UIButton) {
         // Clear Previous selected Button
         selectedColorButton?.addBorder(color: .clear)
         // Update latest button color
@@ -88,7 +88,7 @@ open class FTFontPickerView: FTView {
         pickerDelegate?.pickerColor(textColor: fontPickerModel.fontColor, backgroundColor: fontPickerModel.backgroundColor)
     }
     
-    @IBAction func fontSizeChanged(_ sender: FTButton?) {
+    @IBAction func fontSizeChanged(_ sender: UIButton?) {
         // Increase / Decrease fontSize
         if let button = sender {
             (button == decrementFontButton) ? fontPickerModel.decreaseSize() : fontPickerModel.increaseSize()
