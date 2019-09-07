@@ -57,17 +57,12 @@ class FTMobileCoreTests: XCTestCase {
     }
 
     func testFTDataModel() {
-
         let account1De = AccountDetail(value: "Details_1", name: "name")
         var account1 = Account(name: "stsda", type: account1De, data: ["account1_adas", "account1_fasda"])
         let account2De = AccountDetail(value: "Details_2", name: "name")
         let account2 = Account(name: "da", type: account2De, data: ["account2_adas", "account2_fasda"])
 
-        ftLog("account1: ", account1.jsonString() ?? "")
-         ftLog("account2: ", account2.jsonString() ?? "")
         account1.merge(data: account2)
-        ftLog("merged_account1: ", account1.jsonString() ?? "")
-
         XCTAssert(account1.type?.value == "Details_2", "FTDataModel data merging failed")
     }
 
@@ -78,36 +73,23 @@ class FTMobileCoreTests: XCTestCase {
 
     func testFTModelBindTypeFailure() {
         let sample: FTModelBindType? = FTModelBindType(rawValue: "String22")
-        XCTAssert(sample == nil, "properties is nil as excepted")
+        XCTAssertNil(sample, "properties should be nil")
     }
 
     func testModelDataCreationFromString() {
-        guard FTReflection.swiftClassTypeFromString("AccountDetail") != nil else {
-            XCTAssert(false, "class conversion nil")
-            return
-        }
-
-        do {
-            let accountModel = try AccountDetail.makeModel(json: [ "value": "Details_2", "name": "name"])
-            XCTAssert(accountModel.name == "name", "")
-            XCTAssert(accountModel.value == "Details_2", "")
-        }
-        catch {
-            ftLog("Unexpected error: \(error).")
-            XCTAssert(false, "Account model creation failure")
-        }
+        XCTAssertNotNil(FTReflection.swiftClassTypeFromString("AccountDetail"), "class conversion nil")
+        let accountModel = try? AccountDetail.makeModel(json: [ "value": "Details_2", "name": "name"])
+        XCTAssertNotNil(accountModel, "class conversion nil")
+        XCTAssert(accountModel?.name == "name", "")
+        XCTAssert(accountModel?.value == "Details_2", "")
     }
 
     func testModelDataCreationFailure() {
         do {
            _ = try AccountDetail.makeModel(json: [ "values": "Details_2", "names": "name"])
         }
-        catch FTJsonParserError.invalidJSON {
-            XCTAssert(true)
-        }
         catch {
-            ftLog("Unexpected error: \(error).")
-            XCTAssert(true, "Account model creation failure")
+            XCTAssert(true, "Account model creation failure: \(error)")
         }
     }
 }

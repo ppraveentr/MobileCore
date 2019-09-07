@@ -11,18 +11,7 @@ import XCTest
 
 class FTCoreUtilityTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
     func testStrippingNilElements() {
-        
         var dic: [String: Any?] = [
             "sa": "sada",
             "sad": nil,
@@ -33,6 +22,19 @@ class FTCoreUtilityTests: XCTestCase {
             "dasfdsd": ["asds", nil, "adasd"]
         ]
         dic.stripNilElements()
-        ftLog("\n \(dic) \n")
+        XCTAssert(dic.count == 3)
+    }
+    
+    func testMergeElements() {
+        var dic1: [String : Any] = [
+            "set1": "sada",
+            "set2": [ "set1": "dasd" ]
+            ]
+        let dic2: [String : Any] = [
+            "set2": [ "set2": "adasd" ],
+            "set3": [ "val1", "val2" ]
+            ]
+        dic1.merge(another: dic2)
+        XCTAssert(dic1.count == 3)
     }
 }
