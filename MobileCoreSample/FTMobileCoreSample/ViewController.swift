@@ -85,20 +85,6 @@ class ViewController: FTBaseViewController {
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
 //            label.removeFromSuperview()
 //        }
-        
-        //TODO: Service
-                
-//        try? FTModelConfig.loadModelSchema(["MDASample": ["identifier":"id"] ])
-//        
-//        let sample = try? MDASample.init(dictionary: ["id":"sample", "amount":["usd":23.3]])
-////        sample?.amount = 32.2
-//        
-//        print(sample?.toJSONString() ?? "")
-//        print(sample?.toDictionary() ?? "")
-        
-//        let sample = FTDataModel.dataModelOfType("MDASample", withJSON: ["id":"sample"]) as? MDASample
-//        sample?.amount = 32.2
-//        print(sample ?? "properties of type MDASample are empty");
     }
     
     @objc func showFontPicker(sender: UIButton?) {

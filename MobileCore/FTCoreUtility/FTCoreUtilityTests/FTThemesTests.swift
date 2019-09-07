@@ -121,14 +121,14 @@ class FTThemesTests: XCTestCase {
     }
     
     func testAppearanceNavigationBar() {
-        let theme = FTThemesManager.getAppearance("UINavigationBar") as? FTThemeModel
-        XCTAssertNotNil(theme)
-        XCTAssertTrue(theme?.count == 2, "Valid no themes not found")
+        let value = FTThemesManager.getAppearance("UINavigationBar") as? FTThemeModel
+        XCTAssertNotNil(value)
+        XCTAssertTrue(value?.count == 2, "Valid no themes not found")
     }
 
     func testFTUISearchBar() {
-        let theme: FTThemeModel? = FTThemesManager.getViewComponent("FTUISearchBar", styleName: "default")
-        XCTAssertNotNil(theme)
-        XCTAssertTrue(theme?.count == 3, "Valid no themes not found")
+        let value: FTThemeModel? = FTThemesManager.getViewComponent("FTUISearchBar", styleName: "default")
+        XCTAssertNotNil(value)
+        XCTAssertTrue(value?.count == 3, "Valid no themes not found")
     }
 }
