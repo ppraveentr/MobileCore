@@ -10,9 +10,9 @@ import Foundation
 
 extension UICollectionView {
 
-    private static let aoCollectionView = FTAssociatedObject<FTCollectionViewProtocol>(policy: .OBJC_ASSOCIATION_ASSIGN)
+    private static let aoCollectionView = FTAssociatedObject<FTCollectionViewControllerProtocol>(policy: .OBJC_ASSOCIATION_ASSIGN)
 
-    public weak var viewController: FTCollectionViewProtocol? {
+    public weak var viewController: FTCollectionViewControllerProtocol? {
         get {
             return UICollectionView.aoCollectionView[self]
         }

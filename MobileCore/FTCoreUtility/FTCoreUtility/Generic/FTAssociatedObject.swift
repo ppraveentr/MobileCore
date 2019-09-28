@@ -51,4 +51,13 @@ public class FTAssociatedObject<T> {
     public static func getAssociated(instance: Any, key: UnsafeRawPointer) -> T? {
         return objc_getAssociatedObject(instance, key) as? T
     }
+    
+    // reset Associated
+    public static func resetAssociated(instance: Any, key: UnsafeRawPointer) {
+        objc_setAssociatedObject(instance, key, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+    
+    public static func resetAssociated(instance: Any) {
+        objc_setAssociatedObject(instance, &FTAssociatedKey.DefaultKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
 }

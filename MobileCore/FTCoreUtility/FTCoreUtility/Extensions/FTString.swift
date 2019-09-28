@@ -34,11 +34,8 @@ public extension String {
     }
 
     func htmlAttributedString() -> NSMutableAttributedString {
-
-        guard self.length > 0 else { return NSMutableAttributedString() }
-
+        guard self.count > 0 else { return NSMutableAttributedString() }
         guard self.isHTMLString() else { return NSMutableAttributedString(string: self) }
-
         guard let data = data(using: .utf8, allowLossyConversion: true) else {
             return NSMutableAttributedString()
         }
@@ -57,9 +54,8 @@ public extension String {
 
     // Enmuration
     func enumerate(pattern: String, using block: ((NSTextCheckingResult?) -> Void )? ) {
-        
         let exp = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
-        let range = NSRange(location: 0, length: self.length)
+        let range = NSRange(location: 0, length: self.count)
         exp?.enumerateMatches(in: self, options: .reportCompletion, range: range) { result, _, _ in
             block?(result)
         }
@@ -71,35 +67,27 @@ public extension String {
     }
     
 // MARK: String Size
-    
     // Remove's 'sting' from self -> and retruns new 'String'
     // Original value is not affected
     func trimming(string: String) -> String {
-        guard string.length > 0 else { return self }
         return self.replacingOccurrences(of: string, with: "")
     }
     
     // Remove's 'sting' from self -> and update the 'self'
     @discardableResult
     mutating func trimString(string: String) -> String {
-        guard string.length > 0 else { return self }
         self = self.replacingOccurrences(of: string, with: "")
-        
         return self
     }
     
     // Remove prefix "string"
     @discardableResult
     mutating func trimPrefix(_ string: String) -> String {
-        
-        guard string.length > 0 else { return self }
-        
         while self.hasPrefix(string) {
             if let range = self.range(of: string) {
                 self.removeSubrange(range)
             }
         }
-        
         return self
     }
     
@@ -119,32 +107,43 @@ public extension String {
     func contains(_ find: String) -> Bool {
         return self.range(of: find) != nil
     }
-    
-    // Length of string or no of characters in self
-    var length: Int {
-        return self.count
-    }
 
+    /**
+     CGSize of text based.
+     */
+    func textSize(font: UIFont, constrainedSize: CGSize, lineBreakMode: NSLineBreakMode) -> CGSize {
+        guard self.count > 0 else {
+            return .zero
+        }
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineBreakMode = lineBreakMode
+        
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: font,
+            .paragraphStyle: paragraphStyle
+        ]
+        
+        let attributedString = NSAttributedString(string: self, attributes: attributes)
+        let size = attributedString.boundingRect(
+            with: constrainedSize,
+            options: [.usesDeviceMetrics, .usesLineFragmentOrigin, .usesFontLeading],
+            context: nil
+            ).size
+        
+        return ceil(size: size)
+    }
+    
 // MARK: JSON
     
     // Loading Data from given Path
     func jsonContentAtPath<T>() throws -> T? {
-        
-        guard let content = try? Data(contentsOf: URL(fileURLWithPath: self)) else {
-            return nil
-        }
-        
-        return content.jsonContent() as? T
+        return try dataAtPath()?.jsonContent() as? T
     }
 
     // Loading Data from given Path
     func dataAtPath() throws -> Data? {
-
-        guard let content = try? Data(contentsOf: URL(fileURLWithPath: self)) else {
-            return nil
-        }
-
-        return content
+        return try Data(contentsOf: URL(fileURLWithPath: self))
     }
 
     // MARK: File
@@ -174,7 +173,6 @@ public extension String {
     }
     
     func bundle() -> Bundle? {
-
         if let bundleURL = self.bundleURL() {
             return Bundle(url: bundleURL)
         }

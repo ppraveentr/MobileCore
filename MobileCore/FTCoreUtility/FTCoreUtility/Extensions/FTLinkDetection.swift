@@ -63,7 +63,7 @@ open class FTLinkDetection {
         text.enumerate(pattern: "(?<!\\w)#([\\w]+)") { result in
             if
                 let range = result?.range,
-                let subText = (text as NSString).substring(with: NSRange(location: range.location, length: range.length)) as String?,
+                let subText = text.substring(with: range),
                 let url = URL(string: subText) {
                     let dec = FTLinkDetection(linkType: .hashTag, linkRange: range, linkURL: url)
                     rangeOfURL.append(dec)

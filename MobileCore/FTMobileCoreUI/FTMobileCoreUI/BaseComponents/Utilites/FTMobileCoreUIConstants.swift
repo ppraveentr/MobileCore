@@ -16,4 +16,5 @@ public extension Notification.Name {
     static let kFTMobileCoreDidAppearViewController = Notification.Name("FTMobileCore.ViewController.DidAppear")
     static let kFTMobileCoreWillDisappearViewController = Notification.Name("FTMobileCore.ViewController.WillDisappear")
     static let kFTMobileCoreDidDisappearViewController = Notification.Name("FTMobileCore.ViewController.DidDisappear")
+    static let kFTMobileCoreDidLayoutSubviews = Notification.Name("FTMobileCore.ViewController.DidLayoutSubviews")
 }

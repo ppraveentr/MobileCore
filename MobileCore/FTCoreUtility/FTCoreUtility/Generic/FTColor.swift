@@ -112,7 +112,7 @@ public extension UIColor {
         let g: UInt32
         let b: UInt32
         var a: UInt32 = 255
-        switch hex.length - 1 {
+        switch hex.count - 1 {
         case 3: // RGB (12-bit)
             (r, g, b) = ((int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
         case 6: // RGB (24-bit)

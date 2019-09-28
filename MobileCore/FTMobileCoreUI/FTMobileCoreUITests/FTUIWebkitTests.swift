@@ -1,5 +1,5 @@
 //
-//  FTUIElementsTests.swift
+//  FTUIWebkitTests.swift
 //  MobileCoreTests
 //
 //  Created by Praveen P on 17/08/19.
@@ -10,10 +10,16 @@
 import WebKit
 import XCTest
 
-class FTUIElementsTests: XCTestCase {
+class FTUIWebkitTests: XCTestCase {
 
     func testExample() {
         let webView = WKWebView()
         webView.setScrollEnabled(enabled: true)
+    }
+    
+    func testContentView() {
+        var contentView: FTContentView? = FTContentView()
+        XCTAssertNotNil(contentView?.webView)
+        contentView = nil
     }
 }
