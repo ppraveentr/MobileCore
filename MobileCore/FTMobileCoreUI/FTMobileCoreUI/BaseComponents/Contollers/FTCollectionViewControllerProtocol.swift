@@ -74,6 +74,10 @@ private extension FTCollectionViewControllerProtocol {
         local.collectionView.dataSource = nil
         local.collectionView.delegate = nil
         
+        if let customCollection = collectionView {
+            setupCoreCollectionView(customCollection, controller: local)
+        }
+        
         // Add as child view controller
         self.addChild(local)
         self.mainView?.pin(view: local.collectionView, edgeOffsets: .zero)
@@ -83,8 +87,8 @@ private extension FTCollectionViewControllerProtocol {
         return local
     }
     
-    func setupCoreCollectionView(_ localView: UICollectionView) {
-        let collectionVC = collectionViewController
+    func setupCoreCollectionView(_ localView: UICollectionView, controller: UICollectionViewController? = nil) {
+        let collectionVC = controller ?? collectionViewController
         collectionVC.collectionView.removeSubviews()
         collectionVC.collectionView = localView
         

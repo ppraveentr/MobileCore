@@ -12,6 +12,8 @@ import XCTest
 class FTCustomDataTypeTests: XCTestCase {
     
     let testString = "Follow @krelborn or #visit <a href=\"https://www.w3schools.com\">Visit W3Schools</a>"
+    let testUrl = "https://www.w3schools.com"
+    let testHash = "#visit"
 
     // MARK: String
     func testNilorEmpty() {
@@ -34,7 +36,7 @@ class FTCustomDataTypeTests: XCTestCase {
         XCTAssertEqual(links.count, 1)
         if let hash = links.first {
             XCTAssertTrue(hash.linkType == .hashTag)
-            XCTAssertTrue(hash.linkURL.absoluteString == "#visit")
+            XCTAssertTrue(hash.linkURL.absoluteString == testHash)
         }
     }
     
@@ -43,7 +45,7 @@ class FTCustomDataTypeTests: XCTestCase {
         XCTAssertEqual(links.count, 1)
         if let url = links.first {
             XCTAssertTrue(url.linkType == .url)
-            XCTAssertTrue(url.linkURL.absoluteString == "https://www.w3schools.com")
+            XCTAssertTrue(url.linkURL.absoluteString == testUrl)
         }
     }
     

@@ -49,16 +49,6 @@ class FTServiceModelTests: XCTestCase {
         FTReflection.registerModuleIdentifier(Account.self)
     }
 
-//    func testFTServiceClient() {
-//        let promise = expectation(description: "make model success")
-//        let account1De = AccountDetail(value: "Details_1", name: "name")
-//        TestService.make(modelStack: account1De) { statuys in
-//            ftLog(statuys)
-//            promise.fulfill()
-//        }
-//        wait(for: [promise], timeout: 5)
-//    }
-
     func testFTDataModel() {
         let account1De = AccountDetail(value: "Details_1", name: "name")
         var account1 = Account(name: "stsda", type: account1De, data: ["account1_adas", "account1_fasda"])

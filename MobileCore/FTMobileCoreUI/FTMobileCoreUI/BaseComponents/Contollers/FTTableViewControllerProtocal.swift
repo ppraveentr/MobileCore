@@ -112,11 +112,13 @@ public extension FTTableViewControllerProtocal {
         DispatchQueue.main.async {
             // whew, this could be animated!
             UIView.beginAnimations("tableHeaderView", context: nil)
-            self.tableView.tableHeaderView = self.tableView.tableHeaderView
+            let header = self.tableView.tableHeaderView
+            self.tableView.tableHeaderView = header
             UIView.commitAnimations()
             
             UIView.beginAnimations("tableFooterView", context: nil)
-            self.tableView.tableFooterView = self.tableView.tableFooterView
+            let footer = self.tableView.tableFooterView
+            self.tableView.tableFooterView = footer
             UIView.commitAnimations()
         }
     }

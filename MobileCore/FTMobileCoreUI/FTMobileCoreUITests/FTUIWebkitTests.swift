@@ -18,8 +18,7 @@ class FTUIWebkitTests: XCTestCase {
     }
     
     func testContentView() {
-        var contentView: FTContentView? = FTContentView()
+        let contentView: FTContentView? = FTContentView()
         XCTAssertNotNil(contentView?.webView)
-        contentView = nil
     }
 }
