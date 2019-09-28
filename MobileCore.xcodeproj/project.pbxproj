@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D4009A3023238ECF006A717F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4009A2F23238ECF006A717F /* UIViewController+Extension.swift */; };
+		D40ACBE7233FF73700CE4290 /* FTScrollViewControllerProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40ACBE5233FF73700CE4290 /* FTScrollViewControllerProtocal.swift */; };
+		D40ACBE8233FF73700CE4290 /* FTCollectionViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40ACBE6233FF73700CE4290 /* FTCollectionViewControllerProtocol.swift */; };
 		D42A580C23047CEF003C7283 /* MobileCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D42A580223047CEF003C7283 /* MobileCore.framework */; };
 		D42A581323047CEF003C7283 /* MobileCore.h in Headers */ = {isa = PBXBuildFile; fileRef = D42A580523047CEF003C7283 /* MobileCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D42A584823047DD6003C7283 /* FTLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A581E23047DD6003C7283 /* FTLogger.swift */; };
@@ -64,9 +66,7 @@
 		D42A58B223047DEA003C7283 /* FTFontPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A589623047DEA003C7283 /* FTFontPickerView.swift */; };
 		D42A58B323047DEA003C7283 /* FTFontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A589723047DEA003C7283 /* FTFontPickerViewController.swift */; };
 		D42A58B423047DEA003C7283 /* FTMobileCoreUIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A589923047DEA003C7283 /* FTMobileCoreUIConstants.swift */; };
-		D42A58B523047DEA003C7283 /* FTBaseScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A589B23047DEA003C7283 /* FTBaseScrollViewController.swift */; };
 		D42A58B623047DEA003C7283 /* FTBaseViewController+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A589C23047DEA003C7283 /* FTBaseViewController+Utility.swift */; };
-		D42A58B723047DEA003C7283 /* FTBaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A589D23047DEA003C7283 /* FTBaseCollectionViewController.swift */; };
 		D42A58B923047DEA003C7283 /* FTBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A589F23047DEA003C7283 /* FTBaseViewController.swift */; };
 		D42A58BC23047DEA003C7283 /* FTLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A58A323047DEA003C7283 /* FTLoadingIndicator.swift */; };
 		D43D0C762305262B00C5C770 /* FTThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43D0C742305262B00C5C770 /* FTThemesTests.swift */; };
@@ -95,6 +95,8 @@
 
 /* Begin PBXFileReference section */
 		D4009A2F23238ECF006A717F /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		D40ACBE5233FF73700CE4290 /* FTScrollViewControllerProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTScrollViewControllerProtocal.swift; sourceTree = "<group>"; };
+		D40ACBE6233FF73700CE4290 /* FTCollectionViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTCollectionViewControllerProtocol.swift; sourceTree = "<group>"; };
 		D42A580223047CEF003C7283 /* MobileCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MobileCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D42A580523047CEF003C7283 /* MobileCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileCore.h; sourceTree = "<group>"; };
 		D42A580623047CEF003C7283 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -154,9 +156,7 @@
 		D42A589623047DEA003C7283 /* FTFontPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTFontPickerView.swift; sourceTree = "<group>"; };
 		D42A589723047DEA003C7283 /* FTFontPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTFontPickerViewController.swift; sourceTree = "<group>"; };
 		D42A589923047DEA003C7283 /* FTMobileCoreUIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMobileCoreUIConstants.swift; sourceTree = "<group>"; };
-		D42A589B23047DEA003C7283 /* FTBaseScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseScrollViewController.swift; sourceTree = "<group>"; };
 		D42A589C23047DEA003C7283 /* FTBaseViewController+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FTBaseViewController+Utility.swift"; sourceTree = "<group>"; };
-		D42A589D23047DEA003C7283 /* FTBaseCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseCollectionViewController.swift; sourceTree = "<group>"; };
 		D42A589F23047DEA003C7283 /* FTBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseViewController.swift; sourceTree = "<group>"; };
 		D42A58A323047DEA003C7283 /* FTLoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLoadingIndicator.swift; sourceTree = "<group>"; };
 		D43D0C742305262B00C5C770 /* FTThemesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTThemesTests.swift; sourceTree = "<group>"; };
@@ -467,9 +467,9 @@
 		D42A589A23047DEA003C7283 /* Contollers */ = {
 			isa = PBXGroup;
 			children = (
-				D42A589B23047DEA003C7283 /* FTBaseScrollViewController.swift */,
+				D40ACBE6233FF73700CE4290 /* FTCollectionViewControllerProtocol.swift */,
+				D40ACBE5233FF73700CE4290 /* FTScrollViewControllerProtocal.swift */,
 				D42A589C23047DEA003C7283 /* FTBaseViewController+Utility.swift */,
-				D42A589D23047DEA003C7283 /* FTBaseCollectionViewController.swift */,
 				D42A589F23047DEA003C7283 /* FTBaseViewController.swift */,
 				D4AF412B2327B6B9009DAF1D /* FTTableViewControllerProtocal.swift */,
 			);
@@ -639,7 +639,6 @@
 			files = (
 				D42A58A923047DEA003C7283 /* FTCollectionView.swift in Sources */,
 				D42A58B323047DEA003C7283 /* FTFontPickerViewController.swift in Sources */,
-				D42A58B723047DEA003C7283 /* FTBaseCollectionViewController.swift in Sources */,
 				D42A584C23047DD6003C7283 /* FTDictionary.swift in Sources */,
 				D42A58A823047DEA003C7283 /* FTWebView.swift in Sources */,
 				D42A585A23047DD6003C7283 /* FTViewExtention.swift in Sources */,
@@ -652,7 +651,7 @@
 				D42A588023047DE3003C7283 /* FTRequestObject.swift in Sources */,
 				D42A585D23047DD6003C7283 /* FTAssociatedObject.swift in Sources */,
 				D42A587E23047DE3003C7283 /* FTMobileConfig.swift in Sources */,
-				D42A58B523047DEA003C7283 /* FTBaseScrollViewController.swift in Sources */,
+				D40ACBE8233FF73700CE4290 /* FTCollectionViewControllerProtocol.swift in Sources */,
 				D42A585823047DD6003C7283 /* FTUICollectionView.swift in Sources */,
 				D4AF412C2327B6B9009DAF1D /* FTTableViewControllerProtocal.swift in Sources */,
 				D42A585F23047DD6003C7283 /* FTSequence.swift in Sources */,
@@ -662,6 +661,7 @@
 				D42A585923047DD6003C7283 /* FTViewConstrains.swift in Sources */,
 				D42A585B23047DD6003C7283 /* FTViewControllerExtension.swift in Sources */,
 				D42A586623047DD6003C7283 /* FTClass.swift in Sources */,
+				D40ACBE7233FF73700CE4290 /* FTScrollViewControllerProtocal.swift in Sources */,
 				D42A586223047DD6003C7283 /* FTURL.swift in Sources */,
 				D42A584A23047DD6003C7283 /* FTData.swift in Sources */,
 				D42A585123047DD6003C7283 /* FTAppearanceManager.swift in Sources */,
