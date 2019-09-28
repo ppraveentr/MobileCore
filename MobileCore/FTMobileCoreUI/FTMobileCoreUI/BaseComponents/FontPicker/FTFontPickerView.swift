@@ -15,6 +15,7 @@ public protocol FTFontPickerViewprotocol: AnyObject {
 }
 
 open class FTFontPickerModel {
+    
     var fontSizeStepValue: Float = 10.0
     public var fontSize: Float = 140.0
     public var fontColor: UIColor = .black

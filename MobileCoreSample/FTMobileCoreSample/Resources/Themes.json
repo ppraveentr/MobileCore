@@ -111,6 +111,13 @@
 				"_super": "default",
 				"textcolor": "AA"
 			}
-		}
+		},
+        "FTSearchBar": {
+            "default": {
+                "textcolor": "white",
+                "tintColor": "white",
+                "barTintColor": "navBarRed"
+            }
+        }
 	}
 }

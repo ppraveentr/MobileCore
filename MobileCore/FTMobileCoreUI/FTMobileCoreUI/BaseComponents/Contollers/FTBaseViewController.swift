@@ -283,4 +283,9 @@ extension FTBaseViewController {
         super.viewDidDisappear(animated)
         postNotification(name: .kFTMobileCoreDidDisappearViewController)
     }
+    
+    override open func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        postNotification(name: .kFTMobileCoreDidLayoutSubviews)
+    }
 }

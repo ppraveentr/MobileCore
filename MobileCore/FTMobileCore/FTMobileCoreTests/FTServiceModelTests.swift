@@ -1,5 +1,5 @@
 //
-//  FTMobileCoreTests.swift
+//  FTServiceModelTests.swift
 //  FTMobileCoreTests
 //
 //  Created by Praveen Prabhakar on 15/06/17.
@@ -43,18 +43,21 @@ final class TestService: FTServiceClient {
     }
 }
 
-class FTMobileCoreTests: XCTestCase {
+class FTServiceModelTests: XCTestCase {
 
     override func setUp() {
         FTReflection.registerModuleIdentifier(Account.self)
     }
 
-    func testFTServiceClient() {
-        let account1De = AccountDetail(value: "Details_1", name: "name")
-        TestService.make(modelStack: account1De) { statuys in
-            ftLog(statuys)
-        }
-    }
+//    func testFTServiceClient() {
+//        let promise = expectation(description: "make model success")
+//        let account1De = AccountDetail(value: "Details_1", name: "name")
+//        TestService.make(modelStack: account1De) { statuys in
+//            ftLog(statuys)
+//            promise.fulfill()
+//        }
+//        wait(for: [promise], timeout: 5)
+//    }
 
     func testFTDataModel() {
         let account1De = AccountDetail(value: "Details_1", name: "name")
@@ -63,33 +66,29 @@ class FTMobileCoreTests: XCTestCase {
         let account2 = Account(name: "da", type: account2De, data: ["account2_adas", "account2_fasda"])
 
         account1.merge(data: account2)
-        XCTAssert(account1.type?.value == "Details_2", "FTDataModel data merging failed")
+        XCTAssert(account1.type?.value == "Details_2")
     }
 
     func testFTModelBindTypeSuccess() {
         let sample = FTModelBindType(rawValue: "String")
-        XCTAssert(sample == .string, "properties matches")
+        XCTAssert(sample == .string)
     }
 
     func testFTModelBindTypeFailure() {
         let sample: FTModelBindType? = FTModelBindType(rawValue: "String22")
-        XCTAssertNil(sample, "properties should be nil")
+        XCTAssertNil(sample)
     }
 
     func testModelDataCreationFromString() {
-        XCTAssertNotNil(FTReflection.swiftClassTypeFromString("AccountDetail"), "class conversion nil")
+        XCTAssertNotNil(FTReflection.swiftClassTypeFromString("AccountDetail"))
         let accountModel = try? AccountDetail.makeModel(json: [ "value": "Details_2", "name": "name"])
-        XCTAssertNotNil(accountModel, "class conversion nil")
-        XCTAssert(accountModel?.name == "name", "")
-        XCTAssert(accountModel?.value == "Details_2", "")
+        XCTAssertNotNil(accountModel)
+        XCTAssert(accountModel?.name == "name")
+        XCTAssert(accountModel?.value == "Details_2")
     }
 
     func testModelDataCreationFailure() {
-        do {
-           _ = try AccountDetail.makeModel(json: [ "values": "Details_2", "names": "name"])
-        }
-        catch {
-            XCTAssert(true, "Account model creation failure: \(error)")
-        }
+        let model = try? AccountDetail.makeModel(json: [ "1": "1", "2": "2"])
+        XCTAssertNil(model)
     }
 }

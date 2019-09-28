@@ -11,16 +11,16 @@ import Foundation
 public extension UIViewController {
     
     // Get top-most controller
-    var topViewController: UIViewController? {
+    var currentViewController: UIViewController? {
         let keyWindow = UIApplication.shared.delegate?.window ?? UIApplication.shared.keyWindow
         guard let rootViewController = keyWindow?.rootViewController else {
             return nil
         }
-        return UIViewController.topViewController(rootViewController)
+        return UIViewController.currentViewController(rootViewController)
     }
     
     // Get top-most controller in provided `viewController`
-    static func topViewController(_ viewController: UIViewController?) -> UIViewController? {
+    static func currentViewController(_ viewController: UIViewController?) -> UIViewController? {
         
         let presentedViewController = viewController?.presentedViewController
         
@@ -32,10 +32,9 @@ public extension UIViewController {
         }
         
         if let navigationController = presentedViewController as? UINavigationController {
-            return self.topViewController(navigationController.viewControllers.last)
+            return self.currentViewController(navigationController.viewControllers.last)
         }
         
-        return self.topViewController(presentedViewController)
+        return self.currentViewController(presentedViewController)
     }
-    
 }

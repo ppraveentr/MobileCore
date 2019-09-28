@@ -118,7 +118,7 @@ extension FTLabel {
         if ((self.attributedText?.length ?? 0) != 0) && !isSimpleTextUpdate {
             self.updateTextWithAttributedString(attributedString: self.attributedText)
         }
-        else if (text?.length ?? 0) != 0 {
+        else if (text?.count ?? 0) != 0 {
             updateWithHtmlString(text: self.text)
         }
         else {
