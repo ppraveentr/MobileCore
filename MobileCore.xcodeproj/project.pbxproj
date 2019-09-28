@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D4009A3023238ECF006A717F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4009A2F23238ECF006A717F /* UIViewController+Extension.swift */; };
 		D42A580C23047CEF003C7283 /* MobileCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D42A580223047CEF003C7283 /* MobileCore.framework */; };
 		D42A581123047CEF003C7283 /* MobileCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A581023047CEF003C7283 /* MobileCoreTests.swift */; };
 		D42A581323047CEF003C7283 /* MobileCore.h in Headers */ = {isa = PBXBuildFile; fileRef = D42A580523047CEF003C7283 /* MobileCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -53,7 +54,6 @@
 		D42A58A423047DEA003C7283 /* FTSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588623047DEA003C7283 /* FTSegmentedControl.swift */; };
 		D42A58A523047DEA003C7283 /* FTTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588723047DEA003C7283 /* FTTableView.swift */; };
 		D42A58A623047DEA003C7283 /* FTLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588823047DEA003C7283 /* FTLabel.swift */; };
-		D42A58A723047DEA003C7283 /* FTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588923047DEA003C7283 /* FTButton.swift */; };
 		D42A58A823047DEA003C7283 /* FTWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588A23047DEA003C7283 /* FTWebView.swift */; };
 		D42A58A923047DEA003C7283 /* FTCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588B23047DEA003C7283 /* FTCollectionView.swift */; };
 		D42A58AA23047DEA003C7283 /* FTScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A588C23047DEA003C7283 /* FTScrollView.swift */; };
@@ -93,6 +93,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D4009A2F23238ECF006A717F /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		D42A580223047CEF003C7283 /* MobileCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MobileCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D42A580523047CEF003C7283 /* MobileCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileCore.h; sourceTree = "<group>"; };
 		D42A580623047CEF003C7283 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -142,7 +143,6 @@
 		D42A588623047DEA003C7283 /* FTSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTSegmentedControl.swift; sourceTree = "<group>"; };
 		D42A588723047DEA003C7283 /* FTTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTTableView.swift; sourceTree = "<group>"; };
 		D42A588823047DEA003C7283 /* FTLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLabel.swift; sourceTree = "<group>"; };
-		D42A588923047DEA003C7283 /* FTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTButton.swift; sourceTree = "<group>"; };
 		D42A588A23047DEA003C7283 /* FTWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTWebView.swift; sourceTree = "<group>"; };
 		D42A588B23047DEA003C7283 /* FTCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTCollectionView.swift; sourceTree = "<group>"; };
 		D42A588C23047DEA003C7283 /* FTScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTScrollView.swift; sourceTree = "<group>"; };
@@ -263,6 +263,7 @@
 				D42A582123047DD6003C7283 /* FTData.swift */,
 				D42A582223047DD6003C7283 /* FTLinkDetection.swift */,
 				D42A582323047DD6003C7283 /* FTDictionary.swift */,
+				D4009A2F23238ECF006A717F /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -421,7 +422,6 @@
 				D42A588623047DEA003C7283 /* FTSegmentedControl.swift */,
 				D42A588723047DEA003C7283 /* FTTableView.swift */,
 				D42A588823047DEA003C7283 /* FTLabel.swift */,
-				D42A588923047DEA003C7283 /* FTButton.swift */,
 				D42A588A23047DEA003C7283 /* FTWebView.swift */,
 				D42A588B23047DEA003C7283 /* FTCollectionView.swift */,
 				D42A588C23047DEA003C7283 /* FTScrollView.swift */,
@@ -658,10 +658,10 @@
 				D42A58BC23047DEA003C7283 /* FTLoadingIndicator.swift in Sources */,
 				D42A58A623047DEA003C7283 /* FTLabel.swift in Sources */,
 				D42A585023047DD6003C7283 /* FTThemeView+Utility.swift in Sources */,
-				D42A58A723047DEA003C7283 /* FTButton.swift in Sources */,
 				D42A58AE23047DEA003C7283 /* FTFloatingView.swift in Sources */,
 				D42A586023047DD6003C7283 /* FTImage.swift in Sources */,
 				D42A58BA23047DEA003C7283 /* FTBaseTableViewController.swift in Sources */,
+				D4009A3023238ECF006A717F /* UIViewController+Extension.swift in Sources */,
 				D42A584823047DD6003C7283 /* FTLogger.swift in Sources */,
 				D42A586123047DD6003C7283 /* FTActionBlock.swift in Sources */,
 				D42A58B423047DEA003C7283 /* FTMobileCoreUIConstants.swift in Sources */,

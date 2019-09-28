@@ -20,7 +20,23 @@ Pod::Spec.new do |s|
   
   s.ios.deployment_target = '9.0'
   s.swift_version = '5.0'
+  
+  s.default_subspecs = 'FTCoreUtility', 'FTMobileCore', 'FTMobileCoreUI'
 
-  s.source_files = ['MobileCore/FTCoreUtility/FTCoreUtility/**/*', 'MobileCore/FTMobileCore/FTMobileCore/**/*', 'MobileCore/FTMobileCoreUI/FTMobileCoreUI/**/*']
+  s.subspec 'FTCoreUtility' do |utility|
+    utility.source_files = 'MobileCore/FTCoreUtility/FTCoreUtility/**/*.swift'
+  end
+
+  s.subspec 'FTMobileCore' do |mobileCore|
+    mobileCore.source_files = 'MobileCore/FTMobileCore/FTMobileCore/**/*.swift'
+    mobileCore.dependency  'MobileCore/FTCoreUtility'
+  end
+
+  s.subspec 'FTMobileCoreUI' do |mobileCoreUI|
+    mobileCoreUI.source_files = 'MobileCore/FTMobileCoreUI/FTMobileCoreUI/**/*.swift'
+    mobileCoreUI.resources = ['MobileCore/FTMobileCoreUI/FTMobileCoreUIBundle/Resources/**/*',
+                      			    'MobileCore/FTMobileCoreUI/FTMobileCoreUI/**/*.xib']
+    mobileCoreUI.dependency  'MobileCore/FTCoreUtility'
+  end
   
 end

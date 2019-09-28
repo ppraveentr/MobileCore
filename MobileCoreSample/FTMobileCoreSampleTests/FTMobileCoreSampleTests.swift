@@ -11,8 +11,22 @@ import XCTest
 
 class FTMobileCoreSampleTests: XCTestCase {
     
-    func testMDASamplee() {
-        let sample = MDASample()
-        sample.amount = 34.3
+    var model: MDASample = MDASample()
+    let amount: Decimal = 34.33
+    
+    override func setUp() {
+        super.setUp()
+        model.amount = amount
+    }
+    
+    func testJsonModel() {
+        let jsonModel = model.jsonModel()
+        let modelAmount = jsonModel?["amount.usd"] as? Decimal
+        XCTAssert(amount == modelAmount)
+    }
+    
+    func testJsonString() {
+        let jsonString = model.jsonString()
+        XCTAssert(jsonString == "{\n  \"amount.usd\" : 34.32999999999999488\n}")
     }
 }

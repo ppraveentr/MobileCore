@@ -11,8 +11,8 @@ import Foundation
 public typealias FTThemeModel = [String: Any]
 
 public extension NSNotification.Name {
-    static let kFTSwiftyAppearanceWillRefreshWindow = NSNotification.Name(rawValue: "FTSwiftyAppearanceWillRefreshWindow.Notofication")
-    static let kFTSwiftyAppearanceDidRefreshWindow = NSNotification.Name(rawValue: "FTSwiftyAppearanceDidRefreshWindow.Notofication")
+    static let kFTAppearanceWillRefreshWindow = NSNotification.Name(rawValue: "kFTAppearanceWillRefreshWindow.Notofication")
+    static let kFTAppearanceDidRefreshWindow = NSNotification.Name(rawValue: "kFTAppearanceDidRefreshWindow.Notofication")
 }
 
 public struct FTThemeStyle {
@@ -298,12 +298,12 @@ public extension UIWindow {
     /// Refreshes appearance for the window
     /// - Parameter animated: if the refresh should be animated
     func refreshAppearance(animated: Bool) {
-        NotificationCenter.default.post(name: .kFTSwiftyAppearanceWillRefreshWindow, object: self)
+        NotificationCenter.default.post(name: .kFTAppearanceWillRefreshWindow, object: self)
         UIView.animate(
             withDuration: animated ? 0.25 : 0,
             animations: { self.refreshAppearance() },
             completion: { _ in
-            NotificationCenter.default.post(name: .kFTSwiftyAppearanceDidRefreshWindow, object: self)
+            NotificationCenter.default.post(name: .kFTAppearanceDidRefreshWindow, object: self)
             }
         )
     }

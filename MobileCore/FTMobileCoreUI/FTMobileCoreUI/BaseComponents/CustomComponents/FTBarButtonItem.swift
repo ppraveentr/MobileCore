@@ -24,7 +24,7 @@ public extension UIBarButtonItem {
             return
         }
         
-        let button = FTButton(type: .custom)
+        let button = UIButton(type: .custom)
         button.titleLabel?.text = title
         button.imageView?.image = image
         if let buttonAction = action {

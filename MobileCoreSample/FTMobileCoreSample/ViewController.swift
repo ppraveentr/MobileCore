@@ -7,27 +7,24 @@
 
 import UIKit
 
-class CustomButton: FTButton {
-}
-
 class ViewController: FTBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // MARK: TopView
-        let button = CustomButton()
+        let button = UIButton()
         button.theme = "button14R"
         button.setTitle("Tap me", for: .normal)
         //        button.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 10, 5)
         //        button.setImage(UIImage(named: "Pp"), for: .normal)
         
-        let buttonD = FTButton()
+        let buttonD = UIButton()
         buttonD.theme = "button14R"
         buttonD.setTitle("Disabled", for: .normal)
         buttonD.isEnabled = false
         
-        let buttonPopOver = FTButton()
+        let buttonPopOver = UIButton()
         buttonPopOver.theme = "button14R"
         buttonPopOver.setTitle("PopOver", for: .normal)
         buttonPopOver.addTarget(self, action: #selector(showFontPicker), for: .touchUpInside)
@@ -88,20 +85,6 @@ class ViewController: FTBaseViewController {
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
 //            label.removeFromSuperview()
 //        }
-        
-        //TODO: Service
-                
-//        try? FTModelConfig.loadModelSchema(["MDASample": ["identifier":"id"] ])
-//        
-//        let sample = try? MDASample.init(dictionary: ["id":"sample", "amount":["usd":23.3]])
-////        sample?.amount = 32.2
-//        
-//        print(sample?.toJSONString() ?? "")
-//        print(sample?.toDictionary() ?? "")
-        
-//        let sample = FTDataModel.dataModelOfType("MDASample", withJSON: ["id":"sample"]) as? MDASample
-//        sample?.amount = 32.2
-//        print(sample ?? "properties of type MDASample are empty");
     }
     
     @objc func showFontPicker(sender: UIButton?) {

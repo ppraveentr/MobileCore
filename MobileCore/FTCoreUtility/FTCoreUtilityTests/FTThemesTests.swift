@@ -83,25 +83,22 @@ class FTThemesTests: XCTestCase {
     // MARK: View Component
     func testComponent() {
         let value = FTThemesManager.getViewComponent("FTLabel", styleName: "system14W")
-        ftLog("\n FTLabel system14W : ", value ?? "nil")
         XCTAssertNotNil(value)
     }
     
     // MARK: Font
     func testFonts() {
         let value = FTThemesManager.getFont("system14")
-        ftLog("\n font 14 : ", value ?? "nil")
         XCTAssertNotNil(value)
     }
     
     // MARK: Color
     func testColorWhite() {
         let value = FTThemesManager.getColor("white")
-        ftLog("\n color white : ", value ?? "nil")
         XCTAssertNotNil(value)
     }
     
-    func testColorFail() {
+    func testColorFailToDefault() {
         let value = FTThemesManager.getColor("orange")
         let defaultValue = FTThemesManager.getColor("default")
         XCTAssertEqual(value, defaultValue, "color should be default to black")
@@ -109,8 +106,33 @@ class FTThemesTests: XCTestCase {
     
     func testHashColor() {
         let value = FTThemesManager.getColor("#F3F3F3F8")
-        ftLog("\n color #FFFFFF00 : ", value ?? "nil")
         XCTAssertNotNil(value)
+    }
+    
+    func testHexColor() {
+        let value = UIColor.hexColor("#FF00FF00")
+        XCTAssertNotNil(value)
+        XCTAssertEqual(value?.hexString(), "#FF00FF".lowercased(), "color should be equal")
+        XCTAssertEqual(value?.hexAlphaString(), "#FF00FF00".lowercased(), "hex Value should be equal")
+        let actualValue = UIColor(red: 1.0, green: 0.0, blue: 1.0, alpha: 0.0)
+        XCTAssertEqual(value, actualValue, "color should be equal")
+    }
+    
+    func testRGBIntColor() {
+        let value = UIColor(rgb: 13158600)
+        XCTAssertNotNil(value)
+        XCTAssertEqual(value.hexString(), "#C8C8C8".lowercased(), "color should be equal")
+        XCTAssertEqual(value.hexAlphaString(), "#C8C8C8FF".lowercased(), "hex Value should be equal")
+        let actualValue = UIColor(red: 200, green: 200, blue: 200, a: 1.0)
+        XCTAssertEqual(value.hexString(), actualValue.hexString(), "color should be equal")
+    }
+    
+    func testRGBAIntColor() {
+        let value = UIColor(rgb: 13158600, a: 0.5)
+        XCTAssertNotNil(value)
+        XCTAssertEqual(value.hexAlphaString(), "#C8C8C87F".lowercased(), "hex Value should be equal")
+        let actualValue = UIColor(red: 200, green: 200, blue: 200, a: 0.5)
+        XCTAssertEqual(value.hexAlphaString(), actualValue.hexAlphaString(), "color should be equal")
     }
     
     // MARK: appearance
@@ -121,14 +143,14 @@ class FTThemesTests: XCTestCase {
     }
     
     func testAppearanceNavigationBar() {
-        let theme = FTThemesManager.getAppearance("UINavigationBar") as? FTThemeModel
-        XCTAssertNotNil(theme)
-        XCTAssertTrue(theme?.count == 2, "Valid no themes not found")
+        let value = FTThemesManager.getAppearance("UINavigationBar") as? FTThemeModel
+        XCTAssertNotNil(value)
+        XCTAssertTrue(value?.count == 2, "Valid no themes not found")
     }
 
     func testFTUISearchBar() {
-        let theme: FTThemeModel? = FTThemesManager.getViewComponent("FTUISearchBar", styleName: "default")
-        XCTAssertNotNil(theme)
-        XCTAssertTrue(theme?.count == 3, "Valid no themes not found")
+        let value: FTThemeModel? = FTThemesManager.getViewComponent("FTUISearchBar", styleName: "default")
+        XCTAssertNotNil(value)
+        XCTAssertTrue(value?.count == 3, "Valid no themes not found")
     }
 }
