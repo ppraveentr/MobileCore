@@ -21,7 +21,6 @@ func + <K, V> (left: [K: V], right: [K: V]) -> [K: V] {
     var computedValue = left
     
     for (k, v) in right {
-        
         var superObject: [K: V]? = left[k] as? [K: V]
         let subObject = v as? [K: V]
         

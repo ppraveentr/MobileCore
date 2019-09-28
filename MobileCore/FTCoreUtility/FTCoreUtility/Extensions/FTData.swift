@@ -10,22 +10,13 @@ import Foundation
 
 public extension Data {
 
-    func jsonContent() -> Any? {
-        do {
-            let content = try JSONSerialization.jsonObject(with: self, options: .allowFragments)
-            return content
-        }
-        catch {
-            ftLog(error)
-        }
-        return nil
+    func jsonContent() throws -> Any? {
+        return try JSONSerialization.jsonObject(with: self, options: .allowFragments)
     }
 
     // Data decoder based on resposne mimeType or defaluts to [.utf8, .unicode]
     func decodeToString(encodingList: [String.Encoding] = [.utf8, .unicode]) -> String? {
-
         var html: String?
-
         // Try to decode the String
         for type in encodingList {
             html = String(bytes: self, encoding: type)
@@ -33,9 +24,7 @@ public extension Data {
                 break
             }
         }
-        
         //Try: On nil, try getting encoding list from URLResponse
-        
         return (html)
     }
 }

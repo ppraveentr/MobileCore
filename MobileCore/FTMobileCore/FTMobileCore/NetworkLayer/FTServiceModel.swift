@@ -20,7 +20,7 @@ public protocol FTServiceModel: Codable {
     static func createEmpytModel() throws -> Self
 
     // JSON
-    func jsonModel() -> JSON?
+    func jsonModel() throws -> JSON?
     func jsonModelData() -> Data?
     func jsonString() -> String?
     mutating func merge(data: FTServiceModel)
@@ -67,19 +67,13 @@ public extension FTServiceModel {
         return data
     }
 
-    func jsonModel() -> JSON? {
-
-        do {
-            let data: Data = try JSONEncoder().encode(self)
-            return data.jsonContent() as? JSON
-        }
-        catch {}
-
-        return nil
+    func jsonModel() throws -> JSON? {
+        let data: Data = try JSONEncoder().encode(self)
+        return try? data.jsonContent() as? JSON
     }
     
     func jsonString() -> String? {
-        if var jsn: JSON = self.jsonModel() {
+        if var jsn: JSON = try? self.jsonModel() {
             jsn.stripNilElements()
             if
                 JSONSerialization.isValidJSONObject(jsn),
@@ -93,7 +87,7 @@ public extension FTServiceModel {
 
     mutating func merge(data sourceData: FTServiceModel) {
 
-        guard let source = sourceData.jsonModel(), let json = self.jsonModel() else {
+        guard let source = try? sourceData.jsonModel(), let json = try? self.jsonModel() else {
             return
         }
         
@@ -142,7 +136,7 @@ public extension FTServiceModel {
     // URL
     func queryItems() -> [URLQueryItem] {
 
-        guard let json = self.jsonModel() else { return [] }
+        guard let json = try? self.jsonModel() else { return [] }
 
         var query: [URLQueryItem] = []
         json.forEach { arg in
@@ -156,7 +150,7 @@ public extension FTServiceModel {
     // FORM
     func formData() -> Data? {
         
-        guard let json = self.jsonModel() else {
+        guard let json = try? self.jsonModel() else {
             return nil
         }
 

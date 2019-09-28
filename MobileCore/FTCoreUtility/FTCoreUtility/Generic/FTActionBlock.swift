@@ -17,12 +17,12 @@ public extension UIControl {
     }
 
     func addTapActionBlock(_ actionBlock: @escaping FTActionBlock) {
-        objc_setAssociatedObject(self, &AssociatedKey.actionBlockTapped, actionBlock, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        FTAssociatedObject<FTActionBlock>.setAssociated(instance: self, value: actionBlock, key: &AssociatedKey.actionBlockTapped)
         self.addTarget(self, action: #selector(actionBlockTapped), for: .touchUpInside)
     }
 
     @objc func actionBlockTapped() {
-        let actionBlock: FTActionBlock? = objc_getAssociatedObject(self, &AssociatedKey.actionBlockTapped) as? FTActionBlock
+        let actionBlock: FTActionBlock? = FTAssociatedObject.getAssociated(instance: self, key: &AssociatedKey.actionBlockTapped)
         actionBlock?()
     }
 }

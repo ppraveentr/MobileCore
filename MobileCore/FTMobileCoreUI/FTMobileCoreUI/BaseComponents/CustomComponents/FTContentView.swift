@@ -11,12 +11,12 @@ import WebKit
 
 open class FTContentView: UIScrollView {
     
-    var observationContext: NSKeyValueObservation?
     public lazy var webView: WKWebView = self.getWebView()
-    public weak var scrollView: UIScrollView?
+    private var scrollViewSizeContext = #keyPath(UIScrollView.contentSize)
 
     private func getWebView() -> WKWebView {
         let local = WKWebView()
+        local.scrollView.isScrollEnabled = false
         super.contentView?.pin(view: local)
         self.startObservingHeight(local)
         return local
@@ -30,20 +30,24 @@ open class FTContentView: UIScrollView {
     
     // MARK: Observe webview content height
     func startObservingHeight(_ webView: WKWebView) {
-        self.scrollView = webView.scrollView
-        self.scrollView?.isScrollEnabled = false
-        webView.setScrollEnabled(enabled: false)
         // 'contentSize' observer
-        observationContext = self.scrollView?.observe(\.contentSize) { _, change in
-            if let nsSize = change.newValue {
-                let val = nsSize.height
-                // Do something here using content height.
-                self.contentView?.viewLayoutConstraint.constraintHeight?.constant = val
-            }
+        webView.scrollView.addObserver(self, forKeyPath: scrollViewSizeContext, options: [NSKeyValueObservingOptions.new], context: &scrollViewSizeContext)
+    }
+    
+    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if context == &scrollViewSizeContext,
+            keyPath == #keyPath(UIScrollView.contentSize),
+            let nsSize = change?[NSKeyValueChangeKey.newKey] as? CGSize {
+            let val = nsSize.height
+            // Do something here using content height.
+            self.contentView?.viewLayoutConstraint.constraintHeight?.constant = val
+        }
+        else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     
     func stopObservingHeight() {
-        observationContext?.invalidate()
+        webView.scrollView.removeObserver(self, forKeyPath: scrollViewSizeContext)
     }
 }
