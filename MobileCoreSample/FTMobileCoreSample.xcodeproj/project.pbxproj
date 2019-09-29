@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D43D0C72230525CE00C5C770 /* MobileCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43D0C6A230525A100C5C770 /* MobileCore.framework */; };
 		D4AE907822E44487005B33B2 /* FTMobileCoreBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */; settings = {ASSET_TAGS = (Bundle, ); }; };
 		D4AE907922E44492005B33B2 /* Themes.json in Resources */ = {isa = PBXBuildFile; fileRef = DE680BB01F2E038800A9F68C /* Themes.json */; };
 		D4AE907E22E446B6005B33B2 /* FTMobileCoreBundle.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -33,47 +32,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D43D0C69230525A100C5C770 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D42A580223047CEF003C7283;
-			remoteInfo = MobileCore;
-		};
-		D43D0C6B230525A100C5C770 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D42A580B23047CEF003C7283;
-			remoteInfo = MobileCoreTests;
-		};
-		D43D0C6E230525C700C5C770 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D42A580123047CEF003C7283;
-			remoteInfo = MobileCore;
-		};
 		D4FF57102311279C00F6FD96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DE9221C11EF28CDF000C8FC7 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DE9221C81EF28CDF000C8FC7;
 			remoteInfo = FTMobileCoreSample;
-		};
-		D4FF57122311279E00F6FD96 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D42A580123047CEF003C7283;
-			remoteInfo = MobileCore;
-		};
-		D4FF5714231127A100F6FD96 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D42A580A23047CEF003C7283;
-			remoteInfo = MobileCoreTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -101,7 +65,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MobileCore.xcodeproj; path = ../MobileCore.xcodeproj; sourceTree = "<group>"; };
 		D47590162317A68A00080D78 /* MobileCore.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = MobileCore.podspec; path = ../MobileCore.podspec; sourceTree = "<group>"; };
 		D47590172317A68A00080D78 /* _config.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = _config.yml; path = ../_config.yml; sourceTree = "<group>"; };
 		D47590182317A68A00080D78 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -152,22 +115,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D43D0C72230525CE00C5C770 /* MobileCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D43D0C65230525A100C5C770 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D43D0C6A230525A100C5C770 /* MobileCore.framework */,
-				D43D0C6C230525A100C5C770 /* MobileCoreTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		D4AE907322E4447D005B33B2 /* FTMobileCoreBundle */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,7 +180,6 @@
 				D47590172317A68A00080D78 /* _config.yml */,
 				D47590162317A68A00080D78 /* MobileCore.podspec */,
 				D47590182317A68A00080D78 /* README.md */,
-				D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -329,8 +281,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				D4FF5715231127A100F6FD96 /* PBXTargetDependency */,
-				D4FF57132311279E00F6FD96 /* PBXTargetDependency */,
 				D4FF57112311279C00F6FD96 /* PBXTargetDependency */,
 			);
 			name = FTMobileCoreSampleTests;
@@ -353,7 +303,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				D43D0C6F230525C700C5C770 /* PBXTargetDependency */,
 			);
 			name = FTMobileCoreSample;
 			productName = FTMobileCoreSample;
@@ -406,12 +355,6 @@
 			mainGroup = DE9221C01EF28CDF000C8FC7;
 			productRefGroup = DE9221CA1EF28CDF000C8FC7 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = D43D0C65230525A100C5C770 /* Products */;
-					ProjectRef = D43D0C64230525A100C5C770 /* MobileCore.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				DE9221C81EF28CDF000C8FC7 /* FTMobileCoreSample */,
@@ -420,23 +363,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		D43D0C6A230525A100C5C770 /* MobileCore.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = MobileCore.framework;
-			remoteRef = D43D0C69230525A100C5C770 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D43D0C6C230525A100C5C770 /* MobileCoreTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = MobileCoreTests.xctest;
-			remoteRef = D43D0C6B230525A100C5C770 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D4AE907022E4447D005B33B2 /* Resources */ = {
@@ -528,25 +454,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D43D0C6F230525C700C5C770 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MobileCore;
-			targetProxy = D43D0C6E230525C700C5C770 /* PBXContainerItemProxy */;
-		};
 		D4FF57112311279C00F6FD96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DE9221C81EF28CDF000C8FC7 /* FTMobileCoreSample */;
 			targetProxy = D4FF57102311279C00F6FD96 /* PBXContainerItemProxy */;
-		};
-		D4FF57132311279E00F6FD96 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MobileCore;
-			targetProxy = D4FF57122311279E00F6FD96 /* PBXContainerItemProxy */;
-		};
-		D4FF5715231127A100F6FD96 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MobileCoreTests;
-			targetProxy = D4FF5714231127A100F6FD96 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

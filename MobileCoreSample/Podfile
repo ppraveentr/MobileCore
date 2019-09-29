@@ -1,0 +1,7 @@
+platform :ios, '9.0'
+use_frameworks!
+
+target 'FTMobileCoreSample' do
+ #pod 'MobileCore', '0.0.6.0'
+ pod 'MobileCore', :path => "~/Documents/xCodeProject/MobileCore"
+end
