@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47073729EC70D92328370012 /* Pods_FTMobileCoreSampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 591F54C59C7946A71FACE751 /* Pods_FTMobileCoreSampleTests.framework */; };
+		B6B92E8388B1C6CC87C0A371 /* Pods_FTMobileCoreSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D294F2CA16640482C28579 /* Pods_FTMobileCoreSample.framework */; };
 		D44E56F92341CFAB00A0E56C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44E56F82341CFAB00A0E56C /* UIKit.framework */; };
 		D44E57292341D42500A0E56C /* FTConstrainsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E57252341D42500A0E56C /* FTConstrainsTests.swift */; };
 		D44E572A2341D42500A0E56C /* FTUIWebkitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E57262341D42500A0E56C /* FTUIWebkitTests.swift */; };
@@ -22,72 +24,6 @@
 		D4AE907822E44487005B33B2 /* FTMobileCoreBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */; settings = {ASSET_TAGS = (Bundle, ); }; };
 		D4AE907922E44492005B33B2 /* Themes.json in Resources */ = {isa = PBXBuildFile; fileRef = DE680BB01F2E038800A9F68C /* Themes.json */; };
 		D4AE907E22E446B6005B33B2 /* FTMobileCoreBundle.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D4AF16152341FACD006FC7C6 /* FTSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15AB2341FACD006FC7C6 /* FTSegmentedControl.swift */; };
-		D4AF16162341FACD006FC7C6 /* FTTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15AC2341FACD006FC7C6 /* FTTableView.swift */; };
-		D4AF16172341FACD006FC7C6 /* FTLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15AD2341FACD006FC7C6 /* FTLabel.swift */; };
-		D4AF16182341FACD006FC7C6 /* FTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15AE2341FACD006FC7C6 /* FTButton.swift */; };
-		D4AF16192341FACD006FC7C6 /* FTWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15AF2341FACD006FC7C6 /* FTWebView.swift */; };
-		D4AF161A2341FACD006FC7C6 /* FTCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15B02341FACD006FC7C6 /* FTCollectionView.swift */; };
-		D4AF161B2341FACD006FC7C6 /* FTScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15B12341FACD006FC7C6 /* FTScrollView.swift */; };
-		D4AF161C2341FACD006FC7C6 /* FTSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15B22341FACD006FC7C6 /* FTSearchBar.swift */; };
-		D4AF161D2341FACD006FC7C6 /* FTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15B32341FACD006FC7C6 /* FTView.swift */; };
-		D4AF161E2341FACD006FC7C6 /* FTFloatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15B52341FACD006FC7C6 /* FTFloatingView.swift */; };
-		D4AF161F2341FACD006FC7C6 /* FTContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15B62341FACD006FC7C6 /* FTContentView.swift */; };
-		D4AF16202341FACD006FC7C6 /* FTBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15B72341FACD006FC7C6 /* FTBarButtonItem.swift */; };
-		D4AF16212341FACD006FC7C6 /* FTBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15B82341FACD006FC7C6 /* FTBaseView.swift */; };
-		D4AF16222341FACD006FC7C6 /* FTFontPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4AF15BA2341FACD006FC7C6 /* FTFontPickerView.xib */; };
-		D4AF16232341FACD006FC7C6 /* FTFontPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15BB2341FACD006FC7C6 /* FTFontPickerView.swift */; };
-		D4AF16242341FACD006FC7C6 /* FTFontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15BC2341FACD006FC7C6 /* FTFontPickerViewController.swift */; };
-		D4AF16252341FACD006FC7C6 /* FTMobileCoreUIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15BE2341FACD006FC7C6 /* FTMobileCoreUIConstants.swift */; };
-		D4AF16262341FACD006FC7C6 /* FTScrollViewControllerProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15C02341FACD006FC7C6 /* FTScrollViewControllerProtocal.swift */; };
-		D4AF16272341FACD006FC7C6 /* FTBaseViewController+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15C12341FACD006FC7C6 /* FTBaseViewController+Utility.swift */; };
-		D4AF16282341FACD006FC7C6 /* FTBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15C22341FACD006FC7C6 /* FTBaseViewController.swift */; };
-		D4AF16292341FACD006FC7C6 /* FTTableViewControllerProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15C32341FACD006FC7C6 /* FTTableViewControllerProtocal.swift */; };
-		D4AF162A2341FACD006FC7C6 /* FTCollectionViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15C42341FACD006FC7C6 /* FTCollectionViewControllerProtocol.swift */; };
-		D4AF162B2341FACD006FC7C6 /* FTLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15C62341FACD006FC7C6 /* FTLoadingIndicator.swift */; };
-		D4AF162C2341FACD006FC7C6 /* FTMobileCoreUI.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4AF15C92341FACD006FC7C6 /* FTMobileCoreUI.xcassets */; };
-		D4AF16322341FACD006FC7C6 /* FTLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15D32341FACD006FC7C6 /* FTLogger.swift */; };
-		D4AF16332341FACD006FC7C6 /* FTString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15D52341FACD006FC7C6 /* FTString.swift */; };
-		D4AF16342341FACD006FC7C6 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15D62341FACD006FC7C6 /* UIViewController+Extension.swift */; };
-		D4AF16352341FACD006FC7C6 /* FTData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15D72341FACD006FC7C6 /* FTData.swift */; };
-		D4AF16362341FACD006FC7C6 /* FTLinkDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15D82341FACD006FC7C6 /* FTLinkDetection.swift */; };
-		D4AF16372341FACD006FC7C6 /* FTDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15D92341FACD006FC7C6 /* FTDictionary.swift */; };
-		D4AF16382341FACD006FC7C6 /* FTCoreUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15DB2341FACD006FC7C6 /* FTCoreUtility.swift */; };
-		D4AF16392341FACD006FC7C6 /* FTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15DC2341FACD006FC7C6 /* FTAppDelegate.swift */; };
-		D4AF163A2341FACD006FC7C6 /* FTThemesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15DE2341FACD006FC7C6 /* FTThemesManager.swift */; };
-		D4AF163B2341FACD006FC7C6 /* FTThemeView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15DF2341FACD006FC7C6 /* FTThemeView+Utility.swift */; };
-		D4AF163C2341FACD006FC7C6 /* FTAppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15E02341FACD006FC7C6 /* FTAppearanceManager.swift */; };
-		D4AF163D2341FACD006FC7C6 /* FTThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15E12341FACD006FC7C6 /* FTThemeManager.swift */; };
-		D4AF163E2341FACD006FC7C6 /* FTThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15E22341FACD006FC7C6 /* FTThemeProtocol.swift */; };
-		D4AF163F2341FACD006FC7C6 /* FTUISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15E42341FACD006FC7C6 /* FTUISearchBar.swift */; };
-		D4AF16402341FACD006FC7C6 /* FTUILabelThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15E52341FACD006FC7C6 /* FTUILabelThemeProtocol.swift */; };
-		D4AF16412341FACD006FC7C6 /* FTUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15E62341FACD006FC7C6 /* FTUIButton.swift */; };
-		D4AF16422341FACD006FC7C6 /* FTUINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15E72341FACD006FC7C6 /* FTUINavigationBar.swift */; };
-		D4AF16432341FACD006FC7C6 /* FTUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15E82341FACD006FC7C6 /* FTUICollectionView.swift */; };
-		D4AF16442341FACD006FC7C6 /* FTViewConstrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15EA2341FACD006FC7C6 /* FTViewConstrains.swift */; };
-		D4AF16452341FACD006FC7C6 /* FTViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15EB2341FACD006FC7C6 /* FTViewExtention.swift */; };
-		D4AF16462341FACD006FC7C6 /* FTViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15EC2341FACD006FC7C6 /* FTViewControllerExtension.swift */; };
-		D4AF16472341FACD006FC7C6 /* FTView+Utiltiy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15ED2341FACD006FC7C6 /* FTView+Utiltiy.swift */; };
-		D4AF16482341FACD006FC7C6 /* FTAssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15EF2341FACD006FC7C6 /* FTAssociatedObject.swift */; };
-		D4AF16492341FACD006FC7C6 /* FTImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15F02341FACD006FC7C6 /* FTImageView.swift */; };
-		D4AF164A2341FACD006FC7C6 /* FTSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15F12341FACD006FC7C6 /* FTSequence.swift */; };
-		D4AF164B2341FACD006FC7C6 /* FTImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15F22341FACD006FC7C6 /* FTImage.swift */; };
-		D4AF164C2341FACD006FC7C6 /* FTActionBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15F32341FACD006FC7C6 /* FTActionBlock.swift */; };
-		D4AF164D2341FACD006FC7C6 /* FTURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15F42341FACD006FC7C6 /* FTURL.swift */; };
-		D4AF164E2341FACD006FC7C6 /* FTMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15F52341FACD006FC7C6 /* FTMath.swift */; };
-		D4AF164F2341FACD006FC7C6 /* FTColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15F62341FACD006FC7C6 /* FTColor.swift */; };
-		D4AF16502341FACD006FC7C6 /* FTClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15F82341FACD006FC7C6 /* FTClass.swift */; };
-		D4AF16512341FACD006FC7C6 /* FTReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15F92341FACD006FC7C6 /* FTReflection.swift */; };
-		D4AF16522341FACD006FC7C6 /* FTKeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15FB2341FACD006FC7C6 /* FTKeychainWrapper.swift */; };
-		D4AF16532341FACD006FC7C6 /* FTKeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF15FC2341FACD006FC7C6 /* FTKeychainItemAccessibility.swift */; };
-		D4AF165A2341FACD006FC7C6 /* FTUserCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF16072341FACD006FC7C6 /* FTUserCache.swift */; };
-		D4AF165B2341FACD006FC7C6 /* FTURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF16092341FACD006FC7C6 /* FTURLSession.swift */; };
-		D4AF165C2341FACD006FC7C6 /* FTModelCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF160B2341FACD006FC7C6 /* FTModelCreator.swift */; };
-		D4AF165D2341FACD006FC7C6 /* FTServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF160D2341FACD006FC7C6 /* FTServiceModel.swift */; };
-		D4AF165E2341FACD006FC7C6 /* FTMobileConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF160E2341FACD006FC7C6 /* FTMobileConfig.swift */; };
-		D4AF165F2341FACD006FC7C6 /* FTErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF160F2341FACD006FC7C6 /* FTErrorModel.swift */; };
-		D4AF16602341FACD006FC7C6 /* FTRequestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF16102341FACD006FC7C6 /* FTRequestObject.swift */; };
-		D4AF16612341FACD006FC7C6 /* FTServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF16112341FACD006FC7C6 /* FTServiceClient.swift */; };
 		DE9221CD1EF28CDF000C8FC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */; };
 		DE9221CF1EF28CDF000C8FC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221CE1EF28CDF000C8FC7 /* ViewController.swift */; };
 		DE9221D21EF28CDF000C8FC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D01EF28CDF000C8FC7 /* Main.storyboard */; };
@@ -132,6 +68,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		454816F2073E0D96F6086199 /* Pods-FTMobileCoreSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCoreSampleTests.debug.xcconfig"; path = "Target Support Files/Pods-FTMobileCoreSampleTests/Pods-FTMobileCoreSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		591F54C59C7946A71FACE751 /* Pods_FTMobileCoreSampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FTMobileCoreSampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65D294F2CA16640482C28579 /* Pods_FTMobileCoreSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FTMobileCoreSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		79ECFC56805FED53AC29841C /* Pods-FTMobileCoreSampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCoreSampleTests.release.xcconfig"; path = "Target Support Files/Pods-FTMobileCoreSampleTests/Pods-FTMobileCoreSampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		8D37EF020C675DF4F06D3354 /* Pods-FTMobileCoreSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCoreSample.debug.xcconfig"; path = "Target Support Files/Pods-FTMobileCoreSample/Pods-FTMobileCoreSample.debug.xcconfig"; sourceTree = "<group>"; };
+		D444D361BBC1A48FE65DCC23 /* Pods-FTMobileCoreSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCoreSample.release.xcconfig"; path = "Target Support Files/Pods-FTMobileCoreSample/Pods-FTMobileCoreSample.release.xcconfig"; sourceTree = "<group>"; };
 		D44E56F82341CFAB00A0E56C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D44E56FE2341D3B900A0E56C /* FTMobileCoreSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44E57022341D3B900A0E56C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -151,72 +93,6 @@
 		D4AE907222E4447D005B33B2 /* FTMobileCoreBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4AE907422E4447D005B33B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4AF14E82341F2E6006FC7C6 /* FTMobileCoreSampleTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTMobileCoreSampleTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		D4AF15AB2341FACD006FC7C6 /* FTSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTSegmentedControl.swift; sourceTree = "<group>"; };
-		D4AF15AC2341FACD006FC7C6 /* FTTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTTableView.swift; sourceTree = "<group>"; };
-		D4AF15AD2341FACD006FC7C6 /* FTLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLabel.swift; sourceTree = "<group>"; };
-		D4AF15AE2341FACD006FC7C6 /* FTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTButton.swift; sourceTree = "<group>"; };
-		D4AF15AF2341FACD006FC7C6 /* FTWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTWebView.swift; sourceTree = "<group>"; };
-		D4AF15B02341FACD006FC7C6 /* FTCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTCollectionView.swift; sourceTree = "<group>"; };
-		D4AF15B12341FACD006FC7C6 /* FTScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTScrollView.swift; sourceTree = "<group>"; };
-		D4AF15B22341FACD006FC7C6 /* FTSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTSearchBar.swift; sourceTree = "<group>"; };
-		D4AF15B32341FACD006FC7C6 /* FTView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTView.swift; sourceTree = "<group>"; };
-		D4AF15B52341FACD006FC7C6 /* FTFloatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTFloatingView.swift; sourceTree = "<group>"; };
-		D4AF15B62341FACD006FC7C6 /* FTContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTContentView.swift; sourceTree = "<group>"; };
-		D4AF15B72341FACD006FC7C6 /* FTBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBarButtonItem.swift; sourceTree = "<group>"; };
-		D4AF15B82341FACD006FC7C6 /* FTBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseView.swift; sourceTree = "<group>"; };
-		D4AF15BA2341FACD006FC7C6 /* FTFontPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FTFontPickerView.xib; sourceTree = "<group>"; };
-		D4AF15BB2341FACD006FC7C6 /* FTFontPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTFontPickerView.swift; sourceTree = "<group>"; };
-		D4AF15BC2341FACD006FC7C6 /* FTFontPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTFontPickerViewController.swift; sourceTree = "<group>"; };
-		D4AF15BE2341FACD006FC7C6 /* FTMobileCoreUIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMobileCoreUIConstants.swift; sourceTree = "<group>"; };
-		D4AF15C02341FACD006FC7C6 /* FTScrollViewControllerProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTScrollViewControllerProtocal.swift; sourceTree = "<group>"; };
-		D4AF15C12341FACD006FC7C6 /* FTBaseViewController+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FTBaseViewController+Utility.swift"; sourceTree = "<group>"; };
-		D4AF15C22341FACD006FC7C6 /* FTBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTBaseViewController.swift; sourceTree = "<group>"; };
-		D4AF15C32341FACD006FC7C6 /* FTTableViewControllerProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTTableViewControllerProtocal.swift; sourceTree = "<group>"; };
-		D4AF15C42341FACD006FC7C6 /* FTCollectionViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTCollectionViewControllerProtocol.swift; sourceTree = "<group>"; };
-		D4AF15C62341FACD006FC7C6 /* FTLoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLoadingIndicator.swift; sourceTree = "<group>"; };
-		D4AF15C92341FACD006FC7C6 /* FTMobileCoreUI.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FTMobileCoreUI.xcassets; sourceTree = "<group>"; };
-		D4AF15D32341FACD006FC7C6 /* FTLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLogger.swift; sourceTree = "<group>"; };
-		D4AF15D52341FACD006FC7C6 /* FTString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTString.swift; sourceTree = "<group>"; };
-		D4AF15D62341FACD006FC7C6 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		D4AF15D72341FACD006FC7C6 /* FTData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTData.swift; sourceTree = "<group>"; };
-		D4AF15D82341FACD006FC7C6 /* FTLinkDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTLinkDetection.swift; sourceTree = "<group>"; };
-		D4AF15D92341FACD006FC7C6 /* FTDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTDictionary.swift; sourceTree = "<group>"; };
-		D4AF15DB2341FACD006FC7C6 /* FTCoreUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTCoreUtility.swift; sourceTree = "<group>"; };
-		D4AF15DC2341FACD006FC7C6 /* FTAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTAppDelegate.swift; sourceTree = "<group>"; };
-		D4AF15DE2341FACD006FC7C6 /* FTThemesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTThemesManager.swift; sourceTree = "<group>"; };
-		D4AF15DF2341FACD006FC7C6 /* FTThemeView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FTThemeView+Utility.swift"; sourceTree = "<group>"; };
-		D4AF15E02341FACD006FC7C6 /* FTAppearanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTAppearanceManager.swift; sourceTree = "<group>"; };
-		D4AF15E12341FACD006FC7C6 /* FTThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTThemeManager.swift; sourceTree = "<group>"; };
-		D4AF15E22341FACD006FC7C6 /* FTThemeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTThemeProtocol.swift; sourceTree = "<group>"; };
-		D4AF15E42341FACD006FC7C6 /* FTUISearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUISearchBar.swift; sourceTree = "<group>"; };
-		D4AF15E52341FACD006FC7C6 /* FTUILabelThemeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUILabelThemeProtocol.swift; sourceTree = "<group>"; };
-		D4AF15E62341FACD006FC7C6 /* FTUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIButton.swift; sourceTree = "<group>"; };
-		D4AF15E72341FACD006FC7C6 /* FTUINavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUINavigationBar.swift; sourceTree = "<group>"; };
-		D4AF15E82341FACD006FC7C6 /* FTUICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUICollectionView.swift; sourceTree = "<group>"; };
-		D4AF15EA2341FACD006FC7C6 /* FTViewConstrains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTViewConstrains.swift; sourceTree = "<group>"; };
-		D4AF15EB2341FACD006FC7C6 /* FTViewExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTViewExtention.swift; sourceTree = "<group>"; };
-		D4AF15EC2341FACD006FC7C6 /* FTViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTViewControllerExtension.swift; sourceTree = "<group>"; };
-		D4AF15ED2341FACD006FC7C6 /* FTView+Utiltiy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FTView+Utiltiy.swift"; sourceTree = "<group>"; };
-		D4AF15EF2341FACD006FC7C6 /* FTAssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTAssociatedObject.swift; sourceTree = "<group>"; };
-		D4AF15F02341FACD006FC7C6 /* FTImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTImageView.swift; sourceTree = "<group>"; };
-		D4AF15F12341FACD006FC7C6 /* FTSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTSequence.swift; sourceTree = "<group>"; };
-		D4AF15F22341FACD006FC7C6 /* FTImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTImage.swift; sourceTree = "<group>"; };
-		D4AF15F32341FACD006FC7C6 /* FTActionBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTActionBlock.swift; sourceTree = "<group>"; };
-		D4AF15F42341FACD006FC7C6 /* FTURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTURL.swift; sourceTree = "<group>"; };
-		D4AF15F52341FACD006FC7C6 /* FTMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMath.swift; sourceTree = "<group>"; };
-		D4AF15F62341FACD006FC7C6 /* FTColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTColor.swift; sourceTree = "<group>"; };
-		D4AF15F82341FACD006FC7C6 /* FTClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTClass.swift; sourceTree = "<group>"; };
-		D4AF15F92341FACD006FC7C6 /* FTReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTReflection.swift; sourceTree = "<group>"; };
-		D4AF15FB2341FACD006FC7C6 /* FTKeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTKeychainWrapper.swift; sourceTree = "<group>"; };
-		D4AF15FC2341FACD006FC7C6 /* FTKeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTKeychainItemAccessibility.swift; sourceTree = "<group>"; };
-		D4AF16072341FACD006FC7C6 /* FTUserCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUserCache.swift; sourceTree = "<group>"; };
-		D4AF16092341FACD006FC7C6 /* FTURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTURLSession.swift; sourceTree = "<group>"; };
-		D4AF160B2341FACD006FC7C6 /* FTModelCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTModelCreator.swift; sourceTree = "<group>"; };
-		D4AF160D2341FACD006FC7C6 /* FTServiceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTServiceModel.swift; sourceTree = "<group>"; };
-		D4AF160E2341FACD006FC7C6 /* FTMobileConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMobileConfig.swift; sourceTree = "<group>"; };
-		D4AF160F2341FACD006FC7C6 /* FTErrorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTErrorModel.swift; sourceTree = "<group>"; };
-		D4AF16102341FACD006FC7C6 /* FTRequestObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTRequestObject.swift; sourceTree = "<group>"; };
-		D4AF16112341FACD006FC7C6 /* FTServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTServiceClient.swift; sourceTree = "<group>"; };
 		DE680BB01F2E038800A9F68C /* Themes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Themes.json; sourceTree = "<group>"; };
 		DE9221C91EF28CDF000C8FC7 /* FTMobileCoreSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FTMobileCoreSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -236,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47073729EC70D92328370012 /* Pods_FTMobileCoreSampleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,12 +128,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				D44E56F92341CFAB00A0E56C /* UIKit.framework in Frameworks */,
+				B6B92E8388B1C6CC87C0A371 /* Pods_FTMobileCoreSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE016806CD3793C9F95F02FB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8D37EF020C675DF4F06D3354 /* Pods-FTMobileCoreSample.debug.xcconfig */,
+				D444D361BBC1A48FE65DCC23 /* Pods-FTMobileCoreSample.release.xcconfig */,
+				454816F2073E0D96F6086199 /* Pods-FTMobileCoreSampleTests.debug.xcconfig */,
+				79ECFC56805FED53AC29841C /* Pods-FTMobileCoreSampleTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D44E56FF2341D3B900A0E56C /* FTMobileCoreSampleTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,306 +224,15 @@
 			path = FTMobileCoreBundle;
 			sourceTree = "<group>";
 		};
-		D4AF15A72341FACD006FC7C6 /* FTMobileCoreUI */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15A82341FACD006FC7C6 /* Classes */,
-				D4AF15C82341FACD006FC7C6 /* Resources */,
-			);
-			name = FTMobileCoreUI;
-			path = ../FTMobileCoreUI;
-			sourceTree = "<group>";
-		};
-		D4AF15A82341FACD006FC7C6 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15A92341FACD006FC7C6 /* BaseComponents */,
-				D4AF15C52341FACD006FC7C6 /* LoadingIndicator */,
-				D4AF15C72341FACD006FC7C6 /* Protocals */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		D4AF15A92341FACD006FC7C6 /* BaseComponents */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15AA2341FACD006FC7C6 /* CoreComponents */,
-				D4AF15B42341FACD006FC7C6 /* CustomComponents */,
-				D4AF15B92341FACD006FC7C6 /* FontPicker */,
-				D4AF15BD2341FACD006FC7C6 /* Utilites */,
-				D4AF15BF2341FACD006FC7C6 /* Contollers */,
-			);
-			path = BaseComponents;
-			sourceTree = "<group>";
-		};
-		D4AF15AA2341FACD006FC7C6 /* CoreComponents */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15AB2341FACD006FC7C6 /* FTSegmentedControl.swift */,
-				D4AF15AC2341FACD006FC7C6 /* FTTableView.swift */,
-				D4AF15AD2341FACD006FC7C6 /* FTLabel.swift */,
-				D4AF15AE2341FACD006FC7C6 /* FTButton.swift */,
-				D4AF15AF2341FACD006FC7C6 /* FTWebView.swift */,
-				D4AF15B02341FACD006FC7C6 /* FTCollectionView.swift */,
-				D4AF15B12341FACD006FC7C6 /* FTScrollView.swift */,
-				D4AF15B22341FACD006FC7C6 /* FTSearchBar.swift */,
-				D4AF15B32341FACD006FC7C6 /* FTView.swift */,
-			);
-			path = CoreComponents;
-			sourceTree = "<group>";
-		};
-		D4AF15B42341FACD006FC7C6 /* CustomComponents */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15B52341FACD006FC7C6 /* FTFloatingView.swift */,
-				D4AF15B62341FACD006FC7C6 /* FTContentView.swift */,
-				D4AF15B72341FACD006FC7C6 /* FTBarButtonItem.swift */,
-				D4AF15B82341FACD006FC7C6 /* FTBaseView.swift */,
-			);
-			path = CustomComponents;
-			sourceTree = "<group>";
-		};
-		D4AF15B92341FACD006FC7C6 /* FontPicker */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15BA2341FACD006FC7C6 /* FTFontPickerView.xib */,
-				D4AF15BB2341FACD006FC7C6 /* FTFontPickerView.swift */,
-				D4AF15BC2341FACD006FC7C6 /* FTFontPickerViewController.swift */,
-			);
-			path = FontPicker;
-			sourceTree = "<group>";
-		};
-		D4AF15BD2341FACD006FC7C6 /* Utilites */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15BE2341FACD006FC7C6 /* FTMobileCoreUIConstants.swift */,
-			);
-			path = Utilites;
-			sourceTree = "<group>";
-		};
-		D4AF15BF2341FACD006FC7C6 /* Contollers */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15C02341FACD006FC7C6 /* FTScrollViewControllerProtocal.swift */,
-				D4AF15C12341FACD006FC7C6 /* FTBaseViewController+Utility.swift */,
-				D4AF15C22341FACD006FC7C6 /* FTBaseViewController.swift */,
-				D4AF15C32341FACD006FC7C6 /* FTTableViewControllerProtocal.swift */,
-				D4AF15C42341FACD006FC7C6 /* FTCollectionViewControllerProtocol.swift */,
-			);
-			path = Contollers;
-			sourceTree = "<group>";
-		};
-		D4AF15C52341FACD006FC7C6 /* LoadingIndicator */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15C62341FACD006FC7C6 /* FTLoadingIndicator.swift */,
-			);
-			path = LoadingIndicator;
-			sourceTree = "<group>";
-		};
-		D4AF15C72341FACD006FC7C6 /* Protocals */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocals;
-			sourceTree = "<group>";
-		};
-		D4AF15C82341FACD006FC7C6 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15C92341FACD006FC7C6 /* FTMobileCoreUI.xcassets */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		D4AF15D02341FACD006FC7C6 /* FTCoreUtility */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15D12341FACD006FC7C6 /* Classes */,
-			);
-			name = FTCoreUtility;
-			path = ../FTCoreUtility;
-			sourceTree = "<group>";
-		};
-		D4AF15D12341FACD006FC7C6 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15D22341FACD006FC7C6 /* Logger */,
-				D4AF15D42341FACD006FC7C6 /* Extensions */,
-				D4AF15DA2341FACD006FC7C6 /* AppBase */,
-				D4AF15DD2341FACD006FC7C6 /* Theme */,
-				D4AF15E92341FACD006FC7C6 /* View */,
-				D4AF15EE2341FACD006FC7C6 /* Generic */,
-				D4AF15F72341FACD006FC7C6 /* ClassReflection */,
-				D4AF15FA2341FACD006FC7C6 /* KeychainWrapper */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		D4AF15D22341FACD006FC7C6 /* Logger */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15D32341FACD006FC7C6 /* FTLogger.swift */,
-			);
-			path = Logger;
-			sourceTree = "<group>";
-		};
-		D4AF15D42341FACD006FC7C6 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15D52341FACD006FC7C6 /* FTString.swift */,
-				D4AF15D62341FACD006FC7C6 /* UIViewController+Extension.swift */,
-				D4AF15D72341FACD006FC7C6 /* FTData.swift */,
-				D4AF15D82341FACD006FC7C6 /* FTLinkDetection.swift */,
-				D4AF15D92341FACD006FC7C6 /* FTDictionary.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		D4AF15DA2341FACD006FC7C6 /* AppBase */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15DB2341FACD006FC7C6 /* FTCoreUtility.swift */,
-				D4AF15DC2341FACD006FC7C6 /* FTAppDelegate.swift */,
-			);
-			path = AppBase;
-			sourceTree = "<group>";
-		};
-		D4AF15DD2341FACD006FC7C6 /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15DE2341FACD006FC7C6 /* FTThemesManager.swift */,
-				D4AF15DF2341FACD006FC7C6 /* FTThemeView+Utility.swift */,
-				D4AF15E02341FACD006FC7C6 /* FTAppearanceManager.swift */,
-				D4AF15E12341FACD006FC7C6 /* FTThemeManager.swift */,
-				D4AF15E22341FACD006FC7C6 /* FTThemeProtocol.swift */,
-				D4AF15E32341FACD006FC7C6 /* ThemeComponents */,
-			);
-			path = Theme;
-			sourceTree = "<group>";
-		};
-		D4AF15E32341FACD006FC7C6 /* ThemeComponents */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15E42341FACD006FC7C6 /* FTUISearchBar.swift */,
-				D4AF15E52341FACD006FC7C6 /* FTUILabelThemeProtocol.swift */,
-				D4AF15E62341FACD006FC7C6 /* FTUIButton.swift */,
-				D4AF15E72341FACD006FC7C6 /* FTUINavigationBar.swift */,
-				D4AF15E82341FACD006FC7C6 /* FTUICollectionView.swift */,
-			);
-			path = ThemeComponents;
-			sourceTree = "<group>";
-		};
-		D4AF15E92341FACD006FC7C6 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15EA2341FACD006FC7C6 /* FTViewConstrains.swift */,
-				D4AF15EB2341FACD006FC7C6 /* FTViewExtention.swift */,
-				D4AF15EC2341FACD006FC7C6 /* FTViewControllerExtension.swift */,
-				D4AF15ED2341FACD006FC7C6 /* FTView+Utiltiy.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		D4AF15EE2341FACD006FC7C6 /* Generic */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15EF2341FACD006FC7C6 /* FTAssociatedObject.swift */,
-				D4AF15F02341FACD006FC7C6 /* FTImageView.swift */,
-				D4AF15F12341FACD006FC7C6 /* FTSequence.swift */,
-				D4AF15F22341FACD006FC7C6 /* FTImage.swift */,
-				D4AF15F32341FACD006FC7C6 /* FTActionBlock.swift */,
-				D4AF15F42341FACD006FC7C6 /* FTURL.swift */,
-				D4AF15F52341FACD006FC7C6 /* FTMath.swift */,
-				D4AF15F62341FACD006FC7C6 /* FTColor.swift */,
-			);
-			path = Generic;
-			sourceTree = "<group>";
-		};
-		D4AF15F72341FACD006FC7C6 /* ClassReflection */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15F82341FACD006FC7C6 /* FTClass.swift */,
-				D4AF15F92341FACD006FC7C6 /* FTReflection.swift */,
-			);
-			path = ClassReflection;
-			sourceTree = "<group>";
-		};
-		D4AF15FA2341FACD006FC7C6 /* KeychainWrapper */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF15FB2341FACD006FC7C6 /* FTKeychainWrapper.swift */,
-				D4AF15FC2341FACD006FC7C6 /* FTKeychainItemAccessibility.swift */,
-			);
-			path = KeychainWrapper;
-			sourceTree = "<group>";
-		};
-		D4AF16042341FACD006FC7C6 /* FTMobileCore */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF16052341FACD006FC7C6 /* Classes */,
-			);
-			name = FTMobileCore;
-			path = ../FTMobileCore;
-			sourceTree = "<group>";
-		};
-		D4AF16052341FACD006FC7C6 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF16062341FACD006FC7C6 /* Cache */,
-				D4AF16082341FACD006FC7C6 /* CoreNetwork */,
-				D4AF160A2341FACD006FC7C6 /* ModelObjects */,
-				D4AF160C2341FACD006FC7C6 /* NetworkLayer */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		D4AF16062341FACD006FC7C6 /* Cache */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF16072341FACD006FC7C6 /* FTUserCache.swift */,
-			);
-			path = Cache;
-			sourceTree = "<group>";
-		};
-		D4AF16082341FACD006FC7C6 /* CoreNetwork */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF16092341FACD006FC7C6 /* FTURLSession.swift */,
-			);
-			path = CoreNetwork;
-			sourceTree = "<group>";
-		};
-		D4AF160A2341FACD006FC7C6 /* ModelObjects */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF160B2341FACD006FC7C6 /* FTModelCreator.swift */,
-			);
-			path = ModelObjects;
-			sourceTree = "<group>";
-		};
-		D4AF160C2341FACD006FC7C6 /* NetworkLayer */ = {
-			isa = PBXGroup;
-			children = (
-				D4AF160D2341FACD006FC7C6 /* FTServiceModel.swift */,
-				D4AF160E2341FACD006FC7C6 /* FTMobileConfig.swift */,
-				D4AF160F2341FACD006FC7C6 /* FTErrorModel.swift */,
-				D4AF16102341FACD006FC7C6 /* FTRequestObject.swift */,
-				D4AF16112341FACD006FC7C6 /* FTServiceClient.swift */,
-			);
-			path = NetworkLayer;
-			sourceTree = "<group>";
-		};
 		DE2FB9191F3DF7A400581064 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D4AF15D02341FACD006FC7C6 /* FTCoreUtility */,
-				D4AF16042341FACD006FC7C6 /* FTMobileCore */,
-				D4AF15A72341FACD006FC7C6 /* FTMobileCoreUI */,
 				D44E56F82341CFAB00A0E56C /* UIKit.framework */,
 				D47590172317A68A00080D78 /* _config.yml */,
 				D47590162317A68A00080D78 /* MobileCore.podspec */,
 				D47590182317A68A00080D78 /* README.md */,
+				65D294F2CA16640482C28579 /* Pods_FTMobileCoreSample.framework */,
+				591F54C59C7946A71FACE751 /* Pods_FTMobileCoreSampleTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -655,6 +253,7 @@
 				D44E56FF2341D3B900A0E56C /* FTMobileCoreSampleTests */,
 				DE9221CA1EF28CDF000C8FC7 /* Products */,
 				DE2FB9191F3DF7A400581064 /* Frameworks */,
+				BE016806CD3793C9F95F02FB /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -712,6 +311,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D44E57052341D3B900A0E56C /* Build configuration list for PBXNativeTarget "FTMobileCoreSampleTests" */;
 			buildPhases = (
+				3C43B421ABD542A0D4065FC9 /* [CP] Check Pods Manifest.lock */,
 				D44E56FA2341D3B900A0E56C /* Sources */,
 				D44E56FB2341D3B900A0E56C /* Frameworks */,
 				D44E56FC2341D3B900A0E56C /* Resources */,
@@ -747,6 +347,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE9221DB1EF28CDF000C8FC7 /* Build configuration list for PBXNativeTarget "FTMobileCoreSample" */;
 			buildPhases = (
+				A72BCE4D8C549CC545E26915 /* [CP] Check Pods Manifest.lock */,
 				DE9221C51EF28CDF000C8FC7 /* Sources */,
 				DE9221C61EF28CDF000C8FC7 /* Frameworks */,
 				DE9221C71EF28CDF000C8FC7 /* Resources */,
@@ -754,6 +355,7 @@
 				DE1485561F10C09400A250A6 /* Embed Frameworks */,
 				D4AE907D22E446A6005B33B2 /* CopyFiles */,
 				D437653C230E8E5B004974CC /* swiftlint Run Script */,
+				51B0F776A7193919286E3414 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -840,8 +442,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4AE907822E44487005B33B2 /* FTMobileCoreBundle.bundle in Resources */,
-				D4AF16222341FACD006FC7C6 /* FTFontPickerView.xib in Resources */,
-				D4AF162C2341FACD006FC7C6 /* FTMobileCoreUI.xcassets in Resources */,
 				DE9221D71EF28CDF000C8FC7 /* LaunchScreen.storyboard in Resources */,
 				DE9221D41EF28CDF000C8FC7 /* Assets.xcassets in Resources */,
 				DE9221D21EF28CDF000C8FC7 /* Main.storyboard in Resources */,
@@ -851,6 +451,68 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3C43B421ABD542A0D4065FC9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FTMobileCoreSampleTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		51B0F776A7193919286E3414 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FTMobileCoreSample/Pods-FTMobileCoreSample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MobileCore/MobileCore.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MobileCore.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FTMobileCoreSample/Pods-FTMobileCoreSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A72BCE4D8C549CC545E26915 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FTMobileCoreSample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D437653C230E8E5B004974CC /* swiftlint Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -900,74 +562,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4AF16382341FACD006FC7C6 /* FTCoreUtility.swift in Sources */,
-				D4AF163E2341FACD006FC7C6 /* FTThemeProtocol.swift in Sources */,
-				D4AF161B2341FACD006FC7C6 /* FTScrollView.swift in Sources */,
-				D4AF164D2341FACD006FC7C6 /* FTURL.swift in Sources */,
-				D4AF165F2341FACD006FC7C6 /* FTErrorModel.swift in Sources */,
-				D4AF16362341FACD006FC7C6 /* FTLinkDetection.swift in Sources */,
-				D4AF161C2341FACD006FC7C6 /* FTSearchBar.swift in Sources */,
-				D4AF16402341FACD006FC7C6 /* FTUILabelThemeProtocol.swift in Sources */,
-				D4AF16612341FACD006FC7C6 /* FTServiceClient.swift in Sources */,
-				D4AF165D2341FACD006FC7C6 /* FTServiceModel.swift in Sources */,
-				D4AF16412341FACD006FC7C6 /* FTUIButton.swift in Sources */,
-				D4AF16532341FACD006FC7C6 /* FTKeychainItemAccessibility.swift in Sources */,
-				D4AF16602341FACD006FC7C6 /* FTRequestObject.swift in Sources */,
-				D4AF163F2341FACD006FC7C6 /* FTUISearchBar.swift in Sources */,
-				D4AF16492341FACD006FC7C6 /* FTImageView.swift in Sources */,
-				D4AF162B2341FACD006FC7C6 /* FTLoadingIndicator.swift in Sources */,
-				D4AF16452341FACD006FC7C6 /* FTViewExtention.swift in Sources */,
-				D4AF16462341FACD006FC7C6 /* FTViewControllerExtension.swift in Sources */,
-				D4AF16352341FACD006FC7C6 /* FTData.swift in Sources */,
-				D4AF165E2341FACD006FC7C6 /* FTMobileConfig.swift in Sources */,
-				D4AF16252341FACD006FC7C6 /* FTMobileCoreUIConstants.swift in Sources */,
-				D4AF161A2341FACD006FC7C6 /* FTCollectionView.swift in Sources */,
-				D4AF16502341FACD006FC7C6 /* FTClass.swift in Sources */,
-				D4AF16392341FACD006FC7C6 /* FTAppDelegate.swift in Sources */,
-				D4AF163A2341FACD006FC7C6 /* FTThemesManager.swift in Sources */,
-				D4AF16152341FACD006FC7C6 /* FTSegmentedControl.swift in Sources */,
-				D4AF16512341FACD006FC7C6 /* FTReflection.swift in Sources */,
-				D4AF16212341FACD006FC7C6 /* FTBaseView.swift in Sources */,
-				D4AF162A2341FACD006FC7C6 /* FTCollectionViewControllerProtocol.swift in Sources */,
-				D4AF164F2341FACD006FC7C6 /* FTColor.swift in Sources */,
-				D4AF16442341FACD006FC7C6 /* FTViewConstrains.swift in Sources */,
-				D4AF164A2341FACD006FC7C6 /* FTSequence.swift in Sources */,
-				D4AF16342341FACD006FC7C6 /* UIViewController+Extension.swift in Sources */,
-				D4AF163C2341FACD006FC7C6 /* FTAppearanceManager.swift in Sources */,
-				D4AF16322341FACD006FC7C6 /* FTLogger.swift in Sources */,
-				D4AF16482341FACD006FC7C6 /* FTAssociatedObject.swift in Sources */,
-				D4AF165B2341FACD006FC7C6 /* FTURLSession.swift in Sources */,
-				D4AF163B2341FACD006FC7C6 /* FTThemeView+Utility.swift in Sources */,
-				D4AF16272341FACD006FC7C6 /* FTBaseViewController+Utility.swift in Sources */,
-				D4AF16372341FACD006FC7C6 /* FTDictionary.swift in Sources */,
-				D4AF16232341FACD006FC7C6 /* FTFontPickerView.swift in Sources */,
-				D4AF16422341FACD006FC7C6 /* FTUINavigationBar.swift in Sources */,
-				D4AF16522341FACD006FC7C6 /* FTKeychainWrapper.swift in Sources */,
 				DE9221CF1EF28CDF000C8FC7 /* ViewController.swift in Sources */,
-				D4AF16192341FACD006FC7C6 /* FTWebView.swift in Sources */,
-				D4AF164C2341FACD006FC7C6 /* FTActionBlock.swift in Sources */,
-				D4AF164B2341FACD006FC7C6 /* FTImage.swift in Sources */,
-				D4AF16282341FACD006FC7C6 /* FTBaseViewController.swift in Sources */,
-				D4AF161F2341FACD006FC7C6 /* FTContentView.swift in Sources */,
-				D4AF165C2341FACD006FC7C6 /* FTModelCreator.swift in Sources */,
 				DEA7E1AA1F498B070002C148 /* FTSampleTableViewController.swift in Sources */,
-				D4AF16432341FACD006FC7C6 /* FTUICollectionView.swift in Sources */,
 				DEC55DDA1EF2968700FAE024 /* MDASample.swift in Sources */,
-				D4AF16472341FACD006FC7C6 /* FTView+Utiltiy.swift in Sources */,
 				DE9221CD1EF28CDF000C8FC7 /* AppDelegate.swift in Sources */,
-				D4AF16202341FACD006FC7C6 /* FTBarButtonItem.swift in Sources */,
-				D4AF16242341FACD006FC7C6 /* FTFontPickerViewController.swift in Sources */,
-				D4AF16172341FACD006FC7C6 /* FTLabel.swift in Sources */,
-				D4AF164E2341FACD006FC7C6 /* FTMath.swift in Sources */,
-				D4AF161D2341FACD006FC7C6 /* FTView.swift in Sources */,
-				D4AF16332341FACD006FC7C6 /* FTString.swift in Sources */,
-				D4AF16292341FACD006FC7C6 /* FTTableViewControllerProtocal.swift in Sources */,
-				D4AF16262341FACD006FC7C6 /* FTScrollViewControllerProtocal.swift in Sources */,
-				D4AF16162341FACD006FC7C6 /* FTTableView.swift in Sources */,
-				D4AF163D2341FACD006FC7C6 /* FTThemeManager.swift in Sources */,
-				D4AF161E2341FACD006FC7C6 /* FTFloatingView.swift in Sources */,
-				D4AF165A2341FACD006FC7C6 /* FTUserCache.swift in Sources */,
-				D4AF16182341FACD006FC7C6 /* FTButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1003,6 +601,7 @@
 /* Begin XCBuildConfiguration section */
 		D44E57062341D3B900A0E56C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 454816F2073E0D96F6086199 /* Pods-FTMobileCoreSampleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1026,6 +625,7 @@
 		};
 		D44E57072341D3B900A0E56C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79ECFC56805FED53AC29841C /* Pods-FTMobileCoreSampleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1210,6 +810,7 @@
 		};
 		DE9221DC1EF28CDF000C8FC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D37EF020C675DF4F06D3354 /* Pods-FTMobileCoreSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1234,6 +835,7 @@
 		};
 		DE9221DD1EF28CDF000C8FC7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D444D361BBC1A48FE65DCC23 /* Pods-FTMobileCoreSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
