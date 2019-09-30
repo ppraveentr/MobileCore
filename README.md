@@ -7,6 +7,7 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ppraveentr_MobileCore&metric=alert_status)](https://sonarcloud.io/dashboard?id=ppraveentr_MobileCore)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=ppraveentr_MobileCore&metric=ncloc)](https://sonarcloud.io/dashboard?id=ppraveentr_MobileCore)
+[![codecov](https://codecov.io/gh/ppraveentr/MobileCore/branch/master/graph/badge.svg)](https://codecov.io/gh/ppraveentr/MobileCore)
 
 Lets consider you are developing a Mobile application, be it for Prototyping or Enterprise, finding right set of utitlies all in one place or configuring application Theme, writing a Network-layer  isn't always easy and its time consuming to write the code from scratch. 
 
