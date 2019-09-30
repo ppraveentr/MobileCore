@@ -73,3 +73,4 @@ Frameworks/
 MobileCoreSample/Pods/*
 MobileCoreSample/Pods/**
 MobileCoreSample/Pods/**/*
+MobileCoreSample/Podfile.lock

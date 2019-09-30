@@ -1,9 +1,16 @@
 platform :ios, '9.0'
 use_frameworks!
 
+# Silent warnings from all pods
+inhibit_all_warnings!
+
+def mobile_core_source
+    { :path => '../' }
+end
+
 def common_pods
- #pod 'MobileCore', '0.0.6.0'
- pod 'MobileCore', :path => "~/Documents/xCodeProject/MobileCore"
+ #pod 'MobileCore', '0.0.7.0'
+ pod 'MobileCore', mobile_core_source
 end
 
 target 'FTMobileCoreSample' do
