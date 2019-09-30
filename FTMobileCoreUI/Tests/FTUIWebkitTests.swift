@@ -6,7 +6,7 @@
 //  Copyright © 2019 Praveen P. All rights reserved.
 //
 
-@testable import MobileCore
+@testable import FTMobileCoreSample
 import WebKit
 import XCTest
 
