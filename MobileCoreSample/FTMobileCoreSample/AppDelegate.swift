@@ -6,8 +6,6 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
-import MobileCore
-
 @UIApplicationMain
 public class AppDelegate: FTAppDelegate {
 
