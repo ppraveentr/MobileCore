@@ -1,19 +1,25 @@
 language: swift
 osx_image: xcode10.2
 xcode_destination: platform=iOS Simulator,OS=12.0,name=iPhone X
-xcode_scheme: MobileCore
-xcode_project: 'FTMobileCoreSample/FTMobileCoreSample.xcodeproj'
 
+before_install:
+ - pod --version
+ - pod repo update --silent
+ - pod install --project-directory='MobileCoreSample'
+ - xcpretty --version
+ - xcodebuild -version
+ - xcodebuild -showsdks
+ 
 script:
-- set -o pipefail && xcodebuild clean test build -enableCodeCoverage YES -project "MobileCoreSample/FTMobileCoreSample.xcodeproj" -scheme FTMobileCoreSample -sdk "iphonesimulator" only_active_arch=no defines_module=yes | xcpretty  --report html
-- pod lib lint
+ - set -o pipefail && xcodebuild clean test build -enableCodeCoverage YES -workspace "MobileCoreSample/FTMobileCoreSample.xcworkspace" -scheme FTMobileCoreSample -destination 'platform=iOS Simulator,name=iPhone X,OS=12.0' only_active_arch=no defines_module=yes | xcpretty --report html
+ - pod lib lint
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   
 before_deploy:
-      - git config --local user.name "PraveenP"
-      - git config --local user.email "ppraveentr@gmail.com"
+  - git config --local user.name "PraveenP"
+  - git config --local user.email "ppraveentr@gmail.com"
       
 deploy:
   provider: releases

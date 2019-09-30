@@ -4,13 +4,12 @@ use_frameworks!
 # Silent warnings from all pods
 inhibit_all_warnings!
 
-def mobile_core_source
+def local_path_source
     { :path => '../' }
 end
 
 def common_pods
- #pod 'MobileCore', '0.0.7.0'
- pod 'MobileCore', mobile_core_source
+ pod 'MobileCore', local_path_source
 end
 
 target 'FTMobileCoreSample' do

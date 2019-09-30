@@ -6,7 +6,7 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
-@testable import FTMobileCoreSample
+@testable import MobileCore
 import XCTest
 
 class FTThemesTests: XCTestCase {
