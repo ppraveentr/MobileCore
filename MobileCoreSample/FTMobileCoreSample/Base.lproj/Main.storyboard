@@ -21,7 +21,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="9mj-Ni-aFM"/>
-                        <segue destination="Ihh-Hk-plv" kind="relationship" relationship="viewControllers" id="rDz-nR-Dds"/>
+                        <segue destination="Io7-55-XL7" kind="relationship" relationship="viewControllers" id="Z3n-vd-WeL"/>
+                        <segue destination="Ihh-Hk-plv" kind="show" identifier="kEmbededView" id="7KU-un-pS8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5C3-Sb-CCO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -48,9 +49,53 @@
             <point key="canvasLocation" x="-86" y="-1190"/>
         </scene>
         <!--Item-->
+        <scene sceneID="Y8k-Vb-FkW">
+            <objects>
+                <viewController id="Io7-55-XL7" customClass="FTSampleTableViewController" customModule="FTMobileCoreSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vCd-r7-Aj0"/>
+                        <viewControllerLayoutGuide type="bottom" id="aKs-Xt-QaB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K95-YZ-L3e">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="X0A-S5-WY0"/>
+                    <connections>
+                        <outlet property="headerView" destination="PjM-Cm-uEi" id="GZG-K6-yZq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NaK-VC-BhZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="PjM-Cm-uEi">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="248" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label LabelLabelLabelLabel LabelLabelLabelLabelLabel LabelLabelLabelLabel LabelLabelLabelLabel Label the end!!!" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9I-AJ-Zjs" customClass="FTLabel" customModule="MobileCore">
+                            <rect key="frame" x="26" y="10" width="188" height="108"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="1" green="0.9510292749" blue="0.37942475209999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="theme" value="system14R"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="x9I-AJ-Zjs" firstAttribute="leading" secondItem="PjM-Cm-uEi" secondAttribute="leadingMargin" constant="10" id="1cS-nJ-Lqj"/>
+                        <constraint firstAttribute="trailingMargin" secondItem="x9I-AJ-Zjs" secondAttribute="trailing" constant="10" id="9Zd-1p-81o"/>
+                        <constraint firstItem="x9I-AJ-Zjs" firstAttribute="top" secondItem="PjM-Cm-uEi" secondAttribute="topMargin" constant="10" id="USX-Cb-zhp"/>
+                        <constraint firstAttribute="bottomMargin" secondItem="x9I-AJ-Zjs" secondAttribute="bottom" constant="10" id="wRv-DE-1mH"/>
+                    </constraints>
+                </view>
+            </objects>
+            <point key="canvasLocation" x="-876" y="111"/>
+        </scene>
+        <!--Item-->
         <scene sceneID="1Gh-Uk-LiR">
             <objects>
-                <viewController id="Ihh-Hk-plv" customClass="FTBaseViewController" customModule="MobileCore" sceneMemberID="viewController">
+                <viewController id="Ihh-Hk-plv" customClass="FTBaseViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bbv-8F-dIm" customClass="FTBaseView" customModule="FTMobileCoreUI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -75,10 +120,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U9K-uE-Gcc" customClass="FTView" customModule="MobileCore">
-                                <rect key="frame" x="0.0" y="220" width="375" height="398"/>
+                                <rect key="frame" x="0.0" y="220" width="375" height="447"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="fVk-vi-X0O">
-                                        <rect key="frame" x="27" y="61.5" width="121" height="75.5"/>
+                                        <rect key="frame" x="27" y="86" width="121" height="75.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l7f-oC-NLy">
                                                 <rect key="frame" x="39.5" y="0.0" width="42" height="20.5"/>
