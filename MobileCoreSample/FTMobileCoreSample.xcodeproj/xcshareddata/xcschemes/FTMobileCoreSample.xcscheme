@@ -28,12 +28,28 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "DE9221C81EF28CDF000C8FC7"
+            BuildableName = "FTMobileCoreSample.app"
+            BlueprintName = "FTMobileCoreSample"
+            ReferencedContainer = "container:FTMobileCoreSample.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D44E56FD2341D3B900A0E56C"
+            BuildableName = "FTMobileCoreSampleTests.xctest"
+            BlueprintName = "FTMobileCoreSampleTests"
+            ReferencedContainer = "container:FTMobileCoreSample.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DE2FB8E61F3A0C5900581064"
+               BlueprintIdentifier = "D44E56FD2341D3B900A0E56C"
                BuildableName = "FTMobileCoreSampleTests.xctest"
                BlueprintName = "FTMobileCoreSampleTests"
                ReferencedContainer = "container:FTMobileCoreSample.xcodeproj">

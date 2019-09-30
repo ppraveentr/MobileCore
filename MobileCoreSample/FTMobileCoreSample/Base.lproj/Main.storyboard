@@ -22,6 +22,7 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="9mj-Ni-aFM"/>
                         <segue destination="Io7-55-XL7" kind="relationship" relationship="viewControllers" id="Z3n-vd-WeL"/>
+                        <segue destination="Ihh-Hk-plv" kind="show" identifier="kEmbededView" id="7KU-un-pS8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5C3-Sb-CCO" userLabel="First Responder" sceneMemberID="firstResponder"/>
