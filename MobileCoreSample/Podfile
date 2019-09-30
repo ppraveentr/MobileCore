@@ -1,7 +1,24 @@
 platform :ios, '9.0'
 use_frameworks!
 
-target 'FTMobileCoreSample' do
+def common_pods
  #pod 'MobileCore', '0.0.6.0'
  pod 'MobileCore', :path => "~/Documents/xCodeProject/MobileCore"
+end
+
+target 'FTMobileCoreSample' do
+   common_pods
+   target 'FTMobileCoreSampleTests' do
+        inherit! :search_paths
+    end
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            if config.name == 'Test'
+                config.build_settings['ENABLE_TESTABILITY'] = 'YES'
+            end
+        end
+    end
 end

@@ -1,0 +1,24 @@
+PODS:
+  - MobileCore (0.0.7.0):
+    - MobileCore/Core (= 0.0.7.0)
+    - MobileCore/CoreUI (= 0.0.7.0)
+    - MobileCore/CoreUtility (= 0.0.7.0)
+  - MobileCore/Core (0.0.7.0):
+    - MobileCore/CoreUtility
+  - MobileCore/CoreUI (0.0.7.0):
+    - MobileCore/CoreUtility
+  - MobileCore/CoreUtility (0.0.7.0)
+
+DEPENDENCIES:
+  - MobileCore (from `~/Documents/xCodeProject/MobileCore`)
+
+EXTERNAL SOURCES:
+  MobileCore:
+    :path: "~/Documents/xCodeProject/MobileCore"
+
+SPEC CHECKSUMS:
+  MobileCore: b33d10da599c990c51f4f5f62d720ff9b05e2d3b
+
+PODFILE CHECKSUM: fc6da309631e209595d6dc68814598c3b0e50f9f
+
+COCOAPODS: 1.6.1
