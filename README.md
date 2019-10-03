@@ -49,12 +49,12 @@ Below are the list of things I’m in plan adding into Mobile Core.
 - and more!!! as I think through 🤔
 
 ## Prototype
-[`NovelReader`](https://github.com/ppraveentr/Concepts/tree/master/NovelReader) is a prototype describing working of MobileCore.
+[`NovelReader`](https://github.com/ppraveentr/NovelReader) is a prototype describing working of MobileCore.
 
 [![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
 [![Language](http://img.shields.io/badge/language-swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
-[![Build Status](https://travis-ci.org/ppraveentr/Concepts.svg?branch=master)](https://travis-ci.org/ppraveentr/Concepts)
+[![Build Status](https://travis-ci.org/ppraveentr/NovelReader.svg?branch=master)](https://travis-ci.org/ppraveentr/NovelReader)
 
 
 ## Credits
