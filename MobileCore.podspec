@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'CoreUI' do |coreUI|
     coreUI.source_files = 'FTMobileCoreUI/Classes/**/*.{h,m,swift}'
-    coreUI.resources    = ['FTMobileCoreUI/Resources/**/*', 'FTMobileCoreUI/Classes/**/*.xib']
+    coreUI.resources    = ['FTMobileCoreUI/Assets/**/*', 'FTMobileCoreUI/Classes/**/*.xib']
     coreUI.dependency  'MobileCore/CoreUtility'
     coreUI.header_dir   = "CoreUI"
   end

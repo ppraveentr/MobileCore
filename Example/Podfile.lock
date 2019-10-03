@@ -1,0 +1,24 @@
+PODS:
+  - MobileCore (0.0.7.0):
+    - MobileCore/Core (= 0.0.7.0)
+    - MobileCore/CoreUI (= 0.0.7.0)
+    - MobileCore/CoreUtility (= 0.0.7.0)
+  - MobileCore/Core (0.0.7.0):
+    - MobileCore/CoreUtility
+  - MobileCore/CoreUI (0.0.7.0):
+    - MobileCore/CoreUtility
+  - MobileCore/CoreUtility (0.0.7.0)
+
+DEPENDENCIES:
+  - MobileCore (from `../`)
+
+EXTERNAL SOURCES:
+  MobileCore:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MobileCore: 40d046906a5cc308af0039c34b4ff6acbec48f19
+
+PODFILE CHECKSUM: a79f286396a146498935d30a16c04ccfb8ba37be
+
+COCOAPODS: 1.7.4

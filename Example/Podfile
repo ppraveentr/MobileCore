@@ -12,9 +12,9 @@ def common_pods
  pod 'MobileCore', local_path_source
 end
 
-target 'FTMobileCoreSample' do
+target 'FTMobileCore' do
    common_pods
-   target 'FTMobileCoreSampleTests' do
+   target 'FTMobileCoreTests' do
         inherit! :search_paths
     end
 end
@@ -24,6 +24,10 @@ post_install do |installer|
         target.build_configurations.each do |config|
             if config.name == 'Test'
                 config.build_settings['ENABLE_TESTABILITY'] = 'YES'
+            end
+            if config.name == 'Debug'
+              config.build_settings['OTHER_SWIFT_FLAGS'] = ['$(inherited)', '-Onone', '-Xfrontend -warn-long-function-bodies=150', '-Xfrontend -warn-long-expression-type-checking=150']
+              config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Owholemodule'
             end
         end
     end

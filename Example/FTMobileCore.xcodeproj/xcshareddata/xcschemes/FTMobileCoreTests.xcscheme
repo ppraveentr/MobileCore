@@ -9,15 +9,15 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
+            buildForProfiling = "NO"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DE9221C81EF28CDF000C8FC7"
-               BuildableName = "FTMobileCoreSample.app"
-               BlueprintName = "FTMobileCoreSample"
-               ReferencedContainer = "container:FTMobileCoreSample.xcodeproj">
+               BuildableName = "FTMobileCore.app"
+               BlueprintName = "FTMobileCore"
+               ReferencedContainer = "container:FTMobileCore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,22 +26,23 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      enableASanStackUseAfterReturn = "YES"
       codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DE9221C81EF28CDF000C8FC7"
-            BuildableName = "FTMobileCoreSample.app"
-            BlueprintName = "FTMobileCoreSample"
-            ReferencedContainer = "container:FTMobileCoreSample.xcodeproj">
+            BuildableName = "FTMobileCore.app"
+            BlueprintName = "FTMobileCore"
+            ReferencedContainer = "container:FTMobileCore.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D44E56FD2341D3B900A0E56C"
-            BuildableName = "FTMobileCoreSampleTests.xctest"
-            BlueprintName = "FTMobileCoreSampleTests"
-            ReferencedContainer = "container:FTMobileCoreSample.xcodeproj">
+            BuildableName = "FTMobileCoreTests.xctest"
+            BlueprintName = "FTMobileCoreTests"
+            ReferencedContainer = "container:FTMobileCore.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
@@ -50,9 +51,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D44E56FD2341D3B900A0E56C"
-               BuildableName = "FTMobileCoreSampleTests.xctest"
-               BlueprintName = "FTMobileCoreSampleTests"
-               ReferencedContainer = "container:FTMobileCoreSample.xcodeproj">
+               BuildableName = "FTMobileCoreTests.xctest"
+               BlueprintName = "FTMobileCoreTests"
+               ReferencedContainer = "container:FTMobileCore.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -60,12 +61,22 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DE9221C81EF28CDF000C8FC7"
-            BuildableName = "FTMobileCoreSample.app"
-            BlueprintName = "FTMobileCoreSample"
-            ReferencedContainer = "container:FTMobileCoreSample.xcodeproj">
+            BuildableName = "FTMobileCore.app"
+            BlueprintName = "FTMobileCore"
+            ReferencedContainer = "container:FTMobileCore.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
+         <AdditionalOption
+            key = "MallocStackLogging"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "PrefersMallocStackLoggingLite"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
@@ -78,35 +89,24 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DE9221C81EF28CDF000C8FC7"
-            BuildableName = "FTMobileCoreSample.app"
-            BlueprintName = "FTMobileCoreSample"
-            ReferencedContainer = "container:FTMobileCoreSample.xcodeproj">
+            BuildableName = "FTMobileCore.app"
+            BlueprintName = "FTMobileCore"
+            ReferencedContainer = "container:FTMobileCore.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DE9221C81EF28CDF000C8FC7"
-            BuildableName = "FTMobileCoreSample.app"
-            BlueprintName = "FTMobileCoreSample"
-            ReferencedContainer = "container:FTMobileCoreSample.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
