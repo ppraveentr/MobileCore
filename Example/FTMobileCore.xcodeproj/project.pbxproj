@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D1007994704B89B76B4952A /* Pods_FTMobileCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FDEECD880625DD4CAEC5015 /* Pods_FTMobileCore.framework */; };
-		8036067C17BE88842AD281F2 /* Pods_FTMobileCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87105841FE16C3E9E9A48F6B /* Pods_FTMobileCoreTests.framework */; };
 		D421EA802342899800FA0B7C /* Themes.json in Resources */ = {isa = PBXBuildFile; fileRef = DE680BB01F2E038800A9F68C /* Themes.json */; };
 		D421EA81234289A300FA0B7C /* Themes.json in Resources */ = {isa = PBXBuildFile; fileRef = DE680BB01F2E038800A9F68C /* Themes.json */; };
 		D421EAA423428B8100FA0B7C /* FTThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EA9F23428B8100FA0B7C /* FTThemesTests.swift */; };
@@ -65,11 +63,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		21490DE54C72EB9CC8E0EA33 /* Pods-FTMobileCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCore.debug.xcconfig"; path = "Target Support Files/Pods-FTMobileCore/Pods-FTMobileCore.debug.xcconfig"; sourceTree = "<group>"; };
-		247BD987508174BAB3BF3E58 /* Pods-FTMobileCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCoreTests.debug.xcconfig"; path = "Target Support Files/Pods-FTMobileCoreTests/Pods-FTMobileCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
-		2FDEECD880625DD4CAEC5015 /* Pods_FTMobileCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FTMobileCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B4A32AD5FF3942AB88C0065 /* Pods-FTMobileCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCoreTests.release.xcconfig"; path = "Target Support Files/Pods-FTMobileCoreTests/Pods-FTMobileCoreTests.release.xcconfig"; sourceTree = "<group>"; };
-		87105841FE16C3E9E9A48F6B /* Pods_FTMobileCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FTMobileCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D421EA9F23428B8100FA0B7C /* FTThemesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTThemesTests.swift; sourceTree = "<group>"; };
 		D421EAA023428B8100FA0B7C /* FTCustomDataTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTCustomDataTypeTests.swift; sourceTree = "<group>"; };
 		D421EAA123428B8100FA0B7C /* FTUIViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIViewControllerTests.swift; sourceTree = "<group>"; };
@@ -103,7 +96,6 @@
 		DEBDC8931EF4508900AC77A9 /* FTMobileCore-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTMobileCore-Bridging-Header.h"; sourceTree = "<group>"; };
 		DEBDC8A21EF4520100AC77A9 /* FTMobileCore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FTMobileCore.entitlements; sourceTree = "<group>"; };
 		DEC55DD91EF2968700FAE024 /* MDASample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDASample.swift; sourceTree = "<group>"; };
-		F6C2CA5A7CAA04E96737925E /* Pods-FTMobileCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCore.release.xcconfig"; path = "Target Support Files/Pods-FTMobileCore/Pods-FTMobileCore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +103,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8036067C17BE88842AD281F2 /* Pods_FTMobileCoreTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +111,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D44E56F92341CFAB00A0E56C /* UIKit.framework in Frameworks */,
-				2D1007994704B89B76B4952A /* Pods_FTMobileCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,10 +120,6 @@
 		BE016806CD3793C9F95F02FB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				21490DE54C72EB9CC8E0EA33 /* Pods-FTMobileCore.debug.xcconfig */,
-				F6C2CA5A7CAA04E96737925E /* Pods-FTMobileCore.release.xcconfig */,
-				247BD987508174BAB3BF3E58 /* Pods-FTMobileCoreTests.debug.xcconfig */,
-				4B4A32AD5FF3942AB88C0065 /* Pods-FTMobileCoreTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -246,8 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				D44E56F82341CFAB00A0E56C /* UIKit.framework */,
-				2FDEECD880625DD4CAEC5015 /* Pods_FTMobileCore.framework */,
-				87105841FE16C3E9E9A48F6B /* Pods_FTMobileCoreTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -321,7 +305,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D44E57052341D3B900A0E56C /* Build configuration list for PBXNativeTarget "FTMobileCoreTests" */;
 			buildPhases = (
-				35549774BA710460C7BAF5C3 /* [CP] Check Pods Manifest.lock */,
 				D44E56FA2341D3B900A0E56C /* Sources */,
 				D44E56FB2341D3B900A0E56C /* Frameworks */,
 				D44E56FC2341D3B900A0E56C /* Resources */,
@@ -340,7 +323,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE9221DB1EF28CDF000C8FC7 /* Build configuration list for PBXNativeTarget "FTMobileCore" */;
 			buildPhases = (
-				6CFE890C8DC0955D23EDBF1A /* [CP] Check Pods Manifest.lock */,
 				DE9221C51EF28CDF000C8FC7 /* Sources */,
 				DE9221C61EF28CDF000C8FC7 /* Frameworks */,
 				DE9221C71EF28CDF000C8FC7 /* Resources */,
@@ -348,7 +330,6 @@
 				DE1485561F10C09400A250A6 /* Embed Frameworks */,
 				D4AE907D22E446A6005B33B2 /* CopyFiles */,
 				D437653C230E8E5B004974CC /* swiftlint Run Script */,
-				098BC209F98E0B77EEA5C966 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -431,68 +412,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		098BC209F98E0B77EEA5C966 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FTMobileCore/Pods-FTMobileCore-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MobileCore/MobileCore.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MobileCore.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FTMobileCore/Pods-FTMobileCore-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		35549774BA710460C7BAF5C3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FTMobileCoreTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6CFE890C8DC0955D23EDBF1A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FTMobileCore-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D437653C230E8E5B004974CC /* swiftlint Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -574,7 +493,6 @@
 /* Begin XCBuildConfiguration section */
 		D44E57062341D3B900A0E56C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 247BD987508174BAB3BF3E58 /* Pods-FTMobileCoreTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -599,7 +517,6 @@
 		};
 		D44E57072341D3B900A0E56C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4B4A32AD5FF3942AB88C0065 /* Pods-FTMobileCoreTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -744,7 +661,6 @@
 		};
 		DE9221DC1EF28CDF000C8FC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21490DE54C72EB9CC8E0EA33 /* Pods-FTMobileCore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -770,7 +686,6 @@
 		};
 		DE9221DD1EF28CDF000C8FC7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6C2CA5A7CAA04E96737925E /* Pods-FTMobileCore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
