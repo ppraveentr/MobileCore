@@ -1,14 +1,7 @@
-#
-# Be sure to run `pod lib lint MobileCore.podspec' to ensure this is a
-# valid spec before submitting.
-#
-
 Pod::Spec.new do |s|
   s.name             = 'MobileCore'
-  s.version          = '0.0.7.1'
+  s.version          = '0.0.7.2'
   s.summary          = 'Mobile Core utility.'
-  #s.description      = <<-DESC
-
   s.homepage         = 'https://github.com/ppraveentr/MobileCore'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'PraveenP' => 'ppraveentr@gmail.com' }
@@ -17,8 +10,6 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
   s.swift_version         = '5.0'
-  s.pod_target_xcconfig   = { 'SWIFT_VERSION' => '5.0' }
-  
   s.default_subspecs      = 'CoreUtility', 'Core', 'CoreUI'
 
   s.subspec 'CoreUtility' do |utility|

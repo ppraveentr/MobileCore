@@ -20,11 +20,19 @@ after_success:
 before_deploy:
   - git config --local user.name "PraveenP"
   - git config --local user.email "ppraveentr@gmail.com"
+  - sudo gem install cocoapods
       
 deploy:
   provider: releases
   api_key: '${GITHUB_API_KEY}'
   skip_cleanup: true
+  on:
+    all_branches: true
+    tags: true
+
+deploy:
+  provider: script
+  script: ./scripts/cocoapod_push.sh
   on:
     all_branches: true
     tags: true
