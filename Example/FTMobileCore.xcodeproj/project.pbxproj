@@ -16,18 +16,18 @@
 		D421EAA623428B8100FA0B7C /* FTUIViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAA123428B8100FA0B7C /* FTUIViewControllerTests.swift */; };
 		D421EAA723428B8100FA0B7C /* FTCoreUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAA223428B8100FA0B7C /* FTCoreUtilityTests.swift */; };
 		D421EAA823428B8100FA0B7C /* FTActionBlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAA323428B8100FA0B7C /* FTActionBlockTests.swift */; };
-		D421EAAE23428B8C00FA0B7C /* FTConstrainsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAAA23428B8C00FA0B7C /* FTConstrainsTests.swift */; };
-		D421EAAF23428B8C00FA0B7C /* FTUIWebkitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAAB23428B8C00FA0B7C /* FTUIWebkitTests.swift */; };
-		D421EAB023428B8C00FA0B7C /* FTFontPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAAC23428B8C00FA0B7C /* FTFontPickerTests.swift */; };
-		D421EAB123428B8C00FA0B7C /* FTUIElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAAD23428B8C00FA0B7C /* FTUIElementTests.swift */; };
 		D421EAB423428B9300FA0B7C /* FTServiceModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAB323428B9300FA0B7C /* FTServiceModelTests.swift */; };
 		D44E56F92341CFAB00A0E56C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44E56F82341CFAB00A0E56C /* UIKit.framework */; };
+		D49FE3182345D45A002B3742 /* FTSampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE3162345D459002B3742 /* FTSampleTableViewController.swift */; };
+		D49FE3192345D45A002B3742 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE3172345D459002B3742 /* ViewController.swift */; };
+		D49FE3212345D4EA002B3742 /* FTConstrainsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE31D2345D4EA002B3742 /* FTConstrainsTests.swift */; };
+		D49FE3222345D4EA002B3742 /* FTUIWebkitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE31E2345D4EA002B3742 /* FTUIWebkitTests.swift */; };
+		D49FE3232345D4EA002B3742 /* FTFontPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE31F2345D4EA002B3742 /* FTFontPickerTests.swift */; };
+		D49FE3242345D4EA002B3742 /* FTUIElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE3202345D4EA002B3742 /* FTUIElementTests.swift */; };
 		DE9221CD1EF28CDF000C8FC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */; };
-		DE9221CF1EF28CDF000C8FC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221CE1EF28CDF000C8FC7 /* ViewController.swift */; };
 		DE9221D21EF28CDF000C8FC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D01EF28CDF000C8FC7 /* Main.storyboard */; };
 		DE9221D41EF28CDF000C8FC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D31EF28CDF000C8FC7 /* Assets.xcassets */; };
 		DE9221D71EF28CDF000C8FC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D51EF28CDF000C8FC7 /* LaunchScreen.storyboard */; };
-		DEA7E1AA1F498B070002C148 /* FTSampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7E1A91F498B070002C148 /* FTSampleTableViewController.swift */; };
 		DEBDC8941EF4508900AC77A9 /* FTMobileCore-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = DEBDC8931EF4508900AC77A9 /* FTMobileCore-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DEC55DDA1EF2968700FAE024 /* MDASample.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DD91EF2968700FAE024 /* MDASample.swift */; };
 /* End PBXBuildFile section */
@@ -75,10 +75,6 @@
 		D421EAA123428B8100FA0B7C /* FTUIViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIViewControllerTests.swift; sourceTree = "<group>"; };
 		D421EAA223428B8100FA0B7C /* FTCoreUtilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTCoreUtilityTests.swift; sourceTree = "<group>"; };
 		D421EAA323428B8100FA0B7C /* FTActionBlockTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTActionBlockTests.swift; sourceTree = "<group>"; };
-		D421EAAA23428B8C00FA0B7C /* FTConstrainsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTConstrainsTests.swift; sourceTree = "<group>"; };
-		D421EAAB23428B8C00FA0B7C /* FTUIWebkitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIWebkitTests.swift; sourceTree = "<group>"; };
-		D421EAAC23428B8C00FA0B7C /* FTFontPickerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTFontPickerTests.swift; sourceTree = "<group>"; };
-		D421EAAD23428B8C00FA0B7C /* FTUIElementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIElementTests.swift; sourceTree = "<group>"; };
 		D421EAB323428B9300FA0B7C /* FTServiceModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTServiceModelTests.swift; sourceTree = "<group>"; };
 		D44E56F82341CFAB00A0E56C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D44E56FE2341D3B900A0E56C /* FTMobileCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,15 +87,19 @@
 		D49FE3112345D2F1002B3742 /* .sonarcloud.properties */ = {isa = PBXFileReference; lastKnownFileType = text; name = .sonarcloud.properties; path = ../.sonarcloud.properties; sourceTree = "<group>"; };
 		D49FE3122345D2F1002B3742 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = "<group>"; };
 		D49FE3132345D2FC002B3742 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
+		D49FE3162345D459002B3742 /* FTSampleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTSampleTableViewController.swift; sourceTree = "<group>"; };
+		D49FE3172345D459002B3742 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D49FE31D2345D4EA002B3742 /* FTConstrainsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTConstrainsTests.swift; sourceTree = "<group>"; };
+		D49FE31E2345D4EA002B3742 /* FTUIWebkitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIWebkitTests.swift; sourceTree = "<group>"; };
+		D49FE31F2345D4EA002B3742 /* FTFontPickerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTFontPickerTests.swift; sourceTree = "<group>"; };
+		D49FE3202345D4EA002B3742 /* FTUIElementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIElementTests.swift; sourceTree = "<group>"; };
 		DE680BB01F2E038800A9F68C /* Themes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Themes.json; sourceTree = "<group>"; };
 		DE9221C91EF28CDF000C8FC7 /* FTMobileCore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FTMobileCore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DE9221CE1EF28CDF000C8FC7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DE9221D11EF28CDF000C8FC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DE9221D31EF28CDF000C8FC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE9221D61EF28CDF000C8FC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE9221D81EF28CDF000C8FC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DEA7E1A91F498B070002C148 /* FTSampleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTSampleTableViewController.swift; sourceTree = "<group>"; };
 		DEBDC8931EF4508900AC77A9 /* FTMobileCore-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTMobileCore-Bridging-Header.h"; sourceTree = "<group>"; };
 		DEBDC8A21EF4520100AC77A9 /* FTMobileCore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FTMobileCore.entitlements; sourceTree = "<group>"; };
 		DEC55DD91EF2968700FAE024 /* MDASample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDASample.swift; sourceTree = "<group>"; };
@@ -157,14 +157,6 @@
 			name = FTCoreUtility;
 			sourceTree = "<group>";
 		};
-		D421EA9C23428B6900FA0B7C /* FTMobileCoreUI */ = {
-			isa = PBXGroup;
-			children = (
-				D421EAA923428B8C00FA0B7C /* Tests */,
-			);
-			path = FTMobileCoreUI;
-			sourceTree = "<group>";
-		};
 		D421EA9D23428B7200FA0B7C /* FTMobileCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,18 +178,6 @@
 			path = ../../FTCoreUtility/Tests;
 			sourceTree = "<group>";
 		};
-		D421EAA923428B8C00FA0B7C /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				D421EAAA23428B8C00FA0B7C /* FTConstrainsTests.swift */,
-				D421EAAB23428B8C00FA0B7C /* FTUIWebkitTests.swift */,
-				D421EAAC23428B8C00FA0B7C /* FTFontPickerTests.swift */,
-				D421EAAD23428B8C00FA0B7C /* FTUIElementTests.swift */,
-			);
-			name = Tests;
-			path = ../../../FTMobileCoreUI/Tests;
-			sourceTree = "<group>";
-		};
 		D421EAB223428B9300FA0B7C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,8 +190,8 @@
 		D44E56FF2341D3B900A0E56C /* FTMobileCoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				D49FE31B2345D4DB002B3742 /* FTMobileCoreUI */,
 				D421EA9D23428B7200FA0B7C /* FTMobileCore */,
-				D421EA9C23428B6900FA0B7C /* FTMobileCoreUI */,
 				D421EA9B23428B5E00FA0B7C /* FTCoreUtility */,
 				D44E57022341D3B900A0E56C /* Info.plist */,
 			);
@@ -231,6 +211,35 @@
 				D47590182317A68A00080D78 /* README.md */,
 			);
 			name = "Pod Config";
+			sourceTree = "<group>";
+		};
+		D49FE3152345D41E002B3742 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D49FE3162345D459002B3742 /* FTSampleTableViewController.swift */,
+				D49FE3172345D459002B3742 /* ViewController.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		D49FE31B2345D4DB002B3742 /* FTMobileCoreUI */ = {
+			isa = PBXGroup;
+			children = (
+				D49FE31C2345D4EA002B3742 /* Tests */,
+			);
+			name = FTMobileCoreUI;
+			sourceTree = "<group>";
+		};
+		D49FE31C2345D4EA002B3742 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D49FE31D2345D4EA002B3742 /* FTConstrainsTests.swift */,
+				D49FE31E2345D4EA002B3742 /* FTUIWebkitTests.swift */,
+				D49FE31F2345D4EA002B3742 /* FTFontPickerTests.swift */,
+				D49FE3202345D4EA002B3742 /* FTUIElementTests.swift */,
+			);
+			name = Tests;
+			path = ../../FTMobileCoreUI/Tests;
 			sourceTree = "<group>";
 		};
 		DE2FB9191F3DF7A400581064 /* Frameworks */ = {
@@ -277,10 +286,9 @@
 			children = (
 				D421EA9A23428AED00FA0B7C /* Support Files */,
 				DEC55DD81EF2968700FAE024 /* Datamodel */,
+				D49FE3152345D41E002B3742 /* Classes */,
 				DE680BA11F2E02FF00A9F68C /* Resources */,
 				DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */,
-				DE9221CE1EF28CDF000C8FC7 /* ViewController.swift */,
-				DEA7E1A91F498B070002C148 /* FTSampleTableViewController.swift */,
 				DE9221D01EF28CDF000C8FC7 /* Main.storyboard */,
 				DE9221D51EF28CDF000C8FC7 /* LaunchScreen.storyboard */,
 			);
@@ -511,15 +519,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D421EAA523428B8100FA0B7C /* FTCustomDataTypeTests.swift in Sources */,
-				D421EAAF23428B8C00FA0B7C /* FTUIWebkitTests.swift in Sources */,
+				D49FE3222345D4EA002B3742 /* FTUIWebkitTests.swift in Sources */,
+				D49FE3212345D4EA002B3742 /* FTConstrainsTests.swift in Sources */,
 				D421EAA823428B8100FA0B7C /* FTActionBlockTests.swift in Sources */,
+				D49FE3242345D4EA002B3742 /* FTUIElementTests.swift in Sources */,
 				D421EAA723428B8100FA0B7C /* FTCoreUtilityTests.swift in Sources */,
-				D421EAB023428B8C00FA0B7C /* FTFontPickerTests.swift in Sources */,
-				D421EAAE23428B8C00FA0B7C /* FTConstrainsTests.swift in Sources */,
 				D421EAA423428B8100FA0B7C /* FTThemesTests.swift in Sources */,
 				D421EAB423428B9300FA0B7C /* FTServiceModelTests.swift in Sources */,
-				D421EAB123428B8C00FA0B7C /* FTUIElementTests.swift in Sources */,
 				D421EAA623428B8100FA0B7C /* FTUIViewControllerTests.swift in Sources */,
+				D49FE3232345D4EA002B3742 /* FTFontPickerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,9 +535,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE9221CF1EF28CDF000C8FC7 /* ViewController.swift in Sources */,
-				DEA7E1AA1F498B070002C148 /* FTSampleTableViewController.swift in Sources */,
 				DEC55DDA1EF2968700FAE024 /* MDASample.swift in Sources */,
+				D49FE3182345D45A002B3742 /* FTSampleTableViewController.swift in Sources */,
+				D49FE3192345D45A002B3742 /* ViewController.swift in Sources */,
 				DE9221CD1EF28CDF000C8FC7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
