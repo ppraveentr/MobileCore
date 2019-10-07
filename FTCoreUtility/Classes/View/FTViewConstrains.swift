@@ -25,7 +25,7 @@ public class FTViewLayoutConstraint {
     public var widthDimension: NSLayoutDimension?
 }
 
-public struct FTEdgeOffsets {
+public struct FTEdgeOffsets: Equatable {
     public var left: CGFloat
     public var top: CGFloat
     public var right: CGFloat

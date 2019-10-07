@@ -34,6 +34,7 @@ class Account: FTServiceModel {
 final class TestService: FTServiceClient {
     
     var serviceName: String = "TestService"
+    var request: FTReqeustType = .POST
     var inputStack: Account?
     var responseStack: AccountDetail?
     var responseStackType: Any?
@@ -45,8 +46,13 @@ final class TestService: FTServiceClient {
 
 class FTServiceModelTests: XCTestCase {
 
+    var testService: TestService?
     override func setUp() {
         FTReflection.registerModuleIdentifier(Account.self)
+        
+        let accountDe = AccountDetail(value: "Details_1", name: "name")
+        let account = Account(name: "stsda", type: accountDe, data: ["account1_adas", "account1_fasda"])
+        testService = TestService(inputStack: account)
     }
 
     func testFTDataModel() {
@@ -80,5 +86,15 @@ class FTServiceModelTests: XCTestCase {
     func testModelDataCreationFailure() {
         let model = try? AccountDetail.makeModel(json: [ "1": "1", "2": "2"])
         XCTAssertNil(model)
+    }
+    
+    func testReqeust() {
+        XCTAssertEqual(testService?.request.stringValue(), "POST")
+        let body = testService?.request.requestBody(model: testService?.inputStack)
+        XCTAssertNotNil(body)
+        
+        let formRequest: FTReqeustType = .FORM
+        let formBody = formRequest.requestBody(model: testService?.inputStack)
+        XCTAssertNotNil(formBody)
     }
 }

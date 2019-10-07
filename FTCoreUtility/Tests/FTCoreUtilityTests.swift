@@ -37,4 +37,13 @@ class FTCoreUtilityTests: XCTestCase {
         dic1.merge(another: dic2)
         XCTAssert(dic1.count == 3)
     }
+    
+    func testCeil() {
+        let ceilSize = CGSize(width: 100.3, height: 100.7)
+        XCTAssertEqual(ceil(size: ceilSize), CGSize(width: 101.0, height: 101.0))
+
+        let largeSize = CGSize(width: 100, height: 100)
+        let smallSize = CGSize(width: 50, height: 150)
+        XCTAssertEqual(maxSize(largeSize, smallSize), CGSize(width: 100, height: 150))
+    }
 }

@@ -119,7 +119,7 @@ public final class FTReflection {
         }
         
         if let object = classNanme as? AnyClass {
-           return NSStringFromClass(object).trimming(string: getCleanAppName(theObject) + ".")
+            return NSStringFromClass(object).trimming(getCleanAppName(theObject) + ".")
         }
         
         return nil

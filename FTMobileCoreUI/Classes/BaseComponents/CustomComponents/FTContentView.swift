@@ -34,7 +34,8 @@ open class FTContentView: UIScrollView {
         webView.scrollView.addObserver(self, forKeyPath: scrollViewSizeContext, options: [NSKeyValueObservingOptions.new], context: &scrollViewSizeContext)
     }
     
-    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    // swiftlint:disable block_based_kvo
+    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         if context == &scrollViewSizeContext,
             keyPath == #keyPath(UIScrollView.contentSize),
             let nsSize = change?[NSKeyValueChangeKey.newKey] as? CGSize {
@@ -46,6 +47,7 @@ open class FTContentView: UIScrollView {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
+    // swiftlint:enable block_based_kvo
     
     func stopObservingHeight() {
         webView.scrollView.removeObserver(self, forKeyPath: scrollViewSizeContext)

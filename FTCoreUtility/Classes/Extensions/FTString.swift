@@ -34,7 +34,7 @@ public extension String {
     }
 
     func htmlAttributedString() -> NSMutableAttributedString {
-        guard self.count > 0 else { return NSMutableAttributedString() }
+        guard !self.isEmpty else { return NSMutableAttributedString() }
         guard self.isHTMLString() else { return NSMutableAttributedString(string: self) }
         guard let data = data(using: .utf8, allowLossyConversion: true) else {
             return NSMutableAttributedString()
@@ -69,26 +69,35 @@ public extension String {
 // MARK: String Size
     // Remove's 'sting' from self -> and retruns new 'String'
     // Original value is not affected
-    func trimming(string: String) -> String {
+    func trimming(_ string: String) -> String {
         return self.replacingOccurrences(of: string, with: "")
     }
     
-    // Remove's 'sting' from self -> and update the 'self'
     @discardableResult
-    mutating func trimString(string: String) -> String {
-        self = self.replacingOccurrences(of: string, with: "")
+    mutating func trimming(_ strings: [String]) -> String {
+        strings.forEach { str in
+            self = self.replacingOccurrences(of: str, with: "")
+        }
         return self
     }
     
     // Remove prefix "string"
-    @discardableResult
-    mutating func trimPrefix(_ string: String) -> String {
+    mutating func trimPrefix(_ string: String) {
         while self.hasPrefix(string) {
             if let range = self.range(of: string) {
                 self.removeSubrange(range)
             }
         }
-        return self
+    }
+    
+    func trimingPrefix(_ string: String) -> String {
+        var obj = String(self)
+        while obj.hasPrefix(string) {
+            if let range = obj.range(of: string) {
+                obj.removeSubrange(range)
+            }
+        }
+        return obj
     }
     
     // Get subString within the 'range'
@@ -112,7 +121,7 @@ public extension String {
      CGSize of text based.
      */
     func textSize(font: UIFont, constrainedSize: CGSize, lineBreakMode: NSLineBreakMode) -> CGSize {
-        guard self.count > 0 else {
+        guard !self.isEmpty else {
             return .zero
         }
         
