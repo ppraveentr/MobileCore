@@ -162,7 +162,7 @@ open class FTThemesManager {
             if imageName.hasPrefix("@") {
                 // Search for image in all available bundles
                 for bundleName in FTThemesManager.imageSourceBundle {
-                    if let image = UIImage(named: imageName.trimPrefix("@"), in: bundleName, compatibleWith: nil) {
+                    if let image = UIImage(named: imageName.trimingPrefix("@"), in: bundleName, compatibleWith: nil) {
                         return image
                     }
                 }
