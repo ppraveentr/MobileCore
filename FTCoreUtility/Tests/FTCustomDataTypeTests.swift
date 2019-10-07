@@ -24,10 +24,10 @@ class FTCustomDataTypeTests: XCTestCase {
     }
     
     func testHTMLString() {
-        var string = "<p>test</p>"
+        let string = "<p>test</p>"
         XCTAssertTrue(string.isHTMLString())
         XCTAssertEqual(string.stripHTML(), "test")
-        XCTAssertEqual(string.trimString(string: "test"), "<p></p>")
+        XCTAssertEqual(string.trimming("test"), "<p></p>")
         XCTAssertNotNil(string.htmlAttributedString())
     }
     
