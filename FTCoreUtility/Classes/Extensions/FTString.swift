@@ -82,7 +82,6 @@ public extension String {
     }
     
     // Remove prefix "string"
-    @discardableResult
     mutating func trimPrefix(_ string: String) {
         while self.hasPrefix(string) {
             if let range = self.range(of: string) {

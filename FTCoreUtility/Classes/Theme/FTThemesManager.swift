@@ -153,7 +153,7 @@ open class FTThemesManager {
             return nil
         }
 
-        if var imageName = imageName as? String {
+        if let imageName = imageName as? String {
             
             if imageName == "@empty" {
                 return UIImage()
