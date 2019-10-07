@@ -29,18 +29,6 @@ public enum FTUserCacheType {
     case keychain
 }
 
-extension Dictionary where Key: Hashable, Value: Any {
-
-    // Save data to Session object
-    mutating func setCacheObject(_ data: AnyObject?, forKey keyType: Key) {
-        self[keyType] = data as? Value
-    }
-
-    func getCachedObject(forKey keyType: Key) -> Any? {
-        return self[keyType]
-    }
-}
-
 open class FTCache {
     var userCache = JSON()
 

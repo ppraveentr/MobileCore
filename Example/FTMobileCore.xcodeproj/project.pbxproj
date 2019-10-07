@@ -25,8 +25,8 @@
 		D4E09A37234A4B86002729E6 /* FTMobileCoreBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D4E09A29234A4AD4002729E6 /* FTMobileCoreBundle.bundle */; };
 		D4E09A39234A4C1C002729E6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E09A38234A4C1C002729E6 /* Constants.swift */; };
 		D4E09A3A234A4C1C002729E6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E09A38234A4C1C002729E6 /* Constants.swift */; };
-		D4E09A3D234AF4AC002729E6 /* FTNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E09A3B234AF4AC002729E6 /* FTNetworkTests.swift */; };
 		D4E09A3F234AFDA8002729E6 /* FTTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E09A3E234AFDA8002729E6 /* FTTableViewTests.swift */; };
+		D4E09A42234B60D4002729E6 /* FTSessionCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E09A41234B60D4002729E6 /* FTSessionCacheTests.swift */; };
 		DE9221CD1EF28CDF000C8FC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */; };
 		DE9221D21EF28CDF000C8FC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D01EF28CDF000C8FC7 /* Main.storyboard */; };
 		DE9221D41EF28CDF000C8FC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D31EF28CDF000C8FC7 /* Assets.xcassets */; };
@@ -81,7 +81,6 @@
 		D49FE30F2345D2F1002B3742 /* .codecov.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .codecov.yml; path = ../.codecov.yml; sourceTree = "<group>"; };
 		D49FE3102345D2F1002B3742 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		D49FE3112345D2F1002B3742 /* .sonarcloud.properties */ = {isa = PBXFileReference; lastKnownFileType = text; name = .sonarcloud.properties; path = ../.sonarcloud.properties; sourceTree = "<group>"; };
-		D49FE3122345D2F1002B3742 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = "<group>"; };
 		D49FE3132345D2FC002B3742 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
 		D49FE3162345D459002B3742 /* FTSampleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTSampleTableViewController.swift; sourceTree = "<group>"; };
 		D49FE3172345D459002B3742 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -93,8 +92,9 @@
 		D4E09A29234A4AD4002729E6 /* FTMobileCoreBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E09A2B234A4AD4002729E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4E09A38234A4C1C002729E6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		D4E09A3B234AF4AC002729E6 /* FTNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTNetworkTests.swift; sourceTree = "<group>"; };
 		D4E09A3E234AFDA8002729E6 /* FTTableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTTableViewTests.swift; sourceTree = "<group>"; };
+		D4E09A40234B124C002729E6 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		D4E09A41234B60D4002729E6 /* FTSessionCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTSessionCacheTests.swift; sourceTree = "<group>"; };
 		DE680BB01F2E038800A9F68C /* Themes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Themes.json; sourceTree = "<group>"; };
 		DE9221C91EF28CDF000C8FC7 /* FTMobileCore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FTMobileCore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				D421EAB323428B9300FA0B7C /* FTServiceModelTests.swift */,
-				D4E09A3B234AF4AC002729E6 /* FTNetworkTests.swift */,
+				D4E09A41234B60D4002729E6 /* FTSessionCacheTests.swift */,
 			);
 			name = Tests;
 			path = ../../FTMobileCore/Tests;
@@ -208,8 +208,8 @@
 				D49FE3132345D2FC002B3742 /* .gitignore */,
 				D49FE30F2345D2F1002B3742 /* .codecov.yml */,
 				D49FE3112345D2F1002B3742 /* .sonarcloud.properties */,
-				D49FE3122345D2F1002B3742 /* .swiftlint.yml */,
 				D49FE3102345D2F1002B3742 /* .travis.yml */,
+				D4E09A40234B124C002729E6 /* .swiftlint.yml */,
 				D47590172317A68A00080D78 /* _config.yml */,
 				D47590162317A68A00080D78 /* MobileCore.podspec */,
 				D47590182317A68A00080D78 /* README.md */,
@@ -488,7 +488,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -503,12 +503,12 @@
 				D421EAA823428B8100FA0B7C /* FTActionBlockTests.swift in Sources */,
 				D49FE3242345D4EA002B3742 /* FTUIElementTests.swift in Sources */,
 				D421EAA723428B8100FA0B7C /* FTCoreUtilityTests.swift in Sources */,
-				D4E09A3D234AF4AC002729E6 /* FTNetworkTests.swift in Sources */,
 				D421EAA423428B8100FA0B7C /* FTThemesTests.swift in Sources */,
 				D421EAB423428B9300FA0B7C /* FTServiceModelTests.swift in Sources */,
 				D421EAA623428B8100FA0B7C /* FTUIViewControllerTests.swift in Sources */,
 				D4E09A24234A45AC002729E6 /* FTStringTests.swift in Sources */,
 				D4E09A3F234AFDA8002729E6 /* FTTableViewTests.swift in Sources */,
+				D4E09A42234B60D4002729E6 /* FTSessionCacheTests.swift in Sources */,
 				D49FE3232345D4EA002B3742 /* FTFontPickerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,7 +14,7 @@ public class AppDelegate: FTAppDelegate {
         FTReflection.registerModuleIdentifier([AppDelegate.self, FTBaseView.self])
 
         if
-            let theme = FTMobileCoreBundle.bundle()?.path(forResource: "Themes", ofType: "json"),
+            let theme = kFTMobileCoreBundle.bundle()?.path(forResource: "Themes", ofType: "json"),
             let themeContent: FTThemeModel = try? theme.jsonContentAtPath()
         {
             FTThemesManager.setupThemes(themes: themeContent, imageSourceBundle: [Bundle(for: AppDelegate.self)])

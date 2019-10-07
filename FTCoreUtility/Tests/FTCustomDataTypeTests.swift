@@ -11,8 +11,8 @@ import XCTest
 
 class FTCustomDataTypeTests: XCTestCase {
     
-    let testString = "Follow @krelborn or #visit <a href=\"https://www.w3schools.com\">Visit W3Schools</a>"
-    let testUrl = "https://www.w3schools.com"
+    let testString = "Follow @krelborn or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a>"
+    let testUrl = "www.W3Schools.com"
     let testHash = "#visit"
 
     // MARK: String
@@ -45,7 +45,7 @@ class FTCustomDataTypeTests: XCTestCase {
         XCTAssertEqual(links.count, 1)
         if let url = links.first {
             XCTAssertTrue(url.linkType == .url)
-            XCTAssertTrue(url.linkURL.absoluteString == testUrl)
+            XCTAssertTrue(url.linkURL.absoluteString.hasSuffix(testUrl))
         }
     }
     
