@@ -10,9 +10,11 @@
 import XCTest
 
 final class TestTableViewHeader: FTTableViewHeaderFooterView {
+    // Temp class extending Protocol for testing
 }
 
 final class DefaultTableViewController: FTBaseViewController, FTTableViewControllerProtocal {
+    // Temp class extending Protocol for testing
 }
 
 final class TestTableViewController: FTBaseViewController, FTTableViewControllerProtocal {

@@ -71,7 +71,7 @@ public extension FTTableViewControllerProtocal {
         local.tableView.register(UITableViewCell.self, forCellReuseIdentifier: kAOTableVC)
 
         // Register for 'updateTableViewHeaderViewHeight'
-        NotificationCenter.default.addObserver(forName: .kFTMobileCoreDidLayoutSubviews, object: nil, queue: .main) { [weak self]_ in
+        _ = NotificationCenter.default.addObserver(forName: .kFTMobileCoreDidLayoutSubviews, object: nil, queue: .main) { [weak self]_ in
             self?.updateTableViewHeaderViewHeight()
         }
         

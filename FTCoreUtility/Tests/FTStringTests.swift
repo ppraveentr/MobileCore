@@ -14,19 +14,19 @@ class FTStringTests: XCTestCase {
     func testStringTrim() {
         var testString = "Test trimming"
         let trimmingTest = "Test "
-        let trimming_Result = "trimming"
+        let trimmingResult = "trimming"
         
-        XCTAssertEqual(testString.trimming(trimmingTest), trimming_Result)
-        XCTAssertEqual(testString.trimingPrefix(trimmingTest), trimming_Result)
+        XCTAssertEqual(testString.trimming(trimmingTest), trimmingResult)
+        XCTAssertEqual(testString.trimingPrefix(trimmingTest), trimmingResult)
         
         testString.trimPrefix(trimmingTest)
-        XCTAssertEqual(testString, trimming_Result)
+        XCTAssertEqual(testString, trimmingResult)
         
         testString = "trimming array of string"
-        XCTAssertEqual(testString.trimming([" array of"," string"]), trimming_Result)
+        XCTAssertEqual(testString.trimming([" array of"," string"]), trimmingResult)
         
         testString = "trimming string"
-        XCTAssertEqual(testString.trimming(" string"), trimming_Result)
+        XCTAssertEqual(testString.trimming(" string"), trimmingResult)
     }
     
     func testSubString() {
@@ -35,11 +35,11 @@ class FTStringTests: XCTestCase {
     }
     
     func testBundle() {
-        XCTAssertNotNil(FTMobileCoreBundle.bundle())
+        XCTAssertNotNil(kFTMobileCoreBundle.bundle())
     }
     
     func testBundlePath() {
-        let path = FTMobileCoreBundle.bundle()?.path(forResource: "Themes", ofType: "json")
+        let path = kFTMobileCoreBundle.bundle()?.path(forResource: "Themes", ofType: "json")
         
         let promise = expectation(description: "Files found at path.")
         try? path?.filesAtPath({ (paths) in

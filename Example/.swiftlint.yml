@@ -120,4 +120,7 @@ custom_rules:
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods
   
-#included:
+included:
+  - ../FTCoreUtility/Classes
+  - ../FTMobileCore/Classes
+  - ../FTMobileCoreUI/Classes

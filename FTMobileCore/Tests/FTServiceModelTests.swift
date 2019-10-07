@@ -93,8 +93,8 @@ class FTServiceModelTests: XCTestCase {
         let body = testService?.request.requestBody(model: testService?.inputStack)
         XCTAssertNotNil(body)
         
-        let form_request: FTReqeustType = .FORM
-        let form_body = form_request.requestBody(model: testService?.inputStack)
-        XCTAssertNotNil(form_body)
+        let formRequest: FTReqeustType = .FORM
+        let formBody = formRequest.requestBody(model: testService?.inputStack)
+        XCTAssertNotNil(formBody)
     }
 }

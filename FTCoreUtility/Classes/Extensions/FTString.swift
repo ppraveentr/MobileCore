@@ -34,7 +34,7 @@ public extension String {
     }
 
     func htmlAttributedString() -> NSMutableAttributedString {
-        guard self.count > 0 else { return NSMutableAttributedString() }
+        guard !self.isEmpty else { return NSMutableAttributedString() }
         guard self.isHTMLString() else { return NSMutableAttributedString(string: self) }
         guard let data = data(using: .utf8, allowLossyConversion: true) else {
             return NSMutableAttributedString()
@@ -121,7 +121,7 @@ public extension String {
      CGSize of text based.
      */
     func textSize(font: UIFont, constrainedSize: CGSize, lineBreakMode: NSLineBreakMode) -> CGSize {
-        guard self.count > 0 else {
+        guard !self.isEmpty else {
             return .zero
         }
         
