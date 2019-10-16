@@ -20,7 +20,7 @@ open class FTURLSession: NSObject {
 
     // Setup urlsession-dataTask with request & completionHandler
     @discardableResult
-    open class func startDataTask(with request: URLRequest, completionHandler: FTURLSessionCompletionBlock?) -> URLSessionDataTask {
+    open class func startDataTask(with request: URLRequest, completionHandler: FTURLSessionCompletionBlock? = nil) -> URLSessionDataTask {
 
         let task: URLSessionDataTask
 

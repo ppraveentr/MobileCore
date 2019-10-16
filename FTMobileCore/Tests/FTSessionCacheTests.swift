@@ -26,7 +26,6 @@ class FTSessionCacheTests: XCTestCase {
         XCTAssertNotNil(FTUserCache.userCache)
         
         let testData = ["Test": "testData"]
-        XCTAssertNil(FTUserCache.httpAdditionalHeaders)
         FTUserCache.httpAdditionalHeaders = testData
         XCTAssertNotNil(FTUserCache.httpAdditionalHeaders)
         XCTAssertEqual(FTUserCache.defaultSessionHeaders(), testData)

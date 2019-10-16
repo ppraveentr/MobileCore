@@ -18,7 +18,7 @@ public extension FTScrollViewControllerProtocol {
     
     var scrollView: UIScrollView {
         get {
-            guard let scroll = FTAssociatedObject<UIScrollView>.getAssociated(instance: self, key: &kAOScrollVC) else {
+            guard let scroll = FTAssociatedObject<UIScrollView>.getAssociated(self, key: &kAOScrollVC) else {
                 return self.setupScrollView()
             }
             return scroll
@@ -34,9 +34,9 @@ private extension FTScrollViewControllerProtocol {
     @discardableResult
     func setupScrollView(_ local: UIScrollView = UIScrollView() ) -> UIScrollView {
         
-        if let scroll = FTAssociatedObject<UIScrollView>.getAssociated(instance: self, key: &kAOScrollVC) {
+        if let scroll = FTAssociatedObject<UIScrollView>.getAssociated(self, key: &kAOScrollVC) {
             scroll.removeSubviews()
-            FTAssociatedObject<Any>.resetAssociated(instance: self, key: &kAOScrollVC)
+            FTAssociatedObject<Any>.resetAssociated(self, key: &kAOScrollVC)
         }
         
         if isLoadedFromInterface || local.superview == nil {
@@ -44,7 +44,7 @@ private extension FTScrollViewControllerProtocol {
             local.setupContentView(local.contentView)
         }
         
-        FTAssociatedObject<UIScrollView>.setAssociated(instance: self, value: local, key: &kAOScrollVC)
+        FTAssociatedObject<UIScrollView>.setAssociated(self, value: local, key: &kAOScrollVC)
         
         return local
     }
