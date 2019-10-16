@@ -33,12 +33,12 @@ public struct FTThemeStyle {
 extension UIView {
 
     // Swizzling out view's layoutSubviews property for Updating Visual theme
-    static var kSwizzleLayoutSubview = {
+    private static func swizzleLayoutSubview() {
         FTInstanceSwizzling(UIView.self, #selector(layoutSubviews), #selector(swizzledLayoutSubviews))
     }
 
     static func setupThemes() {
-        _ = kSwizzleLayoutSubview
+        swizzleLayoutSubview()
     }
     
     // Theme style-name for the view

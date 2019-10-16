@@ -42,7 +42,7 @@ public extension FTTableViewControllerProtocal {
     
     var tableViewController: UITableViewController {
         get {
-            guard let table = FTAssociatedObject<UITableViewController>.getAssociated(instance: self, key: &kAOTableVC) else {
+            guard let table = FTAssociatedObject<UITableViewController>.getAssociated(self, key: &kAOTableVC) else {
                 return self.setupCoreTableViewController()
             }
             return table
@@ -55,9 +55,9 @@ public extension FTTableViewControllerProtocal {
     @discardableResult
     private func setupCoreTableViewController(_ controller: UITableViewController? = nil) -> UITableViewController {
         
-        if let table = FTAssociatedObject<UITableViewController>.getAssociated(instance: self, key: &kAOTableVC) {
+        if let table = FTAssociatedObject<UITableViewController>.getAssociated(self, key: &kAOTableVC) {
             table.tableView.removeSubviews()
-            FTAssociatedObject<Any>.resetAssociated(instance: self, key: &kAOTableVC)
+            FTAssociatedObject<Any>.resetAssociated(self, key: &kAOTableVC)
         }
         
         // Create tableView based on user provided style
@@ -75,7 +75,7 @@ public extension FTTableViewControllerProtocal {
             self?.updateTableViewHeaderViewHeight()
         }
         
-        FTAssociatedObject<UITableViewController>.setAssociated(instance: self, value: local, key: &kAOTableVC)
+        FTAssociatedObject<UITableViewController>.setAssociated(self, value: local, key: &kAOTableVC)
 
         return local
     }

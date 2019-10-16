@@ -20,9 +20,8 @@ extension UIButton: FTUIControlThemeProtocol {
         else if self.isHighlighted {
             return FTThemeStyle.highlightedStyle
         }
-        else {
-            return FTThemeStyle.disabledStyle
-        }
+        
+        return FTThemeStyle.disabledStyle
     }
     
     // For custome key:value pairs

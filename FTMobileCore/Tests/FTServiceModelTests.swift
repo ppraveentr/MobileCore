@@ -9,41 +9,6 @@
 @testable import MobileCore
 import XCTest
 
-class AccountDetail: FTServiceModel {
-    var value: String = ""
-    var name: String = ""
-    
-    init(value: String, name: String) {
-        self.value = value
-        self.name = name
-    }
-}
-
-class Account: FTServiceModel {
-    var name: String = ""
-    var type: AccountDetail?
-    var data: [String] = []
-    
-    init(name: String, type: AccountDetail, data: [String]) {
-        self.name = name
-        self.type = type
-        self.data = data
-    }
-}
-
-final class TestService: FTServiceClient {
-    
-    var serviceName: String = "TestService"
-    var request: FTReqeustType = .POST
-    var inputStack: Account?
-    var responseStack: AccountDetail?
-    var responseStackType: Any?
-
-    required init(inputStack: FTServiceModel?) {
-        self.inputStack = inputStack as? Account
-    }
-}
-
 class FTServiceModelTests: XCTestCase {
 
     var testService: TestService?
@@ -96,5 +61,11 @@ class FTServiceModelTests: XCTestCase {
         let formRequest: FTReqeustType = .FORM
         let formBody = formRequest.requestBody(model: testService?.inputStack)
         XCTAssertNotNil(formBody)
+    }
+    
+    // MARK: FTServiceClient
+    func testServiceClient() {
+        let service = TestDummyService()
+        XCTAssertNotNil(service)
     }
 }

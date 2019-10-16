@@ -14,15 +14,19 @@ class FTThemesTests: XCTestCase {
     override func setUp() {
         super.setUp()
         if
-            let theme = kFTMobileCoreBundle.bundle()?.path(forResource: "Themes", ofType: "json"),
+            let bundle = kFTMobileCoreBundle.bundle(),
+            let theme = bundle.path(forResource: "Themes", ofType: "json"),
             let themeContent: FTThemeModel = try? theme.jsonContentAtPath()
         {
-            FTThemesManager.setupThemes(themes: themeContent, imageSourceBundle: nil)
+            FTThemesManager.setupThemes(themes: themeContent, imageSourceBundle: [bundle])
         }
         else {
             XCTFail()
         }
     }
+    
+    // MARK: Theme Manager
+    
     
     // MARK: View Component
     func testComponent() {
@@ -111,5 +115,11 @@ class FTThemesTests: XCTestCase {
         let value: FTThemeModel? = FTThemesManager.getViewComponent("FTSearchBar", styleName: "default")
         XCTAssertNotNil(value)
         XCTAssertTrue(value?.count == 3)
+    }
+    
+    // MARK: image
+    func testImage() {
+        let image = UIImage.named("@upArrow")
+        XCTAssertNotNil(image)
     }
 }

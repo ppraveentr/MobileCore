@@ -43,7 +43,7 @@ public extension FTCollectionViewControllerProtocol {
     }
     
     var collectionViewController: UICollectionViewController {
-        guard let collection = FTAssociatedObject<UICollectionViewController>.getAssociated(instance: self, key: &kAOCollectionVC) else {
+        guard let collection = FTAssociatedObject<UICollectionViewController>.getAssociated(self, key: &kAOCollectionVC) else {
             return setupCoreCollectionVC()
         }
         return collection
@@ -60,9 +60,9 @@ private extension FTCollectionViewControllerProtocol {
     @discardableResult
     func setupCoreCollectionVC(_ collectionView: UICollectionView? = nil) -> UICollectionViewController {
         
-        if let collection = FTAssociatedObject<UICollectionViewController>.getAssociated(instance: self, key: &kAOCollectionVC) {
+        if let collection = FTAssociatedObject<UICollectionViewController>.getAssociated(self, key: &kAOCollectionVC) {
             collection.collectionView.removeSubviews()
-            FTAssociatedObject<Any>.resetAssociated(instance: self, key: &kAOCollectionVC)
+            FTAssociatedObject<Any>.resetAssociated(self, key: &kAOCollectionVC)
         }
         
         // Create tableView based on user provided style
@@ -82,7 +82,7 @@ private extension FTCollectionViewControllerProtocol {
         self.addChild(local)
         self.mainView?.pin(view: local.collectionView, edgeOffsets: .zero)
         
-        FTAssociatedObject<UICollectionViewController>.setAssociated(instance: self, value: local, key: &kAOCollectionVC)
+        FTAssociatedObject<UICollectionViewController>.setAssociated(self, value: local, key: &kAOCollectionVC)
         
         return local
     }

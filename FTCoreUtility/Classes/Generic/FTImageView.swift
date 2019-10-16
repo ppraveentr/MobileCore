@@ -42,6 +42,10 @@ public extension UIImageView {
         
         // Validate urlString
         guard let url = URL(string: link) else {
+            DispatchQueue.main.async {
+                self.image = nil
+                comletionHandler?(nil)
+            }
             return
         }
         
