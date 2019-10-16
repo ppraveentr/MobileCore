@@ -87,14 +87,13 @@ public protocol FTServiceClient: FTServiceRulesProtocol {
 }
 
 public extension FTServiceClient {
-    var serviceName: String { return "" }
 
     var requestHeaders: [String: String] {
         return [:]
     }
 
-    var inputModelStack: FTServiceModel? {
-        return self.inputStack as? FTServiceModel
+    var inputModelStack: InputDataType? {
+        return self.inputStack
     }
 
     func isValid() -> Bool {
@@ -107,12 +106,12 @@ public extension FTServiceClient {
     }
 
     var responseData: Data? {
-        return  FTAssociatedObject.getAssociated(instance: self, key: &FTAssociatedKey.ResponseData)
+        return  FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.ResponseData)
     }
 
     var responseStack: FTServiceModel? {
 
-        if let parsedModel: FTServiceModel = FTAssociatedObject.getAssociated(instance: self, key: &FTAssociatedKey.ModelData) {
+        if let parsedModel: FTServiceModel = FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.ModelData) {
             return parsedModel
         }
 
@@ -158,7 +157,7 @@ public extension FTServiceClient {
         }
 
         // Save responseModelData to service
-        FTAssociatedObject<FTServiceModel>.setAssociated(instance: self, value: responseModelData, key: &FTAssociatedKey.ModelData)
+        FTAssociatedObject<FTServiceModel>.setAssociated(self, value: responseModelData, key: &FTAssociatedKey.ModelData)
 
         return responseModelData
     }
@@ -220,7 +219,7 @@ private extension FTServiceClient {
 
     @discardableResult
     func processResponseData(data: Data?) -> FTServiceModel? {
-        FTAssociatedObject<Data>.setAssociated(instance: self, value: data, key: &FTAssociatedKey.ResponseData)
+        FTAssociatedObject<Data>.setAssociated(self, value: data, key: &FTAssociatedKey.ResponseData)
         // Parse response model before-hand
         return self.responseStack
     }
@@ -258,14 +257,14 @@ extension FTServiceClient {
 
     // MARK: Service Request
     var serviceRequest: FTRequestObject? {
-        if let request: FTRequestObject = FTAssociatedObject.getAssociated(instance: self, key: &FTAssociatedKey.ServiceRequest) {
+        if let request: FTRequestObject = FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.ServiceRequest) {
             return request
         }
         do {
             if let data = try FTMobileConfig.schemaForClass(classKey: serviceName) {
                 let request = try FTRequestObject.makeModel(json: data)
                 if !request.queryItems().isEmpty {
-                    FTAssociatedObject<FTRequestObject>.setAssociated(instance: self, value: request, key: &FTAssociatedKey.ServiceRequest)
+                    FTAssociatedObject<FTRequestObject>.setAssociated(self, value: request, key: &FTAssociatedKey.ServiceRequest)
                 }
                 return request
             }
@@ -292,8 +291,8 @@ extension FTServiceClient {
 
         // Setup URL 'queryItems' or 'httpBody'
         let reqstType = request.type
-        if reqstType == .GET {
-            components.queryItems = inputModelStack?.queryItems()
+        if reqstType == .GET, let model = inputModelStack as? FTServiceModel {
+            components.queryItems = model.queryItems()
         }
 
         // Create URLRequest from 'components'
@@ -312,7 +311,9 @@ extension FTServiceClient {
         }
 
         // Reqeust Body if any
-        urlReq.httpBody = reqstType.requestBody(model: inputModelStack)
+        if let model = inputModelStack as? FTServiceModel {
+            urlReq.httpBody = reqstType.requestBody(model: model)
+        }
         ftLog("RequestBody: ", urlReq.httpBody?.decodeToString() ?? "Empty")
 
         // Service Rules
@@ -334,14 +335,12 @@ extension FTServiceClient {
                 ftLog("\nError response: ", error?.localizedDescription ?? "", "\n")
             }
         }
-        
         // Parse Response
         let failure = { statusCode in
             DispatchQueue.main.async {
                 completionHandler?(FTServiceStatus.failed(self, statusCode))
             }
         }
-        
         // Parse Response
         let success = { statusCode in
             DispatchQueue.main.async {
@@ -372,12 +371,10 @@ extension FTServiceClient {
             if let httpURLResponse = response as? HTTPURLResponse {
                 let statusCode = httpURLResponse.statusCode
                 ftLog("ResponseStatus: ", statusCode, "\n")
-
                 if statusCode > 400 {
                     failure(statusCode)
                     return
                 }
-
                 success(statusCode)
                 return
             }

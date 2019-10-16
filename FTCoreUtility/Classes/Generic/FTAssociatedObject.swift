@@ -12,6 +12,10 @@ public struct FTAssociatedKey {
     static var DefaultKey = "DefaultKey"
 }
 
+public struct AssociatedKey {
+    static var DefaultKey = "DefaultKey"
+}
+
 // Generic way of storing values on runtime
 public class FTAssociatedObject<T> {
     
@@ -35,29 +39,29 @@ public class FTAssociatedObject<T> {
     }
 
     // setAssociated
-    public static func setAssociated<T>(instance: Any, value: T?) {
-        setAssociated(instance: instance, value: value, key: &FTAssociatedKey.DefaultKey)
+    public static func setAssociated<T>(_ instance: Any, value: T?) {
+        setAssociated(instance, value: value, key: &FTAssociatedKey.DefaultKey)
     }
     
-    public static func setAssociated<T>(instance: Any, value: T?, key: UnsafeRawPointer) {
+    public static func setAssociated<T>(_ instance: Any, value: T?, key: UnsafeRawPointer) {
         objc_setAssociatedObject(instance, key, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 
     // getAssociated
-    public static func getAssociated(instance: Any) -> T? {
-        return getAssociated(instance: instance, key: &FTAssociatedKey.DefaultKey)
+    public static func getAssociated(_ instance: Any) -> T? {
+        return getAssociated(instance, key: &FTAssociatedKey.DefaultKey)
     }
 
-    public static func getAssociated(instance: Any, key: UnsafeRawPointer) -> T? {
+    public static func getAssociated(_ instance: Any, key: UnsafeRawPointer) -> T? {
         return objc_getAssociatedObject(instance, key) as? T
     }
     
     // reset Associated
-    public static func resetAssociated(instance: Any, key: UnsafeRawPointer) {
+    public static func resetAssociated(_ instance: Any, key: UnsafeRawPointer) {
         objc_setAssociatedObject(instance, key, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
     
-    public static func resetAssociated(instance: Any) {
+    public static func resetAssociated(_ instance: Any) {
         objc_setAssociatedObject(instance, &FTAssociatedKey.DefaultKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 }

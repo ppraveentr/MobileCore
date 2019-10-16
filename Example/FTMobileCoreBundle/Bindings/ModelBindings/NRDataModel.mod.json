@@ -1,0 +1,8 @@
+{
+    "Books": {
+        "type": "type",
+        "category": "category",
+        "state": "state",
+        "page": "page"
+    }
+}

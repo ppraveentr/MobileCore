@@ -18,16 +18,16 @@ public extension URL {
     func downloadedImage(_ comletionHandler: FTUIImageViewComletionHandler? = nil) {
 
         // Setup URLSession
-        URLSession.shared.dataTask(with: self) { data, response, error in
+        URLSession.shared.dataTask(with: self) { data, _, error in
 
             guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
                 let data = data, error == nil,
                 let image = UIImage(data: data)
                 else {
-                    // If image download fails
-                    comletionHandler?(nil)
+                    DispatchQueue.main.async {
+                        // If image download fails
+                        comletionHandler?(nil)
+                    }
                     return
             }
 
