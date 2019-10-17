@@ -12,10 +12,6 @@ public struct FTAssociatedKey {
     static var DefaultKey = "DefaultKey"
 }
 
-public struct AssociatedKey {
-    static var DefaultKey = "DefaultKey"
-}
-
 // Generic way of storing values on runtime
 public class FTAssociatedObject<T> {
     
@@ -40,7 +36,7 @@ public class FTAssociatedObject<T> {
 
     // setAssociated
     public static func setAssociated<T>(_ instance: Any, value: T?) {
-        setAssociated(instance, value: value, key: &FTAssociatedKey.DefaultKey)
+        setAssociated(instance, value: value, key: FTAssociatedKey.DefaultKey)
     }
     
     public static func setAssociated<T>(_ instance: Any, value: T?, key: UnsafeRawPointer) {
@@ -49,7 +45,7 @@ public class FTAssociatedObject<T> {
 
     // getAssociated
     public static func getAssociated(_ instance: Any) -> T? {
-        return getAssociated(instance, key: &FTAssociatedKey.DefaultKey)
+        return getAssociated(instance, key: FTAssociatedKey.DefaultKey)
     }
 
     public static func getAssociated(_ instance: Any, key: UnsafeRawPointer) -> T? {
@@ -62,6 +58,6 @@ public class FTAssociatedObject<T> {
     }
     
     public static func resetAssociated(_ instance: Any) {
-        objc_setAssociatedObject(instance, &FTAssociatedKey.DefaultKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        objc_setAssociatedObject(instance, FTAssociatedKey.DefaultKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 }

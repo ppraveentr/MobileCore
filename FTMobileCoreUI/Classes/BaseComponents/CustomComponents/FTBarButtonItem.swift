@@ -13,14 +13,10 @@ public extension UIBarButtonItem {
                       image: UIImage? = nil,
                       action: Selector? = nil,
                       itemType: UIBarButtonItem.SystemItem = .done,
-                      customView: UIView? = nil,
-                      sender: Any? = nil) {
+                      target: Any? = nil) {
         
         guard title != nil, image != nil else {
-            if let customView = customView {
-                self.init(customView: customView)
-            }
-            self.init(barButtonSystemItem: itemType, target: sender, action: action)
+            self.init(barButtonSystemItem: itemType, target: target, action: action)
             return
         }
         
@@ -28,7 +24,7 @@ public extension UIBarButtonItem {
         button.titleLabel?.text = title
         button.imageView?.image = image
         if let buttonAction = action {
-            button.target(forAction: buttonAction, withSender: sender)
+            button.addTarget(target, action: buttonAction, for: .touchUpInside)
         }
         
         self.init(customView: button)

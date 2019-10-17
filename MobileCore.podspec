@@ -30,4 +30,9 @@ Pod::Spec.new do |s|
     coreUI.header_dir   = "CoreUI"
   end
   
+   s.subspec 'Testing' do |testing|
+      testing.source_files = 'FTCoreUtility/Tests/**/*.swift', 'FTMobileCore/Tests/**/*.swift', 'FTMobileCoreUI/Tests/**/*.swift'
+      testing.frameworks = 'XCTest'
+  end
+  
 end

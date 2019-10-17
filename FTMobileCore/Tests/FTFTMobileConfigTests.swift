@@ -19,7 +19,7 @@ class FTFTMobileConfigTests: XCTestCase {
     let kServiceBindingRulesName = "NovelServiceRules.plist"
     // MARK: Mock
     let kMockServerURL = "http://127.0.0.1:3000/"
-    let kMockBundleResource = kFTMobileCoreBundle.bundleURL()
+    let kMockBundleResource = kFTMobileCoreBundle?.bundleURL
     let kMockDataEnabled = true
     let httpAdditionalHeaders = ["Test": "TestValue"]
     

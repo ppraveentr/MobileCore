@@ -10,9 +10,7 @@
 import XCTest
 
 class FTStringTests: XCTestCase {
-    
-    let bundle = kFTMobileCoreBundle.bundle()
-    
+        
     func testStringTrim() {
         var testString = "Test trimming"
         let trimmingTest = "Test "
@@ -37,8 +35,8 @@ class FTStringTests: XCTestCase {
     }
     
     func testBundlePath() {
-        XCTAssertNotNil(bundle)
-        let path = bundle?.path(forResource: "Themes", ofType: "json")
+        XCTAssertNotNil(kFTMobileCoreBundle)
+        let path = kFTMobileCoreBundle?.path(forResource: "Themes", ofType: "json")
         
         let promise = expectation(description: "Files found at path.")
         try? path?.filesAtPath({ (paths) in

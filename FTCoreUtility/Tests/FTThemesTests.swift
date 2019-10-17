@@ -14,7 +14,7 @@ class FTThemesTests: XCTestCase {
     override func setUp() {
         super.setUp()
         if
-            let bundle = kFTMobileCoreBundle.bundle(),
+            let bundle = kFTMobileCoreBundle,
             let theme = bundle.path(forResource: "Themes", ofType: "json"),
             let themeContent: FTThemeModel = try? theme.jsonContentAtPath()
         {

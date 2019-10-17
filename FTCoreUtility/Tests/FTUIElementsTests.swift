@@ -11,8 +11,7 @@ import XCTest
 
 class FTUIElementsTests: XCTestCase {
     
-    let bundle = kFTMobileCoreBundle.bundle()
-    lazy var imagePath = bundle?.path(forResource: "upArrow", ofType: "png")
+    lazy var imagePath = kFTMobileCoreBundle?.path(forResource: "upArrow", ofType: "png")
     lazy var imageURLPath = URL(fileURLWithPath: imagePath!).absoluteString
     
     func testUIImageView() {

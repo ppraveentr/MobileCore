@@ -26,7 +26,7 @@ class FTURLSessionTests: XCTestCase {
     
     func testStartTaskWithCompletion() {
         let promise = expectation(description: "FTURLSession data task completed.")
-        guard let theme = kFTMobileCoreBundle.bundle()?.path(forResource: "Themes", ofType: "json") else {
+        guard let theme = kFTMobileCoreBundle?.path(forResource: "Themes", ofType: "json") else {
             XCTFail()
             return
         }
