@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class FTFontPickerViewController: FTBaseViewController {
+open class FTFontPickerViewController: UIViewController {
     
     var pickerView = FTFontPickerView.fromNib() as? FTFontPickerView
     
@@ -31,6 +31,8 @@ open class FTFontPickerViewController: FTBaseViewController {
 
     override open func loadView() {
        super.loadView()
+         // Setup MobileCore
+        setupCoreView()
         if let pickerView = pickerView {
          self.mainView?.pin(view: pickerView)
         }

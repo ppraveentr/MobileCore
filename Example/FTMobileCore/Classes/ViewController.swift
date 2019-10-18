@@ -7,7 +7,15 @@
 
 import UIKit
 
-class ViewController: FTBaseViewController {
+class ViewController: UIViewController {
+    
+    @IBOutlet weak var sampleView: FTView!
+    
+    override func loadView() {
+        super.loadView()
+         // Setup MobileCore
+        setupCoreView()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +95,8 @@ class ViewController: FTBaseViewController {
 //        }
     }
     
-    @objc func showFontPicker(sender: UIButton?) {
+    @objc
+    func showFontPicker(sender: UIButton?) {
         let popoverContent = FTFontPickerViewController()
         popoverContent.modalPresentationStyle = .popover
         let nav = UINavigationController(rootViewController: popoverContent)

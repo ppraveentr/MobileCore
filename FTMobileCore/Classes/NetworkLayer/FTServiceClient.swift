@@ -191,19 +191,19 @@ public extension FTServiceClient {
 
     // MARK: Service Rules
     func fireBefore() {
-        // Optional Protocal implementation: intentionally empty
+        // Optional Protocol implementation: intentionally empty
     }
 
     func fireBefore(urlRequest: inout URLRequest) {
-        // Optional Protocal implementation: intentionally empty
+        // Optional Protocol implementation: intentionally empty
     }
 
     func fireAfter(modelData: inout FTServiceModel?) {
-        // Optional Protocal implementation: intentionally empty
+        // Optional Protocol implementation: intentionally empty
     }
 
     func fireAfter(data: Data?, response: URLResponse?, error: Error?) {
-        // Optional Protocal implementation: intentionally empty
+        // Optional Protocol implementation: intentionally empty
     }
 }
 

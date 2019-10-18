@@ -28,7 +28,7 @@ class FTAssociatedObjectTests: XCTestCase {
         //Given
         FTAssociatedObject<String>.setAssociated(self, value: value)
         // When
-        FTAssociatedObject<String>.resetAssociated(self, key: FTAssociatedKey.DefaultKey)
+        FTAssociatedObject<String>.resetAssociated(self, key: &FTAssociatedKey.DefaultKey)
         // Then
         let emptyValue2 = FTAssociatedObject<String>.getAssociated(self)
         XCTAssertNil(emptyValue2)

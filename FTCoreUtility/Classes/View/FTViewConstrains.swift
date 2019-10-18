@@ -518,7 +518,7 @@ public extension UIView {
             self.viewLayoutConstraint = FTViewLayoutConstraint()
             return self.viewLayoutConstraint
         }
-        set(newValue) {
+        set {
             UIView.aoLayoutConstraint[self] = newValue
         }
     }

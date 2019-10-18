@@ -32,7 +32,7 @@
         <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FTMobileCoreSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FTMobileCore" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -40,9 +40,37 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ER-nY-2UA">
+                                <rect key="frame" x="116" y="120" width="143" height="60.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O18-Db-rJK">
+                                        <rect key="frame" x="50.5" y="20" width="42" height="20.5"/>
+                                        <color key="backgroundColor" red="0.094117647060000004" green="0.71764705880000002" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="143" id="4Xl-JW-53V"/>
+                                    <constraint firstItem="O18-Db-rJK" firstAttribute="centerY" secondItem="0ER-nY-2UA" secondAttribute="centerY" id="KYd-jc-nLI"/>
+                                    <constraint firstItem="O18-Db-rJK" firstAttribute="centerX" secondItem="0ER-nY-2UA" secondAttribute="centerX" id="gFz-3c-CYb"/>
+                                    <constraint firstAttribute="height" constant="60.5" id="xiO-AY-WHd"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.73893411799893238" blue="0.95948121340901793" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="0ER-nY-2UA" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="120" id="1uV-CT-PLs"/>
+                            <constraint firstItem="0ER-nY-2UA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Dqw-mj-nlm"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="n7k-Jm-TaY"/>
+                    <connections>
+                        <outlet property="sampleView" destination="0ER-nY-2UA" id="xYP-uz-j8Z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -51,7 +79,7 @@
         <!--Item-->
         <scene sceneID="Y8k-Vb-FkW">
             <objects>
-                <viewController id="Io7-55-XL7" customClass="FTSampleTableViewController" customModule="FTMobileCoreSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Io7-55-XL7" customClass="FTSampleTableViewController" customModule="FTMobileCore" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vCd-r7-Aj0"/>
                         <viewControllerLayoutGuide type="bottom" id="aKs-Xt-QaB"/>

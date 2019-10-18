@@ -10,7 +10,7 @@ import Foundation
 
 private var kAOCollectionVC = "k.FT.AO.CollectionViewController"
 
-public protocol FTCollectionViewControllerProtocol: FTBaseViewController {
+public protocol FTCollectionViewControllerProtocol: FTBaseViewControllerProtocol {
     var flowLayout: NSObject { get }
     var collectionView: UICollectionView { get set }
     var collectionViewController: UICollectionViewController { get }
@@ -59,6 +59,9 @@ private extension FTCollectionViewControllerProtocol {
     
     @discardableResult
     func setupCoreCollectionVC(_ collectionView: UICollectionView? = nil) -> UICollectionViewController {
+
+        // Load Base view
+        setupCoreView()
         
         if let collection = FTAssociatedObject<UICollectionViewController>.getAssociated(self, key: &kAOCollectionVC) {
             collection.collectionView.removeSubviews()

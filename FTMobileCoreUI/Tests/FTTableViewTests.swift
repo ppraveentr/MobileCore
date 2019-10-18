@@ -13,11 +13,11 @@ final class TestTableViewHeader: FTTableViewHeaderFooterView {
     // Temp class extending Protocol for testing
 }
 
-final class DefaultTableViewController: FTBaseViewController, FTTableViewControllerProtocal {
+final class DefaultTableViewController: UIViewController, FTTableViewControllerProtocol {
     // Temp class extending Protocol for testing
 }
 
-final class TestTableViewController: FTBaseViewController, FTTableViewControllerProtocal {
+final class TestTableViewController: UIViewController, FTTableViewControllerProtocol {
     var tableStyle: UITableView.Style = .grouped
     var tableViewEdgeOffsets: FTEdgeOffsets = .init(40, 40, 40, 40)
 }

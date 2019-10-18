@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FTSampleTableViewController: FTBaseViewController, FTTableViewControllerProtocal {
+class FTSampleTableViewController: UIViewController, FTTableViewControllerProtocol {
     
     @IBOutlet var headerView: UIView!
     
@@ -18,6 +18,8 @@ class FTSampleTableViewController: FTBaseViewController, FTTableViewControllerPr
     
     override func loadView() {
         super.loadView()
+        // Setup MobileCore
+        setupCoreView()
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableHeaderView = headerView

@@ -1,5 +1,5 @@
 //
-//  FTBaseScrollViewController.swift
+//  FTScrollViewControllerProtocol.swift
 //  FTMobileCoreUI
 //
 //  Created by Praveen Prabhakar on 18/08/17.
@@ -10,7 +10,7 @@ import Foundation
 
 private var kAOScrollVC = "k.FT.AO.ScrollViewController"
 
-public protocol FTScrollViewControllerProtocol: FTBaseViewController {
+public protocol FTScrollViewControllerProtocol: FTBaseViewControllerProtocol {
     var scrollView: UIScrollView { get }
 }
 
@@ -34,12 +34,15 @@ private extension FTScrollViewControllerProtocol {
     @discardableResult
     func setupScrollView(_ local: UIScrollView = UIScrollView() ) -> UIScrollView {
         
+        // Load Base view
+        setupCoreView()
+        
         if let scroll = FTAssociatedObject<UIScrollView>.getAssociated(self, key: &kAOScrollVC) {
             scroll.removeSubviews()
             FTAssociatedObject<Any>.resetAssociated(self, key: &kAOScrollVC)
         }
         
-        if isLoadedFromInterface || local.superview == nil {
+        if local.superview == nil {
             self.mainView?.pin(view: local, edgeOffsets: .zero)
             local.setupContentView(local.contentView)
         }

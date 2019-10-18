@@ -1,5 +1,5 @@
 //
-//  FTTableViewControllerProtocal.swift
+//  FTTableViewControllerProtocol.swift
 //  MobileCore
 //
 //  Created by Praveen P on 10/09/19.
@@ -10,7 +10,7 @@ import Foundation
 
 private var kAOTableVC = "k.FT.AO.TableViewController"
 
-public protocol FTTableViewControllerProtocal: FTBaseViewController {
+public protocol FTTableViewControllerProtocol: FTBaseViewControllerProtocol {
     var tableStyle: UITableView.Style { get }
     var tableView: UITableView { get }
     var tableViewController: UITableViewController { get set }
@@ -19,7 +19,7 @@ public protocol FTTableViewControllerProtocal: FTBaseViewController {
     func getCoreTableViewController() -> UITableViewController
 }
 
-public extension FTTableViewControllerProtocal {
+public extension FTTableViewControllerProtocol {
     
     // TableView style, defalut: .plain
     var tableStyle: UITableView.Style {
@@ -54,6 +54,9 @@ public extension FTTableViewControllerProtocal {
     
     @discardableResult
     private func setupCoreTableViewController(_ controller: UITableViewController? = nil) -> UITableViewController {
+        
+        // Load Base view
+        setupCoreView()
         
         if let table = FTAssociatedObject<UITableViewController>.getAssociated(self, key: &kAOTableVC) {
             table.tableView.removeSubviews()
