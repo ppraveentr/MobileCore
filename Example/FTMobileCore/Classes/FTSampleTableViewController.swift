@@ -22,8 +22,8 @@ class FTSampleTableViewController: UIViewController, FTTableViewControllerProtoc
         setupCoreView()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.tableHeaderView = headerView
-        headerView.setNeedsDisplay()
+        self.tableView.setTableHeaderView(view: headerView)
+//        headerView.setNeedsDisplay()
     }
 }
 

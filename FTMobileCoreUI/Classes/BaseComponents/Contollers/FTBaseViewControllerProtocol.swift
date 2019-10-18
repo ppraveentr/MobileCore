@@ -1,5 +1,5 @@
 //
-//  FTBaseViewControllerProtocol.swift
+//  FTViewControllerProtocol.swift
 //  FTMobileCoreUI
 //
 //  Created by Praveen Prabhakar on 15/06/17.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-public typealias FTBaseViewControllerCompletionBlock = (_ isSuccess: Bool, _ modelStack: AnyObject?) -> Void
+public typealias FTViewControllerCompletionBlock = (_ isSuccess: Bool, _ modelStack: AnyObject?) -> Void
 
-public protocol FTBaseViewControllerProtocol where Self: UIViewController {
+public protocol FTViewControllerProtocol where Self: UIViewController {
     //Setup View
     func setupCoreView()
     // MARK: Navigation Bar
@@ -42,15 +42,15 @@ private extension FTAssociatedKey {
     static var completionBlock = "completionBlock"
 }
 
-extension UIViewController: FTBaseViewControllerProtocol {
+extension UIViewController: FTViewControllerProtocol {
 
     @IBOutlet
-    public var baseView: FTBaseView? {
+    public var baseView: FTView? {
         get {
-            return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.baseView, defaultValue: FTBaseView())
+            return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.baseView, defaultValue: FTView())
         }
         set {
-            FTAssociatedObject<FTBaseView>.setAssociated(self, value: newValue, key: &FTAssociatedKey.baseView)
+            FTAssociatedObject<FTView>.setAssociated(self, value: newValue, key: &FTAssociatedKey.baseView)
         }
     }
     
@@ -65,7 +65,7 @@ extension UIViewController: FTBaseViewControllerProtocol {
     }
     
     @IBOutlet
-    public var topPinnedButtonView: FTView? {
+    public var topPinnedButtonView: UIView? {
         get {
             return self.baseView?.topPinnedView
         }
@@ -75,7 +75,7 @@ extension UIViewController: FTBaseViewControllerProtocol {
     }
     
     @IBOutlet
-    public var bottomPinnedButtonView: FTView? {
+    public var bottomPinnedButtonView: UIView? {
         get {
             return self.baseView?.bottomPinnedView
         }
@@ -104,12 +104,12 @@ extension UIViewController: FTBaseViewControllerProtocol {
         }
     }
     
-    public var completionBlock: FTBaseViewControllerCompletionBlock? {
+    public var completionBlock: FTViewControllerCompletionBlock? {
         get {
-            return FTAssociatedObject<FTBaseViewControllerCompletionBlock>.getAssociated(self, key: &FTAssociatedKey.completionBlock)
+            return FTAssociatedObject<FTViewControllerCompletionBlock>.getAssociated(self, key: &FTAssociatedKey.completionBlock)
         }
         set {
-            FTAssociatedObject<FTBaseViewControllerCompletionBlock>.setAssociated(self, value: newValue, key: &FTAssociatedKey.completionBlock)
+            FTAssociatedObject<FTViewControllerCompletionBlock>.setAssociated(self, value: newValue, key: &FTAssociatedKey.completionBlock)
         }
     }
 
@@ -128,7 +128,7 @@ extension UIViewController: FTBaseViewControllerProtocol {
     }
     
     public func setupCoreView() {
-       
+        
         if self.view == self.baseView {
             return
         }
@@ -139,8 +139,8 @@ extension UIViewController: FTBaseViewControllerProtocol {
         
         var isValidBaseView = false
         // Make it as Views RooView, if forget to map it in IB.
-        if self.baseView != rootView, (rootView as? FTBaseView) != nil {
-            self.baseView = rootView as? FTBaseView
+        if self.baseView != rootView, (rootView as? FTView) != nil {
+            self.baseView = rootView as? FTView
             isValidBaseView = true
         }
         
@@ -221,7 +221,7 @@ private extension UIViewController {
         }
     }
     
-    func setupTopSafeAreaLayoutGuide(_ local: FTView) {
+    func setupTopSafeAreaLayoutGuide(_ local: UIView) {
         if #available(iOS 11.0, *) {
             local.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0.0).isActive = true
         }
@@ -230,27 +230,3 @@ private extension UIViewController {
         }
     }
 }
-
-//// MARK: Notification whenever view is loaded
-//extension FTBaseViewControllerProtocol {
-//
-//    public func viewWillAppear(_ animated: Bool) {
-//        postNotification(name: .kFTMobileCoreWillAppearViewController)
-//    }
-//
-//    public func viewDidAppear(_ animated: Bool) {
-//        postNotification(name: .kFTMobileCoreDidAppearViewController)
-//    }
-//
-//    public func viewWillDisappear(_ animated: Bool) {
-//        postNotification(name: .kFTMobileCoreWillDisappearViewController)
-//    }
-//
-//    public func viewDidDisappear(_ animated: Bool) {
-//        postNotification(name: .kFTMobileCoreDidDisappearViewController)
-//    }
-//
-//    public func viewDidLayoutSubviews() {
-//        postNotification(name: .kFTMobileCoreDidLayoutSubviews)
-//    }
-//}

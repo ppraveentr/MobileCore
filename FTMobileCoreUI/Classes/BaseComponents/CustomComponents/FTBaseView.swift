@@ -1,5 +1,5 @@
 //
-//  FTBaseView.swift
+//  FTView.swift
 //  FTMobileCoreUI
 //
 //  Created by Praveen Prabhakar on 09/07/17.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-open class FTBaseView: FTView {
+open class FTView: UIView {
     
     // Set as BaseView, so that "pin'ning" subViews wont alter the base position
-    public var rootView = FTView()
+    public var rootView = UIView()
     
     // Top portion of view
     @IBOutlet
-    public var topPinnedView: FTView? {
+    public var topPinnedView: UIView? {
         didSet {
             self.restConstraints()
         }
@@ -24,10 +24,10 @@ open class FTBaseView: FTView {
     // Using private var, since, mainView can be set from IB.
     // On init'coder, mainView will be nil, but on loadView it will be allocated.
     // So using lazy, to make sure, mainView will not be nil, when accessed.
-    private lazy var localMainPinnedView = FTView()
+    private lazy var localMainPinnedView = UIView()
     
     @IBOutlet
-    public var mainPinnedView: FTView! {
+    public var mainPinnedView: UIView! {
         set {
             localMainPinnedView = newValue
             self.restConstraints()
@@ -38,7 +38,7 @@ open class FTBaseView: FTView {
     }
 
     @IBOutlet
-    public var bottomPinnedView: FTView? {
+    public var bottomPinnedView: UIView? {
         didSet {
             self.restConstraints()
         }
@@ -83,19 +83,17 @@ open class FTBaseView: FTView {
         self.mainPinnedView.removeAllConstraints()
         self.bottomPinnedView?.removeAllConstraints()
         
-        var viewArray = [FTView]()
+        var viewArray = [UIView]()
         // Embed in Temp view to auto-size the view layout
-        if
-            let topPinnedView = topPinnedView,
-            let tempView = FTView.embedView(contentView: topPinnedView) as? FTView {
+        if let topPinnedView = topPinnedView {
+            let tempView = UIView.embedView(contentView: topPinnedView)
             viewArray.append(tempView)
         }
         // Embed mainView
         viewArray.append(mainPinnedView)
         // Embed in Temp view to auto-size the view layout
-        if
-            let bottomPinnedView = bottomPinnedView,
-            let tempView = FTView.embedView(contentView: bottomPinnedView) as? FTView {
+        if let bottomPinnedView = bottomPinnedView {
+            let tempView = UIView.embedView(contentView: bottomPinnedView)
             viewArray.append(tempView)
         }
         
@@ -106,7 +104,7 @@ open class FTBaseView: FTView {
     }
 }
 
-extension FTBaseView {
+extension FTView {
 
     @available(*, deprecated)
     override open func addSubview(_ view: UIView) {
@@ -119,7 +117,7 @@ extension FTBaseView {
         }
     }
     
-    func pinToRootView(viewArray: [FTView]) {
+    func pinToRootView(viewArray: [UIView]) {
         // Pin : Top and Side - margin of the firstView to Root
         if let firstView = viewArray.first {
             rootView.pin(view: firstView, edgeInsets: [.top, .horizontal])

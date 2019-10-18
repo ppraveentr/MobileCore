@@ -78,6 +78,11 @@ extension UIView {
         if self.needsThemesUpdate {
             self.updateVisualThemes()
         }
+       
+        if self.viewLayoutConstraint.autoSizing {
+            self.resizeToFitSubviews()
+        }
+        
         // Invoke view's original layoutSubviews
         self.swizzledLayoutSubviews()
     }

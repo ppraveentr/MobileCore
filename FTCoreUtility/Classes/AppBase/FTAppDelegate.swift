@@ -13,9 +13,12 @@ open class FTAppDelegate: UIResponder, UIApplicationDelegate {
     
     open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        // Register for Notification
+        UIViewController.swizzleViewController()
+        
         // Register self's type as Bundle-Identifier for getting class name
         FTReflection.registerModuleIdentifier(FTAppDelegate.self)
-
+        
         return true
     }
 }

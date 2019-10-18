@@ -43,7 +43,7 @@ open class FTFontPickerModel {
     }
 }
 
-open class FTFontPickerView: FTView {
+open class FTFontPickerView: UIView {
     
     weak var pickerDelegate: FTFontPickerViewprotocol?
     public var fontPickerModel = FTFontPickerModel() {

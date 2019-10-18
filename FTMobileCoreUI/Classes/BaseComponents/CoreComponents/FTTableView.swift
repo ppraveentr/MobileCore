@@ -32,14 +32,41 @@ open class FTTableViewHeaderFooterView: FTView {
 public extension UITableView {
 
     func setTableHeaderView(view: UIView?) {
-        self.tableHeaderView = embededView(view: view)
+        self.tableHeaderView = FTTableViewHeaderFooterView.embedView(view: view)
     }
     
     func setTableFooterView(view: UIView?) {
-        self.tableFooterView = embededView(view: view)
-    }
-
-    func embededView(view: UIView?) -> FTTableViewHeaderFooterView? {
-        return view as? FTTableViewHeaderFooterView ?? FTTableViewHeaderFooterView.embedView(view: view)
+        self.tableFooterView = FTTableViewHeaderFooterView.embedView(view: view)
     }
 }
+
+/*
+ public protocol FTTableViewHeaderFooterProtocol {
+ static func embededView(view: UIView?) -> UIView?
+ }
+ 
+ extension UIView: FTTableViewHeaderFooterProtocol {
+ public static func embededView(view: UIView?) -> UIView? {
+ guard let view = view else {
+ return nil
+ }
+ 
+ let local = UIView()
+ local.pin(view: view, edgeInsets: [.all, .equalSize], priority: kFTLayoutPriorityRequiredLow)
+ view.addSelfSizing()
+ return local
+ }
+ }
+ 
+ public extension UITableView {
+ 
+ func setTableHeaderView(view: UIView?) {
+ self.tableHeaderView = UIView.embededView(view: view)
+ }
+ 
+ func setTableFooterView(view: UIView?) {
+ self.tableFooterView = UIView.embededView(view: view)
+ }
+ }
+
+ */

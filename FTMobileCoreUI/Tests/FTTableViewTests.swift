@@ -80,7 +80,7 @@ class FTTableViewTests: XCTestCase {
     
      func testTableHeaderFooterView() {
         let defaultTableV = DefaultTableViewController()
-        let headerView = FTView()
+        let headerView = UIView()
         
         defaultTableV.tableView.setTableHeaderView(view: headerView)
         

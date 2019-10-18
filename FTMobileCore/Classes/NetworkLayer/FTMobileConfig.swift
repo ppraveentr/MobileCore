@@ -69,6 +69,16 @@ public class FTMobileConfig {
     // MARK: Model Schema
     var modelSchema = JSON()
     
+    // MARK: Logger
+    public static var enableConsoleLogging: Bool {
+        set {
+            FTLogger.enableConsoleLogging = newValue
+        }
+        get {
+            return FTLogger.enableConsoleLogging
+        }
+    }
+    
     // MARK: Init with Relection
     init() {
         FTReflection.registerModuleIdentifier(FTMobileConfig.self)

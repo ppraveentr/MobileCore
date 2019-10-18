@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var sampleView: FTView!
+    @IBOutlet weak var sampleView: UIView!
     
     override func loadView() {
         super.loadView()
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         buttonPopOver.setTitle("PopOver", for: .normal)
         buttonPopOver.addTarget(self, action: #selector(showFontPicker), for: .touchUpInside)
         
-        let topView = FTView()
+        let topView = UIView()
         topView.pin(view: button, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .left, .vertical ])
         topView.pin(view: buttonPopOver, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .right ])
         topView.stackView(

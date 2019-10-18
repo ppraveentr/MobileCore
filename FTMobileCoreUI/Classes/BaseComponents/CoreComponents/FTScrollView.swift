@@ -10,22 +10,22 @@ import Foundation
 
 extension UIScrollView {
 
-    private static let aoCollectionViewController = FTAssociatedObject<FTView>(policy: .OBJC_ASSOCIATION_ASSIGN)
+    private static let aoCollectionViewController = FTAssociatedObject<UIView>(policy: .OBJC_ASSOCIATION_ASSIGN)
     
     @IBOutlet
-    public weak var contentView: FTView! {
+    public weak var contentView: UIView! {
         get {
             if let view = UIScrollView.aoCollectionViewController[self] {
                 return view
             }
-            return self.addContentView(FTView())
+            return self.addContentView(UIView())
         }
         set {
             UIScrollView.aoCollectionViewController[self] = newValue
         }
     }
 
-    public func setupContentView(_ view: FTView) {
+    public func setupContentView(_ view: UIView) {
         // Remove old contentView & update with new view
         UIScrollView.aoCollectionViewController[self]?.removeFromSuperview()
         addContentView(view)
@@ -33,7 +33,7 @@ extension UIScrollView {
     
     // Add selfSizing-View to subView
     @discardableResult
-    func addContentView(_ view: FTView) -> FTView {
+    func addContentView(_ view: UIView) -> UIView {
         self.contentView = view
         self.pin(view: view, edgeInsets: [.all], priority: .required)
         self.pin(view: view, edgeInsets: [.centerMargin], priority: .defaultLow)

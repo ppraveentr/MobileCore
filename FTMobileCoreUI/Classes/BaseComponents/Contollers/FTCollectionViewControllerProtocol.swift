@@ -10,7 +10,7 @@ import Foundation
 
 private var kAOCollectionVC = "k.FT.AO.CollectionViewController"
 
-public protocol FTCollectionViewControllerProtocol: FTBaseViewControllerProtocol {
+public protocol FTCollectionViewControllerProtocol: FTViewControllerProtocol {
     var flowLayout: NSObject { get }
     var collectionView: UICollectionView { get set }
     var collectionViewController: UICollectionViewController { get }

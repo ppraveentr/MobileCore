@@ -1,5 +1,5 @@
 //
-//  FTBaseViewControllerProtocol+Utility.swift
+//  FTViewControllerProtocol+Utility.swift
 //  FTMobileCoreUI
 //
 //  Created by Praveen Prabhakar on 21/10/18.
@@ -17,7 +17,7 @@ extension UIViewController {
     }
 
     // MARK: Utility
-    public var mainView: FTView? {
+    public var mainView: UIView? {
         // If baseView is not added, then retun nil
         if isBaseViewAdded {
             return nil
@@ -25,7 +25,7 @@ extension UIViewController {
         return self.baseView?.mainPinnedView
     }
     
-    public func topPinnedView() -> FTView? {
+    public func topPinnedView() -> UIView? {
         // If baseView is not added, then retun nil
         if isBaseViewAdded {
             return nil

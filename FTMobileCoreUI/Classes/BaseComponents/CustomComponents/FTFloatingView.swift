@@ -31,13 +31,13 @@ public class FloatingWindow: UIWindow {
     }
 }
 
-public class FTFloatingView: FTView {
+public class FTFloatingView: UIView {
     
     private var floatingWindow: FloatingWindow?
     private var appWindow: UIWindow?
     private var floatingView: UIView!
 
-    static let sharedInstance: FTFloatingView = { FTFloatingView(with: FTView()) }()
+    static let sharedInstance: FTFloatingView = { FTFloatingView(with: UIView()) }()
     
     public class func configFloatingView(view: UIView) -> FTFloatingView {
         sharedInstance.configFloatingView(with: view)

@@ -10,7 +10,7 @@ import Foundation
 
 private var kAOScrollVC = "k.FT.AO.ScrollViewController"
 
-public protocol FTScrollViewControllerProtocol: FTBaseViewControllerProtocol {
+public protocol FTScrollViewControllerProtocol: FTViewControllerProtocol {
     var scrollView: UIScrollView { get }
 }
 

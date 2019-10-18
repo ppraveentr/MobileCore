@@ -1,5 +1,5 @@
 //
-//  FTView+Utiltiy.swift
+//  UIView+Utiltiy.swift
 //  FTCoreUtility
 //
 //  Created by Praveen Prabhakar on 20/10/18.

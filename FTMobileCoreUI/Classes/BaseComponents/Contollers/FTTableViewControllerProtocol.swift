@@ -10,7 +10,7 @@ import Foundation
 
 private var kAOTableVC = "k.FT.AO.TableViewController"
 
-public protocol FTTableViewControllerProtocol: FTBaseViewControllerProtocol {
+public protocol FTTableViewControllerProtocol: FTViewControllerProtocol {
     var tableStyle: UITableView.Style { get }
     var tableView: UITableView { get }
     var tableViewController: UITableViewController { get set }
