@@ -1,5 +1,5 @@
 //
-//  FTCollectionView.swift
+//  UICollectionView.swift
 //  FTMobileCoreUI
 //
 //  Created by Praveen Prabhakar on 30/09/18.

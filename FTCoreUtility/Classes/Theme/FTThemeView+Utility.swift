@@ -15,6 +15,10 @@ public extension NSNotification.Name {
     static let kFTAppearanceDidRefreshWindow = NSNotification.Name(rawValue: "kFTAppearanceDidRefreshWindow.Notofication")
 }
 
+public protocol FTOptionalLayoutSubview {
+    func updateViewLayouts()
+}
+
 public struct FTThemeStyle {
     public static let defaultStyle = "default"
     public static let highlightedStyle = "highlighted"
@@ -79,6 +83,8 @@ extension UIView {
             self.updateVisualThemes()
         }
        
+        (self as? FTOptionalLayoutSubview)?.updateViewLayouts()
+
         if self.viewLayoutConstraint.autoSizing {
             self.resizeToFitSubviews()
         }

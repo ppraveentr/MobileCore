@@ -8,15 +8,15 @@
 
 import Foundation
 
-open class FTTableViewHeaderFooterView: FTView {
+open class FTTableViewHeaderFooterView: UITableViewHeaderFooterView {
     var embView: UIView? {
         willSet {
             self.embView?.removeSubviews()
         }
         didSet {
             if let embView = embView {
-                self.addSubview(embView)
-                self.pin( view: embView, edgeInsets: [.all, .equalSize], priority: kFTLayoutPriorityRequiredLow )
+                self.pin(view: embView)
+                self.addSelfSizing()
             }
         }
     }

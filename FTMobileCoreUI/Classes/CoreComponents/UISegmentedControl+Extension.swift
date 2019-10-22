@@ -1,5 +1,5 @@
 //
-//  FTSegmentedControl.swift
+//  UISegmentedControl.swift
 //  FTMobileCoreUI
 //
 //  Created by Praveen Prabhakar on 05/03/18.

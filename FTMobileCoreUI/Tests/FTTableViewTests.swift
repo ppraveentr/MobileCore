@@ -74,8 +74,14 @@ class FTTableViewTests: XCTestCase {
         tableViewC?.tableView.setTableFooterView(view: footerView)
         
         tableViewC?.postNotification(name: .kFTMobileCoreDidLayoutSubviews)
-        XCTAssertEqual(tableViewC?.tableView.tableHeaderView, headerView)
-        XCTAssertEqual(tableViewC?.tableView.tableFooterView, footerView)
+        
+        let tableHeaderView = tableViewC?.tableView.tableHeaderView as? FTTableViewHeaderFooterView
+        XCTAssertNotNil(tableHeaderView)
+        XCTAssertEqual(tableHeaderView?.embView, headerView)
+        
+        let tableFooterView = tableViewC?.tableView.tableFooterView as? FTTableViewHeaderFooterView
+        XCTAssertNotNil(tableFooterView)
+        XCTAssertEqual(tableFooterView?.embView, footerView)
     }
     
      func testTableHeaderFooterView() {

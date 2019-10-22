@@ -13,7 +13,7 @@ public struct FTAssociatedKey {
 }
 
 // Generic way of storing values on runtime
-public class FTAssociatedObject<T> {
+public final class FTAssociatedObject<T> {
     
     private var aoPolicy: objc_AssociationPolicy
 
@@ -44,16 +44,16 @@ public class FTAssociatedObject<T> {
     }
 
     // getAssociated
-    public static func getAssociated(_ instance: Any, key: UnsafeRawPointer? = nil, defaultValue: T? = nil) -> T? {
+    public static func getAssociated(_ instance: Any, key: UnsafeRawPointer? = nil, defaultValue: (() -> T)? = nil) -> T? {
         if let key = key {
-            return getValue(instance, key: key, defaultValue: defaultValue)
+            return getValue(instance, key: key, defaultValueBlock: defaultValue)
         }
-        return getValue(instance, key: &FTAssociatedKey.DefaultKey, defaultValue: defaultValue)
+        return getValue(instance, key: &FTAssociatedKey.DefaultKey, defaultValueBlock: defaultValue)
     }
     
-    private static func getValue<T>(_ instance: Any, key: UnsafeRawPointer, defaultValue: T? = nil) -> T? {
+    private static func getValue<T>(_ instance: Any, key: UnsafeRawPointer, defaultValueBlock: (() -> T)? = nil) -> T? {
         let value = objc_getAssociatedObject(instance, key) as? T
-        if defaultValue != nil, value == nil {
+        if value == nil, let defaultValue = defaultValueBlock?() {
             setAssociated(instance, value: defaultValue, key: key)
             return defaultValue
         }

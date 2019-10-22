@@ -37,13 +37,33 @@ open class FTLinkDetection {
         let types: NSTextCheckingResult.CheckingType = [ .link, .phoneNumber]
         let detector = try? NSDataDetector(types: types.rawValue)
         
-        let range = NSRange(location: 0, length: (text as NSString).length)
+        let range = text.nsRange()
         detector?.enumerateMatches(in: text, options: [], range: range) { result, _, _ in
             if
                 let url = result?.url,
                 let range = result?.range {
                     let dec = FTLinkDetection(linkType: .url, linkRange: range, linkURL: url)
                     rangeOfURL.append(dec)
+            }
+        }
+        
+        return rangeOfURL
+    }
+    
+    static let searchKey = NSAttributedString.Key("NSLink")
+
+    // Get list of FTLinkDetection from the NSAttributedString
+    public static func getURLLinkRanges(_ text: NSAttributedString) -> [FTLinkDetection] {
+        
+        var rangeOfURL = [FTLinkDetection]()
+        let range = text.string.nsRange()
+        text.enumerateAttributes(in: range, options: []) { obj, range, _ in
+            // let linkOb = obj.filter { $0.key == searchKey }
+            obj.forEach { key, value in
+                if key == searchKey, let url = value as? URL {
+                    let dec = FTLinkDetection(linkType: .url, linkRange: range, linkURL: url)
+                    rangeOfURL.append(dec)
+                }
             }
         }
         

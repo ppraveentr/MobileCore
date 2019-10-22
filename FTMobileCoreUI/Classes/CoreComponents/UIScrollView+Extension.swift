@@ -1,5 +1,5 @@
 //
-//  FTScrollView.swift
+//  UIScrollView.swift
 //  FTMobileCoreUI
 //
 //  Created by Praveen Prabhakar on 13/07/17.

@@ -10,7 +10,7 @@ import Foundation
 
 class FTSampleTableViewController: UIViewController, FTTableViewControllerProtocol {
     
-    @IBOutlet var headerView: UIView!
+    @IBOutlet var footerView: UITableViewHeaderFooterView!
     
     var tableStyle: UITableView.Style {
         return .grouped
@@ -22,8 +22,13 @@ class FTSampleTableViewController: UIViewController, FTTableViewControllerProtoc
         setupCoreView()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.setTableHeaderView(view: headerView)
-//        headerView.setNeedsDisplay()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tableView.tableHeaderView = footerView
+        footerView.setNeedsDisplay()
+        footerView.layoutIfNeeded()
     }
 }
 

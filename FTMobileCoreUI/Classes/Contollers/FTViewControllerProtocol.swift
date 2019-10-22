@@ -47,7 +47,7 @@ extension UIViewController: FTViewControllerProtocol {
     @IBOutlet
     public var baseView: FTView? {
         get {
-            return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.baseView, defaultValue: FTView())
+            return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.baseView) { FTView() }
         }
         set {
             FTAssociatedObject<FTView>.setAssociated(self, value: newValue, key: &FTAssociatedKey.baseView)

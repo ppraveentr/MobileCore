@@ -14,9 +14,7 @@ public class AppDelegate: FTAppDelegate {
         if let theme = kFTMobileCoreBundle?.path(forResource: "Themes", ofType: "json") {
             FTThemesManager.setupThemes(themePath: theme, imageSourceBundle: [Bundle(for: AppDelegate.self)])
         }
-        
-        FTMobileCoreUIConfig.registerUINotifications()
-        
+                
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 }

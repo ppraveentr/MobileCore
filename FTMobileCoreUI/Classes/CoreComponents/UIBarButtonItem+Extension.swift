@@ -1,5 +1,5 @@
 //
-//  FTBarButtonItem.swift
+//  UIBarButtonItem.swift
 //  MobileCore
 //
 //  Created by Praveen P on 29/08/19.

@@ -62,7 +62,7 @@ open class FTView: UIView {
         self.mainPinnedView.backgroundColor = .clear
         self.rootView.backgroundColor = .clear
         if self.backgroundColor == nil {
-             self.backgroundColor = .white
+            self.backgroundColor = .white
         }
         // Set lowerPriority to avoid contraint issues with viewControllers's rootView
         self.pin(view: rootView, priority: kFTLayoutPriorityRequiredLow)
@@ -71,28 +71,28 @@ open class FTView: UIView {
     
     func restConstraints() {
         // Will be nil, when loaded from IB
-        if rootView.superview == nil {
+        if self.rootView.superview == nil {
             self.removeSubviews()
             // Set lowerPriority to avoid contraint issues with viewControllers's rootView
-            self.pin(view: rootView, priority: kFTLayoutPriorityRequiredLow)
+            self.pin(view: self.rootView, priority: kFTLayoutPriorityRequiredLow)
         }
 
         // Remove all previous constrains, while resting the views
-        rootView.removeSubviews()
+        self.rootView.removeSubviews()
         self.topPinnedView?.removeAllConstraints()
         self.mainPinnedView.removeAllConstraints()
         self.bottomPinnedView?.removeAllConstraints()
         
         var viewArray = [UIView]()
         // Embed in Temp view to auto-size the view layout
-        if let topPinnedView = topPinnedView {
+        if let topPinnedView = self.topPinnedView {
             let tempView = UIView.embedView(contentView: topPinnedView)
             viewArray.append(tempView)
         }
         // Embed mainView
-        viewArray.append(mainPinnedView)
+        viewArray.append(self.mainPinnedView)
         // Embed in Temp view to auto-size the view layout
-        if let bottomPinnedView = bottomPinnedView {
+        if let bottomPinnedView = self.bottomPinnedView {
             let tempView = UIView.embedView(contentView: bottomPinnedView)
             viewArray.append(tempView)
         }

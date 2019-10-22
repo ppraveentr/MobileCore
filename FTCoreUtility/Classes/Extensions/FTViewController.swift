@@ -1,5 +1,5 @@
 //
-//  UIViewController+Extension.swift
+//  FTViewController.swift
 //  MobileCore
 //
 //  Created by Praveen P on 07/09/19.
@@ -36,5 +36,13 @@ public extension UIViewController {
         }
         
         return self.currentViewController(presentedViewController)
+    }
+}
+
+public extension UIViewController {
+    
+    // Post notification with Name
+    func postNotification(name: Notification.Name, object: Any? = nil) {
+        NotificationCenter.default.post(name: name, object: object ?? self)
     }
 }

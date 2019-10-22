@@ -92,16 +92,17 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="X0A-S5-WY0"/>
                     <connections>
-                        <outlet property="headerView" destination="PjM-Cm-uEi" id="GZG-K6-yZq"/>
+                        <outlet property="footerView" destination="PjM-Cm-uEi" id="GZG-K6-yZq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NaK-VC-BhZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="PjM-Cm-uEi">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" id="PjM-Cm-uEi" customClass="UITableViewHeaderFooterView">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="54"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="248" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label LabelLabelLabelLabel LabelLabelLabelLabelLabel LabelLabelLabelLabel LabelLabelLabelLabel Label the end!!!" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9I-AJ-Zjs" customClass="FTLabel" customModule="MobileCore">
-                            <rect key="frame" x="10" y="10" width="220" height="108"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="248" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9I-AJ-Zjs" customClass="FTLabel" customModule="MobileCore">
+                            <rect key="frame" x="10" y="10" width="394" height="34"/>
+                            <string key="text">Label LabelLabelLabelLabel LabelLabelLabelLabelLabel LabelLabelLabelLabel LabelLabelLabelLabel Label the end!!! Label LabelLabelLabelLabel LabelLabelLabelLabelLabel LabelLabelLabelLabel LabelLabelLabelLabel Label the end!!!</string>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="1" green="0.3278898724" blue="0.2249067592" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>

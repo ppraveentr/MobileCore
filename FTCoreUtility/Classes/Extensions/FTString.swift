@@ -21,7 +21,7 @@ public extension Optional where Wrapped == String {
 }
 
 public extension String {
-
+    
     func isHTMLString() -> Bool {
         if self.range(of: "<[^>]+>", options: .regularExpression) != nil {
             return true
@@ -55,7 +55,7 @@ public extension String {
     // Enmuration
     func enumerate(pattern: String, using block: ((NSTextCheckingResult?) -> Void )? ) {
         let exp = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
-        let range = NSRange(location: 0, length: self.count)
+        let range = self.nsRange()
         exp?.enumerateMatches(in: self, options: .reportCompletion, range: range) { result, _, _ in
             block?(result)
         }
@@ -100,14 +100,19 @@ public extension String {
         return obj
     }
     
+    // Range
+    func nsRange(from: Int = 0) -> NSRange {
+        return NSRange(location: from, length: self.count)
+    }
+    
     // Get subString within the 'range'
     func substring(with range: NSRange) -> String? {
         return (self as NSString).substring(with: range) as String?
     }
     
     // Get subString 'from-index' to 'to-index'
-    func substring(from fromIndex: Int, to toIndex: Int) -> String? {
-        let range = NSRange(location: fromIndex, length: toIndex - fromIndex)
+    func substring(from: Int, to: Int) -> String? {
+        let range = NSRange(location: from, length: to - from)
         let substring = self.substring(with: range)
         return substring
     }
@@ -144,7 +149,6 @@ public extension String {
     }
     
 // MARK: JSON
-    
     // Loading Data from given Path
     func jsonContentAtPath<T>() throws -> T? {
         return try dataAtPath()?.jsonContent() as? T
@@ -186,5 +190,19 @@ public extension String {
             return Bundle(url: bundleURL)
         }
         return nil
+    }
+}
+
+public extension NSAttributedString {
+    // Range
+    func nsRange(from: Int = 0) -> NSRange {
+        return NSRange(location: from, length: self.length)
+    }
+}
+
+public extension NSMutableAttributedString {
+    func addParagraphStyle(style: NSMutableParagraphStyle) {
+        let range = self.nsRange()
+        self.addAttribute(.paragraphStyle, value: style, range: range)
     }
 }
