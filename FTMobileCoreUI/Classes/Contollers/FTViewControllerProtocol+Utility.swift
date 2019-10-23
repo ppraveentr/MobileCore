@@ -42,14 +42,6 @@ extension UIViewController {
     public var kRightButtonAction: Selector {
         return #selector(UIViewController.rightButtonAction)
     }
-    
-    func self_setupNavigationbar(title: String, leftButton: UIBarButtonItem? = nil, rightButton: UIBarButtonItem? = nil) {
-        self.title = title
-        configureBarButton(button: leftButton, defaultAction: kleftButtonAction)
-        configureBarButton(button: rightButton, defaultAction: kRightButtonAction)
-        self.navigationItem.leftBarButtonItem = leftButton
-        self.navigationItem.rightBarButtonItem = rightButton
-    }
 
     func configureBarButton(button: UIBarButtonItem?, defaultAction action: Selector) {
         guard let button = button else { return }
@@ -74,36 +66,6 @@ extension UIViewController {
             self.dismiss(animated: animated, completion: nil)
         }
     }
-
-    // MARK: Responder
-    func self_makeResponder(status: Bool, textField: UITextField, text: String? = nil) {
-        if status {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2)) {
-                if let text = text {
-                    textField.text = text
-                }
-                textField.becomeFirstResponder()
-            }
-        }
-    }
-
-    // MARK: AlertViewController
-    func self_showAlert(title: String, message: String, action: UIAlertAction? = nil, actions: [UIAlertAction]? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-
-        if let action = action {
-            alert.addAction(action)
-        }
-        actions?.forEach { action in
-            alert.addAction(action)
-        }
-
-        if alert.actions.isEmpty {
-            return
-        }
-
-        present(alert, animated: true, completion: nil)
-    }
 }
 
 extension UIViewController {
@@ -124,7 +86,14 @@ extension UIViewController {
     
     // MARK: Responder
     public func makeResponder(status: Bool, textField: UITextField, text: String? = nil) {
-        self_makeResponder(status: status, textField: textField, text: text)
+        if status {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2)) {
+                if let text = text {
+                    textField.text = text
+                }
+                textField.becomeFirstResponder()
+            }
+        }
     }
     
     // MARK: Keyboard Notifications
@@ -156,7 +125,18 @@ extension UIViewController {
 extension UIViewController {
     // MARK: AlertViewController
     public func showAlert( title: String, message: String, action: UIAlertAction? = nil, actions: [UIAlertAction]? = nil) {
-        //        self_showAlert(title: title, message: message, action: action, actions: actions)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        if let action = action {
+            alert.addAction(action)
+        }
+        actions?.forEach { action in
+            alert.addAction(action)
+        }
+        if alert.actions.isEmpty {
+            return
+        }
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: Activity indicator

@@ -159,12 +159,16 @@ extension UIViewController: FTViewControllerProtocol {
 extension UIViewController {
     // MARK: Navigation Bar
     public func setupNavigationbar(title: String, leftButton: UIBarButtonItem? = nil, rightButton: UIBarButtonItem? = nil) {
-        self_setupNavigationbar(title: title, leftButton: leftButton, rightButton: rightButton)
+        self.title = title
+        configureBarButton(button: leftButton, defaultAction: kleftButtonAction)
+        configureBarButton(button: rightButton, defaultAction: kRightButtonAction)
+        self.navigationItem.leftBarButtonItem = leftButton
+        self.navigationItem.rightBarButtonItem = rightButton
     }
     
     // MARK: Dissmiss Self model
     public func dismissSelf(_ animated: Bool = true) {
-        self_dismissSelf()
+        self_dismissSelf(animated)
     }
     
     // MARK: default Nav-bar button actions

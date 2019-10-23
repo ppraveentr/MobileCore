@@ -58,7 +58,6 @@ open class FTLinkDetection {
         var rangeOfURL = [FTLinkDetection]()
         let range = text.string.nsRange()
         text.enumerateAttributes(in: range, options: []) { obj, range, _ in
-            // let linkOb = obj.filter { $0.key == searchKey }
             obj.forEach { key, value in
                 if key == searchKey, let url = value as? URL {
                     let dec = FTLinkDetection(linkType: .url, linkRange: range, linkURL: url)
