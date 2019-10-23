@@ -8,6 +8,8 @@
 
 import Foundation
 
+public typealias FTAttributedStringKey = [NSAttributedString.Key: Any]
+
 // Since all optionals are actual enum values in Swift,
 public extension Optional where Wrapped == String {
     var isNilOrEmpty: Bool {
@@ -18,24 +20,30 @@ public extension Optional where Wrapped == String {
             return true
         }
     }
+    var isHTMLString: Bool {
+        if let strongSelf = self {
+            return strongSelf.isHTMLString
+        }
+        return false
+    }
 }
 
 public extension String {
-
-    func isHTMLString() -> Bool {
+    
+    var isHTMLString: Bool {
         if self.range(of: "<[^>]+>", options: .regularExpression) != nil {
             return true
         }
         return false
     }
-
+    
     func stripHTML() -> String {
         return self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
     }
 
     func htmlAttributedString() -> NSMutableAttributedString {
         guard !self.isEmpty else { return NSMutableAttributedString() }
-        guard self.isHTMLString() else { return NSMutableAttributedString(string: self) }
+        guard self.isHTMLString else { return NSMutableAttributedString(string: self) }
         guard let data = data(using: .utf8, allowLossyConversion: true) else {
             return NSMutableAttributedString()
         }
@@ -55,7 +63,7 @@ public extension String {
     // Enmuration
     func enumerate(pattern: String, using block: ((NSTextCheckingResult?) -> Void )? ) {
         let exp = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
-        let range = NSRange(location: 0, length: self.count)
+        let range = self.nsRange()
         exp?.enumerateMatches(in: self, options: .reportCompletion, range: range) { result, _, _ in
             block?(result)
         }
@@ -100,14 +108,19 @@ public extension String {
         return obj
     }
     
+    // Range
+    func nsRange(from: Int = 0) -> NSRange {
+        return NSRange(location: from, length: self.count)
+    }
+    
     // Get subString within the 'range'
     func substring(with range: NSRange) -> String? {
         return (self as NSString).substring(with: range) as String?
     }
     
     // Get subString 'from-index' to 'to-index'
-    func substring(from fromIndex: Int, to toIndex: Int) -> String? {
-        let range = NSRange(location: fromIndex, length: toIndex - fromIndex)
+    func substring(from: Int, to: Int) -> String? {
+        let range = NSRange(location: from, length: to - from)
         let substring = self.substring(with: range)
         return substring
     }
@@ -128,7 +141,7 @@ public extension String {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = lineBreakMode
         
-        let attributes: [NSAttributedString.Key: Any] = [
+        let attributes: FTAttributedStringKey = [
             .font: font,
             .paragraphStyle: paragraphStyle
         ]
@@ -144,7 +157,6 @@ public extension String {
     }
     
 // MARK: JSON
-    
     // Loading Data from given Path
     func jsonContentAtPath<T>() throws -> T? {
         return try dataAtPath()?.jsonContent() as? T
@@ -186,5 +198,26 @@ public extension String {
             return Bundle(url: bundleURL)
         }
         return nil
+    }
+}
+
+public extension NSAttributedString {
+    // Range
+    func nsRange(from: Int = 0) -> NSRange {
+        return NSRange(location: from, length: self.length)
+    }
+    
+    func mutableString() -> NSMutableAttributedString {
+        if let value = self.mutableCopy() as? NSMutableAttributedString {
+            return value
+        }
+        return NSMutableAttributedString()
+    }
+}
+
+public extension NSMutableAttributedString {
+    func addParagraphStyle(style: NSMutableParagraphStyle) {
+        let range = self.nsRange()
+        self.addAttribute(.paragraphStyle, value: style, range: range)
     }
 }

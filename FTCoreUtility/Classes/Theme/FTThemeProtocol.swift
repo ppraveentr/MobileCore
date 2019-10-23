@@ -50,6 +50,6 @@ public protocol FTUIControlThemeProtocol: FTThemeProtocol {
 
 extension FTUIControlThemeProtocol {
     public func updateTheme(_ theme: FTThemeModel) {
-        // Optional Protocal implementation: intentionally empty
+        // Optional Protocol implementation: intentionally empty
     }
 }

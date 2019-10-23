@@ -15,7 +15,7 @@ class FTUIElementTests: XCTestCase {
     override func setUp() {
         super.setUp()
         if
-            let theme = kFTMobileCoreBundle.bundle()?.path(forResource: "Themes", ofType: "json"),
+            let theme = kFTMobileCoreBundle?.path(forResource: "Themes", ofType: "json"),
             let themeContent: FTThemeModel = try? theme.jsonContentAtPath()
         {
             FTThemesManager.setupThemes(themes: themeContent, imageSourceBundle: nil)
@@ -27,7 +27,7 @@ class FTUIElementTests: XCTestCase {
     
     // MARK: LabelFont
     func testLabelFont() {
-        let label = FTLabel(frame: .zero)
+        let label = UILabel(frame: .zero)
         label.text = titleString
         label.theme = "system14G"
         XCTAssert(label.font == UIFont.systemFont(ofSize: 14))

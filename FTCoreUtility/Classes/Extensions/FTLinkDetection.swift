@@ -37,13 +37,32 @@ open class FTLinkDetection {
         let types: NSTextCheckingResult.CheckingType = [ .link, .phoneNumber]
         let detector = try? NSDataDetector(types: types.rawValue)
         
-        let range = NSRange(location: 0, length: (text as NSString).length)
+        let range = text.nsRange()
         detector?.enumerateMatches(in: text, options: [], range: range) { result, _, _ in
             if
                 let url = result?.url,
                 let range = result?.range {
                     let dec = FTLinkDetection(linkType: .url, linkRange: range, linkURL: url)
                     rangeOfURL.append(dec)
+            }
+        }
+        
+        return rangeOfURL
+    }
+    
+    static let searchKey = NSAttributedString.Key("NSLink")
+
+    // Get list of FTLinkDetection from the NSAttributedString
+    public static func getURLLinkRanges(_ text: NSAttributedString) -> [FTLinkDetection] {
+        
+        var rangeOfURL = [FTLinkDetection]()
+        let range = text.string.nsRange()
+        text.enumerateAttributes(in: range, options: []) { obj, range, _ in
+            obj.forEach { key, value in
+                if key == searchKey, let url = value as? URL {
+                    let dec = FTLinkDetection(linkType: .url, linkRange: range, linkURL: url)
+                    rangeOfURL.append(dec)
+                }
             }
         }
         
@@ -71,5 +90,46 @@ open class FTLinkDetection {
         }
         
         return rangeOfURL
+    }
+    
+    /*
+     * Eg.) Hi #wellcome thanks.
+     * "#wellcome" is the detected-link
+     */
+    public static func appendLink(attributedString: NSMutableAttributedString) -> [FTLinkDetection] {
+        
+        var links = [FTLinkDetection]()
+        
+        // HTTP links
+        let urlLinks = FTLinkDetection.getURLLinkRanges(attributedString)
+        links.insert(contentsOf: urlLinks, at: 0)
+        
+        links.forEach { link in
+            let att = getStyleProperties(forLink: link)
+            attributedString.addAttributes(att, range: link.linkRange)
+        }
+        
+        // Hash Tags
+        let hashLinks = FTLinkDetection.getHashTagRanges(attributedString.string)
+        links.insert(contentsOf: hashLinks, at: 0)
+        
+        hashLinks.forEach { link in
+            let att = getStyleProperties(forLink: link)
+            attributedString.addAttributes(att, range: link.linkRange)
+        }
+        
+        return links
+    }
+    
+    // TODO: Themes
+    public static func getStyleProperties(forLink link: FTLinkDetection) -> FTAttributedStringKey {
+        var properties: FTAttributedStringKey = [
+            .underlineColor: UIColor.blue,
+            .foregroundColor: UIColor.blue
+        ]
+        if link.linkType == .hashTag {
+            properties[.underlineStyle] = NSUnderlineStyle.single.rawValue
+        }
+        return properties
     }
 }

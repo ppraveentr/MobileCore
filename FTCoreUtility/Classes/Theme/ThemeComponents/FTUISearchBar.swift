@@ -20,10 +20,8 @@ private typealias SearchBarAttributes = [NSAttributedString.Key: AnyObject]
 extension UISearchBar: FTThemeProtocol {
 
     public func updateTheme(_ theme: FTThemeModel) {
-        
         searchBarStyle = .prominent
-        isTranslucent = false
-        
+        isTranslucent = false        
         var tintColor: UIColor?
         var textcolor: UIColor?
         var font: UIFont?
@@ -96,16 +94,10 @@ private extension UISearchBar {
     }
     
     func configure(tintColor: UIColor? = nil, textColor: UIColor? = nil, font: UIFont? = nil) {
-        
-        guard let tintColor = tintColor else {
-            return
-        }
-        
+        guard let tintColor = tintColor else { return }
         self.tintColor = tintColor
         
-        guard let textField: UITextField = searchUITextField else {
-            return
-        }
+        guard let textField: UITextField = searchUITextField else { return }
         
         if let glassIconView = textField.leftView as? UIImageView {
             glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
@@ -128,30 +120,25 @@ private extension UISearchBar {
             searchField.frame = CGRect(x: 5.0, y: 5.0, width: frame.width - 10.0, height: frame.height - 10.0)
             
             var att = SearchBarAttributes()
-            
             // Set the font and text color of the search field.
             if font != nil {
                 searchField.font = font
             }
-            
             if let font = searchField.font?.withSize((searchField.font?.pointSize)! - 1) {
                 att[.font] = font
             }
-            
             if textColor != nil {
                 searchField.textColor = textColor
                 att[.foregroundColor] = textColor
                 //let label = UILabel.appearance(whenContainedInInstancesOf: [UISearchBar.self])
                 //label.textColor = textColor
             }
-            
             if let sting = searchField.attributedPlaceholder?.string, !att.isEmpty {
                 searchField.attributedPlaceholder = NSAttributedString(string: sting, attributes: att)
             }
             
             // Save preference
             self.searchBarAttributes = att
-            
             // Set the background color of the search field.
             searchField.backgroundColor = .clear
         }

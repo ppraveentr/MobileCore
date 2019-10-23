@@ -8,4 +8,4 @@
 
 import Foundation
 
-let kFTMobileCoreBundle = "FTMobileCoreBundle"
+var kFTMobileCoreBundle = "FTMobileCoreBundle".bundle()

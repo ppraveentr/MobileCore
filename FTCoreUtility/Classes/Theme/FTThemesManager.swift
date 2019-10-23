@@ -41,6 +41,12 @@ open class FTThemesManager {
 
     }
 
+    //
+    public static func setupThemes(themePath: String, imageSourceBundle imageSource: [Bundle]? = nil) {
+        if let themeContent: FTThemeModel = try? themePath.jsonContentAtPath() {
+             FTThemesManager.setupThemes(themes: themeContent, imageSourceBundle: imageSource)
+        }
+    }
     // 
     public static func setupThemes(themes: FTThemeModel, imageSourceBundle imageSource: [Bundle]? = nil) {
         

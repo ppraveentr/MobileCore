@@ -12,12 +12,8 @@ public struct FTAssociatedKey {
     static var DefaultKey = "DefaultKey"
 }
 
-public struct AssociatedKey {
-    static var DefaultKey = "DefaultKey"
-}
-
 // Generic way of storing values on runtime
-public class FTAssociatedObject<T> {
+public final class FTAssociatedObject<T> {
     
     private var aoPolicy: objc_AssociationPolicy
 
@@ -39,29 +35,37 @@ public class FTAssociatedObject<T> {
     }
 
     // setAssociated
-    public static func setAssociated<T>(_ instance: Any, value: T?) {
-        setAssociated(instance, value: value, key: &FTAssociatedKey.DefaultKey)
-    }
-    
-    public static func setAssociated<T>(_ instance: Any, value: T?, key: UnsafeRawPointer) {
-        objc_setAssociatedObject(instance, key, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    public static func setAssociated<T>(_ instance: Any, value: T?, key: UnsafeRawPointer? = nil) {
+        if let key = key {
+            objc_setAssociatedObject(instance, key, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            return
+        }
+        objc_setAssociatedObject(instance, &FTAssociatedKey.DefaultKey, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 
     // getAssociated
-    public static func getAssociated(_ instance: Any) -> T? {
-        return getAssociated(instance, key: &FTAssociatedKey.DefaultKey)
+    public static func getAssociated(_ instance: Any, key: UnsafeRawPointer? = nil, defaultValue: (() -> T)? = nil) -> T? {
+        if let key = key {
+            return getValue(instance, key: key, defaultValueBlock: defaultValue)
+        }
+        return getValue(instance, key: &FTAssociatedKey.DefaultKey, defaultValueBlock: defaultValue)
     }
-
-    public static func getAssociated(_ instance: Any, key: UnsafeRawPointer) -> T? {
-        return objc_getAssociatedObject(instance, key) as? T
+    
+    private static func getValue<T>(_ instance: Any, key: UnsafeRawPointer, defaultValueBlock: (() -> T)? = nil) -> T? {
+        let value = objc_getAssociatedObject(instance, key) as? T
+        if value == nil, let defaultValue = defaultValueBlock?() {
+            setAssociated(instance, value: defaultValue, key: key)
+            return defaultValue
+        }
+        return value
     }
     
     // reset Associated
-    public static func resetAssociated(_ instance: Any, key: UnsafeRawPointer) {
-        objc_setAssociatedObject(instance, key, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-    }
-    
-    public static func resetAssociated(_ instance: Any) {
+    public static func resetAssociated(_ instance: Any, key: UnsafeRawPointer? = nil) {
+        if let key = key {
+            objc_setAssociatedObject(instance, key, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            return
+        }
         objc_setAssociatedObject(instance, &FTAssociatedKey.DefaultKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 }

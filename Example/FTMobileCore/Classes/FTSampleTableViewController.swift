@@ -8,9 +8,9 @@
 
 import Foundation
 
-class FTSampleTableViewController: FTBaseViewController, FTTableViewControllerProtocal {
+class FTSampleTableViewController: UIViewController, FTTableViewControllerProtocol {
     
-    @IBOutlet var headerView: UIView!
+    @IBOutlet var footerView: UITableViewHeaderFooterView!
     
     var tableStyle: UITableView.Style {
         return .grouped
@@ -18,10 +18,17 @@ class FTSampleTableViewController: FTBaseViewController, FTTableViewControllerPr
     
     override func loadView() {
         super.loadView()
+        // Setup MobileCore
+        setupCoreView()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.tableHeaderView = headerView
-        headerView.setNeedsDisplay()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tableView.tableHeaderView = footerView
+        footerView.setNeedsDisplay()
+        footerView.layoutIfNeeded()
     }
 }
 
