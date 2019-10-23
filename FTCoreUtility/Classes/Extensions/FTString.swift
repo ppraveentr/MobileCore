@@ -8,6 +8,8 @@
 
 import Foundation
 
+public typealias FTAttributedStringKey = [NSAttributedString.Key: Any]
+
 // Since all optionals are actual enum values in Swift,
 public extension Optional where Wrapped == String {
     var isNilOrEmpty: Bool {
@@ -18,24 +20,30 @@ public extension Optional where Wrapped == String {
             return true
         }
     }
+    var isHTMLString: Bool {
+        if let strongSelf = self {
+            return strongSelf.isHTMLString
+        }
+        return false
+    }
 }
 
 public extension String {
     
-    func isHTMLString() -> Bool {
+    var isHTMLString: Bool {
         if self.range(of: "<[^>]+>", options: .regularExpression) != nil {
             return true
         }
         return false
     }
-
+    
     func stripHTML() -> String {
         return self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
     }
 
     func htmlAttributedString() -> NSMutableAttributedString {
         guard !self.isEmpty else { return NSMutableAttributedString() }
-        guard self.isHTMLString() else { return NSMutableAttributedString(string: self) }
+        guard self.isHTMLString else { return NSMutableAttributedString(string: self) }
         guard let data = data(using: .utf8, allowLossyConversion: true) else {
             return NSMutableAttributedString()
         }
@@ -133,7 +141,7 @@ public extension String {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = lineBreakMode
         
-        let attributes: [NSAttributedString.Key: Any] = [
+        let attributes: FTAttributedStringKey = [
             .font: font,
             .paragraphStyle: paragraphStyle
         ]

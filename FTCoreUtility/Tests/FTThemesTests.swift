@@ -30,7 +30,7 @@ class FTThemesTests: XCTestCase {
     
     // MARK: View Component
     func testComponent() {
-        let value = FTThemesManager.getViewComponent("FTLabel", styleName: "system14R")
+        let value = FTThemesManager.getViewComponent("UILabel", styleName: "system14R")
         XCTAssertNotNil(value)
     }
     

@@ -7,22 +7,20 @@
 
 import Foundation
 
-public typealias FTLableCompletionBlock = (() -> Void)
-public typealias FTLableLinkHandler = (FTLinkDetection) -> Void
+public typealias FTLabelLinkHandler = (FTLinkDetection) -> Void
 
 protocol FTUILabelProtocol where Self: UILabel {
     var dispatchQueue: DispatchQueue { get }
-    var completionBlock: FTLableCompletionBlock? { get set }
     // FTUILabelThemeProperyProtocol
     var islinkDetectionEnabled: Bool { get set }
     var isLinkUnderLineEnabled: Bool { get set }
     // Link handler
     var linkRanges: [FTLinkDetection]? { get set }
-    var linkHandler: FTLableLinkHandler? { get set }
-    var tapGestureRecognizer: UITapGestureRecognizer { get set }
+    var linkHandler: FTLabelLinkHandler? { get set }
+    var tapGestureRecognizer: UITapGestureRecognizer { get }
     // layout
     var layoutManager: NSLayoutManager { get }
-    var styleProperties: [NSAttributedString.Key: Any] { get }
+    var styleProperties: FTAttributedStringKey { get }
 }
 
 private extension FTAssociatedKey {
@@ -32,43 +30,16 @@ private extension FTAssociatedKey {
     static var layoutManager = "layoutManager"
     
     static var linkRanges = "linkRanges"
-    static var completionBlock = "completionBlock"
     static var islinkDetectionEnabled = "islinkDetectionEnabled"
     static var isLinkUnderLineEnabled = "isLinkUnderLineEnabled"
     static var linkHandler = "linkHandler"
     static var tapGestureRecognizer = "tapGestureRecognizer"
 }
 
-open class FTLabel: UILabel {
+extension UILabel: FTUILabelProtocol, FTUILabelThemeProperyProtocol {
     
-//    override open var text: String? {
-//        set {
-//            if islinkDetectionEnabled, let newValue = newValue, newValue.isHTMLString() {
-//                super.text = newValue.stripHTML()
-//                self.numberOfLines = 0
-//                updateWithHtmlString(text: newValue)
-//            }
-//            else {
-//                super.text = newValue
-//                self.updateLabelStyleProperty()
-//            }
-//        }
-//        get {
-//            return super.text
-//        }
-//    }
-//
-//    override open var isEnabled: Bool {
-//        didSet {
-//            // update with latest Theme
-//            updateVisualProperty()
-//        }
-//    }
-}
-
-extension UILabel: FTUILabelProtocol {
     public var dispatchQueue: DispatchQueue {
-        return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.dispatchQueue) { DispatchQueue(label: "FTLabel.dispatchQueue") }!
+        return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.dispatchQueue) { DispatchQueue(label: "UILabel.dispatchQueue") }!
     }
     
     public var linkRanges: [FTLinkDetection]? {
@@ -80,15 +51,6 @@ extension UILabel: FTUILabelProtocol {
         }
     }
     
-    public var completionBlock: FTLableCompletionBlock? {
-        get {
-            return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.completionBlock)
-        }
-        set {
-            FTAssociatedObject<FTLableCompletionBlock>.setAssociated(self, value: newValue, key: &FTAssociatedKey.completionBlock)
-        }
-    }
-    
     // FTUILabelThemeProperyProtocol
     public var islinkDetectionEnabled: Bool {
         get {
@@ -96,7 +58,6 @@ extension UILabel: FTUILabelProtocol {
         }
         set {
             FTAssociatedObject<Bool>.setAssociated(self, value: newValue, key: &FTAssociatedKey.islinkDetectionEnabled)
-            self.updateLabelStyleProperty()
         }
     }
     
@@ -106,61 +67,51 @@ extension UILabel: FTUILabelProtocol {
         }
         set {
             FTAssociatedObject<Bool>.setAssociated(self, value: newValue, key: &FTAssociatedKey.isLinkUnderLineEnabled)
-            self.updateLabelStyleProperty()
         }
     }
     
-    public var linkHandler: FTLableLinkHandler? {
+    public var linkHandler: FTLabelLinkHandler? {
         get {
             return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.linkHandler)
         }
         set {
-            FTAssociatedObject<FTLableLinkHandler>.setAssociated(self, value: newValue, key: &FTAssociatedKey.linkHandler)
+            FTAssociatedObject<FTLabelLinkHandler>.setAssociated(self, value: newValue, key: &FTAssociatedKey.linkHandler)
             self.isUserInteractionEnabled = true
             self.addGestureRecognizer(self.tapGestureRecognizer)
         }
     }
     
     public var tapGestureRecognizer: UITapGestureRecognizer {
-        get {
-            return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.tapGestureRecognizer) { UILabel.tapGesture(targer: self) }!
-        }
-        set {
-            FTAssociatedObject<UITapGestureRecognizer>.setAssociated(self, value: newValue, key: &FTAssociatedKey.tapGestureRecognizer)
-        }
+        return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.tapGestureRecognizer) { UILabel.tapGesture(targer: self) }!
     }
     
     public var layoutManager: NSLayoutManager {
         return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.layoutManager) { NSLayoutManager() }!
     }
     
-    public var styleProperties: [NSAttributedString.Key: Any] {
+    public var styleProperties: FTAttributedStringKey {
         let paragrahStyle = NSMutableParagraphStyle()
         paragrahStyle.alignment = self.textAlignment
         paragrahStyle.lineBreakMode = self.lineBreakMode
         
-        let bgColor = self.backgroundColor ?? UIColor.clear
-        var properties: [NSAttributedString.Key: Any] = [
+        var properties: FTAttributedStringKey = [
             .paragraphStyle: paragrahStyle,
-            .backgroundColor: bgColor
+            .backgroundColor: self.backgroundColor ?? UIColor.clear
         ]
-        
         if let font = self.font {
             properties[.font] = font
         }
-        
         if let color = self.textColor {
             properties[.foregroundColor] = color
         }
-        
         return properties
     }
 }
 
-extension UILabel: FTOptionalLayoutSubview, FTUILabelThemeProperyProtocol {
+extension UILabel: FTOptionalLayoutSubview {
     
     public func updateViewLayouts() {
-        if islinkDetectionEnabled, let newValue = self.text, newValue.isHTMLString() {
+        if islinkDetectionEnabled, self.text.isHTMLString, let newValue = self.text {
             self.text = newValue.stripHTML()
             self.numberOfLines = 0
             updateWithHtmlString(text: newValue)
@@ -186,68 +137,39 @@ extension UILabel {
         dispatchQueue.async(qos: DispatchQoS.userInteractive, flags: .enforceQoS) {
             let att = text?.htmlAttributedString()
             DispatchQueue.main.async { [weak self] in
-                self?.updateTextWithAttributedString(attributedString: att, text: text)
+                self?.updateTextWithAttributedString(attributedString: att)
             }
         }
     }
     
-    func updateLabelStyleProperty(isSimpleTextUpdate: Bool = false) {
-        // Now update our storage from either the attributedString or the plain text
-        if ((self.attributedText?.length ?? 0) != 0) && !isSimpleTextUpdate {
-            self.updateTextWithAttributedString(attributedString: self.attributedText)
-        }
-        else if (text?.count ?? 0) != 0 {
-            updateWithHtmlString(text: self.text)
-        }
-        else {
-            self.updateTextWithAttributedString(attributedString: nil)
-        }
-        layoutView()
-    }
-    
     func updateTextContainerSize() {
-        var localSize = self.intrinsicContentSize
+        var localSize = self.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         localSize.width = min(localSize.width, self.preferredMaxLayoutWidth)
         self.frame = CGRect(origin: frame.origin, size: localSize)
     }
     
-    func updateTextWithAttributedString(attributedString: NSAttributedString?, text: String? = nil) {
+    func updateTextWithAttributedString(attributedString: NSAttributedString?) {
         
         if let attributedString = attributedString {
             let sanitizedString = self.sanitizeAttributedString(attributedString: attributedString)
             sanitizedString.addAttributes(self.styleProperties, range: sanitizedString.nsRange())
             if islinkDetectionEnabled {
-                updateLinkInText(attributedString: sanitizedString, text: text)
+                updateLinkInText(attributedString: sanitizedString)
             }
             self.attributedText = sanitizedString
         }
         
-        layoutView()
-        
-        completionBlock?()
+        layoutTextView()
     }
     
-    func updateLinkInText(attributedString: NSMutableAttributedString, text: String? = nil) {
-        
-        self.linkRanges = [FTLinkDetection]()
-        
-        // HTTP links
-        let links = FTLinkDetection.getURLLinkRanges(attributedString)
-        self.linkRanges?.insert(contentsOf: links, at: 0)
-        
-        self.linkRanges?.forEach { link in
-            let att = getStyleProperties(forLink: link)
-            attributedString.addAttributes(att, range: link.linkRange)
-        }
+    func updateLinkInText(attributedString: NSMutableAttributedString) {
+        self.linkRanges = FTLinkDetection.appendLink(attributedString: attributedString)
     }
     
     // MARK: Container SetUp
-    func layoutView() {
+    func layoutTextView() {
         updateTextContainerSize()
-        setNeedsDisplay()
-        layoutIfNeeded()
-        self.superview?.setNeedsLayout()
-        self.superview?.layoutIfNeeded()
+        layoutView()
     }
     
     public func didTapAttributedText(_ gesture: UIGestureRecognizer) -> [FTLinkDetection]? {
@@ -285,18 +207,6 @@ extension UILabel {
         let restyledString = getMutableAttributedString(attributedString)
         restyledString.addParagraphStyle(style: mutablePraStryle)
         return restyledString
-    }
-    
-    // TODO: Themes
-    func getStyleProperties(forLink link: FTLinkDetection) -> [NSAttributedString.Key: Any] {
-        var properties: [NSAttributedString.Key: Any] = [
-            .underlineColor: UIColor.blue,
-            .foregroundColor: UIColor.blue
-        ]
-        if link.linkType == .hashTag {
-            properties[.underlineStyle] = NSUnderlineStyle.single
-        }
-        return properties
     }
     
     var offsetXDivisor: CGFloat {

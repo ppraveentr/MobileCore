@@ -37,7 +37,6 @@ public extension UIView {
     
     // Find subView based on output type
     func findInSubView<T>() -> T? {
-        
         for val in self.subviews.compactMap({ $0 }) {
             if val is T {
                 return val as? T
@@ -52,9 +51,7 @@ public extension UIView {
     
     // Find all UIImageView with 'height <= 1'
     func findShadowImage() -> [UIImageView]? {
-        
         var imgs: [UIImageView] = []
-        
         if self is UIImageView && self.bounds.height <= 1, let selfImamge = self as? UIImageView {
             return [selfImamge]
         }
@@ -70,9 +67,16 @@ public extension UIView {
     
     // Remove all UIImageView's with 'height <= 1'
     func hideShadowImage() {
-        
         self.findShadowImage()?.forEach { shadowImageView in
             shadowImageView.isHidden = true
         }
+    }
+    
+    // MARK: Container SetUp
+    func layoutView() {
+        setNeedsDisplay()
+        layoutIfNeeded()
+        self.superview?.setNeedsLayout()
+        self.superview?.layoutIfNeeded()
     }
 }

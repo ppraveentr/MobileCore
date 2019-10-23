@@ -11,7 +11,7 @@ import XCTest
 
 class FTCustomDataTypeTests: XCTestCase {
     
-    let testString = "Follow @krelborn or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a>"
+    let testString = "Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a>"
     let testUrl = "www.W3Schools.com"
     let testHash = "#visit"
 
@@ -25,7 +25,7 @@ class FTCustomDataTypeTests: XCTestCase {
     
     func testHTMLString() {
         let string = "<p>test</p>"
-        XCTAssertTrue(string.isHTMLString())
+        XCTAssertTrue(string.isHTMLString)
         XCTAssertEqual(string.stripHTML(), "test")
         XCTAssertEqual(string.trimming("test"), "<p></p>")
         XCTAssertNotNil(string.htmlAttributedString())

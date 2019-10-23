@@ -69,16 +69,12 @@ extension UILabel: FTUILabelThemeProtocol {
     
     // Should underline hyper-link
     open func theme_isLinkUnderlineEnabled(_ bool: Bool) {
-        if let labelTheme = self as? FTUILabelThemeProperyProtocol {
-            labelTheme.isLinkUnderLineEnabled = bool
-        }
+        self.isLinkUnderLineEnabled = bool
     }
     
     // should allow detecction for hyper-link
     open func theme_isLinkDetectionEnabled(_ bool: Bool) {
-        if let labelTheme = self as? FTUILabelThemeProperyProtocol {
-            labelTheme.islinkDetectionEnabled = bool
-        }
+        self.islinkDetectionEnabled = bool
     }
     
     // text font

@@ -54,31 +54,31 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
         let scrollView = UIScrollView()
         self.mainView?.pin(view: scrollView, edgeInsets: [.topMargin, .horizontal])
 
-        let label = FTLabel()
-        label.text = "<p>Follow @krelborn or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>"
+        let label = UILabel()
+        label.text = "<p>Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>"
         label.theme = "system14G"
         label.linkHandler = { link in
             print("Detect Link: ", link.linkURL)
         }
         
         button.addTapActionBlock {
-            label.text = "<p>Follow @krelborn or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>"
+            label.text = "<p>Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>"
         }
        
         
-        let labelM = FTLabel()
+        let labelM = UILabel()
         labelM.text = "Middledasd s asd "
         labelM.theme = "system14R"
         
-        let labelM1 = FTLabel()
+        let labelM1 = UILabel()
         labelM1.text = "Middle1 ad dfadf af ad"
         labelM1.theme = "system14B"
         
-        let labelM2 = FTLabel()
+        let labelM2 = UILabel()
         labelM2.text = "Middle2 ad"
         labelM2.theme = "system14AA"
         
-        let bottomL = FTLabel()
+        let bottomL = UILabel()
         bottomL.text = "bottom"
         bottomL.theme = "system14Y"
         

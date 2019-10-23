@@ -27,7 +27,7 @@ class FTUIElementTests: XCTestCase {
     
     // MARK: LabelFont
     func testLabelFont() {
-        let label = FTLabel(frame: .zero)
+        let label = UILabel(frame: .zero)
         label.text = titleString
         label.theme = "system14G"
         XCTAssert(label.font == UIFont.systemFont(ofSize: 14))

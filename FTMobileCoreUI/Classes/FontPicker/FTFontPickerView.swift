@@ -63,7 +63,7 @@ open class FTFontPickerView: UIView {
 
     @IBOutlet weak var decrementFontButton: UIButton!
     @IBOutlet weak var incrementFontButton: UIButton!
-    @IBOutlet weak var fontSizeLabel: FTLabel!
+    @IBOutlet weak var fontSizeLabel: UILabel!
 
     @IBOutlet weak var whiteColorButton: UIButton!
     @IBOutlet weak var creameColorButton: UIButton!

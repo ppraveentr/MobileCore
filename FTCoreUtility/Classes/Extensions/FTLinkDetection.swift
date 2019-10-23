@@ -92,4 +92,45 @@ open class FTLinkDetection {
         
         return rangeOfURL
     }
+    
+    /*
+     * Eg.) Hi #wellcome thanks.
+     * "#wellcome" is the detected-link
+     */
+    public static func appendLink(attributedString: NSMutableAttributedString) -> [FTLinkDetection] {
+        
+        var links = [FTLinkDetection]()
+        
+        // HTTP links
+        let urlLinks = FTLinkDetection.getURLLinkRanges(attributedString)
+        links.insert(contentsOf: urlLinks, at: 0)
+        
+        links.forEach { link in
+            let att = getStyleProperties(forLink: link)
+            attributedString.addAttributes(att, range: link.linkRange)
+        }
+        
+        // Hash Tags
+        let hashLinks = FTLinkDetection.getHashTagRanges(attributedString.string)
+        links.insert(contentsOf: hashLinks, at: 0)
+        
+        hashLinks.forEach { link in
+            let att = getStyleProperties(forLink: link)
+            attributedString.addAttributes(att, range: link.linkRange)
+        }
+        
+        return links
+    }
+    
+    // TODO: Themes
+    public static func getStyleProperties(forLink link: FTLinkDetection) -> FTAttributedStringKey {
+        var properties: FTAttributedStringKey = [
+            .underlineColor: UIColor.blue,
+            .foregroundColor: UIColor.blue
+        ]
+        if link.linkType == .hashTag {
+            properties[.underlineStyle] = NSUnderlineStyle.single.rawValue
+        }
+        return properties
+    }
 }
