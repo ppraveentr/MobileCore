@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'MobileCore'
-  s.version          = '0.0.7.3'
+  s.version          = '0.0.8.0'
   s.summary          = 'Mobile Core utility.'
   s.homepage         = 'https://github.com/ppraveentr/MobileCore'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -29,10 +29,5 @@ Pod::Spec.new do |s|
     coreUI.dependency  'MobileCore/CoreUtility'
     coreUI.header_dir   = "CoreUI"
   end
-  
-  #s.subspec 'Tests' do |testing|
-  # testing.source_files = 'FTCoreUtility/Tests/**/*.swift', 'FTMobileCore/Tests/**/*.swift', 'FTMobileCoreUI/Tests/**/*.swift'
-  # testing.frameworks = 'XCTest'
-  #end
   
 end
