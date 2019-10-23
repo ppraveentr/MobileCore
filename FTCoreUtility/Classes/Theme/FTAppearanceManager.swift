@@ -26,9 +26,7 @@ open class FTAppearanceManager {
     }
 
     static func setupThemes() {
-        guard let app = FTThemesManager.getAppearance() as? FTThemeModel else {
-            return
-        }
+        guard let app = FTThemesManager.getAppearance() as? FTThemeModel else { return }
 
         for theme in app where ((theme.value as? FTThemeModel) != nil) {
 
@@ -97,9 +95,7 @@ extension UIView: FTAppearanceManagerProtocol {
             types.forEach { setBackgroundImage(imageType: $0, imageName: $1) }
         }
         
-        guard let imageType = imageType else {
-            return
-        }
+        guard let imageType = imageType else { return }
         
         if
             let image = FTThemesManager.getImage(imageName as? String),

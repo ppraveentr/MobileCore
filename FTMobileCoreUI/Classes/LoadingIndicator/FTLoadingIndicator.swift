@@ -63,9 +63,7 @@ public class FTLoadingIndicator: UIView {
     public static func show(title: String?, animated: Bool = true) {
         
         // Will fail if window is not allocated
-        guard let currentWindow: UIWindow = UIApplication.shared.keyWindow else {
-            return
-        }
+        guard let currentWindow: UIWindow = UIApplication.shared.keyWindow else { return }
         
         let loader = FTLoadingIndicator.sharedInstance
         loader.canUpdated = true

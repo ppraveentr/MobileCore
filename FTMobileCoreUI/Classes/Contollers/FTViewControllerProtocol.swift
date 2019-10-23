@@ -128,16 +128,12 @@ extension UIViewController: FTViewControllerProtocol {
     }
     
     public func setupCoreView() {
-        
         if self.view == self.baseView {
             return
         }
-        
-        guard let rootView = self.view else {
-            return
-        }
-        
+        guard let rootView = self.view else { return }
         var isValidBaseView = false
+        
         // Make it as Views RooView, if forget to map it in IB.
         if self.baseView != rootView, (rootView as? FTView) != nil {
             self.baseView = rootView as? FTView

@@ -52,9 +52,8 @@ extension UIViewController {
     }
 
     func configureBarButton(button: UIBarButtonItem?, defaultAction action: Selector) {
-        guard let button = button else {
-            return
-        }
+        guard let button = button else { return }
+        
         if button.action == nil {
             button.action = action
         }

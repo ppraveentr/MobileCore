@@ -206,6 +206,13 @@ public extension NSAttributedString {
     func nsRange(from: Int = 0) -> NSRange {
         return NSRange(location: from, length: self.length)
     }
+    
+    func mutableString() -> NSMutableAttributedString {
+        if let value = self.mutableCopy() as? NSMutableAttributedString {
+            return value
+        }
+        return NSMutableAttributedString()
+    }
 }
 
 public extension NSMutableAttributedString {

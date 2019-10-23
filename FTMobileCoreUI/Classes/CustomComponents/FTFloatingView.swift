@@ -123,9 +123,7 @@ public class FTFloatingView: UIView {
     
     // Handleing movement of view
     private func viewDidMove(to location: CGPoint) {
-        guard let point = (self.floatingWindow?.convert(location, to: self.appWindow)) else {
-            return
-        }
+        guard let point = (self.floatingWindow?.convert(location, to: self.appWindow)) else { return }
 
         UIView.animate(
             withDuration: 0.1,

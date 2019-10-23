@@ -87,9 +87,7 @@ public extension FTServiceModel {
 
     mutating func merge(data sourceData: FTServiceModel) {
 
-        guard let source = try? sourceData.jsonModel(), let json = try? self.jsonModel() else {
-            return
-        }
+        guard let source = try? sourceData.jsonModel(), let json = try? self.jsonModel() else { return }
         
         let data = json.merging(source) { left, right -> Any in
             if var leftJson = left as? FTServiceModel,

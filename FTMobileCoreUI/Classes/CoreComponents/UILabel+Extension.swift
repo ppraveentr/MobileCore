@@ -11,16 +11,13 @@ public typealias FTLabelLinkHandler = (FTLinkDetection) -> Void
 
 protocol FTUILabelProtocol where Self: UILabel {
     var dispatchQueue: DispatchQueue { get }
-    // FTUILabelThemeProperyProtocol
-    var islinkDetectionEnabled: Bool { get set }
-    var isLinkUnderLineEnabled: Bool { get set }
     // Link handler
     var linkRanges: [FTLinkDetection]? { get set }
     var linkHandler: FTLabelLinkHandler? { get set }
     var tapGestureRecognizer: UITapGestureRecognizer { get }
     // layout
     var layoutManager: NSLayoutManager { get }
-    var styleProperties: FTAttributedStringKey { get }
+    var styleProperties: FTAttributedStringKey { get set }
 }
 
 private extension FTAssociatedKey {
@@ -28,7 +25,8 @@ private extension FTAssociatedKey {
     
     static var textContainer = "textContainer"
     static var layoutManager = "layoutManager"
-    
+    static var styleProperties = "styleProperties"
+
     static var linkRanges = "linkRanges"
     static var islinkDetectionEnabled = "islinkDetectionEnabled"
     static var isLinkUnderLineEnabled = "isLinkUnderLineEnabled"
@@ -89,7 +87,68 @@ extension UILabel: FTUILabelProtocol, FTUILabelThemeProperyProtocol {
         return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.layoutManager) { NSLayoutManager() }!
     }
     
+    public var textContainer: NSTextContainer {
+        let local: NSTextContainer = FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.textContainer) { self.getTextContainer() }!
+        local.lineFragmentPadding = 0.0
+        local.maximumNumberOfLines = self.numberOfLines
+        local.lineBreakMode = self.lineBreakMode
+        local.widthTracksTextView = true
+        local.heightTracksTextView = true
+        local.size = self.bounds.size
+        return local
+    }
+    
     public var styleProperties: FTAttributedStringKey {
+        get {
+            return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.styleProperties) { self.defaultStyleProperties }!
+        }
+        set {
+            FTAssociatedObject<FTAttributedStringKey>.setAssociated(self, value: newValue, key: &FTAssociatedKey.styleProperties)
+        }
+    }
+}
+
+extension UILabel: FTOptionalLayoutSubview {
+    
+    public func updateVisualThemes() {
+        if islinkDetectionEnabled, self.text.isHTMLString, let newValue = self.text {
+            self.text = newValue.stripHTML()
+            self.numberOfLines = 0
+            updateWithHtmlString(text: newValue)
+        }
+    }
+    
+    public func updateViewLayouts() {
+        updateVisualThemes()
+    }
+    
+    private static func tapGesture(targer: AnyObject?) -> UITapGestureRecognizer {
+        return UITapGestureRecognizer(target: targer, action: #selector(UILabel.tapGestureRecognized(_:)))
+    }
+    
+    @objc
+    func tapGestureRecognized(_ gesture: UITapGestureRecognizer) {
+        if self == gesture.view, let link = self.didTapAttributedText(gesture)?.first {
+            self.linkHandler?(link)
+        }
+    }
+    
+    fileprivate var offsetXDivisor: CGFloat {
+        switch self.textAlignment {
+        case .center: return 0.5
+        case .right: return 1.0
+        default: return 0.0
+        }
+    }
+    
+    private func getTextContainer() -> NSTextContainer {
+        let container = NSTextContainer()
+        container.replaceLayoutManager(self.layoutManager)
+        self.layoutManager.addTextContainer(container)
+        return container
+    }
+    
+    private var defaultStyleProperties: FTAttributedStringKey {
         let paragrahStyle = NSMutableParagraphStyle()
         paragrahStyle.alignment = self.textAlignment
         paragrahStyle.lineBreakMode = self.lineBreakMode
@@ -105,28 +164,6 @@ extension UILabel: FTUILabelProtocol, FTUILabelThemeProperyProtocol {
             properties[.foregroundColor] = color
         }
         return properties
-    }
-}
-
-extension UILabel: FTOptionalLayoutSubview {
-    
-    public func updateViewLayouts() {
-        if islinkDetectionEnabled, self.text.isHTMLString, let newValue = self.text {
-            self.text = newValue.stripHTML()
-            self.numberOfLines = 0
-            updateWithHtmlString(text: newValue)
-        }
-    }
-    
-    static func tapGesture(targer: AnyObject?) -> UITapGestureRecognizer {
-        return UITapGestureRecognizer(target: targer, action: #selector(UILabel.tapGestureRecognized(_:)))
-    }
-    
-    @objc
-    func tapGestureRecognized(_ gesture: UITapGestureRecognizer) {
-        if self == gesture.view, let link = self.didTapAttributedText(gesture)?.first {
-            self.linkHandler?(link)
-        }
     }
 }
 
@@ -149,7 +186,6 @@ extension UILabel {
     }
     
     func updateTextWithAttributedString(attributedString: NSAttributedString?) {
-        
         if let attributedString = attributedString {
             let sanitizedString = self.sanitizeAttributedString(attributedString: attributedString)
             sanitizedString.addAttributes(self.styleProperties, range: sanitizedString.nsRange())
@@ -158,7 +194,6 @@ extension UILabel {
             }
             self.attributedText = sanitizedString
         }
-        
         layoutTextView()
     }
     
@@ -173,91 +208,46 @@ extension UILabel {
     }
     
     public func didTapAttributedText(_ gesture: UIGestureRecognizer) -> [FTLinkDetection]? {
-        let location = gesture.location(in: self)
-        let indexOfCharacter = layoutManager.textBoundingBox(self, touchLocation: location)
-        let found = self.linkRanges?.filter { $0.linkRange.contains(indexOfCharacter) }
-        return found
+        let indexOfCharacter = layoutManager.indexOfCharacter(self, touchLocation: gesture.location(in: self))
+        return self.linkRanges?.filter { $0.linkRange.contains(indexOfCharacter) }
     }
     
     // MARK: Text Sanitizing
-    
-    func getMutableAttributedString(_ string: NSAttributedString) -> NSMutableAttributedString {
-        if let value = string.mutableCopy() as? NSMutableAttributedString {
-            return value
-        }
-        return NSMutableAttributedString()
-    }
-    
     func sanitizeAttributedString(attributedString: NSAttributedString) -> NSMutableAttributedString {
         
         if attributedString.length == 0 {
-            return  getMutableAttributedString(attributedString)
+            return attributedString.mutableString()
         }
         
         var range = attributedString.nsRange()
         guard let praStryle: NSParagraphStyle = attributedString.attribute( .paragraphStyle, at: 0, effectiveRange: &range) as? NSParagraphStyle else {
-            return getMutableAttributedString(attributedString)
+            return attributedString.mutableString()
         }
         
         guard let mutablePraStryle = praStryle.mutableCopy() as? NSMutableParagraphStyle else {
-            return getMutableAttributedString(attributedString)
+            return attributedString.mutableString()
         }
         mutablePraStryle.lineBreakMode = .byWordWrapping
         
-        let restyledString = getMutableAttributedString(attributedString)
+        let restyledString = attributedString.mutableString()
         restyledString.addParagraphStyle(style: mutablePraStryle)
         return restyledString
-    }
-    
-    var offsetXDivisor: CGFloat {
-        switch self.textAlignment {
-        case .center:
-            return 0.5
-        case .right:
-            return 1.0
-        default:
-            return 0.0
-        }
     }
 }
 
 extension NSLayoutManager {
-    
-    private func getTextContainer(_ label: UILabel) -> NSTextContainer {
-        let local: NSTextContainer = FTAssociatedObject.getAssociated(label, key: &FTAssociatedKey.textContainer) { NSTextContainer() }!
-        defer {
-            local.replaceLayoutManager(self)
-            self.addTextContainer(local)
-        }
-        local.lineFragmentPadding = 0.0
-        local.maximumNumberOfLines = label.numberOfLines
-        local.lineBreakMode = label.lineBreakMode
-        local.widthTracksTextView = true
-        local.heightTracksTextView = true
-        local.size = label.bounds.size
-        return local
-    }
-    
-    func textBoundingBox(_ label: UILabel, touchLocation: CGPoint) -> Int {
-        
-        let textContainer = getTextContainer(label)
+    func indexOfCharacter(_ label: UILabel, touchLocation: CGPoint) -> Int {
+        let textContainer = label.textContainer
         let textStorage = NSTextStorage(attributedString: label.attributedText ?? NSAttributedString(string: ""))
-        textStorage.addLayoutManager(self)
-        
-        let labelSize = label.bounds.size
-        textContainer.size = labelSize
-        
-        let textBoundingBox = self.usedRect(for: textContainer)
+        textStorage.addLayoutManager(self)        
+        let (labelSize, textBoundingBox) = (label.bounds.size, self.usedRect(for: textContainer))
         let offsetX = (labelSize.width - textBoundingBox.size.width) * label.offsetXDivisor - textBoundingBox.origin.x
         let offsetY = (labelSize.height - textBoundingBox.size.height) * 0.5 - textBoundingBox.origin.y
-        let textContainerOffset = CGPoint(x: offsetX, y: offsetY)
         let locationOfTouch = CGPoint(
-            x: touchLocation.x - textContainerOffset.x,
-            y: touchLocation.y - textContainerOffset.y
+            x: touchLocation.x - offsetX,
+            y: touchLocation.y - offsetY
         )
-        
         let indexOfCharacter = self.characterIndex(for: locationOfTouch, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
-        
         return indexOfCharacter
     }
 }
