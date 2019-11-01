@@ -190,6 +190,13 @@ public extension UIColor {
 
 public extension UIImage {
     
+    convenience init?(color: UIColor) {
+        if let cgImage = color.generateImage()?.cgImage {
+            self.init(cgImage: cgImage)
+        }
+        return nil
+    }
+    
     func getColor(a: CGFloat = -10) -> UIColor? {
         
         guard

@@ -9,47 +9,32 @@
 import Foundation
 import WebKit
 
-open class FTContentView: UIScrollView {
+open class FTContentView: UIScrollView, WKNavigationDelegate {
     
     public lazy var webView: WKWebView = self.getWebView()
     private var scrollViewSizeContext = #keyPath(UIScrollView.contentSize)
 
     private func getWebView() -> WKWebView {
         let local = WKWebView()
-        local.scrollView.isScrollEnabled = false
-        super.contentView?.pin(view: local)
-        self.startObservingHeight(local)
+        local.navigationDelegate = self
+        local.setScrollEnabled(enabled: false)
+        self.addContentView(local)
         return local
     }
-    
-    deinit {
-        // Remove all Observer in `self`
-        NotificationCenter.default.removeObserver(self)
-        stopObservingHeight()
-    }
-    
-    // MARK: Observe webview content height
-    func startObservingHeight(_ webView: WKWebView) {
-        // 'contentSize' observer
-        webView.scrollView.addObserver(self, forKeyPath: scrollViewSizeContext, options: [NSKeyValueObservingOptions.new], context: &scrollViewSizeContext)
-    }
-    
-    // swiftlint:disable block_based_kvo
-    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        if context == &scrollViewSizeContext,
-            keyPath == #keyPath(UIScrollView.contentSize),
-            let nsSize = change?[NSKeyValueChangeKey.newKey] as? CGSize {
-            let val = nsSize.height
-            // Do something here using content height.
-            self.contentView?.viewLayoutConstraint.constraintHeight?.constant = val
+ 
+    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.webView.evaluateJavaScript("document.readyState") { complete, _ in
+                if complete != nil {
+                    self.webView.evaluateJavaScript("document.body.scrollHeight") { height, _ in
+                        let heightValue = (height as? CGFloat) ?? 0
+                        self.webView.viewLayoutConstraint.constraintHeight?.constant = heightValue
+                        self.webView.viewLayoutConstraint.constraintWidth?.constant = 100
+
+                        //                    self.contentView.viewLayoutConstraint.constraintHeight?.constant = webView.scrollView.contentSize.height
+                    }
+                }
+            }
         }
-        else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
-    }
-    // swiftlint:enable block_based_kvo
-    
-    func stopObservingHeight() {
-        webView.scrollView.removeObserver(self, forKeyPath: scrollViewSizeContext)
     }
 }
