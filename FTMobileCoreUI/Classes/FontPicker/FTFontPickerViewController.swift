@@ -25,7 +25,7 @@ open class FTFontPickerViewController: UIViewController {
             }
         }
         get {
-            return pickerView?.fontPickerModel
+            pickerView?.fontPickerModel
         }
     }
 
@@ -36,5 +36,28 @@ open class FTFontPickerViewController: UIViewController {
         if let pickerView = pickerView {
          self.mainView?.pin(view: pickerView)
         }
+    }
+    
+    @discardableResult
+    open func setUpPopoverPresentation(from sender: UIView?, delegate: UIPopoverPresentationControllerDelegate? = nil, contentSize: CGSize = CGSize(width: 250, height: 300)) -> UIPopoverPresentationController? {
+        self.modalPresentationStyle = .popover
+        self.preferredContentSize = contentSize
+        
+        let ppc = self.popoverPresentationController
+        ppc?.permittedArrowDirections = .any
+        ppc?.delegate = delegate ?? self
+
+        if let sender = sender {
+            ppc?.sourceView = sender
+            ppc?.sourceRect = sender.bounds
+        }
+        
+        return ppc
+    }
+}
+
+extension FTFontPickerViewController: UIPopoverPresentationControllerDelegate {
+    public func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        .none
     }
 }

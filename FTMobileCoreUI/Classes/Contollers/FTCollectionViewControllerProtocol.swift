@@ -11,7 +11,7 @@ import Foundation
 private var kAOCollectionVC = "k.FT.AO.CollectionViewController"
 
 public protocol FTCollectionViewControllerProtocol: FTViewControllerProtocol {
-    var flowLayout: NSObject { get }
+    var flowLayout: UICollectionViewLayout { get }
     var collectionView: UICollectionView { get set }
     var collectionViewController: UICollectionViewController { get }
     // Cell config
@@ -22,20 +22,20 @@ public protocol FTCollectionViewControllerProtocol: FTViewControllerProtocol {
 public extension FTCollectionViewControllerProtocol {
 
     func estimatedItemSize() -> CGSize {
-        return .zero
+        .zero
     }
 
     func sectionInset() -> UIEdgeInsets {
-        return .zero
+        .zero
     }
     
-    var flowLayout: NSObject {
-        return UICollectionViewFlowLayout()
+    var flowLayout: UICollectionViewLayout {
+        UICollectionViewLayout()
     }
     
     var collectionView: UICollectionView {
         get {
-            return collectionViewController.collectionView
+            collectionViewController.collectionView
         }
         set {
             setupCoreCollectionView(newValue)
@@ -52,24 +52,14 @@ public extension FTCollectionViewControllerProtocol {
 
 private extension FTCollectionViewControllerProtocol {
     
-    var localFlowLayout: UICollectionViewLayout {
-        let layout = flowLayout as? UICollectionViewLayout
-        return layout ?? UICollectionViewLayout()
-    }
-    
     @discardableResult
     func setupCoreCollectionVC(_ collectionView: UICollectionView? = nil) -> UICollectionViewController {
 
         // Load Base view
         setupCoreView()
         
-        if let collection = FTAssociatedObject<UICollectionViewController>.getAssociated(self, key: &kAOCollectionVC) {
-            collection.collectionView.removeSubviews()
-            FTAssociatedObject<Any>.resetAssociated(self, key: &kAOCollectionVC)
-        }
-        
         // Create tableView based on user provided style
-        let local = UICollectionViewController(collectionViewLayout: localFlowLayout)
+        let local = UICollectionViewController(collectionViewLayout: flowLayout)
         local.collectionView.removeSubviews()
         local.collectionView.theme = FTThemeStyle.defaultStyle
         

@@ -37,12 +37,12 @@ private extension FTAssociatedKey {
 extension UILabel: FTUILabelProtocol, FTUILabelThemeProperyProtocol {
     
     public var dispatchQueue: DispatchQueue {
-        return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.dispatchQueue) { DispatchQueue(label: "UILabel.dispatchQueue") }!
+        FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.dispatchQueue) { DispatchQueue(label: "UILabel.dispatchQueue") }!
     }
     
     public var linkRanges: [FTLinkDetection]? {
         get {
-            return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.linkRanges)
+            FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.linkRanges)
         }
         set {
             FTAssociatedObject<[FTLinkDetection]>.setAssociated(self, value: newValue, key: &FTAssociatedKey.linkRanges)
@@ -52,7 +52,7 @@ extension UILabel: FTUILabelProtocol, FTUILabelThemeProperyProtocol {
     // FTUILabelThemeProperyProtocol
     public var islinkDetectionEnabled: Bool {
         get {
-            return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.islinkDetectionEnabled) { true }!
+            FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.islinkDetectionEnabled) { true }!
         }
         set {
             FTAssociatedObject<Bool>.setAssociated(self, value: newValue, key: &FTAssociatedKey.islinkDetectionEnabled)
@@ -61,7 +61,7 @@ extension UILabel: FTUILabelProtocol, FTUILabelThemeProperyProtocol {
     
     public var isLinkUnderLineEnabled: Bool {
         get {
-            return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.isLinkUnderLineEnabled) { false }!
+            FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.isLinkUnderLineEnabled) { false }!
         }
         set {
             FTAssociatedObject<Bool>.setAssociated(self, value: newValue, key: &FTAssociatedKey.isLinkUnderLineEnabled)
@@ -70,7 +70,7 @@ extension UILabel: FTUILabelProtocol, FTUILabelThemeProperyProtocol {
     
     public var linkHandler: FTLabelLinkHandler? {
         get {
-            return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.linkHandler)
+            FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.linkHandler)
         }
         set {
             FTAssociatedObject<FTLabelLinkHandler>.setAssociated(self, value: newValue, key: &FTAssociatedKey.linkHandler)
@@ -80,11 +80,11 @@ extension UILabel: FTUILabelProtocol, FTUILabelThemeProperyProtocol {
     }
     
     public var tapGestureRecognizer: UITapGestureRecognizer {
-        return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.tapGestureRecognizer) { UILabel.tapGesture(targer: self) }!
+        FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.tapGestureRecognizer) { UILabel.tapGesture(targer: self) }!
     }
     
     public var layoutManager: NSLayoutManager {
-        return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.layoutManager) { NSLayoutManager() }!
+        FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.layoutManager) { NSLayoutManager() }!
     }
     
     public var textContainer: NSTextContainer {
@@ -100,7 +100,7 @@ extension UILabel: FTUILabelProtocol, FTUILabelThemeProperyProtocol {
     
     public var styleProperties: FTAttributedStringKey {
         get {
-            return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.styleProperties) { self.defaultStyleProperties }!
+            FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.styleProperties) { self.defaultStyleProperties }!
         }
         set {
             FTAssociatedObject<FTAttributedStringKey>.setAssociated(self, value: newValue, key: &FTAssociatedKey.styleProperties)
@@ -123,7 +123,7 @@ extension UILabel: FTOptionalLayoutSubview {
     }
     
     private static func tapGesture(targer: AnyObject?) -> UITapGestureRecognizer {
-        return UITapGestureRecognizer(target: targer, action: #selector(UILabel.tapGestureRecognized(_:)))
+        UITapGestureRecognizer(target: targer, action: #selector(UILabel.tapGestureRecognized(_:)))
     }
     
     @objc

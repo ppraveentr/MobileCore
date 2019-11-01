@@ -23,19 +23,19 @@ public protocol FTThemeProtocol: AnyObject {
 // MARK: UIView
 public extension FTThemeProtocol where Self: UIView {
     
+    // If view is disabled, check for ".disabledStyle" style
     func getThemeSubType() -> String? {
-        // If view is disabled, check for ".disabledStyle" style
-        return self.isUserInteractionEnabled ? nil : FTThemeStyle.disabledStyle
+        self.isUserInteractionEnabled ? nil : FTThemeStyle.disabledStyle
     }
     
     // Color
     func getColor(_ colorName: String?) -> UIColor? {
-        return FTThemesManager.getColor(colorName)
+        FTThemesManager.getColor(colorName)
     }
     
     // font
     func getFont(_ fontName: String?) -> UIFont? {
-        return FTThemesManager.getFont(fontName)
+        FTThemesManager.getFont(fontName)
     }
 }
 

@@ -14,8 +14,7 @@ class FTUIWebkitTests: XCTestCase {
 
     let testHTMLString = "Test load string"
     
-    let contentView: FTContentView = FTContentView()
-    lazy var webview: WKWebView = contentView.webView
+    lazy var webview: WKWebView = WKWebView()
 
     override func setUp() {
         webview.loadHTMLBody(testHTMLString)

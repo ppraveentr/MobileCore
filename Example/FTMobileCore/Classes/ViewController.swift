@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import WebKit
 
-class ViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+class ViewController: UIViewController {
     
-    @IBOutlet weak var sampleView: UIView!
+    @IBOutlet weak var topView: UIView!
+    weak var contentViewC: ContentViewController?
+    var button: UIButton = UIButton()
+    let buttonText = "<p>Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>"
     
     override func loadView() {
         super.loadView()
@@ -20,8 +24,32 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // MARK: TopView
-        let button = UIButton()
+        // TopView
+        setUpTopView()
+        
+        // MainView
+        setupMainView()
+    }
+    
+    @objc
+    func showFontPicker(sender: UIButton?) {
+        if let htmlView = contentViewC?.contentView {
+            let popoverContent = htmlView.fontPickerViewController
+            popoverContent.setUpPopoverPresentation(from: sender)
+            self.present(popoverContent, animated: true, completion: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "contentViewC" {
+            contentViewC = segue.destination as? ContentViewController
+        }
+    }
+}
+
+extension ViewController {
+    
+    func setUpTopView() {
         button.theme = "button14R"
         button.setTitle("Tap me", for: .normal)
         
@@ -49,22 +77,22 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
         )
         
         self.baseView?.topPinnedView = topView
-        
-        // MARK: MainView
+    }
+    
+    func setupMainView() {
         let scrollView = UIScrollView()
-        self.mainView?.pin(view: scrollView, edgeInsets: [.topMargin, .horizontal])
-
+        topView.pin(view: scrollView, edgeInsets: [.topMargin, .horizontal])
+        
         let label = UILabel()
-        label.text = "<p>Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>"
+        label.text = buttonText
         label.theme = "system14G"
         label.linkHandler = { link in
             print("Detect Link: ", link.linkURL)
         }
         
-        button.addTapActionBlock {
-            label.text = "<p>Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>"
+        button.addTapActionBlock { [weak self] in
+            label.text = self?.buttonText
         }
-       
         
         let labelM = UILabel()
         labelM.text = "Middledasd s asd "
@@ -82,83 +110,21 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
         bottomL.text = "bottom"
         bottomL.theme = "system14Y"
         
+        // [ .Top, .Horizontal ]
         scrollView.contentView.pin(view: label, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .left, .vertical ])
+        // [ .Bottom ]
         scrollView.contentView.pin(view: bottomL, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .right ])
-
+        
+        // layoutDirection: .TopToBottom, edgeInsets: [.EqualSize, .LeadingMargin]
         scrollView.contentView.stackView(
             views: [label, labelM, labelM1, labelM2, bottomL],
             layoutDirection: .leftToRight,
             spacing: 20,
             edgeInsets: [.autoSize, .topMargin]
         )
-
-//        scrollView.contentView.pin(view: label, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Top, .Horizontal ])
-//        scrollView.contentView.pin(view: bottomL, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Bottom ])
-//        
-//        scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, bottomL],
-//                                         layoutDirection: .TopToBottom, spacing: 20,
-//                                         edgeInsets: [.EqualSize, .LeadingMargin])
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//            label.removeFromSuperview()
-//        }
-    }
-    
-    @objc
-    func showFontPicker(sender: UIButton?) {
-        let popoverContent = FTFontPickerViewController()
-        popoverContent.preferredContentSize = CGSize(width: 250, height: 250)
-        popoverContent.modalPresentationStyle = .popover
-        
-        let ppc = popoverContent.popoverPresentationController
-        ppc?.permittedArrowDirections = .any
-        ppc?.sourceView = sender
-        ppc?.delegate = self
-        if let bounds = sender?.bounds {
-            ppc?.sourceRect = bounds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            bottomL.text = self.buttonText
         }
-        
-        self.present(popoverContent, animated: true, completion: nil)
     }
-    
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .none
-    }
-}
-
-extension UITapGestureRecognizer {
-    
-    func didTapAttributedTextInLabel(label: UILabel, inRange targetRange: NSRange) -> Bool {
-        // Create instances of NSLayoutManager, NSTextContainer and NSTextStorage
-        let layoutManager = NSLayoutManager()
-        let textContainer = NSTextContainer(size: CGSize.zero)
-        let textStorage = NSTextStorage(attributedString: label.attributedText!)
-        
-        // Configure layoutManager and textStorage
-        layoutManager.addTextContainer(textContainer)
-        textStorage.addLayoutManager(layoutManager)
-        
-        // Configure textContainer
-        textContainer.lineFragmentPadding = 0.0
-        textContainer.lineBreakMode = label.lineBreakMode
-        textContainer.maximumNumberOfLines = label.numberOfLines
-        let labelSize = label.bounds.size
-        textContainer.size = labelSize
-        
-        // Find the tapped character location and compare it to the specified range
-        let locationOfTouchInLabel = self.location(in: label)
-        let textBoundingBox = layoutManager.usedRect(for: textContainer)
-        let textContainerOffset = CGPoint(
-            x: (labelSize.width - textBoundingBox.size.width) * 0.5 - textBoundingBox.origin.x,
-            y: (labelSize.height - textBoundingBox.size.height) * 0.5 - textBoundingBox.origin.y
-        )
-        let locationOfTouchInTextContainer = CGPoint(
-            x: locationOfTouchInLabel.x - textContainerOffset.x,
-            y: locationOfTouchInLabel.y - textContainerOffset.y
-        )
-        let indexOfCharacter = layoutManager.characterIndex(for: locationOfTouchInTextContainer, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
-        
-        return NSLocationInRange(indexOfCharacter, targetRange)
-    }
-    
 }

@@ -31,7 +31,7 @@ public struct FTEdgeOffsets: Equatable {
     public var right: CGFloat
     public var bottom: CGFloat
     public static var zero: FTEdgeOffsets {
-        return FTEdgeOffsets(0, 0, 0, 0)
+        FTEdgeOffsets(0, 0, 0, 0)
     }
 
     public init(_ left: CGFloat, _ top: CGFloat, _ right: CGFloat, _ bottom: CGFloat) {
@@ -49,11 +49,11 @@ public struct FTEdgeOffsets: Equatable {
     }
 
     func getRight() -> CGFloat {
-        return -self.right
+        -self.right
     }
     
     func getBottom() -> CGFloat {
-        return -self.bottom
+        -self.bottom
     }
 }
 
@@ -176,7 +176,7 @@ public extension UIView {
 
 private extension UIView {
     func hasSameBaseView(_ view: UIView) -> Bool {
-        return self.superview?.subviews.contains(view) ?? false
+        self.superview?.subviews.contains(view) ?? false
     }
     
     func validPriority(_ priority: UILayoutPriority) -> UILayoutPriority {

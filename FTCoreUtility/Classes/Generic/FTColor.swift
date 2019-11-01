@@ -147,48 +147,16 @@ public extension UIColor {
         UIGraphicsEndImageContext()
         return img
     }
-    
-    // Amount should be between 0 and 1
-    func lighterColor(_ amount: CGFloat) -> UIColor {
-        return UIColor.blendColors(color: self, destinationColor: UIColor.white, amount: amount)
-    }
-    
-    func darkerColor(_ amount: CGFloat) -> UIColor {
-        return UIColor.blendColors(color: self, destinationColor: UIColor.black, amount: amount)
-    }
-    
-    static func blendColors(color: UIColor, destinationColor: UIColor, amount: CGFloat) -> UIColor {
-        var amountToBlend = amount
-        if amountToBlend > 1 {
-            amountToBlend = 1.0
-        }
-        else if amountToBlend < 0 {
-            amountToBlend = 0
-        }
-        
-        var r: CGFloat = 0.0
-        var g: CGFloat = 0.0
-        var b: CGFloat = 0.0
-        var alpha: CGFloat = 0.0
-        color.getRed(&r, green: &g, blue: &b, alpha: &alpha) // Gets the rgba values (0-1)
-        
-        // Get the destination rgba values
-        var destR: CGFloat = 0.0
-        var destG: CGFloat = 0.0
-        var destB: CGFloat = 0.0
-        var destAlpha: CGFloat = 0.0
-        destinationColor.getRed(&destR, green: &destG, blue: &destB, alpha: &destAlpha)
-        
-        r = amountToBlend * (destR * 255) + (1 - amountToBlend) * (r * 255)
-        g = amountToBlend * (destG * 255) + (1 - amountToBlend) * (g * 255)
-        b = amountToBlend * (destB * 255) + (1 - amountToBlend) * (b * 255)
-        alpha = abs(alpha / destAlpha)
-        
-        return UIColor(red: r, green: g, blue: b, a: alpha)
-    }
 }
 
 public extension UIImage {
+    
+    convenience init?(color: UIColor) {
+        if let cgImage = color.generateImage()?.cgImage {
+            self.init(cgImage: cgImage)
+        }
+        return nil
+    }
     
     func getColor(a: CGFloat = -10) -> UIColor? {
         

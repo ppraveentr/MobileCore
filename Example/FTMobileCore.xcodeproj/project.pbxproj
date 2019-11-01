@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0457CB7350E4C24D4BFCB20E /* Pods_FTMobileCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA23E551FF2CEE347F994F83 /* Pods_FTMobileCore.framework */; };
 		D421EAA423428B8100FA0B7C /* FTThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EA9F23428B8100FA0B7C /* FTThemesTests.swift */; };
 		D421EAA523428B8100FA0B7C /* FTCustomDataTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAA023428B8100FA0B7C /* FTCustomDataTypeTests.swift */; };
 		D421EAA623428B8100FA0B7C /* FTUIViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAA123428B8100FA0B7C /* FTUIViewControllerTests.swift */; };
 		D421EAA723428B8100FA0B7C /* FTCoreUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAA223428B8100FA0B7C /* FTCoreUtilityTests.swift */; };
 		D421EAA823428B8100FA0B7C /* FTActionBlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAA323428B8100FA0B7C /* FTActionBlockTests.swift */; };
-		D421EAB423428B9300FA0B7C /* FTServiceModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAB323428B9300FA0B7C /* FTServiceModelTests.swift */; };
+		D428B74323616DDD00A5D96B /* NRSegmentCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D428B74223616DDD00A5D96B /* NRSegmentCollectionHeaderView.swift */; };
 		D42CAD2B2356E63000F162E9 /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D42CAD2A2356E63000F162E9 /* upArrow.png */; };
 		D42CAD2F2356E64000F162E9 /* FTMobileCoreTestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CAD2C2356E64000F162E9 /* FTMobileCoreTestClass.swift */; };
 		D42CAD302356E64000F162E9 /* FTURLSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CAD2D2356E64000F162E9 /* FTURLSessionTests.swift */; };
@@ -21,12 +22,15 @@
 		D42CAD362356E64A00F162E9 /* FTUIElementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CAD332356E64A00F162E9 /* FTUIElementsTests.swift */; };
 		D42CAD372356E64A00F162E9 /* FTCoreUtilityTestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CAD342356E64A00F162E9 /* FTCoreUtilityTestClass.swift */; };
 		D42CAD392357199600F162E9 /* FTUIBarButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CAD382357199600F162E9 /* FTUIBarButtonTests.swift */; };
+		D44ACC7F236C67BF0093BF67 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44ACC7E236C67BF0093BF67 /* ContentViewController.swift */; };
 		D44E56F92341CFAB00A0E56C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44E56F82341CFAB00A0E56C /* UIKit.framework */; };
-		D49FE3182345D45A002B3742 /* FTSampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE3162345D459002B3742 /* FTSampleTableViewController.swift */; };
+		D49FE3182345D45A002B3742 /* SampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE3162345D459002B3742 /* SampleTableViewController.swift */; };
 		D49FE3192345D45A002B3742 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE3172345D459002B3742 /* ViewController.swift */; };
 		D49FE3222345D4EA002B3742 /* FTUIWebkitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE31E2345D4EA002B3742 /* FTUIWebkitTests.swift */; };
 		D49FE3232345D4EA002B3742 /* FTFontPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE31F2345D4EA002B3742 /* FTFontPickerTests.swift */; };
 		D49FE3242345D4EA002B3742 /* FTUIElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE3202345D4EA002B3742 /* FTUIElementTests.swift */; };
+		D4D691492376AB4C00F0C08D /* CollectionViewProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D691482376AB4C00F0C08D /* CollectionViewProtocolTests.swift */; };
+		D4D6914B2376B49800F0C08D /* ContentViewProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D6914A2376B49800F0C08D /* ContentViewProtocolTests.swift */; };
 		D4E09A24234A45AC002729E6 /* FTStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E09A23234A45AC002729E6 /* FTStringTests.swift */; };
 		D4E09A2F234A4ADE002729E6 /* Themes.json in Resources */ = {isa = PBXBuildFile; fileRef = DE680BB01F2E038800A9F68C /* Themes.json */; };
 		D4E09A32234A4B06002729E6 /* FTMobileCoreBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D4E09A29234A4AD4002729E6 /* FTMobileCoreBundle.bundle */; };
@@ -42,6 +46,7 @@
 		DE9221D71EF28CDF000C8FC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D51EF28CDF000C8FC7 /* LaunchScreen.storyboard */; };
 		DEBDC8941EF4508900AC77A9 /* FTMobileCore-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = DEBDC8931EF4508900AC77A9 /* FTMobileCore-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DEC55DDA1EF2968700FAE024 /* MDASample.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC55DD91EF2968700FAE024 /* MDASample.swift */; };
+		EFB8DD842BD23CBD9CB8D5B4 /* Pods_FTMobileCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022AC68E69BFFDA413892834 /* Pods_FTMobileCoreTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,12 +80,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		022AC68E69BFFDA413892834 /* Pods_FTMobileCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FTMobileCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		16B134F0B7DD83645D5E5E1D /* Pods-FTMobileCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCoreTests.release.xcconfig"; path = "Target Support Files/Pods-FTMobileCoreTests/Pods-FTMobileCoreTests.release.xcconfig"; sourceTree = "<group>"; };
+		69B0EF30959D4CA8AA332674 /* Pods-FTMobileCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCore.debug.xcconfig"; path = "Target Support Files/Pods-FTMobileCore/Pods-FTMobileCore.debug.xcconfig"; sourceTree = "<group>"; };
+		975AECC632DB9601F9C808CA /* Pods-FTMobileCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCore.release.xcconfig"; path = "Target Support Files/Pods-FTMobileCore/Pods-FTMobileCore.release.xcconfig"; sourceTree = "<group>"; };
 		D421EA9F23428B8100FA0B7C /* FTThemesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTThemesTests.swift; sourceTree = "<group>"; };
 		D421EAA023428B8100FA0B7C /* FTCustomDataTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTCustomDataTypeTests.swift; sourceTree = "<group>"; };
 		D421EAA123428B8100FA0B7C /* FTUIViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIViewControllerTests.swift; sourceTree = "<group>"; };
 		D421EAA223428B8100FA0B7C /* FTCoreUtilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTCoreUtilityTests.swift; sourceTree = "<group>"; };
 		D421EAA323428B8100FA0B7C /* FTActionBlockTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTActionBlockTests.swift; sourceTree = "<group>"; };
-		D421EAB323428B9300FA0B7C /* FTServiceModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTServiceModelTests.swift; sourceTree = "<group>"; };
+		D428B74223616DDD00A5D96B /* NRSegmentCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NRSegmentCollectionHeaderView.swift; sourceTree = "<group>"; };
 		D42CAD2A2356E63000F162E9 /* upArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upArrow.png; path = FTMobileCore/Assets.xcassets/upArrow.imageset/upArrow.png; sourceTree = SOURCE_ROOT; };
 		D42CAD2C2356E64000F162E9 /* FTMobileCoreTestClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMobileCoreTestClass.swift; sourceTree = "<group>"; };
 		D42CAD2D2356E64000F162E9 /* FTURLSessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTURLSessionTests.swift; sourceTree = "<group>"; };
@@ -89,6 +98,7 @@
 		D42CAD332356E64A00F162E9 /* FTUIElementsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIElementsTests.swift; sourceTree = "<group>"; };
 		D42CAD342356E64A00F162E9 /* FTCoreUtilityTestClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTCoreUtilityTestClass.swift; sourceTree = "<group>"; };
 		D42CAD382357199600F162E9 /* FTUIBarButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUIBarButtonTests.swift; sourceTree = "<group>"; };
+		D44ACC7E236C67BF0093BF67 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		D44E56F82341CFAB00A0E56C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D44E56FE2341D3B900A0E56C /* FTMobileCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44E57022341D3B900A0E56C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,11 +109,13 @@
 		D49FE3102345D2F1002B3742 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		D49FE3112345D2F1002B3742 /* .sonarcloud.properties */ = {isa = PBXFileReference; lastKnownFileType = text; name = .sonarcloud.properties; path = ../.sonarcloud.properties; sourceTree = "<group>"; };
 		D49FE3132345D2FC002B3742 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
-		D49FE3162345D459002B3742 /* FTSampleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTSampleTableViewController.swift; sourceTree = "<group>"; };
+		D49FE3162345D459002B3742 /* SampleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleTableViewController.swift; sourceTree = "<group>"; };
 		D49FE3172345D459002B3742 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D49FE31E2345D4EA002B3742 /* FTUIWebkitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIWebkitTests.swift; sourceTree = "<group>"; };
 		D49FE31F2345D4EA002B3742 /* FTFontPickerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTFontPickerTests.swift; sourceTree = "<group>"; };
 		D49FE3202345D4EA002B3742 /* FTUIElementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUIElementTests.swift; sourceTree = "<group>"; };
+		D4D691482376AB4C00F0C08D /* CollectionViewProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewProtocolTests.swift; sourceTree = "<group>"; };
+		D4D6914A2376B49800F0C08D /* ContentViewProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewProtocolTests.swift; sourceTree = "<group>"; };
 		D4E09A23234A45AC002729E6 /* FTStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTStringTests.swift; sourceTree = "<group>"; };
 		D4E09A29234A4AD4002729E6 /* FTMobileCoreBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTMobileCoreBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E09A2B234A4AD4002729E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -112,6 +124,7 @@
 		D4E09A40234B124C002729E6 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		D4E09A41234B60D4002729E6 /* FTSessionCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTSessionCacheTests.swift; sourceTree = "<group>"; };
 		D4E41882235847700067253D /* FTAssociatedObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTAssociatedObjectTests.swift; sourceTree = "<group>"; };
+		DA23E551FF2CEE347F994F83 /* Pods_FTMobileCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FTMobileCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE680BB01F2E038800A9F68C /* Themes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Themes.json; sourceTree = "<group>"; };
 		DE9221C91EF28CDF000C8FC7 /* FTMobileCore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FTMobileCore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +135,7 @@
 		DEBDC8931EF4508900AC77A9 /* FTMobileCore-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTMobileCore-Bridging-Header.h"; sourceTree = "<group>"; };
 		DEBDC8A21EF4520100AC77A9 /* FTMobileCore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FTMobileCore.entitlements; sourceTree = "<group>"; };
 		DEC55DD91EF2968700FAE024 /* MDASample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDASample.swift; sourceTree = "<group>"; };
+		E8B9E6077CFC98633009EDDB /* Pods-FTMobileCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCoreTests.debug.xcconfig"; path = "Target Support Files/Pods-FTMobileCoreTests/Pods-FTMobileCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFB8DD842BD23CBD9CB8D5B4 /* Pods_FTMobileCoreTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D44E56F92341CFAB00A0E56C /* UIKit.framework in Frameworks */,
+				0457CB7350E4C24D4BFCB20E /* Pods_FTMobileCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +169,10 @@
 		BE016806CD3793C9F95F02FB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				69B0EF30959D4CA8AA332674 /* Pods-FTMobileCore.debug.xcconfig */,
+				975AECC632DB9601F9C808CA /* Pods-FTMobileCore.release.xcconfig */,
+				E8B9E6077CFC98633009EDDB /* Pods-FTMobileCoreTests.debug.xcconfig */,
+				16B134F0B7DD83645D5E5E1D /* Pods-FTMobileCoreTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -208,8 +228,9 @@
 				D42CAD2C2356E64000F162E9 /* FTMobileCoreTestClass.swift */,
 				D42CAD2E2356E64000F162E9 /* FTFTMobileConfigTests.swift */,
 				D42CAD2D2356E64000F162E9 /* FTURLSessionTests.swift */,
-				D421EAB323428B9300FA0B7C /* FTServiceModelTests.swift */,
 				D4E09A41234B60D4002729E6 /* FTSessionCacheTests.swift */,
+				D4D691482376AB4C00F0C08D /* CollectionViewProtocolTests.swift */,
+				D4D6914A2376B49800F0C08D /* ContentViewProtocolTests.swift */,
 			);
 			name = Tests;
 			path = ../../FTMobileCore/Tests;
@@ -245,8 +266,9 @@
 			isa = PBXGroup;
 			children = (
 				D4E20D78235AD85000E4731A /* Views */,
-				D49FE3162345D459002B3742 /* FTSampleTableViewController.swift */,
+				D49FE3162345D459002B3742 /* SampleTableViewController.swift */,
 				D49FE3172345D459002B3742 /* ViewController.swift */,
+				D44ACC7E236C67BF0093BF67 /* ContentViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -284,6 +306,7 @@
 		D4E20D78235AD85000E4731A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D428B74223616DDD00A5D96B /* NRSegmentCollectionHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -292,6 +315,8 @@
 			isa = PBXGroup;
 			children = (
 				D44E56F82341CFAB00A0E56C /* UIKit.framework */,
+				DA23E551FF2CEE347F994F83 /* Pods_FTMobileCore.framework */,
+				022AC68E69BFFDA413892834 /* Pods_FTMobileCoreTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -368,9 +393,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D44E57052341D3B900A0E56C /* Build configuration list for PBXNativeTarget "FTMobileCoreTests" */;
 			buildPhases = (
+				8C08F4AF75A5B19E7EC685C1 /* [CP] Check Pods Manifest.lock */,
 				D44E56FA2341D3B900A0E56C /* Sources */,
 				D44E56FB2341D3B900A0E56C /* Frameworks */,
 				D44E56FC2341D3B900A0E56C /* Resources */,
+				BEFA82B344A34B5D37577EB6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -403,12 +430,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE9221DB1EF28CDF000C8FC7 /* Build configuration list for PBXNativeTarget "FTMobileCore" */;
 			buildPhases = (
+				E95FFC6F7DB6D7676985C75A /* [CP] Check Pods Manifest.lock */,
 				DE9221C51EF28CDF000C8FC7 /* Sources */,
 				DE9221C61EF28CDF000C8FC7 /* Frameworks */,
 				DE9221C71EF28CDF000C8FC7 /* Resources */,
 				DEC55DE61EF2A16E00FAE024 /* Headers */,
 				DE1485561F10C09400A250A6 /* Embed Frameworks */,
 				D437653C230E8E5B004974CC /* swiftlint Run Script */,
+				CD7BE1A6226B2B4025518EED /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -506,6 +535,64 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8C08F4AF75A5B19E7EC685C1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FTMobileCoreTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BEFA82B344A34B5D37577EB6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FTMobileCoreTests/Pods-FTMobileCoreTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MobileCore/MobileCore.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MobileCore.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FTMobileCoreTests/Pods-FTMobileCoreTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD7BE1A6226B2B4025518EED /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FTMobileCore/Pods-FTMobileCore-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MobileCore/MobileCore.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MobileCore.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FTMobileCore/Pods-FTMobileCore-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D437653C230E8E5B004974CC /* swiftlint Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -524,6 +611,28 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
+		E95FFC6F7DB6D7676985C75A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FTMobileCore-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -533,14 +642,15 @@
 			files = (
 				D42CAD302356E64000F162E9 /* FTURLSessionTests.swift in Sources */,
 				D421EAA523428B8100FA0B7C /* FTCustomDataTypeTests.swift in Sources */,
+				D4D6914B2376B49800F0C08D /* ContentViewProtocolTests.swift in Sources */,
 				D4E09A3A234A4C1C002729E6 /* Constants.swift in Sources */,
 				D49FE3222345D4EA002B3742 /* FTUIWebkitTests.swift in Sources */,
 				D42CAD2F2356E64000F162E9 /* FTMobileCoreTestClass.swift in Sources */,
 				D421EAA823428B8100FA0B7C /* FTActionBlockTests.swift in Sources */,
+				D4D691492376AB4C00F0C08D /* CollectionViewProtocolTests.swift in Sources */,
 				D49FE3242345D4EA002B3742 /* FTUIElementTests.swift in Sources */,
 				D421EAA723428B8100FA0B7C /* FTCoreUtilityTests.swift in Sources */,
 				D421EAA423428B8100FA0B7C /* FTThemesTests.swift in Sources */,
-				D421EAB423428B9300FA0B7C /* FTServiceModelTests.swift in Sources */,
 				D42CAD352356E64A00F162E9 /* FTClassMethodTests.swift in Sources */,
 				D421EAA623428B8100FA0B7C /* FTUIViewControllerTests.swift in Sources */,
 				D42CAD312356E64000F162E9 /* FTFTMobileConfigTests.swift in Sources */,
@@ -568,9 +678,11 @@
 			files = (
 				D4E09A39234A4C1C002729E6 /* Constants.swift in Sources */,
 				DEC55DDA1EF2968700FAE024 /* MDASample.swift in Sources */,
-				D49FE3182345D45A002B3742 /* FTSampleTableViewController.swift in Sources */,
+				D49FE3182345D45A002B3742 /* SampleTableViewController.swift in Sources */,
 				D49FE3192345D45A002B3742 /* ViewController.swift in Sources */,
 				DE9221CD1EF28CDF000C8FC7 /* AppDelegate.swift in Sources */,
+				D428B74323616DDD00A5D96B /* NRSegmentCollectionHeaderView.swift in Sources */,
+				D44ACC7F236C67BF0093BF67 /* ContentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,6 +723,7 @@
 /* Begin XCBuildConfiguration section */
 		D44E57062341D3B900A0E56C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8B9E6077CFC98633009EDDB /* Pods-FTMobileCoreTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -635,6 +748,7 @@
 		};
 		D44E57072341D3B900A0E56C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16B134F0B7DD83645D5E5E1D /* Pods-FTMobileCoreTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -824,6 +938,7 @@
 		};
 		DE9221DC1EF28CDF000C8FC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69B0EF30959D4CA8AA332674 /* Pods-FTMobileCore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -840,6 +955,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ft.MobileCoreSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG -warn-long-expression-type-checking=300";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SWIFT_MODULE_NAME)/$(SWIFT_MODULE_NAME)-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = NO;
@@ -849,6 +965,7 @@
 		};
 		DE9221DD1EF28CDF000C8FC7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 975AECC632DB9601F9C808CA /* Pods-FTMobileCore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

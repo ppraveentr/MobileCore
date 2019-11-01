@@ -10,6 +10,10 @@ import Foundation
 
 open class FTCoreUtility {
     
+    static var osVersion: Float {
+        NSString(string: UIDevice.current.systemVersion).floatValue
+    }
+    
     public static func isRegisteredURLScheme(scheme: String) -> Bool {
         if let bundleURLTypes = Bundle.main.infoDictionary?["CFBundleURLTypes"] as? NSArray {
             for urlType in bundleURLTypes {

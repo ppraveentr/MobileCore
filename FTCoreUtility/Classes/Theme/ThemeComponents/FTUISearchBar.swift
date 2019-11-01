@@ -53,11 +53,10 @@ extension UISearchBar: FTThemeProtocol {
     // MARK: - Key-Value Observing
     // swiftlint:disable block_based_kvo
     override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        if
-            keyPath == #keyPath(UISearchBar.placeholder),
-            let searchField = searchUITextField,
-            let att = searchBarAttributes,
-            !att.isEmpty,
+        guard let searchField = searchUITextField, let att = searchBarAttributes, !att.isEmpty else {
+            return
+        }
+        if keyPath == #keyPath(UISearchBar.placeholder),
             let sting = searchField.attributedPlaceholder?.string {
             // Update placeHolder
             searchField.attributedPlaceholder = NSAttributedString(string: sting, attributes: att)
@@ -86,7 +85,7 @@ private extension UISearchBar {
     // MARK: SearchTextField
     var searchBarAttributes: SearchBarAttributes? {
         get {
-            return  FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.searchBarAttributes)
+            FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.searchBarAttributes)
         }
         set {
             FTAssociatedObject<SearchBarAttributes>.setAssociated(self, value: newValue, key: &FTAssociatedKey.searchBarAttributes)

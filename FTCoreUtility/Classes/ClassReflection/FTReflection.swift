@@ -9,7 +9,7 @@
 import Foundation
 
 public func getClassNameAsString(obj: Any) -> String? {
-    return FTReflection.swiftStringFromClass(obj)
+    FTReflection.swiftStringFromClass(obj)
 }
 
 // String Extension
@@ -17,7 +17,7 @@ public extension String {
 
     // String Extension
     func classInstance () -> AnyClass? {
-        return FTReflection.swiftClassTypeFromString(self)
+        FTReflection.swiftClassTypeFromString(self)
     }
 }
 
@@ -28,7 +28,7 @@ public final class FTReflection {
     fileprivate static var moduleIdentifiers: [String] = []
     
     public static func getRegisterdModuleIdentifier() -> [String] {
-        return moduleIdentifiers
+        moduleIdentifiers
     }
     
     /**
@@ -99,7 +99,7 @@ public final class FTReflection {
      - returns: The Class type
      */
     public static func swiftClassFromString(_ className: String) -> NSObject? {
-        return (swiftClassTypeFromString(className) as? NSObject.Type)?.init()
+        (swiftClassTypeFromString(className) as? NSObject.Type)?.init()
     }
     
     /**

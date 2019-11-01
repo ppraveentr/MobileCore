@@ -26,7 +26,7 @@ public struct FTThemeStyle {
     public static let disabledStyle = "disabled"
     
     public static func allStyles() -> [String] {
-        return [
+        [
             FTThemeStyle.highlightedStyle,
             FTThemeStyle.selectedStyle,
             FTThemeStyle.disabledStyle
@@ -49,7 +49,7 @@ extension UIView {
     @IBInspectable
     public var theme: String? {
         get {
-            return UIView.aoThemes[self]
+            UIView.aoThemes[self]
         }
         set {
             UIView.aoThemes[self] = newValue
@@ -65,7 +65,7 @@ extension UIView {
     // To tigger view-Theme styling
     private var needsThemesUpdate: Bool {
         get {
-            return UIView.aoThemesNeedsUpdate[self] ?? false
+            UIView.aoThemesNeedsUpdate[self] ?? false
         }
         set {
             UIView.aoThemesNeedsUpdate[self] = newValue
@@ -114,11 +114,11 @@ fileprivate extension UIView {
         // Checkout if view supports Theming protocol
         let delegate: FTThemeProtocol? = self as? FTThemeProtocol
         // Get Theme property of view based on its state
-        guard let themeDic = FTThemesManager.generateVisualThemes(forClass: className, styleName: themeName, subStyleName: delegate?.getThemeSubType()) else {
-            return
+        if let themeDic = FTThemesManager.generateVisualThemes(forClass: className, styleName: themeName, subStyleName: delegate?.getThemeSubType()) {
+            // Step 1. Config view with new Theme-style
+             self.configureTheme(themeDic)
         }
-        // Step 1. Config view with new Theme-style
-        self.configureTheme(themeDic)
+        
         // Step 2. Only needed for UIControl types, Eg. Button
         guard let controlThemeSelf = self as? FTUIControlThemeProtocol else { return }
         // Get styles for diffrent states of UIControl
@@ -222,7 +222,7 @@ extension UIView {
 // MARK: UIControl : Style for Different states for UIControl object
 extension UIControl {
     
-    public func getAllThemeSubType() -> Bool { return true }
+    public func getAllThemeSubType() -> Bool { true }
 
     public func setThemes(_ themes: FTThemeModel) {
         guard let themeSelf = self as? FTUIControlThemeProtocol else { return }

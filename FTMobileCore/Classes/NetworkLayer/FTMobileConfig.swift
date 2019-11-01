@@ -30,7 +30,7 @@ public class FTMobileConfig {
             isMockDataModel = newValue
         }
         get {
-            return isMockDataModel && mockBundle != nil
+            isMockDataModel && mockBundle != nil
         }
     }
 
@@ -75,7 +75,7 @@ public class FTMobileConfig {
             FTLogger.enableConsoleLogging = newValue
         }
         get {
-            return FTLogger.enableConsoleLogging
+            FTLogger.enableConsoleLogging
         }
     }
     
@@ -93,7 +93,7 @@ public extension FTMobileConfig {
             FTUserCache.httpAdditionalHeaders = newValue
         }
         get {
-            return FTUserCache.httpAdditionalHeaders
+            FTUserCache.httpAdditionalHeaders
         }
     }
 }
@@ -134,7 +134,7 @@ extension FTMobileConfig {
     }
 
     public static func schemaForClass(classKey: String) throws -> JSON? {
-        return self.sharedInstance.modelSchema[classKey] as? JSON
+        self.sharedInstance.modelSchema[classKey] as? JSON
     }
 }
 

@@ -81,8 +81,45 @@ class FTUIViewControllerTests: XCTestCase {
         XCTAssertEqual(topVC, pushVC)
     }
     
+    func testTabBarCurrentVC() {
+        let tabVC = UITabBarController()
+        UIApplication.shared.keyWindow?.rootViewController = tabVC
+        
+        let viewC1 = UIViewController()
+        let viewC2 = UIViewController()
+        tabVC.setViewControllers([viewC1, viewC2], animated: false)
+        tabVC.selectedIndex = 2
+                
+        let topVC = tabVC.currentViewController
+        XCTAssertNotNil(topVC)
+        let selectedVC = tabVC.selectedViewController
+        XCTAssertNotNil(selectedVC)
+        XCTAssertEqual(topVC, selectedVC)
+    }
+    
+    func testChildCurrentVC() {
+        // vc --prensent-> VC
+        let viewC = UIViewController()
+        UIApplication.shared.keyWindow?.rootViewController = viewC
+        
+        // not pinned
+        let childVC1 = UIViewController()
+        viewC.addChild(childVC1)
+        // pinned view
+        let childVC2 = UIViewController()
+        viewC.addChild(childVC2)
+        viewC.view.pin(view: childVC2.view)
+        
+        let topVC = viewC.currentViewController
+        XCTAssertNotNil(topVC)
+        XCTAssertEqual(topVC, childVC2)
+    }
+    
     func testEmptyCurrentVC() {
+        let dummyViewContorller = UIViewController()
         UIApplication.shared.keyWindow?.rootViewController = nil
-        XCTAssertNil(UIViewController().currentViewController)
+        let topVC = dummyViewContorller.currentViewController
+        XCTAssertNotNil(dummyViewContorller.currentViewController)
+        XCTAssertEqual(topVC, dummyViewContorller)
     }
 }

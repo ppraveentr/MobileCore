@@ -14,10 +14,10 @@ public protocol FTUILabelThemeProperyProtocol: FTThemeProtocol {
     var isLinkUnderLineEnabled: Bool { get set }
 }
 
-public extension FTThemeProtocol where Self: UILabel {
+public extension FTUILabelThemeProperyProtocol where Self: UILabel {
     // If view is disabled, check for ".disabledStyle" style
     func getThemeSubType() -> String? {
-        return self.isEnabled ? nil : FTThemeStyle.disabledStyle
+        self.isEnabled ? nil : FTThemeStyle.disabledStyle
     }
     
     // Force update theme attibute
@@ -25,9 +25,9 @@ public extension FTThemeProtocol where Self: UILabel {
         for (kind, value) in theme {
             switch kind {
             case "isLinkUnderlineEnabled":
-                (self as? FTUILabelThemeProperyProtocol)?.isLinkUnderLineEnabled = value as? Bool ?? false
+                self.isLinkUnderLineEnabled = value as? Bool ?? false
             case "isLinkDetectionEnabled":
-                (self as? FTUILabelThemeProperyProtocol)?.islinkDetectionEnabled = value as? Bool ?? false
+                self.islinkDetectionEnabled = value as? Bool ?? false
             case "textfont":
                 if let font = getFont(value as? String) {
                     self.font = font
