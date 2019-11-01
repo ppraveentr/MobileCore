@@ -1,11 +1,15 @@
 {
 	"type": "Themes",
+    "identifier": "default_Theme",
+    "osVersion": "*",
 	"color": {
 		"default": "#FFFFFF",
 		"AA": "#16c5ce",
 		"clear": "clear",
 		"black": "#000000",
 		"red": "#b70b39",
+        "appRed": "#DD6060",
+        "navBarRed": "#DF6E6E",
 		"blue": "#1059ce",
 		"green": "#10ce1a",
 		"yellow": "#cecb10",
@@ -44,13 +48,6 @@
 		"UINavigationBar": {
 			"barTintColor": "black",
 			"isTranslucent": true
-		},
-		"UISegmentedControl": {
-			"tintColor": "black",
-			"backgroundImage": {
-				"default": "@upArrow",
-				"selected": "@Pixel"
-			}
 		}
 	},
 	"components": {
@@ -112,6 +109,21 @@
 				"textcolor": "AA"
 			}
 		},
+        "UISegmentedControl": {
+            "default": {
+               "tintColor": "white",
+               "iOS12Style": true,
+               "ios_13": {
+                   "tintColor": "navBarRed",
+                   "textcolor": "white"
+               }
+            }
+        },
+        "FTSegmentCollectionHeaderView": {
+            "default": {
+                "backgroundColor": "clear"
+            }
+        },
         "FTSearchBar": {
             "default": {
                 "textcolor": "white",

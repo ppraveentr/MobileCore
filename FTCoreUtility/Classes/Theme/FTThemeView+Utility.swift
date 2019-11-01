@@ -114,11 +114,11 @@ fileprivate extension UIView {
         // Checkout if view supports Theming protocol
         let delegate: FTThemeProtocol? = self as? FTThemeProtocol
         // Get Theme property of view based on its state
-        guard let themeDic = FTThemesManager.generateVisualThemes(forClass: className, styleName: themeName, subStyleName: delegate?.getThemeSubType()) else {
-            return
+        if let themeDic = FTThemesManager.generateVisualThemes(forClass: className, styleName: themeName, subStyleName: delegate?.getThemeSubType()) {
+            // Step 1. Config view with new Theme-style
+             self.configureTheme(themeDic)
         }
-        // Step 1. Config view with new Theme-style
-        self.configureTheme(themeDic)
+        
         // Step 2. Only needed for UIControl types, Eg. Button
         guard let controlThemeSelf = self as? FTUIControlThemeProtocol else { return }
         // Get styles for diffrent states of UIControl

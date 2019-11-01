@@ -13,6 +13,7 @@
 		D421EAA723428B8100FA0B7C /* FTCoreUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAA223428B8100FA0B7C /* FTCoreUtilityTests.swift */; };
 		D421EAA823428B8100FA0B7C /* FTActionBlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAA323428B8100FA0B7C /* FTActionBlockTests.swift */; };
 		D421EAB423428B9300FA0B7C /* FTServiceModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAB323428B9300FA0B7C /* FTServiceModelTests.swift */; };
+		D428B74323616DDD00A5D96B /* NRSegmentCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D428B74223616DDD00A5D96B /* NRSegmentCollectionHeaderView.swift */; };
 		D42CAD2B2356E63000F162E9 /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D42CAD2A2356E63000F162E9 /* upArrow.png */; };
 		D42CAD2F2356E64000F162E9 /* FTMobileCoreTestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CAD2C2356E64000F162E9 /* FTMobileCoreTestClass.swift */; };
 		D42CAD302356E64000F162E9 /* FTURLSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CAD2D2356E64000F162E9 /* FTURLSessionTests.swift */; };
@@ -81,6 +82,7 @@
 		D421EAA223428B8100FA0B7C /* FTCoreUtilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTCoreUtilityTests.swift; sourceTree = "<group>"; };
 		D421EAA323428B8100FA0B7C /* FTActionBlockTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTActionBlockTests.swift; sourceTree = "<group>"; };
 		D421EAB323428B9300FA0B7C /* FTServiceModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTServiceModelTests.swift; sourceTree = "<group>"; };
+		D428B74223616DDD00A5D96B /* NRSegmentCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NRSegmentCollectionHeaderView.swift; sourceTree = "<group>"; };
 		D42CAD2A2356E63000F162E9 /* upArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upArrow.png; path = FTMobileCore/Assets.xcassets/upArrow.imageset/upArrow.png; sourceTree = SOURCE_ROOT; };
 		D42CAD2C2356E64000F162E9 /* FTMobileCoreTestClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMobileCoreTestClass.swift; sourceTree = "<group>"; };
 		D42CAD2D2356E64000F162E9 /* FTURLSessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTURLSessionTests.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 		D4E20D78235AD85000E4731A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D428B74223616DDD00A5D96B /* NRSegmentCollectionHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				D49FE3182345D45A002B3742 /* FTSampleTableViewController.swift in Sources */,
 				D49FE3192345D45A002B3742 /* ViewController.swift in Sources */,
 				DE9221CD1EF28CDF000C8FC7 /* AppDelegate.swift in Sources */,
+				D428B74323616DDD00A5D96B /* NRSegmentCollectionHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

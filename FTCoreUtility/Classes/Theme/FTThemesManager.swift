@@ -315,6 +315,44 @@ extension FTThemesManager {
         return themeAppearance?.filter { $0.0.hasPrefix(appearanceName) }
     }
     
+    // Get updated ThemeModel based on device's Version
+    /*
+     "UISegmentedControl": {
+        "default": {
+            "tintColor": "white",
+            "iOS12Style": true,
+            "ios_13": {
+                "tintColor": "navBarRed",
+                "textcolor": "white"
+            }
+        }
+     }
+     */
+    static func getOSVersion(model: FTThemeModel) -> FTThemeModel {
+        
+        let deviceVersion = FTCoreUtility.osVersion
+        var data = model
+        var baseModel: (FTThemeModel, Float)?
+        
+        let osModels = model.filter { $0.key.hasPrefix("ios_") }
+        osModels.forEach { arg in
+            let key = arg.key.trimming("ios_")
+            data.removeValue(forKey: arg.key)
+            let dataVersion = NSString(string: key).floatValue
+            if dataVersion <= deviceVersion, let val = arg.value as? FTThemeModel {
+                if baseModel == nil || (baseModel!.1 < dataVersion) {
+                    baseModel = (val, dataVersion)
+                }
+            }
+        }
+        
+        if baseModel != nil {
+            data += baseModel!.0
+        }
+        
+        return data
+    }
+    
     // Defaults
     fileprivate static func getDefaults(type: FTThemesType, keyName: String? = nil, styleName: String? = nil) -> Any? {
         
@@ -341,9 +379,13 @@ extension FTThemesManager {
                 superCom.removeValue(forKey: "_super")
                 
                 // Merged result
-                return superCom
+                return getOSVersion(model: superCom)
             }
-
+            
+            if let viewComponent = actualComponents {
+                return getOSVersion(model: viewComponent)
+            }
+            
             return actualComponents
             
         // Convert JSON to UIColor
