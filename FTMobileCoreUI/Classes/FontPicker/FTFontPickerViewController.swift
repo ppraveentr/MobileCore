@@ -39,13 +39,13 @@ open class FTFontPickerViewController: UIViewController {
     }
     
     @discardableResult
-    open func setUpPopoverPresentationController(_ sender: UIView?, contentSize: CGSize = CGSize(width: 250, height: 300)) -> UIPopoverPresentationController? {
+    open func setUpPopoverPresentation(from sender: UIView?, delegate: UIPopoverPresentationControllerDelegate? = nil, contentSize: CGSize = CGSize(width: 250, height: 300)) -> UIPopoverPresentationController? {
         self.modalPresentationStyle = .popover
         self.preferredContentSize = contentSize
         
         let ppc = self.popoverPresentationController
         ppc?.permittedArrowDirections = .any
-        ppc?.delegate = self
+        ppc?.delegate = delegate ?? self
 
         if let sender = sender {
             ppc?.sourceView = sender
