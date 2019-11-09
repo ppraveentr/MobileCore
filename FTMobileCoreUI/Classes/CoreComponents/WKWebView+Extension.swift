@@ -85,8 +85,42 @@ extension WKWebView {
     }
 }
 
+private extension FTAssociatedKey {
+    static var fontPickerVC = "fontPickerVC"
+}
+
+extension WKWebView: FTFontPickerViewprotocol {
+    
+    public var fontPickerViewController: FTFontPickerViewController {
+        get {
+            return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.fontPickerVC) { self.getFontPickerController() }!
+        }
+        set {
+            FTAssociatedObject<FTFontPickerViewController>.setAssociated(self, value: newValue, key: &FTAssociatedKey.fontPickerVC)
+        }
+    }
+    
+    public func pickerColor(textColor: UIColor, backgroundColor: UIColor) {
+        setContentColor(textColor: textColor, backgroundColor: backgroundColor)
+    }
+    
+    public func fontSize(_ size: Float) {
+        setContentFontSize(size)
+    }
+    
+    public func fontFamily(_ fontName: String?) {
+        setContentFontFamily(fontName)
+    }
+}
+
 public extension WKWebView {
- 
+    
+    private func getFontPickerController() -> FTFontPickerViewController {
+        let popoverContent = FTFontPickerViewController()
+        popoverContent.fontPickerViewDelegate = self
+        return popoverContent
+    }
+    
     func getHTMLBodyText() -> String {
         return Constants.getDocumentBody.rawValue
     }

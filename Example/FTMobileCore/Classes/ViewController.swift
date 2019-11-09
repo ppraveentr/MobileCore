@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import WebKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var sampleView: FTContentView!
     @IBOutlet weak var topView: UIView!
+    weak var contentViewC: ContentViewController?
     var button: UIButton = UIButton()
+    let buttonText = "<p>Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>"
     
     override func loadView() {
         super.loadView()
@@ -22,52 +24,30 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // FTContentView
-        setupContentView()
-        
-        // MARK: TopView
+        // TopView
         setUpTopView()
         
-        // MARK: MainView
+        // MainView
         setupMainView()
     }
     
     @objc
     func showFontPicker(sender: UIButton?) {
-        let popoverContent = FTFontPickerViewController()
-        popoverContent.fontPickerViewDelegate = self
-        popoverContent.setUpPopoverPresentationController(sender)
-        self.present(popoverContent, animated: true, completion: nil)
-    }
-}
-
-extension ViewController: FTFontPickerViewprotocol {
-    public func pickerColor(textColor: UIColor, backgroundColor: UIColor) {
-        
+        if let htmlView = contentViewC?.contentView {
+            let popoverContent = htmlView.fontPickerViewController
+            popoverContent.setUpPopoverPresentation(from: sender)
+            self.present(popoverContent, animated: true, completion: nil)
+        }
     }
     
-    public func fontSize(_ size: Float) {
-        
-    }
-    
-    public func fontFamily(_ fontName: String?) {
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "contentViewC" {
+            contentViewC = segue.destination as? ContentViewController
+        }
     }
 }
 
 extension ViewController {
-
-    func setupContentView() {
-        let value = """
-        <p>1) Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>
-        <p>2) Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>
-        <p>3) Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>
-        <p>4) Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>
-        <p>5) Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>
-        """
-        ftLog(value)
-        //sampleView.webView.loadHTMLBody(value)
-    }
     
     func setUpTopView() {
         button.theme = "button14R"
@@ -104,14 +84,14 @@ extension ViewController {
         topView.pin(view: scrollView, edgeInsets: [.topMargin, .horizontal])
         
         let label = UILabel()
-        label.text = "<p>Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>"
+        label.text = buttonText
         label.theme = "system14G"
         label.linkHandler = { link in
             print("Detect Link: ", link.linkURL)
         }
         
-        button.addTapActionBlock {
-            label.text = "<p>Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>"
+        button.addTapActionBlock { [weak self] in
+            label.text = self?.buttonText
         }
         
         let labelM = UILabel()
@@ -130,9 +110,12 @@ extension ViewController {
         bottomL.text = "bottom"
         bottomL.theme = "system14Y"
         
+        // [ .Top, .Horizontal ]
         scrollView.contentView.pin(view: label, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .left, .vertical ])
+        // [ .Bottom ]
         scrollView.contentView.pin(view: bottomL, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .right ])
         
+        // layoutDirection: .TopToBottom, edgeInsets: [.EqualSize, .LeadingMargin]
         scrollView.contentView.stackView(
             views: [label, labelM, labelM1, labelM2, bottomL],
             layoutDirection: .leftToRight,
@@ -140,15 +123,8 @@ extension ViewController {
             edgeInsets: [.autoSize, .topMargin]
         )
         
-        //        scrollView.contentView.pin(view: label, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Top, .Horizontal ])
-        //        scrollView.contentView.pin(view: bottomL, withEdgeOffsets: FTEdgeOffsets(20), withEdgeInsets: [ .Bottom ])
-        //
-        //        scrollView.contentView.stackView(views: [label, labelM, labelM1, labelM2, bottomL],
-        //                                         layoutDirection: .TopToBottom, spacing: 20,
-        //                                         edgeInsets: [.EqualSize, .LeadingMargin])
-        
-        //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-        //            label.removeFromSuperview()
-        //        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            bottomL.text = self.buttonText
+        }
     }
 }

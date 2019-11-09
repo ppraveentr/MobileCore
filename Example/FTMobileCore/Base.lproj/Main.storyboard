@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="-876" y="-743"/>
         </scene>
-        <!--Item-->
+        <!--ViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FTMobileCore" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="ViewController" customClass="ViewController" customModule="FTMobileCore" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -39,17 +39,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UC9-ho-Rgv">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UC9-ho-Rgv" userLabel="LabelScrollView">
                                 <rect key="frame" x="20" y="64" width="374" height="80"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="xpe-7a-VDz"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ER-nY-2UA" customClass="FTContentView" customModule="MobileCore">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ER-nY-2UA" userLabel="FTContentView">
                                 <rect key="frame" x="20" y="154" width="374" height="100"/>
+                                <subviews>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KR7-Xe-Vnz">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="100"/>
+                                        <connections>
+                                            <segue destination="R4n-qT-iv2" kind="embed" identifier="contentViewC" id="wUp-Zz-h74"/>
+                                        </connections>
+                                    </containerView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="KR7-Xe-Vnz" secondAttribute="trailing" id="4jQ-Ho-Zbd"/>
+                                    <constraint firstItem="KR7-Xe-Vnz" firstAttribute="leading" secondItem="0ER-nY-2UA" secondAttribute="leading" id="Lgo-Gz-He5"/>
+                                    <constraint firstItem="KR7-Xe-Vnz" firstAttribute="top" secondItem="0ER-nY-2UA" secondAttribute="top" id="Nuv-bO-4Ud"/>
+                                    <constraint firstAttribute="bottom" secondItem="KR7-Xe-Vnz" secondAttribute="bottom" id="gn3-1M-rjM"/>
                                     <constraint firstAttribute="height" constant="100" id="xiO-AY-WHd"/>
                                 </constraints>
                             </view>
@@ -78,7 +90,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="n7k-Jm-TaY"/>
                     <connections>
-                        <outlet property="sampleView" destination="0ER-nY-2UA" id="xYP-uz-j8Z"/>
                         <outlet property="topView" destination="UC9-ho-Rgv" id="INO-n1-bVV"/>
                     </connections>
                 </viewController>
@@ -86,10 +97,10 @@
             </objects>
             <point key="canvasLocation" x="-86" y="-1190"/>
         </scene>
-        <!--Item-->
+        <!--SampleTableViewController-->
         <scene sceneID="Y8k-Vb-FkW">
             <objects>
-                <viewController id="Io7-55-XL7" customClass="FTSampleTableViewController" customModule="FTMobileCore" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Io7-55-XL7" userLabel="SampleTableViewController" customClass="SampleTableViewController" customModule="FTMobileCore" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vCd-r7-Aj0"/>
                         <viewControllerLayoutGuide type="bottom" id="aKs-Xt-QaB"/>
@@ -105,11 +116,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NaK-VC-BhZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="PjM-Cm-uEi" customClass="UITableViewHeaderFooterView">
+                <view contentMode="scaleToFill" id="PjM-Cm-uEi">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="54"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="248" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9I-AJ-Zjs">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="248" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9I-AJ-Zjs">
                             <rect key="frame" x="10" y="10" width="394" height="34"/>
                             <string key="text">Label LabelLabelLabelLabel LabelLabelLabelLabelLabel LabelLabelLabelLabel LabelLabelLabelLabel Label the end!!! Label LabelLabelLabelLabel LabelLabelLabelLabelLabel LabelLabelLabelLabel LabelLabelLabelLabel Label the end!!!</string>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -130,6 +141,24 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="-87" y="-410"/>
+        </scene>
+        <!--Content View Controller-->
+        <scene sceneID="uHO-Fa-DQ8">
+            <objects>
+                <viewController id="R4n-qT-iv2" customClass="ContentViewController" customModule="FTMobileCore" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Edx-cd-RL9"/>
+                        <viewControllerLayoutGuide type="bottom" id="gWa-1i-Gpa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y9d-ew-ABg">
+                        <rect key="frame" x="0.0" y="0.0" width="374" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kjv-ft-ceF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="626" y="-1191"/>
         </scene>
     </scenes>
 </document>

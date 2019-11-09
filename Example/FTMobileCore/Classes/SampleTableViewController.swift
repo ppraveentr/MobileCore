@@ -8,12 +8,12 @@
 
 import Foundation
 
-class FTSampleTableViewController: UIViewController, FTTableViewControllerProtocol {
+class SampleTableViewController: UIViewController, FTTableViewControllerProtocol {
     
-    @IBOutlet var footerView: UITableViewHeaderFooterView!
+    @IBOutlet var footerView: UIView!
     
     var tableStyle: UITableView.Style {
-        return .grouped
+        return .plain
     }
     
     override func loadView() {
@@ -26,13 +26,13 @@ class FTSampleTableViewController: UIViewController, FTTableViewControllerProtoc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.tableHeaderView = footerView
+        self.tableView.setTableHeaderView(view: footerView)
         footerView.setNeedsDisplay()
         footerView.layoutIfNeeded()
     }
 }
 
-extension FTSampleTableViewController: UITableViewDelegate, UITableViewDataSource {
+extension SampleTableViewController: UITableViewDelegate, UITableViewDataSource {
     // For calculating TableCell height
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
