@@ -6,6 +6,7 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
+@testable import MobileCoreExample
 @testable import MobileCore
 import XCTest
 
@@ -30,15 +31,15 @@ class FTServiceModelTests: XCTestCase {
         XCTAssert(account1.type?.value == "Details_2")
     }
 
-    func testFTModelBindTypeSuccess() {
-        let sample = FTModelBindType(rawValue: "String")
-        XCTAssert(sample == .string)
-    }
-
-    func testFTModelBindTypeFailure() {
-        let sample: FTModelBindType? = FTModelBindType(rawValue: "String22")
-        XCTAssertNil(sample)
-    }
+//    func testFTModelBindTypeSuccess() {
+//        let sample = FTModelBindType(rawValue: "String")
+//        XCTAssert(sample == .string)
+//    }
+//
+//    func testFTModelBindTypeFailure() {
+//        let sample: FTModelBindType? = FTModelBindType(rawValue: "String22")
+//        XCTAssertNil(sample)
+//    }
 
     func testModelDataCreationFromString() {
         XCTAssertNotNil(FTReflection.swiftClassTypeFromString("AccountDetail"))

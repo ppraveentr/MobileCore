@@ -6,7 +6,7 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
-@testable import MobileCore
+@testable import MobileCoreExample
 import XCTest
 
 class FTThemesTests: XCTestCase {
@@ -81,22 +81,6 @@ class FTThemesTests: XCTestCase {
         XCTAssertEqual(value.hexAlphaString(), "#C8C8C87F".lowercased())
         let actualValue = UIColor(red: 200, green: 200, blue: 200, a: 0.5)
         XCTAssertEqual(value.hexAlphaString(), actualValue.hexAlphaString())
-    }
-    
-    func testLighterColor() {
-        let value = UIColor.black.lighterColor(10)
-        XCTAssertEqual(value.hexAlphaString(), UIColor.white.hexAlphaString())
-        // fail case
-        let lvalue = UIColor.black.lighterColor(-10)
-        XCTAssertEqual(lvalue.hexAlphaString(), UIColor.black.hexAlphaString())
-    }
-    
-    func testDarkerColor() {
-        let value = UIColor.white.darkerColor(10)
-        XCTAssertEqual(value.hexAlphaString(), UIColor.black.hexAlphaString())
-        // fail case
-        let dvalue = UIColor.white.darkerColor(-10)
-        XCTAssertEqual(dvalue.hexAlphaString(), UIColor.white.hexAlphaString())
     }
     
     // MARK: appearance

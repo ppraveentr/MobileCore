@@ -8,10 +8,10 @@ def common_pods
  pod 'MobileCore', :path => '../'
 end
 
-target 'FTMobileCore' do
+target 'MobileCoreExample' do
    common_pods
    pod 'SwiftLint'
-   target 'FTMobileCoreTests' do
+   target 'MobileCoreExampleTests' do
         inherit! :search_paths
     end
 end

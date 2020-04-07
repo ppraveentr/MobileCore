@@ -6,7 +6,7 @@
 //  Copyright © 2019 Praveen P. All rights reserved.
 //
 
-@testable import MobileCore
+@testable import MobileCoreExample
 import XCTest
 
 class FTUIElementTests: XCTestCase {

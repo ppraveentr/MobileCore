@@ -6,6 +6,7 @@
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.
 //
 
+@testable import MobileCoreExample
 @testable import MobileCore
 import XCTest
 
@@ -28,14 +29,14 @@ class FTTableViewTests: XCTestCase {
     var oldRootVC: UIViewController?
     override func setUp() {
         super.setUp()
-        oldRootVC = UIApplication.shared.keyWindow?.rootViewController
+        oldRootVC = UIApplication.keyWindow()?.rootViewController
         tableViewC = TestTableViewController()
-        UIApplication.shared.keyWindow?.rootViewController = tableViewC
+        UIApplication.keyWindow()?.rootViewController = tableViewC
     }
     
     override func tearDown() {
         super.tearDown()
-        UIApplication.shared.keyWindow?.rootViewController = oldRootVC
+        UIApplication.keyWindow()?.rootViewController = oldRootVC
     }
     
     func testTableViewController() {

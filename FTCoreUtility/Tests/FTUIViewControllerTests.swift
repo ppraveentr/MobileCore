@@ -6,6 +6,7 @@
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.
 //
 
+@testable import MobileCoreExample
 @testable import MobileCore
 import XCTest
 
@@ -14,18 +15,18 @@ class FTUIViewControllerTests: XCTestCase {
     var oldRootVC: UIViewController?
     override func setUp() {
         super.setUp()
-        oldRootVC = UIApplication.shared.keyWindow?.rootViewController
+        oldRootVC = UIApplication.keyWindow()?.rootViewController
     }
     
     override func tearDown() {
         super.tearDown()
-        UIApplication.shared.keyWindow?.rootViewController = oldRootVC
+        UIApplication.keyWindow()?.rootViewController = oldRootVC
     }
     
     func testPresentedCurrentVC() {
         // vc --prensent-> VC
         let viewC = UIViewController()
-        UIApplication.shared.keyWindow?.rootViewController = viewC
+        UIApplication.keyWindow()?.rootViewController = viewC
 
         let presentVC = UIViewController()
         viewC.present(presentVC, animated: false, completion: nil)
@@ -38,7 +39,7 @@ class FTUIViewControllerTests: XCTestCase {
     func testPushedNavCurrentVC() {
         // vc --present-> nav --push-2VC-in-nav--> VC
         let vc = UIViewController()
-        UIApplication.shared.keyWindow?.rootViewController = vc
+        UIApplication.keyWindow()?.rootViewController = vc
         
         let navVC = UINavigationController()
         vc.present(navVC, animated: false, completion: nil)
@@ -55,7 +56,7 @@ class FTUIViewControllerTests: XCTestCase {
     func testPressentedNavCurrentVC() {
         // nav --push-> VC --nav-prensent-> VC
         let navVC = UINavigationController()
-        UIApplication.shared.keyWindow?.rootViewController = navVC
+        UIApplication.keyWindow()?.rootViewController = navVC
         
         let pushVC = UIViewController()
         navVC.pushViewController(pushVC, animated: false)
@@ -70,7 +71,7 @@ class FTUIViewControllerTests: XCTestCase {
     func testPushedTwiceNavCurrentVC() {
         // nav --push-> VC --nav-push-> VC
         let navVC = UINavigationController()
-        UIApplication.shared.keyWindow?.rootViewController = navVC
+        UIApplication.keyWindow()?.rootViewController = navVC
         
         navVC.pushViewController(UIViewController(), animated: false)
         let pushVC = UIViewController()
@@ -82,7 +83,7 @@ class FTUIViewControllerTests: XCTestCase {
     }
     
     func testEmptyCurrentVC() {
-        UIApplication.shared.keyWindow?.rootViewController = nil
+        UIApplication.keyWindow()?.rootViewController = nil
         XCTAssertNil(UIViewController().currentViewController)
     }
 }

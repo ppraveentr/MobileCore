@@ -7,6 +7,7 @@
 //
 
 @testable import MobileCore
+@testable import MobileCoreExample
 import XCTest
 
 class FTFTMobileConfigTests: XCTestCase {
