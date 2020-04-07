@@ -16,27 +16,16 @@ public extension URL {
      - parameter contentMode: ImageView's content mode, defalut to 'scaleAspectFit'
      */
     func downloadedImage(_ comletionHandler: FTUIImageViewComletionHandler? = nil) {
-
         // Setup URLSession
-        URLSession.shared.dataTask(with: self) { data, _, error in
-
-            guard
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-                else {
-                    DispatchQueue.main.async {
-                        // If image download fails
-                        comletionHandler?(nil)
-                    }
-                    return
-            }
-
+        let sesstion = URLSession.shared.dataTask(with: self) { data, _, error in
+            guard let data: Data = data, error == nil else { return }
+            let image: UIImage? = UIImage(data: data)
             // Update view's image in main thread
             DispatchQueue.main.async {
                 // After Image download compeltion
                 comletionHandler?(image)
             }
         }
-            .resume()
+        sesstion.resume()
     }
 }

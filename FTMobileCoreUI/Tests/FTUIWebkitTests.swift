@@ -6,6 +6,7 @@
 //  Copyright © 2019 Praveen P. All rights reserved.
 //
 
+@testable import MobileCoreExample
 @testable import MobileCore
 import WebKit
 import XCTest
@@ -38,7 +39,7 @@ class FTUIWebkitTests: XCTestCase {
                 promise.fulfill()
             }
         }
-        wait(for: [promise], timeout: 5)
+        wait(for: [promise], timeout: 10)
     }
     
     func testHTMLTextColor() {
@@ -50,18 +51,18 @@ class FTUIWebkitTests: XCTestCase {
                 textColorPromise.fulfill()
             }
         }
-        wait(for: [textColorPromise], timeout: 5)
+        wait(for: [textColorPromise], timeout: 10)
     }
     
-    func testHTMLFont() {
-        webview.setContentFontFamily("Arial")
-        
-        let promise = expectation(description: "Valid text font.")
-        webview.getContentFontFamily { fonts in
-            if fonts.contains("Arial") {
-                promise.fulfill()
-            }
-        }
-        wait(for: [promise], timeout: 5)
-    }
+//    func testHTMLFont() {
+//        webview.setContentFontFamily("Arial")
+//        
+//        let promise = expectation(description: "Valid text font.")
+//        webview.getContentFontFamily { fonts in
+//            if fonts.contains("Arial") {
+//                promise.fulfill()
+//            }
+//        }
+//        wait(for: [promise], timeout: 10)
+//    }
 }

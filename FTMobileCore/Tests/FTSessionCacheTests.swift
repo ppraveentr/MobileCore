@@ -6,7 +6,7 @@
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.
 //
 
-@testable import MobileCore
+@testable import MobileCoreExample
 import XCTest
 
 class FTSessionCacheTests: XCTestCase {

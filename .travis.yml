@@ -1,6 +1,6 @@
 language: swift
-osx_image: xcode10.2
-xcode_destination: platform=iOS Simulator,OS=12.0,name=iPhone X
+osx_image: xcode11.1
+xcode_destination: platform=iOS Simulator,OS=13.0,name=iPhone X
 
 before_install:
  - pod --version
@@ -11,7 +11,7 @@ before_install:
  - xcodebuild -showsdks
  
 script:
- - set -o pipefail && xcodebuild clean test build -enableCodeCoverage YES -workspace "Example/FTMobileCore.xcworkspace" -scheme FTMobileCore -destination 'platform=iOS Simulator,name=iPhone X,OS=12.0' only_active_arch=YES defines_module=yes | xcpretty --report html
+ - set -o pipefail && xcodebuild clean test build -enableCodeCoverage YES -workspace "Example/MobileCoreExample.xcworkspace" -scheme MobileCoreExample -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.1' only_active_arch=YES defines_module=yes | xcpretty --report html
  - pod lib lint --allow-warnings
 
 after_success:
