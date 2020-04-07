@@ -80,7 +80,7 @@ opt_in_rules:
 large_tuple: 4
 function_body_length : 50
 function_parameter_count: 9
-warning_threshold: 1
+warning_threshold: 3
 closure_body_length: 16
 file_length: 750
 
@@ -110,7 +110,7 @@ file_name:
   prefix_pattern: ""
   suffix_pattern: "Extensions?|\\+.*"
 
-warning_threshold: 1
+warning_threshold: 3
 
 custom_rules:
   no_break_with_label:
