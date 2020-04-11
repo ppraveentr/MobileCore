@@ -84,18 +84,6 @@ extension UIViewController {
         self.view.endEditing(true)
     }
     
-    // MARK: Responder
-    public func makeResponder(status: Bool, textField: UITextField, text: String? = nil) {
-        if status {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2)) {
-                if let text = text {
-                    textField.text = text
-                }
-                textField.becomeFirstResponder()
-            }
-        }
-    }
-    
     // MARK: Keyboard Notifications
     // Registering for keyboard notification.
     public func registerKeyboardNotifications() {

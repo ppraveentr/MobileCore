@@ -82,7 +82,6 @@ public protocol FTServiceClient: FTServiceRulesProtocol {
 //    // /This is for doing SSL pinning
 //     var security: HTTPSecurity?
     
-    func mockDataHandler(_ completionHandler: FTServiceCompletionBlock<Self>?) -> FTServiceModel?
     static func make(modelStack: FTServiceModel?, completionHandler: FTServiceCompletionBlock<Self>?)
 }
 
@@ -160,23 +159,6 @@ public extension FTServiceClient {
         FTAssociatedObject<FTServiceModel>.setAssociated(self, value: responseModelData, key: &FTAssociatedKey.ModelData)
 
         return responseModelData
-    }
-
-    // MARK: Stub
-    func mockDataHandler(_ completionHandler: FTServiceCompletionBlock<Self>? = nil) -> FTServiceModel? {
-        ftLog(self.serviceName, ": is data stubbed.")
-        if
-            let path: String = FTMobileConfig.mockBundle?.path(forResource: self.serviceName, ofType: "json"),
-            let data = try? path.dataAtPath()
-        {
-            let model = self.processResponseData(data: data)
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2)) {
-               completionHandler?(FTServiceStatus.success(self, (model != nil) ? 200 : 500))
-            }
-            return model
-        }
-
-        return nil
     }
 
     // MARK: Service Call
@@ -300,7 +282,7 @@ extension FTServiceClient {
             return nil
         }
         var urlReq = URLRequest(url: url)
-        ftLog("\nCAServiceRequest: \(String(describing: self)): ", urlReq.url?.absoluteString.removingPercentEncoding ?? "Empty")
+        ftLog("\nServiceRequest: \(String(describing: self)): ", urlReq.url?.absoluteString.removingPercentEncoding ?? "Empty")
 
         // Request 'type'
         urlReq.httpMethod = request.type.stringValue()
@@ -383,5 +365,29 @@ extension FTServiceClient {
         }
 
         return handler
+    }
+}
+
+// MARK: Mock Service
+public protocol FTMockServiceRulesProtocol: FTServiceClient {
+    func mockDataHandler(_ completionHandler: FTServiceCompletionBlock<Self>?) -> FTServiceModel?
+}
+
+extension FTServiceClient {
+    // MARK: Stub
+    func mockDataHandler(_ completionHandler: FTServiceCompletionBlock<Self>? = nil) -> FTServiceModel? {
+        ftLog(self.serviceName, ": is data stubbed.")
+        if
+            let path: String = FTMobileConfig.mockBundle?.path(forResource: self.serviceName, ofType: "json"),
+            let data = try? path.dataAtPath()
+        {
+            let model = self.processResponseData(data: data)
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2)) {
+                completionHandler?(FTServiceStatus.success(self, (model != nil) ? 200 : 500))
+            }
+            return model
+        }
+        
+        return nil
     }
 }

@@ -35,7 +35,7 @@ public final class FTAssociatedObject<T> {
     }
 
     // setAssociated
-    public static func setAssociated<T>(_ instance: Any, value: T?, key: UnsafeRawPointer? = nil) {
+    public static func setAssociated(_ instance: Any, value: T?, key: UnsafeRawPointer? = nil) {
         if let key = key {
             objc_setAssociatedObject(instance, key, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             return
@@ -51,12 +51,15 @@ public final class FTAssociatedObject<T> {
         return getValue(instance, key: &FTAssociatedKey.DefaultKey, defaultValueBlock: defaultValue)
     }
     
-    private static func getValue<T>(_ instance: Any, key: UnsafeRawPointer, defaultValueBlock: (() -> T)? = nil) -> T? {
-        let value = objc_getAssociatedObject(instance, key) as? T
-        if value == nil, let defaultValue = defaultValueBlock?() {
-            setAssociated(instance, value: defaultValue, key: key)
-            return defaultValue
+    private static func getValue(_ instance: Any, key: UnsafeRawPointer, defaultValueBlock: (() -> T)? = nil) -> T? {
+        guard let value = objc_getAssociatedObject(instance, key) as? T else {
+            if let defaultValue: T = defaultValueBlock?() {
+                setAssociated(instance, value: defaultValue, key: key)
+                return defaultValue
+            }
+            return nil
         }
+        
         return value
     }
     

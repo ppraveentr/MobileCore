@@ -13,7 +13,7 @@ protocol FTAppearanceManagerProtocol {
     func setUpAppearance(theme: FTThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance
 }
 
-open class FTAppearanceManager {
+public enum FTAppearanceManager {
 
     static func getComponentName(_ appearanceName: String) -> (String, String?) {
         let components = appearanceName.components(separatedBy: ":")

@@ -27,8 +27,6 @@ public protocol FTViewControllerProtocol where Self: UIViewController {
     func unregisterKeyboardNotifications()
     // MARK: Alert ViewController
     func showAlert(title: String, message: String, action: UIAlertAction?, actions: [UIAlertAction]?)
-    // MARK: Responder
-    func makeResponder(status: Bool, textField: UITextField, text: String?)
     // MARK: Activity indicator
     func showActivityIndicator()
     func hideActivityIndicator()
