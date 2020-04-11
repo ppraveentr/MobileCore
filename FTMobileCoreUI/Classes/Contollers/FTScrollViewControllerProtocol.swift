@@ -37,7 +37,7 @@ private extension FTScrollViewControllerProtocol {
         // Load Base view
         setupCoreView()
         
-        if let scroll = FTAssociatedObject<UIScrollView>.getAssociated(self, key: &kAOScrollVC) {
+        if let scroll: UIScrollView = FTAssociatedObject<UIScrollView>.getAssociated(self, key: &kAOScrollVC) {
             scroll.removeSubviews()
             FTAssociatedObject<Any>.resetAssociated(self, key: &kAOScrollVC)
         }

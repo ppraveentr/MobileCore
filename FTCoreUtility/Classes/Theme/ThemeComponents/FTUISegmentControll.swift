@@ -10,18 +10,18 @@ import Foundation
 extension UISegmentedControl: FTThemeProtocol {
     
     public func updateTheme(_ theme: FTThemeModel) {
-        if let text = theme["tintColor"] as? String, let color = FTThemesManager.getColor(text) {
+        if let text = theme["tintColor"] as? String, let color: UIColor = FTThemesManager.getColor(text) {
             self.tintColor = color
         }
         
         if #available(iOS 13, *), (theme["iOS12Style"] as? Bool) == true {
             // Update with iOS 12 style
             var textFont: UIFont = .systemFont(ofSize: 13, weight: .regular)
-            if let text = theme["textfont"] as? String, let font = FTThemesManager.getFont(text) {
+            if let text = theme["textfont"] as? String, let font: UIFont = FTThemesManager.getFont(text) {
                 textFont = font
             }
             var textcolor: UIColor = .white
-            if let text = theme["textcolor"] as? String, let color = FTThemesManager.getColor(text) {
+            if let text = theme["textcolor"] as? String, let color: UIColor = FTThemesManager.getColor(text) {
                 textcolor = color
             }
             ensureiOS12Style(font: textFont, textColor: textcolor)

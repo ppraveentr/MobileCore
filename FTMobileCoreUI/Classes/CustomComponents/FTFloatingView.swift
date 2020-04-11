@@ -107,15 +107,15 @@ public class FTFloatingView: UIView {
     }
     
     @objc private func handlePanGesture(panGesture: UIPanGestureRecognizer) {
-        if panGesture.state == .began {
+        if panGesture.state == UIGestureRecognizer.State.began {
             self.floatingViewDelegate?.viewDraggingDidBegin(view: self.floatingView, in: self.floatingWindow)
         }
         
-        if panGesture.state == .ended {
+        if panGesture.state == UIGestureRecognizer.State.ended {
             self.floatingViewDelegate?.viewDraggingDidEnd(view: self.floatingView, in: self.floatingWindow)
         }
         
-        if panGesture.state == .changed {
+        if panGesture.state == UIGestureRecognizer.State.changed {
             let translation = panGesture.location(in: self.floatingView)
             self.viewDidMove(to: translation)
         }

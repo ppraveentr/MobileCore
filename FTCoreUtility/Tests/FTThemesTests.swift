@@ -83,22 +83,6 @@ class FTThemesTests: XCTestCase {
         XCTAssertEqual(value.hexAlphaString(), actualValue.hexAlphaString())
     }
     
-    func testLighterColor() {
-        let value = UIColor.black.lighterColor(10)
-        XCTAssertEqual(value.hexAlphaString(), UIColor.white.hexAlphaString())
-        // fail case
-        let lvalue = UIColor.black.lighterColor(-10)
-        XCTAssertEqual(lvalue.hexAlphaString(), UIColor.black.hexAlphaString())
-    }
-    
-    func testDarkerColor() {
-        let value = UIColor.white.darkerColor(10)
-        XCTAssertEqual(value.hexAlphaString(), UIColor.black.hexAlphaString())
-        // fail case
-        let dvalue = UIColor.white.darkerColor(-10)
-        XCTAssertEqual(dvalue.hexAlphaString(), UIColor.white.hexAlphaString())
-    }
-    
     // MARK: appearance
     func testAppearance() {
         let value = FTThemesManager.getAppearance()

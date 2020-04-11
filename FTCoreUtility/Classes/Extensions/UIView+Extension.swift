@@ -1,5 +1,5 @@
 //
-//  UIView+Utility.swift
+//  UIView+Extension.swift
 //  FTMobileCoreUI
 //
 //  Created by Praveen Prabhakar on 10/07/17.

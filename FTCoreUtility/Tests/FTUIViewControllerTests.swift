@@ -82,7 +82,10 @@ class FTUIViewControllerTests: XCTestCase {
     }
     
     func testEmptyCurrentVC() {
+        let dummyViewContorller = UIViewController()
         UIApplication.shared.keyWindow?.rootViewController = nil
-        XCTAssertNil(UIViewController().currentViewController)
+        let topVC = dummyViewContorller.currentViewController
+        XCTAssertNotNil(dummyViewContorller.currentViewController)
+        XCTAssertEqual(topVC, dummyViewContorller)
     }
 }
