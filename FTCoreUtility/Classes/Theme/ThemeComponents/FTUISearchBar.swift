@@ -85,7 +85,7 @@ private extension UISearchBar {
     // MARK: SearchTextField
     var searchBarAttributes: SearchBarAttributes? {
         get {
-            return  FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.searchBarAttributes)
+            FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.searchBarAttributes)
         }
         set {
             FTAssociatedObject<SearchBarAttributes>.setAssociated(self, value: newValue, key: &FTAssociatedKey.searchBarAttributes)

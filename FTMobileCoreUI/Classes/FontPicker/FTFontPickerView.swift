@@ -27,11 +27,11 @@ open class FTFontPickerModel {
 
     // Avaialble Fonts
     var fontSizeString: String {
-        return String(fontSize)
+        String(fontSize)
     }
 
     func avalilableFonts() -> [String] {
-        return fontTypes
+        fontTypes
     }
 
     func increaseSize() {
@@ -106,13 +106,13 @@ open class FTFontPickerView: UIView {
             pickerDelegate?.fontFamily(newValue)
         }
         get {
-            return fontPickerModel.fontFamily
+            fontPickerModel.fontFamily
         }
     }
     
     // Avaialble Fonts
     var fontTypes: [String] {
-        return fontPickerModel.avalilableFonts()
+        fontPickerModel.avalilableFonts()
     }
 
     override open func awakeFromNib() {
@@ -137,11 +137,11 @@ open class FTFontPickerView: UIView {
 extension FTFontPickerView: UITableViewDataSource, UITableViewDelegate {
 
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return fontTypes.count
+        fontTypes.count
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        1
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -33,7 +33,7 @@ open class FTView: UIView {
             self.restConstraints()
         }
         get {
-            return localMainPinnedView
+            localMainPinnedView
         }
     }
 

@@ -11,7 +11,7 @@ import Foundation
 public extension Data {
 
     func jsonContent() throws -> Any? {
-        return try JSONSerialization.jsonObject(with: self, options: .allowFragments)
+        try JSONSerialization.jsonObject(with: self, options: .allowFragments)
     }
 
     // Data decoder based on resposne mimeType or defaluts to [.utf8, .unicode]

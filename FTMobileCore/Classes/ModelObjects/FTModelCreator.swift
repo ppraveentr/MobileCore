@@ -191,12 +191,12 @@ extension FTModelCreator {
     
     // MARK: struct definition
     static func modalHeader(name: String) -> String {
-        return "final \(modelType.rawValue) \(name): \(kRootModel)"
+        "final \(modelType.rawValue) \(name): \(kRootModel)"
     }
     
     // MARK: struck params
     static func paramKeysCase(key: String, type: String, defaultValues: AnyObject) -> String {
-        return "var \(key): \(type)? = \(defaultValues)" + "\n"
+        "var \(key): \(type)? = \(defaultValues)" + "\n"
     }
     
     // MARK: CodingKey enum definition

@@ -27,8 +27,6 @@ public protocol FTViewControllerProtocol where Self: UIViewController {
     func unregisterKeyboardNotifications()
     // MARK: Alert ViewController
     func showAlert(title: String, message: String, action: UIAlertAction?, actions: [UIAlertAction]?)
-    // MARK: Responder
-    func makeResponder(status: Bool, textField: UITextField, text: String?)
     // MARK: Activity indicator
     func showActivityIndicator()
     func hideActivityIndicator()
@@ -47,7 +45,7 @@ extension UIViewController: FTViewControllerProtocol {
     @IBOutlet
     public var baseView: FTView? {
         get {
-            return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.baseView) { FTView() }
+            FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.baseView) { FTView() }
         }
         set {
             FTAssociatedObject<FTView>.setAssociated(self, value: newValue, key: &FTAssociatedKey.baseView)
@@ -57,7 +55,7 @@ extension UIViewController: FTViewControllerProtocol {
     @IBInspectable
     public var baseViewTheme: String {
         get {
-            return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.baseViewTheme) ?? FTThemeStyle.defaultStyle
+            FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.baseViewTheme) ?? FTThemeStyle.defaultStyle
         }
         set {
             FTAssociatedObject<String>.setAssociated(self, value: newValue, key: &FTAssociatedKey.baseViewTheme)
@@ -67,27 +65,27 @@ extension UIViewController: FTViewControllerProtocol {
     @IBOutlet
     public var topPinnedButtonView: UIView? {
         get {
-            return self.baseView?.topPinnedView
+            self.baseView?.topPinnedView
         }
         set {
-           self.baseView?.topPinnedView = newValue
+            self.baseView?.topPinnedView = newValue
         }
     }
     
     @IBOutlet
     public var bottomPinnedButtonView: UIView? {
         get {
-            return self.baseView?.bottomPinnedView
+            self.baseView?.bottomPinnedView
         }
         set {
-           self.baseView?.bottomPinnedView = newValue
+            self.baseView?.bottomPinnedView = newValue
         }
     }
     
     // Unquie Identifier for eachScreen
     public var screenIdentifier: String? {
         get {
-            return FTAssociatedObject<String>.getAssociated(self, key: &FTAssociatedKey.screenIdentifier)
+            FTAssociatedObject<String>.getAssociated(self, key: &FTAssociatedKey.screenIdentifier)
         }
         set {
             FTAssociatedObject<String>.setAssociated(self, value: newValue, key: &FTAssociatedKey.screenIdentifier)
@@ -97,7 +95,7 @@ extension UIViewController: FTViewControllerProtocol {
     // modelData that can be passed from previous controller
     public var modelStack: AnyObject? {
         get {
-            return FTAssociatedObject<AnyObject>.getAssociated(self, key: &FTAssociatedKey.modelStack)
+            FTAssociatedObject<AnyObject>.getAssociated(self, key: &FTAssociatedKey.modelStack)
         }
         set {
             FTAssociatedObject<AnyObject>.setAssociated(self, value: newValue, key: &FTAssociatedKey.modelStack)
@@ -106,7 +104,7 @@ extension UIViewController: FTViewControllerProtocol {
     
     public var completionBlock: FTViewControllerCompletionBlock? {
         get {
-            return FTAssociatedObject<FTViewControllerCompletionBlock>.getAssociated(self, key: &FTAssociatedKey.completionBlock)
+            FTAssociatedObject<FTViewControllerCompletionBlock>.getAssociated(self, key: &FTAssociatedKey.completionBlock)
         }
         set {
             FTAssociatedObject<FTViewControllerCompletionBlock>.setAssociated(self, value: newValue, key: &FTAssociatedKey.completionBlock)
@@ -114,18 +112,12 @@ extension UIViewController: FTViewControllerProtocol {
     }
 
     // Setup baseView's topLayoutGuide by sending true in subControllers if needed
-    public func topSafeAreaLayoutGuide() -> Bool {
-        return true
-    }
+    public func topSafeAreaLayoutGuide() -> Bool { true }
     
-    public func horizontalSafeAreaLayoutGuide() -> Bool {
-        return true
-    }
+    public func horizontalSafeAreaLayoutGuide() -> Bool { true }
     
     // Will dismiss Keyboard by tapping on any non-interative part of the view.
-    public func shouldDissmissKeyboardOnTap() -> Bool {
-        return true
-    }
+    public func shouldDissmissKeyboardOnTap() -> Bool { true }
     
     public func setupCoreView() {
         if self.view == self.baseView {

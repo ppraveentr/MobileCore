@@ -14,7 +14,7 @@ extension UICollectionView {
 
     public weak var viewController: FTCollectionViewControllerProtocol? {
         get {
-            return UICollectionView.aoCollectionView[self]
+            UICollectionView.aoCollectionView[self]
         }
         set {
             UICollectionView.aoCollectionView[self] = newValue
@@ -27,10 +27,10 @@ extension UICollectionView {
     }
 
     func estimatedItemSize() -> CGSize {
-        return viewController?.estimatedItemSize() ?? .zero
+        viewController?.estimatedItemSize() ?? .zero
     }
 
     func sectionInset() -> UIEdgeInsets {
-        return viewController?.sectionInset() ?? .zero
+        viewController?.sectionInset() ?? .zero
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 public extension UIWindow {
     /// Returns the current application's top most view controller.
     class var topViewController: UIViewController? {
-        return UIApplication.shared.currentViewController
+        UIApplication.shared.currentViewController
     }
 }
 
@@ -24,7 +24,7 @@ public extension UIViewController {
 
 public extension UIApplication {
     var currentViewController: UIViewController? {
-        return keyWindow?.rootViewController?.currentViewController
+        keyWindow?.rootViewController?.currentViewController
     }
 }
 

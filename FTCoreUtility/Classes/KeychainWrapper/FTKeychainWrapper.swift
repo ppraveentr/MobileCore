@@ -195,19 +195,19 @@ open class FTKeychainWrapper {
     // MARK: Public Setters
     
     @discardableResult open func set(_ value: Int, forKey key: String, withAccessibility accessibility: FTKeychainItemAccessibility? = nil) -> Bool {
-        return set(NSNumber(value: value), forKey: key, withAccessibility: accessibility)
+        set(NSNumber(value: value), forKey: key, withAccessibility: accessibility)
     }
     
     @discardableResult open func set(_ value: Float, forKey key: String, withAccessibility accessibility: FTKeychainItemAccessibility? = nil) -> Bool {
-        return set(NSNumber(value: value), forKey: key, withAccessibility: accessibility)
+        set(NSNumber(value: value), forKey: key, withAccessibility: accessibility)
     }
     
     @discardableResult open func set(_ value: Double, forKey key: String, withAccessibility accessibility: FTKeychainItemAccessibility? = nil) -> Bool {
-        return set(NSNumber(value: value), forKey: key, withAccessibility: accessibility)
+        set(NSNumber(value: value), forKey: key, withAccessibility: accessibility)
     }
     
     @discardableResult open func set(_ value: Bool, forKey key: String, withAccessibility accessibility: FTKeychainItemAccessibility? = nil) -> Bool {
-        return set(NSNumber(value: value), forKey: key, withAccessibility: accessibility)
+        set(NSNumber(value: value), forKey: key, withAccessibility: accessibility)
     }
 
     /// Save a String value to the keychain associated with a specified key. If a String value already exists for the given key, the string will be overwritten with the new value.

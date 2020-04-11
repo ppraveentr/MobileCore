@@ -22,20 +22,20 @@ public protocol FTCollectionViewControllerProtocol: FTViewControllerProtocol {
 public extension FTCollectionViewControllerProtocol {
 
     func estimatedItemSize() -> CGSize {
-        return .zero
+        .zero
     }
 
     func sectionInset() -> UIEdgeInsets {
-        return .zero
+        .zero
     }
     
     var flowLayout: UICollectionViewLayout {
-        return UICollectionViewLayout()
+        UICollectionViewLayout()
     }
     
     var collectionView: UICollectionView {
         get {
-            return collectionViewController.collectionView
+            collectionViewController.collectionView
         }
         set {
             setupCoreCollectionView(newValue)

@@ -11,7 +11,7 @@ import Foundation
 open class FTCoreUtility {
     
     static var osVersion: Float {
-        return NSString(string: UIDevice.current.systemVersion).floatValue
+        NSString(string: UIDevice.current.systemVersion).floatValue
     }
     
     public static func isRegisteredURLScheme(scheme: String) -> Bool {

@@ -79,7 +79,7 @@ open class FTThemesManager {
     
     // MARK: ViewComponents
     public static func isViewComponentValid(componentName: String) -> Bool {
-        return self.isThemeComponentValid(componentName)
+        self.isThemeComponentValid(componentName)
     }
     
     // TODO: custom themes for view-objects
@@ -232,7 +232,7 @@ open class FTThemesManager {
     // MARK: App Appearance
     // TODO: custom themes for view-objects
     public static func getAppearance(_ appearanceName: String? = nil) -> Any? {
-        return themeAppearance(appearanceName)
+        themeAppearance(appearanceName)
     }
 }
 
@@ -246,7 +246,7 @@ extension FTThemesManager {
     
     // MARK: Component
     fileprivate class var themeComponent: FTThemeModel? {
-        return FTThemesManager.themesJSON["components"] as? FTThemeModel
+        FTThemesManager.themesJSON["components"] as? FTThemeModel
     }
 
     fileprivate static func isThemeComponentValid(_ component: String) -> Bool {
@@ -276,26 +276,26 @@ extension FTThemesManager {
     }
 
     // MARK: Color
-    fileprivate class var themeColor: FTThemeModel? { return FTThemesManager.themesJSON["color"] as? FTThemeModel }
+    fileprivate class var themeColor: FTThemeModel? { FTThemesManager.themesJSON["color"] as? FTThemeModel }
 
     // Color -
     fileprivate static func themeColor(_ colorName: String) -> String? {
-        return self.themeColor?[colorName] as? String
+        self.themeColor?[colorName] as? String
     }
 
     // MARK: font
     fileprivate class var themeFont: FTThemeModel? {
-        return FTThemesManager.themesJSON["font"] as? FTThemeModel
+        FTThemesManager.themesJSON["font"] as? FTThemeModel
     }
 
     // font -
     fileprivate static func themeFont(_ fontName: String) -> FTThemeModel? {
-        return self.themeFont?[fontName] as? FTThemeModel
+        self.themeFont?[fontName] as? FTThemeModel
     }
 
     // MARK: Appearance
     fileprivate class var themeAppearance: FTThemeModel? {
-        return FTThemesManager.themesJSON["appearance"] as? FTThemeModel
+        FTThemesManager.themesJSON["appearance"] as? FTThemeModel
     }
 
     // Appearance -

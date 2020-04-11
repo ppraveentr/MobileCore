@@ -22,7 +22,7 @@ public extension UISegmentedControl {
     
     var handler: FTSegmentedHandler? {
         get {
-            return UISegmentedControl.aoHandler[self]
+            UISegmentedControl.aoHandler[self]
         }
         set {
             UISegmentedControl.aoHandler[self] = newValue

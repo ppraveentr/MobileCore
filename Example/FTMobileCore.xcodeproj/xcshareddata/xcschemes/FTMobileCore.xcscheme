@@ -27,8 +27,7 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES"
-      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      codeCoverageEnabled = "YES">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -41,10 +40,10 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E138AC2548DCD21BB29C1A2C8DCA02CC"
-            BuildableName = "MobileCore.framework"
-            BlueprintName = "MobileCore"
-            ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            BlueprintIdentifier = "DE9221C81EF28CDF000C8FC7"
+            BuildableName = "FTMobileCore.app"
+            BlueprintName = "FTMobileCore"
+            ReferencedContainer = "container:FTMobileCore.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>

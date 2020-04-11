@@ -10,12 +10,12 @@ import Foundation
 
 // Screen width.
 public var FTScreenWidth: CGFloat {
-    return UIScreen.main.bounds.width
+    UIScreen.main.bounds.width
 }
 
 // Screen height.
 public var FTScreenHeight: CGFloat {
-    return UIScreen.main.bounds.height
+    UIScreen.main.bounds.height
 }
 
 public extension UIView {
@@ -23,12 +23,12 @@ public extension UIView {
     // MARK: XIB
     // Get nib based on once's class name
     static var nib: UINib {
-        return UINib(nibName: String(describing: self), bundle: nil)
+        UINib(nibName: String(describing: self), bundle: nil)
     }
     
     // Get view based on once's class name
     static func fromNib(_ owner: Any? = nil) -> UIView? {
-        return fromNib(named: String(describing: self), owner: owner)
+        fromNib(named: String(describing: self), owner: owner)
     }
     
     // Retruns first view from the nib file

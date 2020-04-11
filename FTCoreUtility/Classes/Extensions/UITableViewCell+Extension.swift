@@ -17,7 +17,7 @@ protocol ConfigurableCell: AnyObject {
 extension UITableViewCell {
     // ReuseIdentifier
     static var defaultReuseIdentifier: String {
-        return "\(self)ID"
+        "\(self)ID"
     }
     
     // register a class for the tableView

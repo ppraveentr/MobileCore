@@ -10,7 +10,7 @@ import Foundation
 
 public extension Dictionary {
     func keyPath<T>(_ keyPath: String) -> T? {
-        return (self as NSDictionary).value(forKeyPath: keyPath) as? T
+        (self as NSDictionary).value(forKeyPath: keyPath) as? T
     }
 }
 

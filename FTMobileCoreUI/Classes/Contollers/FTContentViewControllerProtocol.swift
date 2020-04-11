@@ -18,7 +18,7 @@ public extension FTContentViewControllerProtocol {
     
     var contentView: WKWebView {
         get {
-            return FTAssociatedObject<WKWebView>.getAssociated(self, key: &kContentVC) { self.setupContentView() }!
+            FTAssociatedObject<WKWebView>.getAssociated(self, key: &kContentVC) { self.setupContentView() }!
         }
         set {
             setupContentView(newValue)
@@ -34,7 +34,7 @@ private extension FTContentViewControllerProtocol {
         // Load Base view
         setupCoreView()
         
-        if let scroll = FTAssociatedObject<WKWebView>.getAssociated(self, key: &kContentVC) {
+        if let scroll: WKWebView = FTAssociatedObject<WKWebView>.getAssociated(self, key: &kContentVC) {
             scroll.removeFromSuperview()
             FTAssociatedObject<Any>.resetAssociated(self, key: &kContentVC)
         }
@@ -43,7 +43,7 @@ private extension FTContentViewControllerProtocol {
             self.mainView?.pin(view: local, edgeOffsets: .zero)
         }
         
-        FTAssociatedObject<UIScrollView>.setAssociated(self, value: local, key: &kContentVC)
+        FTAssociatedObject<WKWebView>.setAssociated(self, value: local, key: &kContentVC)
         
         return local
     }

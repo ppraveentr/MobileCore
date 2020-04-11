@@ -25,7 +25,7 @@ open class FTFontPickerViewController: UIViewController {
             }
         }
         get {
-            return pickerView?.fontPickerModel
+            pickerView?.fontPickerModel
         }
     }
 
@@ -58,6 +58,6 @@ open class FTFontPickerViewController: UIViewController {
 
 extension FTFontPickerViewController: UIPopoverPresentationControllerDelegate {
     public func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .none
+        .none
     }
 }

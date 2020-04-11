@@ -23,15 +23,15 @@ public extension FTTableViewControllerProtocol {
     
     // TableView style, defalut: .plain
     var tableStyle: UITableView.Style {
-        return .plain
+        .plain
     }
     
     var tableViewEdgeOffsets: FTEdgeOffsets {
-        return .zero
+        .zero
     }
     
     var tableView: UITableView {
-        return self.tableViewController.tableView
+        self.tableViewController.tableView
     }
     
     func getCoreTableViewController() -> UITableViewController {
