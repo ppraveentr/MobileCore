@@ -10,6 +10,9 @@ target 'FTMobileCore' do
    pod 'SwiftLint'
 end
 
+target 'FTMobileCoreTests' do
+  common_pods
+end
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|
