@@ -9,10 +9,10 @@
 @testable import MobileCore
 import XCTest
 
-class FTUIElementsTests: XCTestCase {
+final class DownloadedImageTests: XCTestCase {
     
-    lazy var imagePath = kFTMobileCoreBundle?.path(forResource: "upArrow", ofType: "png")
-    lazy var imageURLPath = URL(fileURLWithPath: imagePath!).absoluteString
+    private lazy var imagePath = kFTMobileCoreBundle?.path(forResource: "upArrow", ofType: "png")
+    private lazy var imageURLPath = URL(fileURLWithPath: imagePath!).absoluteString
     
     func testUIImageView() {
         let imageView = UIImageView()
@@ -27,14 +27,14 @@ class FTUIElementsTests: XCTestCase {
         wait(for: [promise], timeout: 5)
     }
     
-    func testDownloadImageFail() {
-        let promise = expectation(description: "Download data task completed.")
-        UIImageView().downloadedFrom(
-            link: "",
-            comletionHandler: { image in
-                XCTAssertNil(image)
-                promise.fulfill()
-        })
-        wait(for: [promise], timeout: 5)
-    }
+//    func testDownloadImageFail() {
+//        let promise = expectation(description: "Download data task completed.")
+//        UIImageView().downloadedFrom(
+//            link: "",
+//            comletionHandler: { image in
+//                XCTAssertNil(image)
+//                promise.fulfill()
+//        })
+//        wait(for: [promise], timeout: 5)
+//    }
 }

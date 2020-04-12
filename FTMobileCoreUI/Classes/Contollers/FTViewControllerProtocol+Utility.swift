@@ -36,11 +36,11 @@ extension UIViewController {
     // MARK: Navigation Bar
     // default - left Button Actopm
     public var kleftButtonAction: Selector {
-        return #selector(UIViewController.leftButtonAction)
+        #selector(UIViewController.leftButtonAction)
     }
     
     public var kRightButtonAction: Selector {
-        return #selector(UIViewController.rightButtonAction)
+        #selector(UIViewController.rightButtonAction)
     }
 
     func configureBarButton(button: UIBarButtonItem?, defaultAction action: Selector) {
@@ -82,18 +82,6 @@ extension UIViewController {
     @objc
     public func endEditing() {
         self.view.endEditing(true)
-    }
-    
-    // MARK: Responder
-    public func makeResponder(status: Bool, textField: UITextField, text: String? = nil) {
-        if status {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2)) {
-                if let text = text {
-                    textField.text = text
-                }
-                textField.becomeFirstResponder()
-            }
-        }
     }
     
     // MARK: Keyboard Notifications

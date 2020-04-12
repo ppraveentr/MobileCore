@@ -1,8 +1,5 @@
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
-
-# Silent warnings from all pods
-inhibit_all_warnings!
 
 def common_pods
  pod 'MobileCore', :path => '../'
@@ -11,9 +8,10 @@ end
 target 'FTMobileCore' do
    common_pods
    pod 'SwiftLint'
-   target 'FTMobileCoreTests' do
-        inherit! :search_paths
-    end
+end
+
+target 'FTMobileCoreTests' do
+  common_pods
 end
 
 post_install do |installer|
@@ -23,7 +21,7 @@ post_install do |installer|
                 config.build_settings['ENABLE_TESTABILITY'] = 'YES'
             end
             if config.name == 'Debug'
-              config.build_settings['OTHER_SWIFT_FLAGS'] = ['$(inherited)', '-Onone', '-Xfrontend -warn-long-function-bodies=150', '-Xfrontend -warn-long-expression-type-checking=150']
+              config.build_settings['OTHER_SWIFT_FLAGS'] = ['$(inherited)', '-Xfrontend -warn-long-function-bodies=250', '-Xfrontend -warn-long-expression-type-checking=250']
               config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Owholemodule'
             end
         end

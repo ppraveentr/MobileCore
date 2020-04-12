@@ -1,14 +1,14 @@
 //
-//  FTImageView.swift
-//  FTCoreUtility
+//  UIImageView+Download.swift
+//  FactsCheck
 //
-//  Created by Praveen Prabhakar on 21/08/17.
-//  Copyright © 2017 Praveen Prabhakar. All rights reserved.
+//  Created by Praveen P on 08/04/20.
+//  Copyright © 2020 Praveen P. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-public typealias FTUIImageViewComletionHandler = ((UIImage?) -> Void)
+public typealias ImageViewComletionHandler = ((UIImage?) -> Void)
 
 public extension UIImageView {
     
@@ -19,14 +19,15 @@ public extension UIImageView {
      */
     func downloadedFrom(url: URL,
                         contentMode mode: UIView.ContentMode = .scaleAspectFit,
-                        comletionHandler: FTUIImageViewComletionHandler? = nil) {
+                        comletionHandler: ImageViewComletionHandler? = nil) {
         
         // Image's Content mode
         contentMode = mode
-
+        
         // Download Image from async in background
         url.downloadedImage { image in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.image = image
                 comletionHandler?(image)
             }
@@ -38,14 +39,12 @@ public extension UIImageView {
      - parameter link: Image's urlString from which need to download
      - parameter contentMode: ImageView's content mode, defalut to 'scaleAspectFit'
      */
-    func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit, comletionHandler: FTUIImageViewComletionHandler? = nil) {
+    func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit, comletionHandler: ImageViewComletionHandler? = nil) {
         
         // Validate urlString
         guard let url = URL(string: link) else {
-            DispatchQueue.main.async {
-                self.image = nil
-                comletionHandler?(nil)
-            }
+            self.image = nil
+            comletionHandler?(nil)
             return
         }
         

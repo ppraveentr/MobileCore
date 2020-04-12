@@ -38,7 +38,7 @@ open class FTCache {
     }
 
     func getCachedObject(forKey keyType: String) -> Any? {
-        return self.userCache[keyType]
+        self.userCache[keyType]
     }
 }
 
@@ -76,7 +76,7 @@ open class FTUserCache {
             FTUserCache.setCacheObject(data as AnyObject, forKey: "sessnion.httpAdditionalHeaders", cacheType: .application)
         }
         get {
-            return FTUserCache.getCachedObject(forKey: "sessnion.httpAdditionalHeaders") as? [String: String]
+            FTUserCache.getCachedObject(forKey: "sessnion.httpAdditionalHeaders") as? [String: String]
         }
     }
 }

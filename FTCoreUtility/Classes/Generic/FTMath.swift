@@ -9,12 +9,12 @@
 import Foundation
 
 public func ceil(size: CGSize) -> CGSize {
-    return CGSize(width: ceil(size.width), height: ceil(size.height))
+    CGSize(width: ceil(size.width), height: ceil(size.height))
 }
 
 // Combine 2-diff Size objects and get max values of both
 public func maxSize(_ rhs: CGSize, _ lhs: CGSize) -> CGSize {
-    return CGSize(
+    CGSize(
         width: max(rhs.width, lhs.width),
         height: max(rhs.height, lhs.height)
     )

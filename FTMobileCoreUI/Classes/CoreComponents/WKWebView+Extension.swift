@@ -93,7 +93,7 @@ extension WKWebView: FTFontPickerViewprotocol {
     
     public var fontPickerViewController: FTFontPickerViewController {
         get {
-            return FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.fontPickerVC) { self.getFontPickerController() }!
+            FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.fontPickerVC) { self.getFontPickerController() }!
         }
         set {
             FTAssociatedObject<FTFontPickerViewController>.setAssociated(self, value: newValue, key: &FTAssociatedKey.fontPickerVC)
@@ -122,7 +122,7 @@ public extension WKWebView {
     }
     
     func getHTMLBodyText() -> String {
-        return Constants.getDocumentBody.rawValue
+        Constants.getDocumentBody.rawValue
     }
     
     func getTextSize(_ block: @escaping (Float?) -> Void) {

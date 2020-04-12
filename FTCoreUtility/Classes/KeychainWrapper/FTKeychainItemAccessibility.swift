@@ -91,6 +91,6 @@ private let kFTKeychainItemAccessibilityLookup: [FTKeychainItemAccessibility: CF
 
 extension FTKeychainItemAccessibility: FTKeychainAttrRepresentable {
     internal var keychainAttrValue: CFString {
-        return kFTKeychainItemAccessibilityLookup[self]!
+        kFTKeychainItemAccessibilityLookup[self]!
     }
 }

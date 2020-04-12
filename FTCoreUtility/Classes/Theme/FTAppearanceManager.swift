@@ -13,7 +13,7 @@ protocol FTAppearanceManagerProtocol {
     func setUpAppearance(theme: FTThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance
 }
 
-open class FTAppearanceManager {
+public enum FTAppearanceManager {
 
     static func getComponentName(_ appearanceName: String) -> (String, String?) {
         let components = appearanceName.components(separatedBy: ":")
@@ -66,7 +66,7 @@ extension FTThemesManager {
 extension UIView: FTAppearanceManagerProtocol {
 
     public func setUpAppearance(theme: FTThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
-        return type(of: self).setUpAppearance(theme: theme, containerClass: containerClass)
+        type(of: self).setUpAppearance(theme: theme, containerClass: containerClass)
     }
 
     @discardableResult
@@ -109,7 +109,7 @@ extension UIView: FTAppearanceManagerProtocol {
 extension UISegmentedControl {
 
     override public class func setUpAppearance(theme: FTThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
-        return super.setUpAppearance(theme: theme, containerClass: containerClass)
+        super.setUpAppearance(theme: theme, containerClass: containerClass)
 //        let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
 //        return appearance
     }

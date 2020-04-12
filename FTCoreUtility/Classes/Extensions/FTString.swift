@@ -38,7 +38,7 @@ public extension String {
     }
     
     func stripHTML() -> String {
-        return self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
     }
 
     func htmlAttributedString() -> NSMutableAttributedString {
@@ -71,14 +71,14 @@ public extension String {
 
     // Color
     func hexColor() -> UIColor? {
-        return UIColor.hexColor(self)
+        UIColor.hexColor(self)
     }
     
 // MARK: String Size
     // Remove's 'sting' from self -> and retruns new 'String'
     // Original value is not affected
     func trimming(_ string: String) -> String {
-        return self.replacingOccurrences(of: string, with: "")
+        self.replacingOccurrences(of: string, with: "")
     }
     
     @discardableResult
@@ -110,12 +110,12 @@ public extension String {
     
     // Range
     func nsRange(from: Int = 0) -> NSRange {
-        return NSRange(location: from, length: self.count)
+        NSRange(location: from, length: self.count)
     }
     
     // Get subString within the 'range'
     func substring(with range: NSRange) -> String? {
-        return (self as NSString).substring(with: range) as String?
+        (self as NSString).substring(with: range) as String?
     }
     
     // Get subString 'from-index' to 'to-index'
@@ -127,7 +127,7 @@ public extension String {
     
     // Verify if self contains a subString
     func contains(_ find: String) -> Bool {
-        return self.range(of: find) != nil
+        self.range(of: find) != nil
     }
 
     /**
@@ -159,12 +159,12 @@ public extension String {
 // MARK: JSON
     // Loading Data from given Path
     func jsonContentAtPath<T>() throws -> T? {
-        return try dataAtPath()?.jsonContent() as? T
+        try dataAtPath()?.jsonContent() as? T
     }
 
     // Loading Data from given Path
     func dataAtPath() throws -> Data? {
-        return try Data(contentsOf: URL(fileURLWithPath: self))
+        try Data(contentsOf: URL(fileURLWithPath: self))
     }
 
     // MARK: File
@@ -204,7 +204,7 @@ public extension String {
 public extension NSAttributedString {
     // Range
     func nsRange(from: Int = 0) -> NSRange {
-        return NSRange(location: from, length: self.length)
+        NSRange(location: from, length: self.length)
     }
     
     func mutableString() -> NSMutableAttributedString {
