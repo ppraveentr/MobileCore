@@ -50,7 +50,7 @@ class FTUIWebkitTests: XCTestCase {
                 textColorPromise.fulfill()
             }
         }
-        wait(for: [textColorPromise], timeout: 5)
+        wait(for: [textColorPromise], timeout: 15)
     }
     
     func testHTMLFont() {
@@ -62,6 +62,6 @@ class FTUIWebkitTests: XCTestCase {
                 promise.fulfill()
             }
         }
-        wait(for: [promise], timeout: 5)
+        wait(for: [promise], timeout: 15)
     }
 }
