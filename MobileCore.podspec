@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'MobileCore'
-  s.version          = '0.0.8.0'
+  s.version          = '0.0.9.0'
   s.summary          = 'Mobile Core utility.'
   s.homepage         = 'https://github.com/ppraveentr/MobileCore'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/ppraveentr/MobileCore.git', :tag => s.version.to_s }
   s.weak_framework 	 = 'UIKit'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '10.0'
   s.swift_version         = '5.0'
   s.default_subspecs      = 'CoreUtility', 'Core', 'CoreUI'
 
