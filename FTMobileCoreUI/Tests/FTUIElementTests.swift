@@ -9,7 +9,7 @@
 @testable import MobileCore
 import XCTest
 
-class FTUIElementTests: XCTestCase {
+final class FTUIElementTests: XCTestCase {
     
     let titleString = "I’ve Became Able to Do Anything with My Heart Set.. Vol. 8 Ch. 207"
     override func setUp() {

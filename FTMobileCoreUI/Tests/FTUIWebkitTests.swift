@@ -10,7 +10,7 @@
 import WebKit
 import XCTest
 
-class FTUIWebkitTests: XCTestCase {
+final class FTUIWebkitTests: XCTestCase {
 
     let testHTMLString = "Test load string"
     

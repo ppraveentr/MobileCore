@@ -9,7 +9,7 @@
 @testable import MobileCore
 import XCTest
 
-class FTClassMethodTests: XCTestCase {
+final class FTClassMethodTests: XCTestCase {
     
     func testMethodSwizzling() {
         let temp = TestSwizzling()

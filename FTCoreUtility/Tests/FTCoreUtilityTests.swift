@@ -9,7 +9,7 @@
 @testable import MobileCore
 import XCTest
 
-class FTCoreUtilityTests: XCTestCase {
+final class FTCoreUtilityTests: XCTestCase {
     
     func testStrippingNilElements() {
         var dic: [String: Any?] = [

@@ -22,7 +22,7 @@ final class TestTableViewController: UIViewController, FTTableViewControllerProt
     var tableViewEdgeOffsets: FTEdgeOffsets = .init(40, 40, 40, 40)
 }
 
-class FTTableViewTests: XCTestCase {
+final class FTTableViewTests: XCTestCase {
     
     var tableViewC: TestTableViewController?
     var oldRootVC: UIViewController?

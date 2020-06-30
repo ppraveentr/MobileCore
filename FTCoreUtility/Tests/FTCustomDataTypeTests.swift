@@ -9,7 +9,7 @@
 @testable import MobileCore
 import XCTest
 
-class FTCustomDataTypeTests: XCTestCase {
+final class FTCustomDataTypeTests: XCTestCase {
     
     let testString = "Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a>"
     let testUrl = "www.W3Schools.com"

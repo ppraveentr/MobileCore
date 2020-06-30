@@ -9,7 +9,7 @@
 @testable import MobileCore
 import XCTest
 
-class FTSessionCacheTests: XCTestCase {
+final class FTSessionCacheTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

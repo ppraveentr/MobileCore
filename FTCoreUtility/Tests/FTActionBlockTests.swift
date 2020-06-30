@@ -9,7 +9,7 @@
 @testable import MobileCore
 import XCTest
 
-class FTActionBlockTests: XCTestCase {
+final class FTActionBlockTests: XCTestCase {
     
     func testTapActionBlock() {
         let promise = expectation(description: "Action block tap worked.")

@@ -10,7 +10,7 @@
 import XCTest
 import WebKit
 
-class ContentViewProtocolTests: XCTestCase {
+final class ContentViewProtocolTests: XCTestCase {
     
     final class ContentViewController: UIViewController, FTContentViewControllerProtocol {
     }
