@@ -2,8 +2,8 @@
 //  FTKeychainItemAccessibility.swift
 //  FTCoreUtility
 //
-//  Created by Praveen Prabhakar01 on 20/08/18.
-//  Copyright © 2018 Praveen Prabhakar01. All rights reserved.
+//  Created by Praveen Prabhakar on 20/08/18.
+//  Copyright © 2018 Praveen Prabhakar. All rights reserved.
 //
 
 import Foundation

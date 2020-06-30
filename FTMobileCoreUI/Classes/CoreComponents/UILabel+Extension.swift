@@ -112,7 +112,7 @@ extension UILabel: FTUILabelProtocol, FTUILabelThemeProperyProtocol {
             updateWithHtmlString(text: newValue)
         }
         get {
-            return ""
+            ""
         }
     }
 }

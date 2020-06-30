@@ -16,19 +16,19 @@ protocol ConfigurableCell: AnyObject {
 
 public extension UIView {
     static var defaultNibName: String {
-        return String(describing: self)
+        String(describing: self)
     }
     
     static func loadFromDefaultNib<T: UIView>() -> T {
-        return loadFromNib(defaultNibName)
+        loadFromNib(defaultNibName)
     }
     
     static func loadFromNib<T: UIView>(_ nibName: String) -> T {
-        return loadFromNib(nibName, bundle: Bundle(for: self))
+        loadFromNib(nibName, bundle: Bundle(for: self))
     }
     
     static func loadFromNib<T: UIView>(_ nibName: String, bundle: Bundle) -> T {
-        return loadFromNib(nibName, bundle: bundle, owner: nil)
+        loadFromNib(nibName, bundle: bundle, owner: nil)
     }
     
     static func loadFromNib<T: UIView>(_ nibName: String, bundle: Bundle, owner: Any?) -> T {
@@ -72,11 +72,11 @@ public extension UICollectionViewCell {
     }
     
     static var defaultNib: UINib {
-        return getNib(nibName: defaultNibName)
+        getNib(nibName: defaultNibName)
     }
     
     static func getNib(nibName: String) -> UINib {
-        return UINib(nibName: nibName, bundle: Bundle(for: self))
+        UINib(nibName: nibName, bundle: Bundle(for: self))
     }
     
     // register a class for the tableView
