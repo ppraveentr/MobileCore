@@ -9,7 +9,7 @@
 @testable import MobileCore
 import XCTest
 
-class FTAssociatedObjectTests: XCTestCase {
+final class FTAssociatedObjectTests: XCTestCase {
     
     func testGenericSetAssociated() {
         //Given

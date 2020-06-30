@@ -9,7 +9,7 @@
 @testable import MobileCore
 import XCTest
 
-class FTFTMobileConfigTests: XCTestCase {
+final class FTFTMobileConfigTests: XCTestCase {
     
     let config = FTMobileConfig.sharedInstance
 

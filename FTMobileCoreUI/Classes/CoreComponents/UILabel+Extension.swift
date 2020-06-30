@@ -106,6 +106,15 @@ extension UILabel: FTUILabelProtocol, FTUILabelThemeProperyProtocol {
             FTAssociatedObject<FTAttributedStringKey>.setAssociated(self, value: newValue, key: &FTAssociatedKey.styleProperties)
         }
     }
+    
+    public var htmlText: String {
+        set {
+            updateWithHtmlString(text: newValue)
+        }
+        get {
+            ""
+        }
+    }
 }
 
 extension UILabel: FTOptionalLayoutSubview {

@@ -9,7 +9,7 @@
 @testable import MobileCore
 import XCTest
 
-class FTUIBarButtonTests: XCTestCase {
+final class FTUIBarButtonTests: XCTestCase {
     
     lazy var image = UIImage(named: "upArrow")
     let action = #selector(buttonTap)

@@ -9,7 +9,7 @@
 @testable import MobileCore
 import XCTest
 
-class CollectionViewProtocolTests: XCTestCase {
+final class CollectionViewProtocolTests: XCTestCase {
     
     final class CollectionViewController: UIViewController, FTCollectionViewControllerProtocol {
     }

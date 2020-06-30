@@ -9,7 +9,7 @@
 @testable import MobileCore
 import XCTest
 
-class FTStringTests: XCTestCase {
+final class FTStringTests: XCTestCase {
         
     func testStringTrim() {
         var testString = "Test trimming"

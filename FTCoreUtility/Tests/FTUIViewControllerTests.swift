@@ -9,7 +9,7 @@
 @testable import MobileCore
 import XCTest
 
-class FTUIViewControllerTests: XCTestCase {
+final class FTUIViewControllerTests: XCTestCase {
     
     var oldRootVC: UIViewController?
     override func setUp() {

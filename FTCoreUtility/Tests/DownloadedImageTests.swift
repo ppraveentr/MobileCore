@@ -1,5 +1,5 @@
 //
-//  FTUIElementsTests.swift
+//  DownloadedImageTests.swift
 //  FTMobileCoreTests
 //
 //  Created by Praveen P on 12/10/19.

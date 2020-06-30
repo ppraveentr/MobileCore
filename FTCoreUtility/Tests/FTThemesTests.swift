@@ -9,7 +9,7 @@
 @testable import MobileCore
 import XCTest
 
-class FTThemesTests: XCTestCase {
+final class FTThemesTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

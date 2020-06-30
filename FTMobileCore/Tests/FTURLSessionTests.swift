@@ -9,7 +9,7 @@
 @testable import MobileCore
 import XCTest
 
-class FTURLSessionTests: XCTestCase {
+final class FTURLSessionTests: XCTestCase {
     
     func testURLSession() {
         let session = FTURLSession.createURLSession()

@@ -54,3 +54,6 @@ Example/Pods/*
 Example/Pods/**
 Example/Pods/**/*
 Example/Podfile.lock
+
+# CLI
+*.coverage.txt

@@ -54,7 +54,10 @@
 		"FTView": {
 			"default": {
 				"backgroundColor": "white"
-			}
+			},
+            "viewR": {
+                "backgroundColor": "red"
+            }
 		},
 		"UIButton": {
 			"default": {
@@ -117,6 +120,13 @@
                    "tintColor": "navBarRed",
                    "textcolor": "white"
                }
+            }
+        },
+        "UICollectionView": {
+            "default": {
+            },
+            "collectionRed": {
+                "backgroundViewTheme": "viewR"
             }
         },
         "FTSegmentCollectionHeaderView": {

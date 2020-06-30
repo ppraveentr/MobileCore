@@ -1,5 +1,5 @@
 //
-//  FTSequence.swift
+//  FTFlattenIterator.swift
 //  FTCoreUtility
 //
 //  Created by Praveen Prabhakar on 15/03/18.

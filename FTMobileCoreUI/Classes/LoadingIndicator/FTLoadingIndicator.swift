@@ -2,8 +2,8 @@
 //  FTLoadingIndicator.swift
 //  FTMobileCoreUI
 //
-//  Created by Praveen Prabhakar01 on 24/09/18.
-//  Copyright © 2018 Praveen Prabhakar01. All rights reserved.
+//  Created by Praveen Prabhakar on 24/09/18.
+//  Copyright © 2018 Praveen Prabhakar. All rights reserved.
 //
 
 import CoreGraphics
@@ -19,7 +19,7 @@ public class FTLoadingIndicator: UIView {
     
     private var baseView: UIView?
     private var titleLabel: UILabel?
-    private var loadingView: CALoadingView?
+    private var loadingView: FTLoadingView?
     private var animated: Bool = true
     private var canUpdated = false
     private var title: String?
@@ -157,7 +157,7 @@ public class FTLoadingIndicator: UIView {
         let loadingViewSize = self.frame.size.width - (loaderSpinnerMarginSide * 2)
         
         if self.loadingView == nil {
-            self.loadingView = CALoadingView(frame: self.frameForSpinner())
+            self.loadingView = FTLoadingView(frame: self.frameForSpinner())
             self.addSubview(self.loadingView!)
         }
         else {
@@ -209,8 +209,8 @@ public class FTLoadingIndicator: UIView {
     /**
      *  Loader View
      */
-    // MARK: CALoadingView
-    class CALoadingView: UIView {
+    // MARK: FTLoadingView
+    class FTLoadingView: UIView {
         
         private var speed: Int?
         private var lineWidth: Float?
