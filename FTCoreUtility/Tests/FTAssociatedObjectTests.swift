@@ -1,6 +1,6 @@
 //
 //  FTAssociatedObjectTests.swift
-//  FTMobileCoreTests
+//  MobileCoreTests
 //
 //  Created by Praveen P on 17/10/19.
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.

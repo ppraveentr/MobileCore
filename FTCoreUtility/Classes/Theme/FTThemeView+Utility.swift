@@ -162,7 +162,7 @@ fileprivate extension UIView {
             // Get super Class
             let superClass: AnyClass? = getSuperClass(type(of: self))
             // If SuperClass becomes invalid, terminate loop
-            if let superClass = superClass, !UIView.kTerminalBaseClass.contains { $0 == superclass } {
+            if let superClass = superClass, !UIView.kTerminalBaseClass.contains(where: { $0 == superclass }) {
                  baseClassName = getClassNameAsString(obj: superClass)
             }
             else {

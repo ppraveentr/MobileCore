@@ -18,9 +18,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DE9221C81EF28CDF000C8FC7"
-            BuildableName = "FTMobileCore.app"
-            BlueprintName = "FTMobileCore"
-            ReferencedContainer = "container:FTMobileCore.xcodeproj">
+            BuildableName = "MobileCoreExample.app"
+            BlueprintName = "MobileCoreExample"
+            ReferencedContainer = "container:MobileCoreExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -50,9 +50,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D44E56FD2341D3B900A0E56C"
-               BuildableName = "FTMobileCoreTests.xctest"
-               BlueprintName = "FTMobileCoreTests"
-               ReferencedContainer = "container:FTMobileCore.xcodeproj">
+               BuildableName = "MobileCoreTests.xctest"
+               BlueprintName = "MobileCoreTests"
+               ReferencedContainer = "container:MobileCoreExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

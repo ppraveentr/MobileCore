@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D4E09A28234A4AD4002729E6"
-               BuildableName = "FTMobileCoreBundle.bundle"
-               BlueprintName = "FTMobileCoreBundle"
-               ReferencedContainer = "container:FTMobileCore.xcodeproj">
+               BlueprintIdentifier = "D405058B24AC71E100B2E096"
+               BuildableName = "MobileCoreExampleBundle.bundle"
+               BlueprintName = "MobileCoreExampleBundle"
+               ReferencedContainer = "container:MobileCoreExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -40,15 +40,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D4E09A28234A4AD4002729E6"
-            BuildableName = "FTMobileCoreBundle.bundle"
-            BlueprintName = "FTMobileCoreBundle"
-            ReferencedContainer = "container:FTMobileCore.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -59,10 +50,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D4E09A28234A4AD4002729E6"
-            BuildableName = "FTMobileCoreBundle.bundle"
-            BlueprintName = "FTMobileCoreBundle"
-            ReferencedContainer = "container:FTMobileCore.xcodeproj">
+            BlueprintIdentifier = "D405058B24AC71E100B2E096"
+            BuildableName = "MobileCoreExampleBundle.bundle"
+            BlueprintName = "MobileCoreExampleBundle"
+            ReferencedContainer = "container:MobileCoreExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

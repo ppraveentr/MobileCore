@@ -1,6 +1,6 @@
 //
 //  ContentViewProtocolTests.swift
-//  FTMobileCoreTests
+//  MobileCoreTests
 //
 //  Created by Praveen P on 09/11/19.
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.

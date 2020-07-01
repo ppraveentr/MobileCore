@@ -63,7 +63,7 @@ extension ViewController {
         
         let buttonPopOver = UIButton()
         buttonPopOver.theme = "button14R"
-        buttonPopOver.setTitle("PopOver", for: .normal)
+        buttonPopOver.setTitle("Font Picker", for: .normal)
         buttonPopOver.addTarget(self, action: #selector(showFontPicker), for: .touchUpInside)
         
         let topView = UIView()

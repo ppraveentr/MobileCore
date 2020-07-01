@@ -1,11 +1,11 @@
 language: swift
-osx_image: xcode11.3
-xcode_destination: platform=iOS Simulator,OS=13.1,name=iPhone 11 Pro Max
+osx_image: xcode11.5
+xcode_destination: platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro Max
 
 env:
   global:
-  - XCODE_DESTINATION='platform=iOS Simulator,OS=13.1,name=iPhone 11 Pro Max'
-  - XCODE_WORKSPACE="Example/FTMobileCore.xcworkspace"
+  - XCODE_DESTINATION='platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro Max'
+  - XCODE_WORKSPACE="Example/MobileCoreExample.xcworkspace"
 
 before_install:
  - pod --version
@@ -16,7 +16,7 @@ before_install:
  - xcodebuild -showsdks
  
 script:
- - set -o pipefail && xcodebuild clean test build -enableCodeCoverage YES -workspace "Example/FTMobileCore.xcworkspace" -scheme FTMobileCore -destination 'platform=iOS Simulator,OS=13.1,name=iPhone 11 Pro Max' only_active_arch=YES defines_module=yes | xcpretty --report html
+ - set -o pipefail && xcodebuild clean test build -enableCodeCoverage YES -workspace "Example/MobileCoreExample.xcworkspace" -scheme MobileCoreExample -destination 'platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro Max' only_active_arch=YES defines_module=yes | xcpretty --report html
  - pod lib lint --allow-warnings
 
 after_success:

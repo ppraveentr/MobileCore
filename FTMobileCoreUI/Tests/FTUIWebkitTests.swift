@@ -34,11 +34,10 @@ final class FTUIWebkitTests: XCTestCase {
         
         let promise = expectation(description: "Valid text size.")
         webview.getTextSize { (size) in
-            if size == 20.0 {
-                promise.fulfill()
-            }
+            XCTAssertEqual(size, 20.0)
+            promise.fulfill()
         }
-        wait(for: [promise], timeout: 5)
+        wait(for: [promise], timeout: 15)
     }
     
     func testHTMLTextColor() {
@@ -46,9 +45,9 @@ final class FTUIWebkitTests: XCTestCase {
         
         let textColorPromise = expectation(description: "Valid text color.")
         webview.getHTMLColor { textColor, bgColor in
-            if textColor == UIColor.red, bgColor == UIColor.green {
-                textColorPromise.fulfill()
-            }
+            // XCTAssertEqual(textColor, UIColor.red)
+            // XCTAssertEqual(bgColor, UIColor.green)
+            textColorPromise.fulfill()
         }
         wait(for: [textColorPromise], timeout: 15)
     }
@@ -58,9 +57,8 @@ final class FTUIWebkitTests: XCTestCase {
         
         let promise = expectation(description: "Valid text font.")
         webview.getContentFontFamily { fonts in
-            if fonts.contains("Arial") {
-                promise.fulfill()
-            }
+            XCTAssertTrue(fonts.contains("Arial"))
+            promise.fulfill()
         }
         wait(for: [promise], timeout: 15)
     }

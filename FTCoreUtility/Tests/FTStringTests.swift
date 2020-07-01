@@ -1,6 +1,6 @@
 //
 //  FTStringTests.swift
-//  FTMobileCoreTests
+//  MobileCoreTests
 //
 //  Created by Praveen P on 06/10/19.
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.
