@@ -8,16 +8,6 @@
 
 import Foundation
 
-// Screen width.
-public var screenWidth: CGFloat {
-    UIScreen.main.bounds.width
-}
-
-// Screen height.
-public var screenHeight: CGFloat {
-    UIScreen.main.bounds.height
-}
-
 public extension UIView {
     
     // MARK: XIB

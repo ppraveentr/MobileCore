@@ -19,7 +19,6 @@
 		D405059424AC723800B2E096 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D31EF28CDF000C8FC7 /* Assets.xcassets */; };
 		D405059524AC725F00B2E096 /* MobileCoreExampleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D405058C24AC71E100B2E096 /* MobileCoreExampleBundle.bundle */; };
 		D405059624AC726B00B2E096 /* Themes.json in Resources */ = {isa = PBXBuildFile; fileRef = DE680BB01F2E038800A9F68C /* Themes.json */; };
-		D421EAA423428B8100FA0B7C /* ThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EA9F23428B8100FA0B7C /* ThemesTests.swift */; };
 		D421EAA523428B8100FA0B7C /* CustomDataTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAA023428B8100FA0B7C /* CustomDataTypeTests.swift */; };
 		D421EAA623428B8100FA0B7C /* TopViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAA123428B8100FA0B7C /* TopViewControllerTests.swift */; };
 		D421EAA723428B8100FA0B7C /* CoreUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAA223428B8100FA0B7C /* CoreUtilityTests.swift */; };
@@ -30,7 +29,7 @@
 		D42CAD392357199600F162E9 /* BarButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CAD382357199600F162E9 /* BarButtonTests.swift */; };
 		D44ACC7F236C67BF0093BF67 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44ACC7E236C67BF0093BF67 /* ContentViewController.swift */; };
 		D44E56F92341CFAB00A0E56C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44E56F82341CFAB00A0E56C /* UIKit.framework */; };
-		D469D17624AB865500DB360E /* CollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D469D17524AB865500DB360E /* CollectionViewTests.swift */; };
+		D469D17624AB865500DB360E /* CollectionViewThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D469D17524AB865500DB360E /* CollectionViewThemeTests.swift */; };
 		D469D17824AB8F2000DB360E /* CollectionViewControllerProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D469D17724AB8F2000DB360E /* CollectionViewControllerProtocolTests.swift */; };
 		D469D17A24AB936800DB360E /* ViewElementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D469D17924AB936800DB360E /* ViewElementsTests.swift */; };
 		D49FE3182345D45A002B3742 /* SampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE3162345D459002B3742 /* SampleTableViewController.swift */; };
@@ -43,6 +42,7 @@
 		D4E09A3A234A4C1C002729E6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E09A38234A4C1C002729E6 /* Constants.swift */; };
 		D4E09A3F234AFDA8002729E6 /* TableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E09A3E234AFDA8002729E6 /* TableViewControllerTests.swift */; };
 		D4E41883235847700067253D /* AssociatedObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E41882235847700067253D /* AssociatedObjectTests.swift */; };
+		DE4DF44A24B109AE007776DE /* ThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4DF44924B109AE007776DE /* ThemesTests.swift */; };
 		DE9221CD1EF28CDF000C8FC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */; };
 		DE9221D21EF28CDF000C8FC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D01EF28CDF000C8FC7 /* Main.storyboard */; };
 		DE9221D41EF28CDF000C8FC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D31EF28CDF000C8FC7 /* Assets.xcassets */; };
@@ -103,7 +103,6 @@
 		D405057624AC6DFE00B2E096 /* WebViewControllerProtocolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerProtocolTests.swift; sourceTree = "<group>"; };
 		D405058C24AC71E100B2E096 /* MobileCoreExampleBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileCoreExampleBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D405058E24AC71E100B2E096 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D421EA9F23428B8100FA0B7C /* ThemesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemesTests.swift; sourceTree = "<group>"; };
 		D421EAA023428B8100FA0B7C /* CustomDataTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataTypeTests.swift; sourceTree = "<group>"; };
 		D421EAA123428B8100FA0B7C /* TopViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewControllerTests.swift; sourceTree = "<group>"; };
 		D421EAA223428B8100FA0B7C /* CoreUtilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreUtilityTests.swift; sourceTree = "<group>"; };
@@ -116,7 +115,7 @@
 		D44E56F82341CFAB00A0E56C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D44E56FE2341D3B900A0E56C /* MobileCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44E57022341D3B900A0E56C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D469D17524AB865500DB360E /* CollectionViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewTests.swift; sourceTree = "<group>"; };
+		D469D17524AB865500DB360E /* CollectionViewThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewThemeTests.swift; sourceTree = "<group>"; };
 		D469D17724AB8F2000DB360E /* CollectionViewControllerProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewControllerProtocolTests.swift; sourceTree = "<group>"; };
 		D469D17924AB936800DB360E /* ViewElementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewElementsTests.swift; sourceTree = "<group>"; };
 		D47590162317A68A00080D78 /* MobileCore.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = MobileCore.podspec; path = ../MobileCore.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -136,6 +135,7 @@
 		D4E09A3E234AFDA8002729E6 /* TableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerTests.swift; sourceTree = "<group>"; };
 		D4E09A40234B124C002729E6 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		D4E41882235847700067253D /* AssociatedObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssociatedObjectTests.swift; sourceTree = "<group>"; };
+		DE4DF44924B109AE007776DE /* ThemesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemesTests.swift; sourceTree = "<group>"; };
 		DE680BB01F2E038800A9F68C /* Themes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Themes.json; sourceTree = "<group>"; };
 		DE9221C91EF28CDF000C8FC7 /* MobileCoreExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileCoreExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -248,10 +248,7 @@
 		D421EA9E23428B8100FA0B7C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				D42CAD322356E64A00F162E9 /* ClassMethodSwizzlingTests.swift */,
 				D42CAD332356E64A00F162E9 /* DownloadedImageTests.swift */,
-				D469D17524AB865500DB360E /* CollectionViewTests.swift */,
-				D421EA9F23428B8100FA0B7C /* ThemesTests.swift */,
 				D421EAA023428B8100FA0B7C /* CustomDataTypeTests.swift */,
 				D421EAA123428B8100FA0B7C /* TopViewControllerTests.swift */,
 				D421EAA223428B8100FA0B7C /* CoreUtilityTests.swift */,
@@ -267,6 +264,7 @@
 		D44E56FF2341D3B900A0E56C /* MobileCoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				DE4DF44524B10999007776DE /* AppTheming */,
 				D49FE31B2345D4DB002B3742 /* FTMobileCoreUI */,
 				D421EA9D23428B7200FA0B7C /* NetworkLayer */,
 				D421EA9B23428B5E00FA0B7C /* FTCoreUtility */,
@@ -314,7 +312,6 @@
 			children = (
 				D49FE31E2345D4EA002B3742 /* WebkitTests.swift */,
 				D49FE31F2345D4EA002B3742 /* FontPickerViewprotocolTest.swift */,
-				D49FE3202345D4EA002B3742 /* CustomUIElementsTests.swift */,
 				D4E09A3E234AFDA8002729E6 /* TableViewControllerTests.swift */,
 				D42CAD382357199600F162E9 /* BarButtonTests.swift */,
 				D469D17724AB8F2000DB360E /* CollectionViewControllerProtocolTests.swift */,
@@ -339,6 +336,26 @@
 				4AF1BCCF0D6961D63A635953 /* Pods_MobileCoreTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE4DF44524B10999007776DE /* AppTheming */ = {
+			isa = PBXGroup;
+			children = (
+				DE4DF44824B109AE007776DE /* Tests */,
+			);
+			name = AppTheming;
+			sourceTree = "<group>";
+		};
+		DE4DF44824B109AE007776DE /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D469D17524AB865500DB360E /* CollectionViewThemeTests.swift */,
+				D42CAD322356E64A00F162E9 /* ClassMethodSwizzlingTests.swift */,
+				D49FE3202345D4EA002B3742 /* CustomUIElementsTests.swift */,
+				DE4DF44924B109AE007776DE /* ThemesTests.swift */,
+			);
+			name = Tests;
+			path = ../../AppTheming/Tests;
 			sourceTree = "<group>";
 		};
 		DE680BA11F2E02FF00A9F68C /* Resources */ = {
@@ -669,7 +686,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D469D17624AB865500DB360E /* CollectionViewTests.swift in Sources */,
+				DE4DF44A24B109AE007776DE /* ThemesTests.swift in Sources */,
+				D469D17624AB865500DB360E /* CollectionViewThemeTests.swift in Sources */,
 				D421EAA523428B8100FA0B7C /* CustomDataTypeTests.swift in Sources */,
 				D405057824AC6DFF00B2E096 /* UserCacheManagerTests.swift in Sources */,
 				D4E09A3A234A4C1C002729E6 /* Constants.swift in Sources */,
@@ -680,7 +698,6 @@
 				D49FE3242345D4EA002B3742 /* CustomUIElementsTests.swift in Sources */,
 				D405057C24AC6DFF00B2E096 /* WebViewControllerProtocolTests.swift in Sources */,
 				D421EAA723428B8100FA0B7C /* CoreUtilityTests.swift in Sources */,
-				D421EAA423428B8100FA0B7C /* ThemesTests.swift in Sources */,
 				D42CAD352356E64A00F162E9 /* ClassMethodSwizzlingTests.swift in Sources */,
 				D405057924AC6DFF00B2E096 /* MobileCoreTestClass.swift in Sources */,
 				D405057724AC6DFF00B2E096 /* URLSessionManagerTests.swift in Sources */,

@@ -29,7 +29,6 @@ public extension Optional where Wrapped == String {
 }
 
 public extension String {
-    
     var isHTMLString: Bool {
         if self.range(of: "<[^>]+>", options: .regularExpression) != nil {
             return true

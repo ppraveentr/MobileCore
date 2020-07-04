@@ -15,10 +15,6 @@ public extension NSNotification.Name {
     static let kFTAppearanceDidRefreshWindow = NSNotification.Name(rawValue: "kFTAppearanceDidRefreshWindow.Notofication")
 }
 
-public protocol OptionalLayoutSubview {
-    func updateViewLayouts()
-}
-
 public struct ThemeStyle {
     public static let defaultStyle = "default"
     public static let highlightedStyle = "highlighted"
@@ -35,9 +31,16 @@ public struct ThemeStyle {
 }
 
 extension UIView {
-
+    
+    static var hasSwizzled = false
+    
     // Swizzling out view's layoutSubviews property for Updating Visual theme
     private static func swizzleLayoutSubview() {
+        // need to be Swizzled only once.
+        guard !hasSwizzled else {
+            return
+        }
+        hasSwizzled = true
         instanceMethodSwizzling(UIView.self, #selector(layoutSubviews), #selector(swizzledLayoutSubviews))
     }
 
@@ -83,7 +86,7 @@ extension UIView {
             self.updateVisualThemes()
         }
        
-        (self as? OptionalLayoutSubview)?.updateViewLayouts()
+        (self as? OptionalLayoutSubview)?.updateVisualThemes()
 
         if self.viewLayoutConstraint.autoSizing {
             self.resizeToFitSubviews()
@@ -120,9 +123,9 @@ fileprivate extension UIView {
         }
         
         // Step 2. Only needed for UIControl types, Eg. Button
-        guard let controlThemeSelf = self as? ControlThemeProtocol else { return }
+        guard let self = self as? ControlThemeProtocol else { return }
         // Get styles for diffrent states of UIControl
-        if controlThemeSelf.getAllThemeSubType() {
+        if self.getAllThemeSubType() {
             let baseName = themeName.components(separatedBy: ":").first
             var styles: ThemeModel = [:]
             // For each style, get Theme value
@@ -134,7 +137,7 @@ fileprivate extension UIView {
                 }
             }
             // Setup visual component for each style
-            controlThemeSelf.setThemes(styles)
+            self.setThemes(styles)
         }
     }
     
@@ -183,10 +186,10 @@ fileprivate extension UIView {
         // Set theme for view
         self.swizzledUpdateTheme(theme)
         // Only needed for UIControl types, Eg. Button
-        guard let controlThemeSelf = self as? ControlThemeProtocol else { return }
+        guard let self = self as? ControlThemeProtocol else { return }
         // Get all subTheme for all stats of the control
-        let themeDic = [controlThemeSelf.getThemeSubType() ?? ThemeStyle.defaultStyle: theme]
-        controlThemeSelf.setThemes(themeDic)
+        let themeDic = [self.getThemeSubType() ?? ThemeStyle.defaultStyle: theme]
+        self.setThemes(themeDic)
     }
 }
 
@@ -209,8 +212,8 @@ extension UIView {
             ThemesManager.getBackgroundLayer(layerValue, toLayer: self.layer)
         }
         // Only needed for UIView types that has extended from FTThemeProtocol
-        guard let controlThemeSelf = self as? ThemeProtocol else { return }
-        controlThemeSelf.updateTheme(theme)
+        guard let self = self as? ThemeProtocol else { return }
+        self.updateTheme(theme)
     }
     
     // views background color

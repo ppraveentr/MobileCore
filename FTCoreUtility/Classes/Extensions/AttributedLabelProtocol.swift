@@ -9,6 +9,11 @@ import Foundation
 
 public typealias LabelLinkHandler = (LinkHandlerModel) -> Void
 
+// For Visual update of 'Theme' & 'attributedText'
+public protocol OptionalLayoutSubview {
+    func updateVisualThemes()
+}
+
 protocol AttributedLabelProtocol where Self: UILabel {
     var dispatchQueue: DispatchQueue { get }
     // Link handler
@@ -34,8 +39,7 @@ private extension AssociatedKey {
     static var tapGestureRecognizer = "tapGestureRecognizer"
 }
 
-extension UILabel: AttributedLabelProtocol, LabelThemeProperyProtocol {
-    
+extension UILabel: AttributedLabelProtocol {
     public var dispatchQueue: DispatchQueue {
         AssociatedObject.getAssociated(self, key: &AssociatedKey.dispatchQueue) { DispatchQueue(label: "UILabel.dispatchQueue") }!
     }
@@ -49,7 +53,7 @@ extension UILabel: AttributedLabelProtocol, LabelThemeProperyProtocol {
         }
     }
     
-    // FTUILabelThemeProperyProtocol
+    // LabelThemeProperyProtocol
     public var islinkDetectionEnabled: Bool {
         get {
             AssociatedObject.getAssociated(self, key: &AssociatedKey.islinkDetectionEnabled) { true }!
@@ -118,17 +122,12 @@ extension UILabel: AttributedLabelProtocol, LabelThemeProperyProtocol {
 }
 
 extension UILabel: OptionalLayoutSubview {
-    
     public func updateVisualThemes() {
         if islinkDetectionEnabled, self.text.isHTMLString, let newValue = self.text {
             self.text = newValue.stripHTML()
             self.numberOfLines = 0
             updateWithHtmlString(text: newValue)
         }
-    }
-    
-    public func updateViewLayouts() {
-        updateVisualThemes()
     }
     
     private static func tapGesture(targer: AnyObject?) -> UITapGestureRecognizer {
@@ -177,7 +176,6 @@ extension UILabel: OptionalLayoutSubview {
 }
 
 extension UILabel {
-    
     // MARK: Text Formatting
     func updateWithHtmlString(text: String?) {
         dispatchQueue.async(qos: DispatchQoS.userInteractive, flags: .enforceQoS) {

@@ -61,7 +61,6 @@ private extension CollectionViewControllerProtocol {
         // Create tableView based on user provided style
         let local = UICollectionViewController(collectionViewLayout: flowLayout)
         local.collectionView.removeSubviews()
-        local.collectionView.theme = ThemeStyle.defaultStyle
         
         // had to set by initialzing controller
         local.collectionView.dataSource = nil

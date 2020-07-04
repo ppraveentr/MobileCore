@@ -1,6 +1,6 @@
 //
-//  CollectionViewTests.swift
-//  MobileCoreTests
+//  CollectionViewThemeTests.swift
+//  AppThemingTests
 //
 //  Created by Praveen P on 30/06/20.
 //  Copyright © 2020 Praveen Prabhakar. All rights reserved.
@@ -10,7 +10,7 @@
 import UIKit
 import XCTest
 
-final class CollectionViewTests: XCTestCase {
+final class CollectionViewThemeTests: XCTestCase {
     
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     

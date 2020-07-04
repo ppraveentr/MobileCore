@@ -14,7 +14,7 @@ public typealias NotificationName = Notification.Name
 
 // Notification Constant
 public extension NotificationName {
-    static let kClearSessionCache = Notification.Name("com.ftmobilecore.notification.name.clearSession.Application")
+    static let kClearSessionCache = Notification.Name("com.ftmobilecore.clearSessionCache")
 
     func post(_ object: Any? = nil) {
         NotificationCenter.default.post(name: self, object: object)

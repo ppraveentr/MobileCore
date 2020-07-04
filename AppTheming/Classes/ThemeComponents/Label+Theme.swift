@@ -14,20 +14,20 @@ public protocol LabelThemeProperyProtocol: ThemeProtocol {
     var isLinkUnderLineEnabled: Bool { get set }
 }
 
-public extension LabelThemeProperyProtocol where Self: UILabel {
+extension UILabel: ThemeProtocol {
     // If view is disabled, check for ".disabledStyle" style
-    func getThemeSubType() -> String? {
+    public func getThemeSubType() -> String? {
         self.isEnabled ? nil : ThemeStyle.disabledStyle
     }
     
     // Force update theme attibute
-    func updateTheme(_ theme: ThemeModel) {
+    public func updateTheme(_ theme: ThemeModel) {
         for (kind, value) in theme {
             switch kind {
             case "isLinkUnderlineEnabled":
-                self.isLinkUnderLineEnabled = value as? Bool ?? false
+                (self as? LabelThemeProperyProtocol)?.isLinkUnderLineEnabled = value as? Bool ?? false
             case "isLinkDetectionEnabled":
-                self.islinkDetectionEnabled = value as? Bool ?? false
+                (self as? LabelThemeProperyProtocol)?.islinkDetectionEnabled = value as? Bool ?? false
             case "textfont":
                 if let font = getFont(value as? String) {
                     self.font = font

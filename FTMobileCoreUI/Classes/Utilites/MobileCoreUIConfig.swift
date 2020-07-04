@@ -14,10 +14,6 @@ public class MobileCoreUIConfig {
     public static func setupMobileCoreUI(_ notificationType: ViewNotificationType = .all) {
         Reflection.registerModuleIdentifier(FontPickerView.self)
         
-        MobileCoreUIConfig.registerUINotifications(notificationType)
-    }
-    
-    public static func registerUINotifications(_ notificationType: ViewNotificationType = .all) {
-        UIViewController.swizzleViewController(notificationType)
+        CoreUtilityConfig.registerUINotifications(notificationType)
     }
 }

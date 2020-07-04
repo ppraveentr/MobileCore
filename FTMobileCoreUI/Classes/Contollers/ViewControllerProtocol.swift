@@ -34,7 +34,6 @@ public protocol ViewControllerProtocol where Self: UIViewController {
 
 private extension AssociatedKey {
     static var baseView = "baseView"
-    static var baseViewTheme = "baseViewTheme"
     static var screenIdentifier = "screenIdentifier"
     static var modelStack = "modelStack"
     static var completionBlock = "completionBlock"
@@ -49,16 +48,6 @@ extension UIViewController: ViewControllerProtocol {
         }
         set {
             AssociatedObject<FTView>.setAssociated(self, value: newValue, key: &AssociatedKey.baseView)
-        }
-    }
-    
-    @IBInspectable
-    public var baseViewTheme: String {
-        get {
-            AssociatedObject.getAssociated(self, key: &AssociatedKey.baseViewTheme) ?? ThemeStyle.defaultStyle
-        }
-        set {
-            AssociatedObject<String>.setAssociated(self, value: newValue, key: &AssociatedKey.baseViewTheme)
         }
     }
     
@@ -133,8 +122,6 @@ extension UIViewController: ViewControllerProtocol {
         }
         
         self.view = self.baseView
-        // Set defalut theme
-        self.baseView?.theme = baseViewTheme
         // Setup baseView's topLayoutGuide & bottomLayoutGuide
         setupLayoutGuide()
         // To Dismiss keyboard on tap in view
