@@ -10,9 +10,11 @@
 import UIKit
 import XCTest
 
-private final class MockDefaultCollectionViewContoller: UIViewController, FTCollectionViewControllerProtocol { }
+private final class MockDefaultCollectionViewContoller: UIViewController, CollectionViewControllerProtocol {
+    // Optional Protocol implementation: intentionally empty
+}
 
-private final class MockCollectionViewContoller: UIViewController, FTCollectionViewControllerProtocol {
+private final class MockCollectionViewContoller: UIViewController, CollectionViewControllerProtocol {
     let mocklayout = UICollectionViewLayout()
     let mockestimatedItemSize = CGSize(width: 20.0, height: 20.0)
     let mocksectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)

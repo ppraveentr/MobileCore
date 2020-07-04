@@ -4,7 +4,8 @@
       "id" : "ABF538CD-009A-439B-8880-4A718C3EA08E",
       "name" : "MobileCoreTests",
       "options" : {
-
+        "areLocalizationScreenshotsEnabled" : true,
+        "testTimeoutsEnabled" : true
       }
     }
   ],

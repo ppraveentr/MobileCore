@@ -8,4 +8,4 @@
 
 import Foundation
 
-var kFTMobileCoreBundle = "MobileCoreExampleBundle".bundle()
+var kMobileCoreBundle = "MobileCoreExampleBundle".bundle()

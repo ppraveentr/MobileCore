@@ -1,6 +1,6 @@
 //
 //  UIView+Extension.swift
-//  FTMobileCoreUI
+//  CoreUIExtensions
 //
 //  Created by Praveen Prabhakar on 10/07/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
@@ -9,12 +9,12 @@
 import Foundation
 
 // Screen width.
-public var FTScreenWidth: CGFloat {
+public var screenWidth: CGFloat {
     UIScreen.main.bounds.width
 }
 
 // Screen height.
-public var FTScreenHeight: CGFloat {
+public var screenHeight: CGFloat {
     UIScreen.main.bounds.height
 }
 
@@ -68,7 +68,7 @@ public extension UIView {
     static func embedView(contentView: UIView) -> UIView {
         let local = self.init()
         local.backgroundColor = .clear
-        local.pin(view: contentView, edgeInsets: [.all], priority: kFTLayoutPriorityRequiredLow)
+        local.pin(view: contentView, edgeInsets: [.all], priority: kLayoutPriorityRequiredLow)
         local.pin(view: contentView, edgeInsets: [.centerMargin], priority: .defaultLow)
         local.pin(view: contentView, edgeInsets: [.equalWidth, .top])
         return local

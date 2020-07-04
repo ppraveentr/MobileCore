@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ContentViewController: UIViewController, FTContentViewControllerProtocol {
+final class ContentViewController: UIViewController, WebViewControllerProtocol {
     
     let value = """
         <p>1) Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>

@@ -1,6 +1,6 @@
 //
 //  UIView+Utiltiy.swift
-//  FTCoreUtility
+//  MobileCoreUtility
 //
 //  Created by Praveen Prabhakar on 20/10/18.
 //  Copyright © 2018 Praveen Prabhakar. All rights reserved.

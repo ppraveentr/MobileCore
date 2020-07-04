@@ -7,12 +7,12 @@
 //
 
 @UIApplicationMain
-public class AppDelegate: FTAppDelegate {
+public class AppDelegate: MobileCore.AppDelegate {
 
     override public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        if let theme = kFTMobileCoreBundle?.path(forResource: "Themes", ofType: "json") {
-            FTThemesManager.setupThemes(themePath: theme, imageSourceBundle: [Bundle(for: AppDelegate.self)])
+        if let theme = kMobileCoreBundle?.path(forResource: "Themes", ofType: "json") {
+            ThemesManager.setupThemes(themePath: theme, imageSourceBundle: [Bundle(for: AppDelegate.self)])
         }
                 
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)

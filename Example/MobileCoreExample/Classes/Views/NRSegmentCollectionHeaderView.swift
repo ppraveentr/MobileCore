@@ -33,11 +33,11 @@ class FTSegmentCollectionHeaderView: UIView {
             ftLog(segment)
         }
 
-        self.theme = FTThemeStyle.defaultStyle
-        segmentedControl?.theme = FTThemeStyle.defaultStyle
+        self.theme = ThemeStyle.defaultStyle
+        segmentedControl?.theme = ThemeStyle.defaultStyle
 
         if let segment = segmentedControl {
-            self.pin(view: segment, edgeOffsets: FTEdgeOffsets(10))
+            self.pin(view: segment, edgeOffsets: UIEdgeInsets(10))
         }
     }
 }

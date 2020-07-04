@@ -1,6 +1,6 @@
 //
-//  WKWebView.swift
-//  FTMobileCoreUI
+//  SegmentedControl+Extension.swift
+//  CoreUIExtensions
 //
 //  Created by Praveen Prabhakar on 13/07/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
@@ -85,18 +85,18 @@ extension WKWebView {
     }
 }
 
-private extension FTAssociatedKey {
+private extension AssociatedKey {
     static var fontPickerVC = "fontPickerVC"
 }
 
-extension WKWebView: FTFontPickerViewprotocol {
+extension WKWebView: FontPickerViewprotocol {
     
-    public var fontPickerViewController: FTFontPickerViewController {
+    public var fontPickerViewController: FontPickerViewController {
         get {
-            FTAssociatedObject.getAssociated(self, key: &FTAssociatedKey.fontPickerVC) { self.getFontPickerController() }!
+            AssociatedObject.getAssociated(self, key: &AssociatedKey.fontPickerVC) { self.getFontPickerController() }!
         }
         set {
-            FTAssociatedObject<FTFontPickerViewController>.setAssociated(self, value: newValue, key: &FTAssociatedKey.fontPickerVC)
+            AssociatedObject<FontPickerViewController>.setAssociated(self, value: newValue, key: &AssociatedKey.fontPickerVC)
         }
     }
     
@@ -115,8 +115,8 @@ extension WKWebView: FTFontPickerViewprotocol {
 
 public extension WKWebView {
     
-    private func getFontPickerController() -> FTFontPickerViewController {
-        let popoverContent = FTFontPickerViewController()
+    private func getFontPickerController() -> FontPickerViewController {
+        let popoverContent = FontPickerViewController()
         popoverContent.fontPickerViewDelegate = self
         return popoverContent
     }

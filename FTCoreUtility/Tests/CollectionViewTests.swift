@@ -17,10 +17,10 @@ final class CollectionViewTests: XCTestCase {
     override func setUp() {
         super.setUp()
         if
-            let theme = kFTMobileCoreBundle?.path(forResource: "Themes", ofType: "json"),
-            let themeContent: FTThemeModel = try? theme.jsonContentAtPath()
+            let theme = kMobileCoreBundle?.path(forResource: "Themes", ofType: "json"),
+            let themeContent: ThemeModel = try? theme.jsonContentAtPath()
         {
-            FTThemesManager.setupThemes(themes: themeContent)
+            ThemesManager.setupThemes(themes: themeContent)
         }
         else {
             XCTFail()
@@ -30,7 +30,7 @@ final class CollectionViewTests: XCTestCase {
     func testCollectionViewBackgroundViewTheme() {
         // let
         let tempView = FTView(frame: .zero)
-        let value = FTThemesManager.getColor("red")
+        let value = ThemesManager.getColor("red")
         // when
         collectionView.backgroundView = tempView
         collectionView.theme = "collectionRed"
@@ -43,13 +43,13 @@ final class CollectionViewTests: XCTestCase {
     func testCollectionViewTheme() {
         // let
         let tempView = FTView(frame: .zero)
-        let value = FTThemesManager.getColor("white")
+        let value = ThemesManager.getColor("white")
         // when
         collectionView.backgroundView = tempView
-        collectionView.theme = FTThemeStyle.defaultStyle
+        collectionView.theme = ThemeStyle.defaultStyle
         // then
         XCTAssertNotNil(value)
-        XCTAssertEqual(tempView.theme, FTThemeStyle.defaultStyle)
+        XCTAssertEqual(tempView.theme, ThemeStyle.defaultStyle)
         XCTAssertEqual(tempView.backgroundColor, value)
     }
 }

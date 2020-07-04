@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SampleTableViewController: UIViewController, FTTableViewControllerProtocol {
+class SampleTableViewController: UIViewController, TableViewControllerProtocol {
     
     @IBOutlet var footerView: UIView!
     

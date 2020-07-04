@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
   s.subspec 'CoreUtility' do |utility|
     utility.source_files  = 'FTCoreUtility/Classes/**/*.{h,m,swift}'
     utility.header_dir    = "CoreUtility"
+    utility.dependency  'SwiftKeychainWrapper'
   end
 
   s.subspec 'NetworkLayer' do |network|

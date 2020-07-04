@@ -9,12 +9,12 @@
 @testable import MobileCore
 import XCTest
 
+fileprivate final class MockCollectionViewController: UIViewController, CollectionViewControllerProtocol {
+}
+
 final class CollectionViewProtocolTests: XCTestCase {
     
-    final class CollectionViewController: UIViewController, FTCollectionViewControllerProtocol {
-    }
-
-    let collectionVC = CollectionViewController()
+    private let collectionVC = MockCollectionViewController()
     
     func testCollectionViewDefaults() {
         XCTAssertNotNil(collectionVC)

@@ -53,8 +53,10 @@ extension ViewController {
         button.theme = "button14R"
         button.setTitle("Tap me", for: .normal)
         
-        //        button.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 10, 5)
-        //        button.setImage(UIImage(named: "Pp"), for: .normal)
+        // Button Ation, with alertView
+        button.addTapActionBlock { [weak self] in
+            self?.showAlert(title: "Button Tapped", message: "")
+        }
         
         let buttonD = UIButton()
         buttonD.theme = "button14R"
@@ -67,8 +69,8 @@ extension ViewController {
         buttonPopOver.addTarget(self, action: #selector(showFontPicker), for: .touchUpInside)
         
         let topView = UIView()
-        topView.pin(view: button, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .left, .vertical ])
-        topView.pin(view: buttonPopOver, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .right ])
+        topView.pin(view: button, edgeOffsets: UIEdgeInsets(20), edgeInsets: [ .left, .vertical ])
+        topView.pin(view: buttonPopOver, edgeOffsets: UIEdgeInsets(20), edgeInsets: [ .right ])
         topView.stackView(
             views: [button, buttonD, buttonPopOver],
             layoutDirection: .leftToRight,
@@ -90,30 +92,26 @@ extension ViewController {
             print("Detect Link: ", link.linkURL)
         }
         
-        button.addTapActionBlock { [weak self] in
-            label.text = self?.buttonText
-        }
-        
         let labelM = UILabel()
-        labelM.text = "Middledasd s asd "
+        labelM.text = "Middle Label"
         labelM.theme = "system14R"
         
         let labelM1 = UILabel()
-        labelM1.text = "Middle1 ad dfadf af ad"
+        labelM1.text = "Label with Large text"
         labelM1.theme = "system14B"
         
         let labelM2 = UILabel()
-        labelM2.text = "Middle2 ad"
+        labelM2.text = "Label with Extra Extra Extra Large text"
         labelM2.theme = "system14AA"
         
         let bottomL = UILabel()
-        bottomL.text = "bottom"
+        bottomL.text = "last Label"
         bottomL.theme = "system14Y"
         
         // [ .Top, .Horizontal ]
-        scrollView.contentView.pin(view: label, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .left, .vertical ])
+        scrollView.contentView.pin(view: label, edgeOffsets: UIEdgeInsets(20), edgeInsets: [ .left, .vertical ])
         // [ .Bottom ]
-        scrollView.contentView.pin(view: bottomL, edgeOffsets: FTEdgeOffsets(20), edgeInsets: [ .right ])
+        scrollView.contentView.pin(view: bottomL, edgeOffsets: UIEdgeInsets(20), edgeInsets: [ .right ])
         
         // layoutDirection: .TopToBottom, edgeInsets: [.EqualSize, .LeadingMargin]
         scrollView.contentView.stackView(
@@ -122,9 +120,5 @@ extension ViewController {
             spacing: 20,
             edgeInsets: [.autoSize, .topMargin]
         )
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            bottomL.text = self.buttonText
-        }
     }
 }
