@@ -11,7 +11,7 @@ import XCTest
 
 final class BarButtonTests: XCTestCase {
     
-    private lazy var image = UIImage(named: "upArrow")
+    private lazy var image = UIImage(named: "Pixel")
     private let action = #selector(buttonTap)
     private lazy var promise = expectation(description: "Button tapped.")
 

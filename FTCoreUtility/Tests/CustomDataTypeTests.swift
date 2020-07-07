@@ -1,6 +1,6 @@
 //
 //  CustomDataTypeTests.swift
-//  MobileCoreTests
+//  CoreUtilityTests
 //
 //  Created by Praveen P on 07/09/19.
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.
@@ -19,8 +19,10 @@ final class CustomDataTypeTests: XCTestCase {
     func testNilorEmpty() {
         var string: String?
         XCTAssertTrue(string.isNilOrEmpty)
+        XCTAssertFalse("test".isHTMLString)
         string = "random"
         XCTAssertFalse(string.isNilOrEmpty)
+        XCTAssertFalse(string.isHTMLString)
     }
     
     func testHTMLString() {

@@ -10,6 +10,7 @@
 import XCTest
 
 fileprivate final class MockCollectionViewController: UIViewController, CollectionViewControllerProtocol {
+    // Mock: object implementation for testing
 }
 
 final class CollectionViewProtocolTests: XCTestCase {

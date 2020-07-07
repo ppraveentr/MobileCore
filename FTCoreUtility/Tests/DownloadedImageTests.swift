@@ -1,6 +1,6 @@
 //
 //  DownloadedImageTests.swift
-//  MobileCoreTests
+//  CoreUtilityTests
 //
 //  Created by Praveen P on 12/10/19.
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.
@@ -11,7 +11,7 @@ import XCTest
 
 final class DownloadedImageTests: XCTestCase {
     
-    private lazy var imagePath = kMobileCoreBundle?.path(forResource: "upArrow", ofType: "png")
+    private lazy var imagePath = kMobileCoreBundle?.path(forResource: "Pixel", ofType: "png")
     private lazy var imageURLPath = URL(fileURLWithPath: imagePath!).absoluteString
     
     func testUIImageView() {

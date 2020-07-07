@@ -23,7 +23,7 @@
 		D421EAA623428B8100FA0B7C /* TopViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAA123428B8100FA0B7C /* TopViewControllerTests.swift */; };
 		D421EAA723428B8100FA0B7C /* CoreUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAA223428B8100FA0B7C /* CoreUtilityTests.swift */; };
 		D421EAA823428B8100FA0B7C /* ActionBlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421EAA323428B8100FA0B7C /* ActionBlockTests.swift */; };
-		D428B74323616DDD00A5D96B /* NRSegmentCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D428B74223616DDD00A5D96B /* NRSegmentCollectionHeaderView.swift */; };
+		D428B74323616DDD00A5D96B /* SegmentCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D428B74223616DDD00A5D96B /* SegmentCollectionView.swift */; };
 		D42CAD352356E64A00F162E9 /* ClassMethodSwizzlingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CAD322356E64A00F162E9 /* ClassMethodSwizzlingTests.swift */; };
 		D42CAD362356E64A00F162E9 /* DownloadedImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CAD332356E64A00F162E9 /* DownloadedImageTests.swift */; };
 		D42CAD392357199600F162E9 /* BarButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CAD382357199600F162E9 /* BarButtonTests.swift */; };
@@ -35,20 +35,27 @@
 		D49FE3182345D45A002B3742 /* SampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE3162345D459002B3742 /* SampleTableViewController.swift */; };
 		D49FE3192345D45A002B3742 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE3172345D459002B3742 /* ViewController.swift */; };
 		D49FE3222345D4EA002B3742 /* WebkitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE31E2345D4EA002B3742 /* WebkitTests.swift */; };
-		D49FE3232345D4EA002B3742 /* FontPickerViewprotocolTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE31F2345D4EA002B3742 /* FontPickerViewprotocolTest.swift */; };
+		D49FE3232345D4EA002B3742 /* FontPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE31F2345D4EA002B3742 /* FontPickerTests.swift */; };
 		D49FE3242345D4EA002B3742 /* CustomUIElementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE3202345D4EA002B3742 /* CustomUIElementsTests.swift */; };
 		D4E09A24234A45AC002729E6 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E09A23234A45AC002729E6 /* StringExtensionTests.swift */; };
 		D4E09A39234A4C1C002729E6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E09A38234A4C1C002729E6 /* Constants.swift */; };
 		D4E09A3A234A4C1C002729E6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E09A38234A4C1C002729E6 /* Constants.swift */; };
-		D4E09A3F234AFDA8002729E6 /* TableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E09A3E234AFDA8002729E6 /* TableViewControllerTests.swift */; };
+		D4E09A3F234AFDA8002729E6 /* TableViewControllerProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E09A3E234AFDA8002729E6 /* TableViewControllerProtocolTests.swift */; };
 		D4E41883235847700067253D /* AssociatedObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E41882235847700067253D /* AssociatedObjectTests.swift */; };
+		DE0EA7F224B9C712007EA5FE /* ScrollViewControllerProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0EA7F124B9C712007EA5FE /* ScrollViewControllerProtocolTests.swift */; };
+		DE0EA7F424BB13F1007EA5FE /* ViewControllerProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0EA7F324BB13F1007EA5FE /* ViewControllerProtocolTests.swift */; };
+		DE0EA7F624BB2508007EA5FE /* SegmentedControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0EA7F524BB2508007EA5FE /* SegmentedControlTests.swift */; };
+		DE0EA7F824BB353F007EA5FE /* LoadingIndicatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0EA7F724BB353F007EA5FE /* LoadingIndicatorTests.swift */; };
+		DE49FF7824B5C09C00222C2A /* Pixel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE49FF7724B5C09C00222C2A /* Pixel.png */; };
+		DE49FF7C24B5C98300222C2A /* Pixel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE49FF7724B5C09C00222C2A /* Pixel.png */; };
 		DE4DF44A24B109AE007776DE /* ThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4DF44924B109AE007776DE /* ThemesTests.swift */; };
+		DE51A04524B1C4B80011632B /* ConfigurableCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE51A04424B1C4B80011632B /* ConfigurableCellTests.swift */; };
+		DE51A04824B1C58E0011632B /* MockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE51A04724B1C58E0011632B /* MockTableViewCell.swift */; };
+		DE51A04C24B1C6850011632B /* MockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE51A04B24B1C6850011632B /* MockTableViewCell.xib */; };
 		DE9221CD1EF28CDF000C8FC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */; };
 		DE9221D21EF28CDF000C8FC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D01EF28CDF000C8FC7 /* Main.storyboard */; };
 		DE9221D41EF28CDF000C8FC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D31EF28CDF000C8FC7 /* Assets.xcassets */; };
 		DE9221D71EF28CDF000C8FC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9221D51EF28CDF000C8FC7 /* LaunchScreen.storyboard */; };
-		DEA2168F24AE3F3B00ADEEAF /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA2168E24AE3F3B00ADEEAF /* upArrow.png */; };
-		DEA2169024AE3F3B00ADEEAF /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA2168E24AE3F3B00ADEEAF /* upArrow.png */; };
 		DEBDC8941EF4508900AC77A9 /* MobileCoreExample-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = DEBDC8931EF4508900AC77A9 /* MobileCoreExample-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD9D062609339ED0D41D7147 /* Pods_MobileCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF1BCCF0D6961D63A635953 /* Pods_MobileCoreTests.framework */; };
 /* End PBXBuildFile section */
@@ -107,7 +114,7 @@
 		D421EAA123428B8100FA0B7C /* TopViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewControllerTests.swift; sourceTree = "<group>"; };
 		D421EAA223428B8100FA0B7C /* CoreUtilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreUtilityTests.swift; sourceTree = "<group>"; };
 		D421EAA323428B8100FA0B7C /* ActionBlockTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionBlockTests.swift; sourceTree = "<group>"; };
-		D428B74223616DDD00A5D96B /* NRSegmentCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NRSegmentCollectionHeaderView.swift; sourceTree = "<group>"; };
+		D428B74223616DDD00A5D96B /* SegmentCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentCollectionView.swift; sourceTree = "<group>"; };
 		D42CAD322356E64A00F162E9 /* ClassMethodSwizzlingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassMethodSwizzlingTests.swift; sourceTree = "<group>"; };
 		D42CAD332356E64A00F162E9 /* DownloadedImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadedImageTests.swift; sourceTree = "<group>"; };
 		D42CAD382357199600F162E9 /* BarButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarButtonTests.swift; sourceTree = "<group>"; };
@@ -128,14 +135,22 @@
 		D49FE3162345D459002B3742 /* SampleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleTableViewController.swift; sourceTree = "<group>"; };
 		D49FE3172345D459002B3742 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D49FE31E2345D4EA002B3742 /* WebkitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebkitTests.swift; sourceTree = "<group>"; };
-		D49FE31F2345D4EA002B3742 /* FontPickerViewprotocolTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontPickerViewprotocolTest.swift; sourceTree = "<group>"; };
+		D49FE31F2345D4EA002B3742 /* FontPickerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontPickerTests.swift; sourceTree = "<group>"; };
 		D49FE3202345D4EA002B3742 /* CustomUIElementsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIElementsTests.swift; sourceTree = "<group>"; };
 		D4E09A23234A45AC002729E6 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		D4E09A38234A4C1C002729E6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		D4E09A3E234AFDA8002729E6 /* TableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerTests.swift; sourceTree = "<group>"; };
+		D4E09A3E234AFDA8002729E6 /* TableViewControllerProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerProtocolTests.swift; sourceTree = "<group>"; };
 		D4E09A40234B124C002729E6 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		D4E41882235847700067253D /* AssociatedObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssociatedObjectTests.swift; sourceTree = "<group>"; };
+		DE0EA7F124B9C712007EA5FE /* ScrollViewControllerProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewControllerProtocolTests.swift; sourceTree = "<group>"; };
+		DE0EA7F324BB13F1007EA5FE /* ViewControllerProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerProtocolTests.swift; sourceTree = "<group>"; };
+		DE0EA7F524BB2508007EA5FE /* SegmentedControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlTests.swift; sourceTree = "<group>"; };
+		DE0EA7F724BB353F007EA5FE /* LoadingIndicatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorTests.swift; sourceTree = "<group>"; };
+		DE49FF7724B5C09C00222C2A /* Pixel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pixel.png; sourceTree = "<group>"; };
 		DE4DF44924B109AE007776DE /* ThemesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemesTests.swift; sourceTree = "<group>"; };
+		DE51A04424B1C4B80011632B /* ConfigurableCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableCellTests.swift; sourceTree = "<group>"; };
+		DE51A04724B1C58E0011632B /* MockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTableViewCell.swift; sourceTree = "<group>"; };
+		DE51A04B24B1C6850011632B /* MockTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MockTableViewCell.xib; sourceTree = "<group>"; };
 		DE680BB01F2E038800A9F68C /* Themes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Themes.json; sourceTree = "<group>"; };
 		DE9221C91EF28CDF000C8FC7 /* MobileCoreExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileCoreExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9221CC1EF28CDF000C8FC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -143,7 +158,6 @@
 		DE9221D31EF28CDF000C8FC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE9221D61EF28CDF000C8FC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE9221D81EF28CDF000C8FC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DEA2168E24AE3F3B00ADEEAF /* upArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upArrow.png; path = MobileCoreExample/Assets.xcassets/upArrow.imageset/upArrow.png; sourceTree = SOURCE_ROOT; };
 		DEBDC8931EF4508900AC77A9 /* MobileCoreExample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MobileCoreExample-Bridging-Header.h"; sourceTree = "<group>"; };
 		DEBDC8A21EF4520100AC77A9 /* MobileCoreExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobileCoreExample.entitlements; sourceTree = "<group>"; };
 		E0A48DC6168B78279AEAD495 /* Pods-MobileCoreExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileCoreExample.debug.xcconfig"; path = "Target Support Files/Pods-MobileCoreExample/Pods-MobileCoreExample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -212,6 +226,7 @@
 		D405058D24AC71E100B2E096 /* MobileCoreExampleBundle */ = {
 			isa = PBXGroup;
 			children = (
+				DE49FF7724B5C09C00222C2A /* Pixel.png */,
 				D405058E24AC71E100B2E096 /* Info.plist */,
 			);
 			path = MobileCoreExampleBundle;
@@ -229,12 +244,12 @@
 			name = "Support Files";
 			sourceTree = "<group>";
 		};
-		D421EA9B23428B5E00FA0B7C /* FTCoreUtility */ = {
+		D421EA9B23428B5E00FA0B7C /* CoreUtility */ = {
 			isa = PBXGroup;
 			children = (
 				D421EA9E23428B8100FA0B7C /* Tests */,
 			);
-			name = FTCoreUtility;
+			name = CoreUtility;
 			sourceTree = "<group>";
 		};
 		D421EA9D23428B7200FA0B7C /* NetworkLayer */ = {
@@ -248,6 +263,7 @@
 		D421EA9E23428B8100FA0B7C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				DE51A04624B1C56C0011632B /* MockClasses */,
 				D42CAD332356E64A00F162E9 /* DownloadedImageTests.swift */,
 				D421EAA023428B8100FA0B7C /* CustomDataTypeTests.swift */,
 				D421EAA123428B8100FA0B7C /* TopViewControllerTests.swift */,
@@ -256,6 +272,7 @@
 				D4E09A23234A45AC002729E6 /* StringExtensionTests.swift */,
 				D4E41882235847700067253D /* AssociatedObjectTests.swift */,
 				D469D17924AB936800DB360E /* ViewElementsTests.swift */,
+				DE51A04424B1C4B80011632B /* ConfigurableCellTests.swift */,
 			);
 			name = Tests;
 			path = ../../FTCoreUtility/Tests;
@@ -265,9 +282,9 @@
 			isa = PBXGroup;
 			children = (
 				DE4DF44524B10999007776DE /* AppTheming */,
-				D49FE31B2345D4DB002B3742 /* FTMobileCoreUI */,
+				D49FE31B2345D4DB002B3742 /* CoreUI */,
 				D421EA9D23428B7200FA0B7C /* NetworkLayer */,
-				D421EA9B23428B5E00FA0B7C /* FTCoreUtility */,
+				D421EA9B23428B5E00FA0B7C /* CoreUtility */,
 				D44E57022341D3B900A0E56C /* Info.plist */,
 			);
 			path = MobileCoreTests;
@@ -299,22 +316,26 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		D49FE31B2345D4DB002B3742 /* FTMobileCoreUI */ = {
+		D49FE31B2345D4DB002B3742 /* CoreUI */ = {
 			isa = PBXGroup;
 			children = (
 				D49FE31C2345D4EA002B3742 /* Tests */,
 			);
-			name = FTMobileCoreUI;
+			name = CoreUI;
 			sourceTree = "<group>";
 		};
 		D49FE31C2345D4EA002B3742 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				D49FE31E2345D4EA002B3742 /* WebkitTests.swift */,
-				D49FE31F2345D4EA002B3742 /* FontPickerViewprotocolTest.swift */,
-				D4E09A3E234AFDA8002729E6 /* TableViewControllerTests.swift */,
+				D49FE31F2345D4EA002B3742 /* FontPickerTests.swift */,
+				D4E09A3E234AFDA8002729E6 /* TableViewControllerProtocolTests.swift */,
 				D42CAD382357199600F162E9 /* BarButtonTests.swift */,
 				D469D17724AB8F2000DB360E /* CollectionViewControllerProtocolTests.swift */,
+				DE0EA7F124B9C712007EA5FE /* ScrollViewControllerProtocolTests.swift */,
+				DE0EA7F324BB13F1007EA5FE /* ViewControllerProtocolTests.swift */,
+				DE0EA7F524BB2508007EA5FE /* SegmentedControlTests.swift */,
+				DE0EA7F724BB353F007EA5FE /* LoadingIndicatorTests.swift */,
 			);
 			name = Tests;
 			path = ../../FTMobileCoreUI/Tests;
@@ -323,7 +344,7 @@
 		D4E20D78235AD85000E4731A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D428B74223616DDD00A5D96B /* NRSegmentCollectionHeaderView.swift */,
+				D428B74223616DDD00A5D96B /* SegmentCollectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -358,10 +379,18 @@
 			path = ../../AppTheming/Tests;
 			sourceTree = "<group>";
 		};
+		DE51A04624B1C56C0011632B /* MockClasses */ = {
+			isa = PBXGroup;
+			children = (
+				DE51A04724B1C58E0011632B /* MockTableViewCell.swift */,
+				DE51A04B24B1C6850011632B /* MockTableViewCell.xib */,
+			);
+			path = MockClasses;
+			sourceTree = "<group>";
+		};
 		DE680BA11F2E02FF00A9F68C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DEA2168E24AE3F3B00ADEEAF /* upArrow.png */,
 				DE680BB01F2E038800A9F68C /* Themes.json */,
 				D4E09A38234A4C1C002729E6 /* Constants.swift */,
 			);
@@ -540,8 +569,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE49FF7C24B5C98300222C2A /* Pixel.png in Resources */,
 				D405059424AC723800B2E096 /* Assets.xcassets in Resources */,
-				DEA2169024AE3F3B00ADEEAF /* upArrow.png in Resources */,
 				D405059324AC723200B2E096 /* Themes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +579,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE51A04C24B1C6850011632B /* MockTableViewCell.xib in Resources */,
 				D405059624AC726B00B2E096 /* Themes.json in Resources */,
 				D405059524AC725F00B2E096 /* MobileCoreExampleBundle.bundle in Resources */,
 			);
@@ -559,8 +589,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE49FF7824B5C09C00222C2A /* Pixel.png in Resources */,
 				D405059224AC722100B2E096 /* MobileCoreExampleBundle.bundle in Resources */,
-				DEA2168F24AE3F3B00ADEEAF /* upArrow.png in Resources */,
 				DE9221D71EF28CDF000C8FC7 /* LaunchScreen.storyboard in Resources */,
 				DE9221D41EF28CDF000C8FC7 /* Assets.xcassets in Resources */,
 				DE9221D21EF28CDF000C8FC7 /* Main.storyboard in Resources */,
@@ -687,17 +717,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE4DF44A24B109AE007776DE /* ThemesTests.swift in Sources */,
+				DE0EA7F624BB2508007EA5FE /* SegmentedControlTests.swift in Sources */,
 				D469D17624AB865500DB360E /* CollectionViewThemeTests.swift in Sources */,
 				D421EAA523428B8100FA0B7C /* CustomDataTypeTests.swift in Sources */,
 				D405057824AC6DFF00B2E096 /* UserCacheManagerTests.swift in Sources */,
+				DE0EA7F424BB13F1007EA5FE /* ViewControllerProtocolTests.swift in Sources */,
+				DE0EA7F224B9C712007EA5FE /* ScrollViewControllerProtocolTests.swift in Sources */,
 				D4E09A3A234A4C1C002729E6 /* Constants.swift in Sources */,
 				D469D17A24AB936800DB360E /* ViewElementsTests.swift in Sources */,
 				D405057A24AC6DFF00B2E096 /* CollectionViewProtocolTests.swift in Sources */,
 				D49FE3222345D4EA002B3742 /* WebkitTests.swift in Sources */,
+				DE51A04524B1C4B80011632B /* ConfigurableCellTests.swift in Sources */,
 				D421EAA823428B8100FA0B7C /* ActionBlockTests.swift in Sources */,
 				D49FE3242345D4EA002B3742 /* CustomUIElementsTests.swift in Sources */,
 				D405057C24AC6DFF00B2E096 /* WebViewControllerProtocolTests.swift in Sources */,
 				D421EAA723428B8100FA0B7C /* CoreUtilityTests.swift in Sources */,
+				DE0EA7F824BB353F007EA5FE /* LoadingIndicatorTests.swift in Sources */,
 				D42CAD352356E64A00F162E9 /* ClassMethodSwizzlingTests.swift in Sources */,
 				D405057924AC6DFF00B2E096 /* MobileCoreTestClass.swift in Sources */,
 				D405057724AC6DFF00B2E096 /* URLSessionManagerTests.swift in Sources */,
@@ -706,9 +741,10 @@
 				D4E09A24234A45AC002729E6 /* StringExtensionTests.swift in Sources */,
 				D42CAD392357199600F162E9 /* BarButtonTests.swift in Sources */,
 				D405057B24AC6DFF00B2E096 /* NetworkManangerTests.swift in Sources */,
-				D4E09A3F234AFDA8002729E6 /* TableViewControllerTests.swift in Sources */,
+				D4E09A3F234AFDA8002729E6 /* TableViewControllerProtocolTests.swift in Sources */,
 				D42CAD362356E64A00F162E9 /* DownloadedImageTests.swift in Sources */,
-				D49FE3232345D4EA002B3742 /* FontPickerViewprotocolTest.swift in Sources */,
+				D49FE3232345D4EA002B3742 /* FontPickerTests.swift in Sources */,
+				DE51A04824B1C58E0011632B /* MockTableViewCell.swift in Sources */,
 				D4E41883235847700067253D /* AssociatedObjectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -721,7 +757,7 @@
 				D49FE3182345D45A002B3742 /* SampleTableViewController.swift in Sources */,
 				D49FE3192345D45A002B3742 /* ViewController.swift in Sources */,
 				DE9221CD1EF28CDF000C8FC7 /* AppDelegate.swift in Sources */,
-				D428B74323616DDD00A5D96B /* NRSegmentCollectionHeaderView.swift in Sources */,
+				D428B74323616DDD00A5D96B /* SegmentCollectionView.swift in Sources */,
 				D44ACC7F236C67BF0093BF67 /* ContentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

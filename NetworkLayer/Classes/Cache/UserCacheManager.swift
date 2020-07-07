@@ -1,5 +1,5 @@
 //
-//  FTUserCache.swift
+//  UserCacheManager.swift
 //  FTMobileCore
 //
 //  Created by Praveen Prabhakar on 15/10/18.
@@ -30,41 +30,62 @@ public enum UserCacheType {
     case keychain
 }
 
-open class UserCache {
-    var userCache = JSON()
+public protocol UserCacheProtocol {
+    // Will Setup userCache
+    static var sharedInstance: UserCacheManager { get }
+    
+    // Application level cache, reset when app relaunches
+    var appCache: JSON { get }
+    // session cache, clears when user logout
+    var userCache: JSON? { get }
 
+    // Set up session
+    func setupUserSession()
+    // Clear data in Session object
+    @discardableResult
+    static func clearUserData() -> Bool
+    // Session Headers
+    static var httpAdditionalHeaders: [String: String]? { get set }
     // Save data to Session object
-    func setCacheObject(_ data: AnyObject?, forKey keyType: String) {
-        self.userCache[keyType] = data
-    }
-
-    func getCachedObject(forKey keyType: String) -> Any? {
-        self.userCache[keyType]
-    }
+    @discardableResult
+    static func setCacheObject(_ data: AnyObject, key: String, cacheType: UserCacheType) -> Bool
+    static func getCachedObject(key: String, cacheType: UserCacheType) -> Any?
+    // Save data in Keychain object
+    @discardableResult
+    static func setKeychainObject(_ data: AnyObject, key: String, keychainAccessiblity: KeychainItemAccessibility) -> Bool
+    static func getKeychainObject(key: String, keychainAccessiblity: KeychainItemAccessibility) -> Any?
+    // Save data based on Key: class
+    @discardableResult
+    static func setCacheObject(_ data: AnyObject, forType keyType: AnyClass, cacheType: UserCacheType, keychainAccessiblity: KeychainItemAccessibility) -> Bool
+    static func getCachedObject(forType keyType: AnyClass, cacheType: UserCacheType, keychainAccessiblity: KeychainItemAccessibility) -> Any?
 }
 
-open class UserCacheManager {
+public class UserCacheManager: UserCacheProtocol {
 
+    // Will Setup userCache
     public static let sharedInstance = { () -> UserCacheManager in
-        UserCacheManager.setupSession()
-        return UserCacheManager()
+        let session = UserCacheManager()
+        session.setupUserSession()
+        return session
     }()
 
     // Application level cache, reset when app relaunches
-    fileprivate var dataDictionary = JSON()
+    public fileprivate (set) var appCache = JSON()
     // session cache, clears when user logout
-    fileprivate var localCache: UserCache?
-
-    public static var userCache: UserCache {
-        // Will be set-to nil when user logsOut
-        if UserCacheManager.sharedInstance.localCache == nil {
-            UserCacheManager.sharedInstance.localCache = UserCache()
+    public fileprivate (set) var userCache: JSON?
+    
+    fileprivate var localCahce: JSON {
+        if userCache == nil {
+            userCache = JSON()
         }
-        return UserCacheManager.sharedInstance.localCache!
+        return userCache!
     }
-
-    public static func setupSession() {
-        //
+    
+    public func setupUserSession() {
+        // Setup local cache
+        if userCache == nil {
+            userCache = JSON()
+        }
         _ = NotificationCenter.default.addObserver(forName: .kClearSessionCache, object: nil, queue: nil) { _ in
             UserCacheManager.clearUserData()
         }
@@ -77,28 +98,15 @@ open class UserCacheManager {
             UserCacheManager.setCacheObject(data as AnyObject, forKey: "sessnion.httpAdditionalHeaders", cacheType: .application)
         }
         get {
-            UserCacheManager.getCachedObject(forKey: "sessnion.httpAdditionalHeaders") as? [String: String]
+            UserCacheManager.getCachedObject(forKey: "sessnion.httpAdditionalHeaders", cacheType: .application) as? [String: String]
         }
     }
 }
 
-public extension UserCacheManager {
-
-    // httpAdditionalHeaders
-    static func defaultSessionHeaders() -> [String: String] {
-        var headers = [String: String]()
-        UserCacheManager.httpAdditionalHeaders?.forEach { key, value in
-            headers[key] = value
-        }
-        return headers
-    }
-}
-
-public extension UserCacheManager {
-
+public extension UserCacheProtocol {
     @discardableResult
     static func clearUserData() -> Bool {
-        UserCacheManager.sharedInstance.localCache = nil
+        UserCacheManager.sharedInstance.userCache = nil
         return true
     }
 
@@ -114,78 +122,86 @@ public extension UserCacheManager {
         return UserCacheManager.getCachedObject(forKey: key, cacheType: cacheType)
     }
 
+    // Save data in Keychain object
     @discardableResult
-    static func setCacheObject(_ data: AnyObject, forType keyType: AnyClass, cacheType: UserCacheType = .user) -> Bool {
+    static func setKeychainObject(_ data: AnyObject, key: String, keychainAccessiblity: KeychainItemAccessibility) -> Bool {
+        let key = String(describing: key)
+        return UserCacheManager.setCacheObject(data, forKey: key, cacheType: .keychain, keychainAccessiblity: keychainAccessiblity)
+    }
+    
+    static func getKeychainObject(key: String, keychainAccessiblity: KeychainItemAccessibility) -> Any? {
+        let key = String(describing: key)
+        return UserCacheManager.getCachedObject(forKey: key, cacheType: .keychain, keychainAccessiblity: keychainAccessiblity)
+    }
+     
+    @discardableResult
+    static func setCacheObject(_ data: AnyObject, forType keyType: AnyClass, cacheType: UserCacheType = .user, keychainAccessiblity keychain: KeychainItemAccessibility = .whenUnlockedThisDeviceOnly) -> Bool {
         let key = String(describing: keyType)
-        return UserCacheManager.setCacheObject(data, forKey: key, cacheType: cacheType)
+        return UserCacheManager.setCacheObject(data, forKey: key, cacheType: cacheType, keychainAccessiblity: keychain)
     }
 
-    static func getCachedObject(forType keyType: AnyClass, cacheType: UserCacheType = .user) -> Any? {
+    static func getCachedObject(forType keyType: AnyClass, cacheType: UserCacheType = .user, keychainAccessiblity keychain: KeychainItemAccessibility = .whenUnlockedThisDeviceOnly) -> Any? {
         let key = String(describing: keyType)
-        return UserCacheManager.getCachedObject(forKey: key, cacheType: cacheType)
+        return UserCacheManager.getCachedObject(forKey: key, cacheType: cacheType, keychainAccessiblity: keychain)
     }
 }
 
 // MARK: Saving data into: .user, .keychain, .application
-private extension UserCacheManager {
+private extension UserCacheProtocol {
 
     @discardableResult
-    static func setCacheObject<T>(_ data: AnyObject?, forKey keyType: T, cacheType: UserCacheType = .user) -> Bool where T: Hashable {
-
+    static func setCacheObject<T>(_ data: AnyObject?, forKey keyType: T, cacheType: UserCacheType, keychainAccessiblity: KeychainItemAccessibility = .whenUnlockedThisDeviceOnly) -> Bool where T: Hashable {
+        
         let key: String = (keyType as? String) ?? String(describing: keyType)
-
+        
         // USER SESSION LEVEL
         if cacheType == .user {
-            UserCacheManager.userCache.setCacheObject(data, forKey: key)
+            UserCacheManager.sharedInstance.userCache?[key] = data
             return true
         }
             // KeyChain LEVEL
         else if cacheType == .keychain {
             // Save data if avaialble
             if let data = data as? Data {
-                return KeychainWrapper.standard.set(data, forKey: key, withAccessibility: .whenUnlocked)
+                return KeychainWrapper.standard.set(data, forKey: key, withAccessibility: keychainAccessiblity)
             }
             // else Delete old value
-            return KeychainWrapper.standard.removeObject(forKey: key, withAccessibility: .whenUnlocked)
+            return KeychainWrapper.standard.removeObject(forKey: key, withAccessibility: keychainAccessiblity)
         }
             // APPILCATION LEVEL
         else {
 
             let key = String(describing: keyType)
-            UserCacheManager.sharedInstance.dataDictionary[key] = data
+            UserCacheManager.sharedInstance.appCache[key] = data
         }
 
         return true
     }
 
     // Check-in .user, .keychain, .application
-    static func getCachedObject<T>(forKey keyType: T, cacheType: UserCacheType = .user) -> Any? where T: Hashable {
+    static func getCachedObject<T>(forKey keyType: T, cacheType: UserCacheType, keychainAccessiblity: KeychainItemAccessibility = .whenUnlockedThisDeviceOnly) -> Any? where T: Hashable {
 
         let key: String = (keyType as? String) ?? String(describing: keyType)
 
         // USER SESSION LEVEL
-        if cacheType == .user, let data = UserCacheManager.userCache.getCachedObject(forKey: key) {
+        if cacheType == .user, let data = UserCacheManager.sharedInstance.userCache?[key] {
             return data
         }
             // KeyChain LEVEL
         else if cacheType == .keychain {
-            if let data = KeychainWrapper.standard.data(forKey: key, withAccessibility: .whenUnlocked) {
+            if let data = KeychainWrapper.standard.data(forKey: key, withAccessibility: keychainAccessiblity) {
                 return data
             }
         }
             // APPILCATION LEVEL
         else {
-            if let data = UserCacheManager.sharedInstance.dataDictionary[key] {
+            if let data = UserCacheManager.sharedInstance.appCache[key] {
                 return data
             }
         }
 
-        // USER SESSION LEVEL
-        if let data = UserCacheManager.userCache.getCachedObject(forKey: key) {
-            return data
-        }
-            // KeyChain
-        else if let data = KeychainWrapper.standard.data(forKey: key, withAccessibility: .whenUnlocked) {
+        // USER SESSION LEVEL || Keychain data
+        if let data = UserCacheManager.sharedInstance.userCache?[key] ?? KeychainWrapper.standard.data(forKey: key, withAccessibility: keychainAccessiblity) {
             return data
         }
 

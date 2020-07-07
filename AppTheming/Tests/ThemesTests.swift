@@ -55,6 +55,7 @@ final class ThemesTests: XCTestCase {
     func testHashColor() {
         let value = ThemesManager.getColor("#F3F3F3F8")
         XCTAssertNotNil(value)
+        XCTAssertEqual("#F3F3F3F8".hexColor(), value, "color should be equal")
     }
     
     func testHexColor() {
@@ -83,6 +84,16 @@ final class ThemesTests: XCTestCase {
         XCTAssertEqual(value.hexAlphaString(), actualValue.hexAlphaString())
     }
     
+    // MARK: Image
+    func testColorFromImage() {
+        let image = UIImage.named("@Pixel")
+        XCTAssertNotNil(image)
+        
+        let color = image?.getColor(a: 255.0)
+        XCTAssertNotNil(color)
+        XCTAssertEqual(color, UIColor(red: 1, green: 1, blue: 1, alpha: 1), "color should be white")
+    }
+    
     // MARK: appearance
     func testAppearance() {
         let value = ThemesManager.getAppearance()
@@ -95,15 +106,15 @@ final class ThemesTests: XCTestCase {
         XCTAssertTrue(value?.count == 2)
     }
 
-    func testFTUISearchBar() {
-        let value: ThemeModel? = ThemesManager.getViewComponent("FTSearchBar", styleName: "default")
+    func testSearchBar() {
+        let value: ThemeModel? = ThemesManager.getViewComponent("UISearchBar", styleName: "default")
         XCTAssertNotNil(value)
         XCTAssertTrue(value?.count == 3)
     }
     
     // MARK: image
     func testImage() {
-        let image = UIImage.named("@upArrow")
+        let image = UIImage.named("@Pixel")
         XCTAssertNotNil(image)
     }
 }

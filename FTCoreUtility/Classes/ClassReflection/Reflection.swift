@@ -10,7 +10,14 @@ import Foundation
 
 public protocol ReflectionProtocol {
         
-    static func getClassNameAsString(obj: Any) -> String?
+    /**
+    Get the class name as a string from a class
+    
+    - parameter obj: An NSObject for whitch the string representation of the class will be returned
+    - parameter obj: An AnyClass for whitch the string representation of the class will be returned
+    - returns: The string representation of the class (name of the bundle dot name of the class)
+    */
+    static func getClassNameAsString(_ obj: Any) -> String?
     
     static func getRegisterdModuleIdentifier() -> [String]
     
@@ -34,15 +41,6 @@ public protocol ReflectionProtocol {
      - returns: The Class type
      */
     static func swiftClassFromString(_ className: String) -> NSObject?
-    
-    /**
-     Get the class name as a string from a class
-     
-     - parameter theObject: An NSObject for whitch the string representation of the class will be returned
-     - parameter theObject: An AnyClass for whitch the string representation of the class will be returned
-     - returns: The string representation of the class (name of the bundle dot name of the class)
-     */
-    static func swiftStringFromClass(_ theObject: Any) -> String?
 }
 
 public class Reflection: ReflectionProtocol {
@@ -56,10 +54,17 @@ public class Reflection: ReflectionProtocol {
 
 public extension Reflection {
         
-    static func getClassNameAsString(obj: Any) -> String? {
-        Reflection.swiftStringFromClass(obj)
+    /**
+     Get the class name as a string from a class
+     
+     - parameter obj: An NSObject for whitch the string representation of the class will be returned
+     - parameter obj: An AnyClass for whitch the string representation of the class will be returned
+     - returns: The string representation of the class (name of the bundle dot name of the class)
+     */
+    static func getClassNameAsString(_ obj: Any) -> String? {
+        String(describing: type(of: obj))
     }
-
+    
     static func getRegisterdModuleIdentifier() -> [String] {
         Reflection.moduleIdentifiers
     }
@@ -114,17 +119,6 @@ public extension Reflection {
      */
     static func swiftClassFromString(_ className: String) -> NSObject? {
         (Self.swiftClassTypeFromString(className) as? NSObject.Type)?.init()
-    }
-    
-    /**
-     Get the class name as a string from a class
-     
-     - parameter theObject: An NSObject for whitch the string representation of the class will be returned
-     - parameter theObject: An AnyClass for whitch the string representation of the class will be returned
-     - returns: The string representation of the class (name of the bundle dot name of the class)
-     */
-    static func swiftStringFromClass(_ theObject: Any) -> String? {
-        String(describing: type(of: theObject))
     }
 }
 

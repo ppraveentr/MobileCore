@@ -1,6 +1,6 @@
 //
 //  CoreUtilityTests.swift
-//  MobileCoreUtilityTests
+//  CoreUtilityTests
 //
 //  Created by Praveen Prabhakar on 29/07/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.

@@ -29,6 +29,7 @@ final class WebkitTests: XCTestCase {
         XCTAssertFalse(webview.scrollView.isScrollEnabled)
     }
     
+    /*
     func testHTMLTextSize() {
         webview.setContentFontSize(20.0)
         
@@ -62,4 +63,5 @@ final class WebkitTests: XCTestCase {
         }
         wait(for: [promise], timeout: 15)
     }
+ */
 }

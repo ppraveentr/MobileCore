@@ -10,12 +10,13 @@
 import XCTest
 import WebKit
 
-fileprivate final class MockMockKWebViewController: UIViewController, WebViewControllerProtocol {
+fileprivate final class MockKWebViewController: UIViewController, WebViewControllerProtocol {
+    // Mock: object implementation for testing
 }
    
 final class WebViewControllerProtocolTests: XCTestCase {
     
-    private let contentVC = MockMockKWebViewController()
+    private let contentVC = MockKWebViewController()
     
     func testContentViewDefaults() {
         XCTAssertNotNil(contentVC)

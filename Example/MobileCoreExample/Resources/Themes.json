@@ -129,12 +129,12 @@
                 "backgroundViewTheme": "viewR"
             }
         },
-        "FTSegmentCollectionHeaderView": {
+        "SegmentCollectionView": {
             "default": {
                 "backgroundColor": "clear"
             }
         },
-        "FTSearchBar": {
+        "UISearchBar": {
             "default": {
                 "textcolor": "white",
                 "tintColor": "white",

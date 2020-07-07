@@ -16,7 +16,8 @@ let loaderSpinnerMarginTop: CGFloat = 20.0
 let loaderTitleMargin: CGFloat = 5.0
 
 public class LoadingIndicator: UIView {
-    
+    public typealias CompletionBlock = (_ isCompleted: Bool) -> Void
+
     private var baseView: UIView?
     private var titleLabel: UILabel?
     private var loadingView: FTLoadingView?
@@ -94,12 +95,12 @@ public class LoadingIndicator: UIView {
         }
     }
     
-    public static func hide() {
+    public static func hide(_ completion: CompletionBlock? = nil) {
         
         let loader = LoadingIndicator.sharedInstance
         NotificationCenter.default.removeObserver(loader)
         
-        loader.stop()
+        loader.stop(completion)
     }
     
     public static func setConfig(config: Config) {
@@ -130,7 +131,7 @@ public class LoadingIndicator: UIView {
         }
     }
     
-    private func stop() {
+    private func stop(_ completion: CompletionBlock? = nil) {
         
         if self.animated {
             UIView.animate(
@@ -139,7 +140,7 @@ public class LoadingIndicator: UIView {
                 completion: { _ in
                     self.removeFromSuperview()
                     self.baseView?.removeFromSuperview()
-                    self.loadingView?.stop()
+                    self.loadingView?.stop(completion)
                 }
             )
         }
@@ -147,7 +148,7 @@ public class LoadingIndicator: UIView {
             self.alpha = 0
             self.removeFromSuperview()
             self.baseView?.removeFromSuperview()
-            self.loadingView?.stop()
+            self.loadingView?.stop(completion)
         }
     }
     
@@ -299,11 +300,12 @@ public class LoadingIndicator: UIView {
             self.backgroundLayer?.add(rotationAnimation, forKey: "rotationAnimation")
         }
         
-        func stop() {
+        func stop(_ completion: CompletionBlock? = nil) {
             self.drawBackgroundCircle(partial: false)
             
             self.backgroundLayer?.removeAllAnimations()
             self.isSpinning? = false
+            completion?(true)
         }
     }
 

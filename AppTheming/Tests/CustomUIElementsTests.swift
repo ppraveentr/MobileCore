@@ -26,7 +26,7 @@ final class CustomUIElementsTests: XCTestCase {
     }
     
     // MARK: LabelFont
-    func testLabelFont() {
+    func testUILabelTheme() {
         let label = UILabel(frame: .zero)
         label.text = titleString
         label.theme = "system14G"
@@ -35,7 +35,7 @@ final class CustomUIElementsTests: XCTestCase {
     }
     
     // MARK: button
-    func testButton() {
+    func testUIButtonTheme() {
         let button = UIButton()
         button.setTitle(titleString, for: .normal)
         button.theme = "button14R"
@@ -56,5 +56,19 @@ final class CustomUIElementsTests: XCTestCase {
         button.isSelected = false
         button.isEnabled = false
         XCTAssertEqual(button.getThemeSubType(), ThemeStyle.disabledStyle)
+    }
+    
+    // MARK: SearchBar
+    func testUISearchBarTheme() {
+        // let
+        let white = ThemesManager.getColor("white")
+        let bar = UISearchBar(frame: .zero)
+        bar.text = titleString
+        bar.theme = ThemeStyle.defaultStyle
+        XCTAssertEqual(bar.barTintColor, ThemesManager.getColor("navBarRed"))
+        XCTAssertEqual(bar.tintColor, white)
+        if #available(iOS 13.0, *) {
+            XCTAssertEqual(bar.searchTextField.textColor, white)
+        }
     }
 }

@@ -1,6 +1,6 @@
 //
-//  FTSegmentCollectionHeaderView.swift
-//  FTMobileCoreSample
+//  SegmentCollectionView.swift
+//  MobileCoreSample
 //
 //  Created by Praveen Prabhakar on 13/10/18.
 //  Copyright © 2018 Praveen Prabhakar. All rights reserved.
@@ -11,7 +11,7 @@ import Foundation
 let kRecentUpdateString = "Recent Update"
 let kTopViews = "Top Views"
 
-class FTSegmentCollectionHeaderView: UIView {
+class SegmentCollectionView: UIView {
     var segmentedControl: UISegmentedControl? = nil
 
     override init(frame: CGRect) {
@@ -30,7 +30,7 @@ class FTSegmentCollectionHeaderView: UIView {
         segmentedControl?.removeSubviews()
 
         segmentedControl = UISegmentedControl(items: items) { (segment) in
-            ftLog(segment)
+            ftLog("Segment Selected: \(segment)", self.segmentedControl?.titleForSegment(at: segment) ?? "")
         }
 
         self.theme = ThemeStyle.defaultStyle

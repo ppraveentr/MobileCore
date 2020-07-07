@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sqI-ag-JdF">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sqI-ag-JdF">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,7 +28,7 @@
         <!--ViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="ViewController" customClass="ViewController" customModule="FTMobileCore" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="ViewController" customClass="ViewController" customModule="MobileCoreExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -46,7 +44,7 @@
                                     <constraint firstAttribute="height" constant="80" id="xpe-7a-VDz"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ER-nY-2UA" userLabel="FTContentView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ER-nY-2UA" userLabel="ContentView">
                                 <rect key="frame" x="20" y="154" width="374" height="100"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KR7-Xe-Vnz">
@@ -65,7 +63,7 @@
                                     <constraint firstAttribute="height" constant="100" id="xiO-AY-WHd"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5bg-fl-nxr" customClass="FTSegmentCollectionHeaderView" customModule="FTMobileCore" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5bg-fl-nxr" customClass="SegmentCollectionView" customModule="MobileCoreExample" customModuleProvider="target">
                                 <rect key="frame" x="20" y="274" width="374" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -100,7 +98,7 @@
         <!--SampleTableViewController-->
         <scene sceneID="Y8k-Vb-FkW">
             <objects>
-                <viewController id="Io7-55-XL7" userLabel="SampleTableViewController" customClass="SampleTableViewController" customModule="FTMobileCore" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Io7-55-XL7" userLabel="SampleTableViewController" customClass="SampleTableViewController" customModule="MobileCoreExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vCd-r7-Aj0"/>
                         <viewControllerLayoutGuide type="bottom" id="aKs-Xt-QaB"/>
@@ -145,7 +143,7 @@
         <!--Content View Controller-->
         <scene sceneID="uHO-Fa-DQ8">
             <objects>
-                <viewController id="R4n-qT-iv2" customClass="ContentViewController" customModule="FTMobileCore" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="R4n-qT-iv2" customClass="ContentViewController" customModule="MobileCoreExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Edx-cd-RL9"/>
                         <viewControllerLayoutGuide type="bottom" id="gWa-1i-Gpa"/>

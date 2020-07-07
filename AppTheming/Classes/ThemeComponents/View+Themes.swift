@@ -145,7 +145,7 @@ fileprivate extension UIView {
     func getThemeName() -> (String, String)? {
         // Vadidate className and ThemeName
         guard
-            let className = Reflection.getClassNameAsString(obj: self),
+            let className = Reflection.getClassNameAsString(self),
             let themeName = self.theme else {
             return nil
         }
@@ -153,7 +153,7 @@ fileprivate extension UIView {
         var baseClassName: String? = className
         let getSuperClass = { (obj: AnyObject) -> AnyClass? in
             guard let superClass: AnyClass = class_getSuperclass(type(of: obj)) else { return nil }
-            if let className = Reflection.getClassNameAsString(obj: superClass), className.hasPrefix("UI") {
+            if let className = Reflection.getClassNameAsString(superClass), className.hasPrefix("UI") {
                 return nil
             }
             
@@ -166,7 +166,7 @@ fileprivate extension UIView {
             let superClass: AnyClass? = getSuperClass(type(of: self))
             // If SuperClass becomes invalid, terminate loop
             if let superClass = superClass, !UIView.kTerminalBaseClass.contains(where: { $0 == superclass }) {
-                 baseClassName = Reflection.getClassNameAsString(obj: superClass)
+                 baseClassName = Reflection.getClassNameAsString(superClass)
             }
             else {
                 break

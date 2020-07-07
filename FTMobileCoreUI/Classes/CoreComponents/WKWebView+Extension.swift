@@ -89,7 +89,7 @@ private extension AssociatedKey {
     static var fontPickerVC = "fontPickerVC"
 }
 
-extension WKWebView: FontPickerViewprotocol {
+extension WKWebView: FontPickerViewProtocol {
     
     public var fontPickerViewController: FontPickerViewController {
         get {

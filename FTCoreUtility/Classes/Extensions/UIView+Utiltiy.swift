@@ -42,8 +42,9 @@ public extension UIView {
                 return val as? T
             }
             else if !val.subviews.isEmpty {
-                let subType: T? =  val.findInSubView()
-                return subType
+                if let subType: T? =  val.findInSubView() {
+                    return subType
+                }
             }
         }
         return nil

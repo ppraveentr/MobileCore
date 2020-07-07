@@ -1,6 +1,6 @@
 //
 //  ActionBlockTests.swift
-//  MobileCoreTests
+//  CoreUtilityTests
 //
 //  Created by Praveen P on 07/09/19.
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.

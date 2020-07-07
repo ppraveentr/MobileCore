@@ -8,9 +8,9 @@
 
 import UIKit
 
-public typealias ViewControllerCompletionBlock = (_ isSuccess: Bool, _ modelStack: AnyObject?) -> Void
-
 public protocol ViewControllerProtocol where Self: UIViewController {
+    var modelStack: AnyObject? { get set }
+    
     //Setup View
     func setupCoreView()
     // MARK: Navigation Bar
@@ -29,7 +29,7 @@ public protocol ViewControllerProtocol where Self: UIViewController {
     func showAlert(title: String?, message: String?, action: UIAlertAction?, actions: [UIAlertAction]?)
     // MARK: Activity indicator
     func showActivityIndicator()
-    func hideActivityIndicator()
+    func hideActivityIndicator(_ completionBlock: LoadingIndicator.CompletionBlock?)
 }
 
 private extension AssociatedKey {
@@ -52,7 +52,7 @@ extension UIViewController: ViewControllerProtocol {
     }
     
     @IBOutlet
-    public var topPinnedButtonView: UIView? {
+    public var topPinnedView: UIView? {
         get {
             self.baseView?.topPinnedView
         }
@@ -62,7 +62,7 @@ extension UIViewController: ViewControllerProtocol {
     }
     
     @IBOutlet
-    public var bottomPinnedButtonView: UIView? {
+    public var bottomPinnedView: UIView? {
         get {
             self.baseView?.bottomPinnedView
         }
@@ -91,15 +91,6 @@ extension UIViewController: ViewControllerProtocol {
         }
     }
     
-    public var completionBlock: ViewControllerCompletionBlock? {
-        get {
-            AssociatedObject<ViewControllerCompletionBlock>.getAssociated(self, key: &AssociatedKey.completionBlock)
-        }
-        set {
-            AssociatedObject<ViewControllerCompletionBlock>.setAssociated(self, value: newValue, key: &AssociatedKey.completionBlock)
-        }
-    }
-
     // Setup baseView's topLayoutGuide by sending true in subControllers if needed
     public func topSafeAreaLayoutGuide() -> Bool { true }
     
@@ -167,12 +158,12 @@ private extension UIViewController {
     
     func setupLayoutGuide() {
         // Update: topPinnedButtonView
-        if let topView = self.topPinnedButtonView {
+        if let topView = self.topPinnedView {
            self.baseView?.topPinnedView = topView
         }
 
         // Update: bottomPinnedButtonView
-        if let bottomView = self.bottomPinnedButtonView {
+        if let bottomView = self.bottomPinnedView {
            self.baseView?.bottomPinnedView = bottomView
         }
 

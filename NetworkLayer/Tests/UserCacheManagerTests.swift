@@ -11,11 +11,6 @@ import XCTest
 
 final class UserCacheManagerTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        _ = UserCacheManager.sharedInstance
-    }
-    
     override func tearDown() {
         super.tearDown()
         UserCacheManager.clearUserData()
@@ -23,32 +18,35 @@ final class UserCacheManagerTests: XCTestCase {
     
     func testSessionCache() {
         XCTAssertNotNil(UserCacheManager.sharedInstance)
-        XCTAssertNotNil(UserCacheManager.userCache)
+        UserCacheManager.sharedInstance.setupUserSession()
+        XCTAssertNotNil(UserCacheManager.sharedInstance.userCache)
         
         let testData = ["Test": "testData"]
         UserCacheManager.httpAdditionalHeaders = testData
         XCTAssertNotNil(UserCacheManager.httpAdditionalHeaders)
-        XCTAssertEqual(UserCacheManager.defaultSessionHeaders(), testData)
+        XCTAssertEqual(UserCacheManager.httpAdditionalHeaders, testData)
     }
     
     func testApplicationCache() {
+        // let
         let testData = "testData"
-
+        // when
         UserCacheManager.setCacheObject(testData as AnyObject, key: "test.key", cacheType: .application)
-
+        // then
         let data = UserCacheManager.getCachedObject(key: "test.key", cacheType: .application)
         XCTAssertNotNil(data)
-        
         let result = data as? String
         XCTAssertEqual(result, testData)
     }
     
     func testUserCache() {
+        // let
         let testData = "testData"
-        
+        UserCacheManager.sharedInstance.setupUserSession()
+        // when
         UserCacheManager.setCacheObject(testData as AnyObject, key: "test.key.user")
         UserCacheManager.setCacheObject(testData as AnyObject, forType: Self.self)
-
+        // then
         let data = UserCacheManager.getCachedObject(key: "test.key.user")
         XCTAssertNotNil(data)
         XCTAssertEqual(data as? String, testData)

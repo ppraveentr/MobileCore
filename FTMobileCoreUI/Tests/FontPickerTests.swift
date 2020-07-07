@@ -1,5 +1,5 @@
 //
-//  FontPickerViewprotocolTest.swift
+//  FontPickerTests.swift
 //  MobileCoreTests
 //
 //  Created by Praveen P on 09/09/19.
@@ -10,7 +10,7 @@
 import XCTest
 import UIKit
 
-final class FontPickerViewprotocolTest: FontPickerViewprotocol {
+final class MockFontPickerViewProtocol: FontPickerViewProtocol {
     func pickerColor(textColor: UIColor, backgroundColor: UIColor) {
         XCTAssert(true)
     }
@@ -139,7 +139,7 @@ final class FontPickerTests: XCTestCase {
         XCTAssertNotNil(pickerVC.fontPickerModel)
         
         // Picker Delegate
-        pickerVC.fontPickerViewDelegate = FontPickerViewprotocolTest()
+        pickerVC.fontPickerViewDelegate = MockFontPickerViewProtocol()
         XCTAssertNotNil(pickerVC.pickerView?.pickerDelegate)
 
         // PickerView Model

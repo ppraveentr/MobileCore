@@ -59,24 +59,23 @@ private extension CollectionViewControllerProtocol {
         setupCoreView()
         
         // Create tableView based on user provided style
-        let local = UICollectionViewController(collectionViewLayout: flowLayout)
-        local.collectionView.removeSubviews()
-        
-        // had to set by initialzing controller
-        local.collectionView.dataSource = nil
-        local.collectionView.delegate = nil
-        
-        if let customCollection = collectionView {
-            setupCoreCollectionView(customCollection, controller: local)
+        let collectionVC = UICollectionViewController(collectionViewLayout: flowLayout)
+        // had to reset vc's collectionView
+        collectionVC.collectionView.removeSubviews()
+        collectionVC.collectionView.dataSource = nil
+        collectionVC.collectionView.delegate = nil
+        // has user provided collectionView, add it to collectionVC
+        if let collectionView = collectionView {
+            setupCoreCollectionView(collectionView, controller: collectionVC)
         }
         
         // Add as child view controller
-        self.addChild(local)
-        self.mainView?.pin(view: local.collectionView, edgeOffsets: .zero)
+        self.addChild(collectionVC)
+        self.mainView?.pin(view: collectionVC.collectionView, edgeOffsets: .zero)
         
-        AssociatedObject<UICollectionViewController>.setAssociated(self, value: local, key: &kAOCollectionVC)
+        AssociatedObject<UICollectionViewController>.setAssociated(self, value: collectionVC, key: &kAOCollectionVC)
         
-        return local
+        return collectionVC
     }
     
     func setupCoreCollectionView(_ localView: UICollectionView, controller: UICollectionViewController? = nil) {

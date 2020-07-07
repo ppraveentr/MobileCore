@@ -25,14 +25,6 @@ extension UIViewController {
         return self.baseView?.mainPinnedView
     }
     
-    public func topPinnedView() -> UIView? {
-        // If baseView is not added, then retun nil
-        if isBaseViewAdded {
-            return nil
-        }
-        return self.baseView?.topPinnedView
-    }
-    
     // MARK: Navigation Bar
     // default - left Button Actopm
     public var kleftButtonAction: Selector {
@@ -139,9 +131,9 @@ extension UIViewController {
         LoadingIndicator.show()
     }
     
-    public func hideActivityIndicator() {
+    public func hideActivityIndicator(_ completionBlock: LoadingIndicator.CompletionBlock? = nil) {
         DispatchQueue.main.async {
-            LoadingIndicator.hide()
+            LoadingIndicator.hide(completionBlock)
         }
     }
 }

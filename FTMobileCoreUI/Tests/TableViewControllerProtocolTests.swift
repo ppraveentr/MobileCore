@@ -1,5 +1,5 @@
 //
-//  TableViewControllerTests.swift
+//  TableViewControllerProtocolTests.swift
 //  MobileCoreTests
 //
 //  Created by Praveen P on 07/10/19.
@@ -9,28 +9,28 @@
 @testable import MobileCore
 import XCTest
 
-fileprivate final class MockTestTableViewHeader: UIView {
+fileprivate final class MockTableViewHeader: UIView {
     // Temp class extending Protocol for testing
 }
 
-fileprivate final class MockDefaultTableViewController: UIViewController, TableViewControllerProtocol {
+fileprivate final class MockTableViewController: UIViewController, TableViewControllerProtocol {
     // Temp class extending Protocol for testing
 }
 
-fileprivate final class MockTestTableViewController: UIViewController, TableViewControllerProtocol {
+fileprivate final class MockCustomTableViewController: UIViewController, TableViewControllerProtocol {
     var tableStyle: UITableView.Style = .grouped
     var tableViewEdgeOffsets: UIEdgeInsets = .init(40, 40, 40, 40)
 }
 
-final class TableViewControllerTests: XCTestCase {
+final class TableViewControllerProtocolTests: XCTestCase {
     
-    private var tableViewC: MockTestTableViewController?
+    private var tableViewC: MockCustomTableViewController?
     private var oldRootVC: UIViewController?
     
     override func setUp() {
         super.setUp()
         oldRootVC = UIApplication.shared.keyWindow?.rootViewController
-        tableViewC = MockTestTableViewController()
+        tableViewC = MockCustomTableViewController()
         UIApplication.shared.keyWindow?.rootViewController = tableViewC
     }
     
@@ -49,14 +49,14 @@ final class TableViewControllerTests: XCTestCase {
     }
 
     func testDefaultTableViewC() {
-        let defaultTableV = MockDefaultTableViewController()
+        let defaultTableV = MockTableViewController()
         XCTAssertNotNil(defaultTableV)
         XCTAssertEqual(defaultTableV.tableStyle, UITableView.Style.plain)
         XCTAssertEqual(defaultTableV.tableViewEdgeOffsets, UIEdgeInsets.zero)
     }
     
     func testSsetupTableController() {
-        let defaultTableV = MockDefaultTableViewController()
+        let defaultTableV = MockTableViewController()
         XCTAssertNotNil(defaultTableV.tableViewController)
         
         let controller = defaultTableV.getCoreTableViewController()
@@ -66,11 +66,11 @@ final class TableViewControllerTests: XCTestCase {
     
     
     func testTableHeaderView() {
-        let headerView = MockTestTableViewHeader()
+        let headerView = MockTableViewHeader()
         XCTAssertNotNil(headerView)
         tableViewC?.tableView.setTableHeaderView(view: headerView)
         
-        let footerView = MockTestTableViewHeader()
+        let footerView = MockTableViewHeader()
         XCTAssertNotNil(footerView)
         tableViewC?.tableView.setTableFooterView(view: footerView)
         
@@ -86,7 +86,7 @@ final class TableViewControllerTests: XCTestCase {
     }
     
      func testTableHeaderFooterView() {
-        let defaultTableV = MockDefaultTableViewController()
+        let defaultTableV = MockTableViewController()
         let headerView = UIView()
         
         defaultTableV.tableView.setTableHeaderView(view: headerView)
