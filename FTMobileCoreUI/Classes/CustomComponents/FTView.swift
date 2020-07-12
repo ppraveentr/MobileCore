@@ -1,6 +1,6 @@
 //
 //  FTView.swift
-//  FTMobileCoreUI
+//  CoreUIExtensions
 //
 //  Created by Praveen Prabhakar on 09/07/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
@@ -65,7 +65,7 @@ open class FTView: UIView {
             self.backgroundColor = .white
         }
         // Set lowerPriority to avoid contraint issues with viewControllers's rootView
-        self.pin(view: rootView, priority: kFTLayoutPriorityRequiredLow)
+        self.pin(view: rootView, priority: kLayoutPriorityRequiredLow)
         self.restConstraints()
     }
     
@@ -74,7 +74,7 @@ open class FTView: UIView {
         if self.rootView.superview == nil {
             self.removeSubviews()
             // Set lowerPriority to avoid contraint issues with viewControllers's rootView
-            self.pin(view: self.rootView, priority: kFTLayoutPriorityRequiredLow)
+            self.pin(view: self.rootView, priority: kLayoutPriorityRequiredLow)
         }
 
         // Remove all previous constrains, while resting the views

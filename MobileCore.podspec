@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'MobileCore'
-  s.version          = '0.0.9.0'
+  s.version          = '0.1.0.0'
   s.summary          = 'Mobile Core utility.'
   s.homepage         = 'https://github.com/ppraveentr/MobileCore'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -10,17 +10,24 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
   s.swift_version         = '5.0'
-  s.default_subspecs      = 'CoreUtility', 'Core', 'CoreUI'
+  s.default_subspecs      = 'CoreUtility', 'NetworkLayer', 'CoreUI', 'AppTheming'
 
   s.subspec 'CoreUtility' do |utility|
     utility.source_files  = 'FTCoreUtility/Classes/**/*.{h,m,swift}'
     utility.header_dir    = "CoreUtility"
+    utility.dependency  'SwiftKeychainWrapper'
   end
 
-  s.subspec 'Core' do |core|
-    core.source_files   = 'FTMobileCore/Classes/**/*.{h,m,swift}'
-    core.dependency  'MobileCore/CoreUtility'
-    core.header_dir    = "Core"
+  s.subspec 'NetworkLayer' do |network|
+    network.source_files   = 'NetworkLayer/Classes/**/*.{h,m,swift}'
+    network.dependency  'MobileCore/CoreUtility'
+    network.header_dir    = "NetworkLayer"
+  end
+  
+  s.subspec 'AppTheming' do |theme|
+    theme.source_files   = 'AppTheming/Classes/**/*.{h,m,swift}'
+    theme.dependency  'MobileCore/CoreUtility'
+    theme.header_dir    = "AppTheming"
   end
 
   s.subspec 'CoreUI' do |coreUI|

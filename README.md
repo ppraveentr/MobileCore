@@ -15,7 +15,7 @@ MobileCore takes care of all these hassles for you. Its a Swift library consisti
 - [x] Programatically groping set of UIElements using auto-layout. 
 - [x] Configuring and maintaining Application's theme via simple JSON. 
 - [x] Creating and managing RESTfull service layer and Domain Object via JSON.
-- [x] Customized UIKit elements.
+- [x] Customized UIKit elements extensions for ease of use.
 
 ### Using CococaPods
 
@@ -23,15 +23,9 @@ Before we create our new iOS project,
 lets discuss the libraries and resources we will use.
 
 We'll be using CocoaPods to manage our dependencies. 
-CocoaPods is a Ruby gem and command line tool 
-that makes it easy to add dependencies to your project. 
-We prefer CocoaPods over Git submodules 
-due to its ease of implementation 
-and the wide variety of third-party libraries available as pods. 
-CocoaPods will not only download the libraries we need 
-and link them to our project in Xcode, 
-it will also allow us to easily manage 
-and update which version of each library we want to use.
+CocoaPods is a Ruby gem and command line tool  that makes it easy to add dependencies to your project. 
+We prefer CocoaPods over Git submodules  due to its ease of implementation  and the wide variety of third-party libraries available as pods. 
+CocoaPods will not only download the libraries we need and link them to our project in Xcode, it will also allow us to easily manage  and update which version of each library we want to use.
 
 ### CocoaPods Setup
 
@@ -57,7 +51,7 @@ Below is the podfile we're going to use for this project.
 	platform :ios, '9.0'
 
 	target 'YourMobileApp' do
-		pod 'MobileCore', '~> 0.0.8.0'
+		pod 'MobileCore', '~> 0.0.9.0'
 	end
 
 Once you've updated your podfile, go ahead and run `$ pod install`
@@ -71,10 +65,8 @@ Below are the list of things I’m in plan adding into Mobile Core.
 
 - Deeplinking and flow controler with content passing.
 - Content Management for multi-language support using Core-data.
-- Secure storage with Keychain.
 - Inbuild Crash reporter.
 - Customizing Push notification.
-- Simplyfing FTCoreUtility’s FTUI<elements> to swift extension.
 - and more!!! as I think through 🤔
 
 ## Prototype

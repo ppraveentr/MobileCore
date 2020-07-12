@@ -1,6 +1,6 @@
 //
 //  UIView+Utiltiy.swift
-//  FTCoreUtility
+//  MobileCoreUtility
 //
 //  Created by Praveen Prabhakar on 20/10/18.
 //  Copyright © 2018 Praveen Prabhakar. All rights reserved.
@@ -42,8 +42,9 @@ public extension UIView {
                 return val as? T
             }
             else if !val.subviews.isEmpty {
-                let subType: T? =  val.findInSubView()
-                return subType
+                if let subType: T? =  val.findInSubView() {
+                    return subType
+                }
             }
         }
         return nil

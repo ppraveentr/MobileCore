@@ -1,0 +1,30 @@
+{
+  "configurations" : [
+    {
+      "id" : "ABF538CD-009A-439B-8880-4A718C3EA08E",
+      "name" : "MobileCoreTests",
+      "options" : {
+        "areLocalizationScreenshotsEnabled" : true,
+        "testTimeoutsEnabled" : true
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "nsZombieEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:MobileCoreExample.xcodeproj",
+      "identifier" : "DE9221C81EF28CDF000C8FC7",
+      "name" : "MobileCoreExample"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:MobileCoreExample.xcodeproj",
+        "identifier" : "D44E56FD2341D3B900A0E56C",
+        "name" : "MobileCoreTests"
+      }
+    }
+  ],
+  "version" : 1
+}
