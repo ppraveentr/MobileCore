@@ -51,7 +51,7 @@ Below is the podfile we're going to use for this project.
 	platform :ios, '9.0'
 
 	target 'YourMobileApp' do
-		pod 'MobileCore', '~> 0.0.9.0'
+		pod 'MobileCore', '~> 0.1.0'
 	end
 
 Once you've updated your podfile, go ahead and run `$ pod install`
@@ -68,15 +68,6 @@ Below are the list of things I’m in plan adding into Mobile Core.
 - Inbuild Crash reporter.
 - Customizing Push notification.
 - and more!!! as I think through 🤔
-
-## Prototype
-[`NovelReader`](https://github.com/ppraveentr/NovelReader) is a prototype describing working of MobileCore.
-
-[![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
-[![Language](http://img.shields.io/badge/language-swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
-[![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
-[![Build Status](https://travis-ci.org/ppraveentr/NovelReader.svg?branch=master)](https://travis-ci.org/ppraveentr/NovelReader)
-
 
 ## Credits
 
