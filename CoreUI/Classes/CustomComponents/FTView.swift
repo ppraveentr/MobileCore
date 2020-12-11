@@ -28,12 +28,12 @@ open class FTView: UIView {
     
     @IBOutlet
     public var mainPinnedView: UIView! {
+        get {
+            localMainPinnedView
+        }
         set {
             localMainPinnedView = newValue
             self.restConstraints()
-        }
-        get {
-            localMainPinnedView
         }
     }
 

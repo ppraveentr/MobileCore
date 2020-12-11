@@ -26,11 +26,11 @@ public class NetworkMananger {
     fileprivate static var isMockDataModel: Bool = false
     
     public static var isMockData: Bool {
-        set {
-            isMockDataModel = newValue
-        }
         get {
             isMockDataModel && mockBundle != nil
+        }
+        set {
+            isMockDataModel = newValue
         }
     }
 
@@ -71,11 +71,11 @@ public class NetworkMananger {
     
     // MARK: Logger
     public static var enableConsoleLogging: Bool {
-        set {
-            Logger.enableConsoleLogging = newValue
-        }
         get {
             Logger.enableConsoleLogging
+        }
+        set {
+            Logger.enableConsoleLogging = newValue
         }
     }
     
@@ -89,11 +89,11 @@ public extension NetworkMananger {
 
     // MARK: Session Headers
     static var httpAdditionalHeaders: [String: String]? {
-        set {
-            UserCacheManager.httpAdditionalHeaders = newValue
-        }
         get {
             UserCacheManager.httpAdditionalHeaders
+        }
+        set {
+            UserCacheManager.httpAdditionalHeaders = newValue
         }
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1130"
+   LastUpgradeVersion = "1220"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,15 +15,6 @@
       codeCoverageEnabled = "YES"
       onlyGenerateCoverageForSpecifiedTargets = "YES"
       localizableStringsDataGatheringEnabled = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DE9221C81EF28CDF000C8FC7"
-            BuildableName = "MobileCoreExample.app"
-            BlueprintName = "MobileCoreExample"
-            ReferencedContainer = "container:MobileCoreExample.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
          <AdditionalOption
             key = "MallocStackLogging"

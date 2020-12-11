@@ -101,12 +101,12 @@ open class FontPickerView: UIView {
     }
     
     var selectedFont: String? {
+        get {
+            fontPickerModel.fontFamily
+        }
         set {
             fontPickerModel.fontFamily = newValue
             pickerDelegate?.fontFamily(newValue)
-        }
-        get {
-            fontPickerModel.fontFamily
         }
     }
     

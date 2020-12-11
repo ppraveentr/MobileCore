@@ -8,6 +8,7 @@ end
 target 'MobileCoreExample' do
    common_pods
    pod 'SwiftLint'
+   pod 'SwiftKeychainWrapper'
 end
 
 target 'MobileCoreTests' do
