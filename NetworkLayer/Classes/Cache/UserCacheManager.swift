@@ -93,12 +93,12 @@ public class UserCacheManager: UserCacheProtocol {
 
     // MARK: Session Headers
     public static var httpAdditionalHeaders: [String: String]? {
+        get {
+            UserCacheManager.getCachedObject(forKey: "sessnion.httpAdditionalHeaders", cacheType: .application) as? [String: String]
+        }
         set {
             let data = newValue
             UserCacheManager.setCacheObject(data as AnyObject, forKey: "sessnion.httpAdditionalHeaders", cacheType: .application)
-        }
-        get {
-            UserCacheManager.getCachedObject(forKey: "sessnion.httpAdditionalHeaders", cacheType: .application) as? [String: String]
         }
     }
 }

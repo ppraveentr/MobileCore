@@ -19,13 +19,13 @@ open class FontPickerViewController: UIViewController {
     }
 
     open var fontPickerModel: FontPickerModel? {
+        get {
+            pickerView?.fontPickerModel
+        }
         set {
             if let model = newValue {
                 pickerView?.fontPickerModel = model
             }
-        }
-        get {
-            pickerView?.fontPickerModel
         }
     }
 

@@ -112,11 +112,11 @@ extension UILabel: AttributedLabelProtocol {
     }
     
     public var htmlText: String {
-        set {
-            updateWithHtmlString(text: newValue)
-        }
         get {
             ""
+        }
+        set {
+            updateWithHtmlString(text: newValue)
         }
     }
 }
