@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'MobileCore'
-  s.version          = '0.1.0'
-  s.summary          = 'Mobile Core utility.'
+  s.version          = '0.1.1'
+  s.summary          = 'MobileCore framework.'
   s.homepage         = 'https://github.com/ppraveentr/MobileCore'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'PraveenP' => 'ppraveentr@gmail.com' }
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.default_subspecs      = 'CoreUtility', 'NetworkLayer', 'CoreUI', 'AppTheming'
 
   s.subspec 'CoreUtility' do |utility|
-    utility.source_files  = 'FTCoreUtility/Classes/**/*.{h,m,swift}'
+    utility.source_files  = 'CoreUtility/Classes/**/*.{h,m,swift}'
     utility.header_dir    = "CoreUtility"
     utility.dependency  'SwiftKeychainWrapper'
   end
@@ -31,8 +31,8 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'CoreUI' do |coreUI|
-    coreUI.source_files = 'FTMobileCoreUI/Classes/**/*.{h,m,swift}'
-    coreUI.resources    = ['FTMobileCoreUI/Assets/**/*', 'FTMobileCoreUI/Classes/**/*.xib']
+    coreUI.source_files = 'CoreUI/Classes/**/*.{h,m,swift}'
+    coreUI.resources    = ['CoreUI/Assets/**/*', 'CoreUI/Classes/**/*.xib']
     coreUI.dependency  'MobileCore/CoreUtility'
     coreUI.header_dir   = "CoreUI"
   end

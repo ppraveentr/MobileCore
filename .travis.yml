@@ -37,7 +37,7 @@ deploy:
 
 deploy:
   provider: script
-  script: ./scripts/cocoapod_push.sh
+  script: ./Example/scripts/cocoapod_push.sh
   on:
     all_branches: true
     tags: true
