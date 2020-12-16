@@ -100,9 +100,7 @@ extension UIViewController: ViewControllerProtocol {
     public func shouldDissmissKeyboardOnTap() -> Bool { true }
     
     public func setupCoreView() {
-        if self.view == self.baseView {
-            return
-        }
+        if self.view == self.baseView { return }
         guard let rootView = self.view else { return }
         var isValidBaseView = false
         

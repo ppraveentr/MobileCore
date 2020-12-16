@@ -53,9 +53,7 @@ extension UISearchBar: ThemeProtocol {
     // MARK: - Key-Value Observing
     // swiftlint:disable block_based_kvo
     override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        guard let searchField = searchUITextField, let att = searchBarAttributes, !att.isEmpty else {
-            return
-        }
+        guard let searchField = searchUITextField, let att = searchBarAttributes, !att.isEmpty else { return }
         if keyPath == #keyPath(UISearchBar.placeholder),
             let sting = searchField.attributedPlaceholder?.string {
             // Update placeHolder

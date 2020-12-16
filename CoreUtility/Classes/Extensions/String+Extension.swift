@@ -10,6 +10,9 @@ import Foundation
 
 public typealias AttributedDictionary = [NSAttributedString.Key: Any]
 
+private enum RegularExpression {
+    static let htmlFormat = "<[^>]+>"
+}
 // Since all optionals are actual enum values in Swift,
 public extension Optional where Wrapped == String {
     var isNilOrEmpty: Bool {
@@ -30,14 +33,14 @@ public extension Optional where Wrapped == String {
 
 public extension String {
     var isHTMLString: Bool {
-        if self.range(of: "<[^>]+>", options: .regularExpression) != nil {
+        if self.range(of: RegularExpression.htmlFormat, options: .regularExpression) != nil {
             return true
         }
         return false
     }
     
     func stripHTML() -> String {
-        self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        self.replacingOccurrences(of: RegularExpression.htmlFormat, with: "", options: .regularExpression, range: nil)
     }
 
     func htmlAttributedString() -> NSMutableAttributedString {

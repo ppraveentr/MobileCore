@@ -8,28 +8,21 @@
 
 import UIKit
 
-public typealias ImageViewComletionHandler = ((UIImage?) -> Void)
-
 public extension UIImageView {
-    
     /**
      Download Image from async in background
      - parameter url: Image's url from which need to download
      - parameter contentMode: ImageView's content mode, defalut to 'scaleAspectFit'
      */
-    func downloadedFrom(url: URL,
-                        contentMode mode: UIView.ContentMode = .scaleAspectFit,
-                        comletionHandler: ImageViewComletionHandler? = nil) {
-        
+    func downloadedFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit,
+                        defaultImage: UIImage? = nil) {
         // Image's Content mode
         contentMode = mode
-        
+        image = nil
         // Download Image from async in background
         url.downloadedImage { image in
             DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.image = image
-                comletionHandler?(image)
+                self?.image = image ?? defaultImage
             }
         }
     }
@@ -39,16 +32,15 @@ public extension UIImageView {
      - parameter link: Image's urlString from which need to download
      - parameter contentMode: ImageView's content mode, defalut to 'scaleAspectFit'
      */
-    func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit, comletionHandler: ImageViewComletionHandler? = nil) {
-        
+    func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit,
+                        defaultImage: UIImage? = nil) {
         // Validate urlString
         guard let url = URL(string: link) else {
-            self.image = nil
-            comletionHandler?(nil)
+            self.image = defaultImage
             return
         }
         
         // Download image using valid URL
-        downloadedFrom(url: url, contentMode: mode, comletionHandler: comletionHandler)
+        downloadedFrom(url: url, contentMode: mode, defaultImage: defaultImage)
     }
 }
