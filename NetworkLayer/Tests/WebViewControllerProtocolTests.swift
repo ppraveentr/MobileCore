@@ -7,8 +7,8 @@
 //
 
 @testable import MobileCore
-import XCTest
 import WebKit
+import XCTest
 
 fileprivate final class MockKWebViewController: UIViewController, WebViewControllerProtocol {
     // Mock: object implementation for testing

@@ -37,9 +37,7 @@ extension UIView {
     // Swizzling out view's layoutSubviews property for Updating Visual theme
     private static func swizzleLayoutSubview() {
         // need to be Swizzled only once.
-        guard !hasSwizzled else {
-            return
-        }
+        guard !hasSwizzled else { return }
         hasSwizzled = true
         instanceMethodSwizzling(UIView.self, #selector(layoutSubviews), #selector(swizzledLayoutSubviews))
     }

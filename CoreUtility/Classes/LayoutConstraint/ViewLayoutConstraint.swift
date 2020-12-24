@@ -8,7 +8,7 @@
 
 import Foundation
 
-//UILayoutPriority value little lessThan .required
+// UILayoutPriority value little lessThan .required
 public let kLayoutPriorityRequiredLow = UILayoutPriority(UILayoutPriority.required.rawValue - 1)
 
 public enum LayoutDirection {
@@ -257,13 +257,13 @@ private extension UIView {
     func pinStackViewMargin(view: UIView, edgeInsets: EdgeInsets, priority: UILayoutPriority) -> [NSLayoutConstraint] {
         var localConstraint = [NSLayoutConstraint]()
         
-        //Leading
+        // Leading
         if edgeInsets.contains(.leadingMargin) {
             let constraint = self.pin(\UIView.leadingAnchor, toView: view, priority: priority)
             localConstraint.append(constraint)
         }
         
-        //Traling
+        // Traling
         if edgeInsets.contains(.trailingMargin) {
             let constraint = self.pin(\UIView.trailingAnchor, toView: view, priority: priority)
             localConstraint.append(constraint)
@@ -284,7 +284,7 @@ private extension UIView {
             localConstraint.append(constraint)
         }
         
-        //BottomMargin
+        // BottomMargin
         if edgeInsets.contains(.bottomMargin) {
             let constraint = NSLayoutConstraint(
                 item: view,
@@ -299,13 +299,13 @@ private extension UIView {
             localConstraint.append(constraint)
         }
         
-        //Equal Height
+        // Equal Height
         if edgeInsets.contains(.equalHeight) {
             let constraint = self.pin(\UIView.heightAnchor, toView: view, priority: priority, constant: 0)
             localConstraint.append(constraint)
         }
         
-        //Equal Width
+        // Equal Width
         if edgeInsets.contains(.equalWidth) {
             let constraint = self.pin(\UIView.widthAnchor, toView: view, priority: priority, constant: 0)
             localConstraint.append(constraint)
@@ -375,7 +375,7 @@ public extension UIView {
         // Used of .AutoMargin edgeInsets, 
         // If any view is removed, this will reset the remaningViews to defaults
         let pinEachViewToSuperView = { (index: Int, view: UIView) in
-            //Fix to
+            // Fix to
             let priorityL = priority.rawValue - Float(views.count + index)
             let defaultOffset = UIEdgeInsets(0)
             
@@ -439,10 +439,10 @@ public extension UIView {
             
             // TODO: Simplfy the logic
             if localEdgeInsets.contains(.autoMargin) {
-                //Pin each view to self with Default-padding.
+                // Pin each view to self with Default-padding.
                 pinEachViewToSuperView(index, view)
                 
-                //Pin each view to nextView with offSet-padding.
+                // Pin each view to nextView with offSet-padding.
                 pinPairSubViews(index, offSet, localEdgeInsets)
             }
         }

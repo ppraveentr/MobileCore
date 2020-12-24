@@ -12,6 +12,7 @@ import XCTest
 final class TopViewControllerTests: XCTestCase {
     
     private var oldRootVC: UIViewController?
+    
     override func setUp() {
         super.setUp()
         oldRootVC = UIApplication.shared.keyWindow?.rootViewController
@@ -92,6 +93,7 @@ final class TopViewControllerTests: XCTestCase {
                 
         let topVC = tabVC.currentViewController
         XCTAssertNotNil(topVC)
+        
         let selectedVC = tabVC.selectedViewController
         XCTAssertNotNil(selectedVC)
         XCTAssertEqual(topVC, selectedVC)
@@ -118,6 +120,7 @@ final class TopViewControllerTests: XCTestCase {
     func testEmptyCurrentVC() {
         let dummyViewContorller = UIViewController()
         UIApplication.shared.keyWindow?.rootViewController = nil
+        
         let topVC = dummyViewContorller.currentViewController
         XCTAssertNotNil(dummyViewContorller.currentViewController)
         XCTAssertEqual(topVC, dummyViewContorller)

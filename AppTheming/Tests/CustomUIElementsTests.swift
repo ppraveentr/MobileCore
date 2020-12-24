@@ -21,7 +21,7 @@ final class CustomUIElementsTests: XCTestCase {
             ThemesManager.setupThemes(themes: themeContent, imageSourceBundle: nil)
         }
         else {
-            XCTFail()
+            XCTFail("Should have valid theme")
         }
     }
     

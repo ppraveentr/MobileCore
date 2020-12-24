@@ -12,17 +12,13 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var topView: UIView!
     weak var contentViewC: ContentViewController?
-    var button: UIButton = UIButton()
+    var button = UIButton()
     let buttonText = "<p>Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>"
-    
-    override func loadView() {
-        super.loadView()
-         // Setup MobileCore
-        setupCoreView()
-    }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Setup MobileCore
+        setupCoreView()
         
         // TopView
         setUpTopView()

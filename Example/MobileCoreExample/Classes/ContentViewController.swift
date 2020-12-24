@@ -18,13 +18,11 @@ final class ContentViewController: UIViewController, WebViewControllerProtocol {
         <p>5) Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>
         """
     
-    override func loadView() {
-        super.loadView()
-        setupCoreView()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Setup MobileCore
+        setupCoreView()
+        // Load HTLM
         contentView.loadHTMLBody(value)
     }
 }

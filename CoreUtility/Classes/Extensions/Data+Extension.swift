@@ -24,7 +24,7 @@ public extension Data {
                 break
             }
         }
-        //Try: On nil, try getting encoding list from URLResponse
+        // Try: On nil, try getting encoding list from URLResponse
         return (html)
     }
 }

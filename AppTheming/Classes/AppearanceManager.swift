@@ -14,14 +14,11 @@ protocol AppearanceManagerProtocol {
 }
 
 public enum AppearanceManager {
-
     static func getComponentName(_ appearanceName: String) -> (String, String?) {
         let components = appearanceName.components(separatedBy: ":")
-
         if components.count > 1 {
             return (components.first!, components.last)
         }
-
         return (appearanceName, nil)
     }
 
@@ -33,7 +30,7 @@ public enum AppearanceManager {
             if let themeObj: ThemeModel = theme.value as? ThemeModel {
 
                 let components = getComponentName(theme.key)
-
+                // Setup 'appearance' from Theme
                 if let classTy: AppearanceManagerProtocol = Reflection.swiftClassFromString(components.0) as? AppearanceManagerProtocol {
 
                     var appearanceContainer: [UIAppearanceContainer.Type]?
@@ -46,19 +43,6 @@ public enum AppearanceManager {
                     classTy.setUpAppearance(theme: themeObj, containerClass: appearanceContainer)
                 }
             }
-        }
-    }
-}
-
-extension ThemesManager {
-
-    public static func setStatusBarBackgroundColor(_ color: UIColor?) {
-        
-        if
-            let color = color,
-            let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as? UIView,
-            statusBar.responds(to: #selector(setter: UIView.backgroundColor)) {
-            statusBar.backgroundColor = color
         }
     }
 }
@@ -161,7 +145,7 @@ extension UINavigationBar {
     }
     
     override public class func setBackgroundImage(_ image: Any) {
-        
+        // defaultImage
         var defaultImage: UIImage? = ThemesManager.getImage(image)
         var landScapeImage: UIImage?
         
@@ -177,11 +161,8 @@ extension UINavigationBar {
 }
 
 extension UITabBar {
-    
     override public class func setBackgroundImage(_ image: Any) {
-        
         let appearance = self.appearance()
-
         if let defaultImage = ThemesManager.getImage(image) {
             appearance.backgroundImage = defaultImage
         }

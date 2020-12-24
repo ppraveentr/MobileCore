@@ -27,7 +27,7 @@ final class URLSessionManagerTests: XCTestCase {
     func testStartTaskWithCompletion() {
         let promise = expectation(description: "FTURLSession data task completed.")
         guard let theme = kMobileCoreBundle?.path(forResource: "Themes", ofType: "json") else {
-            XCTFail()
+            XCTFail("Should have valid theme")
             return
         }
         URLSessionManager.startDataTask(with: URLRequest(url: URL(fileURLWithPath: theme))) { data, _, _ in

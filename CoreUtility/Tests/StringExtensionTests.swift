@@ -23,7 +23,7 @@ final class StringExtensionTests: XCTestCase {
         XCTAssertEqual(testString, trimmingResult)
         
         testString = "trimming array of string"
-        XCTAssertEqual(testString.trimming([" array of"," string"]), trimmingResult)
+        XCTAssertEqual(testString.trimming([" array of", " string"]), trimmingResult)
         
         testString = "trimming string"
         XCTAssertEqual(testString.trimming(" string"), trimmingResult)
@@ -39,10 +39,10 @@ final class StringExtensionTests: XCTestCase {
         let path = kMobileCoreBundle?.path(forResource: "Themes", ofType: "json")
         
         let promise = expectation(description: "Files found at path.")
-        try? path?.filesAtPath({ (paths) in
+        try? path?.filesAtPath { paths in
             XCTAssertNotNil(paths)
             promise.fulfill()
-        })
+        }
         wait(for: [promise], timeout: 5)
     }
 }

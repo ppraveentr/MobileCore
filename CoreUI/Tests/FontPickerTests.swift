@@ -7,8 +7,8 @@
 //
 
 @testable import MobileCore
-import XCTest
 import UIKit
+import XCTest
 
 final class MockFontPickerViewProtocol: FontPickerViewProtocol {
     func pickerColor(textColor: UIColor, backgroundColor: UIColor) {

@@ -21,12 +21,11 @@ final class ThemesTests: XCTestCase {
             ThemesManager.setupThemes(themes: themeContent, imageSourceBundle: [bundle])
         }
         else {
-            XCTFail()
+            XCTFail("Should have valid theme")
         }
     }
     
     // MARK: Theme Manager
-    
     
     // MARK: View Component
     func testComponent() {
@@ -68,7 +67,7 @@ final class ThemesTests: XCTestCase {
     }
     
     func testRGBIntColor() {
-        let value = UIColor(rgb: 13158600)
+        let value = UIColor(rgb: 13_158_600)
         XCTAssertNotNil(value)
         XCTAssertEqual(value.hexString(), "#C8C8C8".lowercased())
         XCTAssertEqual(value.hexAlphaString(), "#C8C8C8FF".lowercased())
@@ -77,7 +76,7 @@ final class ThemesTests: XCTestCase {
     }
     
     func testRGBAIntColor() {
-        let value = UIColor(rgb: 13158600, a: 0.5)
+        let value = UIColor(rgb: 13_158_600, a: 0.5)
         XCTAssertNotNil(value)
         XCTAssertEqual(value.hexAlphaString(), "#C8C8C87F".lowercased())
         let actualValue = UIColor(red: 200, green: 200, blue: 200, a: 0.5)

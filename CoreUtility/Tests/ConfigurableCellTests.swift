@@ -9,59 +9,115 @@
 @testable import MobileCore
 import XCTest
 
-fileprivate final class DummyTableViewCell: UITableViewCell {
-    // Mock: object implementation for testing
+fileprivate final class MockViewCellWithoutNib: UIView {
 }
 
 final class ConfigurableCellTests: XCTestCase {
-    //private lazy var mockCell: MockTableViewCell?
+    // private lazy var mockCell: MockTableViewCell?
     private let mockTableView = UITableView()
-    
+    private let mockCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+
     func testDefaultNib() {
         XCTAssertEqual(MockTableViewCell.defaultNibName, "MockTableViewCell")
         XCTAssertEqual(MockTableViewCell.defaultReuseIdentifier, "MockTableViewCellID")
-    }
-    
-    func testLoadFromDefaultNib() {
-        // let
+        // Cell without nib
         do {
-            let nib = try MockTableViewCell.loadFromDefaultNib()
-            XCTAssertNotNil(nib)
+            let errorNib = try MockViewCellWithoutNib.loadNibFromBundle()
+            XCTAssertNil(errorNib, "Should have failed to load nib")
         }
         catch {
-            XCTAssertNil(error)
+            XCTAssertNotNil(error, "Should have failed to load nib")
         }
     }
     
-    func testRegisterCellDefaultReuseID() {
-        //let
+    // MARK: TableView
+    func testTableViewLoadNib() {
+        // let
+        let mockCell = try? MockTableViewCell.loadNibFromBundle()
+        XCTAssertNotNil(mockCell, "Should have loaded nib")
+        // Cell with nib file
+        let mockNib = MockTableViewCell.getNib()
+        XCTAssertNotNil(mockNib, "Should have loaded nib")
+    }
+    
+    func testTableViewRegisterNib() {
+        // let
         let indexPath = IndexPath(row: 0, section: 0)
         // when
-        MockTableViewCell.registerClass(for: mockTableView)
-        let cell: MockTableViewCell? = try? MockTableViewCell.dequeue(from: mockTableView, for: indexPath)
+        MockTableViewCell.registerNib(for: mockTableView)
+        let cell: MockTableViewCell? = try? .dequeue(from: mockTableView, for: indexPath)
         // then
-        XCTAssertNotNil(cell)
+        XCTAssertNotNil(cell, "Should have dequeue cell")
         XCTAssertNotNil(mockTableView.dequeueReusableCell(withIdentifier: MockTableViewCell.defaultReuseIdentifier))
     }
     
-    func testRegisterCellCustomReuseID() {
-        let customReuseID = "reuseID"
-        MockTableViewCell.registerClass(for: mockTableView, reuseIdentifier: customReuseID)
-        XCTAssertNil(mockTableView.dequeueReusableCell(withIdentifier: MockTableViewCell.defaultReuseIdentifier))
-        XCTAssertNotNil(mockTableView.dequeueReusableCell(withIdentifier: customReuseID))
-    }
-    
-    func testRegisterCellFails() {
-        //let
+    func testTableViewRegisterCell() {
+        // let
         let indexPath = IndexPath(row: 0, section: 0)
         // when
-        do {
-            let cell: MockTableViewCell = try MockTableViewCell.dequeue(from: mockTableView, for: indexPath)
-            // then
-            XCTAssertNil(cell)
-        }
-        catch {
-            XCTAssertNotNil(error)
-        }
+        MockTableViewCell.registerClass(for: mockTableView)
+        let cell: MockTableViewCell? = try? .dequeue(from: mockTableView, for: indexPath)
+        // then
+        XCTAssertNotNil(cell, "Should have dequeue cell")
+        XCTAssertNotNil(mockTableView.dequeueReusableCell(withIdentifier: MockTableViewCell.defaultReuseIdentifier))
+    }
+    
+    func testTableViewCellCustomReuseID() {
+        // let
+        let customReuseID = "reuseID"
+        // when Register cell with Custom reuseIdentifier
+        MockTableViewCell.registerClass(for: mockTableView, reuseIdentifier: customReuseID)
+        // then
+        XCTAssertNil(mockTableView.dequeueReusableCell(withIdentifier: MockTableViewCell.defaultReuseIdentifier),
+                     "Should not have dequeue cell as reuseIdentifier not found")
+        XCTAssertNotNil(mockTableView.dequeueReusableCell(withIdentifier: customReuseID),
+                        "Should have dequeue cell as with \(customReuseID) reuseIdentifier")
+    }
+    
+    // MARK: CollectionView
+    func testCollectionViewLoadNib() {
+        // let
+        let mockCell = try? MockCollectionViewCell.loadNibFromBundle()
+        XCTAssertNotNil(mockCell, "Should have loaded nib")
+        // Cell with nib file
+        let mockNib = MockCollectionViewCell.getNib()
+        XCTAssertNotNil(mockNib, "Should have loaded nib")
+    }
+    
+    func testCollectionViewRegisterNib() {
+        // let
+        let indexPath = IndexPath(row: 0, section: 0)
+        // when
+        MockCollectionViewCell.registerNib(for: mockCollectionView)
+        let cell: MockCollectionViewCell? = try? .dequeue(from: mockCollectionView, for: indexPath)
+        // then
+        XCTAssertNotNil(cell, "Should have dequeue cell")
+        // let
+        let cellMock = mockCollectionView.dequeueReusableCell(withReuseIdentifier: MockCollectionViewCell.defaultReuseIdentifier, for: indexPath)
+        XCTAssertNotNil(cellMock, "Should have dequeue cell")
+    }
+    
+    func testCollectionViewRegisterCell() {
+        // let
+        let indexPath = IndexPath(row: 0, section: 0)
+        // when
+        MockCollectionViewCell.registerClass(for: mockCollectionView)
+        let cell: MockCollectionViewCell? = try? .dequeue(from: mockCollectionView, for: indexPath)
+        // then
+        XCTAssertNotNil(cell, "Should have dequeue cell")
+        // let
+        let cellMock = mockCollectionView.dequeueReusableCell(withReuseIdentifier: MockCollectionViewCell.defaultReuseIdentifier, for: indexPath)
+        XCTAssertNotNil(cellMock, "Should have dequeue cell")
+    }
+    
+    func testCollectionViewCellCustomReuseID() {
+        // let
+        let indexPath = IndexPath(row: 0, section: 0)
+        let customReuseID = "reuseID"
+        // when Register cell with Custom reuseIdentifier
+        MockCollectionViewCell.registerClass(for: mockCollectionView, reuseIdentifier: customReuseID)
+        // then
+        XCTAssertNotNil(mockCollectionView.dequeueReusableCell(withReuseIdentifier: customReuseID, for: indexPath),
+                        "Should have dequeue cell as with \(customReuseID) reuseIdentifier")
     }
 }

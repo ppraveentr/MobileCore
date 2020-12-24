@@ -39,8 +39,8 @@ public class NetworkMananger {
 
     public static var mockBundleResource: URL? = nil {
         didSet {
-            if mockBundleResource != nil {
-                mockBundle = Bundle(url: mockBundleResource!)
+            if let bundle = mockBundleResource {
+                mockBundle = Bundle(url: bundle)
             }
             else {
                 mockBundle = nil

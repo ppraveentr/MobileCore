@@ -70,7 +70,7 @@ open class ThemesManager {
         
         // Get theme component
         guard let currentTheme: ThemeModel = ThemesManager.getViewComponent(name, styleName: styleName) else {
-            //ftLog("FTError: Theme of type \(styleName) not avaialble for class \(name)" )
+            // ftLog("FTError: Theme of type \(styleName) not avaialble for class \(name)" )
             return nil
         }
         

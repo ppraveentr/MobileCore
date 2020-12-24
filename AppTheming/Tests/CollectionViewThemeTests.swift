@@ -23,7 +23,7 @@ final class CollectionViewThemeTests: XCTestCase {
             ThemesManager.setupThemes(themes: themeContent)
         }
         else {
-            XCTFail()
+            XCTFail("Should have valid theme")
         }
     }
     
@@ -35,9 +35,9 @@ final class CollectionViewThemeTests: XCTestCase {
         collectionView.backgroundView = tempView
         collectionView.theme = "collectionRed"
         // then
-        XCTAssertNotNil(value)
+        XCTAssertNotNil(value, "Should have valid value")
         XCTAssertEqual(tempView.theme, "viewR")
-        XCTAssertEqual(tempView.backgroundColor, value)
+        XCTAssertEqual(tempView.backgroundColor, value, "Should have same backgroundColor")
     }
     
     func testCollectionViewTheme() {
@@ -48,7 +48,7 @@ final class CollectionViewThemeTests: XCTestCase {
         collectionView.backgroundView = tempView
         collectionView.theme = ThemeStyle.defaultStyle
         // then
-        XCTAssertNotNil(value)
+        XCTAssertNotNil(value, "Should have valid value")
         XCTAssertEqual(tempView.theme, ThemeStyle.defaultStyle)
         XCTAssertEqual(tempView.backgroundColor, value)
     }

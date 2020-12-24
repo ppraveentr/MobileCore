@@ -26,8 +26,8 @@ final class CoreUtilityTests: XCTestCase {
     }
     
     func testMergeElements() {
-        var dic1: [String : Any] = [ "set1": "sada", "set2": [ "set1": "val1" ] ]
-        let dic2: [String : Any] = [ "set2": [ "set2": "val2" ], "set3": [ "val4", "val4" ] ]
+        var dic1: [String: Any] = [ "set1": "sada", "set2": [ "set1": "val1" ] ]
+        let dic2: [String: Any] = [ "set2": [ "set2": "val2" ], "set3": [ "val4", "val4" ] ]
         dic1.merge(another: dic2)
         XCTAssert(dic1.count == 3)
     }
@@ -45,7 +45,7 @@ final class CoreUtilityTests: XCTestCase {
         let testData = [ "set1": "val1", "set2": "val2" ]
         let data = try? JSONSerialization.data(withJSONObject: testData, options: .prettyPrinted)
         XCTAssertNotNil(data)
-        let res = try? data?.jsonContent() as? [String:String]
+        let res = try? data?.jsonContent() as? [String: String]
         XCTAssertNotNil(res)
         XCTAssertEqual(res, testData)
     }

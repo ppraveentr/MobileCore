@@ -155,7 +155,7 @@ final class ViewControllerProtocolTests: XCTestCase {
         let shownIndicator: LoadingIndicator? = UIApplication.shared.keyWindow?.findInSubView()
         XCTAssertNotNil(shownIndicator)
         // when
-        viewController.hideActivityIndicator { isCompleted in
+        viewController.hideActivityIndicator { _ in
             promise.fulfill()
         }
         // then
