@@ -76,13 +76,6 @@ public class UserCacheManager: UserCacheProtocol {
     // Image cache, clears when user logout
     public fileprivate (set) var imageCache = NSCache<AnyObject, UIImage>()
 
-    fileprivate var localCahce: JSON {
-        if userCache == nil {
-            userCache = JSON()
-        }
-        return userCache!
-    }
-    
     public func setupUserSession() {
         // Setup local cache
         if userCache == nil {

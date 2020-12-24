@@ -49,6 +49,8 @@
 		D49FE3242345D4EA002B3742 /* CustomUIElementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE3202345D4EA002B3742 /* CustomUIElementsTests.swift */; };
 		D4E09A39234A4C1C002729E6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E09A38234A4C1C002729E6 /* Constants.swift */; };
 		D4E09A3A234A4C1C002729E6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E09A38234A4C1C002729E6 /* Constants.swift */; };
+		DE3028BA2594FF0E001F2258 /* MockCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3028B92594FF0E001F2258 /* MockCollectionViewCell.swift */; };
+		DE3028BE2594FF20001F2258 /* MockCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE3028BD2594FF20001F2258 /* MockCollectionViewCell.xib */; };
 		DE49FF7824B5C09C00222C2A /* Pixel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE49FF7724B5C09C00222C2A /* Pixel.png */; };
 		DE49FF7C24B5C98300222C2A /* Pixel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE49FF7724B5C09C00222C2A /* Pixel.png */; };
 		DE4DF44A24B109AE007776DE /* ThemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4DF44924B109AE007776DE /* ThemesTests.swift */; };
@@ -149,6 +151,8 @@
 		D49FE3202345D4EA002B3742 /* CustomUIElementsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIElementsTests.swift; sourceTree = "<group>"; };
 		D4E09A38234A4C1C002729E6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D4E09A40234B124C002729E6 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		DE3028B92594FF0E001F2258 /* MockCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCollectionViewCell.swift; sourceTree = "<group>"; };
+		DE3028BD2594FF20001F2258 /* MockCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MockCollectionViewCell.xib; sourceTree = "<group>"; };
 		DE49FF7724B5C09C00222C2A /* Pixel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pixel.png; sourceTree = "<group>"; };
 		DE4DF44924B109AE007776DE /* ThemesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemesTests.swift; sourceTree = "<group>"; };
 		DE680BB01F2E038800A9F68C /* Themes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Themes.json; sourceTree = "<group>"; };
@@ -233,6 +237,8 @@
 			children = (
 				ACEEAD2824D5B3CF002179F9 /* MockTableViewCell.xib */,
 				ACEEAD2924D5B3CF002179F9 /* MockTableViewCell.swift */,
+				DE3028B92594FF0E001F2258 /* MockCollectionViewCell.swift */,
+				DE3028BD2594FF20001F2258 /* MockCollectionViewCell.xib */,
 			);
 			path = MockClasses;
 			sourceTree = "<group>";
@@ -581,6 +587,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE3028BE2594FF20001F2258 /* MockCollectionViewCell.xib in Resources */,
 				ACEEAD3324D5B3CF002179F9 /* MockTableViewCell.xib in Resources */,
 				D405059624AC726B00B2E096 /* Themes.json in Resources */,
 				D405059524AC725F00B2E096 /* MobileCoreExampleBundle.bundle in Resources */,
@@ -680,7 +687,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		E95FFC6F7DB6D7676985C75A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -737,6 +744,7 @@
 				D42CAD352356E64A00F162E9 /* ClassMethodSwizzlingTests.swift in Sources */,
 				ACEEAD3624D5B3CF002179F9 /* CoreUtilityTests.swift in Sources */,
 				ACEEAD1E24D5B3BB002179F9 /* WebkitTests.swift in Sources */,
+				DE3028BA2594FF0E001F2258 /* MockCollectionViewCell.swift in Sources */,
 				ACEEAD2D24D5B3CF002179F9 /* ConfigurableCellTests.swift in Sources */,
 				ACEEAD3724D5B3CF002179F9 /* CustomDataTypeTests.swift in Sources */,
 				ACEEAD1F24D5B3BB002179F9 /* SegmentedControlTests.swift in Sources */,

@@ -30,7 +30,7 @@ final class CustomDataTypeTests: XCTestCase {
         XCTAssertTrue(string.isHTMLString)
         XCTAssertEqual(string.stripHTML(), "test")
         XCTAssertEqual(string.trimming("test"), "<p></p>")
-        //XCTAssertNotNil(string.htmlAttributedString())
+        // XCTAssertNotNil(string.htmlAttributedString())
     }
     
     func testHashLinkDetection() {

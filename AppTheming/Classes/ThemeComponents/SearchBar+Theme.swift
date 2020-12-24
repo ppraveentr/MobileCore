@@ -127,8 +127,8 @@ private extension UISearchBar {
             if textColor != nil {
                 searchField.textColor = textColor
                 att[.foregroundColor] = textColor
-                //let label = UILabel.appearance(whenContainedInInstancesOf: [UISearchBar.self])
-                //label.textColor = textColor
+                // let label = UILabel.appearance(whenContainedInInstancesOf: [UISearchBar.self])
+                // label.textColor = textColor
             }
             if let sting = searchField.attributedPlaceholder?.string, !att.isEmpty {
                 searchField.attributedPlaceholder = NSAttributedString(string: sting, attributes: att)

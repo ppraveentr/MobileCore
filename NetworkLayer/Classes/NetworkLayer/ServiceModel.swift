@@ -160,11 +160,13 @@ public extension ServiceModel {
         json.forEach { arg in
             if let value = arg.value as? String {
                 let key = arg.key
-                if postData == nil {
-                    postData = "\(key)=\(value)".data(using: String.Encoding.utf8)!
-                }
-                else {
-                    postData!.append("&\(key)=\(value)".data(using: String.Encoding.utf8)!)
+                if let data = "\(key)=\(value)".data(using: String.Encoding.utf8) {
+                    if postData == nil {
+                        postData = data
+                    }
+                    else {
+                        postData?.append(data)
+                    }
                 }
             }
         }

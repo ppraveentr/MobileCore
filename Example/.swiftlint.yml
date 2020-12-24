@@ -1,5 +1,4 @@
 disabled_rules:
-- file_name
 - explicit_acl
 - explicit_top_level_acl
 - explicit_type_interface
@@ -37,7 +36,6 @@ opt_in_rules:
 - empty_xctest_method
 - fallthrough
 - fatal_error_message
-- file_name
 - file_length
 - first_where
 - force_unwrapping
@@ -71,7 +69,6 @@ opt_in_rules:
 - trailing_closure
 - unneeded_parentheses_in_closure_argument
 - unused_import
-- unused_private_declaration
 - vertical_parameter_alignment_on_call
 - vertical_whitespace_closing_braces
 - xct_specific_matcher
@@ -105,10 +102,6 @@ identifier_name:
 
 statement_position:
   statement_mode: uncuddled_else
-
-file_name:
-  prefix_pattern: ""
-  suffix_pattern: "Extensions?|\\+.*"
 
 warning_threshold: 1
 

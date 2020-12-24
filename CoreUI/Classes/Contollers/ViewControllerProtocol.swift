@@ -11,19 +11,19 @@ import UIKit
 public protocol ViewControllerProtocol where Self: UIViewController {
     var modelStack: AnyObject? { get set }
     
-    //Setup View
+    // Setup View
     func setupCoreView()
     // MARK: Navigation Bar
-    //Bydefalut leftButton action is set to 'leftButtonAction'
+    // Bydefalut leftButton action is set to 'leftButtonAction'
     func setupNavigationbar(title: String, leftButton: UIBarButtonItem?, rightButton: UIBarButtonItem?)
-    //invokes's 'popViewController' if not rootViewController or-else invokes 'dismiss'
+    // invokes's 'popViewController' if not rootViewController or-else invokes 'dismiss'
     func dismissSelf(_ animated: Bool)
-    //Navigation bar defalut Actions
+    // Navigation bar defalut Actions
     func leftButtonAction()
     func rightButtonAction()
     // MARK: Keyboard notification.
     func registerKeyboardNotifications()
-    //Notifications will be unregistered in 'deinit'
+    // Notifications will be unregistered in 'deinit'
     func unregisterKeyboardNotifications()
     // MARK: Alert ViewController
     func showAlert(title: String?, message: String?, action: UIAlertAction?, actions: [UIAlertAction]?)
@@ -100,7 +100,9 @@ extension UIViewController: ViewControllerProtocol {
     public func shouldDissmissKeyboardOnTap() -> Bool { true }
     
     public func setupCoreView() {
-        if self.view == self.baseView { return }
+        if self.view == self.baseView {
+            return
+        }
         guard let rootView = self.view else { return }
         var isValidBaseView = false
         

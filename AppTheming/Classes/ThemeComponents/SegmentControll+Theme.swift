@@ -9,9 +9,7 @@ import Foundation
 
 extension UISegmentedControl: ControlThemeProtocol {
     // check view state, to update style
-    open func getThemeSubType() -> String? {
-        return nil
-    }
+    open func getThemeSubType() -> String? { nil }
     
     public func update(themeDic: ThemeModel, state: UIControl.State) {
         if let text = themeDic["tintColor"] as? String, let color: UIColor = ThemesManager.getColor(text) {

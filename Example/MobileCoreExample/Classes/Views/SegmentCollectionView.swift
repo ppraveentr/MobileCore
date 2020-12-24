@@ -12,7 +12,7 @@ let kRecentUpdateString = "Recent Update"
 let kTopViews = "Top Views"
 
 class SegmentCollectionView: UIView {
-    var segmentedControl: UISegmentedControl? = nil
+    var segmentedControl: UISegmentedControl?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,7 +29,7 @@ class SegmentCollectionView: UIView {
         // Remove previous segment
         segmentedControl?.removeSubviews()
 
-        segmentedControl = UISegmentedControl(items: items) { (segment) in
+        segmentedControl = UISegmentedControl(items: items) { segment in
             ftLog("Segment Selected: \(segment)", self.segmentedControl?.titleForSegment(at: segment) ?? "")
         }
 

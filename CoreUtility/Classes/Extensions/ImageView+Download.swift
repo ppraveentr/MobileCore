@@ -8,21 +8,27 @@
 
 import UIKit
 
+public typealias ImageViewComletionHandler = (UIImage?) -> Void
+
 public extension UIImageView {
     /**
      Download Image from async in background
      - parameter url: Image's url from which need to download
      - parameter contentMode: ImageView's content mode, defalut to 'scaleAspectFit'
      */
-    func downloadedFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit,
-                        defaultImage: UIImage? = nil) {
+    func downloadedFrom(url: URL,
+                        contentMode mode: UIView.ContentMode = .scaleAspectFit,
+                        defaultImage: UIImage? = nil,
+                        comletionHandler: ImageViewComletionHandler? = nil) {
         // Image's Content mode
         contentMode = mode
         image = nil
         // Download Image from async in background
         url.downloadedImage { image in
+            let downloadedImage = image ?? defaultImage
             DispatchQueue.main.async { [weak self] in
-                self?.image = image ?? defaultImage
+                self?.image = downloadedImage
+                comletionHandler?(downloadedImage)
             }
         }
     }
@@ -32,7 +38,8 @@ public extension UIImageView {
      - parameter link: Image's urlString from which need to download
      - parameter contentMode: ImageView's content mode, defalut to 'scaleAspectFit'
      */
-    func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit,
+    func downloadedFrom(link: String,
+                        contentMode mode: UIView.ContentMode = .scaleAspectFit,
                         defaultImage: UIImage? = nil) {
         // Validate urlString
         guard let url = URL(string: link) else {

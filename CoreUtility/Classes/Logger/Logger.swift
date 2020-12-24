@@ -14,6 +14,6 @@ public func ftLog(_ arg: Any ...) {
     }
 }
 
-open class Logger {
+public class Logger {
     public static var enableConsoleLogging = false
 }

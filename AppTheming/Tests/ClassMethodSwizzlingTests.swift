@@ -10,8 +10,8 @@
 import XCTest
 
 private final class TestSwizzling {
-    @objc dynamic func getMessage() -> String { return "getMessage" }
-    @objc dynamic func swizzledMessage() -> String { return "swizzledMessage" }
+    @objc dynamic func getMessage() -> String { "getMessage" }
+    @objc dynamic func swizzledMessage() -> String { "swizzledMessage" }
     
     // Swizzling out view's layoutSubviews property for Updating Visual theme
     static func swizzleTestMethod() {
@@ -26,7 +26,7 @@ final class ClassMethodSwizzlingTests: XCTestCase {
         XCTAssertNotNil(temp)
         XCTAssertEqual(temp.getMessage(), "getMessage")
         XCTAssertEqual(temp.swizzledMessage(), "swizzledMessage")
-        TestSwizzling.swizzleTestMethod() //Swizzle method and test again
+        TestSwizzling.swizzleTestMethod() // Swizzle method and test again
         XCTAssertEqual(temp.getMessage(), "swizzledMessage")
         XCTAssertEqual(temp.swizzledMessage(), "getMessage")
     }

@@ -8,16 +8,14 @@
 
 import Foundation
 
-public extension URL {
-
-    typealias ImageViewComletionHandler = (UIImage?) -> Void
-    
+public extension URL {    
     /**
      Download Image from async in background
      - parameter allowCache: Catches image localy based on URL
      */
-    func downloadedImage(using session: URLSession = URLSession.shared, cache: NSCache<AnyObject, UIImage>? = nil,
-                         _ comletionHandler: ImageViewComletionHandler? = nil) {
+    func downloadedImage(using session: URLSession = URLSession.shared,
+                         cache: NSCache<AnyObject, UIImage>? = nil,
+                         comletionHandler: ImageViewComletionHandler? = nil) {
         // Cache image based on URL
         let cacheKey = absoluteString as NSString
         if let image = cache?.object(forKey: cacheKey) {

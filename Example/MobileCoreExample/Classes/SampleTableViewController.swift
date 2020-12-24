@@ -13,19 +13,21 @@ class SampleTableViewController: UIViewController, TableViewControllerProtocol {
     @IBOutlet var footerView: UIView!
     
     var tableStyle: UITableView.Style {
-        return .plain
-    }
-    
-    override func loadView() {
-        super.loadView()
-        // Setup MobileCore
-        setupCoreView()
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        .plain
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Setup MobileCore
+        setupCoreView()
+        // Setup TableView
+        setupTableView()
+    }
+    
+    func setupTableView() {
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
         self.tableView.setTableHeaderView(view: footerView)
         footerView.setNeedsDisplay()
         footerView.layoutIfNeeded()
@@ -35,11 +37,11 @@ class SampleTableViewController: UIViewController, TableViewControllerProtocol {
 extension SampleTableViewController: UITableViewDelegate, UITableViewDataSource {
     // For calculating TableCell height
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        50
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

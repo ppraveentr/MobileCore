@@ -14,7 +14,7 @@ final class WebkitTests: XCTestCase {
 
     private let testHTMLString = "Test load string"
     
-    lazy var webview: WKWebView = WKWebView()
+    lazy var webview = WKWebView()
 
     override func setUp() {
         webview.loadHTMLBody(testHTMLString)

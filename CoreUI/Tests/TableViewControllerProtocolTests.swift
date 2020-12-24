@@ -64,7 +64,6 @@ final class TableViewControllerProtocolTests: XCTestCase {
         XCTAssertEqual(defaultTableV.tableViewController, controller)
     }
     
-    
     func testTableHeaderView() {
         let headerView = MockTableViewHeader()
         XCTAssertNotNil(headerView)
@@ -78,11 +77,11 @@ final class TableViewControllerProtocolTests: XCTestCase {
         
         let tableHeaderView = tableViewC?.tableView.tableHeaderView
         XCTAssertNotNil(tableHeaderView)
-        //XCTAssertEqual(tableHeaderView?.embView, headerView)
+        // XCTAssertEqual(tableHeaderView?.embView, headerView)
         
         let tableFooterView = tableViewC?.tableView.tableFooterView
         XCTAssertNotNil(tableFooterView)
-        //XCTAssertEqual(tableFooterView?.embView, footerView)
+        // XCTAssertEqual(tableFooterView?.embView, footerView)
     }
     
      func testTableHeaderFooterView() {
@@ -93,6 +92,6 @@ final class TableViewControllerProtocolTests: XCTestCase {
         
         let tableHeaderView = defaultTableV.tableView.tableHeaderView
         XCTAssertNotNil(tableHeaderView)
-        //XCTAssertEqual(tableHeaderView?.embView, headerView)
+        // XCTAssertEqual(tableHeaderView?.embView, headerView)
     }
 }

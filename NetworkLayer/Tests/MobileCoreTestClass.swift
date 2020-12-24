@@ -6,8 +6,8 @@
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.
 //
 
-@testable import MobileCore
 import Foundation
+@testable import MobileCore
 
 final class AccountDetail: ServiceModel {
     var value: String = ""
@@ -47,10 +47,10 @@ final class TestDummyService: ServiceClient {
     var responseStack: Account?
     var inputStack: Account?
     var responseStackType: Any?
+    var serviceName: String = ""
+    var request: ReqeustType = .POST
     
     init(inputStack: ServiceModel? = nil) {
         self.inputStack = inputStack as? Account
     }
-    var serviceName: String = ""
-    var request: ReqeustType = .POST
 }

@@ -41,32 +41,22 @@ public extension UIView {
         "\(self)ID"
     }
      
-    static func getNib(nibName: String) -> UINib {
-        UINib(nibName: nibName, bundle: Bundle(for: self))
+    static func getNib(nibName: String? = nil) -> UINib {
+        let nibName = nibName ?? defaultNibName
+        return UINib(nibName: nibName, bundle: Bundle(for: self))
     }
     
-    static func loadFromDefaultNib<T: UIView>() throws -> T {
-        try loadFromNib(defaultNibName)
-    }
-    
-    static func loadFromNib<T: UIView>(_ nibName: String) throws -> T {
-        try loadFromNib(nibName, bundle: Bundle(for: self))
-    }
-    
-    static func loadFromNib<T: UIView>(_ nibName: String, bundle: Bundle) throws -> T {
-        try loadFromNib(nibName, bundle: bundle, owner: nil)
-    }
-    
-    static func loadFromNib<T: UIView>(_ nibName: String, bundle: Bundle, owner: Any?) throws -> T {
-        guard let view = bundle.loadNibNamed(nibName, owner: owner, options: nil)?.first as? T else {
+    static func loadNibFromBundle<T: UIView>(_ nibName: String? = nil,
+                                       bundle: Bundle? = nil,
+                                       owner: Any? = nil) throws -> T {
+        let nibName = nibName ?? defaultNibName
+        let bundle = bundle ?? Bundle(for: self)
+        guard bundle.path(forResource: nibName, ofType: "nib") != nil,
+              let view = bundle.loadNibNamed(nibName, owner: owner, options: nil)?.first as? T else {
+               // file not exists
             throw loadFromNibError(nibName: nibName)
-        }
+           }
         return view
-    }
-    
-    func loadViewFromNib(_ nibName: String) -> UIView? {
-        let nib = Self.getNib(nibName: nibName)
-        return nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
 }
 
@@ -77,16 +67,13 @@ public extension UITableViewCell {
     }
     
     static func registerNib(for tableView: UITableView, reuseIdentifier: String? = nil) {
-        let nib = UINib(nibName: defaultNibName, bundle: Bundle(for: self))
+        let nib = Self.getNib()
         tableView.register(nib, forCellReuseIdentifier: reuseIdentifier ?? defaultReuseIdentifier)
     }
        
     // dequeue cell for the class
     static func dequeue<T: UITableViewCell>(from tableView: UITableView, for indexPath: IndexPath, identifier: String? = nil) throws -> T {
         let identifier = identifier ?? defaultReuseIdentifier
-        guard tableView.dequeueReusableCell(withIdentifier: identifier) != nil else {
-            throw cellDequeueError(type: T.self)
-        }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? T else {
             throw cellDequeueError(type: T.self)
         }
@@ -101,7 +88,7 @@ public extension UICollectionViewCell {
     }
     
     static func registerNib(for collectionView: UICollectionView, reuseIdentifier: String? = nil) {
-        let nib = UINib(nibName: defaultNibName, bundle: Bundle(for: self))
+        let nib = Self.getNib()
         collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier ?? defaultReuseIdentifier)
     }
     
@@ -127,7 +114,7 @@ public extension UICollectionReusableView {
     
     // register a class for the collectionView's SupplementaryViewOfKind
     static func registerNib(for collectionView: UICollectionView, forSupplementaryViewOfKind elementKind: String, reuseIdentifier: String? = nil) {
-        let nib = UINib(nibName: defaultNibName, bundle: Bundle(for: self))
+        let nib = Self.getNib()
         let identifier = reuseIdentifer(reuseIdentifier: reuseIdentifier, elementKind: elementKind)
         collectionView.register(nib, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: identifier)
     }

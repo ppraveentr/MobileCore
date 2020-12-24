@@ -12,10 +12,10 @@ import XCTest
 final class AssociatedObjectTests: XCTestCase {
     
     func testGenericSetAssociated() {
-        //Given
+        // Given
         let value: String = "TestAssociated"
         AssociatedObject<String>.setAssociated(self, value: value)
-        //Then
+        // Then
         let retrunValue = AssociatedObject<String>.getAssociated(self)
         XCTAssertEqual(value, retrunValue)
         
@@ -25,7 +25,7 @@ final class AssociatedObjectTests: XCTestCase {
         let emptyValue1 = AssociatedObject<String>.getAssociated(self)
         XCTAssertNil(emptyValue1)
         
-        //Given
+        // Given
         AssociatedObject<String>.setAssociated(self, value: value)
         // When
         AssociatedObject<String>.resetAssociated(self, key: &AssociatedKey.DefaultKey)
