@@ -47,8 +47,8 @@ public extension UIView {
     }
     
     static func loadNibFromBundle<T: UIView>(_ nibName: String? = nil,
-                                       bundle: Bundle? = nil,
-                                       owner: Any? = nil) throws -> T {
+                                             bundle: Bundle? = nil,
+                                             owner: Any? = nil) throws -> T {
         let nibName = nibName ?? defaultNibName
         let bundle = bundle ?? Bundle(for: self)
         guard bundle.path(forResource: nibName, ofType: "nib") != nil,

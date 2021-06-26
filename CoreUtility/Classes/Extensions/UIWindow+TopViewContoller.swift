@@ -45,26 +45,22 @@ public extension UIViewController {
         if let presented = presentedViewController {
             return presented.currentViewController
         }
-        
         // UITabBarController
         if let tab = self as? UITabBarController,
             let selectedViewController = tab.selectedViewController {
             return selectedViewController.currentViewController
         }
-        
         // UINavigationController
         if let navigationController = self as? UINavigationController,
             let visibleViewController = navigationController.visibleViewController {
             return visibleViewController.currentViewController
         }
-        
         // UIPageController
         if let pageViewController = self as? UIPageViewController,
             let firstPageViewController = pageViewController.viewControllers?.first,
             pageViewController.viewControllers?.count == 1 {
             return firstPageViewController.currentViewController
         }
-        
         // child view controller
         if let subviews = view?.subviews {
             for subview in subviews {
@@ -73,7 +69,6 @@ public extension UIViewController {
                 }
             }
         }
-        
         return self
     }
 }

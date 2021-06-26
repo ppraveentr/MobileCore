@@ -26,24 +26,37 @@ extension UIButton: ControlThemeProtocol {
     
     // For custome key:value pairs
     open func update(themeDic: ThemeModel, state: UIControl.State) {
+        let text = self.title(for: state) ?? ""
+        let range = NSRange(location: 0, length: text.count)
+        let attribute = NSMutableAttributedString(string: text)
         
-        if
-            let text = themeDic["textcolor"] as? String,
-            let color = ThemesManager.getColor(text)
-        {
+        if let color = ThemesManager.getColor(themeDic["textcolor"] as? String) {
             self.setTitleColor(color, for: state)
-            // TODO: For attributed title
+            // For attributed title
+            attribute.addAttribute(.foregroundColor, value: color, range: range)
         }
         
-        if
-            let text = themeDic["textfont"] as? String,
-            let font = ThemesManager.getFont(text)
-        {
+        if let text = themeDic["textfont"] as? String,
+           let font = ThemesManager.getFont(text) {
             self.titleLabel?.font = font
+            // For attributed title
+            attribute.addAttribute(.font, value: font, range: range)
+        }
+        
+        if let underline = themeDic["underline"] as? ThemeModel {
+            if let color = ThemesManager.getColor(underline["color"] as? String) {
+                attribute.addAttribute(.underlineColor, value: color, range: range)
+            }
+            if let intValue = underline["style"] as? Int {
+                let style = NSUnderlineStyle(rawValue: intValue).rawValue
+                attribute.addAttribute(.underlineStyle, value: style, range: range)
+            }
         }
         
         if let image = ThemesManager.getImage(themeDic["image"]) {
             self.setImage(image, for: state)
         }
+        
+        self.setAttributedTitle(attribute, for: state)
     }
 }
