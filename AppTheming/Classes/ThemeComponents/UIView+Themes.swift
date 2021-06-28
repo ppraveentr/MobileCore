@@ -1,5 +1,5 @@
 //
-//  View+Themes.swift
+//  UIView+Themes.swift
 //  MobileCoreUtility
 //
 //  Created by Praveen Prabhakar on 05/08/17.
@@ -31,21 +31,6 @@ public struct ThemeStyle {
 }
 
 extension UIView {
-    
-    static var hasSwizzled = false
-    
-    // Swizzling out view's layoutSubviews property for Updating Visual theme
-    private static func swizzleLayoutSubview() {
-        // need to be Swizzled only once.
-        guard !hasSwizzled else { return }
-        hasSwizzled = true
-        instanceMethodSwizzling(UIView.self, #selector(layoutSubviews), #selector(swizzledLayoutSubviews))
-    }
-
-    static func setupThemes() {
-        swizzleLayoutSubview()
-    }
-    
     // Theme style-name for the view
     @IBInspectable
     public var theme: String? {
@@ -76,22 +61,6 @@ extension UIView {
                 self.generateVisualThemes()
             }
         }
-    }
-    
-    // MARK: swizzled layoutSubviews
-    @objc func swizzledLayoutSubviews() {
-        if self.needsThemesUpdate {
-            self.updateVisualThemes()
-        }
-       
-        (self as? OptionalLayoutSubview)?.updateVisualThemes()
-
-        if self.viewLayoutConstraint.autoSizing {
-            self.resizeToFitSubviews()
-        }
-        
-        // Invoke view's original layoutSubviews
-        self.swizzledLayoutSubviews()
     }
 }
 
@@ -194,7 +163,8 @@ fileprivate extension UIView {
 // MARK: UIView: FTThemeProtocol
 extension UIView {
     
-    @objc public func swizzledUpdateTheme(_ theme: ThemeModel) {
+    @objc
+    public func swizzledUpdateTheme(_ theme: ThemeModel) {
         // "backgroundColor"
         if let textcolor = theme["backgroundColor"] {
             if

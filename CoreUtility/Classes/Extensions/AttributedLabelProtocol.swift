@@ -122,6 +122,7 @@ extension UILabel: AttributedLabelProtocol {
 }
 
 extension UILabel: OptionalLayoutSubview {
+    @objc
     public func updateVisualThemes() {
         if islinkDetectionEnabled, self.text.isHTMLString, let newValue = self.text {
             self.text = newValue.stripHTML()

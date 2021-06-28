@@ -30,7 +30,7 @@
 		ACEEAD3724D5B3CF002179F9 /* CustomDataTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEEAD2C24D5B3CF002179F9 /* CustomDataTypeTests.swift */; };
 		D405057724AC6DFF00B2E096 /* URLSessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D405057124AC6DFE00B2E096 /* URLSessionManagerTests.swift */; };
 		D405057824AC6DFF00B2E096 /* UserCacheManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D405057224AC6DFE00B2E096 /* UserCacheManagerTests.swift */; };
-		D405057924AC6DFF00B2E096 /* MobileCoreTestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D405057324AC6DFE00B2E096 /* MobileCoreTestClass.swift */; };
+		D405057924AC6DFF00B2E096 /* TestDummyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D405057324AC6DFE00B2E096 /* TestDummyService.swift */; };
 		D405057A24AC6DFF00B2E096 /* CollectionViewProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D405057424AC6DFE00B2E096 /* CollectionViewProtocolTests.swift */; };
 		D405057B24AC6DFF00B2E096 /* NetworkManangerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D405057524AC6DFE00B2E096 /* NetworkManangerTests.swift */; };
 		D405057C24AC6DFF00B2E096 /* WebViewControllerProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D405057624AC6DFE00B2E096 /* WebViewControllerProtocolTests.swift */; };
@@ -126,7 +126,7 @@
 		D405056F24AC6D8B00B2E096 /* MobileCoreExample.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MobileCoreExample.xctestplan; sourceTree = "<group>"; };
 		D405057124AC6DFE00B2E096 /* URLSessionManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionManagerTests.swift; sourceTree = "<group>"; };
 		D405057224AC6DFE00B2E096 /* UserCacheManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCacheManagerTests.swift; sourceTree = "<group>"; };
-		D405057324AC6DFE00B2E096 /* MobileCoreTestClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileCoreTestClass.swift; sourceTree = "<group>"; };
+		D405057324AC6DFE00B2E096 /* TestDummyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestDummyService.swift; sourceTree = "<group>"; };
 		D405057424AC6DFE00B2E096 /* CollectionViewProtocolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewProtocolTests.swift; sourceTree = "<group>"; };
 		D405057524AC6DFE00B2E096 /* NetworkManangerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManangerTests.swift; sourceTree = "<group>"; };
 		D405057624AC6DFE00B2E096 /* WebViewControllerProtocolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerProtocolTests.swift; sourceTree = "<group>"; };
@@ -265,7 +265,7 @@
 			children = (
 				D405057124AC6DFE00B2E096 /* URLSessionManagerTests.swift */,
 				D405057224AC6DFE00B2E096 /* UserCacheManagerTests.swift */,
-				D405057324AC6DFE00B2E096 /* MobileCoreTestClass.swift */,
+				D405057324AC6DFE00B2E096 /* TestDummyService.swift */,
 				D405057424AC6DFE00B2E096 /* CollectionViewProtocolTests.swift */,
 				D405057524AC6DFE00B2E096 /* NetworkManangerTests.swift */,
 				D405057624AC6DFE00B2E096 /* WebViewControllerProtocolTests.swift */,
@@ -748,7 +748,7 @@
 				ACEEAD2D24D5B3CF002179F9 /* ConfigurableCellTests.swift in Sources */,
 				ACEEAD3724D5B3CF002179F9 /* CustomDataTypeTests.swift in Sources */,
 				ACEEAD1F24D5B3BB002179F9 /* SegmentedControlTests.swift in Sources */,
-				D405057924AC6DFF00B2E096 /* MobileCoreTestClass.swift in Sources */,
+				D405057924AC6DFF00B2E096 /* TestDummyService.swift in Sources */,
 				D405057724AC6DFF00B2E096 /* URLSessionManagerTests.swift in Sources */,
 				ACEEAD1824D5B3BB002179F9 /* TableViewControllerProtocolTests.swift in Sources */,
 				ACEEAD3424D5B3CF002179F9 /* MockTableViewCell.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  Button+Extension.swift
+//  UIButton+Theme.swift
 //  MobileCoreUtility
 //
 //  Created by Praveen Prabhakar on 18/08/17.

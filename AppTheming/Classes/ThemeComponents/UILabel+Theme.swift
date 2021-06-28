@@ -1,5 +1,5 @@
 //
-//  LabelThemeProperyProtocol.swift
+//  UILabel+Theme.swift
 //  CoreUIExtensions
 //
 //  Created by Praveen Prabhakar on 05/08/17.
@@ -39,6 +39,9 @@ extension UILabel: ThemeProtocol {
             default:
                 break
             }
+        }
+        if self.responds(to: #selector(updateVisualThemes)){
+            self.perform(#selector(updateVisualThemes))
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  NavigationBar+Extension.swift
+//  UINavigationBar+Theme.swift
 //  MobileCoreUtility
 //
 //  Created by Praveen Prabhakar on 16/09/17.

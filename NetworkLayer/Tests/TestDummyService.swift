@@ -1,5 +1,5 @@
 //
-//  MobileCoreTestClasses.swift
+//  Service.swift
 //  MobileCoreTests
 //
 //  Created by Praveen P on 12/10/19.

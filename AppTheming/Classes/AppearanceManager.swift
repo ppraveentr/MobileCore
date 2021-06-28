@@ -24,22 +24,17 @@ public enum AppearanceManager {
 
     static func setupApplicationTheme() {
         guard let app = ThemesManager.getAppearance() as? ThemeModel else { return }
-
         for theme in app where ((theme.value as? ThemeModel) != nil) {
-
             if let themeObj: ThemeModel = theme.value as? ThemeModel {
-
                 let components = getComponentName(theme.key)
                 // Setup 'appearance' from Theme
                 if let classTy: AppearanceManagerProtocol = Reflection.swiftClassFromString(components.0) as? AppearanceManagerProtocol {
-
                     var appearanceContainer: [UIAppearanceContainer.Type]?
                     if
                         components.1 != nil,
                         let objecClass = Reflection.swiftClassTypeFromString(components.1!) {
                         appearanceContainer = [objecClass] as? [UIAppearanceContainer.Type]
                     }
-
                     classTy.setUpAppearance(theme: themeObj, containerClass: appearanceContainer)
                 }
             }
@@ -118,9 +113,11 @@ extension UINavigationBar {
     
     override public class func setUpAppearance(theme: ThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         super.setUpAppearance(theme: theme, containerClass: containerClass)
-
         let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
 
+        if let value = theme["tintColor"] as? String {
+            appearance.tintColor = ThemesManager.getColor(value)
+        }
         if let value = theme["backIndicatorImage"] {
             appearance.backIndicatorImage = ThemesManager.getImage(value)
         }
@@ -131,7 +128,11 @@ extension UINavigationBar {
             appearance.shadowImage = ThemesManager.getImage(value)
         }
         if let value = theme["titleText"] as? ThemeModel {
-            appearance.titleTextAttributes = ThemesManager.getTextAttributes(value)
+            let attributes = ThemesManager.getTextAttributes(value)
+            appearance.titleTextAttributes = attributes
+            if #available(iOS 13.0, *) {
+                appearance.largeTitleTextAttributes = attributes
+            }
         }
         if let value = theme["isTranslucent"] as? Bool {
             appearance.isTranslucent = value
@@ -141,6 +142,22 @@ extension UINavigationBar {
             }
         }
 
+        if #available(iOS 13.0, *) {
+            let navAppe = UINavigationBarAppearance()
+            if let imageTheme = theme["backgroundImage"] as? ThemeModel,
+               let defaultImage = ThemesManager.getImage(imageTheme["default"]), let bgColor = defaultImage.getColor() {
+                navAppe.backgroundColor = bgColor
+            }
+            if let attributes = appearance.titleTextAttributes {
+                navAppe.titleTextAttributes = attributes
+            }
+            if let attributes = appearance.largeTitleTextAttributes {
+                navAppe.largeTitleTextAttributes = attributes
+            }
+            appearance.standardAppearance = navAppe
+            appearance.compactAppearance = navAppe
+            appearance.scrollEdgeAppearance = navAppe
+        }
         return appearance
     }
     
