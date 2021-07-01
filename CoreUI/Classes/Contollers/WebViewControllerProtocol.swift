@@ -16,12 +16,8 @@ public protocol WebViewControllerProtocol: ViewControllerProtocol {
 
 public extension WebViewControllerProtocol {
     var contentView: WKWebView {
-        get {
-            AssociatedObject<WKWebView>.getAssociated(self, key: &kContentVC) { self.setupContentView() }!
-        }
-        set {
-            setupContentView(newValue)
-        }
+        get { AssociatedObject<WKWebView>.getAssociated(self, key: &kContentVC) { self.setupContentView() }! }
+        set { setupContentView(newValue) }
     }
 }
 

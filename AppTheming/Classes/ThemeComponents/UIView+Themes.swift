@@ -10,15 +10,43 @@ import Foundation
 
 public typealias ThemeModel = [String: Any]
 
-public enum SuppotedTheme: String, CaseIterable {
-    case backgroundImage, backIndicatorImage, backIndicatorTransitionMaskImage, shadowImage
-    case tintColor, titleText, isTranslucent
-    case barTintColor
+extension ThemeModel {
+    subscript(key: ThemeKey) -> Any? {
+        get { self[key.rawValue] }
+        set { self[key.rawValue] = newValue }
+    }
+    
+    subscript(theme: ThemesType) -> Any? {
+        get { self[theme.rawValue] }
+        set { self[theme.rawValue] = newValue }
+    }
+}
+
+public enum ThemesType: String, CaseIterable {
+    case color, font, layer, appearance, link, components
+}
+
+public enum ThemeKey: String, CaseIterable {
+    // Theme Super Components
+    case defaultValue = "default", superComponent = "_super"
+    // Image
+    case clear, image, backgroundImage, backIndicatorImage, backIndicatorTransitionMaskImage, shadowImage
+    // Appearanc
+    case titleText, isTranslucent
+    case tintColor, barTintColor, backgroundColor, foregroundColor
+    // Font
+    case system, boldSystem, italicSystem
+    // Label
+    case font, name, size, weight, textfont, textcolor, underline, style
+    case isLinkUnderlineEnabled, isLinkDetectionEnabled
+    // Layer
+    case masksToBounds, cornerRadius, borderWidth, borderColor
+    case shadowSize, shadowOffset, shadowColor, shadowRadius, shadowOpacity
 }
 
 public extension NSNotification.Name {
-    static let kFTAppearanceWillRefreshWindow = NSNotification.Name(rawValue: "kFTAppearanceWillRefreshWindow.Notofication")
-    static let kFTAppearanceDidRefreshWindow = NSNotification.Name(rawValue: "kFTAppearanceDidRefreshWindow.Notofication")
+    static let kFTAppearanceWillRefreshWindow = NSNotification.Name(rawValue: "kFTAppearance.willRefreshWindow.Notofication")
+    static let kFTAppearanceDidRefreshWindow = NSNotification.Name(rawValue: "kFTAppearance.didRefreshWindow.Notofication")
 }
 
 public struct ThemeStyle {
@@ -50,6 +78,13 @@ extension UIView {
 
     public func updateVisualProperty() {
         self.needsThemesUpdate = true
+    }
+    
+    public func updateShadowPathIfNeeded() {
+        if self.layer.shadowPath != nil {
+            let rect = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
+            self.layer.shadowPath = UIBezierPath(rect: rect).cgPath
+        }
     }
 
     // To tigger view-Theme styling
@@ -153,7 +188,7 @@ fileprivate extension UIView {
     @objc func configureTheme(_ themeDic: ThemeModel?) {
         guard let theme = themeDic else { return }
         // Set theme for view
-        self.swizzledUpdateTheme(theme)
+        self.setupViewTheme(theme)
         // Only needed for UIControl types, Eg. Button
         guard let self = self as? ControlThemeProtocol else { return }
         // Get all subTheme for all stats of the control
@@ -164,21 +199,15 @@ fileprivate extension UIView {
 
 // MARK: UIView: FTThemeProtocol
 extension UIView {
-    
-    @objc
-    public func swizzledUpdateTheme(_ theme: ThemeModel) {
+    func setupViewTheme(_ theme: ThemeModel) {
         // "backgroundColor"
-        if let textcolor = theme["backgroundColor"] {
-            if
-                let colorName = textcolor as? String,
-                let color = ThemesManager.getColor(colorName) {
-                self.updateBackgroundColor(color)
-                // TODO: For attributed title
-            }
+        if let colorName = theme[ThemeKey.backgroundColor],
+           let color = ThemesManager.getColor(colorName as? String) {
+            self.updateBackgroundColor(color)
         }
-        // "layer"
-        // TODO: to generate a layer and add it as subView
-        if let layerValue = theme["layer"] as? ThemeModel {
+        // "layer": To generate a layer and add it as subView
+        if let layerName = theme[ThemesType.layer] as? String,
+           let layerValue = ThemesManager.getLayer(layerName) {
             ThemesManager.getBackgroundLayer(layerValue, toLayer: self.layer)
         }
         // Only needed for UIView types that has extended from FTThemeProtocol

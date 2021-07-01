@@ -15,7 +15,41 @@ let loaderSpinnerMarginSide: CGFloat = 35.0
 let loaderSpinnerMarginTop: CGFloat = 20.0
 let loaderTitleMargin: CGFloat = 5.0
 
+// MARK: Loader config
+public struct LoaderConfig {
+    /// Size of loader
+    public var size: CGFloat = 120.0
+    /// Color of spinner view
+    public var spinnerColor = UIColor.black
+    /// SpinnerLine Width
+    public var spinnerLineWidth: Float = 1.0
+    /// Speed of the spinner
+    public var speed: Int = 1
+    /// Size of loader
+    public var title: String?
+    /// Font for title text in loader
+    public var titleTextFont = UIFont.boldSystemFont(ofSize: 16.0)
+    /// Color of title text
+    public var titleTextColor = UIColor.black
+    /// Background color for loader
+    public var backgroundColor = UIColor.white
+    /// Foreground color
+    public var foregroundColor = UIColor.clear
+    /// Foreground alpha CGFloat, between 0.0 and 1.0
+    public var foregroundAlpha: CGFloat = 0.0
+    /// Corner radius for loader
+    public var cornerRadius: CGFloat = 10.0
+    /// Corner radius for loader
+    public var customConfig: [String: Any]?
+
+    public init(_ customConfig: [String: Any]? = nil) {
+        self.customConfig = customConfig
+    }
+}
+
 public class LoadingIndicator: UIView {
+    static let sharedInstance = LoadingIndicator(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
+
     public typealias CompletionBlock = (_ isCompleted: Bool) -> Void
 
     private var baseView: UIView?
@@ -26,20 +60,17 @@ public class LoadingIndicator: UIView {
     private var title: String?
     private var speed = 1
     
-    private var config = Config() {
+    private var config = LoaderConfig() {
         didSet {
             self.loadingView?.config = config
         }
     }
     
     @objc func rotated(notification: NSNotification) {
-        
         let loader = LoadingIndicator.sharedInstance
-        
         let height: CGFloat = UIScreen.main.bounds.size.height
         let width: CGFloat = UIScreen.main.bounds.size.width
         let center = CGPoint(x: width / 2.0, y: height / 2.0)
-        
         loader.center = center
         loader.baseView?.frame = UIScreen.main.bounds
     }
@@ -49,23 +80,14 @@ public class LoadingIndicator: UIView {
             self.update()
         }
     }
-    
-    static var sharedInstance: LoadingIndicator {
-        struct Singleton {
-            static let instance = LoadingIndicator(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: Config().size, height: Config().size)))
-        }
-        return Singleton.instance
-    }
-    
+        
     public static func show(_ animated: Bool = true) {
         self.show(title: self.sharedInstance.config.title, animated: animated)
     }
     
     public static func show(title: String?, animated: Bool = true) {
-        
         // Will fail if window is not allocated
         guard let currentWindow: UIWindow = UIApplication.shared.keyWindow else { return }
-        
         let loader = LoadingIndicator.sharedInstance
         loader.canUpdated = true
         loader.animated = animated
@@ -96,31 +118,45 @@ public class LoadingIndicator: UIView {
     }
     
     public static func hide(_ completion: CompletionBlock? = nil) {
-        
         let loader = LoadingIndicator.sharedInstance
         NotificationCenter.default.removeObserver(loader)
-        
         loader.stop(completion)
     }
     
-    public static func setConfig(config: Config) {
+    public static func setConfig(config: LoaderConfig) {
         let loader = LoadingIndicator.sharedInstance
         loader.config = config
-        loader.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: loader.config.size, height: loader.config.size))
     }
     
-    /**
-     Private methods
-     */
+    func frameForSpinner() -> CGRect {
+        let loadingViewSize = self.frame.size.width - (loaderSpinnerMarginSide * 2)
+        
+        if self.title == nil {
+            let yOffset = (self.frame.size.height - loadingViewSize) / 2
+            return CGRect(origin: CGPoint(x: loaderSpinnerMarginSide, y: yOffset), size: CGSize(width: loadingViewSize, height: loadingViewSize))
+        }
+        return CGRect(origin: CGPoint(x: loaderSpinnerMarginSide, y: loaderSpinnerMarginTop), size: CGSize(width: loadingViewSize, height: loadingViewSize))
+    }
     
-    private func setup() {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setup()
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+}
+
+// MARK: Private methods
+private extension LoadingIndicator {
+    func setup() {
         self.alpha = 0
         self.update()
     }
     
-    private func start() {
+    func start() {
         self.loadingView?.start()
-        
         if self.animated {
             UIView.animate(withDuration: 0.3) {
                 self.alpha = 1
@@ -131,8 +167,7 @@ public class LoadingIndicator: UIView {
         }
     }
     
-    private func stop(_ completion: CompletionBlock? = nil) {
-        
+    func stop(_ completion: CompletionBlock? = nil) {
         if self.animated {
             UIView.animate(
                 withDuration: 0.3,
@@ -152,11 +187,10 @@ public class LoadingIndicator: UIView {
         }
     }
     
-    private func update() {
+    func update() {
         self.backgroundColor = self.config.backgroundColor
         self.layer.cornerRadius = self.config.cornerRadius
         let loadingViewSize = self.frame.size.width - (loaderSpinnerMarginSide * 2)
-        
         if self.loadingView == nil {
             self.loadingView = FTLoadingView(frame: self.frameForSpinner())
             self.addSubview(self.loadingView!)
@@ -184,18 +218,23 @@ public class LoadingIndicator: UIView {
         self.titleLabel?.font = self.config.titleTextFont
         self.titleLabel?.textColor = self.config.titleTextColor
         self.titleLabel?.text = self.title
-        
         self.titleLabel?.isHidden = self.title == nil
     }
+}
+
+// MARK: FTLoadingView
+private class FTLoadingView: UIView {
     
-    func frameForSpinner() -> CGRect {
-        let loadingViewSize = self.frame.size.width - (loaderSpinnerMarginSide * 2)
-        
-        if self.title == nil {
-            let yOffset = (self.frame.size.height - loadingViewSize) / 2
-            return CGRect(origin: CGPoint(x: loaderSpinnerMarginSide, y: yOffset), size: CGSize(width: loadingViewSize, height: loadingViewSize))
+    private var speed: Int?
+    private var lineWidth: Float?
+    private var lineTintColor: UIColor?
+    private var backgroundLayer: CAShapeLayer?
+    private var isSpinning: Bool?
+    
+    var config = LoaderConfig() {
+        didSet {
+            self.update()
         }
-        return CGRect(origin: CGPoint(x: loaderSpinnerMarginSide, y: loaderSpinnerMarginTop), size: CGSize(width: loadingViewSize, height: loadingViewSize))
     }
     
     override init(frame: CGRect) {
@@ -203,180 +242,73 @@ public class LoadingIndicator: UIView {
         self.setup()
     }
     
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    /**
-     *  Loader View
-     */
-    // MARK: FTLoadingView
-    class FTLoadingView: UIView {
+    // MARK: Setup loading view
+    func setup() {
+        self.backgroundColor = UIColor.clear
+        self.lineWidth = fmaxf(Float(self.frame.size.width) * 0.025, 1)
         
-        private var speed: Int?
-        private var lineWidth: Float?
-        private var lineTintColor: UIColor?
-        private var backgroundLayer: CAShapeLayer?
-        private var isSpinning: Bool?
-        
-        var config = Config() {
-            didSet {
-                self.update()
-            }
-        }
-        
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            self.setup()
-        }
-        
-        required init?(coder aDecoder: NSCoder) {
-            super.init(coder: aDecoder)
-        }
-        
-        /**
-         Setup loading view
-         */
-        
-        func setup() {
-            self.backgroundColor = UIColor.clear
-            self.lineWidth = fmaxf(Float(self.frame.size.width) * 0.025, 1)
-            
-            self.backgroundLayer = CAShapeLayer()
-            self.backgroundLayer?.strokeColor = self.config.spinnerColor.cgColor
-            self.backgroundLayer?.fillColor = self.backgroundColor?.cgColor
-            self.backgroundLayer?.lineCap = CAShapeLayerLineCap.round
-            self.backgroundLayer?.lineWidth = CGFloat(self.lineWidth!)
-            self.layer.addSublayer(self.backgroundLayer!)
-        }
-        
-        func update() {
-            self.lineWidth = self.config.spinnerLineWidth
-            self.speed = self.config.speed
-            
-            self.backgroundLayer?.lineWidth = CGFloat(self.lineWidth!)
-            self.backgroundLayer?.strokeColor = self.config.spinnerColor.cgColor
-        }
-        
-        /**
-         Draw Circle
-         */
-        
-        override func draw(_ rect: CGRect) {
-            self.backgroundLayer?.frame = self.bounds
-        }
-        
-        func drawBackgroundCircle(partial: Bool) {
-            let startAngle = CGFloat.pi / CGFloat(2.0)
-            var endAngle: CGFloat = (2.0 * CGFloat.pi) + startAngle
-            
-            let center = CGPoint(x: self.bounds.size.width / 2, y: self.bounds.size.height / 2)
-            let radius = (CGFloat(self.bounds.size.width) - CGFloat(self.lineWidth!)) / CGFloat(2.0)
-            
-            let processBackgroundPath = UIBezierPath()
-            processBackgroundPath.lineWidth = CGFloat(self.lineWidth!)
-            
-            if partial {
-                endAngle = (1.8 * CGFloat.pi) + startAngle
-            }
-            
-            processBackgroundPath.addArc(withCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
-            self.backgroundLayer?.path = processBackgroundPath.cgPath
-        }
-        
-        /**
-         Start and stop spinning
-         */
-        
-        func start() {
-            self.isSpinning? = true
-            self.drawBackgroundCircle(partial: true)
-            
-            let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-            rotationAnimation.toValue = NSNumber(value: Double.pi * 2.0)
-            rotationAnimation.duration = 1
-            rotationAnimation.isCumulative = true
-            rotationAnimation.repeatCount = HUGE
-            self.backgroundLayer?.add(rotationAnimation, forKey: "rotationAnimation")
-        }
-        
-        func stop(_ completion: CompletionBlock? = nil) {
-            self.drawBackgroundCircle(partial: false)
-            
-            self.backgroundLayer?.removeAllAnimations()
-            self.isSpinning? = false
-            completion?(true)
-        }
+        self.backgroundLayer = CAShapeLayer()
+        self.backgroundLayer?.strokeColor = self.config.spinnerColor.cgColor
+        self.backgroundLayer?.fillColor = self.backgroundColor?.cgColor
+        self.backgroundLayer?.lineCap = CAShapeLayerLineCap.round
+        self.backgroundLayer?.lineWidth = CGFloat(self.lineWidth!)
+        self.layer.addSublayer(self.backgroundLayer!)
     }
-
-    /**
-     * Loader config
-     */
-    // MARK: Loader config
-    public struct Config {
+    
+    func update() {
+        self.frame = CGRect(x: 0, y: 0, width: config.size, height: config.size)
+        self.lineWidth = self.config.spinnerLineWidth
+        self.speed = self.config.speed
         
-        /**
-         *  Size of loader
-         */
-        public var size: CGFloat = 120.0
+        self.backgroundLayer?.lineWidth = CGFloat(self.lineWidth!)
+        self.backgroundLayer?.strokeColor = self.config.spinnerColor.cgColor
+    }
+    
+    // MARK: Draw Circle
+    override func draw(_ rect: CGRect) {
+        self.backgroundLayer?.frame = self.bounds
+    }
+    
+    func drawBackgroundCircle(partial: Bool) {
+        let startAngle = CGFloat.pi / CGFloat(2.0)
+        var endAngle: CGFloat = (2.0 * CGFloat.pi) + startAngle
         
-        /**
-         *  Color of spinner view
-         */
-        public var spinnerColor = UIColor.black
+        let center = CGPoint(x: self.bounds.size.width / 2, y: self.bounds.size.height / 2)
+        let radius = (CGFloat(self.bounds.size.width) - CGFloat(self.lineWidth!)) / CGFloat(2.0)
         
-        /**
-         *  S
-         */
-        public var spinnerLineWidth: Float = 1.0
+        let processBackgroundPath = UIBezierPath()
+        processBackgroundPath.lineWidth = CGFloat(self.lineWidth!)
         
-        /**
-         *  Speed of the spinner
-         */
-        public var speed: Int = 1
-        
-        /**
-         *  Size of loader
-         */
-        public var title: String?
-        
-        /**
-         *  Font for title text in loader
-         */
-        public var titleTextFont = UIFont.boldSystemFont(ofSize: 16.0)
-        
-        /**
-         *  Color of title text
-         */
-        public var titleTextColor = UIColor.black
-        
-        /**
-         *  Background color for loader
-         */
-        public var backgroundColor = UIColor.white
-        
-        /**
-         *  Foreground color
-         */
-        public var foregroundColor = UIColor.clear
-        
-        /**
-         *  Foreground alpha CGFloat, between 0.0 and 1.0
-         */
-        public var foregroundAlpha: CGFloat = 0.0
-        
-        /**
-         *  Corner radius for loader
-         */
-        public var cornerRadius: CGFloat = 10.0
-        
-        /**
-         *  Corner radius for loader
-         */
-        public var customConfig: [String: Any]?
-        
-        public init(_ customConfig: [String: Any]? = nil) {
-            self.customConfig = customConfig
+        if partial {
+            endAngle = (1.8 * CGFloat.pi) + startAngle
         }
+        
+        processBackgroundPath.addArc(withCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        self.backgroundLayer?.path = processBackgroundPath.cgPath
+    }
+    
+    // MARK: Start and stop spinning
+    func start() {
+        self.isSpinning? = true
+        self.drawBackgroundCircle(partial: true)
+        
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotationAnimation.toValue = NSNumber(value: Double.pi * 2.0)
+        rotationAnimation.duration = 1
+        rotationAnimation.isCumulative = true
+        rotationAnimation.repeatCount = HUGE
+        self.backgroundLayer?.add(rotationAnimation, forKey: "rotationAnimation")
+    }
+    
+    func stop(_ completion: LoadingIndicator.CompletionBlock? = nil) {
+        self.drawBackgroundCircle(partial: false)
+        
+        self.backgroundLayer?.removeAllAnimations()
+        self.isSpinning? = false
+        completion?(true)
     }
 }

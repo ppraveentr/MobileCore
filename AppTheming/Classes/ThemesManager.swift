@@ -68,7 +68,7 @@ open class ThemesManager {
     // TODO: custom themes for view-objects
     public static func getViewComponent(_ componentName: String, styleName: String?) -> ThemeModel? {
         guard styleName != nil else { return nil }
-        return ThemesManager.getDefaults(type: .component, keyName: componentName, styleName: styleName) as? ThemeModel
+        return ThemesManager.getDefaults(type: .components, keyName: componentName, styleName: styleName) as? ThemeModel
     }
     
     // MARK: UIColor
@@ -88,7 +88,7 @@ open class ThemesManager {
         if let hexColor = UIColor.hexColor(color) {
             return hexColor
         }
-        if color == "clear" {
+        if color == ThemeKey.clear.rawValue {
             return UIColor.clear
         }
         return nil
@@ -98,21 +98,21 @@ open class ThemesManager {
     // TODO: bold, thin, ...
     public static func getFont(_ fontName: String?) -> UIFont? {
         let font: ThemeModel = ThemesManager.getDefaults(type: .font, keyName: fontName) as? ThemeModel ?? [:]
-        if let name: String = font["name"] as? String,
-           let sizeValue: String = font["size"] as? String,
+        if let name: String = font[ThemeKey.name] as? String,
+           let sizeValue: String = font[ThemeKey.size] as? String,
            let size = NumberFormatter().number(from: sizeValue) {
             // Size Value
             let sizeValue = CGFloat(truncating: size)
             var weight: UIFont.Weight = .regular
-            if let value = font["weight"] as? CGFloat {
+            if let value = font[ThemeKey.weight] as? CGFloat {
                weight = UIFont.Weight(value)
             }
             switch name {
-            case "system":
+            case ThemeKey.system.rawValue:
                 return UIFont.systemFont(ofSize: sizeValue, weight: weight)
-            case "boldSystem":
+            case ThemeKey.boldSystem.rawValue:
                 return UIFont.boldSystemFont(ofSize: sizeValue)
-            case "italicSystem":
+            case ThemeKey.italicSystem.rawValue:
                 return UIFont.italicSystemFont(ofSize: sizeValue)
             default:
                 return UIFont(name: name, size: sizeValue)
@@ -141,14 +141,30 @@ open class ThemesManager {
     // MARK: UIImage
     public static func getTextAttributes(_ theme: ThemeModel?) -> AttributedDictionary? {
         guard let theme = theme else { return nil }
-        var attributes = [NSAttributedString.Key: AnyObject]()
-        if let value = theme["foregroundColor"] as? String {
+        var attributes = AttributedDictionary()
+        if let value = theme[ThemeKey.foregroundColor] as? String {
             attributes[.foregroundColor] = self.getColor(value)
         }
         return attributes
     }
 
     // MARK: CALayer
+    public static func getLayer(_ layerName: String? = nil) -> ThemeModel? {
+        ThemesManager.getDefaults(type: .layer, keyName: layerName) as? ThemeModel ?? [:]
+    }
+    
+    // MARK: Size
+    public static func getSize(_ value: Any? = nil) -> CGSize {
+        guard var value = value as? String else { return .zero }
+        let comp = value.trimming(["{", "}", " "]).components(separatedBy: ",").map { size -> CGFloat in
+            if let value = Float(size) {
+                return CGFloat(value)
+            }
+            return 0
+        }
+        return CGSize(width: comp.first ?? 0, height: comp.last ?? 0)
+    }
+    
     @discardableResult
     public static func getBackgroundLayer(_ layer: ThemeModel?, toLayer: CALayer? = nil) -> CALayer? {
         guard let layer = layer else { return nil }
@@ -163,15 +179,28 @@ open class ThemesManager {
         let caLayer = toLayer ?? CALayer()
         for (name, value) in layer {
             switch name {
-            case "cornerRadius":
+            case ThemeKey.cornerRadius.rawValue:
                 caLayer.cornerRadius = floatValue(value)
-            case "borderWidth":
+            case ThemeKey.borderWidth.rawValue:
                 caLayer.borderWidth = floatValue(value)
-            case "masksToBounds":
-                caLayer.masksToBounds = floatValue(value) > 0
-            case "borderColor":
-                let value = value as? String
-                    caLayer.borderColor = ThemesManager.getColor(value)?.cgColor
+            case ThemeKey.masksToBounds.rawValue:
+                caLayer.masksToBounds = (value as? Bool) ?? false
+            case ThemeKey.borderColor.rawValue:
+                caLayer.borderColor = ThemesManager.getColor(value as? String)?.cgColor
+            case ThemeKey.shadowOffset.rawValue:
+                caLayer.shadowOffset = ThemesManager.getSize(value)
+            case ThemeKey.shadowSize.rawValue:
+                caLayer.shadowOffset = .zero
+                let rect = CGRect(x: 0, y: 0, width: caLayer.bounds.width, height: caLayer.bounds.height)
+                caLayer.shadowPath = UIBezierPath(rect: rect).cgPath
+            case ThemeKey.shadowColor.rawValue:
+                caLayer.shadowColor = ThemesManager.getColor(value as? String)?.cgColor
+            case ThemeKey.shadowRadius.rawValue:
+                caLayer.shadowRadius = floatValue(value)
+            case ThemeKey.shadowOpacity.rawValue:
+                if let value = value as? CGFloat {
+                    caLayer.shadowOpacity = Float(value)
+                }
             default:
                 break
             }
@@ -187,13 +216,9 @@ open class ThemesManager {
 }
 
 extension ThemesManager {
-    enum FTThemesType {
-        case component, color, font
-    }
-    
     // MARK: Component
     fileprivate class var themeComponent: ThemeModel? {
-        ThemesManager.themesJSON["components"] as? ThemeModel
+        ThemesManager.themesJSON[ThemesType.components] as? ThemeModel
     }
 
     fileprivate static func isThemeComponentValid(_ component: String) -> Bool {
@@ -214,7 +239,7 @@ extension ThemesManager {
     }
 
     // MARK: Color
-    fileprivate class var themeColor: ThemeModel? { ThemesManager.themesJSON["color"] as? ThemeModel }
+    fileprivate class var themeColor: ThemeModel? { ThemesManager.themesJSON[ThemesType.color] as? ThemeModel }
 
     // Color -
     fileprivate static func themeColor(_ colorName: String) -> String? {
@@ -223,7 +248,7 @@ extension ThemesManager {
 
     // MARK: font
     fileprivate class var themeFont: ThemeModel? {
-        ThemesManager.themesJSON["font"] as? ThemeModel
+        ThemesManager.themesJSON[ThemesType.font] as? ThemeModel
     }
 
     // font -
@@ -233,15 +258,23 @@ extension ThemesManager {
 
     // MARK: Appearance
     fileprivate class var themeAppearance: ThemeModel? {
-        ThemesManager.themesJSON["appearance"] as? ThemeModel
+        ThemesManager.themesJSON[ThemesType.appearance] as? ThemeModel
+    }
+    
+    // MARK: Layer
+    fileprivate class var themeLayer: ThemeModel? {
+        ThemesManager.themesJSON[ThemesType.layer] as? ThemeModel
+    }
+    
+    // layer -
+    fileprivate static func themeLayer(_ layerName: String) -> ThemeModel? {
+        self.themeLayer?[layerName] as? ThemeModel
     }
 
     // Appearance -
     fileprivate static func themeAppearance(_ appearanceName: String? = nil) -> Any? {
         // If 'appearanceName' is missing retrun all themes
-        guard let appearanceName = appearanceName else {
-            return self.themeAppearance
-        }
+        guard let appearanceName = appearanceName else { return themeAppearance }
         // If requested for particular appearance
         if appearanceName.contains(":") {
             return themeAppearance?[appearanceName] as? ThemeModel
@@ -283,26 +316,25 @@ extension ThemesManager {
         if baseModel != nil {
             data += baseModel!.0
         }
-        
         return data
     }
     
     // Defaults
-    fileprivate static func getDefaults(type: FTThemesType, keyName: String? = nil, styleName: String? = nil) -> Any? {
+    fileprivate static func getDefaults(type: ThemesType, keyName: String? = nil, styleName: String? = nil) -> Any? {
         guard let key = keyName else { return nil }
         var superBlock: ((String) -> Any?)?
         switch type {
         // Custome UIView Component
-        case .component:
+        case .components:
             let actualComponents = getThemeComponent(key, styleName: styleName)
             // TODO: iterative 'super' is still pending
             if
                 let viewComponent = actualComponents,
-                let superType = viewComponent["_super"] as? String,
+                let superType = viewComponent[ThemeKey.superComponent] as? String,
                 var superCom = getThemeComponent(key, styleName: superType) {
                 // If view-component has super's style, use it as base component and merge its own style
                 superCom += viewComponent
-                superCom.removeValue(forKey: "_super")
+                superCom.removeValue(forKey: ThemeKey.superComponent.rawValue)
                 
                 // Merged result
                 return getOSVersion(model: superCom)
@@ -317,6 +349,10 @@ extension ThemesManager {
         // Convert JSON to UIFont
         case .font:
             superBlock = { themeFont($0) }
+        case .layer:
+            return themeLayer(key)
+        case .appearance, .link:
+            return nil
         }
         
         var actualComponents: Any?
@@ -325,7 +361,7 @@ extension ThemesManager {
         // TODO: iterative 'super' is still pending
         if
             let currentComponent = components as? ThemeModel,
-            let superType = currentComponent["_super"] as? String,
+            let superType = currentComponent[ThemeKey.superComponent] as? String,
             let superComponents = superBlock?(superType) as? ThemeModel {
             
             // Merge super's style with current theme

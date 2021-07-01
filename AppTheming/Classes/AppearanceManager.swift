@@ -50,10 +50,10 @@ extension UIView: AppearanceManagerProtocol {
     @discardableResult
     @objc public class func setUpAppearance(theme: ThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
-        if let tintColor = theme[SuppotedTheme.tintColor.rawValue] {
+        if let tintColor = theme[ThemeKey.tintColor.rawValue] {
             appearance.tintColor = ThemesManager.getColor(tintColor as? String)
         }
-        if let backgroundImage = theme["backgroundImage"] {
+        if let backgroundImage = theme[ThemeKey.backgroundImage] {
             self.setBackgroundImage(backgroundImage)
         }
         return appearance
@@ -87,7 +87,7 @@ extension UISegmentedControl {
         let image = image.withRenderingMode(.alwaysTemplate)
             .resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3))
         let appearance = UISegmentedControl.appearance()
-        if imageType == "selected" {
+        if imageType == ThemeStyle.selectedStyle {
             appearance.setBackgroundImage(image, for: .selected, barMetrics: .default)
         }
         else {
@@ -102,7 +102,7 @@ extension UINavigationBar {
         super.setUpAppearance(theme: theme, containerClass: containerClass)
         let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
        
-        for type in SuppotedTheme.allCases {
+        for type in ThemeKey.allCases {
             guard let value = theme[type.rawValue] else { continue }
             switch type {
             case .tintColor:
@@ -145,8 +145,8 @@ extension UINavigationBar {
     @available(iOS 13.0, *)
     private class func navBarAppearance(theme: ThemeModel, tile: AttributedDictionary?, largeTitle: AttributedDictionary?) -> UINavigationBarAppearance {
         let navAppe = UINavigationBarAppearance()
-        if let imageTheme = theme["backgroundImage"] as? ThemeModel,
-           let defaultImage = ThemesManager.getImage(imageTheme["default"]), let bgColor = defaultImage.getColor() {
+        if let imageTheme = theme[ThemeKey.backgroundImage] as? ThemeModel,
+           let defaultImage = ThemesManager.getImage(imageTheme[ThemeKey.defaultValue]), let bgColor = defaultImage.getColor() {
             navAppe.backgroundColor = bgColor
         }
         if let attributes = tile {
@@ -165,7 +165,7 @@ extension UINavigationBar {
         var landScapeImage: UIImage?
         
         if let imageTheme = image as? ThemeModel {
-            defaultImage = ThemesManager.getImage(imageTheme["default"])
+            defaultImage = ThemesManager.getImage(imageTheme[ThemeKey.defaultValue])
             landScapeImage = ThemesManager.getImage(imageTheme["landScape"])
         }
         

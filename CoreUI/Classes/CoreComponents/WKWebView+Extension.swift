@@ -11,8 +11,8 @@ import WebKit
 
 extension WKWebView {
     private enum Constants {
-        static let bodyPlaceHolder = "XXXX"
-        static let baseStyle = "<style> body { overflow: -webkit-paged-x !important; direction: rtl !important; } </style>"
+        static let bodyPlaceHolder = "${body}"
+        static let baseStyle = "<style> body { margin: 20px } </style>"
         static let loadHTMLBody = """
             <html>
             <meta name=\"viewport\" content=\"initial-scale=1.0\" />

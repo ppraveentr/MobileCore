@@ -30,6 +30,10 @@ public protocol ViewControllerProtocol where Self: UIViewController {
     // MARK: Activity indicator
     func showActivityIndicator()
     func hideActivityIndicator(_ completionBlock: LoadingIndicator.CompletionBlock?)
+    // MARK: Layout Guide
+    func topSafeAreaLayoutGuide() -> Bool
+    func horizontalSafeAreaLayoutGuide() -> Bool
+    func shouldDissmissKeyboardOnTap() -> Bool
 }
 
 private extension AssociatedKey {
@@ -40,7 +44,6 @@ private extension AssociatedKey {
 }
 
 extension UIViewController: ViewControllerProtocol {
-
     @IBOutlet
     public var baseView: FTView? {
         get {
@@ -92,12 +95,15 @@ extension UIViewController: ViewControllerProtocol {
     }
     
     // Setup baseView's topLayoutGuide by sending true in subControllers if needed
-    public func topSafeAreaLayoutGuide() -> Bool { true }
-    
-    public func horizontalSafeAreaLayoutGuide() -> Bool { true }
-    
+    @objc
+    open func topSafeAreaLayoutGuide() -> Bool { true }
+ 
+    @objc
+    open func horizontalSafeAreaLayoutGuide() -> Bool { true }
+
     // Will dismiss Keyboard by tapping on any non-interative part of the view.
-    public func shouldDissmissKeyboardOnTap() -> Bool { true }
+    @objc
+    open func shouldDissmissKeyboardOnTap() -> Bool { true }
     
     public func setupCoreView() {
         if self.view == self.baseView {
@@ -155,7 +161,6 @@ extension UIViewController {
 
 // MARK: Layout Guide for rootView
 private extension UIViewController {
-    
     func setupLayoutGuide() {
         // Update: topPinnedButtonView
         if let topView = self.topPinnedView {

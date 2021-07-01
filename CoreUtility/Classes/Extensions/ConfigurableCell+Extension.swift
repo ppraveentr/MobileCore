@@ -127,7 +127,7 @@ public extension UICollectionReusableView {
     }
     
     // dequeue cell for the class
-    static func dequeue<T: UICollectionReusableView>(from collectionView: UICollectionView, ofKind elementKind: String, for indexPath: IndexPath, reuseIdentifier: String = T.defaultReuseIdentifier) throws -> T {
+    static func dequeue<T: UICollectionReusableView>(from collectionView: UICollectionView, ofKind elementKind: String, for indexPath: IndexPath, reuseIdentifier: String? = nil) throws -> T {
         let identifier = reuseIdentifer(reuseIdentifier: reuseIdentifier, elementKind: elementKind)
         guard let cell = collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: identifier, for: indexPath) as? T else {
             throw cellDequeueError(type: T.self)
