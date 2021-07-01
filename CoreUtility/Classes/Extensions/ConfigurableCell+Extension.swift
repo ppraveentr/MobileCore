@@ -41,11 +41,18 @@ public extension UIView {
         "\(self)ID"
     }
      
+    // Retruns true if nib file is avaialble
+    static var hasNib: Bool {
+        Bundle(for: self).path(forResource: defaultNibName, ofType: "nib") != nil
+    }
+    
+    // Get view based on once's class name
     static func getNib(nibName: String? = nil) -> UINib {
         let nibName = nibName ?? defaultNibName
         return UINib(nibName: nibName, bundle: Bundle(for: self))
     }
     
+    // Retruns first view from the nib file
     static func loadNibFromBundle<T: UIView>(_ nibName: String? = nil,
                                              bundle: Bundle? = nil,
                                              owner: Any? = nil) throws -> T {

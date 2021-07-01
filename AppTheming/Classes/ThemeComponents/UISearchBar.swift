@@ -14,8 +14,6 @@ private extension AssociatedKey {
     static var searchBarAttributes = "searchBarAttributes"
 }
 
-private typealias SearchBarAttributes = [NSAttributedString.Key: AnyObject]
-
 // MARK: UISearchBar
 extension UISearchBar: ThemeProtocol {
 
@@ -81,13 +79,9 @@ private extension UISearchBar {
     }
     
     // MARK: SearchTextField
-    var searchBarAttributes: SearchBarAttributes? {
-        get {
-            AssociatedObject.getAssociated(self, key: &AssociatedKey.searchBarAttributes)
-        }
-        set {
-            AssociatedObject<SearchBarAttributes>.setAssociated(self, value: newValue, key: &AssociatedKey.searchBarAttributes)
-        }
+    var searchBarAttributes: AttributedDictionary? {
+        get { AssociatedObject.getAssociated(self, key: &AssociatedKey.searchBarAttributes) }
+        set { AssociatedObject<AttributedDictionary>.setAssociated(self, value: newValue, key: &AssociatedKey.searchBarAttributes) }
     }
     
     func configure(tintColor: UIColor? = nil, textColor: UIColor? = nil, font: UIFont? = nil) {
@@ -116,7 +110,7 @@ private extension UISearchBar {
             // Set its frame.
             searchField.frame = CGRect(x: 5.0, y: 5.0, width: frame.width - 10.0, height: frame.height - 10.0)
             
-            var att = SearchBarAttributes()
+            var att = AttributedDictionary()
             // Set the font and text color of the search field.
             if font != nil {
                 searchField.font = font

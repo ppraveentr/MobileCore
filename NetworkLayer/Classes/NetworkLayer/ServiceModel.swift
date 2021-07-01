@@ -28,7 +28,7 @@ public protocol ServiceModel: Codable {
     func queryItems() -> [URLQueryItem]
 }
 
-// FIXIT: To Extend 'FTServiceModel' to sequence Item with confirms 'Codable'.
+// FIXIT: To Extend 'ServiceModel' to sequence Item with confirms 'Codable'.
 extension Array: ServiceModel where Element: Codable {
     // Protocol implementation: intentionally empty
 }
@@ -79,21 +79,17 @@ public extension ServiceModel {
     func jsonString() -> String? {
         if var jsn: JSON = try? self.jsonModel() {
             jsn.stripNilElements()
-            if
-                JSONSerialization.isValidJSONObject(jsn),
-                let data = try? JSONSerialization.data(withJSONObject: jsn, options: .prettyPrinted)
-            {
+            if JSONSerialization.isValidJSONObject(jsn),
+               let data = try? JSONSerialization.data(withJSONObject: jsn, options: .prettyPrinted) {
                 return data.decodeToString()
             }
         }
         return nil
     }
 
-    mutating func merge(data sourceData: ServiceModel) {
-
-        guard let source = try? sourceData.jsonModel(), let json = try? self.jsonModel() else { return }
-        
-        let data = json.merging(source) { left, right -> Any in
+    mutating func merge(data: ServiceModel) {
+        guard let source = try? data.jsonModel(), let json = try? self.jsonModel() else { return }
+        let mergedData = json.merging(source) { left, right -> Any in
             if var leftJson = left as? ServiceModel,
                let rightJson = right as? ServiceModel {
                 return leftJson.merge(data: rightJson)
@@ -103,10 +99,11 @@ public extension ServiceModel {
             }
             return right
         }
-        
-        if let data = try? Self.makeModel(json: data) {
-            self = data
+        do {
+            let updatedData = try Self.makeModel(json: mergedData)
+            self = updatedData
         }
+        catch { /* Do Nothing */ }
     }
 
     // Encode complex key/value objects in NSRULQueryItem pairs
@@ -137,40 +134,31 @@ public extension ServiceModel {
 
     // URL
     func queryItems() -> [URLQueryItem] {
-
         guard let json = try? self.jsonModel() else { return [] }
-
         var query: [URLQueryItem] = []
         json.forEach { arg in
             let val = queryItems(arg.key, arg.value)
             query.append(contentsOf: val)
         }
-
         return query
     }
 
     // FORM
     func formData() -> Data? {
-        
-        guard let json = try? self.jsonModel() else {
-            return nil
-        }
-
+        guard let json = try? self.jsonModel() else { return nil }
         var postData: Data?
         json.forEach { arg in
-            if let value = arg.value as? String {
-                let key = arg.key
-                if let data = "\(key)=\(value)".data(using: String.Encoding.utf8) {
-                    if postData == nil {
-                        postData = data
-                    }
-                    else {
-                        postData?.append(data)
-                    }
+            let key = arg.key
+            if let value = arg.value as? String,
+               let data = "\(key)=\(value)".data(using: .utf8) {
+                if postData == nil {
+                    postData = data
+                }
+                else {
+                    postData?.append(data)
                 }
             }
         }
-
         return postData
     }
 }

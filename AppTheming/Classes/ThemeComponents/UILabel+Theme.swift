@@ -40,7 +40,7 @@ extension UILabel: ThemeProtocol {
                 break
             }
         }
-        if self.responds(to: #selector(updateVisualThemes)){
+        if self.responds(to: #selector(updateVisualThemes)) {
             self.perform(#selector(updateVisualThemes))
         }
     }

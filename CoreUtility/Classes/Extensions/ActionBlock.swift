@@ -9,9 +9,9 @@
 import Foundation
 
 public typealias ActionBlock = () -> Swift.Void
+public typealias ActionWithObjectBlock = (_ object: AnyObject?) -> Swift.Void
 
 public extension UIControl {
-
     private struct AssociatedKey {
         static var actionBlockTapped = "actionBlockTapped"
     }

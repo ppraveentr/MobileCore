@@ -15,7 +15,6 @@ public protocol OptionalLayoutSubview {
 }
 
 protocol AttributedLabelProtocol where Self: UILabel {
-    var dispatchQueue: DispatchQueue { get }
     // Link handler
     var linkRanges: [LinkHandlerModel]? { get set }
     var linkHandler: LabelLinkHandler? { get set }
@@ -26,8 +25,6 @@ protocol AttributedLabelProtocol where Self: UILabel {
 }
 
 private extension AssociatedKey {
-    static var dispatchQueue = "dispatchQueue"
-    
     static var textContainer = "textContainer"
     static var layoutManager = "layoutManager"
     static var styleProperties = "styleProperties"
@@ -40,42 +37,24 @@ private extension AssociatedKey {
 }
 
 extension UILabel: AttributedLabelProtocol {
-    public var dispatchQueue: DispatchQueue {
-        AssociatedObject.getAssociated(self, key: &AssociatedKey.dispatchQueue) { DispatchQueue(label: "UILabel.dispatchQueue") }!
-    }
-    
     public var linkRanges: [LinkHandlerModel]? {
-        get {
-            AssociatedObject.getAssociated(self, key: &AssociatedKey.linkRanges)
-        }
-        set {
-            AssociatedObject<[LinkHandlerModel]>.setAssociated(self, value: newValue, key: &AssociatedKey.linkRanges)
-        }
+        get { AssociatedObject.getAssociated(self, key: &AssociatedKey.linkRanges) }
+        set { AssociatedObject<[LinkHandlerModel]>.setAssociated(self, value: newValue, key: &AssociatedKey.linkRanges) }
     }
     
     // LabelThemeProperyProtocol
     public var islinkDetectionEnabled: Bool {
-        get {
-            AssociatedObject.getAssociated(self, key: &AssociatedKey.islinkDetectionEnabled) { true }!
-        }
-        set {
-            AssociatedObject<Bool>.setAssociated(self, value: newValue, key: &AssociatedKey.islinkDetectionEnabled)
-        }
+        get { AssociatedObject.getAssociated(self, key: &AssociatedKey.islinkDetectionEnabled) { true }! }
+        set { AssociatedObject<Bool>.setAssociated(self, value: newValue, key: &AssociatedKey.islinkDetectionEnabled) }
     }
     
     public var isLinkUnderLineEnabled: Bool {
-        get {
-            AssociatedObject.getAssociated(self, key: &AssociatedKey.isLinkUnderLineEnabled) { false }!
-        }
-        set {
-            AssociatedObject<Bool>.setAssociated(self, value: newValue, key: &AssociatedKey.isLinkUnderLineEnabled)
-        }
+        get { AssociatedObject.getAssociated(self, key: &AssociatedKey.isLinkUnderLineEnabled) { false }! }
+        set { AssociatedObject<Bool>.setAssociated(self, value: newValue, key: &AssociatedKey.isLinkUnderLineEnabled) }
     }
     
     public var linkHandler: LabelLinkHandler? {
-        get {
-            AssociatedObject.getAssociated(self, key: &AssociatedKey.linkHandler)
-        }
+        get { AssociatedObject.getAssociated(self, key: &AssociatedKey.linkHandler) }
         set {
             AssociatedObject<LabelLinkHandler>.setAssociated(self, value: newValue, key: &AssociatedKey.linkHandler)
             self.isUserInteractionEnabled = true
@@ -103,21 +82,13 @@ extension UILabel: AttributedLabelProtocol {
     }
     
     public var styleProperties: AttributedDictionary {
-        get {
-            AssociatedObject.getAssociated(self, key: &AssociatedKey.styleProperties) { self.defaultStyleProperties }!
-        }
-        set {
-            AssociatedObject<AttributedDictionary>.setAssociated(self, value: newValue, key: &AssociatedKey.styleProperties)
-        }
+        get { AssociatedObject.getAssociated(self, key: &AssociatedKey.styleProperties) { self.defaultStyleProperties }! }
+        set { AssociatedObject<AttributedDictionary>.setAssociated(self, value: newValue, key: &AssociatedKey.styleProperties) }
     }
     
     public var htmlText: String {
-        get {
-            ""
-        }
-        set {
-            updateWithHtmlString(text: newValue)
-        }
+        get { "" }
+        set { updateWithHtmlString(text: newValue) }
     }
 }
 
@@ -179,12 +150,8 @@ extension UILabel: OptionalLayoutSubview {
 extension UILabel {
     // MARK: Text Formatting
     func updateWithHtmlString(text: String?) {
-        dispatchQueue.async(qos: DispatchQoS.userInteractive, flags: .enforceQoS) {
-            let att = text?.htmlAttributedString()
-            DispatchQueue.main.async { [weak self] in
-                self?.updateTextWithAttributedString(attributedString: att)
-            }
-        }
+        let att = text?.htmlAttributedString()
+        self.updateTextWithAttributedString(attributedString: att)
     }
     
     func updateTextContainerSize() {
@@ -251,10 +218,7 @@ extension NSLayoutManager {
         let (labelSize, textBoundingBox) = (label.bounds.size, self.usedRect(for: textContainer))
         let offsetX = (labelSize.width - textBoundingBox.size.width) * label.offsetXDivisor - textBoundingBox.origin.x
         let offsetY = (labelSize.height - textBoundingBox.size.height) * 0.5 - textBoundingBox.origin.y
-        let locationOfTouch = CGPoint(
-            x: touchLocation.x - offsetX,
-            y: touchLocation.y - offsetY
-        )
+        let locationOfTouch = CGPoint(x: touchLocation.x - offsetX, y: touchLocation.y - offsetY)
         let indexOfCharacter = self.characterIndex(for: locationOfTouch, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
         return indexOfCharacter
     }

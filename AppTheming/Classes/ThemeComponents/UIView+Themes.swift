@@ -10,6 +10,12 @@ import Foundation
 
 public typealias ThemeModel = [String: Any]
 
+public enum SuppotedTheme: String, CaseIterable {
+    case backgroundImage, backIndicatorImage, backIndicatorTransitionMaskImage, shadowImage
+    case tintColor, titleText, isTranslucent
+    case barTintColor
+}
+
 public extension NSNotification.Name {
     static let kFTAppearanceWillRefreshWindow = NSNotification.Name(rawValue: "kFTAppearanceWillRefreshWindow.Notofication")
     static let kFTAppearanceDidRefreshWindow = NSNotification.Name(rawValue: "kFTAppearanceDidRefreshWindow.Notofication")
@@ -34,9 +40,7 @@ extension UIView {
     // Theme style-name for the view
     @IBInspectable
     public var theme: String? {
-        get {
-            UIView.aoThemes[self]
-        }
+        get { UIView.aoThemes[self] }
         set {
             UIView.aoThemes[self] = newValue
             // Relaod view's theme, if styleName changes, when next time view layouts
@@ -50,9 +54,7 @@ extension UIView {
 
     // To tigger view-Theme styling
     private var needsThemesUpdate: Bool {
-        get {
-            UIView.aoThemesNeedsUpdate[self] ?? false
-        }
+        get { UIView.aoThemesNeedsUpdate[self] ?? false }
         set {
             UIView.aoThemesNeedsUpdate[self] = newValue
             if newValue {
@@ -192,7 +194,6 @@ extension UIView {
 
 // MARK: UIControl : Style for Different states for UIControl object
 extension UIControl {
-    
     public func getAllThemeSubType() -> Bool { true }
 
     public func setThemes(_ themes: ThemeModel) {
@@ -217,7 +218,6 @@ extension UIControl {
 
 // MARK: Window Refresh
 public extension UIWindow {
-
     @nonobjc private func refreshAppearance() {
         let constraints = self.constraints
         removeConstraints(constraints)

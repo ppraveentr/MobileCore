@@ -139,7 +139,7 @@ open class ThemesManager {
     }
 
     // MARK: UIImage
-    public static func getTextAttributes(_ theme: ThemeModel?) -> [NSAttributedString.Key: AnyObject]? {
+    public static func getTextAttributes(_ theme: ThemeModel?) -> AttributedDictionary? {
         guard let theme = theme else { return nil }
         var attributes = [NSAttributedString.Key: AnyObject]()
         if let value = theme["foregroundColor"] as? String {

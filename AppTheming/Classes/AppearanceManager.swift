@@ -43,24 +43,19 @@ public enum AppearanceManager {
 }
 
 extension UIView: AppearanceManagerProtocol {
-
     public func setUpAppearance(theme: ThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         type(of: self).setUpAppearance(theme: theme, containerClass: containerClass)
     }
 
     @discardableResult
     @objc public class func setUpAppearance(theme: ThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
-
         let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
-
-        if let tintColor = theme["tintColor"] {
+        if let tintColor = theme[SuppotedTheme.tintColor.rawValue] {
             appearance.tintColor = ThemesManager.getColor(tintColor as? String)
         }
-
         if let backgroundImage = theme["backgroundImage"] {
             self.setBackgroundImage(backgroundImage)
         }
-
         return appearance
     }
     
@@ -69,24 +64,19 @@ extension UIView: AppearanceManagerProtocol {
     }
     
     public class func setBackgroundImage(imageType: String?, imageName: Any) {
-        
         if let types = imageName as? ThemeModel {
             types.forEach { setBackgroundImage(imageType: $0, imageName: $1) }
         }
         
         guard let imageType = imageType else { return }
-        
-        if
-            let image = ThemesManager.getImage(imageName as? String),
-            let segmentSelf = self as? UISegmentedControl.Type
-        {
+        if let image = ThemesManager.getImage(imageName as? String),
+           let segmentSelf = self as? UISegmentedControl.Type {
             segmentSelf.setBackgroundImage(imageType: imageType, image: image)
         }
     }
 }
 
 extension UISegmentedControl {
-
     override public class func setUpAppearance(theme: ThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         super.setUpAppearance(theme: theme, containerClass: containerClass)
 //        let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
@@ -94,12 +84,9 @@ extension UISegmentedControl {
     }
     
     public class func setBackgroundImage(imageType: String, image: UIImage) {
-        
         let image = image.withRenderingMode(.alwaysTemplate)
             .resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3))
-        
         let appearance = UISegmentedControl.appearance()
-        
         if imageType == "selected" {
             appearance.setBackgroundImage(image, for: .selected, barMetrics: .default)
         }
@@ -110,56 +97,67 @@ extension UISegmentedControl {
 }
 
 extension UINavigationBar {
-    
+    // swiftlint:disable cyclomatic_complexity
     override public class func setUpAppearance(theme: ThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         super.setUpAppearance(theme: theme, containerClass: containerClass)
         let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
-
-        if let value = theme["tintColor"] as? String {
-            appearance.tintColor = ThemesManager.getColor(value)
-        }
-        if let value = theme["backIndicatorImage"] {
-            appearance.backIndicatorImage = ThemesManager.getImage(value)
-        }
-        if let value = theme["backIndicatorTransitionMaskImage"] {
-            appearance.backIndicatorTransitionMaskImage = ThemesManager.getImage(value)
-        }
-        if let value = theme["shadowImage"] {
-            appearance.shadowImage = ThemesManager.getImage(value)
-        }
-        if let value = theme["titleText"] as? ThemeModel {
-            let attributes = ThemesManager.getTextAttributes(value)
-            appearance.titleTextAttributes = attributes
-            if #available(iOS 13.0, *) {
-                appearance.largeTitleTextAttributes = attributes
-            }
-        }
-        if let value = theme["isTranslucent"] as? Bool {
-            appearance.isTranslucent = value
-            // FIXIT: Not able to update statusbar color if not set to `blackTranslucent`
-            if value {
-                appearance.barStyle = .blackTranslucent
+       
+        for type in SuppotedTheme.allCases {
+            guard let value = theme[type.rawValue] else { continue }
+            switch type {
+            case .tintColor:
+                appearance.tintColor = ThemesManager.getColor(value as? String)
+            case .backIndicatorImage:
+                appearance.backIndicatorImage = ThemesManager.getImage(value)
+            case .backIndicatorTransitionMaskImage:
+                appearance.backIndicatorTransitionMaskImage = ThemesManager.getImage(value)
+            case .shadowImage:
+                appearance.shadowImage = ThemesManager.getImage(value)
+            case .isTranslucent:
+                if let value = value as? Bool {
+                    appearance.isTranslucent = value
+                    // FIXIT: Not able to update statusbar color if not set to `blackTranslucent`
+                    if value {
+                        appearance.barStyle = .blackTranslucent
+                    }
+                }
+            case .titleText:
+                if let attributes = ThemesManager.getTextAttributes(value as? ThemeModel) {
+                    appearance.titleTextAttributes = attributes
+                    if #available(iOS 13.0, *) {
+                        appearance.largeTitleTextAttributes = attributes
+                    }
+                }
+            default:
+                break
             }
         }
 
         if #available(iOS 13.0, *) {
-            let navAppe = UINavigationBarAppearance()
-            if let imageTheme = theme["backgroundImage"] as? ThemeModel,
-               let defaultImage = ThemesManager.getImage(imageTheme["default"]), let bgColor = defaultImage.getColor() {
-                navAppe.backgroundColor = bgColor
-            }
-            if let attributes = appearance.titleTextAttributes {
-                navAppe.titleTextAttributes = attributes
-            }
-            if let attributes = appearance.largeTitleTextAttributes {
-                navAppe.largeTitleTextAttributes = attributes
-            }
+            let navAppe = navBarAppearance(theme: theme, tile: appearance.titleTextAttributes, largeTitle: appearance.largeTitleTextAttributes)
             appearance.standardAppearance = navAppe
             appearance.compactAppearance = navAppe
             appearance.scrollEdgeAppearance = navAppe
         }
         return appearance
     }
+    
+    @available(iOS 13.0, *)
+    private class func navBarAppearance(theme: ThemeModel, tile: AttributedDictionary?, largeTitle: AttributedDictionary?) -> UINavigationBarAppearance {
+        let navAppe = UINavigationBarAppearance()
+        if let imageTheme = theme["backgroundImage"] as? ThemeModel,
+           let defaultImage = ThemesManager.getImage(imageTheme["default"]), let bgColor = defaultImage.getColor() {
+            navAppe.backgroundColor = bgColor
+        }
+        if let attributes = tile {
+            navAppe.titleTextAttributes = attributes
+        }
+        if let attributes = largeTitle {
+            navAppe.largeTitleTextAttributes = attributes
+        }
+        return navAppe
+    }
+    // swiftlint:enable cyclomatic_complexity
     
     override public class func setBackgroundImage(_ image: Any) {
         // defaultImage
