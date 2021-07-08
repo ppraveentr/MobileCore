@@ -3,7 +3,7 @@
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 [![Build Status](https://travis-ci.org/ppraveentr/MobileCore.svg?branch=master)](https://travis-ci.org/ppraveentr/MobileCore)
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3c8c3380daf54f60878bdc795f4ee34b)](https://www.codacy.com/app/ppraveentr/MobileCore?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ppraveentr/MobileCore&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/29e1db8f665a4b0785c19002a45df0bb)](https://www.codacy.com/gh/ppraveentr/MobileCore/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ppraveentr/MobileCore&amp;utm_campaign=Badge_Grade)
 
 Lets consider you are developing a Mobile application, be it for Prototyping or Enterprise, finding right set of utitlies all in one place or configuring application Theme, writing a Network-layer  isn't always easy and its time consuming to write the code from scratch. 
 
