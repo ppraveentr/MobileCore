@@ -1,5 +1,5 @@
 //
-//  ViewControllerProtocol+Utility.swift
+//  UIViewController+Extension.swift
 //  CoreUIExtensions
 //
 //  Created by Praveen Prabhakar on 21/10/18.

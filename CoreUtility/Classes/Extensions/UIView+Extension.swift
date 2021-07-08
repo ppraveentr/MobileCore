@@ -9,39 +9,11 @@
 import Foundation
 
 public extension UIView {
-    
-    // MARK: XIB
-    // Get nib based on once's class name
-    static var nib: UINib {
-        UINib(nibName: String(describing: self), bundle: nil)
-    }
-    
-    // Get view based on once's class name
-    static func fromNib(_ owner: Any? = nil) -> UIView? {
-        fromNib(named: String(describing: self), owner: owner)
-    }
-    
-    // Retruns first view from the nib file
-    static func fromNib(named name: String, owner: Any? = nil) -> UIView? {
-        // Get all object inside the nib
-        let allObjects = Bundle(for: self).loadNibNamed(name, owner: owner, options: nil) ?? []
-        // Get first view object
-        if let nib = allObjects.first as? UIView {
-            return nib
-        }
-        
-        return nil
-    }
-    
     // Add once's xib-view as subView
     @discardableResult
     func xibSetup(className: UIView.Type) -> UIView? {
-
         // Get view from nib
-        guard let contentView = className.fromNib(self) else {
-            return nil
-        }
-
+        guard let contentView = try? className.loadNibFromBundle() else { return nil }
         // Set contents tag as self'hash, just for unique identifiation
         contentView.tag = self.hash
         // use bounds not frame or it'll be offset

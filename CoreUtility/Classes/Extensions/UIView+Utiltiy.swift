@@ -75,9 +75,10 @@ public extension UIView {
     
     // MARK: Container SetUp
     func layoutView() {
+        setNeedsUpdateConstraints()
         setNeedsDisplay()
-        layoutIfNeeded()
+        setNeedsLayout()
         self.superview?.setNeedsLayout()
-        self.superview?.layoutIfNeeded()
+        self.superview?.setNeedsLayout()
     }
 }

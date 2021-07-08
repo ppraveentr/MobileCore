@@ -1,5 +1,5 @@
 //
-//  CollectionView+Extension.swift
+//  UICollectionView+Theme.swift
 //  MobileCoreUtility
 //
 //  Created by Praveen Prabhakar on 22/10/18.

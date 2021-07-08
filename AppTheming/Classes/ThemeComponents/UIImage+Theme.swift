@@ -1,5 +1,5 @@
 //
-//  ImageName+Extension.swift
+//  UIImage+Theme.swift
 //  MobileCoreUtility
 //
 //  Created by Praveen Prabhakar on 13/09/17.

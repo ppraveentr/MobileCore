@@ -1,5 +1,5 @@
 //
-//  SegmentedControl+Extension.swift
+//  WKWebView+Extension.swift
 //  CoreUIExtensions
 //
 //  Created by Praveen Prabhakar on 13/07/17.
@@ -10,17 +10,23 @@ import Foundation
 import WebKit
 
 extension WKWebView {
-    
-    private enum Constants: String {
-        case replaceText = "XXXX"
-        case loadHTMLBody = "<html><meta name=\"viewport\" content=\"initial-scale=1.0\" /><body>XXXX</body></html>"
-        case getDocumentBody = "document.getElementsByTagName('body')[0]"
-        case styleAppleFamily = "-apple-system\";"
+    private enum Constants {
+        static let bodyPlaceHolder = "${body}"
+        static let baseStyle = "<style> body { margin: 20px } </style>"
+        static let loadHTMLBody = """
+            <html>
+            <meta name=\"viewport\" content=\"initial-scale=1.0\" />
+            <header>\(baseStyle)</header>
+            <body>\(bodyPlaceHolder)</body>
+            </html>
+        """
+        static let getDocumentBody = "document.getElementsByTagName('body')[0]"
+        static let styleAppleFamily = "-apple-system\";"
         
-        case styleFontFamily = ".style.fontFamily"
-        case textSizeAdjust = ".style.webkitTextSizeAdjust"
-        case backgroundColor = ".style.backgroundColor"
-        case textColor = ".style.color"
+        static let styleFontFamily = ".style.fontFamily"
+        static let textSizeAdjust = ".style.webkitTextSizeAdjust"
+        static let backgroundColor = ".style.backgroundColor"
+        static let textColor = ".style.color"
     }
     
     private func removeGestureInWKContentView(_ view: [UIView]) {
@@ -29,6 +35,10 @@ extension WKWebView {
                 subScrollView.removeGestureRecognizer(gesture)
             }
         }
+    }
+    
+    public func setHideNavigationOnScroll(hide: Bool) {
+        WebViewControllerViewDelegate.shared.shouldHideNav = hide
     }
     
     public func setScrollEnabled(enabled: Bool) {
@@ -48,13 +58,13 @@ extension WKWebView {
     
     @discardableResult
     public func loadHTMLBody(_ string: String, baseURL: URL? = nil) -> WKNavigation? {
-        let body = Constants.loadHTMLBody.rawValue.replacingOccurrences(of: Constants.replaceText.rawValue, with: string)
+        let body = Constants.loadHTMLBody.replacingOccurrences(of: Constants.bodyPlaceHolder, with: string)
         return self.loadHTMLString(body, baseURL: baseURL)
     }
     
     public func setContentFontSize(_ size: Float) {
         if size >= 10 {
-            let js = self.getHTMLBodyText() + Constants.textSizeAdjust.rawValue + "= '\(size)%'"
+            let js = self.getHTMLBodyText() + Constants.textSizeAdjust + "= '\(size)%'"
             self.insertCSSString(jsString: js)
         }
     }
@@ -62,25 +72,25 @@ extension WKWebView {
     public func setContentColor(textColor: UIColor? = nil, backgroundColor: UIColor? = nil) {
         
         if let bgHex = backgroundColor?.hexString() {
-            let bgJS = self.getHTMLBodyText() + Constants.backgroundColor.rawValue + "= '\(bgHex)';"
+            let bgJS = self.getHTMLBodyText() + Constants.backgroundColor + "= '\(bgHex)';"
             self.insertCSSString(jsString: bgJS)
         }
         
         if let fontHex = textColor?.hexString() {
-            let fontJS = self.getHTMLBodyText() + Constants.textColor.rawValue + "= '\(fontHex)';"
+            let fontJS = self.getHTMLBodyText() + Constants.textColor + "= '\(fontHex)';"
             self.insertCSSString(jsString: fontJS)
         }
     }
     
     public func setContentFontFamily(_ fontName: String?) {
         // base document style
-        var css = self.getHTMLBodyText() + Constants.styleFontFamily.rawValue + "= \""
+        var css = self.getHTMLBodyText() + Constants.styleFontFamily + "= \""
         // user selected font
         if let fontName = fontName, !fontName.isEmpty {
             css += "\(fontName),"
         }
         // Default font
-        css += Constants.styleAppleFamily.rawValue
+        css += Constants.styleAppleFamily
         self.insertCSSString(jsString: css)
     }
 }
@@ -122,11 +132,11 @@ public extension WKWebView {
     }
     
     func getHTMLBodyText() -> String {
-        Constants.getDocumentBody.rawValue
+        Constants.getDocumentBody
     }
     
     func getTextSize(_ block: @escaping (Float?) -> Void) {
-        evaluateJavaScript(self.getHTMLBodyText() + Constants.textSizeAdjust.rawValue) { obj, _ in
+        evaluateJavaScript(self.getHTMLBodyText() + Constants.textSizeAdjust) { obj, _ in
             if let size = (obj as? String)?.trimming("%") {
                 block(Float(size))
             }
@@ -136,8 +146,8 @@ public extension WKWebView {
     func getHTMLColor(_ block: @escaping (_ textColor: UIColor?, _ backgroungColor: UIColor?) -> Void) {
         var bgColor: UIColor?
         var textColor: UIColor?
-        var regBG: String? = self.getHTMLBodyText() + Constants.backgroundColor.rawValue
-        var regText: String? = self.getHTMLBodyText() + Constants.textColor.rawValue
+        var regBG: String? = self.getHTMLBodyText() + Constants.backgroundColor
+        var regText: String? = self.getHTMLBodyText() + Constants.textColor
 
         let eval = {
             if regBG == nil, regText == nil {
@@ -161,7 +171,7 @@ public extension WKWebView {
     }
     
     func getContentFontFamily(_ block: @escaping ([String]) -> Void) {
-        evaluateJavaScript(self.getHTMLBodyText() + Constants.styleFontFamily.rawValue) { obj, _ in
+        evaluateJavaScript(self.getHTMLBodyText() + Constants.styleFontFamily) { obj, _ in
             var fonts: [String] = (obj as? String)?.components(separatedBy: ",") ?? []
             fonts = fonts.map { $0.trimingPrefix(" ") }
             block(fonts)

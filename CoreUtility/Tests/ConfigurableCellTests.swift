@@ -16,7 +16,8 @@ final class ConfigurableCellTests: XCTestCase {
     // private lazy var mockCell: MockTableViewCell?
     private let mockTableView = UITableView()
     private let mockCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-
+    private let defaultId = MockCollectionViewCell.defaultReuseIdentifier
+    
     func testDefaultNib() {
         XCTAssertEqual(MockTableViewCell.defaultNibName, "MockTableViewCell")
         XCTAssertEqual(MockTableViewCell.defaultReuseIdentifier, "MockTableViewCellID")
@@ -68,10 +69,12 @@ final class ConfigurableCellTests: XCTestCase {
         // when Register cell with Custom reuseIdentifier
         MockTableViewCell.registerClass(for: mockTableView, reuseIdentifier: customReuseID)
         // then
-        XCTAssertNil(mockTableView.dequeueReusableCell(withIdentifier: MockTableViewCell.defaultReuseIdentifier),
-                     "Should not have dequeue cell as reuseIdentifier not found")
-        XCTAssertNotNil(mockTableView.dequeueReusableCell(withIdentifier: customReuseID),
-                        "Should have dequeue cell as with \(customReuseID) reuseIdentifier")
+        let defaultCell = mockTableView.dequeueReusableCell(withIdentifier: MockTableViewCell.defaultReuseIdentifier)
+        let dequeID = "Should not have dequeue cell as reuseIdentifier not found"
+        XCTAssertNil(defaultCell, dequeID)
+        // then
+        let customTableViewCell = mockTableView.dequeueReusableCell(withIdentifier: customReuseID)
+        XCTAssertNotNil(customTableViewCell, "Should have dequeue cell as with \(customReuseID) reuseIdentifier")
     }
     
     // MARK: CollectionView
@@ -93,7 +96,7 @@ final class ConfigurableCellTests: XCTestCase {
         // then
         XCTAssertNotNil(cell, "Should have dequeue cell")
         // let
-        let cellMock = mockCollectionView.dequeueReusableCell(withReuseIdentifier: MockCollectionViewCell.defaultReuseIdentifier, for: indexPath)
+        let cellMock = mockCollectionView.dequeueReusableCell(withReuseIdentifier: defaultId, for: indexPath)
         XCTAssertNotNil(cellMock, "Should have dequeue cell")
     }
     
@@ -106,7 +109,7 @@ final class ConfigurableCellTests: XCTestCase {
         // then
         XCTAssertNotNil(cell, "Should have dequeue cell")
         // let
-        let cellMock = mockCollectionView.dequeueReusableCell(withReuseIdentifier: MockCollectionViewCell.defaultReuseIdentifier, for: indexPath)
+        let cellMock = mockCollectionView.dequeueReusableCell(withReuseIdentifier: defaultId, for: indexPath)
         XCTAssertNotNil(cellMock, "Should have dequeue cell")
     }
     
@@ -117,7 +120,7 @@ final class ConfigurableCellTests: XCTestCase {
         // when Register cell with Custom reuseIdentifier
         MockCollectionViewCell.registerClass(for: mockCollectionView, reuseIdentifier: customReuseID)
         // then
-        XCTAssertNotNil(mockCollectionView.dequeueReusableCell(withReuseIdentifier: customReuseID, for: indexPath),
-                        "Should have dequeue cell as with \(customReuseID) reuseIdentifier")
+        let customCell = mockCollectionView.dequeueReusableCell(withReuseIdentifier: customReuseID, for: indexPath)
+        XCTAssertNotNil(customCell, "Should have dequeue cell as with \(customReuseID) reuseIdentifier")
     }
 }

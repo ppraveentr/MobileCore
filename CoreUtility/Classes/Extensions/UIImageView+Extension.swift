@@ -1,5 +1,5 @@
 //
-//  ImageView+Download.swift
+//  UIImageView+Extension.swift
 //  CoreUIExtensions
 //
 //  Created by Praveen P on 08/04/20.

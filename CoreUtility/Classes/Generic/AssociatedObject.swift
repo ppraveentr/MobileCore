@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct AssociatedKey {
+public enum AssociatedKey {
     static var DefaultKey = "DefaultKey"
 }
 

@@ -1,5 +1,5 @@
 //
-//  LabelThemeProperyProtocol.swift
+//  UILabel+Theme.swift
 //  CoreUIExtensions
 //
 //  Created by Praveen Prabhakar on 05/08/17.
@@ -24,15 +24,15 @@ extension UILabel: ThemeProtocol {
     public func updateTheme(_ theme: ThemeModel) {
         for (kind, value) in theme {
             switch kind {
-            case "isLinkUnderlineEnabled":
+            case ThemeKey.isLinkUnderlineEnabled.rawValue:
                 (self as? LabelThemeProperyProtocol)?.isLinkUnderLineEnabled = value as? Bool ?? false
-            case "isLinkDetectionEnabled":
+            case ThemeKey.isLinkDetectionEnabled.rawValue:
                 (self as? LabelThemeProperyProtocol)?.islinkDetectionEnabled = value as? Bool ?? false
-            case "textfont":
+            case ThemeKey.textfont.rawValue:
                 if let font = getFont(value as? String) {
                     self.font = font
                 }
-            case "textcolor":
+            case ThemeKey.textcolor.rawValue:
                 if let color = getColor(value as? String) {
                    self.textColor = color
                 }
@@ -40,5 +40,7 @@ extension UILabel: ThemeProtocol {
                 break
             }
         }
+        // Send action to superView to update view
+        UIApplication.shared.sendAction(#selector(updateVisualThemes), to: nil, from: self, for: nil)
     }
 }

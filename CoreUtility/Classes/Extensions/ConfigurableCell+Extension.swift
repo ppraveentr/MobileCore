@@ -41,14 +41,21 @@ public extension UIView {
         "\(self)ID"
     }
      
+    // Retruns true if nib file is avaialble
+    static var hasNib: Bool {
+        Bundle(for: self).path(forResource: defaultNibName, ofType: "nib") != nil
+    }
+    
+    // Get view based on once's class name
     static func getNib(nibName: String? = nil) -> UINib {
         let nibName = nibName ?? defaultNibName
         return UINib(nibName: nibName, bundle: Bundle(for: self))
     }
     
+    // Retruns first view from the nib file
     static func loadNibFromBundle<T: UIView>(_ nibName: String? = nil,
-                                       bundle: Bundle? = nil,
-                                       owner: Any? = nil) throws -> T {
+                                             bundle: Bundle? = nil,
+                                             owner: Any? = nil) throws -> T {
         let nibName = nibName ?? defaultNibName
         let bundle = bundle ?? Bundle(for: self)
         guard bundle.path(forResource: nibName, ofType: "nib") != nil,
@@ -120,7 +127,7 @@ public extension UICollectionReusableView {
     }
     
     // dequeue cell for the class
-    static func dequeue<T: UICollectionReusableView>(from collectionView: UICollectionView, ofKind elementKind: String, for indexPath: IndexPath, reuseIdentifier: String = T.defaultReuseIdentifier) throws -> T {
+    static func dequeue<T: UICollectionReusableView>(from collectionView: UICollectionView, ofKind elementKind: String, for indexPath: IndexPath, reuseIdentifier: String? = nil) throws -> T {
         let identifier = reuseIdentifer(reuseIdentifier: reuseIdentifier, elementKind: elementKind)
         guard let cell = collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: identifier, for: indexPath) as? T else {
             throw cellDequeueError(type: T.self)
