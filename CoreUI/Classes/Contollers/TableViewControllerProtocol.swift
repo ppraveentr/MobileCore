@@ -8,8 +8,6 @@
 
 import Foundation
 
-private var kAOTableVC = "k.FT.AO.TableViewController"
-
 public protocol TableViewControllerProtocol: ViewControllerProtocol {
     var tableStyle: UITableView.Style { get }
     var tableView: UITableView { get }
@@ -19,20 +17,18 @@ public protocol TableViewControllerProtocol: ViewControllerProtocol {
     func getCoreTableViewController() -> UITableViewController
 }
 
+// MARK: FTAssociatedKey
+private extension AssociatedKey {
+    static var kAOTableVC = "k.FT.AO.TableViewController"
+    static var kAOTableHeader = "k.FT.AO.TableViewController"
+    static var kAOTableFooter = "k.FT.AO.TableViewController"
+}
+
 public extension TableViewControllerProtocol {
-    
     // TableView style, defalut: .plain
-    var tableStyle: UITableView.Style {
-        .plain
-    }
-    
-    var tableViewEdgeOffsets: UIEdgeInsets {
-        .zero
-    }
-    
-    var tableView: UITableView {
-        self.tableViewController.tableView
-    }
+    var tableStyle: UITableView.Style { .plain }
+    var tableViewEdgeOffsets: UIEdgeInsets { .zero }
+    var tableView: UITableView { self.tableViewController.tableView }
     
     func getCoreTableViewController() -> UITableViewController {
         let controller = UITableViewController(style: self.tableStyle)
@@ -42,7 +38,7 @@ public extension TableViewControllerProtocol {
     
     var tableViewController: UITableViewController {
         get {
-            guard let table = AssociatedObject<UITableViewController>.getAssociated(self, key: &kAOTableVC) else {
+            guard let table = AssociatedObject<UITableViewController>.getAssociated(self, key: &AssociatedKey.kAOTableVC) else {
                 return self.setupCoreTableViewController()
             }
             return table
@@ -54,75 +50,38 @@ public extension TableViewControllerProtocol {
     
     @discardableResult
     private func setupCoreTableViewController(_ controller: UITableViewController? = nil) -> UITableViewController {
-        
         // Load Base view
         setupCoreView()
-        
-        if let table = AssociatedObject<UITableViewController>.getAssociated(self, key: &kAOTableVC) {
+        if let table = AssociatedObject<UITableViewController>.getAssociated(self, key: &AssociatedKey.kAOTableVC) {
             table.tableView.removeSubviews()
-            AssociatedObject<Any>.resetAssociated(self, key: &kAOTableVC)
+            AssociatedObject<Any>.resetAssociated(self, key: &AssociatedKey.kAOTableVC)
         }
-        
         // Create tableView based on user provided style
         let local = controller ?? getCoreTableViewController()
         local.tableView.removeSubviews()
-
         // Add as child view controller
         self.addChild(local)
         self.mainView?.pin(view: local.view, edgeOffsets: self.tableViewEdgeOffsets)
-        // Set default Cell
-        local.tableView.register(UITableViewCell.self, forCellReuseIdentifier: kAOTableVC)
-
-        // Register for 'updateTableViewHeaderViewHeight'
-        _ = NotificationCenter.default.addObserver(forName: .kFTMobileCoreDidLayoutSubviews, object: nil, queue: .main) { [weak self]_ in
-            self?.updateTableViewHeaderViewHeight()
-        }
-        
-        AssociatedObject<UITableViewController>.setAssociated(self, value: local, key: &kAOTableVC)
-
+        // Retain UITableViewController
+        AssociatedObject<UITableViewController>.setAssociated(self, value: local, key: &AssociatedKey.kAOTableVC)
         return local
     }
-    
-    private func updateFrame(view: UIView) {
-        var originalFrame = view.frame
-        view.resizeToFitSubviews()
-        originalFrame.size.height = (view.frame.height)
-        originalFrame.size.width = self.tableView.frame.width
-        view.frame = originalFrame
+}
+
+// MARK: UITableView
+public extension UITableView {
+    func setTableHeaderView(view: UIView?) {
+        self.tableHeaderView = view // UIView.embededView(view: view)
+        self.resizeSubviews(view: self.tableHeaderView)
     }
     
-    /**
-     tableView's tableViewHeaderView contains wrapper view, which height is evaluated
-     with Auto Layout. Here I use evaluated height and update tableView's
-     tableViewHeaderView's frame.
-     
-     New height for tableViewHeaderView is applied not without magic, that's why
-     I call -updateTableViewHeaderViewHeight.
-     And again, this doesn't work due to some internals of UITableView,
-     so -updateTableViewHeaderViewHeight call is scheduled in the main run loop.
-     */
-    func updateTableViewHeaderViewHeight() {
-        
-        // get height of the wrapper and apply it to a header
-        if let view = self.tableView.tableHeaderView {
-            updateFrame(view: view)
-        }
-        
-        if let view = self.tableView.tableFooterView {
-            updateFrame(view: view)
-        }
-        
-        DispatchQueue.main.async {
-            // whew, this could be animated!
-            UIView.beginAnimations("tableHeaderView", context: nil)
-            let header = self.tableView.tableHeaderView
-            self.tableView.tableHeaderView = header
-            UIView.commitAnimations()
-            
-            UIView.beginAnimations("tableFooterView", context: nil)
-            let footer = self.tableView.tableFooterView
-            self.tableView.tableFooterView = footer
-            UIView.commitAnimations()
-        }
+    func setTableFooterView(view: UIView?) {
+        self.tableFooterView = view // UIView.embededView(view: view)
+        self.resizeSubviews(view: self.tableFooterView)
+    }
+    
+    private func resizeSubviews(view: UIView?) {
+        view?.layoutIfNeeded()
+        view?.frame.size = view?.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize) ?? .zero
     }
 }

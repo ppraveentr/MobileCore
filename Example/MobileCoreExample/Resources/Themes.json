@@ -23,8 +23,38 @@
 		"system14": {
 			"_super": "default",
 			"size": "14.0"
-		}
+		},
+        "system14W": {
+            "_super": "default",
+            "size": "14.0",
+            "weight": 1
+        },
+        "systemB14": {
+            "name": "boldSystem",
+            "size": "14.0"
+        },
+        "systemI14": {
+            "name": "italicSystem",
+            "size": "14.0"
+        }
 	},
+    "layer": {
+        "roundRect": {
+            "cornerRadius": 5,
+            "borderWidth": 2,
+            "borderColor": "red"
+        },
+        "elevated": {
+            "masksToBounds": false,
+            "shadowPath": true,
+            "shadowColor": "blue",
+            "shadowRadius": 5.0,
+            "shadowOpacity": 0.6
+        },
+        "shadowOffset": {
+            "shadowOffset": "{5}"
+        }
+    },
     "link": {
         "url": {
             "underlineColor": "blue",
@@ -43,7 +73,10 @@
 			"backgroundImage": {
 				"default": "@Pixel"
 			},
-			"shadowImage": "@empty"
+			"shadowImage": "@empty",
+            "titleText": {
+                "foregroundColor": "white"
+            }
 		},
 		"UINavigationBar": {
 			"barTintColor": "black",
@@ -58,17 +91,26 @@
             "viewR": {
                 "backgroundColor": "red"
             }
+        },
+        "UIView": {
+            "default": {
+                "backgroundColor": "white"
+            },
+            "elevated": {
+                "_super": "default",
+                "layer": "elevated"
+            },
+            "shadowOffset": {
+                "_super": "default",
+                "layer": "shadowOffset"
+            }
 		},
 		"UIButton": {
 			"default": {
 				"textfont": "system14",
 				"textcolor": "black",
 				"backgroundColor": "clear",
-				"layer": {
-					"cornerRadius": 5,
-					"borderWidth": 2,
-					"borderColor": "red"
-				}
+				"layer": "roundRect"
 			},
 			"button14R": {
 				"_super": "default",
@@ -110,7 +152,19 @@
 			"system14AA": {
 				"_super": "default",
 				"textcolor": "AA"
-			}
+			},
+            "systemW14G": {
+                "textfont": "system14W",
+                "textcolor": "green"
+            },
+            "systemB14R": {
+                "textfont": "systemB14",
+                "textcolor": "red"
+            },
+            "systemI14R": {
+                "textfont": "systemI14",
+                "textcolor": "red"
+            }
 		},
         "UISegmentedControl": {
             "default": {

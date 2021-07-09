@@ -189,7 +189,7 @@ open class ThemesManager {
                 caLayer.borderColor = ThemesManager.getColor(value as? String)?.cgColor
             case ThemeKey.shadowOffset.rawValue:
                 caLayer.shadowOffset = ThemesManager.getSize(value)
-            case ThemeKey.shadowSize.rawValue:
+            case ThemeKey.shadowPath.rawValue:
                 caLayer.shadowOffset = .zero
                 let rect = CGRect(x: 0, y: 0, width: caLayer.bounds.width, height: caLayer.bounds.height)
                 caLayer.shadowPath = UIBezierPath(rect: rect).cgPath

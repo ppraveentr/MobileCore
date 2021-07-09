@@ -41,7 +41,7 @@ public enum ThemeKey: String, CaseIterable {
     case isLinkUnderlineEnabled, isLinkDetectionEnabled
     // Layer
     case masksToBounds, cornerRadius, borderWidth, borderColor
-    case shadowSize, shadowOffset, shadowColor, shadowRadius, shadowOpacity
+    case shadowPath, shadowOffset, shadowColor, shadowRadius, shadowOpacity
 }
 
 public extension NSNotification.Name {

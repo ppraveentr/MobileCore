@@ -14,10 +14,7 @@ final class CustomUIElementsTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        if
-            let theme = kMobileCoreBundle?.path(forResource: "Themes", ofType: "json"),
-            let themeContent: ThemeModel = try? theme.jsonContentAtPath()
-        {
+        if let themeContent: ThemeModel = try? kThemePath?.jsonContentAtPath() {
             ThemesManager.setupThemes(themes: themeContent, imageSourceBundle: nil)
         }
         else {
@@ -29,9 +26,16 @@ final class CustomUIElementsTests: XCTestCase {
     func testUILabelTheme() {
         let label = UILabel(frame: .zero)
         label.text = titleString
-        label.theme = "system14G"
-        XCTAssert(label.font == UIFont.systemFont(ofSize: 14))
+        label.theme = "systemW14G"
+        // systemFont
+        XCTAssert(label.font == UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(rawValue: 1.0)))
         XCTAssert(label.textColor == ThemesManager.getColor("green"))
+        // boldSystemFont
+        label.theme = "systemB14R"
+        XCTAssert(label.font == UIFont.boldSystemFont(ofSize: 14))
+        // italicSystemFont
+        label.theme = "systemI14R"
+        XCTAssert(label.font == UIFont.italicSystemFont(ofSize: 14))
     }
     
     // MARK: button
