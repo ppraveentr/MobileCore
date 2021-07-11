@@ -1,0 +1,59 @@
+default_platform :ios
+
+$scheme = "MobileCoreExample"
+$podspec = "MobileCore.podspec"
+$workspace = 'Example/MobileCoreExample.xcworkspace'
+
+before_all do
+	sh 'mkdir ../reports || true'
+end
+
+# Fastlane runs all built in actions from one directory above where the Fastfile lives 
+# so make sure all the paths are relative in that regard.
+
+desc "Does a static analysis of the project. Configure the options in .swiftlint.yml"
+lane :lint do
+	swiftlint(
+		mode: :lint,
+		output_file: 'reports/swiftlint.txt',
+ 		config_file: '.swiftlint.yml'
+	)
+end
+
+desc "Runs all the unit tests and UI Tests"
+lane :test do
+    # Run SwiftLint
+    lint
+    
+	# Run tests
+	test_args = {
+        workspace: $workspace,
+		scheme: $scheme,
+		clean: true,
+		code_coverage: true,
+		output_types: "html",
+		output_directory: "reports"		
+	}
+
+	scan(test_args)
+end
+
+desc "deploy podspec"
+lane :deploy do |options|
+  target_version = options[:version]
+  spec_path = $podspec    
+    
+  git_pull
+  ensure_git_branch
+  version_bump_podspec(path: spec_path, version_number: target_version)
+  git_add(path: '.')
+  git_commit(path: '.', message: 'release')
+  push_to_git_remote
+  if git_tag_exists(tag: target_version)
+      remove_git_tag(tag: target_version)
+  end
+  add_git_tag(tag: target_version)
+  push_git_tags
+  pod_lib_lint(allow_warnings: true)
+  pod_push(path: spec_path, allow_warnings: true)
+end
