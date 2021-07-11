@@ -68,30 +68,23 @@ final class TableViewControllerProtocolTests: XCTestCase {
         let headerView = MockTableViewHeader()
         XCTAssertNotNil(headerView)
         tableViewC?.tableView.setTableHeaderView(view: headerView)
-        
+        let tableHeaderView = tableViewC?.tableView.tableHeaderView
+        XCTAssertNotNil(tableHeaderView)
+    }
+    
+    func testTableFooterView() {
         let footerView = MockTableViewHeader()
         XCTAssertNotNil(footerView)
         tableViewC?.tableView.setTableFooterView(view: footerView)
-        
-        tableViewC?.postNotification(name: .kFTMobileCoreDidLayoutSubviews)
-        
-        let tableHeaderView = tableViewC?.tableView.tableHeaderView
-        XCTAssertNotNil(tableHeaderView)
-        // XCTAssertEqual(tableHeaderView?.embView, headerView)
-        
         let tableFooterView = tableViewC?.tableView.tableFooterView
         XCTAssertNotNil(tableFooterView)
-        // XCTAssertEqual(tableFooterView?.embView, footerView)
     }
     
      func testTableHeaderFooterView() {
         let defaultTableV = MockTableViewController()
         let headerView = UIView()
-        
         defaultTableV.tableView.setTableHeaderView(view: headerView)
-        
         let tableHeaderView = defaultTableV.tableView.tableHeaderView
         XCTAssertNotNil(tableHeaderView)
-        // XCTAssertEqual(tableHeaderView?.embView, headerView)
     }
 }

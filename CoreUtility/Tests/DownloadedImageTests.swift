@@ -10,13 +10,13 @@
 import XCTest
 
 final class DownloadedImageTests: XCTestCase {
-    
-    private lazy var imagePath = kMobileCoreBundle?.path(forResource: "Pixel", ofType: "png")
-    private lazy var imageURLPath = URL(fileURLWithPath: imagePath!)
+    private lazy var imagePath = kMobileCoreBundle.path(forResource: "TestImage", ofType: "png")
+    private lazy var imageURLPath = kMobileCoreBundle.url(forResource: "TestImage", withExtension: "png")
     
     func testURLDownloadImage() {
+        guard let path = imageURLPath else { return }
         let promise = expectation(description: "Download data task completed.")
-        imageURLPath.downloadedImage { image in
+        path.downloadedImage { image in
             XCTAssertNotNil(image)
             promise.fulfill()
         }
@@ -24,9 +24,10 @@ final class DownloadedImageTests: XCTestCase {
     }
     
     func testUIImageView() {
+        guard let path = imageURLPath else { return }
         let imageView = UIImageView()
         let promise = expectation(description: "Download data task completed.")
-        imageView.downloadedFrom(url: imageURLPath) { image in
+        imageView.downloadedFrom(url: path) { image in
             XCTAssertNotNil(image)
             promise.fulfill()
         }

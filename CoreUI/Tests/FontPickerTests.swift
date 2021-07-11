@@ -27,7 +27,7 @@ final class MockFontPickerViewProtocol: FontPickerViewProtocol {
 final class FontPickerTests: XCTestCase {
     
     private let model = FontPickerModel()
-    private lazy var pickerView = FontPickerView.fromNib() as? FontPickerView
+    private lazy var pickerView: FontPickerView? = try? FontPickerView.loadNibFromBundle()
 
     var testPickerModel: FontPickerModel {
         let localModel = FontPickerModel()
@@ -128,7 +128,7 @@ final class FontPickerTests: XCTestCase {
     }
     
     func testFontPickerViewUpdateModel() {
-        let localPickerView = FontPickerView.fromNib() as? FontPickerView
+        let localPickerView: FontPickerView? = try? FontPickerView.loadNibFromBundle()
         localPickerView?.fontPickerModel = testPickerModel
         assertPickerView(pickerView: localPickerView)
     }

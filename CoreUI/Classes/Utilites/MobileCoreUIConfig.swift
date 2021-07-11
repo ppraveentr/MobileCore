@@ -8,12 +8,9 @@
 import Foundation
 
 public class MobileCoreUIConfig {
-    
     static let sharedInstance = MobileCoreUIConfig()
 
-    public static func setupMobileCoreUI(_ notificationType: ViewNotificationType = .all) {
+    public static func setupMobileCoreUI() {
         Reflection.registerModuleIdentifier(FontPickerView.self)
-        
-        CoreUtilityConfig.registerUINotifications(notificationType)
     }
 }

@@ -13,12 +13,8 @@ final class ThemesTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        if
-            let bundle = kMobileCoreBundle,
-            let theme = bundle.path(forResource: "Themes", ofType: "json"),
-            let themeContent: ThemeModel = try? theme.jsonContentAtPath()
-        {
-            ThemesManager.setupThemes(themes: themeContent, imageSourceBundle: [bundle])
+        if let themeContent: ThemeModel = try? kThemePath?.jsonContentAtPath() {
+            ThemesManager.setupThemes(themes: themeContent, imageSourceBundle: [kMobileCoreBundle])
         }
         else {
             XCTFail("Should have valid theme")
@@ -85,7 +81,7 @@ final class ThemesTests: XCTestCase {
     
     // MARK: Image
     func testColorFromImage() {
-        let image = UIImage.named("@Pixel")
+        let image = UIImage.named("@TestImage")
         XCTAssertNotNil(image)
         
         let color = image?.getColor(a: 255.0)
@@ -115,5 +111,19 @@ final class ThemesTests: XCTestCase {
     func testImage() {
         let image = UIImage.named("@Pixel")
         XCTAssertNotNil(image)
+    }
+    
+    // MARK: Layer
+    func testLayer() {
+        let value: ThemeModel? = ThemesManager.getLayer("elevated")
+        XCTAssertNotNil(value)
+    }
+    
+    func testLayerTheme() {
+        let view = UIView()
+        view.theme = "elevated"
+        XCTAssertEqual(view.layer.shadowRadius, 5.0, "Should have valid shadowRadius")
+        view.theme = "shadowOffset"
+        XCTAssertEqual(view.layer.shadowOffset, CGSize(width: 5, height: 5), "Should have valid shadowRadius")
     }
 }

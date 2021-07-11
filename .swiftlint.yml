@@ -12,6 +12,8 @@ disabled_rules:
 - vertical_whitespace_opening_braces # readability improves
 - override_in_extension
 
+- private_outlet
+- private_action
 - force_unwrapping
 - prohibited_super_call
 - overridden_super_call
@@ -115,5 +117,4 @@ custom_rules:
 
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods
-  
-#included:
+  - Example

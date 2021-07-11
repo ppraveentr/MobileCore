@@ -16,10 +16,7 @@ final class CollectionViewThemeTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        if
-            let theme = kMobileCoreBundle?.path(forResource: "Themes", ofType: "json"),
-            let themeContent: ThemeModel = try? theme.jsonContentAtPath()
-        {
+        if let themeContent: ThemeModel = try? kThemePath?.jsonContentAtPath() {
             ThemesManager.setupThemes(themes: themeContent)
         }
         else {

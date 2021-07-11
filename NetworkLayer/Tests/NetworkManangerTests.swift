@@ -19,7 +19,7 @@ final class NetworkManangerTests: XCTestCase {
     private let kServiceBindingRulesName = "NovelServiceRules.plist"
     // MARK: Mock
     private let kMockServerURL = "http://127.0.0.1:3000/"
-    private let kMockBundleResource = kMobileCoreBundle?.bundleURL
+    private let kMockBundleResource = kMobileCoreBundle.bundleURL
     private let kMockDataEnabled = true
     private let httpAdditionalHeaders = ["Test": "TestValue"]
     

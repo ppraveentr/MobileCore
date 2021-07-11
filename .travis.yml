@@ -1,23 +1,20 @@
 language: swift
-osx_image: xcode11.5
-xcode_destination: platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro Max
-
-env:
-  global:
-  - XCODE_DESTINATION='platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro Max'
-  - XCODE_WORKSPACE="Example/MobileCoreExample.xcworkspace"
+osx_image: xcode12.4
+xcode_destination: platform=iOS Simulator,OS=14.4,name=iPhone 12 Pro Max
 
 before_install:
  - pod --version
- - pod repo update --silent
- - pod install --project-directory='Example'
+ - travis_wait pod repo update --silent
+ - travis_wait pod install --project-directory='Example'
  - xcpretty --version
  - xcodebuild -version
  - xcodebuild -showsdks
  
+install:
+  - bundle install
+  
 script:
- - set -o pipefail && xcodebuild clean test build -enableCodeCoverage YES -workspace "Example/MobileCoreExample.xcworkspace" -scheme MobileCoreExample -destination 'platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro Max' only_active_arch=YES defines_module=yes | xcpretty --report html
- - pod lib lint --allow-warnings
+ - fastlane test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
@@ -26,18 +23,13 @@ before_deploy:
   - git config --local user.name "PraveenP"
   - git config --local user.email "ppraveentr@gmail.com"
   - sudo gem install cocoapods
+  - gem update fastlane
       
 deploy:
-  provider: releases
-  api_key: '${GITHUB_API_KEY}'
   skip_cleanup: true
-  on:
-    all_branches: true
-    tags: true
-
-deploy:
   provider: script
-  script: ./Example/scripts/cocoapod_push.sh
+  script:
+    - fastlane deploy $TRAVIS_TAG
   on:
     all_branches: true
     tags: true

@@ -10,7 +10,9 @@ import WebKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var labelScollView: UIView!
+    @IBOutlet weak var webContentView: UIView!
+    
     weak var contentViewC: ContentViewController?
     var button = UIButton()
     let buttonText = "<p>Follow @ppraveentr or #visit <a href=\"www.W3Schools.com\">Visit W3Schools</a></p>"
@@ -21,7 +23,7 @@ class ViewController: UIViewController {
         setupCoreView()
         
         // TopView
-        setUpTopView()
+        setUpTopPinnedView()
         
         // MainView
         setupMainView()
@@ -41,11 +43,16 @@ class ViewController: UIViewController {
             contentViewC = segue.destination as? ContentViewController
         }
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        webContentView.updateShadowPathIfNeeded()
+    }
 }
 
 extension ViewController {
     
-    func setUpTopView() {
+    func setUpTopPinnedView() {
         button.theme = "button14R"
         button.setTitle("Tap me", for: .normal)
         
@@ -79,7 +86,7 @@ extension ViewController {
     
     func setupMainView() {
         let scrollView = UIScrollView()
-        topView.pin(view: scrollView, edgeInsets: [.topMargin, .horizontal])
+        labelScollView.pin(view: scrollView, edgeInsets: [.topMargin, .horizontal])
         
         let label = UILabel()
         label.text = buttonText

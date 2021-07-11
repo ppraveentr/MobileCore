@@ -8,14 +8,14 @@
 
 @UIApplicationMain
 public class AppDelegate: MobileCore.AppDelegate {
+    var kBundle = Bundle(for: AppDelegate.self)
 
     override public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         NetworkMananger.enableConsoleLogging = true
-        if let theme = kMobileCoreBundle?.path(forResource: "Themes", ofType: "json") {
-            ThemesManager.setupThemes(themePath: theme, imageSourceBundle: [Bundle(for: AppDelegate.self)])
+        if let theme = kBundle.path(forResource: "Themes", ofType: "json") {
+            ThemesManager.setupThemes(themePath: theme, imageSourceBundle: [kBundle])
         }
-                
+
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 }

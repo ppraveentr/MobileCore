@@ -35,11 +35,9 @@ final class StringExtensionTests: XCTestCase {
     }
     
     func testBundlePath() {
-        XCTAssertNotNil(kMobileCoreBundle)
-        let path = kMobileCoreBundle?.path(forResource: "Themes", ofType: "json")
-        
+        XCTAssertNotNil(kMobileCoreBundle)        
         let promise = expectation(description: "Files found at path.")
-        try? path?.filesAtPath { paths in
+        try? kThemePath?.filesAtPath { paths in
             XCTAssertNotNil(paths)
             promise.fulfill()
         }
