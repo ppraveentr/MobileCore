@@ -55,8 +55,7 @@ public class LoadingIndicator: UIView {
     private var baseView: UIView?
     private var titleLabel: UILabel?
     private var loadingView: FTLoadingView?
-    private var animated: Bool = true
-    private var canUpdated = false
+    private var (animated, canUpdated) = (true, false)
     private var title: String?
     private var speed = 1
     

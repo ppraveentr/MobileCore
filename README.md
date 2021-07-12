@@ -1,7 +1,7 @@
 [![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
 [![Language](http://img.shields.io/badge/language-swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
-[![Build Status](https://travis-ci.org/ppraveentr/MobileCore.svg?branch=master)](https://travis-ci.org/ppraveentr/MobileCore)
+[![Build Status](https://www.travis-ci.com/ppraveentr/MobileCore.svg?branch=master)](https://www.travis-ci.com/ppraveentr/MobileCore)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/29e1db8f665a4b0785c19002a45df0bb)](https://www.codacy.com/gh/ppraveentr/MobileCore/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ppraveentr/MobileCore&amp;utm_campaign=Badge_Grade)
 
