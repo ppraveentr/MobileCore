@@ -23,7 +23,7 @@ public class NetworkMananger {
     }
 
     // Check for stubData
-    fileprivate static var isMockDataModel: Bool = false
+    fileprivate static var isMockDataModel = false
     
     public static var isMockData: Bool {
         get {
@@ -48,7 +48,7 @@ public class NetworkMananger {
         }
     }
     // MARK: Model Binding
-    static var modelBindingPath: String = ""
+    static var modelBindingPath = ""
 
     // TODO: To support multiple sources
     public static var serviceBindingPath: String = "" {
@@ -109,14 +109,12 @@ extension NetworkMananger {
     }
 
     public static func loadModelSchema(_ data: [String: Any] ) throws {
-
         if JSONSerialization.isValidJSONObject(data) {
             self.sharedInstance.modelSchema += data
         }
     }
 
     public static func loadModelSchema(fromPath path: String? = nil) throws {
-
         let path = path ?? serviceBindingDirectory()
         try path.filesAtPath { filePath in
             do {
@@ -140,7 +138,6 @@ extension NetworkMananger {
 
 // MARK: Binding Rules
 extension NetworkMananger {
-
     public static func loadBindingRules() throws {
         if
             let resourcePath = Bundle.main.path(forResource: self.serviceBindingRulesName, ofType: nil),
