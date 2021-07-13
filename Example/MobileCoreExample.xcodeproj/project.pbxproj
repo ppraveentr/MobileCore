@@ -130,7 +130,6 @@
 		D47590172317A68A00080D78 /* _config.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = _config.yml; path = ../_config.yml; sourceTree = "<group>"; };
 		D47590182317A68A00080D78 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		D49FE30F2345D2F1002B3742 /* .codecov.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .codecov.yml; path = ../.codecov.yml; sourceTree = "<group>"; };
-		D49FE3102345D2F1002B3742 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		D49FE3112345D2F1002B3742 /* .sonarcloud.properties */ = {isa = PBXFileReference; lastKnownFileType = text; name = .sonarcloud.properties; path = ../.sonarcloud.properties; sourceTree = "<group>"; };
 		D49FE3132345D2FC002B3742 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
 		D49FE3162345D459002B3742 /* SampleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleTableViewController.swift; sourceTree = "<group>"; };
@@ -148,9 +147,11 @@
 		DE9221D31EF28CDF000C8FC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE9221D61EF28CDF000C8FC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE9221D81EF28CDF000C8FC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE9FF335269F406D0020E855 /* workflows */ = {isa = PBXFileReference; lastKnownFileType = folder; name = workflows; path = ../.github/workflows; sourceTree = "<group>"; };
+		DE9FF336269F413C0020E855 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Gemfile; path = ../Gemfile; sourceTree = "<group>"; };
+		DE9FF337269F414E0020E855 /* fastlane */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fastlane; path = ../fastlane; sourceTree = "<group>"; };
 		DEBDC8931EF4508900AC77A9 /* MobileCoreExample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MobileCoreExample-Bridging-Header.h"; sourceTree = "<group>"; };
 		DEBDC8A21EF4520100AC77A9 /* MobileCoreExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobileCoreExample.entitlements; sourceTree = "<group>"; };
-		DEF6848A269AE9F700215BFE /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Fastfile; path = ../fastlane/Fastfile; sourceTree = "<group>"; };
 		DEF68499269AEE3A00215BFE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = "<group>"; };
 		E0A48DC6168B78279AEAD495 /* Pods-MobileCoreExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileCoreExample.debug.xcconfig"; path = "Target Support Files/Pods-MobileCoreExample/Pods-MobileCoreExample.debug.xcconfig"; sourceTree = "<group>"; };
 		E8B9E6077CFC98633009EDDB /* Pods-FTMobileCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTMobileCoreTests.debug.xcconfig"; path = "Target Support Files/Pods-FTMobileCoreTests/Pods-FTMobileCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -295,20 +296,21 @@
 			path = MobileCoreTests;
 			sourceTree = "<group>";
 		};
-		D49FE30E2345D2A4002B3742 /* Pod Config */ = {
+		D49FE30E2345D2A4002B3742 /* CI-CD Setup */ = {
 			isa = PBXGroup;
 			children = (
+				D47590162317A68A00080D78 /* MobileCore.podspec */,
+				DE9FF336269F413C0020E855 /* Gemfile */,
+				DE9FF337269F414E0020E855 /* fastlane */,
+				DE9FF335269F406D0020E855 /* workflows */,
 				D49FE3132345D2FC002B3742 /* .gitignore */,
 				DEF68499269AEE3A00215BFE /* .swiftlint.yml */,
 				D49FE30F2345D2F1002B3742 /* .codecov.yml */,
-				DEF6848A269AE9F700215BFE /* Fastfile */,
 				D49FE3112345D2F1002B3742 /* .sonarcloud.properties */,
-				D49FE3102345D2F1002B3742 /* .travis.yml */,
 				D47590172317A68A00080D78 /* _config.yml */,
-				D47590162317A68A00080D78 /* MobileCore.podspec */,
 				D47590182317A68A00080D78 /* README.md */,
 			);
-			name = "Pod Config";
+			name = "CI-CD Setup";
 			sourceTree = "<group>";
 		};
 		D49FE3152345D41E002B3742 /* Classes */ = {
@@ -383,7 +385,7 @@
 				DE9221CB1EF28CDF000C8FC7 /* MobileCoreExample */,
 				D44E56FF2341D3B900A0E56C /* MobileCoreTests */,
 				DE9221CA1EF28CDF000C8FC7 /* Products */,
-				D49FE30E2345D2A4002B3742 /* Pod Config */,
+				D49FE30E2345D2A4002B3742 /* CI-CD Setup */,
 				DE2FB9191F3DF7A400581064 /* Frameworks */,
 				BE016806CD3793C9F95F02FB /* Pods */,
 			);

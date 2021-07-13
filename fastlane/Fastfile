@@ -4,12 +4,9 @@ $scheme = "MobileCoreExample"
 $podspec = "MobileCore.podspec"
 $workspace = 'Example/MobileCoreExample.xcworkspace'
 
-before_all do
-	sh 'mkdir ../reports || true'
+before_all do |lane, options|
+    sh 'mkdir ../reports || true'
 end
-
-# Fastlane runs all built in actions from one directory above where the Fastfile lives 
-# so make sure all the paths are relative in that regard.
 
 desc "Does a static analysis of the project. Configure the options in .swiftlint.yml"
 lane :lint do
@@ -22,9 +19,6 @@ end
 
 desc "Runs all the unit tests and UI Tests"
 lane :test do
-    # Run SwiftLint
-    lint
-    
 	# Run tests
 	test_args = {
         workspace: $workspace,
@@ -38,22 +32,29 @@ lane :test do
 	scan(test_args)
 end
 
-desc "deploy podspec"
-lane :deploy do |options|
-  target_version = options[:version]
-  spec_path = $podspec    
-    
-  git_pull
-  ensure_git_branch
-  version_bump_podspec(path: spec_path, version_number: target_version)
-  git_add(path: '.')
-  git_commit(path: '.', message: 'release')
-  push_to_git_remote
-  if git_tag_exists(tag: target_version)
-      remove_git_tag(tag: target_version)
-  end
-  add_git_tag(tag: target_version)
-  push_git_tags
-  pod_lib_lint(allow_warnings: true)
-  pod_push(path: spec_path, allow_warnings: true)
+desc "Cocoapods Spec Lint"
+lane :podlibLint do
+    pod_lib_lint(allow_warnings: true)
+end
+
+desc "Create Release Branch"
+lane :bump_pod_version do |options|
+    target_version = options[:version]
+    target_version.sub!("release/", "")
+    branch = 'release/' + target_version
+    # Update Version in the new Branch and commit the change
+	version_bump_podspec(path: $podspec, version_number: target_version)
+    git_add(path: '.')
+    git_commit(path: '.', message: "Bump podspec version: #{target_version}")
+    # Push new Branch to origin
+    push_to_git_remote(local_branch: branch)
+    # Add new Tag to the new branch and push to origin
+    create_tag(version: target_version)
+end
+
+desc "Add new Tag to the branch and push to origin"
+lane :create_tag do |options|
+    target_version = options[:version]
+    add_git_tag(tag: target_version)
+    push_git_tags
 end
