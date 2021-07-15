@@ -7,15 +7,16 @@
 //
 
 @UIApplicationMain
-public class AppDelegate: MobileCore.AppDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     var kBundle = Bundle(for: AppDelegate.self)
+    var window: UIWindow?
 
-    override public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         NetworkMananger.enableConsoleLogging = true
         if let theme = kBundle.path(forResource: "Themes", ofType: "json") {
             ThemesManager.setupThemes(themePath: theme, imageSourceBundle: [kBundle])
         }
 
-        return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+        return true
     }
 }
