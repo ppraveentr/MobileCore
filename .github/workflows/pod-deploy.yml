@@ -1,0 +1,45 @@
+name: Pod Deploy
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+   swiftLint:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Bundle
+      run: bundle install
+    - name: Run swiftlint
+      run: bundle exec fastlane lint
+      
+   deploy:
+    name: Deploy
+    needs: swiftLint
+    runs-on: macos-latest
+    strategy:
+        matrix:
+          destination: ['platform=iOS Simulator,OS=14.4,name=iPhone 12 Pro Max']
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Dependencies
+      run: |
+        cd Example
+        pod install --repo-update
+    - name: Install Bundle
+      run: bundle install
+    - name: Unit Test
+      run: bundle exec fastlane test
+      env:
+         destination: ${{ matrix.destination }}
+    - name: Pod Lib Lint
+      run: bundle exec fastlane podlibLint
+    - name: Publish to CocoaPod register
+      env:
+        COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+      run: |
+        pod trunk push FTAuthentication.podspec
+    - name: Updload to codecov
+      run: bash <(curl -s https://codecov.io/bash)

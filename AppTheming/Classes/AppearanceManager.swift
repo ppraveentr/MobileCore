@@ -30,9 +30,8 @@ public enum AppearanceManager {
                 // Setup 'appearance' from Theme
                 if let classTy: AppearanceManagerProtocol = Reflection.swiftClassFromString(components.0) as? AppearanceManagerProtocol {
                     var appearanceContainer: [UIAppearanceContainer.Type]?
-                    if
-                        components.1 != nil,
-                        let objecClass = Reflection.swiftClassTypeFromString(components.1!) {
+                    if let className = components.1,
+                        let objecClass = Reflection.swiftClassTypeFromString(className) {
                         appearanceContainer = [objecClass] as? [UIAppearanceContainer.Type]
                     }
                     classTy.setUpAppearance(theme: themeObj, containerClass: appearanceContainer)

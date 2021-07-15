@@ -1,0 +1,45 @@
+# ./.github/workflows/release-auto-pr.yaml
+name: Release Auto-PR
+
+on:
+  push:
+    branches: ['release/**']
+
+jobs:
+  pod-update:
+    name: Open PR to master
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    # extract branch name
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
+    # print branch name
+    - name: Get branch name
+      run: echo 'The branch name is' ${{ steps.extract_branch.outputs.branch }}
+    # install Bundle
+    - name: Install Bundle
+      run: bundle install
+    # Update Pod version to branch name
+    - name: Bump Pod Version
+      run: bundle exec fastlane bump_pod_version version:${{ steps.extract_branch.outputs.branch }}
+
+  pull-request:
+    needs: pod-update
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "master"                      # If blank, default: master
+        pr_title: "Pulling ${{ github.ref }} into master" # Title of pull request
+        pr_body: ":crown: *An automated PR*"              # Full markdown support, requires pr_title to be set
+        pr_reviewer: "ppraveentr"                         # Comma-separated list (no spaces)
+        pr_assignee: "ppraveentr"                         # Comma-separated list (no spaces)
+        pr_label: "auto-pr"                               # Comma-separated list (no spaces)
+        pr_draft: true                                    # Creates pull request as draft
+        pr_allow_empty: true                              # Creates pull request even if there are no changes
+        github_token: ${{ secrets.GITHUB_TOKEN }}

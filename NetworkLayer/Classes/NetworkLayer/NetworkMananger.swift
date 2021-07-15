@@ -9,7 +9,6 @@
 import Foundation
 
 public class NetworkMananger {
-    
     static let sharedInstance = NetworkMananger()
 
     // MARK: Configurations
@@ -77,11 +76,6 @@ public class NetworkMananger {
         set {
             Logger.enableConsoleLogging = newValue
         }
-    }
-    
-    // MARK: Init with Relection
-    init() {
-        Reflection.registerModuleIdentifier(NetworkMananger.self)
     }
 }
 

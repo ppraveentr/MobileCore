@@ -26,7 +26,6 @@ open class ThemesManager {
         if let imageSources = imageSources {
             imageSourceBundle.append(contentsOf: imageSources)
         }
-        // FTReflection.registerModuleIdentifier(imageSource)
     }
 
     //
