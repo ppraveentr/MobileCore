@@ -6,9 +6,11 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(CoreUtility)
+import CoreUtility
+#endif
 import Foundation
 import UIKit
-import CoreUtility
 
 public typealias ThemeModel = [String: Any]
 

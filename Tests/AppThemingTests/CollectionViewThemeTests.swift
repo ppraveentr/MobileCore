@@ -6,9 +6,11 @@
 //  Copyright © 2020 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(AppTheming)
 import AppTheming
-import CoreUtility
 import CoreUI
+import CoreUtility
+#endif
 import Foundation
 import UIKit
 import XCTest
@@ -19,7 +21,7 @@ final class CollectionViewThemeTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        if let themeContent: ThemeModel = try? Utility.kThemePath?.jsonContentAtPath() {
+        if let themeContent: ThemeModel = try? AppThemingTestsUtility.kThemePath?.jsonContentAtPath() {
             ThemesManager.setupThemes(themes: themeContent)
         }
         else {

@@ -6,8 +6,10 @@
 //  Copyright © 2020 Praveen Prabhakar. All rights reserved.
 //
 
-@testable import CoreUtility
+#if canImport(CoreUI)
 @testable import CoreUI
+@testable import CoreUtility
+#endif
 import UIKit
 import XCTest
 
@@ -30,11 +32,11 @@ private final class MockViewContoller: UIViewController {
     private (set) var isKeyboardDidHideCalled = false
     private (set) var isAlertViewPresented = false
 
-    override func keyboardWillShow(_ notification: Notification?) {
+    func keyboardWillShow(_ notification: Notification?) {
         isKeyboardWillShowCalled = true
     }
     
-    override func keyboardDidHide(_ notification: Notification?) {
+    func keyboardDidHide(_ notification: Notification?) {
         isKeyboardDidHideCalled = true
     }
     
@@ -124,9 +126,9 @@ final class ViewControllerProtocolTests: XCTestCase {
         viewController.registerKeyboardNotifications()
         // when
         viewController.postNotification(name: UIResponder.keyboardWillShowNotification.self)
-        viewController.postNotification(name: UIResponder.keyboardDidHideNotification.self)
-        // then
         XCTAssertTrue(viewController.isKeyboardWillShowCalled)
+        // when
+        viewController.postNotification(name: UIResponder.keyboardDidHideNotification.self)
         XCTAssertTrue(viewController.isKeyboardDidHideCalled)
     }
     
@@ -135,9 +137,9 @@ final class ViewControllerProtocolTests: XCTestCase {
         viewController.unregisterKeyboardNotifications()
         // when
         viewController.postNotification(name: UIResponder.keyboardWillShowNotification.self)
-        viewController.postNotification(name: UIResponder.keyboardDidHideNotification.self)
-        // then
         XCTAssertFalse(viewController.isKeyboardWillShowCalled)
+        // when
+        viewController.postNotification(name: UIResponder.keyboardDidHideNotification.self)
         XCTAssertFalse(viewController.isKeyboardDidHideCalled)
     }
     
@@ -148,6 +150,8 @@ final class ViewControllerProtocolTests: XCTestCase {
         XCTAssertTrue(viewController.isAlertViewPresented)
     }
     
+    #if !canImport(CoreUI)
+    // Need to be moved to UI Test
     func testShowLoadingIndicator() {
         // let
         let promise = expectation(description: "Loading Indicator Hidden")
@@ -163,4 +167,5 @@ final class ViewControllerProtocolTests: XCTestCase {
         // then
         wait(for: [promise], timeout: 15)
     }
+    #endif
 }

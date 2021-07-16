@@ -6,10 +6,23 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(CoreUtility)
 import CoreUtility
+#endif
 import Foundation
 import UIKit
 import WebKit
+
+public protocol WebViewContentProtocol {
+    func pickerColor(textColor: UIColor, backgroundColor: UIColor)
+    func fontSize(_ size: Float)
+    func fontFamily(_ fontName: String?)
+    
+    func getHTMLBodyText() -> String
+    func getTextSize(_ block: ((Float?) -> Void)?)
+    func getHTMLColor(_ block: ((_ textColor: UIColor?, _ backgroungColor: UIColor?) -> Void)?)
+    func getContentFontFamily(_ block: (([String]) -> Void)?)
+}
 
 extension WKWebView {
     private enum Constants {
@@ -101,17 +114,7 @@ private extension AssociatedKey {
     static var fontPickerVC = "fontPickerVC"
 }
 
-extension WKWebView: FontPickerViewProtocol {
-    
-    public var fontPickerViewController: FontPickerViewController {
-        get {
-            AssociatedObject.getAssociated(self, key: &AssociatedKey.fontPickerVC) { self.getFontPickerController() }!
-        }
-        set {
-            AssociatedObject<FontPickerViewController>.setAssociated(self, value: newValue, key: &AssociatedKey.fontPickerVC)
-        }
-    }
-    
+extension WKWebView: WebViewContentProtocol {
     public func pickerColor(textColor: UIColor, backgroundColor: UIColor) {
         setContentColor(textColor: textColor, backgroundColor: backgroundColor)
     }
@@ -126,26 +129,21 @@ extension WKWebView: FontPickerViewProtocol {
 }
 
 public extension WKWebView {
-    
-    private func getFontPickerController() -> FontPickerViewController {
-        let popoverContent = FontPickerViewController()
-        popoverContent.fontPickerViewDelegate = self
-        return popoverContent
-    }
-    
     func getHTMLBodyText() -> String {
         Constants.getDocumentBody
     }
     
-    func getTextSize(_ block: @escaping (Float?) -> Void) {
+    func getTextSize(_ block: ((Float?) -> Void)?) {
+        guard block != nil else { return }
         evaluateJavaScript(self.getHTMLBodyText() + Constants.textSizeAdjust) { obj, _ in
             if let size = (obj as? String)?.trimming("%") {
-                block(Float(size))
+                block?(Float(size))
             }
         }
     }
     
-    func getHTMLColor(_ block: @escaping (_ textColor: UIColor?, _ backgroungColor: UIColor?) -> Void) {
+    func getHTMLColor(_ block: ((_ textColor: UIColor?, _ backgroungColor: UIColor?) -> Void)?) {
+        guard block != nil else { return }
         var bgColor: UIColor?
         var textColor: UIColor?
         var regBG: String? = self.getHTMLBodyText() + Constants.backgroundColor
@@ -153,7 +151,7 @@ public extension WKWebView {
 
         let eval = {
             if regBG == nil, regText == nil {
-                block(textColor, bgColor)
+                block?(textColor, bgColor)
             }
         }
         
@@ -172,11 +170,12 @@ public extension WKWebView {
         }
     }
     
-    func getContentFontFamily(_ block: @escaping ([String]) -> Void) {
+    func getContentFontFamily(_ block: (([String]) -> Void)?) {
+        guard block != nil else { return }
         evaluateJavaScript(self.getHTMLBodyText() + Constants.styleFontFamily) { obj, _ in
             var fonts: [String] = (obj as? String)?.components(separatedBy: ",") ?? []
             fonts = fonts.map { $0.trimingPrefix(" ") }
-            block(fonts)
+            block?(fonts)
         }
     }
     

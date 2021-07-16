@@ -6,9 +6,11 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(CoreUtility)
 import CoreUtility
-import WebKit
+#endif
 import UIKit
+import WebKit
 
 private var kContentVC = "k.FT.AO.ContentViewController"
 

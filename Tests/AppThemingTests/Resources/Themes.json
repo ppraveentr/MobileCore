@@ -71,7 +71,7 @@
 			"tintColor": "white",
 			"isTranslucent": false,
 			"backgroundImage": {
-				"default": "@Pixel"
+				"default": "@TestImage"
 			},
 			"shadowImage": "@empty",
             "titleText": {

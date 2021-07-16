@@ -13,26 +13,25 @@ Pod::Spec.new do |s|
   s.default_subspecs      = 'CoreUtility', 'NetworkLayer', 'CoreUI', 'AppTheming'
 
   s.subspec 'CoreUtility' do |utility|
-    utility.source_files  = 'CoreUtility/Classes/**/*.{h,m,swift}'
+    utility.source_files  = 'Sources/CoreUtility/**/*.{h,m,swift}'
     utility.header_dir    = "CoreUtility"
     utility.dependency  'SwiftKeychainWrapper'
   end
 
   s.subspec 'NetworkLayer' do |network|
-    network.source_files   = 'NetworkLayer/Classes/**/*.{h,m,swift}'
+    network.source_files   = 'Sources/NetworkLayer/**/*.{h,m,swift}'
     network.dependency  'MobileCore/CoreUtility'
     network.header_dir    = "NetworkLayer"
   end
   
   s.subspec 'AppTheming' do |theme|
-    theme.source_files   = 'AppTheming/Classes/**/*.{h,m,swift}'
+    theme.source_files   = 'Sources/AppTheming/**/*.{h,m,swift}'
     theme.dependency  'MobileCore/CoreUtility'
     theme.header_dir    = "AppTheming"
   end
 
   s.subspec 'CoreUI' do |coreUI|
-    coreUI.source_files = 'CoreUI/Classes/**/*.{h,m,swift}'
-    coreUI.resources    = ['CoreUI/Assets/**/*', 'CoreUI/Classes/**/*.xib']
+    coreUI.source_files = 'Sources/CoreUI/**/*.{h,m,swift}'
     coreUI.dependency  'MobileCore/CoreUtility'
     coreUI.header_dir   = "CoreUI"
   end

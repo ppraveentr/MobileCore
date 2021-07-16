@@ -6,7 +6,9 @@
 //  Copyright © 2018 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(CoreUtility)
 import CoreUtility
+#endif
 import Foundation
 import UIKit
 

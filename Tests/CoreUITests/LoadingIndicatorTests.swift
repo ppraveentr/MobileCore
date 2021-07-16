@@ -6,8 +6,10 @@
 //  Copyright © 2020 Praveen Prabhakar. All rights reserved.
 //
 
-import CoreUtility
+#if canImport(CoreUI)
 import CoreUI
+import CoreUtility
+#endif
 import XCTest
 
 final class LoadingIndicatorTests: XCTestCase {
@@ -15,7 +17,9 @@ final class LoadingIndicatorTests: XCTestCase {
         // when
         LoadingIndicator.show()
         // then
+        #if !canImport(CoreUI)
         let laodingIndicator: LoadingIndicator? = UIApplication.shared.keyWindow?.findInSubView()
         XCTAssertNotNil(laodingIndicator)
+        #endif
     }
 }

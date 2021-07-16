@@ -6,8 +6,10 @@
 //  Copyright © 2019 Praveen P. All rights reserved.
 //
 
-import CoreUtility
+#if canImport(CoreUI)
 import CoreUI
+import CoreUtility
+#endif
 import WebKit
 import XCTest
 

@@ -6,17 +6,19 @@
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.
 //
 
-import CoreUtility
+#if canImport(CoreUI)
 import CoreUI
+import CoreUtility
+#endif
 import XCTest
 
 final class BarButtonTests: XCTestCase {
     
-    private lazy var image = UIImage(named: "Pixel")
+    private lazy var image: UIImage? = UIColor.red.generateImage()
     private let action = #selector(buttonTap)
-    private lazy var promise = expectation(description: "Button tapped.")
-
+    
     func testBarButtonCustomView() {
+        guard let image = image else { return }
         // Given
         let barButton = UIBarButtonItem(title: "Test", image: image, action: action, target: self)
         // When
@@ -25,15 +27,7 @@ final class BarButtonTests: XCTestCase {
         XCTAssertNotNil(buttonView)
         XCTAssertEqual(buttonView?.titleLabel?.text, "Test")
         XCTAssertEqual(buttonView?.imageView?.image, image)
-        
-        // When
         buttonView?.sendActions(for: .touchUpInside)
-        
-        wait(for: [promise], timeout: 5)
-    }
-    
-    func buttonTap() {
-        promise.fulfill()
     }
     
     func testDefaultBarButton() {
@@ -42,5 +36,12 @@ final class BarButtonTests: XCTestCase {
         // Then
         XCTAssertEqual(barButton?.action, action)
         XCTAssertNotNil(barButton?.target as? BarButtonTests)
+    }
+}
+
+private extension BarButtonTests {
+    @objc
+    func buttonTap() {
+        /* Do Nothing */
     }
 }

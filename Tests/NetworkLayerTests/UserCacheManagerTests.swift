@@ -6,11 +6,13 @@
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.
 //
 
-@testable import NetworkLayer
-@testable import CoreUtility
+#if canImport(NetworkLayer)
 @testable import CoreUI
-import UIKit
+@testable import CoreUtility
+@testable import NetworkLayer
+#endif
 import Foundation
+import UIKit
 import XCTest
 
 final class UserCacheManagerTests: XCTestCase {

@@ -47,9 +47,9 @@ public extension UIView {
     }
     
     // Get view based on once's class name
-    static func getNib(nibName: String? = nil) -> UINib {
+    static func getNib(nibName: String? = nil, bundle: Bundle? = nil) -> UINib {
         let nibName = nibName ?? defaultNibName
-        return UINib(nibName: nibName, bundle: Bundle(for: self))
+        return UINib(nibName: nibName, bundle: bundle ?? Bundle(for: self))
     }
     
     // Retruns first view from the nib file
@@ -73,8 +73,8 @@ public extension UITableViewCell {
         tableView.register(self, forCellReuseIdentifier: reuseIdentifier ?? defaultReuseIdentifier)
     }
     
-    static func registerNib(for tableView: UITableView, reuseIdentifier: String? = nil) {
-        let nib = Self.getNib()
+    static func registerNib(for tableView: UITableView, reuseIdentifier: String? = nil, bundle: Bundle? = nil) {
+        let nib = Self.getNib(bundle: bundle)
         tableView.register(nib, forCellReuseIdentifier: reuseIdentifier ?? defaultReuseIdentifier)
     }
        
@@ -94,8 +94,8 @@ public extension UICollectionViewCell {
         collectionView.register(self, forCellWithReuseIdentifier: reuseIdentifier ?? defaultReuseIdentifier)
     }
     
-    static func registerNib(for collectionView: UICollectionView, reuseIdentifier: String? = nil) {
-        let nib = Self.getNib()
+    static func registerNib(for collectionView: UICollectionView, reuseIdentifier: String? = nil, bundle: Bundle? = nil) {
+        let nib = Self.getNib(bundle: bundle)
         collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier ?? defaultReuseIdentifier)
     }
     
@@ -120,8 +120,11 @@ public extension UICollectionReusableView {
     }
     
     // register a class for the collectionView's SupplementaryViewOfKind
-    static func registerNib(for collectionView: UICollectionView, forSupplementaryViewOfKind elementKind: String, reuseIdentifier: String? = nil) {
-        let nib = Self.getNib()
+    static func registerNib(for collectionView: UICollectionView,
+                            forSupplementaryViewOfKind elementKind: String,
+                            reuseIdentifier: String? = nil,
+                            bundle: Bundle? = nil) {
+        let nib = Self.getNib(bundle: bundle)
         let identifier = reuseIdentifer(reuseIdentifier: reuseIdentifier, elementKind: elementKind)
         collectionView.register(nib, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: identifier)
     }

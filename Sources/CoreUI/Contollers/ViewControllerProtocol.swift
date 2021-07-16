@@ -6,7 +6,9 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(CoreUtility)
 import CoreUtility
+#endif
 import UIKit
 
 public protocol ViewControllerProtocol where Self: UIViewController {

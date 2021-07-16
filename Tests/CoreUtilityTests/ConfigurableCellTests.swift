@@ -5,6 +5,10 @@
 //  Created by Praveen Prabhakar on 05/07/20.
 //  Copyright © 2020 Praveen Prabhakar. All rights reserved.
 //
+
+#if canImport(CoreUtility)
+import CoreUtility
+#endif
 import XCTest
 
 fileprivate final class MockViewCellWithoutNib: UIView {
@@ -12,6 +16,7 @@ fileprivate final class MockViewCellWithoutNib: UIView {
 
 final class ConfigurableCellTests: XCTestCase {
     // private lazy var mockCell: MockTableViewCell?
+    private let bundle = CoreUtilityTestsUtility.kMobileCoreBundle
     private let mockTableView = UITableView()
     private let mockCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private let defaultId = MockCollectionViewCell.defaultReuseIdentifier
@@ -32,7 +37,7 @@ final class ConfigurableCellTests: XCTestCase {
     // MARK: TableView
     func testTableViewLoadNib() {
         // let
-        let mockCell = try? MockTableViewCell.loadNibFromBundle()
+        let mockCell = try? MockTableViewCell.loadNibFromBundle(bundle: bundle)
         XCTAssertNotNil(mockCell, "Should have loaded nib")
         // Cell with nib file
         let mockNib = MockTableViewCell.getNib()
@@ -43,8 +48,8 @@ final class ConfigurableCellTests: XCTestCase {
         // let
         let indexPath = IndexPath(row: 0, section: 0)
         // when
-        MockTableViewCell.registerNib(for: mockTableView)
-        let cell: MockTableViewCell? = try? .dequeue(from: mockTableView, for: indexPath)
+        MockTableViewCell.registerNib(for: mockTableView, bundle: bundle)
+        let cell = try? MockTableViewCell.dequeue(from: mockTableView, for: indexPath)
         // then
         XCTAssertNotNil(cell, "Should have dequeue cell")
         XCTAssertNotNil(mockTableView.dequeueReusableCell(withIdentifier: MockTableViewCell.defaultReuseIdentifier))
@@ -55,7 +60,7 @@ final class ConfigurableCellTests: XCTestCase {
         let indexPath = IndexPath(row: 0, section: 0)
         // when
         MockTableViewCell.registerClass(for: mockTableView)
-        let cell: MockTableViewCell? = try? .dequeue(from: mockTableView, for: indexPath)
+        let cell = try? MockTableViewCell.dequeue(from: mockTableView, for: indexPath)
         // then
         XCTAssertNotNil(cell, "Should have dequeue cell")
         XCTAssertNotNil(mockTableView.dequeueReusableCell(withIdentifier: MockTableViewCell.defaultReuseIdentifier))
@@ -78,7 +83,7 @@ final class ConfigurableCellTests: XCTestCase {
     // MARK: CollectionView
     func testCollectionViewLoadNib() {
         // let
-        let mockCell = try? MockCollectionViewCell.loadNibFromBundle()
+        let mockCell = try? MockCollectionViewCell.loadNibFromBundle(bundle: bundle)
         XCTAssertNotNil(mockCell, "Should have loaded nib")
         // Cell with nib file
         let mockNib = MockCollectionViewCell.getNib()
@@ -89,8 +94,8 @@ final class ConfigurableCellTests: XCTestCase {
         // let
         let indexPath = IndexPath(row: 0, section: 0)
         // when
-        MockCollectionViewCell.registerNib(for: mockCollectionView)
-        let cell: MockCollectionViewCell? = try? .dequeue(from: mockCollectionView, for: indexPath)
+        MockCollectionViewCell.registerNib(for: mockCollectionView, bundle: bundle)
+        let cell = try? MockCollectionViewCell.dequeue(from: mockCollectionView, for: indexPath)
         // then
         XCTAssertNotNil(cell, "Should have dequeue cell")
         // let
@@ -103,7 +108,7 @@ final class ConfigurableCellTests: XCTestCase {
         let indexPath = IndexPath(row: 0, section: 0)
         // when
         MockCollectionViewCell.registerClass(for: mockCollectionView)
-        let cell: MockCollectionViewCell? = try? .dequeue(from: mockCollectionView, for: indexPath)
+        let cell = try? MockCollectionViewCell.dequeue(from: mockCollectionView, for: indexPath)
         // then
         XCTAssertNotNil(cell, "Should have dequeue cell")
         // let

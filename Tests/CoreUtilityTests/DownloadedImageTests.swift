@@ -6,11 +6,14 @@
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(CoreUtility)
+@testable import CoreUtility
+#endif
 import XCTest
 
 final class DownloadedImageTests: XCTestCase {
-    private lazy var imagePath = Utility.kMobileCoreBundle.path(forResource: "TestImage", ofType: "png")
-    private lazy var imageURLPath = Utility.kMobileCoreBundle.url(forResource: "TestImage", withExtension: "png")
+    private lazy var imagePath = CoreUtilityTestsUtility.kMobileCoreBundle.path(forResource: "TestImage", ofType: "png")
+    private lazy var imageURLPath = CoreUtilityTestsUtility.kMobileCoreBundle.url(forResource: "TestImage", withExtension: "png")
     
     func testURLDownloadImage() {
         guard let path = imageURLPath else { return }

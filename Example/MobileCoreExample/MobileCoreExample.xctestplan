@@ -19,6 +19,10 @@
   },
   "testTargets" : [
     {
+      "skippedTests" : [
+        "ViewControllerProtocolTests\/testKeyboardNotification()",
+        "ViewControllerProtocolTests\/testKeyboardNotificationFails()"
+      ],
       "target" : {
         "containerPath" : "container:MobileCoreExample.xcodeproj",
         "identifier" : "D44E56FD2341D3B900A0E56C",

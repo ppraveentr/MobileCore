@@ -7,6 +7,10 @@
 //
 
 import Foundation
+#if canImport(AppTheming)
+import AppTheming
+import CoreUI
+#endif
 
 final class ContentViewController: UIViewController, WebViewControllerProtocol {
     

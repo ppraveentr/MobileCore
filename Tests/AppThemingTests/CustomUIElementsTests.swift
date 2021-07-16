@@ -6,7 +6,9 @@
 //  Copyright © 2019 Praveen P. All rights reserved.
 //
 
+#if canImport(AppTheming)
 import AppTheming
+#endif
 import XCTest
 
 final class CustomUIElementsTests: XCTestCase {
@@ -14,7 +16,7 @@ final class CustomUIElementsTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        if let themeContent: ThemeModel = try? Utility.kThemePath?.jsonContentAtPath() {
+        if let themeContent: ThemeModel = try? AppThemingTestsUtility.kThemePath?.jsonContentAtPath() {
             ThemesManager.setupThemes(themes: themeContent, imageSourceBundle: nil)
         }
         else {

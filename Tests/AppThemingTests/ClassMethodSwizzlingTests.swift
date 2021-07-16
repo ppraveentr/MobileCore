@@ -6,8 +6,10 @@
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(AppTheming)
 import AppTheming
 import CoreUtility
+#endif
 import XCTest
 
 private final class TestSwizzling {
