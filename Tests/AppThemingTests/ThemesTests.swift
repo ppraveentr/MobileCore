@@ -1,20 +1,22 @@
 //
 //  ThemesTests.swift
-//  MobileCoreUtilityTests
+//  MobileCore-CoreUtilityTests
 //
 //  Created by Praveen Prabhakar on 29/07/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(AppTheming)
 import AppTheming
+#endif
 import XCTest
 
 final class ThemesTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        if let themeContent: ThemeModel = try? Utility.kThemePath?.jsonContentAtPath() {
-            ThemesManager.setupThemes(themes: themeContent, imageSourceBundle: [Utility.kMobileCoreBundle])
+        if let themeContent: ThemeModel = try? AppThemingTestsUtility.kThemePath?.jsonContentAtPath() {
+            ThemesManager.setupThemes(themes: themeContent, imageSourceBundle: [AppThemingTestsUtility.kMobileCoreBundle])
         }
         else {
             XCTFail("Should have valid theme")
@@ -109,7 +111,7 @@ final class ThemesTests: XCTestCase {
     
     // MARK: image
     func testImage() {
-        let image = UIImage.named("@Pixel")
+        let image = UIImage.named("@TestImage")
         XCTAssertNotNil(image)
     }
     

@@ -1,6 +1,6 @@
 //
 //  AssociatedObject.swift
-//  MobileCoreUtility
+//  MobileCore-CoreUtility
 //
 //  Created by Praveen Prabhakar on 29/07/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public enum AssociatedKey {
-    static public var defaultKey = "AssociatedKey.defaultKey"
+    public static var defaultKey = "AssociatedKey.defaultKey"
 }
 
 // Generic way of storing values on runtime

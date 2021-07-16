@@ -1,12 +1,14 @@
 //
 //  ServiceModel.swift
-//  FTMobileCore
+//  MobileCore-NetworkLayer
 //
 //  Created by Praveen Prabhakar on 15/06/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(CoreUtility)
 import CoreUtility
+#endif
 import Foundation
 
 // typealias

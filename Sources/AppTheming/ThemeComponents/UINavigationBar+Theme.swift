@@ -1,6 +1,6 @@
 //
 //  UINavigationBar+Theme.swift
-//  MobileCoreUtility
+//  MobileCore-AppTheming
 //
 //  Created by Praveen Prabhakar on 16/09/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.

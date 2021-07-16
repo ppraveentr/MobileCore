@@ -1,17 +1,19 @@
 //
 //  NetworkMananger.swift
-//  FTMobileCore
+//  MobileCore-NetworkLayer
 //
 //  Created by Praveen Prabhakar on 15/06/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(CoreUtility)
 import CoreUtility
+#endif
 import Foundation
 import UIKit
 
 public class NetworkMananger {
-    static let sharedInstance = NetworkMananger()
+    public static let sharedInstance = NetworkMananger()
 
     // MARK: Configurations
     // MARK: Requst Paths

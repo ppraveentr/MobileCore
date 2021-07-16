@@ -6,7 +6,9 @@
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(CoreUtility)
 import CoreUtility
+#endif
 import XCTest
 
 final class AssociatedObjectTests: XCTestCase {

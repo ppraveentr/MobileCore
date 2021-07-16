@@ -1,6 +1,6 @@
 //
 //  UILabel+Theme.swift
-//  CoreUIExtensions
+//  MobileCore-AppTheming
 //
 //  Created by Praveen Prabhakar on 05/08/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 // Propery variable to store theme's value.
-public protocol LabelThemeProperyProtocol: ThemeProtocol {
+public protocol LabelThemeProtocol: ThemeProtocol {
     var islinkDetectionEnabled: Bool { get set }
     var isLinkUnderLineEnabled: Bool { get set }
 }
 
 extension UILabel: ThemeProtocol {
     // If view is disabled, check for ".disabledStyle" style
-    public func getThemeSubType() -> String? {
+    public func subStyleName() -> String? {
         self.isEnabled ? nil : ThemeStyle.disabledStyle
     }
     
@@ -26,9 +26,9 @@ extension UILabel: ThemeProtocol {
         for (kind, value) in theme {
             switch kind {
             case ThemeKey.isLinkUnderlineEnabled.rawValue:
-                (self as? LabelThemeProperyProtocol)?.isLinkUnderLineEnabled = value as? Bool ?? false
+                (self as? LabelThemeProtocol)?.isLinkUnderLineEnabled = value as? Bool ?? false
             case ThemeKey.isLinkDetectionEnabled.rawValue:
-                (self as? LabelThemeProperyProtocol)?.islinkDetectionEnabled = value as? Bool ?? false
+                (self as? LabelThemeProtocol)?.islinkDetectionEnabled = value as? Bool ?? false
             case ThemeKey.textfont.rawValue:
                 if let font = getFont(value as? String) {
                     self.font = font

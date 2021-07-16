@@ -1,14 +1,16 @@
 //
 //  ThemesManager.swift
-//  MobileCoreUtility
+//  MobileCore-AppTheming
 //
 //  Created by Praveen Prabhakar on 29/07/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(CoreUtility)
+import CoreUtility
+#endif
 import Foundation
 import UIKit
-import CoreUtility
 
 open class ThemesManager {
     static var imageSourceBundle: [Bundle] = []
@@ -55,7 +57,7 @@ open class ThemesManager {
         }
         // Get theme component
         guard let currentTheme: ThemeModel = ThemesManager.getViewComponent(name, styleName: styleName) else {
-            // ftLog("FTError: Theme of type \(styleName) not avaialble for class \(name)" )
+            // ftLog("Error: Theme of type \(styleName) not avaialble for class \(name)" )
             return nil
         }
         return currentTheme
@@ -307,10 +309,9 @@ extension ThemesManager {
             let key = arg.key.trimming("ios_")
             data.removeValue(forKey: arg.key)
             let dataVersion = NSString(string: key).floatValue
-            if dataVersion <= deviceVersion, let val = arg.value as? ThemeModel {
-                if baseModel == nil || (baseModel!.1 < dataVersion) {
+            if dataVersion <= deviceVersion, let val = arg.value as? ThemeModel,
+               (baseModel == nil || (baseModel!.1 < dataVersion)) {
                     baseModel = (val, dataVersion)
-                }
             }
         }
         

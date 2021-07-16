@@ -1,6 +1,6 @@
 //
 //  Reflection.swift
-//  MobileCoreUtility
+//  MobileCore-CoreUtility
 //
 //  Created by Praveen Prabhakar on 05/08/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
@@ -16,7 +16,7 @@ public protocol ReflectionProtocol {
     - parameter obj: An AnyClass for whitch the string representation of the class will be returned
     - returns: The string representation of the class (name of the bundle dot name of the class)
     */
-    static func getClassNameAsString(_ obj: Any) -> String?
+    static func classNameAsString(_ obj: Any) -> String?
     
     /**
      Get the swift Class type from a string
@@ -34,7 +34,7 @@ public protocol ReflectionProtocol {
 }
 
 public class Reflection: ReflectionProtocol {
-    public static func getClassNameAsString(_ obj: Any) -> String? {
+    public static func classNameAsString(_ obj: Any) -> String? {
         String(describing: type(of: obj))
     }
 

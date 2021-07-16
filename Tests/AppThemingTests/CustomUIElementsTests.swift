@@ -6,7 +6,9 @@
 //  Copyright © 2019 Praveen P. All rights reserved.
 //
 
+#if canImport(AppTheming)
 import AppTheming
+#endif
 import XCTest
 
 final class CustomUIElementsTests: XCTestCase {
@@ -14,7 +16,7 @@ final class CustomUIElementsTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        if let themeContent: ThemeModel = try? Utility.kThemePath?.jsonContentAtPath() {
+        if let themeContent: ThemeModel = try? AppThemingTestsUtility.kThemePath?.jsonContentAtPath() {
             ThemesManager.setupThemes(themes: themeContent, imageSourceBundle: nil)
         }
         else {
@@ -51,15 +53,15 @@ final class CustomUIElementsTests: XCTestCase {
         // disabled state
         XCTAssert(button.titleColor(for: .disabled) == ThemesManager.getColor("yellow"))
         // default enabled state
-        XCTAssertNil(button.getThemeSubType())
+        XCTAssertNil(button.subStyleName())
         // selected
         button.isSelected = true
         button.isEnabled = false
-        XCTAssertEqual(button.getThemeSubType(), ThemeStyle.selectedStyle)
+        XCTAssertEqual(button.subStyleName(), ThemeStyle.selectedStyle)
         // disabledStyle
         button.isSelected = false
         button.isEnabled = false
-        XCTAssertEqual(button.getThemeSubType(), ThemeStyle.disabledStyle)
+        XCTAssertEqual(button.subStyleName(), ThemeStyle.disabledStyle)
     }
     
     // MARK: SearchBar
@@ -74,5 +76,14 @@ final class CustomUIElementsTests: XCTestCase {
         if #available(iOS 13.0, *) {
             XCTAssertEqual(bar.searchTextField.textColor, white)
         }
+    }
+    
+    // MARK: SegmentedControl
+    func testUISegmentedControlTheme() {
+        // let
+        let white = ThemesManager.getColor("navBarRed")
+        let segment = UISegmentedControl(items: ["item1", "item2"])
+        segment.theme = ThemeStyle.defaultStyle
+        XCTAssertEqual(segment.tintColor, white)
     }
 }

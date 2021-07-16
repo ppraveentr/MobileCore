@@ -1,6 +1,6 @@
 //
 //  Color+Extension.swift
-//  MobileCoreUtility
+//  MobileCore-CoreUtility
 //
 //  Created by Praveen Prabhakar on 01/08/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
@@ -38,93 +38,61 @@ import UIKit
  */
 
 public extension UIColor {
-    
-    convenience init(red: UInt32, green: UInt32, blue: UInt32, a: CGFloat = 1.0) {
-        self.init(
-            red: CGFloat(red),
-            green: CGFloat(green),
-            blue: CGFloat(blue),
-            a: a
-        )
+    convenience init(red: UInt64, green: UInt64, blue: UInt64, a: CGFloat = 1.0) {
+        self.init(red: CGFloat(red) / 255, green: CGFloat(green) / 255, blue: CGFloat(blue) / 255, alpha: a)
     }
     
-    fileprivate convenience init(red: CGFloat, green: CGFloat, blue: CGFloat, a: CGFloat = 1.0) {
-        self.init(
-            red: CGFloat(red) / 255.0,
-            green: CGFloat(green) / 255.0,
-            blue: CGFloat(blue) / 255.0,
-            alpha: a
-        )
+    // MARK: rgb: UInt64, a: CGFloat
+    // UIColor(rgb: 13_158_600, a: 0.5) --> "#C8C8C87F"
+    convenience init(rgb: UInt64, a: CGFloat = 1.0) {
+        self.init(red: (rgb >> 16 & 0xFF), green: (rgb >> 8 & 0xFF), blue: (rgb >> 0 & 0xFF), a: a)
     }
     
-    convenience init(rgb: UInt32, a: CGFloat = 1.0) {
-        self.init(
-            red: (rgb >> 16 & 0xFF),
-            green: (rgb >> 8 & 0xFF),
-            blue: (rgb >> 0 & 0xFF),
-            a: a
-        )
-    }
-    
-    convenience init(rgba: UInt32) {
-        self.init(
-            red: (rgba >> 24 & 0xFF),
-            green: (rgba >> 16 & 0xFF),
-            blue: (rgba >> 8 & 0xFF),
-            a: CGFloat(rgba >> 0 & 0xFF)
-        )
-    }
-    
+    // UIColor(red: 200, green: 200, blue: 200, a: 0.5) --> "#C8C8C8"
     func hexString() -> String {
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
+        var (r, g, b, a): (CGFloat, CGFloat, CGFloat, CGFloat) = (0.0, 0.0, 0.0, 0.0)
         getRed(&r, green: &g, blue: &b, alpha: &a)
         let rgb: Int = (Int)(r * 255) << 16 | (Int)(g * 255) << 8 | (Int)(b * 255) << 0
         return String(format: "#%06x", rgb)
     }
     
-    func hexAlphaString() -> String {
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
-        getRed(&r, green: &g, blue: &b, alpha: &a)
-        let rgba: Int = (Int)(r * 255) << 24 | (Int)(g * 255) << 16 | (Int)(b * 255) << 8 | (Int)(a * 255) << 0
-        return String(format: "#%06x", rgba)
+    // MARK: rgba: UInt64
+    // UIColor(rgb: 13_158_600) --> "#C8C8C8FF"
+    convenience init(rgba: UInt64) {
+        let (r, g, b, a) = (rgba >> 24 & 0xFF, rgba >> 16 & 0xFF, rgba >> 8 & 0xFF, rgba >> 0 & 0xFF)
+        self.init(red: r, green: g, blue: b, a: CGFloat(a) / 255)
     }
     
-    static func hexColor (_ hex: String) -> UIColor? {
-
+    //  UIColor(red: 200, green: 200, blue: 200, a: 1.0) --> "#C8C8C8FF"
+    //  UIColor(red: 200, green: 200, blue: 200, a: 0.5) --> "#C8C8C87F"
+    func hexAlphaString() -> String {
+        var (r, g, b, a): (CGFloat, CGFloat, CGFloat, CGFloat) = (0.0, 0.0, 0.0, 0.0)
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+        let rgba: UInt64 = (UInt64)(r * 255) << 24 | (UInt64)(g * 255) << 16 | (UInt64)(b * 255) << 8 | (UInt64)(a * 255)
+        return String(format: "#%08x", rgba)
+    }
+    
+    // MARK: hexString: String: "#C8C8C87F"
+    //  "#C8C8C87F" --> UIColor(red: 200, green: 200, blue: 200, a: 0.5)
+    static func hexColor(_ hexString: String) -> UIColor? {
         // Check if its acutal hex coded string
-        if !hex.hasPrefix("#") {
-            return nil
-        }
-
+        guard hexString.hasPrefix("#") else { return nil }
         // Strip non-alphanumerics, and Make it capitalized
-        let cString: String = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted).uppercased()
-
-        // Read hex string into Int32
-        var int = UInt32()
-        Scanner(string: cString).scanHexInt32(&int)
-        
-        let r: UInt32
-        let g: UInt32
-        let b: UInt32
-        var a: UInt32 = 255
-        switch hex.count - 1 {
+        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted).uppercased()
+        // Read hex string into Int64
+        var int = UInt64()
+        Scanner(string: hex).scanHexInt64(&int)
+        switch hex.count {
         case 3: // RGB (12-bit)
-            (r, g, b) = ((int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+            let (r, g, b) = ((int >> 8 & 0xF) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+            return UIColor(red: r, green: g, blue: b)
         case 6: // RGB (24-bit)
-            (r, g, b) = (int >> 16, int >> 8 & 0xFF, int & 0xFF)
+            return UIColor(rgb: int)
         case 8: // ARGB (32-bit)
-            (r, g, b, a) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+            return UIColor(rgba: int)
         default:
             return nil
         }
-        
-        return UIColor(red: r, green: g, blue: b, a: CGFloat(a) / 255.0)
     }
     
     func generateImage(opacity: CGFloat = 1,
@@ -151,7 +119,6 @@ public extension UIColor {
 }
 
 public extension UIImage {
-    
     convenience init?(color: UIColor) {
         if let cgImage = color.generateImage()?.cgImage {
             self.init(cgImage: cgImage)
@@ -160,13 +127,8 @@ public extension UIImage {
     }
     
     func getColor(a: CGFloat = -10) -> UIColor? {
-        
-        guard
-            let pixelData = self.cgImage?.dataProvider?.data,
-            let data = CFDataGetBytePtr(pixelData) else {
-            return nil
-        }
-        
+        guard let pixelData = self.cgImage?.dataProvider?.data,
+              let data = CFDataGetBytePtr(pixelData) else { return nil }
         // The image is png
         let pixelInfo = Int(0) * 4
         let red = data[pixelInfo]
@@ -174,6 +136,6 @@ public extension UIImage {
         let blue = data[pixelInfo + 2]
         let alpha = data[pixelInfo + 3]
         
-        return UIColor(red: UInt32(red), green: UInt32(green), blue: UInt32(blue), a: (a > 0 ? a : CGFloat(alpha)) / 255.0)
+        return UIColor(red: UInt64(red), green: UInt64(green), blue: UInt64(blue), a: (a > 0 ? a : CGFloat(alpha)) / 255.0)
     }
 }

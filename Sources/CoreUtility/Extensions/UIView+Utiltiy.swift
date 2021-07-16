@@ -1,6 +1,6 @@
 //
 //  UIView+Utiltiy.swift
-//  MobileCoreUtility
+//  MobileCore-CoreUtility
 //
 //  Created by Praveen Prabhakar on 20/10/18.
 //  Copyright © 2018 Praveen Prabhakar. All rights reserved.
@@ -42,10 +42,8 @@ public extension UIView {
             if val is T {
                 return val as? T
             }
-            else if !val.subviews.isEmpty {
-                if let subType: T? =  val.findInSubView() {
-                    return subType
-                }
+            else if !val.subviews.isEmpty, let subType: T? =  val.findInSubView() {
+                return subType
             }
         }
         return nil

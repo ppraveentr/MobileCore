@@ -1,6 +1,6 @@
 //
 //  UserCacheManager.swift
-//  FTMobileCore
+//  MobileCore-NetworkLayer
 //
 //  Created by Praveen Prabhakar on 15/10/18.
 //  Copyright © 2018 Praveen Prabhakar. All rights reserved.
@@ -8,14 +8,14 @@
 
 import Foundation
 import UIKit
-//import SwiftKeychainWrapper
+// import SwiftKeychainWrapper
 
 // typealias
 public typealias NotificationName = Notification.Name
 
 // Notification Constant
 public extension NotificationName {
-    static let kClearSessionCache = Notification.Name("com.ftmobilecore.clearSessionCache")
+    static let kClearSessionCache = Notification.Name("com.ft.mobilecore.clearSessionCache")
 
     func post(_ object: Any? = nil) {
         NotificationCenter.default.post(name: self, object: object)
@@ -201,7 +201,8 @@ private extension UserCacheProtocol {
         }
 
         // USER SESSION LEVEL || Keychain data
-        if let data = UserCacheManager.sharedInstance.userCache?[key] { //?? KeychainWrapper.standard.data(forKey: key, withAccessibility: keychainAccessiblity) {
+        if let data = UserCacheManager.sharedInstance.userCache?[key] {
+            // ?? KeychainWrapper.standard.data(forKey: key, withAccessibility: keychainAccessiblity) {
             return data
         }
 

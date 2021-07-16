@@ -1,6 +1,6 @@
 //
 //  instanceMethodSwizzling.swift
-//  FTMobileCore
+//  MobileCore-CoreUtility
 //
 //  Created by Praveen Prabhakar on 28/07/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.

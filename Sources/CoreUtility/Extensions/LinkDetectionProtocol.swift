@@ -1,6 +1,6 @@
 //
 //  LinkDetectionProtocol.swift
-//  CoreUIExtensions
+//  MobileCore-CoreUtility
 //
 //  Created by Praveen Prabhakar on 16/07/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 public protocol LinkDetectionProtocol {
-    // Get list of FTLinkDetection from the String
+    // Get list of LinkDetection from the String
     static func getURLLinkRanges(_ text: String) -> [LinkHandlerModel]
     
-    // Get list of FTLinkDetection from the NSAttributedString
+    // Get list of LinkDetection from the NSAttributedString
     static func getURLLinkRanges(_ text: NSAttributedString) -> [LinkHandlerModel]
     
     /*
@@ -59,7 +59,7 @@ extension LinkHandlerModel: LinkDetectionProtocol {
 }
 
 public extension LinkDetectionProtocol {
-    // Get list of FTLinkDetection from the String
+    // Get list of LinkDetection from the String
     static func getURLLinkRanges(_ text: String) -> [LinkHandlerModel] {
         
         var rangeOfURL = [LinkHandlerModel]()
@@ -80,7 +80,7 @@ public extension LinkDetectionProtocol {
         return rangeOfURL
     }
     
-    // Get list of FTLinkDetection from the NSAttributedString
+    // Get list of LinkDetection from the NSAttributedString
     static func getURLLinkRanges(_ text: NSAttributedString) -> [LinkHandlerModel] {
         let searchKey = NSAttributedString.Key("NSLink")
 

@@ -1,6 +1,6 @@
 //
 //  ViewLayoutConstraint.swift
-//  CoreUIExtensions
+//  MobileCore-CoreUtility
 //
 //  Created by Praveen Prabhakar on 08/07/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
@@ -64,7 +64,7 @@ public struct EdgeInsets: OptionSet {
     public static let autoMargin = EdgeInsets(1 << 11)
     
     // Private
-//    fileprivate static let AllLayoutMargin: FTEdgeInsets = [.LeadingMargin, .TrailingMargin,
+//    fileprivate static let AllLayoutMargin: EdgeInsets = [.LeadingMargin, .TrailingMargin,
 //                                                            .TopMargin, .BottomMargin,
 //                                                            .CenterMargin, .AutoMargin]
 

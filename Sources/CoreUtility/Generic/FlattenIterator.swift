@@ -1,6 +1,6 @@
 //
-//  FTFlattenIterator.swift
-//  MobileCoreUtility
+//  FlattenIterator.swift
+//  MobileCore-CoreUtility
 //
 //  Created by Praveen Prabhakar on 15/03/18.
 //  Copyright © 2018 Praveen Prabhakar. All rights reserved.

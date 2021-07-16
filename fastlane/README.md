@@ -30,11 +30,16 @@ Runs all the unit tests and UI Tests
 fastlane podlibLint
 ```
 Cocoapods Spec Lint
-### create_release
+### bump_pod_version
 ```
-fastlane create_release
+fastlane bump_pod_version
 ```
 Create Release Branch
+### create_tag
+```
+fastlane create_tag
+```
+Add new Tag to the branch and push to origin
 
 ----
 

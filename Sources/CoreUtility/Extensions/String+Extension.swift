@@ -1,6 +1,6 @@
 //
 //  String+Extension.swift
-//  FTMobileCore
+//  MobileCore-CoreUtility
 //
 //  Created by Praveen Prabhakar on 28/07/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
@@ -167,7 +167,11 @@ public extension String {
 
     // Loading Data from given Path
     func dataAtPath() throws -> Data? {
-        try Data(contentsOf: URL(fileURLWithPath: self))
+        let path = self.trimingPrefix("file://")
+        if FileManager.default.fileExists(atPath: path), let data = NSData(contentsOfFile: path) as Data? {
+            return data
+        }
+        return try Data(contentsOf: URL(fileURLWithPath: path))
     }
 
     // MARK: File

@@ -6,9 +6,11 @@
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.
 //
 
-@testable import NetworkLayer
+#if canImport(NetworkLayer)
+@testable import CoreComponents
 @testable import CoreUtility
-@testable import CoreUI
+@testable import NetworkLayer
+#endif
 import XCTest
 
 final class NetworkManangerTests: XCTestCase {
@@ -21,7 +23,7 @@ final class NetworkManangerTests: XCTestCase {
     private let kServiceBindingRulesName = "NovelServiceRules.plist"
     // MARK: Mock
     private let kMockServerURL = "http://127.0.0.1:3000/"
-    private let kMockBundleResource = Utility.kMobileCoreBundle.bundleURL
+    private let kMockBundleResource = NetworkLayerTestsUtility.kMobileCoreBundle.bundleURL
     private let kMockDataEnabled = true
     private let httpAdditionalHeaders = ["Test": "TestValue"]
     

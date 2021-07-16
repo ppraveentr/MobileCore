@@ -1,14 +1,16 @@
 //
 //  AppearanceManager.swift
-//  MobileCoreUtility
+//  MobileCore-AppTheming
 //
 //  Created by Praveen Prabhakar on 30/08/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(CoreUtility)
+import CoreUtility
+#endif
 import Foundation
 import UIKit
-import CoreUtility
 
 // TODO: In progress
 protocol AppearanceManagerProtocol {

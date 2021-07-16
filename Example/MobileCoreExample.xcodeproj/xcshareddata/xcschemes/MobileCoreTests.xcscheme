@@ -42,18 +42,6 @@
             default = "YES">
          </TestPlanReference>
       </TestPlans>
-      <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D44E56FD2341D3B900A0E56C"
-               BuildableName = "MobileCoreTests.xctest"
-               BlueprintName = "MobileCoreTests"
-               ReferencedContainer = "container:MobileCoreExample.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -82,15 +70,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DE9221C81EF28CDF000C8FC7"
-            BuildableName = "MobileCoreExample.app"
-            BlueprintName = "MobileCoreExample"
-            ReferencedContainer = "container:MobileCoreExample.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -6,9 +6,11 @@
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.
 //
 
-@testable import NetworkLayer
+#if canImport(NetworkLayer)
+@testable import CoreComponents
 @testable import CoreUtility
-@testable import CoreUI
+@testable import NetworkLayer
+#endif
 import XCTest
 
 fileprivate final class MockCollectionViewController: UIViewController, CollectionViewControllerProtocol {

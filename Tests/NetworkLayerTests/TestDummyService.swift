@@ -7,8 +7,9 @@
 //
 
 import Foundation
+#if canImport(NetworkLayer)
 @testable import NetworkLayer
-
+#endif
 final class AccountDetail: ServiceModel {
     var value: String = ""
     var name: String = ""

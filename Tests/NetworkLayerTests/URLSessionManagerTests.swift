@@ -6,8 +6,10 @@
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.
 //
 
-@testable import NetworkLayer
 import Foundation
+#if canImport(NetworkLayer)
+@testable import NetworkLayer
+#endif
 import UIKit
 import XCTest
 
@@ -27,8 +29,8 @@ final class URLSessionManagerTests: XCTestCase {
     }
     
     func testStartTaskWithCompletion() {
-        let promise = expectation(description: "FTURLSession data task completed.")
-        guard let theme = Utility.kThemePath else {
+        let promise = expectation(description: "URLSession data task completed.")
+        guard let theme = NetworkLayerTestsUtility.kThemePath else {
             XCTFail("Should have valid theme")
             return
         }

@@ -6,7 +6,9 @@
 //  Copyright © 2020 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(CoreUtility)
 import CoreUtility
+#endif
 import UIKit
 
 final class MockCollectionViewCell: UICollectionViewCell {

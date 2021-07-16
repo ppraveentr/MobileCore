@@ -1,14 +1,16 @@
 //
 //  UIView+Themes.swift
-//  MobileCoreUtility
+//  MobileCore-AppTheming
 //
 //  Created by Praveen Prabhakar on 05/08/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(CoreUtility)
+import CoreUtility
+#endif
 import Foundation
 import UIKit
-import CoreUtility
 
 public typealias ThemeModel = [String: Any]
 
@@ -47,8 +49,8 @@ public enum ThemeKey: String, CaseIterable {
 }
 
 public extension NSNotification.Name {
-    static let kFTAppearanceWillRefreshWindow = NSNotification.Name(rawValue: "kFTAppearance.willRefreshWindow.Notofication")
-    static let kFTAppearanceDidRefreshWindow = NSNotification.Name(rawValue: "kFTAppearance.didRefreshWindow.Notofication")
+    static let kAppearanceWillRefreshWindow = NSNotification.Name(rawValue: "kAppearance.willRefreshWindow.Notofication")
+    static let kAppearanceDidRefreshWindow = NSNotification.Name(rawValue: "kAppearance.didRefreshWindow.Notofication")
 }
 
 public struct ThemeStyle {
@@ -123,7 +125,7 @@ fileprivate extension UIView {
         // Checkout if view supports Theming protocol
         let delegate: ThemeProtocol? = self as? ThemeProtocol
         // Get Theme property of view based on its state
-        if let themeDic = ThemesManager.generateVisualThemes(forClass: className, styleName: themeName, subStyleName: delegate?.getThemeSubType()) {
+        if let themeDic = ThemesManager.generateVisualThemes(forClass: className, styleName: themeName, subStyleName: delegate?.subStyleName()) {
             // Step 1. Config view with new Theme-style
              self.configureTheme(themeDic)
         }
@@ -151,7 +153,7 @@ fileprivate extension UIView {
     func getThemeName() -> (String, String)? {
         // Vadidate className and ThemeName
         guard
-            let className = Reflection.getClassNameAsString(self),
+            let className = Reflection.classNameAsString(self),
             let themeName = self.theme else {
             return nil
         }
@@ -159,7 +161,7 @@ fileprivate extension UIView {
         var baseClassName: String? = className
         let getSuperClass = { (obj: AnyObject) -> AnyClass? in
             guard let superClass: AnyClass = class_getSuperclass(type(of: obj)) else { return nil }
-            if let className = Reflection.getClassNameAsString(superClass), className.hasPrefix("UI") {
+            if let className = Reflection.classNameAsString(superClass), className.hasPrefix("UI") {
                 return nil
             }
             
@@ -172,7 +174,7 @@ fileprivate extension UIView {
             let superClass: AnyClass? = getSuperClass(type(of: self))
             // If SuperClass becomes invalid, terminate loop
             if let superClass = superClass, !UIView.kTerminalBaseClass.contains(where: { $0 == superclass }) {
-                 baseClassName = Reflection.getClassNameAsString(superClass)
+                 baseClassName = Reflection.classNameAsString(superClass)
             }
             else {
                 break
@@ -194,12 +196,12 @@ fileprivate extension UIView {
         // Only needed for UIControl types, Eg. Button
         guard let self = self as? ControlThemeProtocol else { return }
         // Get all subTheme for all stats of the control
-        let themeDic = [self.getThemeSubType() ?? ThemeStyle.defaultStyle: theme]
+        let themeDic = [self.subStyleName() ?? ThemeStyle.defaultStyle: theme]
         self.setThemes(themeDic)
     }
 }
 
-// MARK: UIView: FTThemeProtocol
+// MARK: UIView: ThemeProtocol
 extension UIView {
     func setupViewTheme(_ theme: ThemeModel) {
         // "backgroundColor"
@@ -212,7 +214,7 @@ extension UIView {
            let layerValue = ThemesManager.getLayer(layerName) {
             ThemesManager.getBackgroundLayer(layerValue, toLayer: self.layer)
         }
-        // Only needed for UIView types that has extended from FTThemeProtocol
+        // Only needed for UIView types that has extended from ThemeProtocol
         guard let self = self as? ThemeProtocol else { return }
         self.updateTheme(theme)
     }
@@ -262,12 +264,12 @@ public extension UIWindow {
     /// Refreshes appearance for the window
     /// - Parameter animated: if the refresh should be animated
     func refreshAppearance(animated: Bool) {
-        NotificationCenter.default.post(name: .kFTAppearanceWillRefreshWindow, object: self)
+        NotificationCenter.default.post(name: .kAppearanceWillRefreshWindow, object: self)
         UIView.animate(
             withDuration: animated ? 0.25 : 0,
             animations: { self.refreshAppearance() },
             completion: { _ in
-            NotificationCenter.default.post(name: .kFTAppearanceDidRefreshWindow, object: self)
+            NotificationCenter.default.post(name: .kAppearanceDidRefreshWindow, object: self)
             }
         )
     }
