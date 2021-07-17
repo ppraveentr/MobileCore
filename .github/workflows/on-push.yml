@@ -23,10 +23,6 @@ jobs:
           destination: ['platform=iOS Simulator,OS=14.4,name=iPhone 12 Pro Max']
     steps:
     - uses: actions/checkout@v2
-    - name: Install Dependencies
-      run: |
-        cd Example
-        pod install --repo-update
     - name: Install Bundle
       run: bundle install
     - name: Unit Test

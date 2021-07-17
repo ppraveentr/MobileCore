@@ -1,6 +1,6 @@
 //
 //  UIView+Themes.swift
-//  MobileCoreUtility
+//  MobileCore-AppTheming
 //
 //  Created by Praveen Prabhakar on 05/08/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
@@ -49,8 +49,8 @@ public enum ThemeKey: String, CaseIterable {
 }
 
 public extension NSNotification.Name {
-    static let kFTAppearanceWillRefreshWindow = NSNotification.Name(rawValue: "kFTAppearance.willRefreshWindow.Notofication")
-    static let kFTAppearanceDidRefreshWindow = NSNotification.Name(rawValue: "kFTAppearance.didRefreshWindow.Notofication")
+    static let kAppearanceWillRefreshWindow = NSNotification.Name(rawValue: "kAppearance.willRefreshWindow.Notofication")
+    static let kAppearanceDidRefreshWindow = NSNotification.Name(rawValue: "kAppearance.didRefreshWindow.Notofication")
 }
 
 public struct ThemeStyle {
@@ -201,7 +201,7 @@ fileprivate extension UIView {
     }
 }
 
-// MARK: UIView: FTThemeProtocol
+// MARK: UIView: ThemeProtocol
 extension UIView {
     func setupViewTheme(_ theme: ThemeModel) {
         // "backgroundColor"
@@ -214,7 +214,7 @@ extension UIView {
            let layerValue = ThemesManager.getLayer(layerName) {
             ThemesManager.getBackgroundLayer(layerValue, toLayer: self.layer)
         }
-        // Only needed for UIView types that has extended from FTThemeProtocol
+        // Only needed for UIView types that has extended from ThemeProtocol
         guard let self = self as? ThemeProtocol else { return }
         self.updateTheme(theme)
     }
@@ -264,12 +264,12 @@ public extension UIWindow {
     /// Refreshes appearance for the window
     /// - Parameter animated: if the refresh should be animated
     func refreshAppearance(animated: Bool) {
-        NotificationCenter.default.post(name: .kFTAppearanceWillRefreshWindow, object: self)
+        NotificationCenter.default.post(name: .kAppearanceWillRefreshWindow, object: self)
         UIView.animate(
             withDuration: animated ? 0.25 : 0,
             animations: { self.refreshAppearance() },
             completion: { _ in
-            NotificationCenter.default.post(name: .kFTAppearanceDidRefreshWindow, object: self)
+            NotificationCenter.default.post(name: .kAppearanceDidRefreshWindow, object: self)
             }
         )
     }

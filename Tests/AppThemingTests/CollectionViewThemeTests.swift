@@ -8,7 +8,7 @@
 
 #if canImport(AppTheming)
 import AppTheming
-import CoreUI
+import CoreComponents
 import CoreUtility
 #endif
 import Foundation

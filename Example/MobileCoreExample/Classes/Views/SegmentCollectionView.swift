@@ -10,7 +10,7 @@ import Foundation
 #if canImport(AppTheming)
 import AppTheming
 import CoreUtility
-import CoreUI
+import CoreComponents
 #endif
 
 let kRecentUpdateString = "Recent Update"

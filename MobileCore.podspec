@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '10.0'
   s.swift_version         = '5.0'
-  s.default_subspecs      = 'CoreUtility', 'NetworkLayer', 'CoreUI', 'AppTheming'
+  s.default_subspecs      = 'CoreUtility', 'NetworkLayer', 'CoreComponents', 'AppTheming'
 
   s.subspec 'CoreUtility' do |utility|
     utility.source_files  = 'Sources/CoreUtility/**/*.{h,m,swift}'
@@ -30,10 +30,10 @@ Pod::Spec.new do |s|
     theme.header_dir    = "AppTheming"
   end
 
-  s.subspec 'CoreUI' do |coreUI|
-    coreUI.source_files = 'Sources/CoreUI/**/*.{h,m,swift}'
-    coreUI.dependency  'MobileCore/CoreUtility'
-    coreUI.header_dir   = "CoreUI"
+  s.subspec 'CoreComponents' do |coreComponents|
+    coreComponents.source_files = 'Sources/CoreComponents/**/*.{h,m,swift}'
+    coreComponents.dependency  'MobileCore/CoreUtility'
+    coreComponents.header_dir   = "CoreComponents"
   end
   
 end

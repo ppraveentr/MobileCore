@@ -1,8 +1,11 @@
+require 'fileutils'
+
 default_platform :ios
 
 $scheme = "MobileCoreExample"
 $podspec = "MobileCore.podspec"
 $workspace = 'Example/MobileCoreExample.xcworkspace'
+$project = 'Example/MobileCoreExample.xcodeproj'
 
 before_all do |lane, options|
     sh 'mkdir ../reports || true'
@@ -21,12 +24,12 @@ desc "Runs all the unit tests and UI Tests"
 lane :test do
 	# Run tests
 	test_args = {
-        workspace: $workspace,
+        project: $project,
 		scheme: $scheme,
 		clean: true,
 		code_coverage: true,
 		output_types: "html",
-		output_directory: "reports"		
+		output_directory: "reports"
 	}
 
 	scan(test_args)

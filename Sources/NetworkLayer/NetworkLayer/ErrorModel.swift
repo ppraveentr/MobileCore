@@ -1,6 +1,6 @@
 //
 //  ErrorModel.swift
-//  FTMobileCore
+//  MobileCore-NetworkLayer
 //
 //  Created by Praveen Prabhakar on 28/09/18.
 //  Copyright © 2018 Praveen Prabhakar. All rights reserved.

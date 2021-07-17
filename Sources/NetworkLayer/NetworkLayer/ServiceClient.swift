@@ -1,6 +1,6 @@
 //
 //  ServiceClient.swift
-//  FTMobileCore
+//  MobileCore-NetworkLayer
 //
 //  Created by Praveen Prabhakar on 01/09/18.
 //  Copyright © 2018 Praveen Prabhakar. All rights reserved.
@@ -17,7 +17,7 @@ public typealias ServiceCompletionBlock<T: ServiceClient> = (ServiceStatus<T>) -
 private enum LogConstants: String {
     case errorModel = "errorModelData: "
     case responseData = "ResponseData: "
-    case error = "FTError: "
+    case error = "Error: "
 }
 
 // MARK: AssociatedKey
@@ -147,7 +147,7 @@ public extension ServiceClient {
         }
         
         do {
-            // try parsing response model: configured by `FTServiceClient` model
+            // try parsing response model: configured by `ServiceClient` model
             if let responseStack = try self.responseType()?.makeModel(json: data) {
                 responseModelData = responseStack
             }

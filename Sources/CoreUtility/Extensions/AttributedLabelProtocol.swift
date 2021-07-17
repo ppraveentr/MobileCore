@@ -1,6 +1,6 @@
 //
 //  AttributedLabelProtocol.swift
-//  MobileCore
+//  MobileCore-CoreUtility
 //
 //  Created by Praveen P on 20/10/19.
 //
@@ -190,21 +190,13 @@ extension UILabel {
     
     // MARK: Text Sanitizing
     func sanitizeAttributedString(attributedString: NSAttributedString) -> NSMutableAttributedString {
-        
-        if attributedString.length == 0 {
-            return attributedString.mutableString()
-        }
-        
+        guard attributedString.length != 0 else { return attributedString.mutableString() }
         var range = attributedString.nsRange()
-        guard let praStryle: NSParagraphStyle = attributedString.attribute( .paragraphStyle, at: 0, effectiveRange: &range) as? NSParagraphStyle else {
-            return attributedString.mutableString()
-        }
-        
-        guard let mutablePraStryle = praStryle.mutableCopy() as? NSMutableParagraphStyle else {
+        guard let praStryle = attributedString.attribute(.paragraphStyle, at: 0, effectiveRange: &range) as? NSParagraphStyle,
+              let mutablePraStryle = praStryle.mutableCopy() as? NSMutableParagraphStyle else {
             return attributedString.mutableString()
         }
         mutablePraStryle.lineBreakMode = .byWordWrapping
-        
         let restyledString = attributedString.mutableString()
         restyledString.addParagraphStyle(style: mutablePraStryle)
         return restyledString

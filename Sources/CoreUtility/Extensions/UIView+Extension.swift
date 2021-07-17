@@ -1,6 +1,6 @@
 //
 //  UIView+Extension.swift
-//  CoreUIExtensions
+//  MobileCore-CoreUtility
 //
 //  Created by Praveen Prabhakar on 10/07/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.

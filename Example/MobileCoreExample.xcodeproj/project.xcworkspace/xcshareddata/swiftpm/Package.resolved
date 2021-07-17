@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "MobileCore",
+        "repositoryURL": "https://github.com/ppraveentr/MobileCore.git",
+        "state": {
+          "branch": "feature/SPM-Setup",
+          "revision": "272f5ac227e18869e191ca2474e7da74394c26a2",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

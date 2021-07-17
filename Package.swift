@@ -3,7 +3,7 @@
 
 import PackageDescription
 
-private let dependencies: [Target.Dependency] = ["CoreUtility", "CoreUI"]
+private let dependencies: [Target.Dependency] = ["CoreUtility", "CoreComponents"]
 private let resources: [Resource] = [ .process("Resources") ]
 
 let package = Package(
@@ -12,7 +12,7 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(name: "CoreUtility", targets: ["CoreUtility"]),
-        .library(name: "CoreUI", targets: ["CoreUI"]),
+        .library(name: "CoreComponents", targets: ["CoreComponents"]),
         .library(name: "AppTheming", targets: ["AppTheming"]),
         .library(name: "NetworkLayer", targets: ["NetworkLayer"])
     ],
@@ -24,9 +24,9 @@ let package = Package(
         .target(name: "CoreUtility", dependencies: []),
         .testTarget(name: "CoreUtilityTests", dependencies: ["CoreUtility"], resources: resources),
         
-        // MARK: CoreUI
-        .target(name: "CoreUI", dependencies: ["CoreUtility"]),
-        .testTarget(name: "CoreUITests", dependencies: dependencies, resources: resources),
+        // MARK: CoreComponents
+        .target(name: "CoreComponents", dependencies: ["CoreUtility"]),
+        .testTarget(name: "CoreComponentsTests", dependencies: dependencies, resources: resources),
         
         // MARK: AppTheming
         .target(name: "AppTheming", dependencies: dependencies),

@@ -1,6 +1,6 @@
 //
 //  Reflection.swift
-//  MobileCoreUtility
+//  MobileCore-CoreUtility
 //
 //  Created by Praveen Prabhakar on 05/08/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.

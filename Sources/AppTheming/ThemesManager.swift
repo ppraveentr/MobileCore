@@ -1,6 +1,6 @@
 //
 //  ThemesManager.swift
-//  MobileCoreUtility
+//  MobileCore-AppTheming
 //
 //  Created by Praveen Prabhakar on 29/07/17.
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
@@ -57,7 +57,7 @@ open class ThemesManager {
         }
         // Get theme component
         guard let currentTheme: ThemeModel = ThemesManager.getViewComponent(name, styleName: styleName) else {
-            // ftLog("FTError: Theme of type \(styleName) not avaialble for class \(name)" )
+            // ftLog("Error: Theme of type \(styleName) not avaialble for class \(name)" )
             return nil
         }
         return currentTheme

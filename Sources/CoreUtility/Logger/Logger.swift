@@ -1,6 +1,6 @@
 //
 //  Logger.swift
-//  MobileCoreUtility
+//  MobileCore-CoreUtility
 //
 //  Created by Praveen Prabhakar on 30/09/18.
 //  Copyright © 2018 Praveen Prabhakar. All rights reserved.

@@ -77,4 +77,13 @@ final class CustomUIElementsTests: XCTestCase {
             XCTAssertEqual(bar.searchTextField.textColor, white)
         }
     }
+    
+    // MARK: SegmentedControl
+    func testUISegmentedControlTheme() {
+        // let
+        let white = ThemesManager.getColor("navBarRed")
+        let segment = UISegmentedControl(items: ["item1", "item2"])
+        segment.theme = ThemeStyle.defaultStyle
+        XCTAssertEqual(segment.tintColor, white)
+    }
 }

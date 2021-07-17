@@ -1,6 +1,6 @@
 //
 //  UserCacheManager.swift
-//  FTMobileCore
+//  MobileCore-NetworkLayer
 //
 //  Created by Praveen Prabhakar on 15/10/18.
 //  Copyright © 2018 Praveen Prabhakar. All rights reserved.
@@ -15,7 +15,7 @@ public typealias NotificationName = Notification.Name
 
 // Notification Constant
 public extension NotificationName {
-    static let kClearSessionCache = Notification.Name("com.ftmobilecore.clearSessionCache")
+    static let kClearSessionCache = Notification.Name("com.ft.mobilecore.clearSessionCache")
 
     func post(_ object: Any? = nil) {
         NotificationCenter.default.post(name: self, object: object)

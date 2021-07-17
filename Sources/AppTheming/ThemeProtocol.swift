@@ -1,6 +1,6 @@
 //
 //  ThemeProtocol.swift
-//  MobileCore
+//  MobileCore-AppTheming
 //
 //  Created by Praveen P on 20/08/19.
 //  Copyright © 2019 Praveen P. All rights reserved.

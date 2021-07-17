@@ -1,6 +1,6 @@
 //
-//  FTRequestObject.swift
-//  FTMobileCore
+//  RequestObject.swift
+//  MobileCore-NetworkLayer
 //
 //  Created by Praveen Prabhakar on 14/03/18.
 //  Copyright © 2018 Praveen Prabhakar. All rights reserved.

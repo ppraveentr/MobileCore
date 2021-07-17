@@ -7,7 +7,7 @@
 //
 
 #if canImport(NetworkLayer)
-@testable import CoreUI
+@testable import CoreComponents
 @testable import CoreUtility
 @testable import NetworkLayer
 #endif

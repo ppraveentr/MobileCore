@@ -1,6 +1,6 @@
 //
 //  Data+Extension.swift
-//  MobileCoreUtility
+//  MobileCore-CoreUtility
 //
 //  Created by Praveen Prabhakar on 11/04/18.
 //  Copyright © 2018 Praveen Prabhakar. All rights reserved.

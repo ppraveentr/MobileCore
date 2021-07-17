@@ -1,5 +1,5 @@
 //
-//  FTSampleTableViewController.swift
+//  SampleTableViewController.swift
 //  MobileCoreSample
 //
 //  Created by Praveen Prabhakar on 20/08/17.
@@ -9,7 +9,7 @@
 import Foundation
 #if canImport(AppTheming)
 import AppTheming
-import CoreUI
+import CoreComponents
 #endif
 
 class SampleTableViewController: UIViewController, TableViewControllerProtocol {
@@ -48,7 +48,7 @@ extension SampleTableViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "FT.kCellIdentifier")
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "ft.kCellIdentifier")
         cell.textLabel?.text = indexPath.description
         cell.textLabel?.textColor = .blue
         return cell

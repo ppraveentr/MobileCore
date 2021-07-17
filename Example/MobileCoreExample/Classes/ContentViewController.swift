@@ -1,6 +1,6 @@
 //
 //  ContentViewController.swift
-//  FTMobileCore
+//  MobileCore
 //
 //  Created by Praveen P on 01/11/19.
 //  Copyright © 2019 Praveen Prabhakar. All rights reserved.
@@ -9,7 +9,7 @@
 import Foundation
 #if canImport(AppTheming)
 import AppTheming
-import CoreUI
+import CoreComponents
 #endif
 
 final class ContentViewController: UIViewController, WebViewControllerProtocol {

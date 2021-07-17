@@ -29,7 +29,7 @@ final class DownloadedImageTests: XCTestCase {
         guard let path = imageURLPath else { return }
         let imageView = UIImageView()
         let promise = expectation(description: "Download data task completed.")
-        imageView.downloadedFrom(url: path) { image in
+        imageView.downloadedFrom(path) { image in
             XCTAssertNotNil(image)
             promise.fulfill()
         }
