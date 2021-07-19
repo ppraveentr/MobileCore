@@ -24,8 +24,6 @@ public protocol TableViewControllerProtocol: ViewControllerProtocol {
 // MARK: AssociatedKey
 private extension AssociatedKey {
     static var kAOTableVC = "k.FT.AO.TableViewController"
-    static var kAOTableHeader = "k.FT.AO.TableViewController"
-    static var kAOTableFooter = "k.FT.AO.TableViewController"
 }
 
 public extension TableViewControllerProtocol {

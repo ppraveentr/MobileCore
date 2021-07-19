@@ -15,7 +15,7 @@ public protocol ThemeProtocol: AnyObject {
     // Retruns 'ThemeStyle' specific to current state of object.
     // Say if UIView is disabled, retrun "disabled", which can be clubed with main Theme style.
     // Eg, if currentTheme is 'viewB', then when disabled state, theme willbe : 'viewB:disabled'
-    func getThemeSubType() -> String?
+    func subStyleName() -> String?
     
     // Custom Subclass can implement, to config Custom component
     func updateTheme(_ theme: ThemeModel)
@@ -25,7 +25,7 @@ public protocol ThemeProtocol: AnyObject {
 public extension ThemeProtocol where Self: UIView {
     
     // If view is disabled, check for ".disabledStyle" style
-    func getThemeSubType() -> String? {
+    func subStyleName() -> String? {
         self.isUserInteractionEnabled ? nil : ThemeStyle.disabledStyle
     }
     

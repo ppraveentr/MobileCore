@@ -125,7 +125,7 @@ fileprivate extension UIView {
         // Checkout if view supports Theming protocol
         let delegate: ThemeProtocol? = self as? ThemeProtocol
         // Get Theme property of view based on its state
-        if let themeDic = ThemesManager.generateVisualThemes(forClass: className, styleName: themeName, subStyleName: delegate?.getThemeSubType()) {
+        if let themeDic = ThemesManager.generateVisualThemes(forClass: className, styleName: themeName, subStyleName: delegate?.subStyleName()) {
             // Step 1. Config view with new Theme-style
              self.configureTheme(themeDic)
         }
@@ -153,7 +153,7 @@ fileprivate extension UIView {
     func getThemeName() -> (String, String)? {
         // Vadidate className and ThemeName
         guard
-            let className = Reflection.getClassNameAsString(self),
+            let className = Reflection.classNameAsString(self),
             let themeName = self.theme else {
             return nil
         }
@@ -161,7 +161,7 @@ fileprivate extension UIView {
         var baseClassName: String? = className
         let getSuperClass = { (obj: AnyObject) -> AnyClass? in
             guard let superClass: AnyClass = class_getSuperclass(type(of: obj)) else { return nil }
-            if let className = Reflection.getClassNameAsString(superClass), className.hasPrefix("UI") {
+            if let className = Reflection.classNameAsString(superClass), className.hasPrefix("UI") {
                 return nil
             }
             
@@ -174,7 +174,7 @@ fileprivate extension UIView {
             let superClass: AnyClass? = getSuperClass(type(of: self))
             // If SuperClass becomes invalid, terminate loop
             if let superClass = superClass, !UIView.kTerminalBaseClass.contains(where: { $0 == superclass }) {
-                 baseClassName = Reflection.getClassNameAsString(superClass)
+                 baseClassName = Reflection.classNameAsString(superClass)
             }
             else {
                 break
@@ -196,7 +196,7 @@ fileprivate extension UIView {
         // Only needed for UIControl types, Eg. Button
         guard let self = self as? ControlThemeProtocol else { return }
         // Get all subTheme for all stats of the control
-        let themeDic = [self.getThemeSubType() ?? ThemeStyle.defaultStyle: theme]
+        let themeDic = [self.subStyleName() ?? ThemeStyle.defaultStyle: theme]
         self.setThemes(themeDic)
     }
 }

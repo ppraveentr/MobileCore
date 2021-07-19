@@ -11,7 +11,7 @@ import UIKit
 
 extension UIButton: ControlThemeProtocol {
     // check view state, to update style
-    open func getThemeSubType() -> String? {
+    open func subStyleName() -> String? {
         if self.isEnabled {
             return nil
         }

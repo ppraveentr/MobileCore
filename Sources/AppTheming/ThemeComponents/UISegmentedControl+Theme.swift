@@ -10,7 +10,7 @@ import UIKit
 
 extension UISegmentedControl: ControlThemeProtocol {
     // check view state, to update style
-    open func getThemeSubType() -> String? { nil }
+    open func subStyleName() -> String? { nil }
     
     public func update(themeDic: ThemeModel, state: UIControl.State) {
         if let text = themeDic[ThemeKey.tintColor] as? String, let color: UIColor = ThemesManager.getColor(text) {

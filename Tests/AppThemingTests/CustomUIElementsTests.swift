@@ -53,15 +53,15 @@ final class CustomUIElementsTests: XCTestCase {
         // disabled state
         XCTAssert(button.titleColor(for: .disabled) == ThemesManager.getColor("yellow"))
         // default enabled state
-        XCTAssertNil(button.getThemeSubType())
+        XCTAssertNil(button.subStyleName())
         // selected
         button.isSelected = true
         button.isEnabled = false
-        XCTAssertEqual(button.getThemeSubType(), ThemeStyle.selectedStyle)
+        XCTAssertEqual(button.subStyleName(), ThemeStyle.selectedStyle)
         // disabledStyle
         button.isSelected = false
         button.isEnabled = false
-        XCTAssertEqual(button.getThemeSubType(), ThemeStyle.disabledStyle)
+        XCTAssertEqual(button.subStyleName(), ThemeStyle.disabledStyle)
     }
     
     // MARK: SearchBar

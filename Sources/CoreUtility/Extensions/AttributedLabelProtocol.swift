@@ -43,7 +43,7 @@ extension UILabel: AttributedLabelProtocol {
         set { AssociatedObject<[LinkHandlerModel]>.setAssociated(self, value: newValue, key: &AssociatedKey.linkRanges) }
     }
     
-    // LabelThemeProperyProtocol
+    // LabelThemeProtocol
     public var islinkDetectionEnabled: Bool {
         get { AssociatedObject.getAssociated(self, key: &AssociatedKey.islinkDetectionEnabled) { true }! }
         set { AssociatedObject<Bool>.setAssociated(self, value: newValue, key: &AssociatedKey.islinkDetectionEnabled) }

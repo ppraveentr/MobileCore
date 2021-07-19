@@ -1,51 +1,48 @@
 [![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
 [![Language](http://img.shields.io/badge/language-swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
-[![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
-[![Build Status](https://www.travis-ci.com/ppraveentr/MobileCore.svg?branch=master)](https://www.travis-ci.com/ppraveentr/MobileCore)
+![Cocoapods](https://img.shields.io/cocoapods/l/MobileCore)
+![Cocoapods](https://img.shields.io/cocoapods/v/MobileCore)
+[![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat-square)](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat-square)
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/29e1db8f665a4b0785c19002a45df0bb)](https://www.codacy.com/gh/ppraveentr/MobileCore/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ppraveentr/MobileCore&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://github.com/ppraveentr/MobileCore/actions/workflows/on-push.yml/badge.svg)](https://github.com/ppraveentr/MobileCore/actions/workflows/on-push.yml)
+[![codecov](https://codecov.io/gh/ppraveentr/MobileCore/branch/master/graph/badge.svg?token=uHVmysGxFQ)](https://codecov.io/gh/ppraveentr/MobileCore)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ppraveentr_MobileCore&metric=alert_status)](https://sonarcloud.io/dashboard?id=ppraveentr_MobileCore)
 
-Lets consider you are developing a Mobile application, be it for Prototyping or Enterprise, finding right set of utitlies all in one place or configuring application Theme, writing a Network-layer  isn't always easy and its time consuming to write the code from scratch. 
-
-MobileCore takes care of all these hassles for you. Its a Swift library consisting in a set of extensions to help dealing with 
-- [x] Programatically groping set of UIElements using auto-layout. 
-- [x] Configuring and maintaining Application's theme via simple JSON. 
-- [x] Creating and managing RESTfull service layer and Domain Object via JSON.
-- [x] Customised UIKit elements.
-- [x] Secure storage with Keychain.
-
-MobileCore contains an integrated sample workspace `MobileCoreExample` featuring the use-case on how this framework works.
-
-## Get Started 
+Lets consider you are developing a Mobile application, be it for Prototyping or Enterprise, finding right set of utitlies all in one place or configuring application Theme, writing a Network-layer  isn't always easy and its time consuming to write the code from scratch. MobileCore takes care of all these hassles for you. 
 
 Before we create our new iOS project, let's discuss the libraries and resources we will use.
 
+## Get Started 
+
+MobileCore a Swift library consisting in a set of extensions to help dealing with 
+- [x] AppTheming - Configuring and maintaining Application's theme via simple JSON.
+- [x] CoreComponents - Customised UIKit elements.
+- [x] NetworkLayer - Creating and managing RESTfull service layer and Domain Object via JSON.
+- [x] CoreUtility - Frequently used utility by extension. 
+
+MobileCore contains an integrated sample workspace `MobileCoreExample` featuring the use-case on how this framework works.
+
+## Installation
+
+### CocoaPods
+
+[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Alamofire into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+pod 'MobileCore', '~> 0.1.3'
 ```
-MobileCore/
-├── AppTheming
-├── CoreUtility (Frequently used utility by extension)
-├── CoreUI
-└── NetworkLayer
+
+### Swift Package Manager
+
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler. 
+
+Once you have your Swift package set up, adding MobileCore as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
+
+```swift
+dependencies: [
+.package(url: "https://github.com/ppraveentr/MobileCore.git", .upToNextMajor(from: "0.1.3"))
+]
 ```
-
-### Using CococaPods
-
-We'll be using CocoaPods to manage our dependencies. 
-CocoaPods is a Ruby gem and command line tool  that makes it easy to add dependencies to your project. 
-We prefer CocoaPods over Git submodules  due to its ease of implementation  and the wide variety of third-party libraries available as pods. 
-CocoaPods will not only download the libraries we need and link them to our project in Xcode, it will also allow us to easily manage  and update which version of each library we want to use. Installing gem and creating a podfile is covered in more detail on their [CocoaPods](http://guides.cocoapods.org/using/getting-started.html) website. 
-
-Below is the podfile we're going to use for this project.
-
-    platform :ios, '9.0'
-    target 'YourMobileApp' do
-       pod 'MobileCore', '~> 0.1.0'
-    end
-
-Once you've updated your podfile, go ahead and run `$ pod install`.
-
-#### Tips:
-Add `@import MobileCore;` to your bridging header, to use it across the application.
 
 That's it - now your are good to go and start writing beautiful application and let the MobileCore do the heavy lifting for you.
 

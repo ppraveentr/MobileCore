@@ -309,10 +309,9 @@ extension ThemesManager {
             let key = arg.key.trimming("ios_")
             data.removeValue(forKey: arg.key)
             let dataVersion = NSString(string: key).floatValue
-            if dataVersion <= deviceVersion, let val = arg.value as? ThemeModel {
-                if baseModel == nil || (baseModel!.1 < dataVersion) {
+            if dataVersion <= deviceVersion, let val = arg.value as? ThemeModel,
+               (baseModel == nil || (baseModel!.1 < dataVersion)) {
                     baseModel = (val, dataVersion)
-                }
             }
         }
         
