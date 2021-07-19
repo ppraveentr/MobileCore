@@ -4,25 +4,61 @@
       "id" : "ABF538CD-009A-439B-8880-4A718C3EA08E",
       "name" : "MobileCoreTests",
       "options" : {
+        "addressSanitizer" : {
+          "enabled" : false
+        },
         "areLocalizationScreenshotsEnabled" : true,
-        "testTimeoutsEnabled" : true
+        "testTimeoutsEnabled" : true,
+        "threadSanitizerEnabled" : false
       }
     }
   ],
   "defaultOptions" : {
+    "addressSanitizer" : {
+      "detectStackUseAfterReturn" : true,
+      "enabled" : true
+    },
+    "guardMallocEnabled" : true,
+    "mallocGuardEdgesEnabled" : true,
+    "mallocScribbleEnabled" : true,
+    "mallocStackLoggingOptions" : {
+      "loggingType" : "liveAllocations"
+    },
     "nsZombieEnabled" : true,
     "targetForVariableExpansion" : {
       "containerPath" : "container:MobileCoreExample.xcodeproj",
       "identifier" : "DE9221C81EF28CDF000C8FC7",
       "name" : "MobileCoreExample"
-    }
+    },
+    "threadSanitizerEnabled" : true
   },
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:MobileCoreExample.xcodeproj",
-        "identifier" : "D44E56FD2341D3B900A0E56C",
-        "name" : "MobileCoreTests"
+        "containerPath" : "container:..",
+        "identifier" : "AppThemingTests",
+        "name" : "AppThemingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..",
+        "identifier" : "CoreComponentsTests",
+        "name" : "CoreComponentsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..",
+        "identifier" : "CoreUtilityTests",
+        "name" : "CoreUtilityTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..",
+        "identifier" : "NetworkLayerTests",
+        "name" : "NetworkLayerTests"
       }
     }
   ],

@@ -25,11 +25,21 @@ Does a static analysis of the project. Configure the options in .swiftlint.yml
 fastlane test
 ```
 Runs all the unit tests and UI Tests
-### deploy
+### podlibLint
 ```
-fastlane deploy
+fastlane podlibLint
 ```
-deploy podspec
+Cocoapods Spec Lint
+### bump_pod_version
+```
+fastlane bump_pod_version
+```
+Create Release Branch
+### create_tag
+```
+fastlane create_tag
+```
+Add new Tag to the branch and push to origin
 
 ----
 

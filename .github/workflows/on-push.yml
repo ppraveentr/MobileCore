@@ -1,0 +1,35 @@
+name: Unit Testing
+
+on:
+  push:
+    branches-ignore:
+        - 'release/**'
+  
+jobs:
+   swiftLint:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Bundle
+      run: bundle install
+    - name: Run swiftlint
+      run: bundle exec fastlane lint
+
+   test:
+    needs: swiftLint
+    runs-on: macos-latest
+    strategy:
+        matrix:
+          destination: ['platform=iOS Simulator,OS=14.4,name=iPhone 12 Pro Max']
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Bundle
+      run: bundle install
+    - name: Unit Test
+      run: bundle exec fastlane test
+      env:
+         destination: ${{ matrix.destination }}
+    - name: Pod Lib Lint
+      run: bundle exec fastlane podlibLint
+    - name: Updload to codecov
+      run: bash <(curl -s https://codecov.io/bash)
