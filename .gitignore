@@ -57,6 +57,7 @@ Example/Pods/**/*
 Example/Podfile.lock
 vendor/*
 .bundle/*
+.swiftpm/*
 
 # CLI
 *.coverage.txt

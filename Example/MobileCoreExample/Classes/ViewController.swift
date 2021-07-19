@@ -31,11 +31,11 @@ class ViewController: UIViewController {
     
     @objc
     func showFontPicker(sender: UIButton?) {
-        if let htmlView = contentViewC?.contentView {
-            let popoverContent = htmlView.fontPickerViewController
-            popoverContent.setUpPopoverPresentation(from: sender)
-            self.present(popoverContent, animated: true, completion: nil)
-        }
+//        if let htmlView = contentViewC?.contentView {
+//            let popoverContent = htmlView.fontPickerViewController
+//            popoverContent.setUpPopoverPresentation(from: sender)
+//            self.present(popoverContent, animated: true, completion: nil)
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

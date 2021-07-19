@@ -7,6 +7,11 @@
 //
 
 import Foundation
+#if canImport(AppTheming)
+import AppTheming
+import CoreUtility
+import CoreComponents
+#endif
 
 let kRecentUpdateString = "Recent Update"
 let kTopViews = "Top Views"
