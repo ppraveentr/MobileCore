@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'MobileCore'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = 'MobileCore framework.'
   s.homepage         = 'https://github.com/ppraveentr/MobileCore'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
