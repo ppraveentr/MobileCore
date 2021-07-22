@@ -28,8 +28,8 @@ public extension WebViewControllerProtocol {
 private extension WebViewControllerProtocol {
     @discardableResult
     func setupContentView(_ local: WKWebView = WKWebView() ) -> WKWebView {
-        if local.scrollView.delegate == nil {
-            local.scrollView.delegate = WebViewControllerViewDelegate.shared
+        if shouldHideNavigationOnScroll() {
+            (self as? ScrollViewControllerProtocol)?.hideNavigationOnScroll(for: local.scrollView)
         }
         // Load Base view
         setupCoreView()
@@ -42,32 +42,5 @@ private extension WebViewControllerProtocol {
         }
         AssociatedObject<WKWebView>.setAssociated(self, value: local, key: &kContentVC)
         return local
-    }
-}
-
-internal class WebViewControllerViewDelegate: NSObject, UIScrollViewDelegate {
-    // MARK: - Shared delegate
-    static var shared = WebViewControllerViewDelegate()
-    var shouldHideNav = false
-    
-    var navigationController: UINavigationController? {
-        UIWindow.topViewController?.navigationController
-    }
-
-    // MARK: - UIScrollViewDelegate
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? { nil }
-    
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView,
-                                   withVelocity velocity: CGPoint,
-                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        UIView.animate(withDuration: 0.01, delay: 0, options: UIView.AnimationOptions()) {
-            self.setBarStatus(hidden: velocity.y > 0)
-        }
-    }
-    
-    func setBarStatus(hidden: Bool) {
-        self.navigationController?.setNavigationBarHidden(hidden, animated: true)
-        guard self.navigationController?.toolbarItems?.isEmpty ?? false else { return }
-        self.navigationController?.setToolbarHidden(hidden, animated: true)
     }
 }

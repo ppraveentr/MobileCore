@@ -38,6 +38,7 @@ public enum ThemeKey: String, CaseIterable {
     // Appearanc
     case titleText, isTranslucent
     case tintColor, barTintColor, backgroundColor, foregroundColor
+    case gradientLayer, colors, locations
     // Font
     case system, boldSystem, italicSystem
     // Label
@@ -68,6 +69,11 @@ public struct ThemeStyle {
     }
 }
 
+// MARK: AssociatedKey
+private extension AssociatedKey {
+    static var gradientLayer = "gradientLayer"
+}
+
 extension UIView {
     // Theme style-name for the view
     @IBInspectable
@@ -88,6 +94,10 @@ extension UIView {
         if self.layer.shadowPath != nil {
             let rect = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
             self.layer.shadowPath = UIBezierPath(rect: rect).cgPath
+        }
+        
+        if let gardian: CAGradientLayer = AssociatedObject.getAssociated(self, key: &AssociatedKey.gradientLayer) {
+            gardian.frame = self.bounds
         }
     }
 
@@ -152,9 +162,7 @@ fileprivate extension UIView {
     // Retruns ('classname', 'Theme-style-name') only if both are valid
     func getThemeName() -> (String, String)? {
         // Vadidate className and ThemeName
-        guard
-            let className = Reflection.classNameAsString(self),
-            let themeName = self.theme else {
+        guard let className = Reflection.classNameAsString(self), let themeName = self.theme else {
             return nil
         }
         
@@ -164,7 +172,6 @@ fileprivate extension UIView {
             if let className = Reflection.classNameAsString(superClass), className.hasPrefix("UI") {
                 return nil
             }
-            
             return superClass
         }
 
@@ -174,7 +181,7 @@ fileprivate extension UIView {
             let superClass: AnyClass? = getSuperClass(type(of: self))
             // If SuperClass becomes invalid, terminate loop
             if let superClass = superClass, !UIView.kTerminalBaseClass.contains(where: { $0 == superclass }) {
-                 baseClassName = Reflection.classNameAsString(superClass)
+                baseClassName = Reflection.classNameAsString(superClass)
             }
             else {
                 break
@@ -208,6 +215,11 @@ extension UIView {
         if let colorName = theme[ThemeKey.backgroundColor],
            let color = ThemesManager.getColor(colorName as? String) {
             self.updateBackgroundColor(color)
+        }
+        if let model = theme[ThemeKey.gradientLayer] as? ThemeModel,
+           let layer = ThemesManager.getGradientLayer(model) {
+            AssociatedObject<CAGradientLayer>.setAssociated(self, value: layer, key: &AssociatedKey.gradientLayer)
+            self.layer.insertSublayer(layer, at: 0)
         }
         // "layer": To generate a layer and add it as subView
         if let layerName = theme[ThemesType.layer] as? String,
