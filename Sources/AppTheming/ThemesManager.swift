@@ -75,7 +75,6 @@ open class ThemesManager {
     }
     
     // MARK: UIColor
-    // TODO: gradian, rgb, alpha, ...
     public static func getColor(_ colorName: String?) -> UIColor? {
         guard let colorName = colorName else { return nil }
         // Check if its image coded string
@@ -98,7 +97,6 @@ open class ThemesManager {
     }
     
     // MARK: UIFont
-    // TODO: bold, thin, ...
     public static func getFont(_ fontName: String?) -> UIFont? {
         let font: ThemeModel = ThemesManager.getDefaults(type: .font, keyName: fontName) as? ThemeModel ?? [:]
         if let name: String = font[ThemeKey.name] as? String,
@@ -127,9 +125,7 @@ open class ThemesManager {
     // MARK: UIImage
     public static func getImage(_ imageName: Any?) -> UIImage? {
         guard let imageName = imageName as? String else { return nil }
-        if imageName == "@empty" {
-            return UIImage()
-        }
+        if imageName == "@empty" { return UIImage() }
         if imageName.hasPrefix("@") {
             // Search for image in all available bundles
             for bundleName in ThemesManager.imageSourceBundle {
@@ -150,10 +146,39 @@ open class ThemesManager {
         }
         return attributes
     }
+    
+    // MARK: CAGradientLayer
+    public static func getGradientLayer(_ layer: ThemeModel?) -> CAGradientLayer? {
+        guard let layer = layer else { return nil }
+        let gradient = CAGradientLayer()
+        for (name, value) in layer {
+            switch name {
+            case ThemeKey.colors.rawValue:
+                if let colors = value as? [String] {
+                    gradient.colors = colors.compactMap { getColor($0)?.cgColor }
+                }
+            case ThemeKey.locations.rawValue:
+                if let locations = value as? [Float] {
+                    gradient.locations = locations.compactMap { NSNumber(value: $0) }
+                }
+            default:
+                break
+            }
+        }
+        return gradient
+    }
 
     // MARK: CALayer
     public static func getLayer(_ layerName: String? = nil) -> ThemeModel? {
         ThemesManager.getDefaults(type: .layer, keyName: layerName) as? ThemeModel ?? [:]
+    }
+    
+    // MARK: CGFloat value
+    private static let floatValue = { (value: Any) -> CGFloat in
+        if let i = value as? Float {
+            return CGFloat(i)
+        }
+        return 0.0
     }
     
     // MARK: Size
@@ -171,14 +196,6 @@ open class ThemesManager {
     @discardableResult
     public static func getBackgroundLayer(_ layer: ThemeModel?, toLayer: CALayer? = nil) -> CALayer? {
         guard let layer = layer else { return nil }
-
-        let floatValue = { (value: Any) -> CGFloat in
-            if let i = value as? Float {
-                return CGFloat(i)
-            }
-            return 0.0
-        }
-        
         let caLayer = toLayer ?? CALayer()
         for (name, value) in layer {
             switch name {
@@ -219,17 +236,19 @@ open class ThemesManager {
 }
 
 extension ThemesManager {
+    static subscript(key: ThemesType) -> ThemeModel? { return ThemesManager.themesJSON[key] as? ThemeModel }
+    
     // MARK: Component
-    fileprivate class var themeComponent: ThemeModel? {
-        ThemesManager.themesJSON[ThemesType.components] as? ThemeModel
-    }
+    fileprivate class var themeComponent: ThemeModel? { ThemesManager[ThemesType.components] }
 
+    // Component - validity
     fileprivate static func isThemeComponentValid(_ component: String) -> Bool {
         // Get all the components of spefic type
         guard self.themeComponent?[component] as? ThemeModel != nil else { return false }
         return true
     }
 
+    // Component -
     fileprivate static func getThemeComponent(_ component: String, styleName: String? = nil) -> ThemeModel? {
         // TODO: Merge all sub-styles into single JSON, for easy parsing.
         // Get all the components of spefic type
@@ -242,7 +261,7 @@ extension ThemesManager {
     }
 
     // MARK: Color
-    fileprivate class var themeColor: ThemeModel? { ThemesManager.themesJSON[ThemesType.color] as? ThemeModel }
+    fileprivate class var themeColor: ThemeModel? { ThemesManager[ThemesType.color] }
 
     // Color -
     fileprivate static func themeColor(_ colorName: String) -> String? {
@@ -250,9 +269,7 @@ extension ThemesManager {
     }
 
     // MARK: font
-    fileprivate class var themeFont: ThemeModel? {
-        ThemesManager.themesJSON[ThemesType.font] as? ThemeModel
-    }
+    fileprivate class var themeFont: ThemeModel? { ThemesManager[ThemesType.font] }
 
     // font -
     fileprivate static func themeFont(_ fontName: String) -> ThemeModel? {
@@ -260,19 +277,7 @@ extension ThemesManager {
     }
 
     // MARK: Appearance
-    fileprivate class var themeAppearance: ThemeModel? {
-        ThemesManager.themesJSON[ThemesType.appearance] as? ThemeModel
-    }
-    
-    // MARK: Layer
-    fileprivate class var themeLayer: ThemeModel? {
-        ThemesManager.themesJSON[ThemesType.layer] as? ThemeModel
-    }
-    
-    // layer -
-    fileprivate static func themeLayer(_ layerName: String) -> ThemeModel? {
-        self.themeLayer?[layerName] as? ThemeModel
-    }
+    fileprivate class var themeAppearance: ThemeModel? { ThemesManager[ThemesType.appearance] }
 
     // Appearance -
     fileprivate static func themeAppearance(_ appearanceName: String? = nil) -> Any? {
@@ -284,6 +289,14 @@ extension ThemesManager {
         }
         // Retruns all appearance, which has same base name
         return themeAppearance?.filter { $0.0.hasPrefix(appearanceName) }
+    }
+    
+    // MARK: Layer
+    fileprivate class var themeLayer: ThemeModel? { ThemesManager[ThemesType.layer] }
+    
+    // layer -
+    fileprivate static func themeLayer(_ layerName: String) -> ThemeModel? {
+        self.themeLayer?[layerName] as? ThemeModel
     }
     
     // Get updated ThemeModel based on device's Version

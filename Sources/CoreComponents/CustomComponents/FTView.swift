@@ -106,6 +106,11 @@ open class FTView: UIView {
         // Pin : MainView to margin
         rootView.pin(view: self.mainPinnedView, edgeInsets: .horizontal )
     }
+    
+    open override func layoutSubviews() {
+        updateShadowPathIfNeeded()
+        super.layoutSubviews()
+    }
 }
 
 extension FTView {

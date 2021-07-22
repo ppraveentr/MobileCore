@@ -58,7 +58,6 @@ private extension CollectionViewControllerProtocol {
     
     @discardableResult
     func setupCoreCollectionVC(_ collectionView: UICollectionView? = nil) -> UICollectionViewController {
-
         // Load Base view
         setupCoreView()
         
