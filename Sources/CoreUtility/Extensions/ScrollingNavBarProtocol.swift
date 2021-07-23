@@ -18,10 +18,6 @@ private extension AssociatedKey {
 }
 
 extension UIViewController: ScrollingNavBarProtocol {
-    private var navController: UINavigationController? {
-        self.navigationController
-    }
-    
     private var scrollableView: UIView? {
         get { AssociatedObject<ScrollingNavBar>.getAssociated(self, key: &AssociatedKey.navBarScrollableView)?.scrollableView }
         set {
@@ -39,16 +35,16 @@ extension UIViewController: ScrollingNavBarProtocol {
     
     public func navBarAnimation(velocity: CGPoint, animateDuration: TimeInterval = 0.01, delay: TimeInterval = 0) {
         let isHidden = velocity.y <= 0
-        guard shouldHideNavigationOnScroll(), navController?.isNavigationBarHidden != isHidden else { return }
+        guard shouldHideNavigationOnScroll(), navigationController?.isNavigationBarHidden != isHidden else { return }
         UIView.animate(withDuration: animateDuration, delay: delay, options: UIView.AnimationOptions.beginFromCurrentState) {
             self.setBarStatus(hidden: isHidden)
         }
     }
     
     public func setBarStatus(hidden: Bool) {
-        navController?.setNavigationBarHidden(hidden, animated: true)
-        guard self.navController?.toolbarItems?.isEmpty ?? false else { return }
-        self.navController?.setToolbarHidden(hidden, animated: true)
+        navigationController?.setNavigationBarHidden(hidden, animated: true)
+        guard self.navigationController?.toolbarItems?.isEmpty ?? false else { return }
+        self.navigationController?.setToolbarHidden(hidden, animated: true)
     }
 }
 

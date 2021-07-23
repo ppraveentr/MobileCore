@@ -12,63 +12,6 @@ import CoreUtility
 import Foundation
 import UIKit
 
-public typealias ThemeModel = [String: Any]
-
-extension ThemeModel {
-    subscript(key: ThemeKey) -> Any? {
-        get { self[key.rawValue] }
-        set { self[key.rawValue] = newValue }
-    }
-    
-    subscript(theme: ThemesType) -> Any? {
-        get { self[theme.rawValue] }
-        set { self[theme.rawValue] = newValue }
-    }
-}
-
-public enum ThemesType: String, CaseIterable {
-    case color, font, layer, appearance, link, components
-}
-
-public enum ThemeKey: String, CaseIterable {
-    // Theme Super Components
-    case defaultValue = "default", superComponent = "_super"
-    // Image
-    case clear, image, backgroundImage, backIndicatorImage, backIndicatorTransitionMaskImage, shadowImage
-    // Appearanc
-    case titleText, isTranslucent
-    case tintColor, barTintColor, backgroundColor, foregroundColor
-    case gradientLayer, colors, locations
-    // Font
-    case system, boldSystem, italicSystem
-    // Label
-    case font, name, size, weight, textfont, textcolor, underline, style
-    case isLinkUnderlineEnabled, isLinkDetectionEnabled
-    // Layer
-    case masksToBounds, cornerRadius, borderWidth, borderColor
-    case shadowPath, shadowOffset, shadowColor, shadowRadius, shadowOpacity
-}
-
-public extension NSNotification.Name {
-    static let kAppearanceWillRefreshWindow = NSNotification.Name(rawValue: "kAppearance.willRefreshWindow.Notofication")
-    static let kAppearanceDidRefreshWindow = NSNotification.Name(rawValue: "kAppearance.didRefreshWindow.Notofication")
-}
-
-public struct ThemeStyle {
-    public static let defaultStyle = "default"
-    public static let highlightedStyle = "highlighted"
-    public static let selectedStyle = "selected"
-    public static let disabledStyle = "disabled"
-    
-    public static func allStyles() -> [String] {
-        [
-            ThemeStyle.highlightedStyle,
-            ThemeStyle.selectedStyle,
-            ThemeStyle.disabledStyle
-        ]
-    }
-}
-
 // MARK: AssociatedKey
 private extension AssociatedKey {
     static var gradientLayer = "gradientLayer"
@@ -135,7 +78,7 @@ fileprivate extension UIView {
         // Checkout if view supports Theming protocol
         let delegate: ThemeProtocol? = self as? ThemeProtocol
         // Get Theme property of view based on its state
-        if let themeDic = ThemesManager.generateVisualThemes(forClass: className, styleName: themeName, subStyleName: delegate?.subStyleName()) {
+        if let themeDic = ThemesManager.generateVisualThemes(className, styleName: themeName, subStyleName: delegate?.subStyleName()) {
             // Step 1. Config view with new Theme-style
              self.configureTheme(themeDic)
         }
@@ -149,9 +92,9 @@ fileprivate extension UIView {
             // For each style, get Theme value
             ThemeStyle.allStyles().forEach { style in
                 if let baseName = baseName,
-                    let styleThemeDic = ThemesManager.generateVisualThemes(forClass: className, styleName: baseName, subStyleName: style) {
+                    let styleThemeDic = ThemesManager.generateVisualThemes(className, styleName: baseName, subStyleName: style) {
                     // Create ThemeModel as, ['ThemeStyle.UIControlState' : 'ActualTheme for the state']
-                    styles[style] = styleThemeDic
+                    styles[style.rawValue] = styleThemeDic
                 }
             }
             // Setup visual component for each style
@@ -203,26 +146,37 @@ fileprivate extension UIView {
         // Only needed for UIControl types, Eg. Button
         guard let self = self as? ControlThemeProtocol else { return }
         // Get all subTheme for all stats of the control
-        let themeDic = [self.subStyleName() ?? ThemeStyle.defaultStyle: theme]
+        let themeStyleName = self.subStyleName() ?? ThemeStyle.defaultStyle
+        let themeDic = [themeStyleName.rawValue: theme]
         self.setThemes(themeDic)
     }
 }
 
 // MARK: UIView: ThemeProtocol
 extension UIView {
+    /// Updates View's based on theme
+    /// 1) backgroundColor,
+    /// 2) Adds CAGradientLayer,
+    /// 3) Setup CALayer for shadowLayer
+    /// 4) Custom config the component based on ThemeProtocol
     func setupViewTheme(_ theme: ThemeModel) {
         // "backgroundColor"
-        if let colorName = theme[ThemeKey.backgroundColor],
+        if let colorName = theme[ThemeType.Key.backgroundColor],
            let color = ThemesManager.getColor(colorName as? String) {
             self.updateBackgroundColor(color)
         }
-        if let model = theme[ThemeKey.gradientLayer] as? ThemeModel,
+        /// 2) Adds CAGradientLayer,
+        if let model = theme[ThemeType.Key.gradientLayer] as? ThemeModel,
            let layer = ThemesManager.getGradientLayer(model) {
+            // Remove any old layer
+            let oldGradian = AssociatedObject<CAGradientLayer>.getAssociated(self, key: &AssociatedKey.gradientLayer)
+            oldGradian?.removeFromSuperlayer()
+            // Set new layer
             AssociatedObject<CAGradientLayer>.setAssociated(self, value: layer, key: &AssociatedKey.gradientLayer)
             self.layer.insertSublayer(layer, at: 0)
         }
-        // "layer": To generate a layer and add it as subView
-        if let layerName = theme[ThemesType.layer] as? String,
+        /// Setup CALayer: Generate a layer and add it as subView
+        if let layerName = theme[ThemeType.layer] as? String,
            let layerValue = ThemesManager.getLayer(layerName) {
             ThemesManager.getBackgroundLayer(layerValue, toLayer: self.layer)
         }
@@ -244,8 +198,8 @@ extension UIControl {
     public func setThemes(_ themes: ThemeModel) {
         guard let themeSelf = self as? ControlThemeProtocol else { return }
         for (kind, value) in themes {
-            guard let theme = value as? ThemeModel else { continue }
-            switch kind {
+            guard let theme = value as? ThemeModel, let style = ThemeStyle(rawValue: kind) else { continue }
+            switch style {
             case ThemeStyle.defaultStyle:
                 themeSelf.update(themeDic: theme, state: .normal)
             case ThemeStyle.disabledStyle:
@@ -254,35 +208,7 @@ extension UIControl {
                 themeSelf.update(themeDic: theme, state: .highlighted)
             case ThemeStyle.selectedStyle:
                 themeSelf.update(themeDic: theme, state: .selected)
-            default:
-                break
             }
         }
-    }
-}
-
-// MARK: Window Refresh
-public extension UIWindow {
-    @nonobjc private func refreshAppearance() {
-        let constraints = self.constraints
-        removeConstraints(constraints)
-        for subview in subviews {
-            subview.removeFromSuperview()
-            addSubview(subview)
-        }
-        addConstraints(constraints)
-    }
-
-    /// Refreshes appearance for the window
-    /// - Parameter animated: if the refresh should be animated
-    func refreshAppearance(animated: Bool) {
-        NotificationCenter.default.post(name: .kAppearanceWillRefreshWindow, object: self)
-        UIView.animate(
-            withDuration: animated ? 0.25 : 0,
-            animations: { self.refreshAppearance() },
-            completion: { _ in
-            NotificationCenter.default.post(name: .kAppearanceDidRefreshWindow, object: self)
-            }
-        )
     }
 }

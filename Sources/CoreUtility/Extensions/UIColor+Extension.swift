@@ -10,31 +10,10 @@ import Foundation
 import UIKit
 
 /*
- Here's a correct table of percentages to hex values. E.g. for 50% white you'd use #80FFFFFF.
- 100% — FF
- 95% — F2
- 90% — E6
- 85% — D9
- 80% — CC
- 75% — BF
- 70% — B3
- 65% — A6
- 60% — 99
- 55% — 8C
- 50% — 80
- 45% — 73
- 40% — 66
- 35% — 59
- 30% — 4D
- 25% — 40
- 20% — 33
- 15% — 26
- 10% — 1A
- 5% — 0D
- 0% — 00
-
- Percentage to hex values:
- https://stackoverflow.com/questions/15852122/hex-transparency-in-colors
+ Here's the table of percentages to hex values. E.g. for 50% white you'd use #FFFFFF80.
+ 100% — FF :: 95% — F2 :: 90% — E6 :: 85% — D9 :: 80% — CC :: 75% — BF :: 70% — B3 :: 65% — A6
+  60% — 99 :: 55% — 8C :: 50% — 80 :: 45% — 73 :: 40% — 66 :: 35% — 59 :: 30% — 4D :: 25% — 40
+  20% — 33 :: 15% — 26 :: 10% — 1A ::  5% — 0D ::  0% — 00
  */
 
 public extension UIColor {
@@ -120,10 +99,8 @@ public extension UIColor {
 
 public extension UIImage {
     convenience init?(color: UIColor) {
-        if let cgImage = color.generateImage()?.cgImage {
-            self.init(cgImage: cgImage)
-        }
-        return nil
+        guard let cgImageValue = color.generateImage()?.cgImage else { return nil }
+        self.init(cgImage: cgImageValue)
     }
     
     func getColor(a: CGFloat = -10) -> UIColor? {

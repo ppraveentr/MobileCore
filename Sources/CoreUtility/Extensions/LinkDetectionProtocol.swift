@@ -33,10 +33,8 @@ public protocol LinkDetectionProtocol {
 }
 
 public class LinkHandlerModel {
-
     public enum LinkType {
-        case url
-        case hashTag
+        case url, hashTag
     }
     
     public var linkType: LinkType
@@ -61,29 +59,22 @@ extension LinkHandlerModel: LinkDetectionProtocol {
 public extension LinkDetectionProtocol {
     // Get list of LinkDetection from the String
     static func getURLLinkRanges(_ text: String) -> [LinkHandlerModel] {
-        
         var rangeOfURL = [LinkHandlerModel]()
-        
         let types: NSTextCheckingResult.CheckingType = [ .link, .phoneNumber]
         let detector = try? NSDataDetector(types: types.rawValue)
-        
         let range = text.nsRange()
         detector?.enumerateMatches(in: text, options: [], range: range) { result, _, _ in
-            if
-                let url = result?.url,
-                let range = result?.range {
-                    let dec = LinkHandlerModel(linkType: .url, linkRange: range, linkURL: url)
-                    rangeOfURL.append(dec)
+            if let url = result?.url, let range = result?.range {
+                let dec = LinkHandlerModel(linkType: .url, linkRange: range, linkURL: url)
+                rangeOfURL.append(dec)
             }
         }
-        
         return rangeOfURL
     }
     
     // Get list of LinkDetection from the NSAttributedString
     static func getURLLinkRanges(_ text: NSAttributedString) -> [LinkHandlerModel] {
         let searchKey = NSAttributedString.Key("NSLink")
-
         var rangeOfURL = [LinkHandlerModel]()
         let range = text.string.nsRange()
         text.enumerateAttributes(in: range, options: []) { obj, range, _ in
@@ -103,21 +94,15 @@ public extension LinkDetectionProtocol {
      * "#wellcome" is the detected-link
      */
     static func getHashTagRanges(_ text: String) -> [LinkHandlerModel] {
-        
         var rangeOfURL = [LinkHandlerModel]()
-        
         // Hi #wellcome thanks.
         // Here, "#wellcome" is retuned
         text.enumerate(pattern: "(?<!\\w)#([\\w]+)") { result in
-            if
-                let range = result?.range,
-                let subText = text.substring(with: range),
-                let url = URL(string: subText) {
-                    let dec = LinkHandlerModel(linkType: .hashTag, linkRange: range, linkURL: url)
-                    rangeOfURL.append(dec)
+            if let range = result?.range, let subText = text.substring(with: range), let url = URL(string: subText) {
+                let dec = LinkHandlerModel(linkType: .hashTag, linkRange: range, linkURL: url)
+                rangeOfURL.append(dec)
             }
         }
-        
         return rangeOfURL
     }
     
@@ -126,27 +111,21 @@ public extension LinkDetectionProtocol {
      * "#wellcome" is the detected-link
      */
     static func appendLink(attributedString: NSMutableAttributedString) -> [LinkHandlerModel] {
-        
         var links = [LinkHandlerModel]()
-        
         // HTTP links
         let urlLinks = Self.getURLLinkRanges(attributedString)
         links.insert(contentsOf: urlLinks, at: 0)
-        
         links.forEach { link in
             let att = getStyleProperties(forLink: link)
             attributedString.addAttributes(att, range: link.linkRange)
         }
-        
         // Hash Tags
         let hashLinks = Self.getHashTagRanges(attributedString.string)
         links.insert(contentsOf: hashLinks, at: 0)
-        
         hashLinks.forEach { link in
             let att = getStyleProperties(forLink: link)
             attributedString.addAttributes(att, range: link.linkRange)
         }
-        
         return links
     }
     
