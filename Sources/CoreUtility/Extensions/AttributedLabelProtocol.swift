@@ -117,8 +117,8 @@ extension UILabel: OptionalLayoutSubview {
     fileprivate var offsetXDivisor: CGFloat {
         switch self.textAlignment {
         case .center: return 0.5
-        case .right: return 1.0
-        default: return 0.0
+        case .right:  return 1.0
+        default:      return 0.0
         }
     }
     
@@ -133,7 +133,6 @@ extension UILabel: OptionalLayoutSubview {
         let paragrahStyle = NSMutableParagraphStyle()
         paragrahStyle.alignment = self.textAlignment
         paragrahStyle.lineBreakMode = self.lineBreakMode
-        
         var properties: AttributedDictionary = [
             .paragraphStyle: paragrahStyle,
             .backgroundColor: self.backgroundColor ?? UIColor.clear

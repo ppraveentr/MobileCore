@@ -85,7 +85,7 @@ open class ThemesManager {
     }
     
     // MARK: Theme components
-    public static func generateVisualThemes(forClass name: String, styleName: String, subStyleName subStyle: ThemeStyle? = nil) -> ThemeModel? {
+    public static func generateVisualThemes(_ name: String, styleName: String, subStyleName subStyle: ThemeStyle? = nil) -> ThemeModel? {
         var styleName = styleName
         // If any subTheme is avaiable, say when button is Highlighted, or view is disabled
         if let subStyle = subStyle, !styleName.contains(":") {

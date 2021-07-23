@@ -78,7 +78,7 @@ fileprivate extension UIView {
         // Checkout if view supports Theming protocol
         let delegate: ThemeProtocol? = self as? ThemeProtocol
         // Get Theme property of view based on its state
-        if let themeDic = ThemesManager.generateVisualThemes(forClass: className, styleName: themeName, subStyleName: delegate?.subStyleName()) {
+        if let themeDic = ThemesManager.generateVisualThemes(className, styleName: themeName, subStyleName: delegate?.subStyleName()) {
             // Step 1. Config view with new Theme-style
              self.configureTheme(themeDic)
         }
@@ -92,7 +92,7 @@ fileprivate extension UIView {
             // For each style, get Theme value
             ThemeStyle.allStyles().forEach { style in
                 if let baseName = baseName,
-                    let styleThemeDic = ThemesManager.generateVisualThemes(forClass: className, styleName: baseName, subStyleName: style) {
+                    let styleThemeDic = ThemesManager.generateVisualThemes(className, styleName: baseName, subStyleName: style) {
                     // Create ThemeModel as, ['ThemeStyle.UIControlState' : 'ActualTheme for the state']
                     styles[style.rawValue] = styleThemeDic
                 }
@@ -154,18 +154,28 @@ fileprivate extension UIView {
 
 // MARK: UIView: ThemeProtocol
 extension UIView {
+    /// Updates View's based on theme
+    /// 1) backgroundColor,
+    /// 2) Adds CAGradientLayer,
+    /// 3) Setup CALayer for shadowLayer
+    /// 4) Custom config the component based on ThemeProtocol
     func setupViewTheme(_ theme: ThemeModel) {
         // "backgroundColor"
         if let colorName = theme[ThemeType.Key.backgroundColor],
            let color = ThemesManager.getColor(colorName as? String) {
             self.updateBackgroundColor(color)
         }
+        /// 2) Adds CAGradientLayer,
         if let model = theme[ThemeType.Key.gradientLayer] as? ThemeModel,
            let layer = ThemesManager.getGradientLayer(model) {
+            // Remove any old layer
+            let oldGradian = AssociatedObject<CAGradientLayer>.getAssociated(self, key: &AssociatedKey.gradientLayer)
+            oldGradian?.removeFromSuperlayer()
+            // Set new layer
             AssociatedObject<CAGradientLayer>.setAssociated(self, value: layer, key: &AssociatedKey.gradientLayer)
             self.layer.insertSublayer(layer, at: 0)
         }
-        // "layer": To generate a layer and add it as subView
+        /// Setup CALayer: Generate a layer and add it as subView
         if let layerName = theme[ThemeType.layer] as? String,
            let layerValue = ThemesManager.getLayer(layerName) {
             ThemesManager.getBackgroundLayer(layerValue, toLayer: self.layer)
