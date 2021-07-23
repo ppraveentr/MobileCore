@@ -12,6 +12,46 @@ import CoreUtility
 import Foundation
 import UIKit
 
+public typealias ThemeModel = [String: Any]
+
+public enum ThemesType: String, CaseIterable {
+    case color, font, layer, appearance, link, components
+}
+
+public enum ThemeKey: String, CaseIterable {
+    // Theme Super Components
+    case defaultValue = "default", superComponent = "_super"
+    // Image
+    case clear, image, backgroundImage, backIndicatorImage, backIndicatorTransitionMaskImage, shadowImage
+    // Appearanc
+    case titleText, isTranslucent
+    case tintColor, barTintColor, backgroundColor, foregroundColor
+    case gradientLayer, colors, locations
+    // Font
+    case system, boldSystem, italicSystem
+    // Label
+    case font, name, size, weight, textfont, textcolor, underline, style
+    case isLinkUnderlineEnabled, isLinkDetectionEnabled
+    // Layer
+    case masksToBounds, cornerRadius, borderWidth, borderColor
+    case shadowPath, shadowOffset, shadowColor, shadowRadius, shadowOpacity
+}
+
+public struct ThemeStyle {
+    public static let defaultStyle = "default"
+    public static let highlightedStyle = "highlighted"
+    public static let selectedStyle = "selected"
+    public static let disabledStyle = "disabled"
+    
+    public static func allStyles() -> [String] {
+        [
+            ThemeStyle.highlightedStyle,
+            ThemeStyle.selectedStyle,
+            ThemeStyle.disabledStyle
+        ]
+    }
+}
+
 open class ThemesManager {
     static var imageSourceBundle: [Bundle] = []
     // Theme JSON file loaded from Main-App
@@ -232,6 +272,18 @@ open class ThemesManager {
     // TODO: custom themes for view-objects
     public static func getAppearance(_ appearanceName: String? = nil) -> Any? {
         themeAppearance(appearanceName)
+    }
+}
+
+extension ThemeModel {
+    subscript(key: ThemeKey) -> Any? {
+        get { self[key.rawValue] }
+        set { self[key.rawValue] = newValue }
+    }
+    
+    subscript(theme: ThemesType) -> Any? {
+        get { self[theme.rawValue] }
+        set { self[theme.rawValue] = newValue }
     }
 }
 
