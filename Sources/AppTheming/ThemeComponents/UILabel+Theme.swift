@@ -17,7 +17,7 @@ public protocol LabelThemeProtocol: ThemeProtocol {
 
 extension UILabel: ThemeProtocol {
     // If view is disabled, check for ".disabledStyle" style
-    public func subStyleName() -> String? {
+    public func subStyleName() -> ThemeStyle? {
         self.isEnabled ? nil : ThemeStyle.disabledStyle
     }
     
@@ -25,15 +25,15 @@ extension UILabel: ThemeProtocol {
     public func updateTheme(_ theme: ThemeModel) {
         for (kind, value) in theme {
             switch kind {
-            case ThemeKey.isLinkUnderlineEnabled.rawValue:
+            case ThemeType.Key.isLinkUnderlineEnabled.rawValue:
                 (self as? LabelThemeProtocol)?.isLinkUnderLineEnabled = value as? Bool ?? false
-            case ThemeKey.isLinkDetectionEnabled.rawValue:
+            case ThemeType.Key.isLinkDetectionEnabled.rawValue:
                 (self as? LabelThemeProtocol)?.islinkDetectionEnabled = value as? Bool ?? false
-            case ThemeKey.textfont.rawValue:
+            case ThemeType.Key.textfont.rawValue:
                 if let font = getFont(value as? String) {
                     self.font = font
                 }
-            case ThemeKey.textcolor.rawValue:
+            case ThemeType.Key.textcolor.rawValue:
                 if let color = getColor(value as? String) {
                    self.textColor = color
                 }

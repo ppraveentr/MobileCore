@@ -11,7 +11,7 @@ import UIKit
 
 extension UIButton: ControlThemeProtocol {
     // check view state, to update style
-    open func subStyleName() -> String? {
+    open func subStyleName() -> ThemeStyle? {
         if self.isEnabled {
             return nil
         }
@@ -31,30 +31,30 @@ extension UIButton: ControlThemeProtocol {
         let range = NSRange(location: 0, length: text.count)
         let attribute = NSMutableAttributedString(string: text)
         
-        if let color = ThemesManager.getColor(themeDic[ThemeKey.textcolor] as? String) {
+        if let color = ThemesManager.getColor(themeDic[ThemeType.Key.textcolor] as? String) {
             self.setTitleColor(color, for: state)
             // For attributed title
             attribute.addAttribute(.foregroundColor, value: color, range: range)
         }
         
-        if let text = themeDic[ThemeKey.textfont] as? String,
+        if let text = themeDic[ThemeType.Key.textfont] as? String,
            let font = ThemesManager.getFont(text) {
             self.titleLabel?.font = font
             // For attributed title
             attribute.addAttribute(.font, value: font, range: range)
         }
         
-        if let underline = themeDic[ThemeKey.underline] as? ThemeModel {
-            if let color = ThemesManager.getColor(underline[ThemesType.color] as? String) {
+        if let underline = themeDic[ThemeType.Key.underline] as? ThemeModel {
+            if let color = ThemesManager.getColor(underline[ThemeType.color] as? String) {
                 attribute.addAttribute(.underlineColor, value: color, range: range)
             }
-            if let intValue = underline[ThemeKey.style] as? Int {
+            if let intValue = underline[ThemeType.Key.style] as? Int {
                 let style = NSUnderlineStyle(rawValue: intValue).rawValue
                 attribute.addAttribute(.underlineStyle, value: style, range: range)
             }
         }
         
-        if let image = ThemesManager.getImage(themeDic[ThemeKey.image]) {
+        if let image = ThemesManager.getImage(themeDic[ThemeType.Key.image]) {
             self.setImage(image, for: state)
         }
         

@@ -30,17 +30,17 @@ extension UISearchBar: ThemeProtocol {
         
         for (kind, value) in theme {
             switch kind {
-            case ThemeKey.barTintColor.rawValue:
+            case ThemeType.Key.barTintColor.rawValue:
                 if let barTintColor = getColor(value as? String) {
                     self.barTintColor = barTintColor
                     self.backgroundImage = UIImage()
                     self.backgroundColor = .clear
                 }
-            case ThemeKey.tintColor.rawValue:
+            case ThemeType.Key.tintColor.rawValue:
                 tintColor = getColor(value as? String)
-            case ThemeKey.textcolor.rawValue:
+            case ThemeType.Key.textcolor.rawValue:
                 textcolor = getColor(value as? String)
-            case ThemeKey.textfont.rawValue:
+            case ThemeType.Key.textfont.rawValue:
                 font = getFont(value as? String)
             default:
                 break

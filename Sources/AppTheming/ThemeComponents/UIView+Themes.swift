@@ -94,7 +94,7 @@ fileprivate extension UIView {
                 if let baseName = baseName,
                     let styleThemeDic = ThemesManager.generateVisualThemes(forClass: className, styleName: baseName, subStyleName: style) {
                     // Create ThemeModel as, ['ThemeStyle.UIControlState' : 'ActualTheme for the state']
-                    styles[style] = styleThemeDic
+                    styles[style.rawValue] = styleThemeDic
                 }
             }
             // Setup visual component for each style
@@ -146,7 +146,8 @@ fileprivate extension UIView {
         // Only needed for UIControl types, Eg. Button
         guard let self = self as? ControlThemeProtocol else { return }
         // Get all subTheme for all stats of the control
-        let themeDic = [self.subStyleName() ?? ThemeStyle.defaultStyle: theme]
+        let themeStyleName = self.subStyleName() ?? ThemeStyle.defaultStyle
+        let themeDic = [themeStyleName.rawValue: theme]
         self.setThemes(themeDic)
     }
 }
@@ -155,17 +156,17 @@ fileprivate extension UIView {
 extension UIView {
     func setupViewTheme(_ theme: ThemeModel) {
         // "backgroundColor"
-        if let colorName = theme[ThemeKey.backgroundColor],
+        if let colorName = theme[ThemeType.Key.backgroundColor],
            let color = ThemesManager.getColor(colorName as? String) {
             self.updateBackgroundColor(color)
         }
-        if let model = theme[ThemeKey.gradientLayer] as? ThemeModel,
+        if let model = theme[ThemeType.Key.gradientLayer] as? ThemeModel,
            let layer = ThemesManager.getGradientLayer(model) {
             AssociatedObject<CAGradientLayer>.setAssociated(self, value: layer, key: &AssociatedKey.gradientLayer)
             self.layer.insertSublayer(layer, at: 0)
         }
         // "layer": To generate a layer and add it as subView
-        if let layerName = theme[ThemesType.layer] as? String,
+        if let layerName = theme[ThemeType.layer] as? String,
            let layerValue = ThemesManager.getLayer(layerName) {
             ThemesManager.getBackgroundLayer(layerValue, toLayer: self.layer)
         }
@@ -187,8 +188,8 @@ extension UIControl {
     public func setThemes(_ themes: ThemeModel) {
         guard let themeSelf = self as? ControlThemeProtocol else { return }
         for (kind, value) in themes {
-            guard let theme = value as? ThemeModel else { continue }
-            switch kind {
+            guard let theme = value as? ThemeModel, let style = ThemeStyle(rawValue: kind) else { continue }
+            switch style {
             case ThemeStyle.defaultStyle:
                 themeSelf.update(themeDic: theme, state: .normal)
             case ThemeStyle.disabledStyle:
@@ -197,8 +198,6 @@ extension UIControl {
                 themeSelf.update(themeDic: theme, state: .highlighted)
             case ThemeStyle.selectedStyle:
                 themeSelf.update(themeDic: theme, state: .selected)
-            default:
-                break
             }
         }
     }
