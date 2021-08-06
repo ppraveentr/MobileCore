@@ -105,5 +105,6 @@ public extension UINavigationBar {
             UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
         
         navigationBar.barTintColor = color
+        navigationBar.tintColor = color
     }
 }

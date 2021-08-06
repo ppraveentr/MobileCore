@@ -78,9 +78,9 @@
 		DE9221D31EF28CDF000C8FC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE9221D61EF28CDF000C8FC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE9221D81EF28CDF000C8FC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DE9FF335269F406D0020E855 /* workflows */ = {isa = PBXFileReference; lastKnownFileType = folder; name = workflows; path = ../.github/workflows; sourceTree = "<group>"; };
 		DE9FF336269F413C0020E855 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Gemfile; path = ../Gemfile; sourceTree = "<group>"; };
 		DE9FF337269F414E0020E855 /* fastlane */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fastlane; path = ../fastlane; sourceTree = "<group>"; };
+		DEB664C426B6763000A18E47 /* .github */ = {isa = PBXFileReference; lastKnownFileType = folder; name = .github; path = ../.github; sourceTree = "<group>"; };
 		DEBDC8931EF4508900AC77A9 /* MobileCoreExample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MobileCoreExample-Bridging-Header.h"; sourceTree = "<group>"; };
 		DEBDC8A21EF4520100AC77A9 /* MobileCoreExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobileCoreExample.entitlements; sourceTree = "<group>"; };
 		DEF68499269AEE3A00215BFE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = "<group>"; };
@@ -134,11 +134,11 @@
 		D49FE30E2345D2A4002B3742 /* CI-CD Setup */ = {
 			isa = PBXGroup;
 			children = (
+				DEB664C426B6763000A18E47 /* .github */,
 				DE63A3A826A416BF003DE96D /* Package.swift */,
 				D47590162317A68A00080D78 /* MobileCore.podspec */,
 				DE9FF336269F413C0020E855 /* Gemfile */,
 				DE9FF337269F414E0020E855 /* fastlane */,
-				DE9FF335269F406D0020E855 /* workflows */,
 				D49FE3132345D2FC002B3742 /* .gitignore */,
 				DEF68499269AEE3A00215BFE /* .swiftlint.yml */,
 				D49FE30F2345D2F1002B3742 /* .codecov.yml */,
