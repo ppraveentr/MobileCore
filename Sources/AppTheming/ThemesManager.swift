@@ -161,7 +161,9 @@ open class ThemesManager {
     // MARK: UIImage
     public static func getImage(_ imageName: Any?) -> UIImage? {
         guard let imageName = imageName as? String else { return nil }
-        if imageName == "@empty" { return UIImage() }
+        if imageName == "@empty" {
+            return UIImage()
+        }
         if imageName.hasPrefix("@") {
             // Search for image in all available bundles
             for bundleName in ThemesManager.imageSourceBundle {
@@ -284,7 +286,9 @@ extension ThemeModel {
 }
 
 extension ThemesManager {
-    static subscript(key: ThemeType) -> ThemeModel? { return ThemesManager.themesJSON[key] as? ThemeModel }
+    static subscript(key: ThemeType) -> ThemeModel? {
+        ThemesManager.themesJSON[key] as? ThemeModel
+    }
     
     // MARK: Component
     fileprivate class var themeComponent: ThemeModel? { ThemesManager[ThemeType.components] }
