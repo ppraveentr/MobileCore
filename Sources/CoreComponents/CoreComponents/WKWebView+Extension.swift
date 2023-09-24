@@ -51,10 +51,6 @@ extension WKWebView {
         }
     }
     
-    public func setHideNavigationOnScroll(hide: Bool) {
-        WebViewControllerViewDelegate.shared.shouldHideNav = hide
-    }
-    
     public func setScrollEnabled(enabled: Bool) {
         self.scrollView.isScrollEnabled = enabled
         self.scrollView.panGestureRecognizer.isEnabled = enabled

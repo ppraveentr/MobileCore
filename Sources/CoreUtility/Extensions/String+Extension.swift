@@ -137,29 +137,20 @@ public extension String {
      CGSize of text based.
      */
     func textSize(font: UIFont, constrainedSize: CGSize, lineBreakMode: NSLineBreakMode) -> CGSize {
-        guard !self.isEmpty else {
-            return .zero
-        }
-        
+        guard !self.isEmpty else { return .zero }
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = lineBreakMode
-        
-        let attributes: AttributedDictionary = [
-            .font: font,
-            .paragraphStyle: paragraphStyle
-        ]
-        
+        let attributes: AttributedDictionary = [ .font: font, .paragraphStyle: paragraphStyle ]
         let attributedString = NSAttributedString(string: self, attributes: attributes)
-        let size = attributedString.boundingRect(
+        let rect = attributedString.boundingRect(
             with: constrainedSize,
             options: [.usesDeviceMetrics, .usesLineFragmentOrigin, .usesFontLeading],
             context: nil
-            ).size
-        
-        return ceil(size: size)
+        )
+        return ceil(size: rect.size)
     }
     
-// MARK: JSON
+    // MARK: JSON
     // Loading Data from given Path
     func jsonContentAtPath<T>() throws -> T? {
         try dataAtPath()?.jsonContent() as? T
@@ -201,10 +192,8 @@ public extension String {
     }
     
     func bundle() -> Bundle? {
-        if let bundleURL = self.bundleURL() {
-            return Bundle(url: bundleURL)
-        }
-        return nil
+        guard let bundleURL = self.bundleURL() else { return nil }
+        return Bundle(url: bundleURL)
     }
 }
 
@@ -215,16 +204,15 @@ public extension NSAttributedString {
     }
     
     func mutableString() -> NSMutableAttributedString {
-        if let value = self.mutableCopy() as? NSMutableAttributedString {
-            return value
+        guard let value = self.mutableCopy() as? NSMutableAttributedString else {
+            return NSMutableAttributedString()
         }
-        return NSMutableAttributedString()
+        return value
     }
 }
 
 public extension NSMutableAttributedString {
     func addParagraphStyle(style: NSMutableParagraphStyle) {
-        let range = self.nsRange()
-        self.addAttribute(.paragraphStyle, value: style, range: range)
+        self.addAttribute(.paragraphStyle, value: style, range: nsRange())
     }
 }

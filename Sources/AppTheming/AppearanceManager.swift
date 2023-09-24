@@ -54,17 +54,17 @@ extension UIView: AppearanceManagerProtocol {
     @discardableResult
     @objc public class func setUpAppearance(theme: ThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
-        if let tintColor = theme[ThemeKey.tintColor.rawValue] {
+        if let tintColor = theme[ThemeType.Key.tintColor] {
             appearance.tintColor = ThemesManager.getColor(tintColor as? String)
         }
-        if let backgroundImage = theme[ThemeKey.backgroundImage] {
+        if let backgroundImage = theme[ThemeType.Key.backgroundImage] {
             self.setBackgroundImage(backgroundImage)
         }
         return appearance
     }
     
     @objc public class func setBackgroundImage(_ imageTheme: Any) {
-        self.setBackgroundImage(imageType: ThemeStyle.defaultStyle, imageName: imageTheme)
+        self.setBackgroundImage(imageType: ThemeStyle.defaultStyle.rawValue, imageName: imageTheme)
     }
     
     public class func setBackgroundImage(imageType: String?, imageName: Any) {
@@ -91,7 +91,7 @@ extension UISegmentedControl {
         let image = image.withRenderingMode(.alwaysTemplate)
             .resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3))
         let appearance = UISegmentedControl.appearance()
-        if imageType == ThemeStyle.selectedStyle {
+        if imageType == ThemeStyle.selectedStyle.rawValue {
             appearance.setBackgroundImage(image, for: .selected, barMetrics: .default)
         }
         else {
@@ -106,7 +106,7 @@ extension UINavigationBar {
         super.setUpAppearance(theme: theme, containerClass: containerClass)
         let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
        
-        for type in ThemeKey.allCases {
+        for type in ThemeType.Key.allCases {
             guard let value = theme[type.rawValue] else { continue }
             switch type {
             case .tintColor:
@@ -149,8 +149,8 @@ extension UINavigationBar {
     @available(iOS 13.0, *)
     private class func navBarAppearance(theme: ThemeModel, tile: AttributedDictionary?, largeTitle: AttributedDictionary?) -> UINavigationBarAppearance {
         let navAppe = UINavigationBarAppearance()
-        if let imageTheme = theme[ThemeKey.backgroundImage] as? ThemeModel,
-           let defaultImage = ThemesManager.getImage(imageTheme[ThemeKey.defaultValue]), let bgColor = defaultImage.getColor() {
+        if let imageTheme = theme[ThemeType.Key.backgroundImage] as? ThemeModel,
+           let defaultImage = ThemesManager.getImage(imageTheme[ThemeType.Key.defaultValue]), let bgColor = defaultImage.getColor() {
             navAppe.backgroundColor = bgColor
         }
         if let attributes = tile {
@@ -169,7 +169,7 @@ extension UINavigationBar {
         var landScapeImage: UIImage?
         
         if let imageTheme = image as? ThemeModel {
-            defaultImage = ThemesManager.getImage(imageTheme[ThemeKey.defaultValue])
+            defaultImage = ThemesManager.getImage(imageTheme[ThemeType.Key.defaultValue])
             landScapeImage = ThemesManager.getImage(imageTheme["landScape"])
         }
         

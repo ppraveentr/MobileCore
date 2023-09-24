@@ -5,6 +5,10 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
+#if canImport(AppTheming)
+import AppTheming
+import CoreComponents
+#endif
 import UIKit
 import WebKit
 

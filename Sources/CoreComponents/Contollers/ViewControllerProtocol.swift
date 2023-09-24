@@ -13,7 +13,7 @@ import UIKit
 
 public protocol ViewControllerProtocol where Self: UIViewController {
     var modelStack: AnyObject? { get set }
-    
+
     // Setup View
     func setupCoreView()
     // MARK: Navigation Bar

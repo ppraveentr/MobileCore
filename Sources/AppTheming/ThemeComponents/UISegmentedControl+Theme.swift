@@ -10,21 +10,21 @@ import UIKit
 
 extension UISegmentedControl: ControlThemeProtocol {
     // check view state, to update style
-    open func subStyleName() -> String? { nil }
+    open func subStyleName() -> ThemeStyle? { nil }
     
     public func update(themeDic: ThemeModel, state: UIControl.State) {
-        if let text = themeDic[ThemeKey.tintColor] as? String, let color: UIColor = ThemesManager.getColor(text) {
+        if let text = themeDic[ThemeType.Key.tintColor] as? String, let color: UIColor = ThemesManager.getColor(text) {
             self.tintColor = color
         }
         
         if #available(iOS 13, *), (themeDic["iOS12Style"] as? Bool) ?? false {
             // Update with iOS 12 style
             var textFont: UIFont = .systemFont(ofSize: 13, weight: .regular)
-            if let text = themeDic[ThemeKey.textfont] as? String, let font: UIFont = ThemesManager.getFont(text) {
+            if let text = themeDic[ThemeType.Key.textfont] as? String, let font: UIFont = ThemesManager.getFont(text) {
                 textFont = font
             }
             var textcolor: UIColor = .white
-            if let text = themeDic[ThemeKey.textcolor] as? String, let color: UIColor = ThemesManager.getColor(text) {
+            if let text = themeDic[ThemeType.Key.textcolor] as? String, let color: UIColor = ThemesManager.getColor(text) {
                 textcolor = color
             }
             ensureiOS12Style(font: textFont, textColor: textcolor)
