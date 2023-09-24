@@ -37,7 +37,6 @@ public protocol ViewControllerProtocol where Self: UIViewController {
     func topSafeAreaLayoutGuide() -> Bool
     func horizontalSafeAreaLayoutGuide() -> Bool
     func shouldDissmissKeyboardOnTap() -> Bool
-    func shouldHideNavigationOnScroll() -> Bool
 }
 
 private extension AssociatedKey {
@@ -109,12 +108,10 @@ extension UIViewController: ViewControllerProtocol {
     @objc
     open func shouldDissmissKeyboardOnTap() -> Bool { true }
     
-    // Will hide Navigation bar on scroll
-    @objc
-    open func shouldHideNavigationOnScroll() -> Bool { true }
-    
     public func setupCoreView() {
-        if self.view == self.baseView { return }
+        if self.view == self.baseView {
+            return
+        }
         guard let rootView = self.view else { return }
         var isValidBaseView = false
         

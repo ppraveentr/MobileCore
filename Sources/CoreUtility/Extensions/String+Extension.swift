@@ -142,9 +142,11 @@ public extension String {
         paragraphStyle.lineBreakMode = lineBreakMode
         let attributes: AttributedDictionary = [ .font: font, .paragraphStyle: paragraphStyle ]
         let attributedString = NSAttributedString(string: self, attributes: attributes)
-        let rect = attributedString.boundingRect(with: constrainedSize,
-                                                 options: [.usesDeviceMetrics, .usesLineFragmentOrigin, .usesFontLeading],
-                                                 context: nil)
+        let rect = attributedString.boundingRect(
+            with: constrainedSize,
+            options: [.usesDeviceMetrics, .usesLineFragmentOrigin, .usesFontLeading],
+            context: nil
+        )
         return ceil(size: rect.size)
     }
     

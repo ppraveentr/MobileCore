@@ -7,6 +7,7 @@
 //
 
 #if canImport(CoreUtility)
+import CoreComponents
 import CoreUtility
 #endif
 import Foundation
@@ -17,7 +18,7 @@ private extension AssociatedKey {
     static var gradientLayer = "gradientLayer"
 }
 
-extension UIView {
+extension UIView: ShadowPathProtocol {
     // Theme style-name for the view
     @IBInspectable
     public var theme: String? {
@@ -33,6 +34,7 @@ extension UIView {
         self.needsThemesUpdate = true
     }
     
+    @objc
     public func updateShadowPathIfNeeded() {
         if self.layer.shadowPath != nil {
             let rect = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)

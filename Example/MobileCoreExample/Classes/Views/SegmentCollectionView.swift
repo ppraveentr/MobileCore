@@ -38,8 +38,8 @@ class SegmentCollectionView: UIView {
             ftLog("Segment Selected: \(segment)", self.segmentedControl?.titleForSegment(at: segment) ?? "")
         }
 
-        self.theme = ThemeStyle.defaultStyle
-        segmentedControl?.theme = ThemeStyle.defaultStyle
+//        self.theme = ThemeStyle.defaultStyle
+//        segmentedControl?.theme = ThemeStyle.defaultStyle
 
         if let segment = segmentedControl {
             self.pin(view: segment, edgeOffsets: UIEdgeInsets(10))

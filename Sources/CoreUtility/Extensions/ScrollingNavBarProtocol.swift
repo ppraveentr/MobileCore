@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import UIKit
 
 public protocol ScrollingNavBarProtocol where Self: UIViewController {
     func hideNavigationOnScroll(for scrollableView: UIView, delay: Double)
     func navBarAnimation(velocity: CGPoint, animateDuration: TimeInterval, delay: TimeInterval)
     func setBarStatus(hidden: Bool)
+    func shouldHideNavigationOnScroll() -> Bool
 }
 
 private extension AssociatedKey {
@@ -18,6 +20,10 @@ private extension AssociatedKey {
 }
 
 extension UIViewController: ScrollingNavBarProtocol {
+    // Will hide Navigation bar on scroll
+    @objc
+    open func shouldHideNavigationOnScroll() -> Bool { true }
+    
     private var scrollableView: UIView? {
         get { AssociatedObject<ScrollingNavBar>.getAssociated(self, key: &AssociatedKey.navBarScrollableView)?.scrollableView }
         set {
@@ -48,7 +54,7 @@ extension UIViewController: ScrollingNavBarProtocol {
     }
 }
 
-fileprivate class ScrollingNavBar: NSObject, UIGestureRecognizerDelegate {
+private class ScrollingNavBar: NSObject, UIGestureRecognizerDelegate {
     weak var scrollableView: UIView?
     weak var delegate: ScrollingNavBarProtocol?
     private lazy var gestureRecognizer: UIPanGestureRecognizer = {
