@@ -13,7 +13,7 @@ import Foundation
 import UIKit
 
 @objc
-public protocol ShadowPathProtocol where Self: UIView {
+public protocol ShadowPathProtocol {
     func updateShadowPathIfNeeded()
 }
 

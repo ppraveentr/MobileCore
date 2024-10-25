@@ -18,7 +18,7 @@ private extension AssociatedKey {
     static var gradientLayer = Int8(0) // "gradientLayer"
 }
 
-extension UIView: @retroactive ShadowPathProtocol {
+extension UIView: ShadowPathProtocol {
     // Theme style-name for the view
     @IBInspectable
     public var theme: String? {
