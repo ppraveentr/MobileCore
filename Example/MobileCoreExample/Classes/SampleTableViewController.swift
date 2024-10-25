@@ -12,7 +12,7 @@ import AppTheming
 import CoreComponents
 #endif
 
-class SampleTableViewController: UIViewController, TableViewControllerProtocol {
+class SampleTableViewController: UIViewController, @preconcurrency TableViewControllerProtocol {
    
     @IBOutlet var footerView: UIView!
 

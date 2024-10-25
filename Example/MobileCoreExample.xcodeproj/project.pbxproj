@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,12 @@
 		D44E56F92341CFAB00A0E56C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44E56F82341CFAB00A0E56C /* UIKit.framework */; };
 		D49FE3182345D45A002B3742 /* SampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE3162345D459002B3742 /* SampleTableViewController.swift */; };
 		D49FE3192345D45A002B3742 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49FE3172345D459002B3742 /* ViewController.swift */; };
+		D4E050642CCB470B0028D1CE /* MobileTheming in Frameworks */ = {isa = PBXBuildFile; productRef = D4E050632CCB470B0028D1CE /* MobileTheming */; };
+		D4E050672CCB4A5D0028D1CE /* AppTheming in Frameworks */ = {isa = PBXBuildFile; productRef = D4E050662CCB4A5D0028D1CE /* AppTheming */; };
+		D4E050692CCB4A5D0028D1CE /* CoreComponents in Frameworks */ = {isa = PBXBuildFile; productRef = D4E050682CCB4A5D0028D1CE /* CoreComponents */; };
+		D4E0506B2CCB4A5D0028D1CE /* CoreUtility in Frameworks */ = {isa = PBXBuildFile; productRef = D4E0506A2CCB4A5D0028D1CE /* CoreUtility */; };
+		D4E0506D2CCB4A5D0028D1CE /* MobileTheming in Frameworks */ = {isa = PBXBuildFile; productRef = D4E0506C2CCB4A5D0028D1CE /* MobileTheming */; };
+		D4E0506F2CCB4A5D0028D1CE /* NetworkLayer in Frameworks */ = {isa = PBXBuildFile; productRef = D4E0506E2CCB4A5D0028D1CE /* NetworkLayer */; };
 		DE2A6A3426A4199A001F1FF3 /* AppTheming in Frameworks */ = {isa = PBXBuildFile; productRef = DE2A6A3326A4199A001F1FF3 /* AppTheming */; };
 		DE2A6A3626A4199A001F1FF3 /* CoreComponents in Frameworks */ = {isa = PBXBuildFile; productRef = DE2A6A3526A4199A001F1FF3 /* CoreComponents */; };
 		DE2A6A3826A4199A001F1FF3 /* CoreUtility in Frameworks */ = {isa = PBXBuildFile; productRef = DE2A6A3726A4199A001F1FF3 /* CoreUtility */; };
@@ -98,12 +104,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4E0506D2CCB4A5D0028D1CE /* MobileTheming in Frameworks */,
+				D4E0506B2CCB4A5D0028D1CE /* CoreUtility in Frameworks */,
 				DE2A6A3826A4199A001F1FF3 /* CoreUtility in Frameworks */,
+				D4E0506F2CCB4A5D0028D1CE /* NetworkLayer in Frameworks */,
+				D4E050642CCB470B0028D1CE /* MobileTheming in Frameworks */,
 				DE2A6A3C26A419A3001F1FF3 /* Foundation.framework in Frameworks */,
+				D4E050692CCB4A5D0028D1CE /* CoreComponents in Frameworks */,
 				DE2A6A3626A4199A001F1FF3 /* CoreComponents in Frameworks */,
 				DE2A6A3A26A4199A001F1FF3 /* NetworkLayer in Frameworks */,
 				D44E56F92341CFAB00A0E56C /* UIKit.framework in Frameworks */,
 				DE2A6A3426A4199A001F1FF3 /* AppTheming in Frameworks */,
+				D4E050672CCB4A5D0028D1CE /* AppTheming in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +285,12 @@
 				DE2A6A3526A4199A001F1FF3 /* CoreComponents */,
 				DE2A6A3726A4199A001F1FF3 /* CoreUtility */,
 				DE2A6A3926A4199A001F1FF3 /* NetworkLayer */,
+				D4E050632CCB470B0028D1CE /* MobileTheming */,
+				D4E050662CCB4A5D0028D1CE /* AppTheming */,
+				D4E050682CCB4A5D0028D1CE /* CoreComponents */,
+				D4E0506A2CCB4A5D0028D1CE /* CoreUtility */,
+				D4E0506C2CCB4A5D0028D1CE /* MobileTheming */,
+				D4E0506E2CCB4A5D0028D1CE /* NetworkLayer */,
 			);
 			productName = FTMobileCoreSample;
 			productReference = DE9221C91EF28CDF000C8FC7 /* MobileCoreExample.app */;
@@ -320,7 +338,7 @@
 			);
 			mainGroup = DE9221C01EF28CDF000C8FC7;
 			packageReferences = (
-				DE2A6A3226A41980001F1FF3 /* XCRemoteSwiftPackageReference "MobileCore" */,
+				D4E050652CCB4A5D0028D1CE /* XCLocalSwiftPackageReference "../../MobileCore" */,
 			);
 			productRefGroup = DE9221CA1EF28CDF000C8FC7 /* Products */;
 			projectDirPath = "";
@@ -440,7 +458,7 @@
 				DEVELOPMENT_TEAM = W6W48SVQX7;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MobileCoreTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -471,7 +489,7 @@
 				DEVELOPMENT_TEAM = W6W48SVQX7;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MobileCoreTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -540,7 +558,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-Onone";
@@ -548,7 +566,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -599,14 +617,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -625,12 +643,13 @@
 				DEVELOPMENT_TEAM = W6W48SVQX7;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.2;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ft.$(TARGET_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -656,12 +675,13 @@
 				DEVELOPMENT_TEAM = W6W48SVQX7;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.2;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ft.$(TARGET_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -704,18 +724,38 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		DE2A6A3226A41980001F1FF3 /* XCRemoteSwiftPackageReference "MobileCore" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ppraveentr/MobileCore.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		D4E050652CCB4A5D0028D1CE /* XCLocalSwiftPackageReference "../../MobileCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../MobileCore;
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D4E050632CCB470B0028D1CE /* MobileTheming */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MobileTheming;
+		};
+		D4E050662CCB4A5D0028D1CE /* AppTheming */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppTheming;
+		};
+		D4E050682CCB4A5D0028D1CE /* CoreComponents */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreComponents;
+		};
+		D4E0506A2CCB4A5D0028D1CE /* CoreUtility */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreUtility;
+		};
+		D4E0506C2CCB4A5D0028D1CE /* MobileTheming */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MobileTheming;
+		};
+		D4E0506E2CCB4A5D0028D1CE /* NetworkLayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkLayer;
+		};
 		DE2A6A3326A4199A001F1FF3 /* AppTheming */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppTheming;
