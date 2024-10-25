@@ -23,7 +23,7 @@ public protocol TableViewControllerProtocol: ViewControllerProtocol {
 
 // MARK: AssociatedKey
 private extension AssociatedKey {
-    static var kAOTableVC = "k.FT.AO.TableViewController"
+    static var kAOTableVC = Int8(0) // "k.FT.AO.TableViewController"
 }
 
 public extension TableViewControllerProtocol {

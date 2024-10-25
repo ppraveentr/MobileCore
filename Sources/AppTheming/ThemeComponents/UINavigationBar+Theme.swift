@@ -6,6 +6,7 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
+import CoreUtility
 import Foundation
 import UIKit
 

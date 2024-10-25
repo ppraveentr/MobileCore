@@ -14,7 +14,7 @@ extension UIViewController {
 
     var isBaseViewAdded: Bool {
         // If baseView is not added, then retun false
-        return (self.baseView?.superview != self.view && self.view != self.baseView)
+        (self.baseView?.superview != self.view && self.view != self.baseView)
     }
 
     // MARK: Utility

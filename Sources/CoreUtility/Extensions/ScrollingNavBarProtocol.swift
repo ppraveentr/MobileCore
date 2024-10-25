@@ -16,7 +16,7 @@ public protocol ScrollingNavBarProtocol where Self: UIViewController {
 }
 
 private extension AssociatedKey {
-    static var navBarScrollableView = "navBar.scrollableView"
+    static var navBarScrollableView = Int8(0) // "navBar.scrollableView"
 }
 
 extension UIViewController: ScrollingNavBarProtocol {

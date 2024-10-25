@@ -15,10 +15,10 @@ import UIKit
 
 // MARK: AssociatedKey
 private extension AssociatedKey {
-    static var gradientLayer = "gradientLayer"
+    static var gradientLayer = Int8(0) // "gradientLayer"
 }
 
-extension UIView: ShadowPathProtocol {
+extension UIView: @retroactive ShadowPathProtocol {
     // Theme style-name for the view
     @IBInspectable
     public var theme: String? {

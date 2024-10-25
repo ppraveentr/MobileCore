@@ -26,15 +26,15 @@ protocol AttributedLabelProtocol where Self: UILabel {
 }
 
 private extension AssociatedKey {
-    static var textContainer = "textContainer"
-    static var layoutManager = "layoutManager"
-    static var styleProperties = "styleProperties"
+    static var textContainer = Int8(0) // "textContainer"
+    static var layoutManager = Int8(1) // "layoutManager"
+    static var styleProperties = Int8(2) // "styleProperties"
 
-    static var linkRanges = "linkRanges"
-    static var islinkDetectionEnabled = "islinkDetectionEnabled"
-    static var isLinkUnderLineEnabled = "isLinkUnderLineEnabled"
-    static var linkHandler = "linkHandler"
-    static var tapGestureRecognizer = "tapGestureRecognizer"
+    static var linkRanges = Int8(3) // "linkRanges"
+    static var islinkDetectionEnabled = Int8(4) // "islinkDetectionEnabled"
+    static var isLinkUnderLineEnabled = Int8(5) // "isLinkUnderLineEnabled"
+    static var linkHandler = Int8(6) // "linkHandler"
+    static var tapGestureRecognizer = Int8(7) // "tapGestureRecognizer"
 }
 
 extension UILabel: AttributedLabelProtocol {

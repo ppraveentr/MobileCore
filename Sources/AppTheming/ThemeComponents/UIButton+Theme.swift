@@ -11,7 +11,7 @@ import UIKit
 
 extension UIButton: ControlThemeProtocol {
     // check view state, to update style
-    open func subStyleName() -> ThemeStyle? {
+    public func subStyleName() -> ThemeStyle? {
         if self.isEnabled {
             return nil
         }
@@ -26,7 +26,7 @@ extension UIButton: ControlThemeProtocol {
     }
     
     // For custome key:value pairs
-    open func update(themeDic: ThemeModel, state: UIControl.State) {
+    public func update(themeDic: ThemeModel, state: UIControl.State) {
         let text = self.title(for: state) ?? ""
         let range = NSRange(location: 0, length: text.count)
         let attribute = NSMutableAttributedString(string: text)

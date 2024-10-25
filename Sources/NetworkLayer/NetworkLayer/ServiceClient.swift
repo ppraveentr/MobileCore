@@ -22,9 +22,9 @@ private enum LogConstants: String {
 
 // MARK: AssociatedKey
 private extension AssociatedKey {
-    static var ServiceRequest = "ServiceRequest"
-    static var ResponseData = "ResponseData"
-    static var ModelData = "ModelData"
+    static var ServiceRequest = Int8(0) // "ServiceRequest"
+    static var ResponseData = Int8(1) // "ResponseData"
+    static var ModelData = Int8(2) // "ModelData"
 }
 
 // MARK: Service Status
@@ -324,7 +324,7 @@ extension ServiceClient {
             }
         }
 
-        let handler: URLSessionCompletionBlock = { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+        let handler: URLSessionCompletionBlock = { (data: Data?, response: URLResponse?, error: Error?) in
             let request = self.serviceRequest
             // Log Resposne
             logError(request, error)
@@ -373,8 +373,7 @@ extension ServiceClient {
         ftLog(self.serviceName, ": is data stubbed.")
         if
             let path: String = NetworkMananger.mockBundle?.path(forResource: self.serviceName, ofType: "json"),
-            let data = try? path.dataAtPath()
-        {
+            let data = try? path.dataAtPath() {
             let model = self.processResponseData(data: data)
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2)) {
                 completionHandler?(ServiceStatus.success(self, (model != nil) ? 200 : 500))

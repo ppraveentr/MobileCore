@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public enum AssociatedKey {
-    public static var defaultKey = "AssociatedKey.defaultKey"
+    public static var defaultKey = Int8(0) // "AssociatedKey.defaultKey"
 }
 
 // Generic way of storing values on runtime

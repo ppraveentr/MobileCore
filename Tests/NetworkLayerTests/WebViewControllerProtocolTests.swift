@@ -14,7 +14,7 @@
 import WebKit
 import XCTest
 
-fileprivate final class MockKWebViewController: UIViewController, WebViewControllerProtocol {
+private final class MockKWebViewController: UIViewController, WebViewControllerProtocol {
     // Mock: object implementation for testing
 }
    

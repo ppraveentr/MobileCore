@@ -40,7 +40,7 @@ public class NetworkMananger {
     // Stub data bundle, used by ServiceClient
     static var mockBundle: Bundle?
 
-    public static var mockBundleResource: URL? = nil {
+    public static var mockBundleResource: URL? {
         didSet {
             if let bundle = mockBundleResource {
                 mockBundle = Bundle(url: bundle)
@@ -140,8 +140,7 @@ extension NetworkMananger {
         if
             let resourcePath = Bundle.main.path(forResource: self.serviceBindingRulesName, ofType: nil),
             let content: JSON = NSMutableDictionary(contentsOfFile: resourcePath) as? JSON,
-            JSONSerialization.isValidJSONObject(content)
-        {
+            JSONSerialization.isValidJSONObject(content) {
                 self.sharedInstance.serviceRuels += content
         }
     }

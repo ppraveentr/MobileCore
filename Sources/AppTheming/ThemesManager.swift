@@ -114,7 +114,7 @@ open class ThemesManager {
     public static func getColor(_ colorName: String?) -> UIColor? {
         guard let colorName = colorName else { return nil }
         // Check if its image coded string
-        if (colorName.hasPrefix("@")), let image = ThemesManager.getImage(colorName) {
+        if colorName.hasPrefix("@"), let image = ThemesManager.getImage(colorName) {
             return image.getColor()
         }
         // Get hex color
@@ -296,7 +296,7 @@ extension ThemesManager {
     // Component - validity
     fileprivate static func isThemeComponentValid(_ component: String) -> Bool {
         // Get all the components of spefic type
-        guard self.themeComponent?[component] as? ThemeModel != nil else { return false }
+        guard self.themeComponent?[component] is ThemeModel else { return false }
         return true
     }
 
@@ -375,7 +375,7 @@ extension ThemesManager {
             data.removeValue(forKey: arg.key)
             let dataVersion = NSString(string: key).floatValue
             if dataVersion <= deviceVersion, let val = arg.value as? ThemeModel,
-               (baseModel == nil || (baseModel!.1 < dataVersion)) {
+               baseModel == nil || (baseModel!.1 < dataVersion) {
                     baseModel = (val, dataVersion)
             }
         }

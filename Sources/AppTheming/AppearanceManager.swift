@@ -53,7 +53,7 @@ extension UIView: AppearanceManagerProtocol {
 
     @discardableResult
     @objc public class func setUpAppearance(theme: ThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
-        let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
+        let appearance = (containerClass == nil) ? self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
         if let tintColor = theme[ThemeType.Key.tintColor] {
             appearance.tintColor = ThemesManager.getColor(tintColor as? String)
         }
@@ -81,11 +81,6 @@ extension UIView: AppearanceManagerProtocol {
 }
 
 extension UISegmentedControl {
-    override public class func setUpAppearance(theme: ThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
-        super.setUpAppearance(theme: theme, containerClass: containerClass)
-//        let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
-//        return appearance
-    }
     
     public class func setBackgroundImage(imageType: String, image: UIImage) {
         let image = image.withRenderingMode(.alwaysTemplate)
@@ -104,7 +99,7 @@ extension UINavigationBar {
     // swiftlint:disable cyclomatic_complexity
     override public class func setUpAppearance(theme: ThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         super.setUpAppearance(theme: theme, containerClass: containerClass)
-        let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
+        let appearance = (containerClass == nil) ? self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
        
         for type in ThemeType.Key.allCases {
             guard let value = theme[type.rawValue] else { continue }

@@ -13,7 +13,7 @@
 #endif
 import XCTest
 
-fileprivate final class MockCollectionViewController: UIViewController, CollectionViewControllerProtocol {
+private final class MockCollectionViewController: UIViewController, CollectionViewControllerProtocol {
     // Mock: object implementation for testing
 }
 

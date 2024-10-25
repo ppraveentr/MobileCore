@@ -70,7 +70,7 @@ final class CustomUIElementsTests: XCTestCase {
         let white = ThemesManager.getColor("white")
         let bar = UISearchBar(frame: .zero)
         bar.text = titleString
-        bar.theme = ThemeStyle.defaultStyle
+        bar.theme = ThemeStyle.defaultStyle.rawValue
         XCTAssertEqual(bar.barTintColor, ThemesManager.getColor("navBarRed"))
         XCTAssertEqual(bar.tintColor, white)
         if #available(iOS 13.0, *) {
@@ -83,7 +83,7 @@ final class CustomUIElementsTests: XCTestCase {
         // let
         let white = ThemesManager.getColor("navBarRed")
         let segment = UISegmentedControl(items: ["item1", "item2"])
-        segment.theme = ThemeStyle.defaultStyle
+        segment.theme = ThemeStyle.defaultStyle.rawValue
         XCTAssertEqual(segment.tintColor, white)
     }
 }

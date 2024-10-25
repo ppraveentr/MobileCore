@@ -13,7 +13,7 @@ import CoreUtility
 import UIKit
 import XCTest
 
-fileprivate final class MockScrollViewController: UIViewController, ScrollViewControllerProtocol {
+private final class MockScrollViewController: UIViewController, ScrollViewControllerProtocol {
     // Optional Protocol implementation: intentionally empty
 }
 

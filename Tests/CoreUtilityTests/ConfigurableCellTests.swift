@@ -11,7 +11,7 @@ import CoreUtility
 #endif
 import XCTest
 
-fileprivate final class MockViewCellWithoutNib: UIView {
+private final class MockViewCellWithoutNib: UIView {
 }
 
 final class ConfigurableCellTests: XCTestCase {

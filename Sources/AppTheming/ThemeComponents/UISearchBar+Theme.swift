@@ -14,8 +14,8 @@ import UIKit
 
 // MARK: AssociatedKey
 private extension AssociatedKey {
-    static var searchUITextField = "searchUITextField"
-    static var searchBarAttributes = "searchBarAttributes"
+    static var searchUITextField = Int8(0) // "searchUITextField"
+    static var searchBarAttributes = Int8(1) // "searchBarAttributes"
 }
 
 // MARK: UISearchBar

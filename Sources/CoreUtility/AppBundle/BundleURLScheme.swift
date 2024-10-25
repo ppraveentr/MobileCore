@@ -20,8 +20,7 @@ open class BundleURLScheme {
             for urlType in bundleURLTypes {
                 if
                     let urlSchemes = (urlType as? NSDictionary)?.value(forKey: "CFBundleURLSchemes") as? NSArray,
-                    urlSchemes.contains(scheme)
-                {
+                    urlSchemes.contains(scheme) {
                     return true
                 }
             }
