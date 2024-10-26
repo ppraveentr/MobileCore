@@ -12,6 +12,11 @@ import CoreUtility
 import Foundation
 import UIKit
 
+@objc
+public protocol ShadowPathProtocol {
+    func updateShadowPathIfNeeded()
+}
+
 open class FTView: UIView {
     
     // Set as BaseView, so that "pin'ning" subViews wont alter the base position
@@ -105,6 +110,12 @@ open class FTView: UIView {
         pinToRootView(viewArray: viewArray)
         // Pin : MainView to margin
         rootView.pin(view: self.mainPinnedView, edgeInsets: .horizontal )
+    }
+    
+    override open func layoutSubviews() {
+        // Send action to superView to update view
+        UIApplication.shared.sendAction(#selector(ShadowPathProtocol.updateShadowPathIfNeeded), to: nil, from: self, for: nil)
+        super.layoutSubviews()
     }
 }
 

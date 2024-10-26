@@ -12,15 +12,15 @@ import CoreUtility
 #endif
 import XCTest
 
-fileprivate final class MockTableViewHeader: UIView {
+private final class MockTableViewHeader: UIView {
     // Temp class extending Protocol for testing
 }
 
-fileprivate final class MockTableViewController: UIViewController, TableViewControllerProtocol {
+private final class MockTableViewController: UIViewController, TableViewControllerProtocol {
     // Temp class extending Protocol for testing
 }
 
-fileprivate final class MockCustomTableViewController: UIViewController, TableViewControllerProtocol {
+private final class MockCustomTableViewController: UIViewController, TableViewControllerProtocol {
     var tableStyle: UITableView.Style = .grouped
     var tableViewEdgeOffsets: UIEdgeInsets = .init(40, 40, 40, 40)
 }

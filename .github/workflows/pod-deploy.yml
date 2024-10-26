@@ -12,6 +12,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install Bundle
       run: bundle install
+    - name: Install Swiftlint
+      run: brew install swiftlint
     - name: Run swiftlint
       run: bundle exec fastlane lint
       

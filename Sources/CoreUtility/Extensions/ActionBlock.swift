@@ -14,7 +14,7 @@ public typealias ActionWithObjectBlock = (_ object: AnyObject?) -> Swift.Void
 
 public extension UIControl {
     private struct AssociatedKey {
-        static var actionBlockTapped = "actionBlockTapped"
+        static var actionBlockTapped = Int8(0) // "actionBlockTapped"
     }
 
     func addTapActionBlock(_ actionBlock: @escaping ActionBlock) {

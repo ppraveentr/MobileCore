@@ -32,15 +32,9 @@ fileprivate extension UIView {
 }
 
 public extension UIView {
-   static var defaultNibName: String {
-       String(describing: self)
-   }
-
+    static var defaultNibName: String { String(describing: self) }
     // ReuseIdentifier
-    static var defaultReuseIdentifier: String {
-        "\(self)ID"
-    }
-     
+    static var defaultReuseIdentifier: String { "\(self)ID" }
     // Retruns true if nib file is avaialble
     static var hasNib: Bool {
         Bundle(for: self).path(forResource: defaultNibName, ofType: "nib") != nil
@@ -53,9 +47,7 @@ public extension UIView {
     }
     
     // Retruns first view from the nib file
-    static func loadNibFromBundle<T: UIView>(_ nibName: String? = nil,
-                                             bundle: Bundle? = nil,
-                                             owner: Any? = nil) throws -> T {
+    static func loadNibFromBundle<T: UIView>(_ nibName: String? = nil, bundle: Bundle? = nil, owner: Any? = nil) throws -> T {
         let nibName = nibName ?? defaultNibName
         let bundle = bundle ?? Bundle(for: self)
         guard bundle.path(forResource: nibName, ofType: "nib") != nil,

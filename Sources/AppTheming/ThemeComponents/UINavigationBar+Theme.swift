@@ -6,6 +6,7 @@
 //  Copyright © 2017 Praveen Prabhakar. All rights reserved.
 //
 
+import CoreUtility
 import Foundation
 import UIKit
 
@@ -105,5 +106,6 @@ public extension UINavigationBar {
             UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
         
         navigationBar.barTintColor = color
+        navigationBar.tintColor = color
     }
 }

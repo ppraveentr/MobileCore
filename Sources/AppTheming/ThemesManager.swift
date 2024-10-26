@@ -12,6 +12,42 @@ import CoreUtility
 import Foundation
 import UIKit
 
+public typealias ThemeModel = [String: Any]
+
+public enum ThemeType: String, CaseIterable {
+    case color, font, layer, appearance, link, components
+    
+    public enum Key: String, CaseIterable {
+        // Theme Super Components
+        case defaultValue = "default", superComponent = "_super"
+        // Image
+        case clear, image, backgroundImage, backIndicatorImage, backIndicatorTransitionMaskImage, shadowImage
+        // Appearanc
+        case titleText, isTranslucent
+        case tintColor, barTintColor, backgroundColor, foregroundColor
+        case gradientLayer, colors, locations
+        // Font
+        case system, boldSystem, italicSystem
+        // Label
+        case font, name, size, weight, textfont, textcolor, underline, style
+        case isLinkUnderlineEnabled, isLinkDetectionEnabled
+        // Layer
+        case masksToBounds, cornerRadius, borderWidth, borderColor
+        case shadowPath, shadowOffset, shadowColor, shadowRadius, shadowOpacity
+    }
+}
+
+public enum ThemeStyle: String, CaseIterable {
+    case defaultStyle = "default"
+    case highlightedStyle = "highlighted"
+    case selectedStyle = "selected"
+    case disabledStyle = "disabled"
+    
+    public static func allStyles() -> [ThemeStyle] {
+        [ .highlightedStyle, .selectedStyle, .disabledStyle ]
+    }
+}
+
 open class ThemesManager {
     static var imageSourceBundle: [Bundle] = []
     // Theme JSON file loaded from Main-App
@@ -49,11 +85,11 @@ open class ThemesManager {
     }
     
     // MARK: Theme components
-    public static func generateVisualThemes(forClass name: String, styleName: String, subStyleName subStyle: String? = nil) -> ThemeModel? {
+    public static func generateVisualThemes(_ name: String, styleName: String, subStyleName subStyle: ThemeStyle? = nil) -> ThemeModel? {
         var styleName = styleName
         // If any subTheme is avaiable, say when button is Highlighted, or view is disabled
         if let subStyle = subStyle, !styleName.contains(":") {
-            styleName += ":" + subStyle
+            styleName += ":" + subStyle.rawValue
         }
         // Get theme component
         guard let currentTheme: ThemeModel = ThemesManager.getViewComponent(name, styleName: styleName) else {
@@ -75,11 +111,10 @@ open class ThemesManager {
     }
     
     // MARK: UIColor
-    // TODO: gradian, rgb, alpha, ...
     public static func getColor(_ colorName: String?) -> UIColor? {
         guard let colorName = colorName else { return nil }
         // Check if its image coded string
-        if (colorName.hasPrefix("@")), let image = ThemesManager.getImage(colorName) {
+        if colorName.hasPrefix("@"), let image = ThemesManager.getImage(colorName) {
             return image.getColor()
         }
         // Get hex color
@@ -91,31 +126,30 @@ open class ThemesManager {
         if let hexColor = UIColor.hexColor(color) {
             return hexColor
         }
-        if color == ThemeKey.clear.rawValue {
+        if color == ThemeType.Key.clear.rawValue {
             return UIColor.clear
         }
         return nil
     }
     
     // MARK: UIFont
-    // TODO: bold, thin, ...
     public static func getFont(_ fontName: String?) -> UIFont? {
         let font: ThemeModel = ThemesManager.getDefaults(type: .font, keyName: fontName) as? ThemeModel ?? [:]
-        if let name: String = font[ThemeKey.name] as? String,
-           let sizeValue: String = font[ThemeKey.size] as? String,
+        if let name: String = font[ThemeType.Key.name] as? String,
+           let sizeValue: String = font[ThemeType.Key.size] as? String,
            let size = NumberFormatter().number(from: sizeValue) {
             // Size Value
             let sizeValue = CGFloat(truncating: size)
             var weight: UIFont.Weight = .regular
-            if let value = font[ThemeKey.weight] as? CGFloat {
+            if let value = font[ThemeType.Key.weight] as? CGFloat {
                weight = UIFont.Weight(value)
             }
             switch name {
-            case ThemeKey.system.rawValue:
+            case ThemeType.Key.system.rawValue:
                 return UIFont.systemFont(ofSize: sizeValue, weight: weight)
-            case ThemeKey.boldSystem.rawValue:
+            case ThemeType.Key.boldSystem.rawValue:
                 return UIFont.boldSystemFont(ofSize: sizeValue)
-            case ThemeKey.italicSystem.rawValue:
+            case ThemeType.Key.italicSystem.rawValue:
                 return UIFont.italicSystemFont(ofSize: sizeValue)
             default:
                 return UIFont(name: name, size: sizeValue)
@@ -145,15 +179,44 @@ open class ThemesManager {
     public static func getTextAttributes(_ theme: ThemeModel?) -> AttributedDictionary? {
         guard let theme = theme else { return nil }
         var attributes = AttributedDictionary()
-        if let value = theme[ThemeKey.foregroundColor] as? String {
+        if let value = theme[ThemeType.Key.foregroundColor] as? String {
             attributes[.foregroundColor] = self.getColor(value)
         }
         return attributes
+    }
+    
+    // MARK: CAGradientLayer
+    public static func getGradientLayer(_ layer: ThemeModel?) -> CAGradientLayer? {
+        guard let layer = layer else { return nil }
+        let gradient = CAGradientLayer()
+        for (name, value) in layer {
+            switch name {
+            case ThemeType.Key.colors.rawValue:
+                if let colors = value as? [String] {
+                    gradient.colors = colors.compactMap { getColor($0)?.cgColor }
+                }
+            case ThemeType.Key.locations.rawValue:
+                if let locations = value as? [Float] {
+                    gradient.locations = locations.compactMap { NSNumber(value: $0) }
+                }
+            default:
+                break
+            }
+        }
+        return gradient
     }
 
     // MARK: CALayer
     public static func getLayer(_ layerName: String? = nil) -> ThemeModel? {
         ThemesManager.getDefaults(type: .layer, keyName: layerName) as? ThemeModel ?? [:]
+    }
+    
+    // MARK: CGFloat value
+    private static let floatValue = { (value: Any) -> CGFloat in
+        if let i = value as? Float {
+            return CGFloat(i)
+        }
+        return 0.0
     }
     
     // MARK: Size
@@ -171,36 +234,28 @@ open class ThemesManager {
     @discardableResult
     public static func getBackgroundLayer(_ layer: ThemeModel?, toLayer: CALayer? = nil) -> CALayer? {
         guard let layer = layer else { return nil }
-
-        let floatValue = { (value: Any) -> CGFloat in
-            if let i = value as? Float {
-                return CGFloat(i)
-            }
-            return 0.0
-        }
-        
         let caLayer = toLayer ?? CALayer()
         for (name, value) in layer {
             switch name {
-            case ThemeKey.cornerRadius.rawValue:
+            case ThemeType.Key.cornerRadius.rawValue:
                 caLayer.cornerRadius = floatValue(value)
-            case ThemeKey.borderWidth.rawValue:
+            case ThemeType.Key.borderWidth.rawValue:
                 caLayer.borderWidth = floatValue(value)
-            case ThemeKey.masksToBounds.rawValue:
+            case ThemeType.Key.masksToBounds.rawValue:
                 caLayer.masksToBounds = (value as? Bool) ?? false
-            case ThemeKey.borderColor.rawValue:
+            case ThemeType.Key.borderColor.rawValue:
                 caLayer.borderColor = ThemesManager.getColor(value as? String)?.cgColor
-            case ThemeKey.shadowOffset.rawValue:
+            case ThemeType.Key.shadowOffset.rawValue:
                 caLayer.shadowOffset = ThemesManager.getSize(value)
-            case ThemeKey.shadowPath.rawValue:
+            case ThemeType.Key.shadowPath.rawValue:
                 caLayer.shadowOffset = .zero
                 let rect = CGRect(x: 0, y: 0, width: caLayer.bounds.width, height: caLayer.bounds.height)
                 caLayer.shadowPath = UIBezierPath(rect: rect).cgPath
-            case ThemeKey.shadowColor.rawValue:
+            case ThemeType.Key.shadowColor.rawValue:
                 caLayer.shadowColor = ThemesManager.getColor(value as? String)?.cgColor
-            case ThemeKey.shadowRadius.rawValue:
+            case ThemeType.Key.shadowRadius.rawValue:
                 caLayer.shadowRadius = floatValue(value)
-            case ThemeKey.shadowOpacity.rawValue:
+            case ThemeType.Key.shadowOpacity.rawValue:
                 if let value = value as? CGFloat {
                     caLayer.shadowOpacity = Float(value)
                 }
@@ -218,18 +273,34 @@ open class ThemesManager {
     }
 }
 
-extension ThemesManager {
-    // MARK: Component
-    fileprivate class var themeComponent: ThemeModel? {
-        ThemesManager.themesJSON[ThemesType.components] as? ThemeModel
+extension ThemeModel {
+    subscript(key: ThemeType.Key) -> Any? {
+        get { self[key.rawValue] }
+        set { self[key.rawValue] = newValue }
     }
+    
+    subscript(theme: ThemeType) -> Any? {
+        get { self[theme.rawValue] }
+        set { self[theme.rawValue] = newValue }
+    }
+}
 
+extension ThemesManager {
+    static subscript(key: ThemeType) -> ThemeModel? {
+        ThemesManager.themesJSON[key] as? ThemeModel
+    }
+    
+    // MARK: Component
+    fileprivate class var themeComponent: ThemeModel? { ThemesManager[ThemeType.components] }
+
+    // Component - validity
     fileprivate static func isThemeComponentValid(_ component: String) -> Bool {
         // Get all the components of spefic type
-        guard self.themeComponent?[component] as? ThemeModel != nil else { return false }
+        guard self.themeComponent?[component] is ThemeModel else { return false }
         return true
     }
 
+    // Component -
     fileprivate static func getThemeComponent(_ component: String, styleName: String? = nil) -> ThemeModel? {
         // TODO: Merge all sub-styles into single JSON, for easy parsing.
         // Get all the components of spefic type
@@ -242,7 +313,7 @@ extension ThemesManager {
     }
 
     // MARK: Color
-    fileprivate class var themeColor: ThemeModel? { ThemesManager.themesJSON[ThemesType.color] as? ThemeModel }
+    fileprivate class var themeColor: ThemeModel? { ThemesManager[ThemeType.color] }
 
     // Color -
     fileprivate static func themeColor(_ colorName: String) -> String? {
@@ -250,9 +321,7 @@ extension ThemesManager {
     }
 
     // MARK: font
-    fileprivate class var themeFont: ThemeModel? {
-        ThemesManager.themesJSON[ThemesType.font] as? ThemeModel
-    }
+    fileprivate class var themeFont: ThemeModel? { ThemesManager[ThemeType.font] }
 
     // font -
     fileprivate static func themeFont(_ fontName: String) -> ThemeModel? {
@@ -260,19 +329,7 @@ extension ThemesManager {
     }
 
     // MARK: Appearance
-    fileprivate class var themeAppearance: ThemeModel? {
-        ThemesManager.themesJSON[ThemesType.appearance] as? ThemeModel
-    }
-    
-    // MARK: Layer
-    fileprivate class var themeLayer: ThemeModel? {
-        ThemesManager.themesJSON[ThemesType.layer] as? ThemeModel
-    }
-    
-    // layer -
-    fileprivate static func themeLayer(_ layerName: String) -> ThemeModel? {
-        self.themeLayer?[layerName] as? ThemeModel
-    }
+    fileprivate class var themeAppearance: ThemeModel? { ThemesManager[ThemeType.appearance] }
 
     // Appearance -
     fileprivate static func themeAppearance(_ appearanceName: String? = nil) -> Any? {
@@ -284,6 +341,14 @@ extension ThemesManager {
         }
         // Retruns all appearance, which has same base name
         return themeAppearance?.filter { $0.0.hasPrefix(appearanceName) }
+    }
+    
+    // MARK: Layer
+    fileprivate class var themeLayer: ThemeModel? { ThemesManager[ThemeType.layer] }
+    
+    // layer -
+    fileprivate static func themeLayer(_ layerName: String) -> ThemeModel? {
+        self.themeLayer?[layerName] as? ThemeModel
     }
     
     // Get updated ThemeModel based on device's Version
@@ -310,7 +375,7 @@ extension ThemesManager {
             data.removeValue(forKey: arg.key)
             let dataVersion = NSString(string: key).floatValue
             if dataVersion <= deviceVersion, let val = arg.value as? ThemeModel,
-               (baseModel == nil || (baseModel!.1 < dataVersion)) {
+               baseModel == nil || (baseModel!.1 < dataVersion) {
                     baseModel = (val, dataVersion)
             }
         }
@@ -322,7 +387,7 @@ extension ThemesManager {
     }
     
     // Defaults
-    fileprivate static func getDefaults(type: ThemesType, keyName: String? = nil, styleName: String? = nil) -> Any? {
+    fileprivate static func getDefaults(type: ThemeType, keyName: String? = nil, styleName: String? = nil) -> Any? {
         guard let key = keyName else { return nil }
         var superBlock: ((String) -> Any?)?
         switch type {
@@ -332,11 +397,11 @@ extension ThemesManager {
             // TODO: iterative 'super' is still pending
             if
                 let viewComponent = actualComponents,
-                let superType = viewComponent[ThemeKey.superComponent] as? String,
+                let superType = viewComponent[ThemeType.Key.superComponent] as? String,
                 var superCom = getThemeComponent(key, styleName: superType) {
                 // If view-component has super's style, use it as base component and merge its own style
                 superCom += viewComponent
-                superCom.removeValue(forKey: ThemeKey.superComponent.rawValue)
+                superCom.removeValue(forKey: ThemeType.Key.superComponent.rawValue)
                 
                 // Merged result
                 return getOSVersion(model: superCom)
@@ -359,11 +424,11 @@ extension ThemesManager {
         
         var actualComponents: Any?
         // If component of specifc type is not found, search for "default" style
-        let components: Any? = superBlock?(key) ?? superBlock?(ThemeStyle.defaultStyle)
+        let components: Any? = superBlock?(key) ?? superBlock?(ThemeStyle.defaultStyle.rawValue)
         // TODO: iterative 'super' is still pending
         if
             let currentComponent = components as? ThemeModel,
-            let superType = currentComponent[ThemeKey.superComponent] as? String,
+            let superType = currentComponent[ThemeType.Key.superComponent] as? String,
             let superComponents = superBlock?(superType) as? ThemeModel {
             
             // Merge super's style with current theme

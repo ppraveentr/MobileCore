@@ -13,7 +13,7 @@ import UIKit
 
 public protocol ViewControllerProtocol where Self: UIViewController {
     var modelStack: AnyObject? { get set }
-    
+
     // Setup View
     func setupCoreView()
     // MARK: Navigation Bar
@@ -40,10 +40,10 @@ public protocol ViewControllerProtocol where Self: UIViewController {
 }
 
 private extension AssociatedKey {
-    static var baseView = "baseView"
-    static var screenIdentifier = "screenIdentifier"
-    static var modelStack = "modelStack"
-    static var completionBlock = "completionBlock"
+    static var baseView = Int8(0) // "baseView"
+    static var screenIdentifier = Int8(1) // "screenIdentifier"
+    static var modelStack = Int8(2) // "modelStack"
+    static var completionBlock = Int8(3) // "completionBlock"
 }
 
 extension UIViewController: ViewControllerProtocol {

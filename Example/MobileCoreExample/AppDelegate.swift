@@ -13,7 +13,7 @@ import NetworkLayer
 import AppTheming
 #endif
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var kBundle = Bundle(for: AppDelegate.self)
     var window: UIWindow?

@@ -49,7 +49,7 @@ public extension FlattenIterator {
         }
         // Array
         else if var dicArray = self as? [Any?] {
-            dicArray = dicArray.filter({ $0 != nil })
+            dicArray = dicArray.filter { $0 != nil }
             self = dicArray.map { val -> Any in
                 var value = val
                 return stripSubElements(&value!)

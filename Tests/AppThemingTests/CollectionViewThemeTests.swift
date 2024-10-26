@@ -48,10 +48,10 @@ final class CollectionViewThemeTests: XCTestCase {
         let value = ThemesManager.getColor("white")
         // when
         collectionView.backgroundView = tempView
-        collectionView.theme = ThemeStyle.defaultStyle
+        collectionView.theme = ThemeStyle.defaultStyle.rawValue
         // then
         XCTAssertNotNil(value, "Should have valid value")
-        XCTAssertEqual(tempView.theme, ThemeStyle.defaultStyle)
+        XCTAssertEqual(tempView.theme, ThemeStyle.defaultStyle.rawValue)
         XCTAssertEqual(tempView.backgroundColor, value)
     }
 }

@@ -30,10 +30,10 @@ public enum AppearanceManager {
     static func setupApplicationTheme() {
         guard let app = ThemesManager.getAppearance() as? ThemeModel else { return }
         for theme in app where ((theme.value as? ThemeModel) != nil) {
-            if let themeObj: ThemeModel = theme.value as? ThemeModel {
+            if let themeObj = theme.value as? ThemeModel {
                 let components = getComponentName(theme.key)
                 // Setup 'appearance' from Theme
-                if let classTy: AppearanceManagerProtocol = Reflection.swiftClassFromString(components.0) as? AppearanceManagerProtocol {
+                if let classTy = Reflection.swiftClassFromString(components.0) as? AppearanceManagerProtocol {
                     var appearanceContainer: [UIAppearanceContainer.Type]?
                     if let className = components.1,
                         let objecClass = Reflection.swiftClassTypeFromString(className) {
@@ -47,24 +47,27 @@ public enum AppearanceManager {
 }
 
 extension UIView: AppearanceManagerProtocol {
-    public func setUpAppearance(theme: ThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
+    public func setUpAppearance(theme: ThemeModel,
+                                containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         type(of: self).setUpAppearance(theme: theme, containerClass: containerClass)
     }
 
-    @discardableResult
-    @objc public class func setUpAppearance(theme: ThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
-        let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
-        if let tintColor = theme[ThemeKey.tintColor.rawValue] {
+    @discardableResult @objc
+    public class func setUpAppearance(theme: ThemeModel,
+                                      containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
+        let appearance = (containerClass == nil) ?
+            self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
+        if let tintColor = theme[ThemeType.Key.tintColor] {
             appearance.tintColor = ThemesManager.getColor(tintColor as? String)
         }
-        if let backgroundImage = theme[ThemeKey.backgroundImage] {
+        if let backgroundImage = theme[ThemeType.Key.backgroundImage] {
             self.setBackgroundImage(backgroundImage)
         }
         return appearance
     }
     
     @objc public class func setBackgroundImage(_ imageTheme: Any) {
-        self.setBackgroundImage(imageType: ThemeStyle.defaultStyle, imageName: imageTheme)
+        self.setBackgroundImage(imageType: ThemeStyle.defaultStyle.rawValue, imageName: imageTheme)
     }
     
     public class func setBackgroundImage(imageType: String?, imageName: Any) {
@@ -81,17 +84,12 @@ extension UIView: AppearanceManagerProtocol {
 }
 
 extension UISegmentedControl {
-    override public class func setUpAppearance(theme: ThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
-        super.setUpAppearance(theme: theme, containerClass: containerClass)
-//        let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
-//        return appearance
-    }
     
     public class func setBackgroundImage(imageType: String, image: UIImage) {
         let image = image.withRenderingMode(.alwaysTemplate)
             .resizableImage(withCapInsets: UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3))
         let appearance = UISegmentedControl.appearance()
-        if imageType == ThemeStyle.selectedStyle {
+        if imageType == ThemeStyle.selectedStyle.rawValue {
             appearance.setBackgroundImage(image, for: .selected, barMetrics: .default)
         }
         else {
@@ -102,11 +100,13 @@ extension UISegmentedControl {
 
 extension UINavigationBar {
     // swiftlint:disable cyclomatic_complexity
-    override public class func setUpAppearance(theme: ThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
+    override public class func setUpAppearance(
+        theme: ThemeModel, containerClass: [UIAppearanceContainer.Type]?) -> UIAppearance {
         super.setUpAppearance(theme: theme, containerClass: containerClass)
-        let appearance = (containerClass == nil) ?  self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
+        let appearance = (containerClass == nil) ?
+            self.appearance() : self.appearance(whenContainedInInstancesOf: containerClass!)
        
-        for type in ThemeKey.allCases {
+        for type in ThemeType.Key.allCases {
             guard let value = theme[type.rawValue] else { continue }
             switch type {
             case .tintColor:
@@ -120,37 +120,32 @@ extension UINavigationBar {
             case .isTranslucent:
                 if let value = value as? Bool {
                     appearance.isTranslucent = value
-                    // FIXIT: Not able to update statusbar color if not set to `blackTranslucent`
-                    if value {
-                        appearance.barStyle = .blackTranslucent
-                    }
                 }
             case .titleText:
                 if let attributes = ThemesManager.getTextAttributes(value as? ThemeModel) {
                     appearance.titleTextAttributes = attributes
-                    if #available(iOS 13.0, *) {
-                        appearance.largeTitleTextAttributes = attributes
-                    }
+                    appearance.largeTitleTextAttributes = attributes
                 }
             default:
                 break
             }
         }
 
-        if #available(iOS 13.0, *) {
-            let navAppe = navBarAppearance(theme: theme, tile: appearance.titleTextAttributes, largeTitle: appearance.largeTitleTextAttributes)
-            appearance.standardAppearance = navAppe
-            appearance.compactAppearance = navAppe
-            appearance.scrollEdgeAppearance = navAppe
-        }
+        let navAppe = navBarAppearance(theme: theme, tile: appearance.titleTextAttributes,
+                                       largeTitle: appearance.largeTitleTextAttributes)
+        appearance.standardAppearance = navAppe
+        appearance.compactAppearance = navAppe
+        appearance.scrollEdgeAppearance = navAppe
         return appearance
     }
     
     @available(iOS 13.0, *)
-    private class func navBarAppearance(theme: ThemeModel, tile: AttributedDictionary?, largeTitle: AttributedDictionary?) -> UINavigationBarAppearance {
+    private class func navBarAppearance(theme: ThemeModel, tile: AttributedDictionary?,
+                                        largeTitle: AttributedDictionary?) -> UINavigationBarAppearance {
         let navAppe = UINavigationBarAppearance()
-        if let imageTheme = theme[ThemeKey.backgroundImage] as? ThemeModel,
-           let defaultImage = ThemesManager.getImage(imageTheme[ThemeKey.defaultValue]), let bgColor = defaultImage.getColor() {
+        if let imageTheme = theme[ThemeType.Key.backgroundImage] as? ThemeModel,
+           let defaultImage = ThemesManager.getImage(imageTheme[ThemeType.Key.defaultValue]),
+           let bgColor = defaultImage.getColor() {
             navAppe.backgroundColor = bgColor
         }
         if let attributes = tile {
@@ -169,12 +164,13 @@ extension UINavigationBar {
         var landScapeImage: UIImage?
         
         if let imageTheme = image as? ThemeModel {
-            defaultImage = ThemesManager.getImage(imageTheme[ThemeKey.defaultValue])
+            defaultImage = ThemesManager.getImage(imageTheme[ThemeType.Key.defaultValue])
             landScapeImage = ThemesManager.getImage(imageTheme["landScape"])
         }
         
         if defaultImage != nil {
-            self.applyBackgroundImage(navigationBar: nil, defaultImage: defaultImage!, landScapeImage: landScapeImage)
+            self.applyBackgroundImage(navigationBar: nil, defaultImage: defaultImage!,
+                                      landScapeImage: landScapeImage)
         }
     }
 }

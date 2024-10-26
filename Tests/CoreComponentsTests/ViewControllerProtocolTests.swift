@@ -28,9 +28,9 @@ extension MockModelStack: Equatable {
 }
 
 private final class MockViewContoller: UIViewController {
-    private (set) var isKeyboardWillShowCalled = false
-    private (set) var isKeyboardDidHideCalled = false
-    private (set) var isAlertViewPresented = false
+    private(set) var isKeyboardWillShowCalled = false
+    private(set) var isKeyboardDidHideCalled = false
+    private(set) var isAlertViewPresented = false
 
     override func keyboardWillShow(_ notification: Notification?) {
         isKeyboardWillShowCalled = true

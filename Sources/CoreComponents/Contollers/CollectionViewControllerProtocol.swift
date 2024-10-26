@@ -12,7 +12,11 @@ import CoreUtility
 import Foundation
 import UIKit
 
-private var kAOCollectionVC = "k.FT.AO.CollectionViewController"
+// MARK: AssociatedKey
+
+private extension AssociatedKey {
+    static var CollectionVC = Int8(0) // "k.FT.AO.CollectionViewController"
+}
 
 public protocol CollectionViewControllerProtocol: ViewControllerProtocol {
     var flowLayout: UICollectionViewLayout { get }
@@ -47,7 +51,7 @@ public extension CollectionViewControllerProtocol {
     }
     
     var collectionViewController: UICollectionViewController {
-        guard let collection = AssociatedObject<UICollectionViewController>.getAssociated(self, key: &kAOCollectionVC) else {
+        guard let collection = AssociatedObject<UICollectionViewController>.getAssociated(self, key: &AssociatedKey.CollectionVC) else {
             return setupCoreCollectionVC()
         }
         return collection
@@ -58,7 +62,6 @@ private extension CollectionViewControllerProtocol {
     
     @discardableResult
     func setupCoreCollectionVC(_ collectionView: UICollectionView? = nil) -> UICollectionViewController {
-
         // Load Base view
         setupCoreView()
         
@@ -77,7 +80,7 @@ private extension CollectionViewControllerProtocol {
         self.addChild(collectionVC)
         self.mainView?.pin(view: collectionVC.collectionView, edgeOffsets: .zero)
         
-        AssociatedObject<UICollectionViewController>.setAssociated(self, value: collectionVC, key: &kAOCollectionVC)
+        AssociatedObject<UICollectionViewController>.setAssociated(self, value: collectionVC, key: &AssociatedKey.CollectionVC)
         
         return collectionVC
     }
